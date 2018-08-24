@@ -7,5 +7,6 @@ namespace PSAP.BS
 {
     class BSCommon
     {
+
     }
 }
