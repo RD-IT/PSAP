@@ -8,8 +8,8 @@ namespace PSAP.BS
     class BSCommon
     {
 
-        /////////////
-        //////
+        /////////////AAAAAAAAAAAAAAAAAAAAA
+        //////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
         /////////
         ////
@@ -25,7 +25,7 @@ namespace PSAP.BS
         //
         ///
         //
-        /
+        
 
 
 
