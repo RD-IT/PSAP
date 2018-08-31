@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using PSAP.BLL.BSBLL;
+using PSAP;
 
-namespace PSAP
+namespace PSAP.VIEW.BSVIEW
 {
     static class Program
     {
@@ -14,8 +16,12 @@ namespace PSAP
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            //Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FrmLogin());
+            if (PSAPCommon.LoginInfo != null)
+            {
+                Application.Run(new FrmMain());
+            }
         }
     }
 }

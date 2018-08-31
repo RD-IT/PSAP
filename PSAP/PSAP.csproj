@@ -43,11 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BSBLL\BSBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
+    <Compile Include="dsPSAP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPSAP.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSAPCommon\PSAPCommon.cs" />
+    <Compile Include="VIEW\BSVIEW\FrmDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDepartment.Designer.cs">
+      <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,12 +71,6 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmMain.designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VIEW\BSVIEW\LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VIEW\BSVIEW\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\Form1.cs">
       <SubType>Form</SubType>
@@ -81,15 +87,27 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmDepartment.resx">
+      <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\BSVIEW\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="dsPSAP.xsc">
+      <DependentUpon>dsPSAP.xsd</DependentUpon>
+    </None>
+    <None Include="dsPSAP.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPSAP.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsPSAP.xss">
+      <DependentUpon>dsPSAP.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,7 +119,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\BSBLL\" />
     <Folder Include="ENTITY\BSENTITY\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

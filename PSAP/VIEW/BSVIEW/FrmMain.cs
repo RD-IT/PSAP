@@ -6,8 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using PSAP.BLL.BSBLL;
 
-namespace PSAP
+namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmMain : Form
     {
@@ -18,8 +19,16 @@ namespace PSAP
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.ShowDialog();
+            this.Text = "天津容大机电有限公司   [" + PSAPCommon.LoginInfo["DepartmentName"]+" - "+PSAPCommon.LoginInfo["EmpName"]+"]";
+            //FrmLogin frmLogin = new FrmLogin();
+            //frmLogin.ShowDialog();
+        }
+
+        private void 部门信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmDepartment f =new FrmDepartment();
+            f.MdiParent = this.ParentForm;
+            f.Show();
         }
     }
 }
