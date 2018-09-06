@@ -16,11 +16,12 @@ namespace PSAP.VIEW.BSVIEW
         static void Main()
         {
             Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmLogin());
             if (PSAPCommon.LoginInfo != null)
             {
-                Application.Run(new FrmMain());
+                FrmMain frmMain = new FrmMain();
+                frmMain.WindowState = FormWindowState.Maximized;
+                Application.Run(frmMain);
             }
         }
     }

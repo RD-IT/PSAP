@@ -50,13 +50,14 @@ namespace PSAP
             if (string.IsNullOrEmpty(TargetControl.Text))
             {
                 LblInfo.AutoSize = true;
-                LblInfo.Text = "不能为空！";
+                LblInfo.Text = "必填！";
+                LblInfo.TextAlign = ContentAlignment.BottomCenter;
                 LblInfo.BackColor = Color.Yellow;
-                LblInfo.Location = new Point(TargetControl.Left + TargetControl.Width + 10, TargetControl.Top);
+                LblInfo.Location = new Point(TargetControl.Left + TargetControl.Width + 2, TargetControl.Top);
                 LblInfo.Font = new Font(LblInfo.Font.Name, 14.25f);
                 TargetContainer.Controls.Add(LblInfo);
                 LblInfo.Visible = true;
-                TargetControl.Focus();
+                //TargetControl.Focus();//锁定控件
             }
             else
             {
@@ -65,6 +66,28 @@ namespace PSAP
             }
         }
 
+        //public static void InputVerifyNotNull( Panel TargetContainer,params TextBox[] TargetControls)
+        //{
+        //    foreach (TextBox TargetControl in TargetControls)
+        //    {
+        //        if (string.IsNullOrEmpty(TargetControl.Text))
+        //        {
+        //            LblInfo.AutoSize = true;
+        //            LblInfo.Text = "不能为空！";
+        //            LblInfo.BackColor = Color.Yellow;
+        //            LblInfo.Location = new Point(TargetControl.Left + TargetControl.Width + 10, TargetControl.Top);
+        //            LblInfo.Font = new Font(LblInfo.Font.Name, 14.25f);
+        //            TargetContainer.Controls.Add(LblInfo);
+        //            LblInfo.Visible = true;
+        //            TargetControl.Focus();
+        //        }
+        //        else
+        //        {
+        //            LblInfo.Visible = false;
+
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 将DataGridView中的数据导出到CSV格式文件

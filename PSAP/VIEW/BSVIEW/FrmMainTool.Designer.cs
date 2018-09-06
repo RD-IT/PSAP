@@ -1,6 +1,6 @@
-﻿namespace PSAP.VIEW
+﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class Form1
+    partial class FrmMainTool
     {
         /// <summary>
         /// Required designer variable.
@@ -28,47 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.outlookBar1 = new UtilityLibrary.WinControls.OutlookBar();
-            this.outlookBarBand1 = new UtilityLibrary.WinControls.OutlookBarBand();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMainTool));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.setBase11 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.outlookBarBand2 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.outlookBarBand3 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.outlookBarBand4 = new UtilityLibrary.WinControls.OutlookBarBand();
+            this.outlookBarBand5 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.SuspendLayout();
             // 
-            // outlookBar1
+            // imageList1
             // 
-            this.outlookBar1.AnimationSpeed = 10;
-            this.outlookBar1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.outlookBar1.BackgroundBitmap = null;
-            this.outlookBar1.Bands.Add(this.outlookBarBand1);
-            this.outlookBar1.Bands.Add(this.outlookBarBand2);
-            this.outlookBar1.Bands.Add(this.outlookBarBand3);
-            this.outlookBar1.Bands.Add(this.outlookBarBand4);
-            this.outlookBar1.BorderType = UtilityLibrary.WinControls.BorderType.None;
-            this.outlookBar1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.outlookBar1.FlatArrowButtons = false;
-            this.outlookBar1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.outlookBar1.LeftTopColor = System.Drawing.Color.Empty;
-            this.outlookBar1.Location = new System.Drawing.Point(0, 0);
-            this.outlookBar1.Name = "outlookBar1";
-            this.outlookBar1.RightBottomColor = System.Drawing.Color.Empty;
-            this.outlookBar1.Size = new System.Drawing.Size(188, 262);
-            this.outlookBar1.TabIndex = 0;
-            this.outlookBar1.Text = "outlookBar1";
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "7.png");
+            this.imageList1.Images.SetKeyName(1, "8.png");
+            this.imageList1.Images.SetKeyName(2, "9.png");
+            this.imageList1.Images.SetKeyName(3, "14.png");
+            this.imageList1.Images.SetKeyName(4, "99.png");
             // 
-            // outlookBarBand1
+            // setBase11
             // 
-            this.outlookBarBand1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.outlookBarBand1.Background = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.outlookBarBand1.IconView = UtilityLibrary.WinControls.IconView.Large;
-            this.outlookBarBand1.LargeImageList = null;
-            this.outlookBarBand1.Location = new System.Drawing.Point(0, 0);
-            this.outlookBarBand1.Name = "outlookBarBand1";
-            this.outlookBarBand1.Size = new System.Drawing.Size(0, 0);
-            this.outlookBarBand1.SmallImageList = null;
-            this.outlookBarBand1.TabIndex = 0;
-            this.outlookBarBand1.Text = "outlookBarBand1";
-            this.outlookBarBand1.TextColor = System.Drawing.SystemColors.ControlText;
+            this.setBase11.Background = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.setBase11.IconView = UtilityLibrary.WinControls.IconView.Small;
+            this.setBase11.LargeImageList = this.imageList1;
+            this.setBase11.Location = new System.Drawing.Point(0, 0);
+            this.setBase11.Name = "setBase11";
+            this.setBase11.Size = new System.Drawing.Size(0, 0);
+            this.setBase11.SmallImageList = this.imageList1;
+            this.setBase11.TabIndex = 0;
+            this.setBase11.Text = "基本信息";
+            this.setBase11.TextColor = System.Drawing.SystemColors.ControlText;
             // 
             // outlookBarBand2
             // 
@@ -109,25 +100,38 @@
             this.outlookBarBand4.Text = "outlookBarBand4";
             this.outlookBarBand4.TextColor = System.Drawing.SystemColors.ControlText;
             // 
-            // Form1
+            // outlookBarBand5
+            // 
+            this.outlookBarBand5.Background = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.outlookBarBand5.IconView = UtilityLibrary.WinControls.IconView.Large;
+            this.outlookBarBand5.LargeImageList = null;
+            this.outlookBarBand5.Location = new System.Drawing.Point(0, 0);
+            this.outlookBarBand5.Name = "outlookBarBand5";
+            this.outlookBarBand5.Size = new System.Drawing.Size(0, 0);
+            this.outlookBarBand5.SmallImageList = null;
+            this.outlookBarBand5.TabIndex = 0;
+            this.outlookBarBand5.Text = "outlookBarBand5";
+            this.outlookBarBand5.TextColor = System.Drawing.SystemColors.ControlText;
+            // 
+            // FrmMainTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.outlookBar1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.ClientSize = new System.Drawing.Size(239, 472);
+            this.Name = "FrmMainTool";
+            this.TabText = "功能导航";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMainTool_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMainTool_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private UtilityLibrary.WinControls.OutlookBar outlookBar1;
-        private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand1;
+        private System.Windows.Forms.ImageList imageList1;
+        private UtilityLibrary.WinControls.OutlookBarBand setBase11;
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand2;
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand3;
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand4;
+        private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand5;
     }
 }

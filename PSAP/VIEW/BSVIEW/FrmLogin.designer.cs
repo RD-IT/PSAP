@@ -34,11 +34,13 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUserID
             // 
-            this.txtUserID.Location = new System.Drawing.Point(166, 104);
+            this.txtUserID.Location = new System.Drawing.Point(65, 9);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(100, 21);
             this.txtUserID.TabIndex = 0;
@@ -46,7 +48,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(166, 147);
+            this.txtPassword.Location = new System.Drawing.Point(65, 52);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 21);
@@ -56,7 +58,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 108);
+            this.label1.Location = new System.Drawing.Point(17, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 2;
@@ -64,7 +66,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(105, 222);
+            this.btnLogin.Location = new System.Drawing.Point(4, 102);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
@@ -74,7 +76,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(212, 221);
+            this.btnCancel.Location = new System.Drawing.Point(110, 101);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -85,31 +87,45 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 151);
+            this.label2.Location = new System.Drawing.Point(17, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 5;
             this.label2.Text = "密  码";
             // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.txtUserID);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.Controls.Add(this.btnLogin);
+            this.panel1.Location = new System.Drawing.Point(23, 87);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(188, 128);
+            this.panel1.TabIndex = 6;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 332);
+            this.ClientSize = new System.Drawing.Size(234, 230);
             this.ControlBox = false;
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUserID);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("宋体", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "用户登录";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +139,7 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

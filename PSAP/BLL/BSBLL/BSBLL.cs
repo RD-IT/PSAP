@@ -12,12 +12,13 @@ namespace PSAP.BLL.BSBLL
 {
     public abstract class BSBLL
     {
-        //public static DataRow LoginInfo;//存放当前登陆用户信息
+        //public static DataRow LoginInfo;//存放当前登录用户信息
         public static void CheckUser(TextBox txtUserID,TextBox txtPassword)
         {
             if (txtUserID.Text == string.Empty || txtPassword.Text == string.Empty)
             {
-                MessageBox.Show("用户ID和密码不能为空！", "提示");
+                MessageBox.Show(string.Format("用户ID和密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             else
             {
@@ -34,7 +35,7 @@ namespace PSAP.BLL.BSBLL
                 }
                 else
                 {
-                    MessageBox.Show("用ID或密码错误！");
+                    MessageBox.Show(string.Format("用ID或密码错误！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
