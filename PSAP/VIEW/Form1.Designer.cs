@@ -33,6 +33,8 @@
             this.outlookBarBand2 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.outlookBarBand3 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.outlookBarBand4 = new UtilityLibrary.WinControls.OutlookBarBand();
+            this.button1 = new System.Windows.Forms.Button();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // outlookBar1
@@ -52,7 +54,7 @@
             this.outlookBar1.Location = new System.Drawing.Point(0, 0);
             this.outlookBar1.Name = "outlookBar1";
             this.outlookBar1.RightBottomColor = System.Drawing.Color.Empty;
-            this.outlookBar1.Size = new System.Drawing.Size(188, 262);
+            this.outlookBar1.Size = new System.Drawing.Size(188, 355);
             this.outlookBar1.TabIndex = 0;
             this.outlookBar1.Text = "outlookBar1";
             // 
@@ -109,13 +111,33 @@
             this.outlookBarBand4.Text = "outlookBarBand4";
             this.outlookBarBand4.TextColor = System.Drawing.SystemColors.ControlText;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(300, 148);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(242, 27);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(121, 97);
+            this.treeView1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(451, 355);
+            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.outlookBar1);
             this.Name = "Form1";
+            this.TabText = "Form1";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
@@ -129,5 +151,7 @@
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand2;
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand3;
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

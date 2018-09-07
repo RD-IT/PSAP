@@ -21,11 +21,13 @@ namespace PSAP.VIEW.BSVIEW
         public FrmMain()
         {
             InitializeComponent();
+            /*为了调试暂时注释掉$
+            PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限
+            */
             FrmMainTool frmMainTool = new FrmMainTool(this);
-            frmMainTool = new FrmMainTool(this);
+            //frmMainTool = new FrmMainTool(this);这句没意义
             //frmMainTool.HideOnClose = true;//使用就无法触发窗口关闭事件了
             frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
-
             //FrmDepartment f = new FrmDepartment();
             //f.Show(this.dockPanel1);
         }

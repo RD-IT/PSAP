@@ -39,20 +39,23 @@
             this.ttttttToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trtrtrtrtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iuiuiuyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pPPPPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wWWWWWWWWWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.cMenuStripDocking = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pPPPPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wWWWWWWWWWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.cMenuStripDocking.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -80,21 +83,21 @@
             // 部门信息ToolStripMenuItem
             // 
             this.部门信息ToolStripMenuItem.Name = "部门信息ToolStripMenuItem";
-            this.部门信息ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.部门信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.部门信息ToolStripMenuItem.Text = "部门信息";
             this.部门信息ToolStripMenuItem.Click += new System.EventHandler(this.部门信息ToolStripMenuItem_Click_1);
             // 
             // dddddToolStripMenuItem
             // 
             this.dddddToolStripMenuItem.Name = "dddddToolStripMenuItem";
-            this.dddddToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.dddddToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dddddToolStripMenuItem.Text = "ddddd";
             // 
             // yyyyyyToolStripMenuItem
             // 
             this.yyyyyyToolStripMenuItem.Name = "yyyyyyToolStripMenuItem";
-            this.yyyyyyToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.yyyyyyToolStripMenuItem.Text = "yyyyyy";
+            this.yyyyyyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.yyyyyyToolStripMenuItem.Text = "tmpWindow";
             // 
             // 系统管理ToolStripMenuItem
             // 
@@ -115,15 +118,29 @@
             // trtrtrtrtToolStripMenuItem
             // 
             this.trtrtrtrtToolStripMenuItem.Name = "trtrtrtrtToolStripMenuItem";
-            this.trtrtrtrtToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.trtrtrtrtToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.trtrtrtrtToolStripMenuItem.Text = "trtrtrtrt";
             // 
             // iuiuiuyToolStripMenuItem
             // 
             this.iuiuiuyToolStripMenuItem.Enabled = false;
             this.iuiuiuyToolStripMenuItem.Name = "iuiuiuyToolStripMenuItem";
-            this.iuiuiuyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iuiuiuyToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.iuiuiuyToolStripMenuItem.Text = "iuiuiuy";
+            // 
+            // pPPPPToolStripMenuItem
+            // 
+            this.pPPPPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wWWWWWWWWWToolStripMenuItem});
+            this.pPPPPToolStripMenuItem.Name = "pPPPPToolStripMenuItem";
+            this.pPPPPToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.pPPPPToolStripMenuItem.Text = "PPPPP";
+            // 
+            // wWWWWWWWWWToolStripMenuItem
+            // 
+            this.wWWWWWWWWWToolStripMenuItem.Name = "wWWWWWWWWWToolStripMenuItem";
+            this.wWWWWWWWWWToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
+            this.wWWWWWWWWWToolStripMenuItem.Text = "W";
             // 
             // toolStrip1
             // 
@@ -161,18 +178,6 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
-            // dockPanel1
-            // 
-            this.dockPanel1.ActiveAutoHideContent = null;
-            this.dockPanel1.ContextMenuStrip = this.cMenuStripDocking;
-            this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPanel1.Location = new System.Drawing.Point(0, 50);
-            this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.RightToLeftLayout = true;
-            this.dockPanel1.ShowDocumentIcon = true;
-            this.dockPanel1.Size = new System.Drawing.Size(1022, 501);
-            this.dockPanel1.TabIndex = 6;
-            // 
             // cMenuStripDocking
             // 
             this.cMenuStripDocking.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -206,19 +211,33 @@
             this.toolStripMenuItem3.ToolTipText = "关闭全部窗口";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // pPPPPToolStripMenuItem
+            // statusStrip1
             // 
-            this.pPPPPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wWWWWWWWWWToolStripMenuItem});
-            this.pPPPPToolStripMenuItem.Name = "pPPPPToolStripMenuItem";
-            this.pPPPPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pPPPPToolStripMenuItem.Text = "PPPPP";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 529);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1022, 22);
+            this.statusStrip1.TabIndex = 10;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // wWWWWWWWWWToolStripMenuItem
+            // toolStripStatusLabel1
             // 
-            this.wWWWWWWWWWToolStripMenuItem.Name = "wWWWWWWWWWToolStripMenuItem";
-            this.wWWWWWWWWWToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.wWWWWWWWWWToolStripMenuItem.Text = "W";
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // dockPanel1
+            // 
+            this.dockPanel1.ActiveAutoHideContent = null;
+            this.dockPanel1.ContextMenuStrip = this.cMenuStripDocking;
+            this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanel1.Location = new System.Drawing.Point(0, 50);
+            this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.RightToLeftLayout = true;
+            this.dockPanel1.ShowDocumentIcon = true;
+            this.dockPanel1.Size = new System.Drawing.Size(1022, 479);
+            this.dockPanel1.TabIndex = 12;
             // 
             // FrmMain
             // 
@@ -226,6 +245,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 551);
             this.Controls.Add(this.dockPanel1);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -240,6 +260,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.cMenuStripDocking.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,7 +277,6 @@
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
         private System.Windows.Forms.ToolStripMenuItem dddddToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yyyyyyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ttttttToolStripMenuItem;
@@ -267,5 +288,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem pPPPPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wWWWWWWWWWToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
     }
 }

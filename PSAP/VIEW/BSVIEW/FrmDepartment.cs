@@ -159,7 +159,7 @@ namespace PSAP.VIEW.BSVIEW
                 this.tableAdapterManager.UpdateAll(this.dsPSAP);
                 ChangeEnabledState();//保存后更新控件状态
             }
-            catch (System.Data.NoNullAllowedException e1)//字段为空
+            catch (System.Data.NoNullAllowedException )//字段为空
             {
                 MessageBox.Show("【部门编码】和【部门名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -172,7 +172,7 @@ namespace PSAP.VIEW.BSVIEW
                     departmentNameTextBox1.Focus();
                 }
             }
-            catch (System.Data.ConstraintException e2)//关键字字段值重复
+            catch (System.Data.ConstraintException )//关键字字段值重复
             {
                 MessageBox.Show("此部门编码已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 departmentNoTextBox1.Focus();

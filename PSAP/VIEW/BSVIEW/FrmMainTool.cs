@@ -26,17 +26,11 @@ namespace PSAP.VIEW.BSVIEW
             this.frToolmMain = frmMain;
             sp1 = frmMain.menuStrip1;
             treeView = new TreeViewEx[sp1.Items.Count];//实例
-
             InitializeComponent();
-
             InitializeTreeControl();//初始化treeView
             InitializeOutlookBar();
 
         }
-        //private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //   frToolmMain.toolStripButton1.Enabled = true;
-        //}
 
         void InitializeOutlookBar()
         {
@@ -68,7 +62,6 @@ namespace PSAP.VIEW.BSVIEW
                 }
             }
             //增加选项卡《End》
-
             outlookBar1.Dock = DockStyle.Fill;
             outlookBar1.SetCurrentBand(0);
             outlookBar1.AnimationSpeed = 5;
@@ -79,14 +72,8 @@ namespace PSAP.VIEW.BSVIEW
         #region
         void InitializeTreeControl()
         {
-           // MenuStrip sp1 = new MenuStrip();
-            //sp1 = frToolmMain.menuStrip1;
             SuspendLayout();//临时挂起控件的布局逻辑
-
-            //GetMenu(treeView[i],sp1);
             GetMenu(sp1);
-
-
             //********************************
             /*
             // treeView1
@@ -134,8 +121,7 @@ namespace PSAP.VIEW.BSVIEW
         }
         
         //将MenuStrip中的项按照层次加到TreeNode中
-        //public static void GetMenu(TreeView treeV, MenuStrip menuS)
-        public  void GetMenu(MenuStrip menuS)
+        public  void GetMenu(MenuStrip menuS)//public static void GetMenu(TreeView treeV, MenuStrip menuS)
         {
             int i = 0;
             //遍历menuStrip中的一级菜单项
@@ -149,20 +135,24 @@ namespace PSAP.VIEW.BSVIEW
                 treeView[i].Size = new System.Drawing.Size(292, 266);
                 treeView[i].TabIndex = 0;
                 treeView[i].ImageList = imageList1;//sx
-                treeView[i].ImageIndex = -1;
-                treeView[i].SelectedImageIndex = -1;
+                treeView[i].ImageIndex = 0;
+                treeView[i].SelectedImageIndex = 0;
                 treeView[i].ShowLines = false;
                 treeView[i].ShowNodeToolTips = true;
                 treeView[i].FullRowSelect = true;
                 treeView[i].HotTracking = true;
+                treeView[i].ShowPlusMinus = false;
 
                 // treeView[i].DoubleClick += new EventHandler(treeView1_DoubleClick);//双击
                 treeView[i].NodeMouseClick += new TreeNodeMouseClickEventHandler(treeView1_NodeMouseClick);
 
                 if (m1.Enabled == true)
                 {
-                TreeNode node1 = treeView[i].Nodes.Add(m1.Text);
+                    TreeNode node1 = treeView[i].Nodes.Add(m1.Name,m1.Text);
                     //node1.Checked = true;
+                    node1.Text = "";//隐藏根结点
+                    node1.ImageIndex= 3;//根节点图标
+                    node1.SelectedImageIndex = 3;//根节点图标
                     GetMenu(node1, m1);
                     i++;
                 }
@@ -177,7 +167,12 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (m2 != null && m2.Enabled == true)
                 {
-                    TreeNode node2 = node1.Nodes.Add(m2.Text);
+                    TreeNode node2 = node1.Nodes.Add(m2.Name,m2.Text);
+                    if(m2.DropDownItems.Count > 0)//判断是否为父节点
+                    { 
+                        node2.ImageIndex = 3;//父节点图标
+                        node2.SelectedImageIndex = 0;//父节点图标
+                    }
                     GetMenu(node2, m2);//递归   
                 }
             }
@@ -304,18 +299,20 @@ namespace PSAP.VIEW.BSVIEW
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
-            switch (e.Node.Text)
+            switch (e.Node.Name)
             {
-                case "部门信息":
-                    FrmDepartment.getinstance(DockPanel);//打开指定窗口
+                case "部门信息ToolStripMenuItem"://"部门信息":
+                    FrmDepartment.getinstance(DockPanel);
                     break;
-                case "ddddd":
-                    FrmPower.getinstance(DockPanel);//打开指定窗口
+                case "dddddToolStripMenuItem"://"ddddd":
+                    FrmUserRight.getinstance(DockPanel);
                     break;
-                case "W":
-                    FrmPower.getinstance(DockPanel);//打开指定窗口
+                case "wWWWWWWWWWToolStripMenuItem"://"W":
+                    FrmUserRight.getinstance(DockPanel);
                     break;
-
+                case "yyyyyyToolStripMenuItem":
+                    Form1.getinstance(DockPanel);
+                    break;
             }
 
         }

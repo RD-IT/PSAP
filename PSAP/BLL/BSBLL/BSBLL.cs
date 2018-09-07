@@ -39,5 +39,66 @@ namespace PSAP.BLL.BSBLL
                 }
             }
         }
+        //0000000000000000000000000000000000000000000000000000000000
+        /// <summary>
+        /// 初始化主菜单用户权限
+        /// </summary>
+        public static void InitUserMenus(PSAP.VIEW.BSVIEW.FrmMain frmMain)
+        {
+            ToolStripMenuItem mnuItem;
+            ToolStripMenuItem refMenuItem = new ToolStripMenuItem();
+
+            //初始设置所有菜单不可见
+            foreach (ToolStripMenuItem ctrl in frmMain.menuStrip1.Items)
+            {
+                //ctrl.Enabled = false;
+                foreach (object subItem in ctrl.DropDownItems)
+                {
+                    if (subItem.GetType() == refMenuItem.GetType())
+                    {
+                        mnuItem = (ToolStripMenuItem)subItem;
+                        mnuItem.Enabled = false;
+                    }
+                }
+            }
+
+        /*
+            //取得相应用户对应的菜单项权限
+            string sqlFunc = string.Format("select *** from *** ");
+            SqlDataAdapter adp = new SqlDataAdapter(sqlFunc, conn);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+
+            //设置菜单项的可见或可用性
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                //遍历主菜单
+                foreach (ToolStripMenuItem ctrl in mainMenu.Items)
+                {
+                    if (ctrl.Name.ToUpper().Trim() == dr[0].ToString().ToUpper().Trim())
+                    {
+                        ctrl.Visible = true;
+                        ctrl.Enabled = true;
+                        break;
+                    }
+
+                    //遍历子菜单
+                    foreach (object subItem in ctrl.DropDownItems)
+                    {
+                        if (subItem.GetType() == refMenuItem.GetType())
+                        {
+                            mnuItem = (ToolStripMenuItem)subItem;
+                            if (mnuItem.Name.ToUpper().Trim() == dr[0].ToString().ToUpper().Trim())
+                            {
+                                mnuItem.Visible = true;
+                                mnuItem.Enabled = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            */
+        }
     }
 }

@@ -10,12 +10,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmPower : DockContent
+    public partial class FrmUserRight : DockContent
     {
         private FrmMain frmM = new FrmMain();//实例化主窗口，用于引用其中对象
         //public static MenuStrip mnuSP1 = new MenuStrip();//
 
-        public FrmPower()
+        public FrmUserRight()
         {
             InitializeComponent();
          
@@ -32,7 +32,7 @@ namespace PSAP.VIEW.BSVIEW
             foreach (ToolStripDropDownItem m1 in menuS.Items)
             {
                 //循环添加一级菜单
-                TreeNode node1 = treeV.Nodes.Add(m1.Text+" "+m1.Name);
+                TreeNode node1 = treeV.Nodes.Add(m1.Text+" "+m1.Name+"|");
                 if (m1.Enabled == true)
                 {
                     node1.Checked = true;
@@ -59,13 +59,13 @@ namespace PSAP.VIEW.BSVIEW
 
 
         //用于从功能导航窗口调用此窗口
-        private static FrmPower _initialize = null;
+        private static FrmUserRight _initialize = null;
 
-        public static FrmPower getinstance(DockPanel p)
+        public static FrmUserRight getinstance(DockPanel p)
         {
             if (_initialize == null || _initialize.IsDisposed)
             {
-                _initialize = new FrmPower();
+                _initialize = new FrmUserRight();
             }
             _initialize.Show(p);
             _initialize.Activate();

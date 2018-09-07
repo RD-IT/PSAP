@@ -1,6 +1,6 @@
 ﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class FrmPower
+    partial class FrmUserRight
     {
         /// <summary>
         /// Required designer variable.
@@ -39,15 +39,15 @@
             this.treeView1.TabIndex = 0;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
-            // FrmPower
+            // FrmUserRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 483);
             this.Controls.Add(this.treeView1);
-            this.Name = "FrmPower";
-            this.TabText = "FrmPower";
-            this.Text = "FrmPower";
+            this.Name = "FrmUserRight";
+            this.TabText = "用户权限";
+            this.Text = "用户权限";
             this.ResumeLayout(false);
 
         }
