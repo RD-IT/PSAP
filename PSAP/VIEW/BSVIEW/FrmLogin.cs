@@ -16,8 +16,8 @@ namespace PSAP
         public FrmLogin()
         {
             InitializeComponent();
-            txtUserID.Text = "18";//测试用
-            txtPassword.Text = "1";//测试用
+            txtUserID.Text = "ADMIN";//测试用
+            txtPassword.Text = "18";//测试用
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -32,8 +32,17 @@ namespace PSAP
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            BSBLL.CheckUser(txtUserID, txtPassword);
+            PSAP.EncryptMD5 en = new PSAP.EncryptMD5(txtPassword.Text);//实例化EncryptMD5, 加密后值引用en.str2
+            if (txtUserID.Text == string.Empty || txtPassword.Text == string.Empty)
+            {
+                MessageBox.Show(string.Format("用户ID和密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+            else
+            {
+                BSBLL.CheckUser(txtUserID.Text, en.str2);// en.str2为加密后密码
+
+            }
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)

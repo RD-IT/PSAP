@@ -13,33 +13,20 @@ namespace PSAP.BLL.BSBLL
     public abstract class BSBLL
     {
         //public static DataRow LoginInfo;//存放当前登录用户信息
-        public static void CheckUser(TextBox txtUserID,TextBox txtPassword)
+        public static void CheckUser(string txtUserID,string txtPassword)
         {
-            if (txtUserID.Text == string.Empty || txtPassword.Text == string.Empty)
+            if(BSCheckUser.CheckUser(txtUserID,txtPassword)!=null)
             {
-                MessageBox.Show(string.Format("用户ID和密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                //PSAPCommon. LoginInfo = ds.Tables[0].Rows[0];
+                FrmLogin.ActiveForm.Close();
             }
             else
             {
-                string sqlString = "select a.*,b.departmentName "+
-                    "from BS_UserInfo a left join BS_Department b on a.departmentNo=b.departmentNo  "+
-                    "where a.loginID='" + txtUserID.Text + "' and a.loginPwd='" + txtPassword.Text + "'";
-                DataSet ds = new DataSet();
-                ds=BaseSQL.Query(sqlString);
-                //if (BaseSQL.Exists(sqlString))
-                if(ds.Tables[0].Rows.Count>0)
-                {
-                    PSAPCommon. LoginInfo = ds.Tables[0].Rows[0];
-                    FrmLogin.ActiveForm.Close();
-                }
-                else
-                {
-                    MessageBox.Show(string.Format("用ID或密码错误！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show(string.Format("用ID或密码错误！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
         }
-        //0000000000000000000000000000000000000000000000000000000000
+
         /// <summary>
         /// 初始化主菜单用户权限
         /// </summary>
@@ -48,10 +35,10 @@ namespace PSAP.BLL.BSBLL
             ToolStripMenuItem mnuItem;
             ToolStripMenuItem refMenuItem = new ToolStripMenuItem();
 
-            //初始设置所有菜单不可见
+            //初始设置所有菜单无效
             foreach (ToolStripMenuItem ctrl in frmMain.menuStrip1.Items)
             {
-                //ctrl.Enabled = false;
+                //ctrl.Enabled = false;//主菜单保持有效状态
                 foreach (object subItem in ctrl.DropDownItems)
                 {
                     if (subItem.GetType() == refMenuItem.GetType())
@@ -62,10 +49,11 @@ namespace PSAP.BLL.BSBLL
                 }
             }
 
-        /*
+
             //取得相应用户对应的菜单项权限
-            string sqlFunc = string.Format("select *** from *** ");
-            SqlDataAdapter adp = new SqlDataAdapter(sqlFunc, conn);
+            ENTITY.BSENTITY.UserInfo userInfo = new ENTITY.BSENTITY.UserInfo();
+            string sqlString = "select a.MenuName from BS_UserRight a where a.LoginID like'"+userInfo.LoginID+"'";
+            SqlDataAdapter adp = new SqlDataAdapter(sqlString, BaseSQL.connectionString );
             DataSet ds = new DataSet();
             adp.Fill(ds);
 
@@ -73,14 +61,15 @@ namespace PSAP.BLL.BSBLL
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 //遍历主菜单
-                foreach (ToolStripMenuItem ctrl in mainMenu.Items)
+                foreach (ToolStripMenuItem ctrl in frmMain.menuStrip1.Items)
                 {
-                    if (ctrl.Name.ToUpper().Trim() == dr[0].ToString().ToUpper().Trim())
-                    {
-                        ctrl.Visible = true;
-                        ctrl.Enabled = true;
-                        break;
-                    }
+                    //主菜单保持有效状态
+                    //if (ctrl.Name.ToUpper().Trim() == dr[0].ToString().ToUpper().Trim())
+                    //{
+                        //ctrl.Visible = true;
+                        //ctrl.Enabled = true;
+                        //break;
+                    //}
 
                     //遍历子菜单
                     foreach (object subItem in ctrl.DropDownItems)
@@ -90,7 +79,7 @@ namespace PSAP.BLL.BSBLL
                             mnuItem = (ToolStripMenuItem)subItem;
                             if (mnuItem.Name.ToUpper().Trim() == dr[0].ToString().ToUpper().Trim())
                             {
-                                mnuItem.Visible = true;
+                                //mnuItem.Visible = true;
                                 mnuItem.Enabled = true;
                                 break;
                             }
@@ -98,7 +87,7 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
             }
-            */
+            
         }
     }
 }

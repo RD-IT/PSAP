@@ -11,6 +11,7 @@ using WeifenLuo.WinFormsUI.Docking;
 namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmUserRight : DockContent
+
     {
         private FrmMain frmM = new FrmMain();//实例化主窗口，用于引用其中对象
         //public static MenuStrip mnuSP1 = new MenuStrip();//
@@ -59,9 +60,9 @@ namespace PSAP.VIEW.BSVIEW
 
 
         //用于从功能导航窗口调用此窗口
-        private static FrmUserRight _initialize = null;
-
-        public static FrmUserRight getinstance(DockPanel p)
+        //private static FrmUserRight _initialize = null;
+        public FrmUserRight _initialize = null;
+        public FrmUserRight getinstance(DockPanel p)
         {
             if (_initialize == null || _initialize.IsDisposed)
             {

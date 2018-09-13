@@ -9,6 +9,10 @@ using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using UtilityLibrary.WinControls;
 
+using Microsoft.CSharp;
+using System.CodeDom.Compiler;
+
+using System.Reflection;
 namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmMainTool : DockContent
@@ -296,19 +300,33 @@ namespace PSAP.VIEW.BSVIEW
         //}
 
         //打开指定窗口【单击】
+           
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
             switch (e.Node.Name)
             {
-                case "部门信息ToolStripMenuItem"://"部门信息":
+                case "部门信息ToolStripMenuItem"://部门信息
                     FrmDepartment.getinstance(DockPanel);
                     break;
-                case "dddddToolStripMenuItem"://"ddddd":
-                    FrmUserRight.getinstance(DockPanel);
+                case "用户信息ToolStripMenuItem"://用户信息
+                    FrmUserInfo.getinstance(DockPanel);
+                    break;
+                case "用户权限ToolStripMenuItem"://
+                    //FrmUserRight.getinstance(DockPanel);
+                    DockContent ss = new DockContent();
+
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    string frmName = "PSAP.VIEW.BSVIEW.FrmUserRight";// 实例化窗体
+                    FrmUserRight form = (FrmUserRight)assembly.CreateInstance(frmName);
+
+                  //  Form form = Activator.CreateInstance("FrmUserRight) as Form;
+                    form.getinstance(DockPanel);
+                   // form.
+                   
                     break;
                 case "wWWWWWWWWWToolStripMenuItem"://"W":
-                    FrmUserRight.getinstance(DockPanel);
+                  //  FrmUserRight.getinstance(DockPanel);
                     break;
                 case "yyyyyyToolStripMenuItem":
                     Form1.getinstance(DockPanel);

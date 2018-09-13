@@ -26,8 +26,8 @@ namespace PSAP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IT-SONGXI;Initial Catalog=PSAP;Persist Security Info=True;User ID=sa;" +
-            "Password=rongda83717906")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.3;Initial Catalog=PSAP;Persist Security Info=True;User ID=s" +
+            "a;Password=1qaz2wsx")]
         public string PSAPConnectionString {
             get {
                 return ((string)(this["PSAPConnectionString"]));

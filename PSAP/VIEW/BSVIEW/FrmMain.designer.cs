@@ -33,7 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.基本信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.部门信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dddddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.用户信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yyyyyyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ttttttToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.用户权限ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.cMenuStripDocking.SuspendLayout();
@@ -74,7 +75,8 @@
             // 
             this.基本信息ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.部门信息ToolStripMenuItem,
-            this.dddddToolStripMenuItem,
+            this.用户信息ToolStripMenuItem,
+            this.用户权限ToolStripMenuItem,
             this.yyyyyyToolStripMenuItem});
             this.基本信息ToolStripMenuItem.Name = "基本信息ToolStripMenuItem";
             this.基本信息ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
@@ -87,11 +89,12 @@
             this.部门信息ToolStripMenuItem.Text = "部门信息";
             this.部门信息ToolStripMenuItem.Click += new System.EventHandler(this.部门信息ToolStripMenuItem_Click_1);
             // 
-            // dddddToolStripMenuItem
+            // 用户信息ToolStripMenuItem
             // 
-            this.dddddToolStripMenuItem.Name = "dddddToolStripMenuItem";
-            this.dddddToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.dddddToolStripMenuItem.Text = "ddddd";
+            this.用户信息ToolStripMenuItem.Name = "用户信息ToolStripMenuItem";
+            this.用户信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户信息ToolStripMenuItem.Text = "用户信息";
+            this.用户信息ToolStripMenuItem.Click += new System.EventHandler(this.用户信息ToolStripMenuItem_Click);
             // 
             // yyyyyyToolStripMenuItem
             // 
@@ -123,7 +126,6 @@
             // 
             // iuiuiuyToolStripMenuItem
             // 
-            this.iuiuiuyToolStripMenuItem.Enabled = false;
             this.iuiuiuyToolStripMenuItem.Name = "iuiuiuyToolStripMenuItem";
             this.iuiuiuyToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.iuiuiuyToolStripMenuItem.Text = "iuiuiuy";
@@ -232,12 +234,20 @@
             this.dockPanel1.ActiveAutoHideContent = null;
             this.dockPanel1.ContextMenuStrip = this.cMenuStripDocking;
             this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanel1.Font = new System.Drawing.Font("宋体", 9F);
             this.dockPanel1.Location = new System.Drawing.Point(0, 50);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.RightToLeftLayout = true;
             this.dockPanel1.ShowDocumentIcon = true;
             this.dockPanel1.Size = new System.Drawing.Size(1022, 479);
             this.dockPanel1.TabIndex = 12;
+            // 
+            // 用户权限ToolStripMenuItem
+            // 
+            this.用户权限ToolStripMenuItem.Name = "用户权限ToolStripMenuItem";
+            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户权限ToolStripMenuItem.Text = "用户权限";
+            this.用户权限ToolStripMenuItem.Click += new System.EventHandler(this.用户权限ToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -277,7 +287,7 @@
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripMenuItem dddddToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 用户信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yyyyyyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ttttttToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trtrtrtrtToolStripMenuItem;
@@ -291,5 +301,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
+        private System.Windows.Forms.ToolStripMenuItem 用户权限ToolStripMenuItem;
     }
 }

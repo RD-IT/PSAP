@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using PSAP.DAO.BSDAO;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -18,13 +19,13 @@ namespace PSAP.VIEW.BSVIEW
             InitEnableState();//初始化控件Enable状态
         }
 
-        private void bS_DepartmentBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bS_DepartmentBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.dsPSAP);
+        //private void bS_DepartmentBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        //{
+        //    this.Validate();
+        //    this.bS_DepartmentBindingSource.EndEdit();
+        //    this.tableAdapterManager.UpdateAll(this.dsPSAP);
 
-        }
+        //}
 
         private void FrmDepartment_Load(object sender, EventArgs e)
         {
@@ -35,9 +36,32 @@ namespace PSAP.VIEW.BSVIEW
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
 
+            //FormResize();//根据窗口大小调整控件大小
         }
+        #region 根据窗口大小调整控件大小
+        PSAP.FormAutoSize formAutoSize = new FormAutoSize();
+            /// <summary>
+            ///根据窗口大小调整控件大小
+            /// </summary>
+            private void FormResize()
+            {
+                this.Resize += new EventHandler(Form_Resize);
+                formAutoSize._x = this.Width;
+                formAutoSize._y = this.Height;
+                formAutoSize.setTag(this);
+            }
+            /// <summary>
+            /// 根据窗口大小调整控件大小(对应事件)
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            private void Form_Resize(object sender, EventArgs e)
+            {
+                formAutoSize.form_Resize(this);
+            }
+        #endregion
 
-         private void departmentNoTextBox1_Leave(object sender, EventArgs e)
+        private void departmentNoTextBox1_Leave(object sender, EventArgs e)
         {
             PSAPCommon.InputVerifyNotNull(departmentNoTextBox1, pnlEdit);//离开当前文本框时判断是否为空
         }
@@ -150,7 +174,7 @@ namespace PSAP.VIEW.BSVIEW
         private void tsbSave_Click(object sender, EventArgs e)
         {
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
-            founderTextBox.Text = PSAPCommon.LoginInfo["EmpName"].ToString();//获取当前登录用户姓名
+            founderTextBox.Text =BSCheckUser.user.EmpName;//获取当前登录用户姓名
 
             try
             {
@@ -161,14 +185,15 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (System.Data.NoNullAllowedException )//字段为空
             {
-                MessageBox.Show("【部门编码】和【部门名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 if (string.IsNullOrEmpty(departmentNoTextBox1.Text))
                 {
+                    MessageBox.Show("【部门编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     departmentNoTextBox1.Focus();
                 }
-                else
+                if(string.IsNullOrEmpty(departmentNameTextBox1.Text))
                 {
+                    MessageBox.Show("【部门名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     departmentNameTextBox1.Focus();
                 }
             }
@@ -183,7 +208,6 @@ namespace PSAP.VIEW.BSVIEW
         //删除当前行
         private void tsbDelete_Click(object sender, EventArgs e)
         {
-            bS_DepartmentDataGridView.Enabled = true;//删除后数据表控件可用
             if (bS_DepartmentBindingSource.Current != null)//当前是否有数据
                 {
                     if (MessageBox.Show("确实要删除吗?", "确认", MessageBoxButtons.YesNo,
@@ -193,8 +217,8 @@ namespace PSAP.VIEW.BSVIEW
                     this.tableAdapterManager.UpdateAll(dsPSAP);//更新数据集
                 }
             }
-
-        }
+              bS_DepartmentDataGridView.Enabled = true;//删除后数据表控件可用
+      }
 
         //新增一条记录
         private void tsbInsert_Click(object sender, EventArgs e)

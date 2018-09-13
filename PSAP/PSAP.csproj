@@ -53,14 +53,19 @@
   <ItemGroup>
     <Compile Include="BLL\BSBLL\BSBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
+    <Compile Include="DAO\BSDAO\BSCheckUser.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
     <Compile Include="dsPSAP.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPSAP.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ENTITY\BSENTITY\UserInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSAPCommon\EncryptMD5.cs" />
+    <Compile Include="PSAPCommon\ExecuteStr.cs" />
+    <Compile Include="PSAPCommon\FormAutoSize.cs" />
     <Compile Include="PSAPCommon\PSAPCommon.cs" />
     <Compile Include="VIEW\BSVIEW\FrmDepartment.cs">
       <SubType>Form</SubType>
@@ -85,6 +90,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmMainTool.Designer.cs">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmUserInfo.Designer.cs">
+      <DependentUpon>FrmUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUserRight.cs">
       <SubType>Form</SubType>
@@ -119,6 +130,9 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmMainTool.resx">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmUserInfo.resx">
+      <DependentUpon>FrmUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUserRight.resx">
       <DependentUpon>FrmUserRight.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,9 +161,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ENTITY\BSENTITY\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using PSAP.BLL.BSBLL;
 using PSAP;
-
+using PSAP.ENTITY.BSENTITY;
+using PSAP.DAO.BSDAO;
 namespace PSAP.VIEW.BSVIEW
 {
     static class Program
@@ -17,7 +18,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             Application.EnableVisualStyles();
             Application.Run(new FrmLogin());
-            if (PSAPCommon.LoginInfo != null)
+            //if (PSAPCommon.LoginInfo != null)
+            if(BSCheckUser.user!=null)
             {
                 FrmMain frmMain = new FrmMain();
                 frmMain.WindowState = FormWindowState.Maximized;

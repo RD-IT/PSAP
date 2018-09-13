@@ -16,7 +16,7 @@ namespace PSAP
          //* *************************
          //* 全局变量定义*************
          //*************************** 
-        public static DataRow LoginInfo;//存放当前登陆用户信息
+       // public static DataRow LoginInfo;//存放当前登陆用户信息
 
 
         //* *************************

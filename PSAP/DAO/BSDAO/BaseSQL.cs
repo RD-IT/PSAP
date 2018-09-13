@@ -13,7 +13,7 @@ namespace PSAP.DAO.BSDAO
     public abstract class BaseSQL
     {
         //数据库连接字符串(app.config来配置)
-        protected static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PSAP.Properties.Settings.PSAPConnectionString"].ConnectionString; 
+        public static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PSAP.Properties.Settings.PSAPConnectionString"].ConnectionString; 
         //protected static string connectionString = "Data Source=IT-SONGXI;Initial Catalog=PSAP;User ID=sa;Password=rongda83717906";
 
         public BaseSQL()

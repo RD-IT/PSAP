@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using PSAP.BLL.BSBLL;
 using WeifenLuo.WinFormsUI.Docking;
 using UtilityLibrary.WinControls;
+using PSAP.DAO.BSDAO;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -63,7 +64,8 @@ namespace PSAP.VIEW.BSVIEW
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.Text = "天津容大机电有限公司   [" + PSAPCommon.LoginInfo["DepartmentName"]+" - "+PSAPCommon.LoginInfo["EmpName"]+"]";
+            //this.Text = "天津容大机电有限公司   [" + PSAPCommon.LoginInfo["DepartmentName"]+" - "+PSAPCommon.LoginInfo["EmpName"]+"]";
+            this.Text = "天津容大机电有限公司   [" + BSCheckUser.user.DepartmentName + " - " + BSCheckUser.user.EmpName + "]";
             //FrmLogin frmLogin = new FrmLogin();
             //frmLogin.ShowDialog();
         }
@@ -165,6 +167,16 @@ namespace PSAP.VIEW.BSVIEW
                 //frmMainTool.HideOnClose = true; 
                 frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
             }
+        }
+
+        private void 用户信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmUserInfo.getinstance(this.dockPanel1);//打开指定窗口
+        }
+
+        private void 用户权限ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //FrmUserRight.getinstance(this.dockPanel1);//打开指定窗口
         }
     }
 }

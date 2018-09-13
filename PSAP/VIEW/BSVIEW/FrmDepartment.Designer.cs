@@ -29,22 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label bfree5Label1;
-            System.Windows.Forms.Label bfree4Label1;
-            System.Windows.Forms.Label bfree3Label1;
-            System.Windows.Forms.Label bfree2Label1;
-            System.Windows.Forms.Label bfree1Label1;
-            System.Windows.Forms.Label founderLabel;
-            System.Windows.Forms.Label createDateLabel;
-            System.Windows.Forms.Label parentDepartmentNoLabel1;
-            System.Windows.Forms.Label departmentNameLabel1;
-            System.Windows.Forms.Label departmentNoLabel1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDepartment));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.bS_DepartmentBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            System.Windows.Forms.Label departmentNoLabel1;
+            System.Windows.Forms.Label departmentNameLabel1;
+            System.Windows.Forms.Label parentDepartmentNoLabel1;
+            System.Windows.Forms.Label founderLabel;
+            System.Windows.Forms.Label bfree1Label1;
+            System.Windows.Forms.Label bfree2Label1;
+            System.Windows.Forms.Label bfree3Label1;
+            System.Windows.Forms.Label bfree4Label1;
+            System.Windows.Forms.Label bfree5Label1;
+            System.Windows.Forms.Label createDateLabel;
+            this.tsControl = new System.Windows.Forms.ToolStrip();
+            this.tsbInsert = new System.Windows.Forms.ToolStripButton();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.tsbCancel = new System.Windows.Forms.ToolStripButton();
+            this.tsbQuery = new System.Windows.Forms.ToolStripButton();
+            this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
+            this.tsbClose = new System.Windows.Forms.ToolStripButton();
             this.bS_DepartmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsPSAP = new PSAP.dsPSAP();
+            this.bS_DepartmentTableAdapter = new PSAP.dsPSAPTableAdapters.BS_DepartmentTableAdapter();
+            this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.bS_DepartmentBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -72,210 +82,114 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bS_DepartmentTableAdapter = new PSAP.dsPSAPTableAdapters.BS_DepartmentTableAdapter();
-            this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
-            this.pnlEditControl = new System.Windows.Forms.Panel();
-            this.tsControl = new System.Windows.Forms.ToolStrip();
-            this.tsbInsert = new System.Windows.Forms.ToolStripButton();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsbSave = new System.Windows.Forms.ToolStripButton();
-            this.tsbCancel = new System.Windows.Forms.ToolStripButton();
-            this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
-            this.tsbClose = new System.Windows.Forms.ToolStripButton();
-            this.tsbQuery = new System.Windows.Forms.ToolStripButton();
-            bfree5Label1 = new System.Windows.Forms.Label();
-            bfree4Label1 = new System.Windows.Forms.Label();
-            bfree3Label1 = new System.Windows.Forms.Label();
-            bfree2Label1 = new System.Windows.Forms.Label();
-            bfree1Label1 = new System.Windows.Forms.Label();
-            founderLabel = new System.Windows.Forms.Label();
-            createDateLabel = new System.Windows.Forms.Label();
-            parentDepartmentNoLabel1 = new System.Windows.Forms.Label();
-            departmentNameLabel1 = new System.Windows.Forms.Label();
             departmentNoLabel1 = new System.Windows.Forms.Label();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            departmentNameLabel1 = new System.Windows.Forms.Label();
+            parentDepartmentNoLabel1 = new System.Windows.Forms.Label();
+            founderLabel = new System.Windows.Forms.Label();
+            bfree1Label1 = new System.Windows.Forms.Label();
+            bfree2Label1 = new System.Windows.Forms.Label();
+            bfree3Label1 = new System.Windows.Forms.Label();
+            bfree4Label1 = new System.Windows.Forms.Label();
+            bfree5Label1 = new System.Windows.Forms.Label();
+            createDateLabel = new System.Windows.Forms.Label();
+            this.tsControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingNavigator)).BeginInit();
             this.bS_DepartmentBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentDataGridView)).BeginInit();
-            this.pnlEditControl.SuspendLayout();
-            this.tsControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // bfree5Label1
+            // tsControl
             // 
-            bfree5Label1.AutoSize = true;
-            bfree5Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree5Label1.Location = new System.Drawing.Point(332, 69);
-            bfree5Label1.Name = "bfree5Label1";
-            bfree5Label1.Size = new System.Drawing.Size(35, 12);
-            bfree5Label1.TabIndex = 41;
-            bfree5Label1.Text = "预留5";
+            this.tsControl.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbInsert,
+            this.tsbEdit,
+            this.tsbDelete,
+            this.tsbSave,
+            this.tsbCancel,
+            this.tsbQuery,
+            this.tsbDGViewExportToCSV,
+            this.tsbClose});
+            this.tsControl.Location = new System.Drawing.Point(0, 0);
+            this.tsControl.Name = "tsControl";
+            this.tsControl.Size = new System.Drawing.Size(483, 25);
+            this.tsControl.TabIndex = 4;
+            this.tsControl.Text = "toolStrip1";
             // 
-            // bfree4Label1
+            // tsbInsert
             // 
-            bfree4Label1.AutoSize = true;
-            bfree4Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree4Label1.Location = new System.Drawing.Point(332, 42);
-            bfree4Label1.Name = "bfree4Label1";
-            bfree4Label1.Size = new System.Drawing.Size(35, 12);
-            bfree4Label1.TabIndex = 39;
-            bfree4Label1.Text = "预留4";
+            this.tsbInsert.Image = ((System.Drawing.Image)(resources.GetObject("tsbInsert.Image")));
+            this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbInsert.Name = "tsbInsert";
+            this.tsbInsert.Size = new System.Drawing.Size(52, 22);
+            this.tsbInsert.Text = "新增";
+            this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
             // 
-            // bfree3Label1
+            // tsbEdit
             // 
-            bfree3Label1.AutoSize = true;
-            bfree3Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree3Label1.Location = new System.Drawing.Point(332, 16);
-            bfree3Label1.Name = "bfree3Label1";
-            bfree3Label1.Size = new System.Drawing.Size(35, 12);
-            bfree3Label1.TabIndex = 37;
-            bfree3Label1.Text = "预留3";
+            this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.Size = new System.Drawing.Size(52, 22);
+            this.tsbEdit.Text = "编辑";
+            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
-            // bfree2Label1
+            // tsbDelete
             // 
-            bfree2Label1.AutoSize = true;
-            bfree2Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree2Label1.Location = new System.Drawing.Point(13, 126);
-            bfree2Label1.Name = "bfree2Label1";
-            bfree2Label1.Size = new System.Drawing.Size(35, 12);
-            bfree2Label1.TabIndex = 35;
-            bfree2Label1.Text = "预留2";
+            this.tsbDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbDelete.Image")));
+            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelete.Name = "tsbDelete";
+            this.tsbDelete.Size = new System.Drawing.Size(52, 22);
+            this.tsbDelete.Text = "删除";
+            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
-            // bfree1Label1
+            // tsbSave
             // 
-            bfree1Label1.AutoSize = true;
-            bfree1Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree1Label1.Location = new System.Drawing.Point(13, 99);
-            bfree1Label1.Name = "bfree1Label1";
-            bfree1Label1.Size = new System.Drawing.Size(35, 12);
-            bfree1Label1.TabIndex = 33;
-            bfree1Label1.Text = "预留1";
+            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
+            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Size = new System.Drawing.Size(52, 22);
+            this.tsbSave.Text = "保存";
+            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
-            // founderLabel
+            // tsbCancel
             // 
-            founderLabel.AutoSize = true;
-            founderLabel.Enabled = false;
-            founderLabel.Font = new System.Drawing.Font("宋体", 9F);
-            founderLabel.Location = new System.Drawing.Point(332, 124);
-            founderLabel.Name = "founderLabel";
-            founderLabel.Size = new System.Drawing.Size(41, 12);
-            founderLabel.TabIndex = 31;
-            founderLabel.Text = "录入人";
+            this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
+            this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCancel.Name = "tsbCancel";
+            this.tsbCancel.Size = new System.Drawing.Size(52, 22);
+            this.tsbCancel.Text = "取消";
+            this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
-            // createDateLabel
+            // tsbQuery
             // 
-            createDateLabel.AutoSize = true;
-            createDateLabel.Enabled = false;
-            createDateLabel.Font = new System.Drawing.Font("宋体", 9F);
-            createDateLabel.Location = new System.Drawing.Point(332, 99);
-            createDateLabel.Name = "createDateLabel";
-            createDateLabel.Size = new System.Drawing.Size(53, 12);
-            createDateLabel.TabIndex = 29;
-            createDateLabel.Text = "录入日期";
+            this.tsbQuery.Image = ((System.Drawing.Image)(resources.GetObject("tsbQuery.Image")));
+            this.tsbQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbQuery.Name = "tsbQuery";
+            this.tsbQuery.Size = new System.Drawing.Size(52, 22);
+            this.tsbQuery.Text = "查询";
             // 
-            // parentDepartmentNoLabel1
+            // tsbDGViewExportToCSV
             // 
-            parentDepartmentNoLabel1.AutoSize = true;
-            parentDepartmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            parentDepartmentNoLabel1.Location = new System.Drawing.Point(13, 73);
-            parentDepartmentNoLabel1.Name = "parentDepartmentNoLabel1";
-            parentDepartmentNoLabel1.Size = new System.Drawing.Size(77, 12);
-            parentDepartmentNoLabel1.TabIndex = 27;
-            parentDepartmentNoLabel1.Text = "上级部门编号";
+            this.tsbDGViewExportToCSV.Image = ((System.Drawing.Image)(resources.GetObject("tsbDGViewExportToCSV.Image")));
+            this.tsbDGViewExportToCSV.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDGViewExportToCSV.Name = "tsbDGViewExportToCSV";
+            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(76, 22);
+            this.tsbDGViewExportToCSV.Text = "导出数据";
+            this.tsbDGViewExportToCSV.Click += new System.EventHandler(this.tsbDGViewExportToCSV_Click);
             // 
-            // departmentNameLabel1
+            // tsbClose
             // 
-            departmentNameLabel1.AutoSize = true;
-            departmentNameLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            departmentNameLabel1.Location = new System.Drawing.Point(13, 45);
-            departmentNameLabel1.Name = "departmentNameLabel1";
-            departmentNameLabel1.Size = new System.Drawing.Size(53, 12);
-            departmentNameLabel1.TabIndex = 25;
-            departmentNameLabel1.Text = "部门名称";
-            // 
-            // departmentNoLabel1
-            // 
-            departmentNoLabel1.AutoSize = true;
-            departmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            departmentNoLabel1.Location = new System.Drawing.Point(13, 18);
-            departmentNoLabel1.Name = "departmentNoLabel1";
-            departmentNoLabel1.Size = new System.Drawing.Size(53, 12);
-            departmentNoLabel1.TabIndex = 23;
-            departmentNoLabel1.Text = "部门编号";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.AutoScrollMinSize = new System.Drawing.Size(0, 280);
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Controls.Add(this.pnlEdit);
-            this.splitContainer1.Panel1MinSize = 160;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.AutoScroll = true;
-            this.splitContainer1.Panel2.Controls.Add(this.bS_DepartmentDataGridView);
-            this.splitContainer1.Panel2MinSize = 20;
-            this.splitContainer1.Size = new System.Drawing.Size(824, 412);
-            this.splitContainer1.SplitterDistance = 168;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.bS_DepartmentBindingNavigator);
-            this.panel1.Location = new System.Drawing.Point(3, -1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 23);
-            this.panel1.TabIndex = 1;
-            // 
-            // bS_DepartmentBindingNavigator
-            // 
-            this.bS_DepartmentBindingNavigator.AddNewItem = null;
-            this.bS_DepartmentBindingNavigator.AutoSize = false;
-            this.bS_DepartmentBindingNavigator.BindingSource = this.bS_DepartmentBindingSource;
-            this.bS_DepartmentBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.bS_DepartmentBindingNavigator.DeleteItem = null;
-            this.bS_DepartmentBindingNavigator.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bS_DepartmentBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2});
-            this.bS_DepartmentBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.bS_DepartmentBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bS_DepartmentBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bS_DepartmentBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bS_DepartmentBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.bS_DepartmentBindingNavigator.Name = "bS_DepartmentBindingNavigator";
-            this.bS_DepartmentBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(236, 20);
-            this.bS_DepartmentBindingNavigator.TabIndex = 2;
-            this.bS_DepartmentBindingNavigator.Text = "bindingNavigator1";
+            this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
+            this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbClose.Name = "tsbClose";
+            this.tsbClose.Size = new System.Drawing.Size(52, 22);
+            this.tsbClose.Text = "退出";
+            this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
             // bS_DepartmentBindingSource
             // 
@@ -287,11 +201,61 @@
             this.dsPSAP.DataSetName = "dsPSAP";
             this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // bS_DepartmentTableAdapter
+            // 
+            this.bS_DepartmentTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
+            this.tableAdapterManager.BS_UserInfoTableAdapter = null;
+            this.tableAdapterManager.BS_UserRightTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.bS_DepartmentBindingNavigator);
+            this.panel1.Controls.Add(this.tsControl);
+            this.panel1.Location = new System.Drawing.Point(0, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(627, 72);
+            this.panel1.TabIndex = 3;
+            // 
+            // bS_DepartmentBindingNavigator
+            // 
+            this.bS_DepartmentBindingNavigator.AddNewItem = null;
+            this.bS_DepartmentBindingNavigator.BindingSource = this.bS_DepartmentBindingSource;
+            this.bS_DepartmentBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.bS_DepartmentBindingNavigator.DeleteItem = null;
+            this.bS_DepartmentBindingNavigator.Dock = System.Windows.Forms.DockStyle.None;
+            this.bS_DepartmentBindingNavigator.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.bS_DepartmentBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2});
+            this.bS_DepartmentBindingNavigator.Location = new System.Drawing.Point(0, 25);
+            this.bS_DepartmentBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bS_DepartmentBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bS_DepartmentBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bS_DepartmentBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bS_DepartmentBindingNavigator.Name = "bS_DepartmentBindingNavigator";
+            this.bS_DepartmentBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(188, 25);
+            this.bS_DepartmentBindingNavigator.TabIndex = 3;
+            this.bS_DepartmentBindingNavigator.Text = "bindingNavigator1";
+            // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(32, 17);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(32, 22);
             this.bindingNavigatorCountItem.Text = "/ {0}";
             this.bindingNavigatorCountItem.ToolTipText = "总项数";
             // 
@@ -302,7 +266,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 17);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveFirstItem.Text = "移到第一条记录";
             // 
             // bindingNavigatorMovePreviousItem
@@ -311,13 +275,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 17);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem.Text = "移到上一条记录";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 20);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -331,7 +295,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 20);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -339,7 +303,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 17);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem.Text = "移到下一条记录";
             // 
             // bindingNavigatorMoveLastItem
@@ -348,24 +312,22 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 17);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "移到最后一条记录";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 20);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // pnlEdit
             // 
-            this.pnlEdit.AutoSize = true;
             this.pnlEdit.Controls.Add(departmentNoLabel1);
             this.pnlEdit.Controls.Add(this.departmentNoTextBox1);
             this.pnlEdit.Controls.Add(departmentNameLabel1);
             this.pnlEdit.Controls.Add(this.departmentNameTextBox1);
             this.pnlEdit.Controls.Add(parentDepartmentNoLabel1);
             this.pnlEdit.Controls.Add(this.parentDepartmentNoTextBox1);
-            this.pnlEdit.Controls.Add(createDateLabel);
             this.pnlEdit.Controls.Add(this.createDateDateTimePicker);
             this.pnlEdit.Controls.Add(founderLabel);
             this.pnlEdit.Controls.Add(this.founderTextBox);
@@ -379,85 +341,155 @@
             this.pnlEdit.Controls.Add(this.bfree4TextBox1);
             this.pnlEdit.Controls.Add(bfree5Label1);
             this.pnlEdit.Controls.Add(this.bfree5TextBox1);
+            this.pnlEdit.Controls.Add(createDateLabel);
             this.pnlEdit.Enabled = false;
-            this.pnlEdit.Location = new System.Drawing.Point(0, 28);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 90);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(606, 147);
-            this.pnlEdit.TabIndex = 0;
+            this.pnlEdit.Size = new System.Drawing.Size(606, 160);
+            this.pnlEdit.TabIndex = 2;
+            // 
+            // departmentNoLabel1
+            // 
+            departmentNoLabel1.AutoSize = true;
+            departmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            departmentNoLabel1.Location = new System.Drawing.Point(13, 18);
+            departmentNoLabel1.Name = "departmentNoLabel1";
+            departmentNoLabel1.Size = new System.Drawing.Size(53, 12);
+            departmentNoLabel1.TabIndex = 23;
+            departmentNoLabel1.Text = "部门编号";
             // 
             // departmentNoTextBox1
             // 
             this.departmentNoTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "DepartmentNo", true));
             this.departmentNoTextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.departmentNoTextBox1.Location = new System.Drawing.Point(90, 16);
+            this.departmentNoTextBox1.Location = new System.Drawing.Point(93, 16);
             this.departmentNoTextBox1.Name = "departmentNoTextBox1";
             this.departmentNoTextBox1.Size = new System.Drawing.Size(200, 21);
             this.departmentNoTextBox1.TabIndex = 24;
-            this.departmentNoTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.departmentNoTextBox1_KeyPress);
-            this.departmentNoTextBox1.Leave += new System.EventHandler(this.departmentNoTextBox1_Leave);
+            // 
+            // departmentNameLabel1
+            // 
+            departmentNameLabel1.AutoSize = true;
+            departmentNameLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            departmentNameLabel1.Location = new System.Drawing.Point(13, 45);
+            departmentNameLabel1.Name = "departmentNameLabel1";
+            departmentNameLabel1.Size = new System.Drawing.Size(53, 12);
+            departmentNameLabel1.TabIndex = 25;
+            departmentNameLabel1.Text = "部门名称";
             // 
             // departmentNameTextBox1
             // 
             this.departmentNameTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "DepartmentName", true));
             this.departmentNameTextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.departmentNameTextBox1.Location = new System.Drawing.Point(90, 42);
+            this.departmentNameTextBox1.Location = new System.Drawing.Point(93, 42);
             this.departmentNameTextBox1.Name = "departmentNameTextBox1";
             this.departmentNameTextBox1.Size = new System.Drawing.Size(200, 21);
             this.departmentNameTextBox1.TabIndex = 26;
-            this.departmentNameTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.departmentNameTextBox1_KeyPress);
-            this.departmentNameTextBox1.Leave += new System.EventHandler(this.departmentNameTextBox1_Leave);
+            // 
+            // parentDepartmentNoLabel1
+            // 
+            parentDepartmentNoLabel1.AutoSize = true;
+            parentDepartmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            parentDepartmentNoLabel1.Location = new System.Drawing.Point(13, 73);
+            parentDepartmentNoLabel1.Name = "parentDepartmentNoLabel1";
+            parentDepartmentNoLabel1.Size = new System.Drawing.Size(77, 12);
+            parentDepartmentNoLabel1.TabIndex = 27;
+            parentDepartmentNoLabel1.Text = "上级部门编号";
             // 
             // parentDepartmentNoTextBox1
             // 
             this.parentDepartmentNoTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "ParentDepartmentNo", true));
             this.parentDepartmentNoTextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.parentDepartmentNoTextBox1.Location = new System.Drawing.Point(90, 69);
+            this.parentDepartmentNoTextBox1.Location = new System.Drawing.Point(93, 69);
             this.parentDepartmentNoTextBox1.Name = "parentDepartmentNoTextBox1";
             this.parentDepartmentNoTextBox1.Size = new System.Drawing.Size(200, 21);
             this.parentDepartmentNoTextBox1.TabIndex = 28;
-            this.parentDepartmentNoTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.parentDepartmentNoTextBox1_KeyPress);
             // 
             // createDateDateTimePicker
             // 
             this.createDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bS_DepartmentBindingSource, "CreateDate", true));
             this.createDateDateTimePicker.Enabled = false;
             this.createDateDateTimePicker.Font = new System.Drawing.Font("宋体", 9F);
-            this.createDateDateTimePicker.Location = new System.Drawing.Point(384, 95);
+            this.createDateDateTimePicker.Location = new System.Drawing.Point(93, 127);
             this.createDateDateTimePicker.Name = "createDateDateTimePicker";
             this.createDateDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.createDateDateTimePicker.TabIndex = 30;
             this.createDateDateTimePicker.TabStop = false;
+            // 
+            // founderLabel
+            // 
+            founderLabel.AutoSize = true;
+            founderLabel.Enabled = false;
+            founderLabel.Font = new System.Drawing.Font("宋体", 9F);
+            founderLabel.Location = new System.Drawing.Point(13, 102);
+            founderLabel.Name = "founderLabel";
+            founderLabel.Size = new System.Drawing.Size(41, 12);
+            founderLabel.TabIndex = 31;
+            founderLabel.Text = "录入人";
             // 
             // founderTextBox
             // 
             this.founderTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Founder", true));
             this.founderTextBox.Enabled = false;
             this.founderTextBox.Font = new System.Drawing.Font("宋体", 9F);
-            this.founderTextBox.Location = new System.Drawing.Point(384, 121);
+            this.founderTextBox.Location = new System.Drawing.Point(93, 98);
             this.founderTextBox.Name = "founderTextBox";
             this.founderTextBox.Size = new System.Drawing.Size(200, 21);
             this.founderTextBox.TabIndex = 32;
             this.founderTextBox.TabStop = false;
             // 
+            // bfree1Label1
+            // 
+            bfree1Label1.AutoSize = true;
+            bfree1Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree1Label1.Location = new System.Drawing.Point(332, 99);
+            bfree1Label1.Name = "bfree1Label1";
+            bfree1Label1.Size = new System.Drawing.Size(35, 12);
+            bfree1Label1.TabIndex = 33;
+            bfree1Label1.Text = "预留1";
+            bfree1Label1.Visible = false;
+            // 
             // bfree1TextBox1
             // 
             this.bfree1TextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Bfree1", true));
             this.bfree1TextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.bfree1TextBox1.Location = new System.Drawing.Point(90, 95);
+            this.bfree1TextBox1.Location = new System.Drawing.Point(384, 96);
             this.bfree1TextBox1.Name = "bfree1TextBox1";
             this.bfree1TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree1TextBox1.TabIndex = 34;
-            this.bfree1TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bfree1TextBox1_KeyPress);
+            this.bfree1TextBox1.Visible = false;
+            // 
+            // bfree2Label1
+            // 
+            bfree2Label1.AutoSize = true;
+            bfree2Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree2Label1.Location = new System.Drawing.Point(332, 126);
+            bfree2Label1.Name = "bfree2Label1";
+            bfree2Label1.Size = new System.Drawing.Size(35, 12);
+            bfree2Label1.TabIndex = 35;
+            bfree2Label1.Text = "预留2";
+            bfree2Label1.Visible = false;
             // 
             // bfree2TextBox1
             // 
             this.bfree2TextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Bfree2", true));
             this.bfree2TextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.bfree2TextBox1.Location = new System.Drawing.Point(90, 123);
+            this.bfree2TextBox1.Location = new System.Drawing.Point(384, 124);
             this.bfree2TextBox1.Name = "bfree2TextBox1";
             this.bfree2TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree2TextBox1.TabIndex = 36;
-            this.bfree2TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bfree2TextBox1_KeyPress);
+            this.bfree2TextBox1.Visible = false;
+            // 
+            // bfree3Label1
+            // 
+            bfree3Label1.AutoSize = true;
+            bfree3Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree3Label1.Location = new System.Drawing.Point(332, 16);
+            bfree3Label1.Name = "bfree3Label1";
+            bfree3Label1.Size = new System.Drawing.Size(35, 12);
+            bfree3Label1.TabIndex = 37;
+            bfree3Label1.Text = "预留3";
+            bfree3Label1.Visible = false;
             // 
             // bfree3TextBox1
             // 
@@ -467,7 +499,18 @@
             this.bfree3TextBox1.Name = "bfree3TextBox1";
             this.bfree3TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree3TextBox1.TabIndex = 38;
-            this.bfree3TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bfree3TextBox1_KeyPress);
+            this.bfree3TextBox1.Visible = false;
+            // 
+            // bfree4Label1
+            // 
+            bfree4Label1.AutoSize = true;
+            bfree4Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree4Label1.Location = new System.Drawing.Point(332, 42);
+            bfree4Label1.Name = "bfree4Label1";
+            bfree4Label1.Size = new System.Drawing.Size(35, 12);
+            bfree4Label1.TabIndex = 39;
+            bfree4Label1.Text = "预留4";
+            bfree4Label1.Visible = false;
             // 
             // bfree4TextBox1
             // 
@@ -477,7 +520,18 @@
             this.bfree4TextBox1.Name = "bfree4TextBox1";
             this.bfree4TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree4TextBox1.TabIndex = 40;
-            this.bfree4TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bfree4TextBox1_KeyPress);
+            this.bfree4TextBox1.Visible = false;
+            // 
+            // bfree5Label1
+            // 
+            bfree5Label1.AutoSize = true;
+            bfree5Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree5Label1.Location = new System.Drawing.Point(332, 69);
+            bfree5Label1.Name = "bfree5Label1";
+            bfree5Label1.Size = new System.Drawing.Size(35, 12);
+            bfree5Label1.TabIndex = 41;
+            bfree5Label1.Text = "预留5";
+            bfree5Label1.Visible = false;
             // 
             // bfree5TextBox1
             // 
@@ -487,7 +541,18 @@
             this.bfree5TextBox1.Name = "bfree5TextBox1";
             this.bfree5TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree5TextBox1.TabIndex = 42;
-            this.bfree5TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bfree5TextBox1_KeyPress);
+            this.bfree5TextBox1.Visible = false;
+            // 
+            // createDateLabel
+            // 
+            createDateLabel.AutoSize = true;
+            createDateLabel.Enabled = false;
+            createDateLabel.Font = new System.Drawing.Font("宋体", 9F);
+            createDateLabel.Location = new System.Drawing.Point(13, 131);
+            createDateLabel.Name = "createDateLabel";
+            createDateLabel.Size = new System.Drawing.Size(53, 12);
+            createDateLabel.TabIndex = 29;
+            createDateLabel.Text = "录入日期";
             // 
             // bS_DepartmentDataGridView
             // 
@@ -502,21 +567,15 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
+            this.dataGridViewTextBoxColumn6});
             this.bS_DepartmentDataGridView.DataSource = this.bS_DepartmentBindingSource;
-            this.bS_DepartmentDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bS_DepartmentDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.bS_DepartmentDataGridView.Location = new System.Drawing.Point(0, 256);
             this.bS_DepartmentDataGridView.Name = "bS_DepartmentDataGridView";
             this.bS_DepartmentDataGridView.ReadOnly = true;
             this.bS_DepartmentDataGridView.RowTemplate.Height = 23;
             this.bS_DepartmentDataGridView.ShowEditingIcon = false;
-            this.bS_DepartmentDataGridView.Size = new System.Drawing.Size(824, 240);
-            this.bS_DepartmentDataGridView.TabIndex = 0;
+            this.bS_DepartmentDataGridView.Size = new System.Drawing.Size(824, 214);
+            this.bS_DepartmentDataGridView.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -566,226 +625,48 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 66;
             // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Bfree1";
-            this.dataGridViewTextBoxColumn7.HeaderText = "预留1";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Bfree2";
-            this.dataGridViewTextBoxColumn8.HeaderText = "预留2";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Bfree3";
-            this.dataGridViewTextBoxColumn9.HeaderText = "预留3";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Bfree4";
-            this.dataGridViewTextBoxColumn10.HeaderText = "预留4";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Bfree5";
-            this.dataGridViewTextBoxColumn11.HeaderText = "预留5";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 60;
-            // 
-            // bS_DepartmentTableAdapter
-            // 
-            this.bS_DepartmentTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
-            this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // pnlEditControl
-            // 
-            this.pnlEditControl.AutoSize = true;
-            this.pnlEditControl.Controls.Add(this.tsControl);
-            this.pnlEditControl.Location = new System.Drawing.Point(242, 0);
-            this.pnlEditControl.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlEditControl.Name = "pnlEditControl";
-            this.pnlEditControl.Size = new System.Drawing.Size(587, 25);
-            this.pnlEditControl.TabIndex = 1;
-            // 
-            // tsControl
-            // 
-            this.tsControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbInsert,
-            this.tsbEdit,
-            this.tsbDelete,
-            this.tsbSave,
-            this.tsbCancel,
-            this.tsbQuery,
-            this.tsbDGViewExportToCSV,
-            this.tsbClose});
-            this.tsControl.Location = new System.Drawing.Point(0, 0);
-            this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(587, 25);
-            this.tsControl.TabIndex = 0;
-            this.tsControl.Text = "toolStrip1";
-            // 
-            // tsbInsert
-            // 
-            this.tsbInsert.Image = ((System.Drawing.Image)(resources.GetObject("tsbInsert.Image")));
-            this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbInsert.Name = "tsbInsert";
-            this.tsbInsert.Size = new System.Drawing.Size(52, 22);
-            this.tsbInsert.Text = "新增";
-            this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
-            // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.Size = new System.Drawing.Size(52, 22);
-            this.tsbEdit.Text = "修改";
-            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
-            // 
-            // tsbDelete
-            // 
-            this.tsbDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbDelete.Image")));
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.Size = new System.Drawing.Size(52, 22);
-            this.tsbDelete.Text = "删除";
-            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
-            // 
-            // tsbSave
-            // 
-            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
-            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(52, 22);
-            this.tsbSave.Text = "保存";
-            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
-            // 
-            // tsbCancel
-            // 
-            this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
-            this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCancel.Name = "tsbCancel";
-            this.tsbCancel.Size = new System.Drawing.Size(52, 22);
-            this.tsbCancel.Text = "取消";
-            this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
-            // 
-            // tsbDGViewExportToCSV
-            // 
-            this.tsbDGViewExportToCSV.Image = ((System.Drawing.Image)(resources.GetObject("tsbDGViewExportToCSV.Image")));
-            this.tsbDGViewExportToCSV.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDGViewExportToCSV.Name = "tsbDGViewExportToCSV";
-            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(76, 22);
-            this.tsbDGViewExportToCSV.Text = "导出数据";
-            this.tsbDGViewExportToCSV.Click += new System.EventHandler(this.tsbDGViewExportToCSV_Click);
-            // 
-            // tsbClose
-            // 
-            this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
-            this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(52, 22);
-            this.tsbClose.Text = "退出";
-            this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
-            // 
-            // tsbQuery
-            // 
-            this.tsbQuery.Image = ((System.Drawing.Image)(resources.GetObject("tsbQuery.Image")));
-            this.tsbQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQuery.Name = "tsbQuery";
-            this.tsbQuery.Size = new System.Drawing.Size(52, 22);
-            this.tsbQuery.Text = "查询";
-            // 
             // FrmDepartment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 412);
-            this.Controls.Add(this.pnlEditControl);
-            this.Controls.Add(this.splitContainer1);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(842, 482);
+            this.Controls.Add(this.bS_DepartmentDataGridView);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlEdit);
             this.Font = new System.Drawing.Font("宋体", 9F);
             this.MinimumSize = new System.Drawing.Size(430, 420);
             this.Name = "FrmDepartment";
             this.TabText = "部门信息";
             this.Text = "部门信息";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmDepartment_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
+            this.tsControl.ResumeLayout(false);
+            this.tsControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingNavigator)).EndInit();
             this.bS_DepartmentBindingNavigator.ResumeLayout(false);
             this.bS_DepartmentBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentDataGridView)).EndInit();
-            this.pnlEditControl.ResumeLayout(false);
-            this.pnlEditControl.PerformLayout();
-            this.tsControl.ResumeLayout(false);
-            this.tsControl.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private dsPSAP dsPSAP;
         private System.Windows.Forms.BindingSource bS_DepartmentBindingSource;
         private dsPSAPTableAdapters.BS_DepartmentTableAdapter bS_DepartmentTableAdapter;
         private dsPSAPTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView bS_DepartmentDataGridView;
-        private System.Windows.Forms.Panel pnlEdit;
-        private System.Windows.Forms.TextBox departmentNoTextBox1;
-        private System.Windows.Forms.TextBox departmentNameTextBox1;
-        private System.Windows.Forms.TextBox parentDepartmentNoTextBox1;
-        private System.Windows.Forms.DateTimePicker createDateDateTimePicker;
-        private System.Windows.Forms.TextBox founderTextBox;
-        private System.Windows.Forms.TextBox bfree1TextBox1;
-        private System.Windows.Forms.TextBox bfree2TextBox1;
-        private System.Windows.Forms.TextBox bfree3TextBox1;
-        private System.Windows.Forms.TextBox bfree4TextBox1;
-        private System.Windows.Forms.TextBox bfree5TextBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.Panel pnlEditControl;
         private System.Windows.Forms.ToolStrip tsControl;
         private System.Windows.Forms.ToolStripButton tsbInsert;
         private System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripButton tsbCancel;
+        private System.Windows.Forms.ToolStripButton tsbQuery;
         private System.Windows.Forms.ToolStripButton tsbDGViewExportToCSV;
         private System.Windows.Forms.ToolStripButton tsbClose;
         private System.Windows.Forms.Panel panel1;
@@ -799,6 +680,23 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton tsbQuery;
+        private System.Windows.Forms.Panel pnlEdit;
+        private System.Windows.Forms.TextBox departmentNoTextBox1;
+        private System.Windows.Forms.TextBox departmentNameTextBox1;
+        private System.Windows.Forms.TextBox parentDepartmentNoTextBox1;
+        private System.Windows.Forms.DateTimePicker createDateDateTimePicker;
+        private System.Windows.Forms.TextBox founderTextBox;
+        private System.Windows.Forms.TextBox bfree1TextBox1;
+        private System.Windows.Forms.TextBox bfree2TextBox1;
+        private System.Windows.Forms.TextBox bfree3TextBox1;
+        private System.Windows.Forms.TextBox bfree4TextBox1;
+        private System.Windows.Forms.TextBox bfree5TextBox1;
+        private System.Windows.Forms.DataGridView bS_DepartmentDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }
