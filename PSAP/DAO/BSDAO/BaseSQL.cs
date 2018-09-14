@@ -110,6 +110,30 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        public static DataTable GetTableBySql(string SQLString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(SQLString, connection))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+                    try
+                    {
+                        adpt.Fill(dt);
+
+                    }
+                    catch (Exception e)
+                    {
+                        connection.Close();
+                        throw new Exception(e.Message);
+                    }
+                    cmd.Connection.Close();
+                    return dt;
+                }
+            }
+        }
+
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>

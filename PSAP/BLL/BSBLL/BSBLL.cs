@@ -30,13 +30,16 @@ namespace PSAP.BLL.BSBLL
         /// <summary>
         /// 初始化主菜单用户权限
         /// </summary>
-        public static void InitUserMenus(PSAP.VIEW.BSVIEW.FrmMain frmMain)
+        /// 
+       // public static void InitUserMenus(PSAP.VIEW.BSVIEW.FrmMain frmMain)
+
+        public static void InitUserMenus(MenuStrip mnuS)
         {
             ToolStripMenuItem mnuItem;
             ToolStripMenuItem refMenuItem = new ToolStripMenuItem();
 
             //初始设置所有菜单无效
-            foreach (ToolStripMenuItem ctrl in frmMain.menuStrip1.Items)
+            foreach (ToolStripMenuItem ctrl in mnuS.Items)
             {
                 //ctrl.Enabled = false;//主菜单保持有效状态
                 foreach (object subItem in ctrl.DropDownItems)
@@ -61,7 +64,7 @@ namespace PSAP.BLL.BSBLL
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 //遍历主菜单
-                foreach (ToolStripMenuItem ctrl in frmMain.menuStrip1.Items)
+                foreach (ToolStripMenuItem ctrl in mnuS.Items)
                 {
                     //主菜单保持有效状态
                     //if (ctrl.Name.ToUpper().Trim() == dr[0].ToString().ToUpper().Trim())

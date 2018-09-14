@@ -19,15 +19,7 @@ namespace PSAP.VIEW.BSVIEW
             InitEnableState();//初始化控件Enable状态
         }
 
-        //private void bS_DepartmentBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        //{
-        //    this.Validate();
-        //    this.bS_DepartmentBindingSource.EndEdit();
-        //    this.tableAdapterManager.UpdateAll(this.dsPSAP);
-
-        //}
-
-        private void FrmDepartment_Load(object sender, EventArgs e)
+           private void FrmDepartment_Load(object sender, EventArgs e)
         {
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
@@ -110,22 +102,6 @@ namespace PSAP.VIEW.BSVIEW
         {
             PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
-
-        //用于从功能导航窗口调用此窗口
-        private static FrmDepartment _initialize = null;
-
-        public static FrmDepartment getinstance(DockPanel p)
-        {
-            if (_initialize == null || _initialize.IsDisposed)
-            {
-                _initialize = new FrmDepartment();
-            }
-            _initialize.Show(p);
-            _initialize.Activate();
-
-            return _initialize;
-        }
-
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,18 +12,15 @@ using WeifenLuo.WinFormsUI.Docking;
 namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmUserRight : DockContent
-
     {
-        private FrmMain frmM = new FrmMain();//实例化主窗口，用于引用其中对象
-        //public static MenuStrip mnuSP1 = new MenuStrip();//
+        public static MenuStrip mnuSP1 = new MenuStrip();//
 
         public FrmUserRight()
-        {
-            InitializeComponent();
-         
+        {         
+           InitializeComponent();
             //初始化treeView1
             treeView1.CheckBoxes = true;
-            GetMenu(treeView1, frmM.menuStrip1);
+            GetMenu(treeView1, FrmMain.menuStrip1);
             treeView1.ExpandAll();
         }
 
@@ -34,6 +32,8 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //循环添加一级菜单
                 TreeNode node1 = treeV.Nodes.Add(m1.Text+" "+m1.Name+"|");
+
+                
                 if (m1.Enabled == true)
                 {
                     node1.Checked = true;
@@ -56,21 +56,6 @@ namespace PSAP.VIEW.BSVIEW
                     GetMenu(node2, m2);//递归
                 }
             }
-        }
-
-
-        //用于从功能导航窗口调用此窗口
-        //private static FrmUserRight _initialize = null;
-        public FrmUserRight _initialize = null;
-        public FrmUserRight getinstance(DockPanel p)
-        {
-            if (_initialize == null || _initialize.IsDisposed)
-            {
-                _initialize = new FrmUserRight();
-            }
-            _initialize.Show(p);
-            _initialize.Activate();
-            return _initialize;
         }
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)

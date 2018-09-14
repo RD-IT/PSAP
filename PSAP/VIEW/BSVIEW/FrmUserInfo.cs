@@ -20,21 +20,6 @@ namespace PSAP.VIEW.BSVIEW
 
         }
 
-        //用于从功能导航窗口调用此窗口
-        private static FrmUserInfo _initialize = null;
-
-        public static FrmUserInfo getinstance(DockPanel p)
-        {
-            if (_initialize == null || _initialize.IsDisposed)
-            {
-                _initialize = new FrmUserInfo();
-            }
-            _initialize.Show(p);
-            _initialize.Activate();
-
-            return _initialize;
-        }
-
         private void bS_UserInfoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();

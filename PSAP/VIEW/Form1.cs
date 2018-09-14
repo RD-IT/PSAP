@@ -17,20 +17,6 @@ namespace PSAP.VIEW
             InitializeComponent();
         }
 
-        //用于从功能导航窗口调用此窗口
-        private static Form1 _initialize = null;
-
-        public static Form1 getinstance(DockPanel p)
-        {
-            if (_initialize == null || _initialize.IsDisposed)
-            {
-                _initialize = new Form1();
-            }
-            _initialize.Show(p);
-            _initialize.Activate();
-
-            return _initialize;
-        }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
 
