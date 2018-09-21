@@ -110,6 +110,30 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        public static DataTable GetTableBySql(string SQLString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(SQLString, connection))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+                    try
+                    {
+                        adpt.Fill(dt);
+
+                    }
+                    catch (Exception e)
+                    {
+                        connection.Close();
+                        throw new Exception(e.Message);
+                    }
+                    cmd.Connection.Close();
+                    return dt;
+                }
+            }
+        }
+
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
@@ -349,8 +373,7 @@ namespace PSAP.DAO.BSDAO
                 }
             }
         }
-
-
+        
         /// <summary>
         /// 执行一条计算查询结果语句，返回查询结果（object）。
         /// </summary>
@@ -435,7 +458,6 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
-
         private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, string cmdText, SqlParameter[] cmdParms)
         {
             if (conn.State != ConnectionState.Open)
@@ -495,7 +517,6 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
-
         /// <summary>
         /// 构建 SqlCommand 对象(用来返回一个结果集，而不是一个整数值)
         /// </summary>
@@ -550,7 +571,5 @@ namespace PSAP.DAO.BSDAO
             return command;
         }
         #endregion
-
     }
-
 }

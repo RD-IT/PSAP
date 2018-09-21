@@ -13,38 +13,30 @@ using Microsoft.CSharp;
 using System.CodeDom.Compiler;
 
 using System.Reflection;
+
 namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmMainTool : DockContent
     {
         OutlookBar outlookBar1 = null;
         TreeViewEx[] treeView = null;//声明
-        //TreeViewEx treeView2 = null;
-        FrmMain frToolmMain;
         MenuStrip sp1 = new MenuStrip();
         DockPanel dp1 = new DockPanel();
         public static int frmOpenFlag;
 
-        public FrmMainTool(FrmMain frmMain)
+        public FrmMainTool(MenuStrip mnuS1)
         {
-            this.frToolmMain = frmMain;
-            sp1 = frmMain.menuStrip1;
+            //this.frToolmMain = frmMain;
+            sp1 = mnuS1;
             treeView = new TreeViewEx[sp1.Items.Count];//实例
             InitializeComponent();
             InitializeTreeControl();//初始化treeView
             InitializeOutlookBar();
-
         }
 
         void InitializeOutlookBar()
         {
-            //MenuStrip sp1 = new MenuStrip();
-            //sp1 = frToolmMain.menuStrip1; 
-            // Create controls
-            //treeView = new TreeViewEx[sp1.Items.Count];//实例
             outlookBar1 = new OutlookBar();
-           
-            //InitializeTreeControl();//初始化treeView
             /*
             //样式设定《Begin》
             outlookBar1.BackgroundBitmap = (Bitmap)imageList1.Images[4];
@@ -61,7 +53,7 @@ namespace PSAP.VIEW.BSVIEW
                 //循环添加一级菜单
                 if (m1.Enabled == true)
                 {
-                    outlookBar1.Bands.Add(new OutlookBarBand(m1.Text,treeView[i]));//, treeView1
+                    outlookBar1.Bands.Add(new OutlookBarBand(m1.Text, treeView[i]));//, treeView1
                     i++;
                 }
             }
@@ -123,9 +115,9 @@ namespace PSAP.VIEW.BSVIEW
             */
             this.ResumeLayout(false);//恢复正常的布局逻辑
         }
-        
+
         //将MenuStrip中的项按照层次加到TreeNode中
-        public  void GetMenu(MenuStrip menuS)//public static void GetMenu(TreeView treeV, MenuStrip menuS)
+        public void GetMenu(MenuStrip menuS)//public static void GetMenu(TreeView treeV, MenuStrip menuS)
         {
             int i = 0;
             //遍历menuStrip中的一级菜单项
@@ -152,16 +144,15 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (m1.Enabled == true)
                 {
-                    TreeNode node1 = treeView[i].Nodes.Add(m1.Name,m1.Text);
+                    TreeNode node1 = treeView[i].Nodes.Add(m1.Name, m1.Text);
                     //node1.Checked = true;
                     node1.Text = "";//隐藏根结点
-                    node1.ImageIndex= 3;//根节点图标
+                    node1.ImageIndex = 3;//根节点图标
                     node1.SelectedImageIndex = 3;//根节点图标
                     GetMenu(node1, m1);
                     i++;
                 }
-                treeView[i-1].ExpandAll();
-
+                treeView[i - 1].ExpandAll();
             }
         }
 
@@ -171,9 +162,9 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (m2 != null && m2.Enabled == true)
                 {
-                    TreeNode node2 = node1.Nodes.Add(m2.Name,m2.Text);
-                    if(m2.DropDownItems.Count > 0)//判断是否为父节点
-                    { 
+                    TreeNode node2 = node1.Nodes.Add(m2.Name, m2.Text);
+                    if (m2.DropDownItems.Count > 0)//判断是否为父节点
+                    {
                         node2.ImageIndex = 3;//父节点图标
                         node2.SelectedImageIndex = 0;//父节点图标
                     }
@@ -283,53 +274,30 @@ namespace PSAP.VIEW.BSVIEW
             88888888888888888888888888888888888888888888888888888888888888888888888888888888
          */
 
-
-        ////打开指定窗口【双击】
-        //private void treeView1_DoubleClick(object sender, EventArgs e)
-        //{
-        //    string SelectText =treeView[0].SelectedNode.Text;
-        //    switch (SelectText)
-        //    {
-        //        case "部门信息":
-        //            FrmDepartment.getinstance(DockPanel);//打开指定窗口
-        //            break;
-        //        case "用户权限":
-        //            FrmPower.getinstance(DockPanel);//打开指定窗口
-        //            break;
-        //    }
-        //}
-
         //打开指定窗口【单击】
-           
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
             switch (e.Node.Name)
             {
-                case "部门信息ToolStripMenuItem"://部门信息
-                    FrmDepartment.getinstance(DockPanel);
+                case "toolStripMenuItem5"://部门信息
+                    FrmDepartment frmDepartment = new FrmDepartment();
+                    FrmMain.frmMain.showRight(frmDepartment);
                     break;
-                case "用户信息ToolStripMenuItem"://用户信息
-                    FrmUserInfo.getinstance(DockPanel);
+                case "toolStripMenuItem6"://用户信息
+                    FrmUserInfo frmUserInfo = new FrmUserInfo();
+                    FrmMain.frmMain.showRight(frmUserInfo);
                     break;
-                case "用户权限ToolStripMenuItem"://
-                    //FrmUserRight.getinstance(DockPanel);
-                    DockContent ss = new DockContent();
+                case "toolStripMenuItem7"://用户权限
+                    FrmUserRight frmUserRight = new FrmUserRight();
+                    FrmMain.frmMain.showRight(frmUserRight);
 
-                    Assembly assembly = Assembly.GetExecutingAssembly();
-                    string frmName = "PSAP.VIEW.BSVIEW.FrmUserRight";// 实例化窗体
-                    FrmUserRight form = (FrmUserRight)assembly.CreateInstance(frmName);
-
-                  //  Form form = Activator.CreateInstance("FrmUserRight) as Form;
-                    form.getinstance(DockPanel);
-                   // form.
-                   
                     break;
                 case "wWWWWWWWWWToolStripMenuItem"://"W":
-                  //  FrmUserRight.getinstance(DockPanel);
                     break;
-                case "yyyyyyToolStripMenuItem":
-                    Form1.getinstance(DockPanel);
+                case "toolStripMenuItem8":
+                    Form1 form1 = new Form1();
+                    FrmMain.frmMain.showRight(form1);
                     break;
             }
 

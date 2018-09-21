@@ -117,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 472);
+            this.ClientSize = new System.Drawing.Size(176, 472);
             this.Name = "FrmMainTool";
             this.TabText = "功能导航";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMainTool_FormClosing);

@@ -17,7 +17,7 @@ namespace PSAP
         {
             InitializeComponent();
             txtUserID.Text = "ADMIN";//测试用
-            txtPassword.Text = "18";//测试用
+            txtPassword.Text = "ADMIN";//测试用
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

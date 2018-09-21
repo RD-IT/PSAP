@@ -20,21 +20,6 @@ namespace PSAP.VIEW.BSVIEW
 
         }
 
-        //用于从功能导航窗口调用此窗口
-        private static FrmUserInfo _initialize = null;
-
-        public static FrmUserInfo getinstance(DockPanel p)
-        {
-            if (_initialize == null || _initialize.IsDisposed)
-            {
-                _initialize = new FrmUserInfo();
-            }
-            _initialize.Show(p);
-            _initialize.Activate();
-
-            return _initialize;
-        }
-
         private void bS_UserInfoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -49,32 +34,8 @@ namespace PSAP.VIEW.BSVIEW
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_UserInfo”中。您可以根据需要移动或删除它。
             this.bS_UserInfoTableAdapter.Fill(this.dsPSAP.BS_UserInfo);
-            //FormResize();//根据窗口大小调整控件大小
         }
 
-
-        #region 根据窗口大小调整控件大小
-            PSAP.FormAutoSize formAutoSize =new FormAutoSize();
-            /// <summary>
-            ///根据窗口大小调整控件大小
-            /// </summary>
-            private void FormResize()
-             {
-                this.Resize += new EventHandler(Form_Resize);
-                formAutoSize._x = this.Width;
-                formAutoSize._y = this.Height;
-                formAutoSize.setTag(this);
-             }
-            /// <summary>
-            /// 根据窗口大小调整控件大小(对应事件)
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-            private void Form_Resize(object sender, EventArgs e)
-             {
-                formAutoSize.form_Resize(this);
-             }
-        #endregion
 
         //保存更改
         private void tsbSave_Click(object sender, EventArgs e)

@@ -304,8 +304,9 @@
             this.comboBox1.Location = new System.Drawing.Point(98, 69);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(200, 20);
-            this.comboBox1.TabIndex = 25;
+            this.comboBox1.TabIndex = 7;
             this.comboBox1.ValueMember = "DepartmentNo";
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // createDateDateTimePicker
             // 
@@ -358,7 +359,8 @@
             this.empNameTextBox.Location = new System.Drawing.Point(98, 42);
             this.empNameTextBox.Name = "empNameTextBox";
             this.empNameTextBox.Size = new System.Drawing.Size(200, 21);
-            this.empNameTextBox.TabIndex = 4;
+            this.empNameTextBox.TabIndex = 6;
+            this.empNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.empNameTextBox_KeyPress);
             // 
             // bfree4TextBox
             // 
@@ -394,7 +396,8 @@
             this.loginIdTextBox.Location = new System.Drawing.Point(98, 15);
             this.loginIdTextBox.Name = "loginIdTextBox";
             this.loginIdTextBox.Size = new System.Drawing.Size(200, 21);
-            this.loginIdTextBox.TabIndex = 8;
+            this.loginIdTextBox.TabIndex = 5;
+            this.loginIdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginIdTextBox_KeyPress);
             // 
             // bS_UserInfoDataGridView
             // 
@@ -660,6 +663,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bS_UserInfoDataGridView);
             this.Controls.Add(this.pnlEdit);
+            this.Font = new System.Drawing.Font("宋体", 9F);
             this.Name = "FrmUserInfo";
             this.TabText = "用户信息";
             this.Text = "用户信息";

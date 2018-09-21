@@ -7,6 +7,7 @@ namespace PSAP.ENTITY.BSENTITY
 {
     class UserInfo
     {
+        private int autoId;
         private string empName;
         private string departmentNo;
         private string departmentName;
@@ -19,6 +20,8 @@ namespace PSAP.ENTITY.BSENTITY
         private string bfree3;
         private string bfree4;
         private string bfree5;
+        private string roleNo;
+        private string roleName;
 
         public string EmpName
         {
@@ -173,6 +176,45 @@ namespace PSAP.ENTITY.BSENTITY
             set
             {
                 departmentName = value;
+            }
+        }
+
+        public string RoleNo
+        {
+            get
+            {
+                return roleNo;
+            }
+
+            set
+            {
+                roleNo = value;
+            }
+        }
+
+        public string RoleName
+        {
+            get
+            {
+                return roleName;
+            }
+
+            set
+            {
+                roleName = value;
+            }
+        }
+
+        public int AutoId
+        {
+            get
+            {
+                return autoId;
+            }
+
+            set
+            {
+                autoId = value;
             }
         }
     }

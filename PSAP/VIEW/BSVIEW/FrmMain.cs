@@ -10,27 +10,33 @@ using PSAP.BLL.BSBLL;
 using WeifenLuo.WinFormsUI.Docking;
 using UtilityLibrary.WinControls;
 using PSAP.DAO.BSDAO;
+using System.Data.SqlClient;
+using System.Reflection;
 
 namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmMain : Form
 
     {
-//        FrmMainTool frmMainTool;
         #region 属性字段 
         #endregion
+        public static FrmMain frmMain;
+        public static MenuStrip mnsMain=new MenuStrip();//主菜单
+
         public FrmMain()
         {
+            frmMain = this;
             InitializeComponent();
-            /*为了调试暂时注释掉$
+            toolStripContainer1.TopToolStripPanel.Controls.Add(mnsMain);
+           /*为了调试暂时注释掉$
             PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限
             */
-            FrmMainTool frmMainTool = new FrmMainTool(this);
-            //frmMainTool = new FrmMainTool(this);这句没意义
+            FrmMainTool frmMainTool = new FrmMainTool(menuStrip1);
             //frmMainTool.HideOnClose = true;//使用就无法触发窗口关闭事件了
             frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
-            //FrmDepartment f = new FrmDepartment();
-            //f.Show(this.dockPanel1);
+
+            PSAP.MnsInit.InitMenuItem(mnsMain);//初始化菜单
+            PSAP.MnsInit.SetMenuItemByRole(mnsMain,BSCheckUser.user.RoleNo);//初始化用户权限
         }
 
         //用于dock
@@ -57,25 +63,14 @@ namespace PSAP.VIEW.BSVIEW
                         return content;
                     }
                 }
-
                 return null;
             }
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            //this.Text = "天津容大机电有限公司   [" + PSAPCommon.LoginInfo["DepartmentName"]+" - "+PSAPCommon.LoginInfo["EmpName"]+"]";
             this.Text = "天津容大机电有限公司   [" + BSCheckUser.user.DepartmentName + " - " + BSCheckUser.user.EmpName + "]";
-            //FrmLogin frmLogin = new FrmLogin();
-            //frmLogin.ShowDialog();
         }
-
-        //private void 部门信息ToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    FrmDepartment f =new FrmDepartment();
-        //    f.MdiParent = this.ParentForm;
-        //    f.Show();
-        //}
 
 
         //用于dock
@@ -93,14 +88,6 @@ namespace PSAP.VIEW.BSVIEW
             return frm;
         }
 
-        public void 部门信息ToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            //FrmDepartment f = new FrmDepartment();
-            //f.MdiParent = this;
-            //f.Show(this.dockPanel1);
-            FrmDepartment.getinstance(this.dockPanel1);//打开指定窗口
-        }
-
         /// <summary>
         /// 关闭当前窗口
         /// </summary>
@@ -108,10 +95,6 @@ namespace PSAP.VIEW.BSVIEW
         /// <param name="e"></param>
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //if (dockPanel1.ActiveContent.DockHandler != null)
-            //{
-            //    dockPanel1.ActiveContent.DockHandler.Close();
-            //}
 
             IDockContent[] documents = dockPanel1.DocumentsToArray();
 
@@ -125,6 +108,7 @@ namespace PSAP.VIEW.BSVIEW
             }
 
         }
+
         /// <summary>
         ///除此之外全部关闭
         /// </summary>
@@ -162,21 +146,172 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (FrmMainTool.frmOpenFlag==0)
             {
-                FrmMainTool frmMainTool = new FrmMainTool(this);
-                //frmMainTool.Text = "功能导航";
-                //frmMainTool.HideOnClose = true; 
+                FrmMainTool frmMainTool = new FrmMainTool(menuStrip1);
                 frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
             }
         }
 
+        public void 部门信息ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FrmDepartment frmDepartment = new FrmDepartment();
+            FrmMain.frmMain.showRight(frmDepartment);
+        }
+
         private void 用户信息ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserInfo.getinstance(this.dockPanel1);//打开指定窗口
+            FrmUserInfo frmUserInfo = new FrmUserInfo();
+            FrmMain.frmMain.showRight(frmUserInfo);
         }
 
         private void 用户权限ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //FrmUserRight.getinstance(this.dockPanel1);//打开指定窗口
+            FrmUserRight frmUserRight = new FrmUserRight();
+            FrmMain.frmMain.showRight(frmUserRight);
         }
+
+        /// <summary>
+        /// 打开指定窗口，如果已打开就激活窗口
+        /// </summary>
+        /// <param name="dc"></param>
+        public void showRight(DockContent dc)
+        {
+            IDockContent[] documents = dockPanel1.DocumentsToArray();
+            foreach (IDockContent content in documents)
+            {
+                if (content.DockHandler.TabText.Equals(dc.DockHandler.TabText))
+                {
+                    content.DockHandler.Activate();
+                    return;
+                }
+            }     
+                    dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //#region 初始化菜单
+        ///// <summary>
+        ///// 初始化主菜单 
+        ///// </summary>
+        //private void InitMenuItem()
+        //{
+        //    string sql = "select * from BS_Menu where ParentMenuName is null order by MenuOrder"; //一级菜单，其父菜单id为0
+        //    DataTable dt =PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql);
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+        //        ToolStripMenuItem item = new ToolStripMenuItem();
+        //        item.Name =dr["MenuName"].ToString(); 
+        //        item.Text = dr["MenuText"].ToString();
+        //        mnsMain.Items.Add(item);
+        //        //mnsMain.Items[item.Name].Enabled = true;// false;
+        //        InitSubMenuItem(mnsMain.Items[item.Name]);
+        //    }
+        //}
+
+        ///// <summary>
+        /////初始化主菜单的所有子菜单 
+        ///// </summary>
+        ///// <param name="item"></param>
+        //private void InitSubMenuItem(ToolStripItem item)
+        //{
+        //    string mname = item.Name;
+        //    ToolStripMenuItem pItem = (ToolStripMenuItem)item;
+        //    //根据父菜单项加载子菜单
+        //    string sql = "select * from BS_Menu where ParentMenuName ='" + mname + "'";
+        //    DataTable dt = PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql); 
+        //    if (dt.Rows.Count != 0)
+        //    {
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            ToolStripMenuItem subItem = new ToolStripMenuItem();
+        //            subItem.Name = dr["MenuName"].ToString();
+        //            subItem.Text = dr["MenuText"].ToString();
+        //            //*****************
+        //            subItem.Tag =dr["FormName"].ToString();
+        //            //给菜单项加事件。
+        //            subItem.Click += new EventHandler(subItem_Click);
+        //            //*****************
+        //            pItem.DropDownItems.Add(subItem);
+        //            try
+        //            {
+        //                pItem.DropDownItems[subItem.Name].Enabled =false;
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                MessageBox.Show(e.Message);
+        //            }
+        //        }
+        //    }
+        //}
+        //#endregion
+
+        //#region 菜单单击事件
+        ///// <summary>
+        ///// 菜单单击事件
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //void subItem_Click(object sender, EventArgs e)
+        //{
+        //    Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
+        //    System.Windows.Forms.ToolStripMenuItem subItemTmp=(System.Windows.Forms.ToolStripMenuItem)sender;
+        //    string strFrm = "PSAP.VIEW.BSVIEW." + subItemTmp.Tag.ToString();
+        //    object obj = assembly.CreateInstance(strFrm); //类的完全限定名（即包括命名空间）
+        //    frmMain.showRight((DockContent)obj); 
+        //}
+        //#endregion
+
+        //#region 根据用户在用户权限表中的权限动态的设置能使用的菜单项。  
+        ///// <summary>
+        ///// 对主菜单进行权限设置
+        ///// </summary>
+        //private void SetMenuItemByRole()
+        //{
+        //    string sql = "select * from BS_Menu where ParentMenuName is null order by MenuOrder";//需修改
+        //    DataTable dt= PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql);
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+        //        ToolStripMenuItem item = new ToolStripMenuItem();
+        //        item.Name = dr["MenuName"].ToString();//一级菜单的menuname
+        //        mnsMain.Items[item.Name].Enabled = true;//各一级菜单是主菜单menuStrip1集合的项
+        //        SetSubMenuItemByRole(mnsMain.Items[item.Name]);//将一级菜单对应主菜单menuStrip1集合的项传给子菜单设置函数
+        //    }
+        //}
+
+        ///// <summary>
+        /////对主菜单的所有子菜单enable进行设置 
+        ///// </summary>
+        ///// <param name="item"></param>
+        //private void SetSubMenuItemByRole(ToolStripItem item)
+        //{
+        //    string mname = item.Name;
+        //    ToolStripMenuItem pItem = (ToolStripMenuItem)item;
+        //    //根据父菜单项加载子菜单
+        //    string sql = "select * from BS_Menu "+
+        //        "where ParentMenuName ='" + mname + "'"+
+        //        "and MenuName in (select MenuName from BS_RoleMenu where RoleNo='" +BSCheckUser.user.RoleNo + "')";
+        //    DataTable dt = PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql);
+        //    if (dt.Rows.Count!= 0)
+        //    {
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            ToolStripMenuItem subItem = new ToolStripMenuItem();
+        //            subItem.Name = dr["MenuName"].ToString();
+        //            try
+        //            {
+        //                pItem.DropDownItems[subItem.Name].Enabled = true;
+
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                MessageBox.Show(e.Message);
+        //            }
+        //        }
+        //    }
+        //}
+        //#endregion
     }
 }

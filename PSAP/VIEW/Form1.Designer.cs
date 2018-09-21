@@ -35,6 +35,9 @@
             this.outlookBarBand4 = new UtilityLibrary.WinControls.OutlookBarBand();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // outlookBar1
@@ -51,10 +54,10 @@
             this.outlookBar1.FlatArrowButtons = false;
             this.outlookBar1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.outlookBar1.LeftTopColor = System.Drawing.Color.Empty;
-            this.outlookBar1.Location = new System.Drawing.Point(0, 0);
+            this.outlookBar1.Location = new System.Drawing.Point(0, 25);
             this.outlookBar1.Name = "outlookBar1";
             this.outlookBar1.RightBottomColor = System.Drawing.Color.Empty;
-            this.outlookBar1.Size = new System.Drawing.Size(188, 355);
+            this.outlookBar1.Size = new System.Drawing.Size(188, 330);
             this.outlookBar1.TabIndex = 0;
             this.outlookBar1.Text = "outlookBar1";
             // 
@@ -120,6 +123,7 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button1_KeyDown);
             // 
             // treeView1
             // 
@@ -127,6 +131,23 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(121, 97);
             this.treeView1.TabIndex = 2;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(451, 25);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(41, 21);
+            this.toolStripMenuItem1.Text = "009";
+            this.toolStripMenuItem1.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMenuItem1_DropDownItemClicked);
             // 
             // Form1
             // 
@@ -136,11 +157,17 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.outlookBar1);
+            this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("宋体", 9F);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.TabText = "Form1";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -153,5 +180,7 @@
         private UtilityLibrary.WinControls.OutlookBarBand outlookBarBand4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
