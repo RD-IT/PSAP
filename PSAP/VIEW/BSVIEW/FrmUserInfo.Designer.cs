@@ -69,7 +69,7 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
-            this.tsbInsert = new System.Windows.Forms.ToolStripButton();
+            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -232,6 +232,8 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BS_DepartmentTableAdapter = null;
+            this.tableAdapterManager.BS_MenuTableAdapter = null;
+            this.tableAdapterManager.BS_RoleTableAdapter = null;
             this.tableAdapterManager.BS_UserInfoTableAdapter = this.bS_UserInfoTableAdapter;
             this.tableAdapterManager.BS_UserRightTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -465,7 +467,7 @@
             // 
             this.panel1.Controls.Add(this.tsControl);
             this.panel1.Controls.Add(this.bS_UserInfoBindingNavigator);
-            this.panel1.Location = new System.Drawing.Point(1, 12);
+            this.panel1.Location = new System.Drawing.Point(0, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(581, 58);
             this.panel1.TabIndex = 40;
@@ -475,7 +477,7 @@
             this.tsControl.AutoSize = false;
             this.tsControl.Dock = System.Windows.Forms.DockStyle.None;
             this.tsControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbInsert,
+            this.tsbAdd,
             this.tsbEdit,
             this.tsbDelete,
             this.tsbSave,
@@ -489,14 +491,14 @@
             this.tsControl.TabIndex = 28;
             this.tsControl.Text = "toolStrip1";
             // 
-            // tsbInsert
+            // tsbAdd
             // 
-            this.tsbInsert.Image = ((System.Drawing.Image)(resources.GetObject("tsbInsert.Image")));
-            this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbInsert.Name = "tsbInsert";
-            this.tsbInsert.Size = new System.Drawing.Size(52, 22);
-            this.tsbInsert.Text = "新增";
-            this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
+            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
+            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdd.Name = "tsbAdd";
+            this.tsbAdd.Size = new System.Drawing.Size(52, 22);
+            this.tsbAdd.Text = "新增";
+            this.tsbAdd.Click += new System.EventHandler(this.tsbInsert_Click);
             // 
             // tsbEdit
             // 
@@ -664,6 +666,7 @@
             this.Controls.Add(this.bS_UserInfoDataGridView);
             this.Controls.Add(this.pnlEdit);
             this.Font = new System.Drawing.Font("宋体", 9F);
+            this.HideOnClose = true;
             this.Name = "FrmUserInfo";
             this.TabText = "用户信息";
             this.Text = "用户信息";
@@ -726,7 +729,7 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStrip tsControl;
-        private System.Windows.Forms.ToolStripButton tsbInsert;
+        private System.Windows.Forms.ToolStripButton tsbAdd;
         private System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbSave;

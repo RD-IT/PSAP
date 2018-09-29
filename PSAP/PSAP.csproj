@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BSBLL\BSBLL.cs" />
+    <Compile Include="BLL\FrmMainBLL.cs" />
+    <Compile Include="BLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCheckUser.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
@@ -79,7 +81,6 @@
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
     <Compile Include="PSAPCommon\MnsInit.cs" />
     <Compile Include="PSAPCommon\PSAPCommon.cs" />
-    <Compile Include="PSAPCommon\TreeGetNodeForMns.cs" />
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
     <Compile Include="VIEW\BSVIEW\FrmDepartment.cs">
       <SubType>Form</SubType>
@@ -105,17 +106,23 @@
     <Compile Include="VIEW\BSVIEW\FrmMainTool.Designer.cs">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRole.Designer.cs">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUserInfo.Designer.cs">
       <DependentUpon>FrmUserInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\BSVIEW\FrmUserRight.cs">
+    <Compile Include="VIEW\BSVIEW\FrmRight.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\BSVIEW\FrmUserRight.Designer.cs">
-      <DependentUpon>FrmUserRight.cs</DependentUpon>
+    <Compile Include="VIEW\BSVIEW\FrmRight.Designer.cs">
+      <DependentUpon>FrmRight.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\Form1.cs">
       <SubType>Form</SubType>
@@ -144,11 +151,14 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmMainTool.resx">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmRole.resx">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUserInfo.resx">
       <DependentUpon>FrmUserInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\BSVIEW\FrmUserRight.resx">
-      <DependentUpon>FrmUserRight.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmRight.resx">
+      <DependentUpon>FrmRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

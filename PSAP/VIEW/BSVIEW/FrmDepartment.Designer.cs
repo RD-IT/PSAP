@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDepartment));
             System.Windows.Forms.Label departmentNoLabel1;
             System.Windows.Forms.Label departmentNameLabel1;
             System.Windows.Forms.Label parentDepartmentNoLabel1;
@@ -40,8 +39,9 @@
             System.Windows.Forms.Label bfree4Label1;
             System.Windows.Forms.Label bfree5Label1;
             System.Windows.Forms.Label createDateLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDepartment));
             this.tsControl = new System.Windows.Forms.ToolStrip();
-            this.tsbInsert = new System.Windows.Forms.ToolStripButton();
+            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -102,11 +102,118 @@
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
+            // departmentNoLabel1
+            // 
+            departmentNoLabel1.AutoSize = true;
+            departmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            departmentNoLabel1.Location = new System.Drawing.Point(13, 18);
+            departmentNoLabel1.Name = "departmentNoLabel1";
+            departmentNoLabel1.Size = new System.Drawing.Size(53, 12);
+            departmentNoLabel1.TabIndex = 23;
+            departmentNoLabel1.Text = "部门编号";
+            // 
+            // departmentNameLabel1
+            // 
+            departmentNameLabel1.AutoSize = true;
+            departmentNameLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            departmentNameLabel1.Location = new System.Drawing.Point(13, 45);
+            departmentNameLabel1.Name = "departmentNameLabel1";
+            departmentNameLabel1.Size = new System.Drawing.Size(53, 12);
+            departmentNameLabel1.TabIndex = 25;
+            departmentNameLabel1.Text = "部门名称";
+            // 
+            // parentDepartmentNoLabel1
+            // 
+            parentDepartmentNoLabel1.AutoSize = true;
+            parentDepartmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            parentDepartmentNoLabel1.Location = new System.Drawing.Point(13, 73);
+            parentDepartmentNoLabel1.Name = "parentDepartmentNoLabel1";
+            parentDepartmentNoLabel1.Size = new System.Drawing.Size(77, 12);
+            parentDepartmentNoLabel1.TabIndex = 27;
+            parentDepartmentNoLabel1.Text = "上级部门编号";
+            // 
+            // founderLabel
+            // 
+            founderLabel.AutoSize = true;
+            founderLabel.Enabled = false;
+            founderLabel.Font = new System.Drawing.Font("宋体", 9F);
+            founderLabel.Location = new System.Drawing.Point(13, 102);
+            founderLabel.Name = "founderLabel";
+            founderLabel.Size = new System.Drawing.Size(41, 12);
+            founderLabel.TabIndex = 31;
+            founderLabel.Text = "录入人";
+            // 
+            // bfree1Label1
+            // 
+            bfree1Label1.AutoSize = true;
+            bfree1Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree1Label1.Location = new System.Drawing.Point(332, 99);
+            bfree1Label1.Name = "bfree1Label1";
+            bfree1Label1.Size = new System.Drawing.Size(35, 12);
+            bfree1Label1.TabIndex = 33;
+            bfree1Label1.Text = "预留1";
+            bfree1Label1.Visible = false;
+            // 
+            // bfree2Label1
+            // 
+            bfree2Label1.AutoSize = true;
+            bfree2Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree2Label1.Location = new System.Drawing.Point(332, 126);
+            bfree2Label1.Name = "bfree2Label1";
+            bfree2Label1.Size = new System.Drawing.Size(35, 12);
+            bfree2Label1.TabIndex = 35;
+            bfree2Label1.Text = "预留2";
+            bfree2Label1.Visible = false;
+            // 
+            // bfree3Label1
+            // 
+            bfree3Label1.AutoSize = true;
+            bfree3Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree3Label1.Location = new System.Drawing.Point(332, 16);
+            bfree3Label1.Name = "bfree3Label1";
+            bfree3Label1.Size = new System.Drawing.Size(35, 12);
+            bfree3Label1.TabIndex = 37;
+            bfree3Label1.Text = "预留3";
+            bfree3Label1.Visible = false;
+            // 
+            // bfree4Label1
+            // 
+            bfree4Label1.AutoSize = true;
+            bfree4Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree4Label1.Location = new System.Drawing.Point(332, 42);
+            bfree4Label1.Name = "bfree4Label1";
+            bfree4Label1.Size = new System.Drawing.Size(35, 12);
+            bfree4Label1.TabIndex = 39;
+            bfree4Label1.Text = "预留4";
+            bfree4Label1.Visible = false;
+            // 
+            // bfree5Label1
+            // 
+            bfree5Label1.AutoSize = true;
+            bfree5Label1.Font = new System.Drawing.Font("宋体", 9F);
+            bfree5Label1.Location = new System.Drawing.Point(332, 69);
+            bfree5Label1.Name = "bfree5Label1";
+            bfree5Label1.Size = new System.Drawing.Size(35, 12);
+            bfree5Label1.TabIndex = 41;
+            bfree5Label1.Text = "预留5";
+            bfree5Label1.Visible = false;
+            // 
+            // createDateLabel
+            // 
+            createDateLabel.AutoSize = true;
+            createDateLabel.Enabled = false;
+            createDateLabel.Font = new System.Drawing.Font("宋体", 9F);
+            createDateLabel.Location = new System.Drawing.Point(13, 131);
+            createDateLabel.Name = "createDateLabel";
+            createDateLabel.Size = new System.Drawing.Size(53, 12);
+            createDateLabel.TabIndex = 29;
+            createDateLabel.Text = "录入日期";
+            // 
             // tsControl
             // 
             this.tsControl.Dock = System.Windows.Forms.DockStyle.None;
             this.tsControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbInsert,
+            this.tsbAdd,
             this.tsbEdit,
             this.tsbDelete,
             this.tsbSave,
@@ -116,25 +223,25 @@
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(483, 25);
+            this.tsControl.Size = new System.Drawing.Size(457, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
-            // tsbInsert
+            // tsbAdd
             // 
-            this.tsbInsert.Image = ((System.Drawing.Image)(resources.GetObject("tsbInsert.Image")));
-            this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbInsert.Name = "tsbInsert";
-            this.tsbInsert.Size = new System.Drawing.Size(52, 22);
-            this.tsbInsert.Text = "新增";
-            this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
+            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
+            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdd.Name = "tsbAdd";
+            this.tsbAdd.Size = new System.Drawing.Size(49, 22);
+            this.tsbAdd.Text = "新增";
+            this.tsbAdd.Click += new System.EventHandler(this.tsbInsert_Click);
             // 
             // tsbEdit
             // 
             this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.Size = new System.Drawing.Size(52, 22);
+            this.tsbEdit.Size = new System.Drawing.Size(49, 22);
             this.tsbEdit.Text = "编辑";
             this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
@@ -143,7 +250,7 @@
             this.tsbDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbDelete.Image")));
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.Size = new System.Drawing.Size(52, 22);
+            this.tsbDelete.Size = new System.Drawing.Size(49, 22);
             this.tsbDelete.Text = "删除";
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
@@ -152,7 +259,7 @@
             this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
             this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(52, 22);
+            this.tsbSave.Size = new System.Drawing.Size(49, 22);
             this.tsbSave.Text = "保存";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
@@ -161,7 +268,7 @@
             this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
             this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCancel.Name = "tsbCancel";
-            this.tsbCancel.Size = new System.Drawing.Size(52, 22);
+            this.tsbCancel.Size = new System.Drawing.Size(49, 22);
             this.tsbCancel.Text = "取消";
             this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
@@ -170,7 +277,7 @@
             this.tsbQuery.Image = ((System.Drawing.Image)(resources.GetObject("tsbQuery.Image")));
             this.tsbQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbQuery.Name = "tsbQuery";
-            this.tsbQuery.Size = new System.Drawing.Size(52, 22);
+            this.tsbQuery.Size = new System.Drawing.Size(49, 22);
             this.tsbQuery.Text = "查询";
             // 
             // tsbDGViewExportToCSV
@@ -178,7 +285,7 @@
             this.tsbDGViewExportToCSV.Image = ((System.Drawing.Image)(resources.GetObject("tsbDGViewExportToCSV.Image")));
             this.tsbDGViewExportToCSV.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDGViewExportToCSV.Name = "tsbDGViewExportToCSV";
-            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(76, 22);
+            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(73, 22);
             this.tsbDGViewExportToCSV.Text = "导出数据";
             this.tsbDGViewExportToCSV.Click += new System.EventHandler(this.tsbDGViewExportToCSV_Click);
             // 
@@ -187,7 +294,7 @@
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(52, 22);
+            this.tsbClose.Size = new System.Drawing.Size(49, 22);
             this.tsbClose.Text = "退出";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
@@ -209,6 +316,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
+            this.tableAdapterManager.BS_RoleTableAdapter = null;
             this.tableAdapterManager.BS_UserInfoTableAdapter = null;
             this.tableAdapterManager.BS_UserRightTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -247,7 +355,7 @@
             this.bS_DepartmentBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bS_DepartmentBindingNavigator.Name = "bS_DepartmentBindingNavigator";
             this.bS_DepartmentBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(188, 25);
+            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(186, 25);
             this.bS_DepartmentBindingNavigator.TabIndex = 3;
             this.bS_DepartmentBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -348,16 +456,6 @@
             this.pnlEdit.Size = new System.Drawing.Size(606, 160);
             this.pnlEdit.TabIndex = 2;
             // 
-            // departmentNoLabel1
-            // 
-            departmentNoLabel1.AutoSize = true;
-            departmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            departmentNoLabel1.Location = new System.Drawing.Point(13, 18);
-            departmentNoLabel1.Name = "departmentNoLabel1";
-            departmentNoLabel1.Size = new System.Drawing.Size(53, 12);
-            departmentNoLabel1.TabIndex = 23;
-            departmentNoLabel1.Text = "部门编号";
-            // 
             // departmentNoTextBox1
             // 
             this.departmentNoTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "DepartmentNo", true));
@@ -367,16 +465,6 @@
             this.departmentNoTextBox1.Size = new System.Drawing.Size(200, 21);
             this.departmentNoTextBox1.TabIndex = 24;
             // 
-            // departmentNameLabel1
-            // 
-            departmentNameLabel1.AutoSize = true;
-            departmentNameLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            departmentNameLabel1.Location = new System.Drawing.Point(13, 45);
-            departmentNameLabel1.Name = "departmentNameLabel1";
-            departmentNameLabel1.Size = new System.Drawing.Size(53, 12);
-            departmentNameLabel1.TabIndex = 25;
-            departmentNameLabel1.Text = "部门名称";
-            // 
             // departmentNameTextBox1
             // 
             this.departmentNameTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "DepartmentName", true));
@@ -385,16 +473,6 @@
             this.departmentNameTextBox1.Name = "departmentNameTextBox1";
             this.departmentNameTextBox1.Size = new System.Drawing.Size(200, 21);
             this.departmentNameTextBox1.TabIndex = 26;
-            // 
-            // parentDepartmentNoLabel1
-            // 
-            parentDepartmentNoLabel1.AutoSize = true;
-            parentDepartmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            parentDepartmentNoLabel1.Location = new System.Drawing.Point(13, 73);
-            parentDepartmentNoLabel1.Name = "parentDepartmentNoLabel1";
-            parentDepartmentNoLabel1.Size = new System.Drawing.Size(77, 12);
-            parentDepartmentNoLabel1.TabIndex = 27;
-            parentDepartmentNoLabel1.Text = "上级部门编号";
             // 
             // parentDepartmentNoTextBox1
             // 
@@ -416,17 +494,6 @@
             this.createDateDateTimePicker.TabIndex = 30;
             this.createDateDateTimePicker.TabStop = false;
             // 
-            // founderLabel
-            // 
-            founderLabel.AutoSize = true;
-            founderLabel.Enabled = false;
-            founderLabel.Font = new System.Drawing.Font("宋体", 9F);
-            founderLabel.Location = new System.Drawing.Point(13, 102);
-            founderLabel.Name = "founderLabel";
-            founderLabel.Size = new System.Drawing.Size(41, 12);
-            founderLabel.TabIndex = 31;
-            founderLabel.Text = "录入人";
-            // 
             // founderTextBox
             // 
             this.founderTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Founder", true));
@@ -438,17 +505,6 @@
             this.founderTextBox.TabIndex = 32;
             this.founderTextBox.TabStop = false;
             // 
-            // bfree1Label1
-            // 
-            bfree1Label1.AutoSize = true;
-            bfree1Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree1Label1.Location = new System.Drawing.Point(332, 99);
-            bfree1Label1.Name = "bfree1Label1";
-            bfree1Label1.Size = new System.Drawing.Size(35, 12);
-            bfree1Label1.TabIndex = 33;
-            bfree1Label1.Text = "预留1";
-            bfree1Label1.Visible = false;
-            // 
             // bfree1TextBox1
             // 
             this.bfree1TextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Bfree1", true));
@@ -458,17 +514,6 @@
             this.bfree1TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree1TextBox1.TabIndex = 34;
             this.bfree1TextBox1.Visible = false;
-            // 
-            // bfree2Label1
-            // 
-            bfree2Label1.AutoSize = true;
-            bfree2Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree2Label1.Location = new System.Drawing.Point(332, 126);
-            bfree2Label1.Name = "bfree2Label1";
-            bfree2Label1.Size = new System.Drawing.Size(35, 12);
-            bfree2Label1.TabIndex = 35;
-            bfree2Label1.Text = "预留2";
-            bfree2Label1.Visible = false;
             // 
             // bfree2TextBox1
             // 
@@ -480,17 +525,6 @@
             this.bfree2TextBox1.TabIndex = 36;
             this.bfree2TextBox1.Visible = false;
             // 
-            // bfree3Label1
-            // 
-            bfree3Label1.AutoSize = true;
-            bfree3Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree3Label1.Location = new System.Drawing.Point(332, 16);
-            bfree3Label1.Name = "bfree3Label1";
-            bfree3Label1.Size = new System.Drawing.Size(35, 12);
-            bfree3Label1.TabIndex = 37;
-            bfree3Label1.Text = "预留3";
-            bfree3Label1.Visible = false;
-            // 
             // bfree3TextBox1
             // 
             this.bfree3TextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Bfree3", true));
@@ -500,17 +534,6 @@
             this.bfree3TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree3TextBox1.TabIndex = 38;
             this.bfree3TextBox1.Visible = false;
-            // 
-            // bfree4Label1
-            // 
-            bfree4Label1.AutoSize = true;
-            bfree4Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree4Label1.Location = new System.Drawing.Point(332, 42);
-            bfree4Label1.Name = "bfree4Label1";
-            bfree4Label1.Size = new System.Drawing.Size(35, 12);
-            bfree4Label1.TabIndex = 39;
-            bfree4Label1.Text = "预留4";
-            bfree4Label1.Visible = false;
             // 
             // bfree4TextBox1
             // 
@@ -522,17 +545,6 @@
             this.bfree4TextBox1.TabIndex = 40;
             this.bfree4TextBox1.Visible = false;
             // 
-            // bfree5Label1
-            // 
-            bfree5Label1.AutoSize = true;
-            bfree5Label1.Font = new System.Drawing.Font("宋体", 9F);
-            bfree5Label1.Location = new System.Drawing.Point(332, 69);
-            bfree5Label1.Name = "bfree5Label1";
-            bfree5Label1.Size = new System.Drawing.Size(35, 12);
-            bfree5Label1.TabIndex = 41;
-            bfree5Label1.Text = "预留5";
-            bfree5Label1.Visible = false;
-            // 
             // bfree5TextBox1
             // 
             this.bfree5TextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Bfree5", true));
@@ -542,17 +554,6 @@
             this.bfree5TextBox1.Size = new System.Drawing.Size(200, 21);
             this.bfree5TextBox1.TabIndex = 42;
             this.bfree5TextBox1.Visible = false;
-            // 
-            // createDateLabel
-            // 
-            createDateLabel.AutoSize = true;
-            createDateLabel.Enabled = false;
-            createDateLabel.Font = new System.Drawing.Font("宋体", 9F);
-            createDateLabel.Location = new System.Drawing.Point(13, 131);
-            createDateLabel.Name = "createDateLabel";
-            createDateLabel.Size = new System.Drawing.Size(53, 12);
-            createDateLabel.TabIndex = 29;
-            createDateLabel.Text = "录入日期";
             // 
             // bS_DepartmentDataGridView
             // 
@@ -661,7 +662,7 @@
         private dsPSAPTableAdapters.BS_DepartmentTableAdapter bS_DepartmentTableAdapter;
         private dsPSAPTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.ToolStrip tsControl;
-        private System.Windows.Forms.ToolStripButton tsbInsert;
+        private System.Windows.Forms.ToolStripButton tsbAdd;
         private System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbSave;
