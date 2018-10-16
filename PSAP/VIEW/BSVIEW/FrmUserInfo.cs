@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using PSAP.DAO.BSDAO;
+using PSAP.PSAPCommon;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -41,12 +42,12 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (string.IsNullOrEmpty(loginPwdTextBox.Text))//初始密码与用户ID相同
             {
-                PSAP.EncryptMD5 en = new PSAP.EncryptMD5(loginIdTextBox.Text);//实例化EncryptMD5
+                EncryptMD5 en = new EncryptMD5(loginIdTextBox.Text);//实例化EncryptMD5
                 loginPwdTextBox.Text = en.str2;//加密后的数值
  
             }
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
-            founderTextBox.Text = BSCheckUser.user.EmpName;//获取当前登录用户姓名
+            founderTextBox.Text = FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
 
             try
             {
@@ -74,25 +75,25 @@ namespace PSAP.VIEW.BSVIEW
 
         private void loginIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
         }
 
         private void empNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
         }
 
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
         }
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            PSAPCommon.DataGridViewExportToCSV(bS_UserInfoDataGridView, PSAPCommon.GetDateNumber("用户信息"));
+            psapCommon.DataGridViewExportToCSV(bS_UserInfoDataGridView, psapCommon.GetDateNumber("用户信息"));
         }
 
         //取消编辑

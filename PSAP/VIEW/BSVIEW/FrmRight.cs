@@ -13,6 +13,9 @@ using WeifenLuo.WinFormsUI.Docking;
 using PSAP.BLL;
 using PSAP;
 using PSAP.DAO.BSDAO;
+using System.Data.SqlClient;
+using PSAP.PSAPCommon;
+
 namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmRight : DockContent
@@ -25,12 +28,11 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             tvwUserRight.CheckBoxes = true;
             tvwRoleRight.CheckBoxes = true;
-
         }
 
         private void tvwUserRight_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            PSAP.TreeSelectOptimize tr = new TreeSelectOptimize();
+            TreeSelectOptimize tr = new TreeSelectOptimize();
             tr.SelectChildAndlParent(e);//选择节点，自动选择所有父节点和子节点
         }
 
@@ -45,7 +47,7 @@ namespace PSAP.VIEW.BSVIEW
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
 
-            dtblTmp = DAO.BSDAO.GetUserInfoList.getUserInfoList("", "", "", "");
+            dtblTmp = BSCommon.getUserInfoList("", "", "", "");
             dgvUserList.DataSource = dtblTmp;
             dgvUserList.ColumnHeadersHeight = 32;
             dgvUserList.Columns[0].Width = 40;
@@ -64,15 +66,17 @@ namespace PSAP.VIEW.BSVIEW
             dgvUserList.Columns[1].HeaderText = "用户编号";
             dgvUserList.Columns[2].HeaderText = "用户姓名";
             dgvUserList.Columns[3].HeaderText = "部门";
-            dgvUserList.Columns[4].HeaderText = "角色名称";
+            dgvUserList.Columns[4].HeaderText = "角色";
             dgvUserList.Columns[5].HeaderText = "角色编号";
+            dgvUserList.Columns[0].Visible = false;
+            dgvUserList.Columns[5].Visible = false;
 
-            dtblTmp1 = PSAP.BSCommon.getDepartmentList();
+            dtblTmp1 = BSCommon.getDepartmentList();
             cboDepartmentName.DataSource = dtblTmp1;
             cboDepartmentName.DisplayMember = "DepartmentName";
 
             //角色combo
-            dtblTmp1 = PSAP.BSCommon.getRoleList();
+            dtblTmp1 = BSCommon.getRoleList();
             cboRoleName.DataSource = dtblTmp1;
             cboRoleName.DisplayMember = "RoleName";
             cboRoleName.ValueMember = "RoleNo";
@@ -93,25 +97,27 @@ namespace PSAP.VIEW.BSVIEW
 
         private void btnStretch_Click(object sender, EventArgs e)
         {
-            dtblTmp = DAO.BSDAO.GetUserInfoList.getUserInfoList(txtUserID.Text, txtLoginID.Text, txtUserName.Text, cboDepartmentName.Text.Trim());
+            dtblTmp = BSCommon.getUserInfoList(txtUserID.Text, txtLoginID.Text, txtUserName.Text, cboDepartmentName.Text.Trim());
             dgvUserList.DataSource = dtblTmp;
 
         }
 
         private void dgvUserList_SelectionChanged(object sender, EventArgs e)
         {
-            cboRoleName.Text = "";
-            mnsRight.Items.Clear();
-            FrmMainBLL.InitMenuItem(mnsRight);//初始化权限菜单
-            FrmMainBLL.SetMenuItemByRole(mnsRight, dgvUserList.CurrentRow.Cells[5].Value.ToString());//初始化用户权限
-            FrmMainBLL.SetMenuItemByPersonal(mnsRight, dgvUserList.CurrentRow.Cells[0].Value.ToString());//初始化用户"个人"权限
+            if (dgvUserList.CurrentRow != null)
+            {
+                cboRoleName.Text = "";
+                mnsRight.Items.Clear();
+                FrmMainBLL.InitMenuItem(mnsRight);//初始化权限菜单
+                FrmMainBLL.SetMenuItemByRole(mnsRight, dgvUserList.CurrentRow.Cells[5].Value.ToString());//初始化用户权限
+                FrmMainBLL.SetMenuItemByPersonal(mnsRight, dgvUserList.CurrentRow.Cells[0].Value.ToString());//初始化用户"个人"权限
 
-            //初始化treeView1
-            tvwUserRight.Nodes.Clear();
-            FrmRightBLL.TreeGetNodeForMns(tvwUserRight, mnsRight);
-            tvwUserRight.ExpandAll();
-            FrmRightBLL.TreeAddButtonsNode(tvwUserRight, dgvUserList.CurrentRow.Cells[0].Value.ToString());//遍历窗口中的按钮，加到指定的Tree的叶子节点上
-
+                //初始化treeView1
+                tvwUserRight.Nodes.Clear();
+                FrmRightBLL.TreeGetNodeForMns(tvwUserRight, mnsRight);
+                tvwUserRight.ExpandAll();
+                FrmRightBLL.TreeAddButtonsNode(tvwUserRight, dgvUserList.CurrentRow.Cells[0].Value.ToString());//遍历窗口中的按钮，加到指定的Tree的叶子节点上
+            }
         }
         //同级菜单
         private void insertTreeNode_Click(object sender, EventArgs e)
@@ -126,6 +132,8 @@ namespace PSAP.VIEW.BSVIEW
                 string nodeId = FrmRightBLL.getNewNodeId();
                 tvwMainMenu.SelectedNode.Name = nodeId;
                 saveNodeToTable();//将新建节点同步到数据库
+                FrmRightDAO.RefreshMenuButton(nodeId);
+
             }
             catch (Exception e1)
             {
@@ -143,6 +151,7 @@ namespace PSAP.VIEW.BSVIEW
                 string nodeId = FrmRightBLL.getNewNodeId();
                 tvwMainMenu.SelectedNode.Name = nodeId;
                 saveNodeToTable();//将新建节点同步到数据库
+                FrmRightDAO.RefreshMenuButton(nodeId);
             }
             catch (Exception e1)
             {
@@ -182,9 +191,7 @@ namespace PSAP.VIEW.BSVIEW
                 this.Validate();
                 this.bS_MenuBindingSource.EndEdit();
                 this.bS_MenuTableAdapter.Update(dsPSAP.BS_Menu);
-                //刷新下窗口，不然有重新打开打不开的情况
-                //FrmRight frmUserRight = new FrmRight();
-                //FrmMain.frmMain.showRight(frmUserRight);
+                FrmRightDAO.RefreshMenuButton(nodeId);
             }
             catch (Exception e1)
             {
@@ -260,13 +267,12 @@ namespace PSAP.VIEW.BSVIEW
             Validate();
             bS_MenuBindingSource.EndEdit();
             bS_MenuTableAdapter.Update(dsPSAP.BS_Menu);
+            FrmMain.frmMain.tsrLblCurrentStatusText = "【主菜单】相关设定已成功保存";
+
         }
 
         private void btnSaveRight_Click(object sender, EventArgs e)
         {
-            //dgvUserList.CurrentRow.Cells[0].Value.ToString()
-
-
             if (!string.IsNullOrEmpty(cboRoleName.SelectedValue.ToString()))
             {
                 dgvUserList.CurrentRow.Cells[4].Value = cboRoleName.Text;
@@ -274,25 +280,27 @@ namespace PSAP.VIEW.BSVIEW
                 FrmRightDAO.SaveRoleUser(cboRoleName.SelectedValue.ToString(), (int)dgvUserList.CurrentRow.Cells[0].Value);
                 FrmRightDAO.GiveRoleAllButtonRight();
             }
-            FrmRightBLL.SavePersonalRightFromTree(tvwUserRight, dgvUserList);//遍历树保存权限
+            FrmRightBLL.SaevPersonalRightFromTree(tvwUserRight, dgvUserList);//遍历树保存权限
 
+            FrmMain.frmMain.tsrLblCurrentStatusText = "【用户权限】已成功保存";
         }
 
         private void roleNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
         }
 
         private void roleNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
         }
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            PSAPCommon.DataGridViewExportToCSV(dgvRoleList, PSAPCommon.GetDateNumber("角色"));
+            psapCommon.DataGridViewExportToCSV(dgvRoleList,psapCommon.GetDateNumber("角色"));
+            
 
         }
 
@@ -433,22 +441,25 @@ namespace PSAP.VIEW.BSVIEW
             ChangeEnabledState();//更改控件状态
             roleNoTextBox.Focus();
         }
-        //******************************************************************************************************
+
         private void tvwRoleRight_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            PSAP.TreeSelectOptimize tr = new TreeSelectOptimize();
+            TreeSelectOptimize tr = new TreeSelectOptimize();
             tr.SelectChildAndlParent(e);//选择节点，自动选择所有父节点和子节点
         }
 
         private void dgvRoleList_SelectionChanged(object sender, EventArgs e)
         {
-            mnsRight.Items.Clear();
-            FrmMainBLL.InitMenuItem(mnsRight);//初始化权限菜单
-            FrmMainBLL.SetMenuItemByRole(mnsRight, dgvRoleList.CurrentRow.Cells[1].Value.ToString());//初始化角色权限
-            tvwRoleRight.Nodes.Clear();
-            FrmRightBLL.TreeGetNodeForMns(tvwRoleRight, mnsRight);
-            tvwRoleRight.ExpandAll();
-            //FrmRightBLL.TreeAddButtonsNode(tvwRoleRight, dgvUserList.CurrentRow.Cells[0].Value.ToString());//遍历窗口中的按钮，加到指定的Tree的叶子节点上
+            if (dgvRoleList.CurrentRow!=null)
+            {
+                mnsRight.Items.Clear();
+                FrmMainBLL.InitMenuItem(mnsRight);//初始化权限菜单
+                FrmMainBLL.SetMenuItemByRole(mnsRight, dgvRoleList.CurrentRow.Cells[1].Value.ToString());//初始化角色权限
+                tvwRoleRight.Nodes.Clear();
+                FrmRightBLL.TreeGetNodeForMns(tvwRoleRight, mnsRight);
+                tvwRoleRight.ExpandAll();
+                //FrmRightBLL.TreeAddButtonsNode(tvwRoleRight, dgvUserList.CurrentRow.Cells[0].Value.ToString());//遍历窗口中的按钮，加到指定的Tree的叶子节点上
+            }
         }
 
         private void dgvUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)

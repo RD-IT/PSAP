@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;//加密
 
-namespace PSAP
+namespace PSAP.PSAPCommon
 {
     class EncryptMD5
     {
         public string str2 = "";//记录加密后的数值
-        public  EncryptMD5(string str)
+        public EncryptMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();//创建MD5对象（MD5类为抽象类不能被实例化）
             byte[] date = System.Text.Encoding.Default.GetBytes(str);//将字符串编码转换为一个字节序列

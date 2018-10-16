@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using WeifenLuo.WinFormsUI.Docking;
 
-namespace PSAP//.PSAPCommon
+namespace PSAP.PSAPCommon
 {
     class FormAutoSize
     {
-                 private float X;
+         private float X;
          private float Y;
          public float _x
          {
@@ -44,13 +45,12 @@ namespace PSAP//.PSAPCommon
                  con.Width = (int)a;
                  a = Convert.ToSingle(mytag[1]) * newy;
                  con.Height = (int)a;//高度
-
                  a = Convert.ToSingle(mytag[2]) * newx;
                  con.Left = (int)a;//左边缘距离
                  a = Convert.ToSingle(mytag[3]) * newy;
                  con.Top = (int)a;//上边缘距离
                  Single currentSize = Convert.ToSingle(mytag[4]) * newy;
-                 con.Font = new Font(con.Font.Name,currentSize,con.Font.Style,con.Font.Unit);
+                // con.Font = new Font(con.Font.Name,currentSize,con.Font.Style,con.Font.Unit);//字体大小不变
                  if(con.Controls.Count>0)
                  {
                      setControls(newx,newy,con);
@@ -58,12 +58,44 @@ namespace PSAP//.PSAPCommon
  
              }
          }
-        public void form_Resize(Form fr)
+
+        //public void form_Resize(Form fr)
+        public void form_Resize(DockContent fr)
         {
             float newx = (fr.Width) / X;
             float newy = (fr.Height) / Y;
             setControls(newx, newy, fr);
             fr.Text = fr.Width.ToString() + " " + fr.Height.ToString();
         }
+
+        //**********************调用方法BEGIN**************************************************
+        /*
+        //  FormResize();//testing(在初始化事件执行)
+
+
+        #region 根据窗口大小调整控件大小
+        FormAutoSize formAutoSize = new FormAutoSize();
+        /// <summary>
+        ///根据窗口大小调整控件大小
+        /// </summary>
+        private void FormResize()
+        {
+            this.Resize += new EventHandler(Form_Resize);
+            formAutoSize._x = this.Width;
+            formAutoSize._y = this.Height;
+            formAutoSize.setTag(this);
+        }
+        /// <summary>
+        /// 根据窗口大小调整控件大小(对应事件)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            formAutoSize.form_Resize(this);
+        }
+        #endregion
+        */
+        //*****************************调用方法END*****************************************************************
     }
 }

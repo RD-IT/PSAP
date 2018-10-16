@@ -52,7 +52,7 @@ namespace PSAP.BLL
         /// 遍历TreeView,并将设定的"个人"权限信息保存到数据库
         /// </summary>
         /// <param name="tvwTmp"></param>
-        public static void SavePersonalRightFromTree(TreeView tvwTmp, DataGridView dgvTmp)
+        public static void SaevPersonalRightFromTree(TreeView tvwTmp, DataGridView dgvTmp)
         {
             FrmRightDAO.strSqlLlist.Clear();//将命令行变量清空
             //获取TreeView的所有根节点

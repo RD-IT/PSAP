@@ -74,9 +74,6 @@
             this.tabRole = new System.Windows.Forms.TabPage();
             this.tvwRoleRight = new System.Windows.Forms.TreeView();
             this.dgvRoleList = new System.Windows.Forms.DataGridView();
-            this.autoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bS_RoleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlEdit = new System.Windows.Forms.Panel();
             this.roleNameTextBox = new System.Windows.Forms.TextBox();
@@ -107,6 +104,9 @@
             this.bS_RoleTableAdapter = new PSAP.dsPSAPTableAdapters.BS_RoleTableAdapter();
             this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
             this.bS_MenuTableAdapter = new PSAP.dsPSAPTableAdapters.BS_MenuTableAdapter();
+            this.autoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             autoIdLabel = new System.Windows.Forms.Label();
             roleNoLabel = new System.Windows.Forms.Label();
             roleNameLabel = new System.Windows.Forms.Label();
@@ -537,30 +537,6 @@
             this.dgvRoleList.TabIndex = 10;
             this.dgvRoleList.SelectionChanged += new System.EventHandler(this.dgvRoleList_SelectionChanged);
             // 
-            // autoIdDataGridViewTextBoxColumn
-            // 
-            this.autoIdDataGridViewTextBoxColumn.DataPropertyName = "AutoId";
-            this.autoIdDataGridViewTextBoxColumn.HeaderText = "编号";
-            this.autoIdDataGridViewTextBoxColumn.Name = "autoIdDataGridViewTextBoxColumn";
-            this.autoIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.autoIdDataGridViewTextBoxColumn.Width = 54;
-            // 
-            // roleNoDataGridViewTextBoxColumn
-            // 
-            this.roleNoDataGridViewTextBoxColumn.DataPropertyName = "RoleNo";
-            this.roleNoDataGridViewTextBoxColumn.HeaderText = "角色编号";
-            this.roleNoDataGridViewTextBoxColumn.Name = "roleNoDataGridViewTextBoxColumn";
-            this.roleNoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.roleNoDataGridViewTextBoxColumn.Width = 78;
-            // 
-            // roleNameDataGridViewTextBoxColumn
-            // 
-            this.roleNameDataGridViewTextBoxColumn.DataPropertyName = "RoleName";
-            this.roleNameDataGridViewTextBoxColumn.HeaderText = "角色名称";
-            this.roleNameDataGridViewTextBoxColumn.Name = "roleNameDataGridViewTextBoxColumn";
-            this.roleNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.roleNameDataGridViewTextBoxColumn.Width = 78;
-            // 
             // bS_RoleBindingSource
             // 
             this.bS_RoleBindingSource.DataMember = "BS_Role";
@@ -821,6 +797,7 @@
             this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
             this.tableAdapterManager.BS_MenuTableAdapter = null;
             this.tableAdapterManager.BS_RoleTableAdapter = this.bS_RoleTableAdapter;
+            this.tableAdapterManager.BS_UnitCatgTableAdapter = null;
             this.tableAdapterManager.BS_UserInfoTableAdapter = null;
             this.tableAdapterManager.BS_UserRightTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -828,6 +805,31 @@
             // bS_MenuTableAdapter
             // 
             this.bS_MenuTableAdapter.ClearBeforeFill = true;
+            // 
+            // autoIdDataGridViewTextBoxColumn
+            // 
+            this.autoIdDataGridViewTextBoxColumn.DataPropertyName = "AutoId";
+            this.autoIdDataGridViewTextBoxColumn.HeaderText = "编号";
+            this.autoIdDataGridViewTextBoxColumn.Name = "autoIdDataGridViewTextBoxColumn";
+            this.autoIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.autoIdDataGridViewTextBoxColumn.Visible = false;
+            this.autoIdDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // roleNoDataGridViewTextBoxColumn
+            // 
+            this.roleNoDataGridViewTextBoxColumn.DataPropertyName = "RoleNo";
+            this.roleNoDataGridViewTextBoxColumn.HeaderText = "角色编号";
+            this.roleNoDataGridViewTextBoxColumn.Name = "roleNoDataGridViewTextBoxColumn";
+            this.roleNoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.roleNoDataGridViewTextBoxColumn.Width = 78;
+            // 
+            // roleNameDataGridViewTextBoxColumn
+            // 
+            this.roleNameDataGridViewTextBoxColumn.DataPropertyName = "RoleName";
+            this.roleNameDataGridViewTextBoxColumn.HeaderText = "角色名称";
+            this.roleNameDataGridViewTextBoxColumn.Name = "roleNameDataGridViewTextBoxColumn";
+            this.roleNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.roleNameDataGridViewTextBoxColumn.Width = 78;
             // 
             // FrmRight
             // 
@@ -910,9 +912,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSaveRight;
         private System.Windows.Forms.DataGridView dgvRoleList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn autoIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn roleNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn roleNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel pnlEdit;
         private System.Windows.Forms.TextBox roleNameTextBox;
         private System.Windows.Forms.TextBox roleNoTextBox;
@@ -940,5 +939,8 @@
         private System.Windows.Forms.TreeView tvwRoleRight;
         private System.Windows.Forms.ComboBox cboRoleName;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn autoIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn roleNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn roleNameDataGridViewTextBoxColumn;
     }
 }

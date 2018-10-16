@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace PSAP.DAO
+namespace PSAP.DAO.BSDAO
 {
     class FrmMainDAO
     {
@@ -25,7 +25,7 @@ namespace PSAP.DAO
         /// <returns></returns>
         public static DataTable GetChildMenuData(string mname)
         {
-            string sql = "select * from BS_Menu where ParentMenuName ='" + mname + "'";
+            string sql = "select * from BS_Menu where ParentMenuName ='" + mname + "' order by MenuOrder";
             DataTable dt = PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql);
             return dt;
         }

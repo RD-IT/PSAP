@@ -49,12 +49,10 @@
             this.tsbQuery = new System.Windows.Forms.ToolStripButton();
             this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
-            this.bS_DepartmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsPSAP = new PSAP.dsPSAP();
-            this.bS_DepartmentTableAdapter = new PSAP.dsPSAPTableAdapters.BS_DepartmentTableAdapter();
-            this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bS_DepartmentBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bS_DepartmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsPSAP = new PSAP.dsPSAP();
             this.bdnCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bdnMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bdnMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -82,6 +80,8 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bS_DepartmentTableAdapter = new PSAP.dsPSAPTableAdapters.BS_DepartmentTableAdapter();
+            this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
             departmentNoLabel1 = new System.Windows.Forms.Label();
             departmentNameLabel1 = new System.Windows.Forms.Label();
             parentDepartmentNoLabel1 = new System.Windows.Forms.Label();
@@ -93,11 +93,11 @@
             bfree5Label1 = new System.Windows.Forms.Label();
             createDateLabel = new System.Windows.Forms.Label();
             this.tsControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingNavigator)).BeginInit();
             this.bS_DepartmentBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -106,7 +106,7 @@
             // 
             departmentNoLabel1.AutoSize = true;
             departmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            departmentNoLabel1.Location = new System.Drawing.Point(13, 18);
+            departmentNoLabel1.Location = new System.Drawing.Point(3, 16);
             departmentNoLabel1.Name = "departmentNoLabel1";
             departmentNoLabel1.Size = new System.Drawing.Size(53, 12);
             departmentNoLabel1.TabIndex = 23;
@@ -116,7 +116,7 @@
             // 
             departmentNameLabel1.AutoSize = true;
             departmentNameLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            departmentNameLabel1.Location = new System.Drawing.Point(13, 45);
+            departmentNameLabel1.Location = new System.Drawing.Point(3, 43);
             departmentNameLabel1.Name = "departmentNameLabel1";
             departmentNameLabel1.Size = new System.Drawing.Size(53, 12);
             departmentNameLabel1.TabIndex = 25;
@@ -126,7 +126,7 @@
             // 
             parentDepartmentNoLabel1.AutoSize = true;
             parentDepartmentNoLabel1.Font = new System.Drawing.Font("宋体", 9F);
-            parentDepartmentNoLabel1.Location = new System.Drawing.Point(13, 73);
+            parentDepartmentNoLabel1.Location = new System.Drawing.Point(3, 71);
             parentDepartmentNoLabel1.Name = "parentDepartmentNoLabel1";
             parentDepartmentNoLabel1.Size = new System.Drawing.Size(77, 12);
             parentDepartmentNoLabel1.TabIndex = 27;
@@ -137,7 +137,7 @@
             founderLabel.AutoSize = true;
             founderLabel.Enabled = false;
             founderLabel.Font = new System.Drawing.Font("宋体", 9F);
-            founderLabel.Location = new System.Drawing.Point(13, 102);
+            founderLabel.Location = new System.Drawing.Point(3, 100);
             founderLabel.Name = "founderLabel";
             founderLabel.Size = new System.Drawing.Size(41, 12);
             founderLabel.TabIndex = 31;
@@ -203,7 +203,7 @@
             createDateLabel.AutoSize = true;
             createDateLabel.Enabled = false;
             createDateLabel.Font = new System.Drawing.Font("宋体", 9F);
-            createDateLabel.Location = new System.Drawing.Point(13, 131);
+            createDateLabel.Location = new System.Drawing.Point(3, 129);
             createDateLabel.Name = "createDateLabel";
             createDateLabel.Size = new System.Drawing.Size(53, 12);
             createDateLabel.TabIndex = 29;
@@ -299,37 +299,13 @@
             this.tsbClose.Text = "退出";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
-            // bS_DepartmentBindingSource
-            // 
-            this.bS_DepartmentBindingSource.DataMember = "BS_Department";
-            this.bS_DepartmentBindingSource.DataSource = this.dsPSAP;
-            // 
-            // dsPSAP
-            // 
-            this.dsPSAP.DataSetName = "dsPSAP";
-            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bS_DepartmentTableAdapter
-            // 
-            this.bS_DepartmentTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
-            this.tableAdapterManager.BS_MenuTableAdapter = null;
-            this.tableAdapterManager.BS_RoleTableAdapter = null;
-            this.tableAdapterManager.BS_UserInfoTableAdapter = null;
-            this.tableAdapterManager.BS_UserRightTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.bS_DepartmentBindingNavigator);
             this.panel1.Controls.Add(this.tsControl);
-            this.panel1.Location = new System.Drawing.Point(0, 12);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(627, 72);
+            this.panel1.Size = new System.Drawing.Size(627, 59);
             this.panel1.TabIndex = 3;
             // 
             // bS_DepartmentBindingNavigator
@@ -358,9 +334,19 @@
             this.bS_DepartmentBindingNavigator.MovePreviousItem = this.bdnMovePreviousItem;
             this.bS_DepartmentBindingNavigator.Name = "bS_DepartmentBindingNavigator";
             this.bS_DepartmentBindingNavigator.PositionItem = this.bdnPositionItem;
-            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(210, 25);
+            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(179, 25);
             this.bS_DepartmentBindingNavigator.TabIndex = 3;
             this.bS_DepartmentBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bS_DepartmentBindingSource
+            // 
+            this.bS_DepartmentBindingSource.DataMember = "BS_Department";
+            this.bS_DepartmentBindingSource.DataSource = this.dsPSAP;
+            // 
+            // dsPSAP
+            // 
+            this.dsPSAP.DataSetName = "dsPSAP";
+            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bdnCountItem
             // 
@@ -454,7 +440,7 @@
             this.pnlEdit.Controls.Add(this.bfree5TextBox1);
             this.pnlEdit.Controls.Add(createDateLabel);
             this.pnlEdit.Enabled = false;
-            this.pnlEdit.Location = new System.Drawing.Point(0, 90);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 65);
             this.pnlEdit.Name = "pnlEdit";
             this.pnlEdit.Size = new System.Drawing.Size(606, 160);
             this.pnlEdit.TabIndex = 2;
@@ -463,35 +449,38 @@
             // 
             this.departmentNoTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "DepartmentNo", true));
             this.departmentNoTextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.departmentNoTextBox1.Location = new System.Drawing.Point(93, 16);
+            this.departmentNoTextBox1.Location = new System.Drawing.Point(83, 14);
             this.departmentNoTextBox1.Name = "departmentNoTextBox1";
             this.departmentNoTextBox1.Size = new System.Drawing.Size(200, 21);
             this.departmentNoTextBox1.TabIndex = 24;
+            this.departmentNoTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.departmentNoTextBox1_KeyPress);
             // 
             // departmentNameTextBox1
             // 
             this.departmentNameTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "DepartmentName", true));
             this.departmentNameTextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.departmentNameTextBox1.Location = new System.Drawing.Point(93, 42);
+            this.departmentNameTextBox1.Location = new System.Drawing.Point(83, 40);
             this.departmentNameTextBox1.Name = "departmentNameTextBox1";
             this.departmentNameTextBox1.Size = new System.Drawing.Size(200, 21);
             this.departmentNameTextBox1.TabIndex = 26;
+            this.departmentNameTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.departmentNameTextBox1_KeyPress);
             // 
             // parentDepartmentNoTextBox1
             // 
             this.parentDepartmentNoTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "ParentDepartmentNo", true));
             this.parentDepartmentNoTextBox1.Font = new System.Drawing.Font("宋体", 9F);
-            this.parentDepartmentNoTextBox1.Location = new System.Drawing.Point(93, 69);
+            this.parentDepartmentNoTextBox1.Location = new System.Drawing.Point(83, 67);
             this.parentDepartmentNoTextBox1.Name = "parentDepartmentNoTextBox1";
             this.parentDepartmentNoTextBox1.Size = new System.Drawing.Size(200, 21);
             this.parentDepartmentNoTextBox1.TabIndex = 28;
+            this.parentDepartmentNoTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.parentDepartmentNoTextBox1_KeyPress);
             // 
             // createDateDateTimePicker
             // 
             this.createDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bS_DepartmentBindingSource, "CreateDate", true));
             this.createDateDateTimePicker.Enabled = false;
             this.createDateDateTimePicker.Font = new System.Drawing.Font("宋体", 9F);
-            this.createDateDateTimePicker.Location = new System.Drawing.Point(93, 127);
+            this.createDateDateTimePicker.Location = new System.Drawing.Point(83, 125);
             this.createDateDateTimePicker.Name = "createDateDateTimePicker";
             this.createDateDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.createDateDateTimePicker.TabIndex = 30;
@@ -502,7 +491,7 @@
             this.founderTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_DepartmentBindingSource, "Founder", true));
             this.founderTextBox.Enabled = false;
             this.founderTextBox.Font = new System.Drawing.Font("宋体", 9F);
-            this.founderTextBox.Location = new System.Drawing.Point(93, 98);
+            this.founderTextBox.Location = new System.Drawing.Point(83, 96);
             this.founderTextBox.Name = "founderTextBox";
             this.founderTextBox.Size = new System.Drawing.Size(200, 21);
             this.founderTextBox.TabIndex = 32;
@@ -573,20 +562,21 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.bS_DepartmentDataGridView.DataSource = this.bS_DepartmentBindingSource;
-            this.bS_DepartmentDataGridView.Location = new System.Drawing.Point(0, 256);
+            this.bS_DepartmentDataGridView.Location = new System.Drawing.Point(0, 231);
             this.bS_DepartmentDataGridView.Name = "bS_DepartmentDataGridView";
             this.bS_DepartmentDataGridView.ReadOnly = true;
             this.bS_DepartmentDataGridView.RowTemplate.Height = 23;
             this.bS_DepartmentDataGridView.ShowEditingIcon = false;
-            this.bS_DepartmentDataGridView.Size = new System.Drawing.Size(824, 214);
+            this.bS_DepartmentDataGridView.Size = new System.Drawing.Size(824, 239);
             this.bS_DepartmentDataGridView.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "AutoId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "序号";
+            this.dataGridViewTextBoxColumn1.HeaderText = "编号";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
             this.dataGridViewTextBoxColumn1.Width = 54;
             // 
             // dataGridViewTextBoxColumn2
@@ -629,6 +619,21 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 66;
             // 
+            // bS_DepartmentTableAdapter
+            // 
+            this.bS_DepartmentTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
+            this.tableAdapterManager.BS_MenuTableAdapter = null;
+            this.tableAdapterManager.BS_RoleTableAdapter = null;
+            this.tableAdapterManager.BS_UnitCatgTableAdapter = null;
+            this.tableAdapterManager.BS_UserInfoTableAdapter = null;
+            this.tableAdapterManager.BS_UserRightTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // FrmDepartment
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -645,13 +650,13 @@
             this.Load += new System.EventHandler(this.FrmDepartment_Load);
             this.tsControl.ResumeLayout(false);
             this.tsControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingNavigator)).EndInit();
             this.bS_DepartmentBindingNavigator.ResumeLayout(false);
             this.bS_DepartmentBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentDataGridView)).EndInit();

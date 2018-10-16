@@ -177,12 +177,25 @@ namespace PSAP.DAO.BSDAO
         public static void DeleteRoleCorrelationData(string strRoleNo)
         {
             strSqlLlist.Clear();
-            string strSql = @"delete from BS_RoleMenu where RoleNo like '"+strRoleNo+"'";
+            string strSql = @"delete from BS_RoleMenu where RoleNo like '" + strRoleNo + "'";
             strSqlLlist.Add(strSql);
 
             strSql = @"delete from BS_RoleUser where RoleNo like '" + strRoleNo + "'";
             strSqlLlist.Add(strSql);
             BaseSQL.ExecuteSqlTran(strSqlLlist);
+        }
+
+        /// <summary>
+        /// 刷新BS_MenuButton表
+        /// </summary>
+        /// <param name="strMenuName"></param>
+        public static void RefreshMenuButton(string strMenuName)
+        {
+            string sql = @"insert into BS_MenuButton(MenuName, ButtonName) " +
+                        "select distinct '" + strMenuName + "','menuItemFlag' " +
+                        "from BS_MenuButton " +
+                        "where '" + strMenuName + "'+'menuItemFlag' not in(select menuName + buttonName from BS_MenuButton)";
+            BaseSQL.ExecuteSql(sql);
         }
     }
 }

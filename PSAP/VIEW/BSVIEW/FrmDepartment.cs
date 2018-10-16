@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using PSAP.DAO.BSDAO;
+using PSAP.PSAPCommon;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -23,65 +24,51 @@ namespace PSAP.VIEW.BSVIEW
         {
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
-            // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
-            this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
-            // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
-            this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
-        }
-
-        private void departmentNoTextBox1_Leave(object sender, EventArgs e)
-        {
-            PSAPCommon.InputVerifyNotNull(departmentNoTextBox1, pnlEdit);//离开当前文本框时判断是否为空
-        }
-
-        private void departmentNameTextBox1_Leave(object sender, EventArgs e)
-        {
-            PSAPCommon.InputVerifyNotNull(departmentNameTextBox1, pnlEdit);//离开当前文本框时判断是否为空
         }
 
         private void departmentNoTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void departmentNameTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void parentDepartmentNoTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void bfree1TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void bfree2TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void bfree3TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void bfree4TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void bfree5TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
         }
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            PSAPCommon.DataGridViewExportToCSV(bS_DepartmentDataGridView, PSAPCommon.GetDateNumber("部门信息"));
+            psapCommon.DataGridViewExportToCSV(bS_DepartmentDataGridView, psapCommon.GetDateNumber("部门信息"));
         }
 
         //取消编辑
@@ -128,7 +115,7 @@ namespace PSAP.VIEW.BSVIEW
         private void tsbSave_Click(object sender, EventArgs e)
         {
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
-            founderTextBox.Text =BSCheckUser.user.EmpName;//获取当前登录用户姓名
+            founderTextBox.Text =FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
 
             try
             {

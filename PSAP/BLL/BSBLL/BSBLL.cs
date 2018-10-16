@@ -13,19 +13,6 @@ namespace PSAP.BLL.BSBLL
 {
     public abstract class BSBLL
     {
-        public static void CheckUser(string txtUserID, string txtPassword)
-        {
-            if (BSCheckUser.CheckUser(txtUserID, txtPassword) != null)
-            {
-                FrmLogin.ActiveForm.Close();
-            }
-            else
-            {
-                MessageBox.Show(string.Format("用ID或密码错误！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
         /// <summary>
         /// 初始化主菜单用户权限
         /// </summary>
@@ -88,7 +75,6 @@ namespace PSAP.BLL.BSBLL
             }
         }
 
-        //*************************************************************************
         /// <summary>
         /// 设置窗口中按钮的权限(主方法)
         /// </summary>
@@ -114,7 +100,8 @@ namespace PSAP.BLL.BSBLL
                         n.Enabled = false;//注释此行可关闭按钮权限设定【开发用】
                     }
 
-                    DataTable dt = BSCommon.GetFormButtonRightData(BSCheckUser.user.AutoId.ToString(), strCurrentFormName, n.Name);//n.name==>button Name
+                    DataTable dt = BSCommon.GetFormButtonRightData(FrmLoginDAO.user.AutoId.ToString(), strCurrentFormName, n.Name);//n.name==>button Name
+
                     //if (dt.Rows.Count != 0)
                     if (dt != null)
                     {
@@ -138,7 +125,7 @@ namespace PSAP.BLL.BSBLL
                             {
                                 tsTmp.Items[i].Enabled = false;
                             }
-                            DataTable dt = BSCommon.GetFormButtonRightData(BSCheckUser.user.AutoId.ToString(), strCurrentFormName, tsTmp.Items[i].Name);//n.name==>button Name
+                            DataTable dt = BSCommon.GetFormButtonRightData(FrmLoginDAO.user.AutoId.ToString(), strCurrentFormName, tsTmp.Items[i].Name);//n.name==>button Name
                             if (dt != null)
                             {
                                 foreach (DataRow dr in dt.Rows)

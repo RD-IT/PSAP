@@ -8,9 +8,9 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 
-namespace PSAP
+namespace PSAP.PSAPCommon
 {
-    public abstract class PSAPCommon
+    public abstract class psapCommon
     {
        
          //* *************************
@@ -22,7 +22,7 @@ namespace PSAP
         //* *************************
         //* 公共方法定义*************
         //*************************** 
-        public PSAPCommon()
+        public void paspCommon()
         {
         }
 

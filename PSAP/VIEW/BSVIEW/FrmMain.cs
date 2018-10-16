@@ -32,11 +32,12 @@ namespace PSAP.VIEW.BSVIEW
             //PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限(不用了这是以前设置实例菜单的)
 
             FrmMainBLL.InitMenuItem(mnsMain);//初始化菜单
-            FrmMainBLL.SetMenuItemByRole(mnsMain, BSCheckUser.user.RoleNo);//初始化用户"角色"权限
-            FrmMainBLL.SetMenuItemByPersonal(mnsMain, BSCheckUser.user.AutoId.ToString());//初始化用户"个人"权限
+            FrmMainBLL.SetMenuItemByRole(mnsMain, FrmLoginDAO.user.RoleNo);//初始化用户"角色"权限
+            FrmMainBLL.SetMenuItemByPersonal(mnsMain, FrmLoginDAO.user.AutoId.ToString());//初始化用户"个人"权限
             FrmMainTool frmMainTool = new FrmMainTool(mnsMain);//menuStrip1(实例菜单)
             //frmMainTool.HideOnClose = true;//使用就无法触发窗口关闭事件了
             frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
+            
         }
 
         //用于dock
@@ -69,7 +70,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.Text = "天津容大机电有限公司   [" + BSCheckUser.user.DepartmentName + " - " + BSCheckUser.user.EmpName + "]";
+            this.Text = "天津容大机电有限公司   [" + FrmLoginDAO.user.DepartmentName + " - " + FrmLoginDAO.user.EmpName + "]";
 
         }
 
@@ -325,5 +326,14 @@ namespace PSAP.VIEW.BSVIEW
         //    }
         //}
         //#endregion
+
+            /// <summary>
+            /// 用于设定主状态栏Text属性
+            /// </summary>
+        public string tsrLblCurrentStatusText
+        {
+            get { return tsrLblCurrentStatus.Text; }
+            set { tsrLblCurrentStatus.Text = value; }
+        }
     }
 }

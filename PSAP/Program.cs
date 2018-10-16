@@ -19,7 +19,7 @@ namespace PSAP.VIEW.BSVIEW
             Application.EnableVisualStyles();
             Application.Run(new FrmLogin());
             //if (PSAPCommon.LoginInfo != null)
-            if(BSCheckUser.user!=null)
+            if(FrmLoginDAO.user!=null)
             {
                 FrmMain frmMain = new FrmMain();
                 frmMain.WindowState = FormWindowState.Maximized;

@@ -45,8 +45,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsrMain = new System.Windows.Forms.StatusStrip();
+            this.tsrLblCurrentStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -56,7 +56,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.cMenuStripDocking.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.tsrMain.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -172,21 +172,20 @@
             this.toolStripMenuItem3.ToolTipText = "关闭全部窗口";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // statusStrip1
+            // tsrMain
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 529);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1022, 22);
-            this.statusStrip1.TabIndex = 10;
-            this.statusStrip1.Text = "statusStrip1";
+            this.tsrMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsrLblCurrentStatus});
+            this.tsrMain.Location = new System.Drawing.Point(0, 529);
+            this.tsrMain.Name = "tsrMain";
+            this.tsrMain.Size = new System.Drawing.Size(1022, 22);
+            this.tsrMain.TabIndex = 10;
+            this.tsrMain.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // tsrLblCurrentStatus
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.tsrLblCurrentStatus.Name = "tsrLblCurrentStatus";
+            this.tsrLblCurrentStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // dockPanel1
             // 
@@ -278,7 +277,7 @@
             this.ClientSize = new System.Drawing.Size(1022, 551);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.dockPanel1);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.tsrMain);
             this.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -287,8 +286,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.cMenuStripDocking.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.tsrMain.ResumeLayout(false);
+            this.tsrMain.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
@@ -316,8 +315,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem pPPPPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wWWWWWWWWWToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.StatusStrip tsrMain;
+        private System.Windows.Forms.ToolStripStatusLabel tsrLblCurrentStatus;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
         private System.Windows.Forms.ToolStripMenuItem 用户权限ToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
