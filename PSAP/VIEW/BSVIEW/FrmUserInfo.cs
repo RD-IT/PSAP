@@ -17,7 +17,6 @@ namespace PSAP.VIEW.BSVIEW
         {
             InitializeComponent();
             InitEnableState();//初始化控件Enable状态
-
         }
 
         private void bS_UserInfoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -99,6 +98,7 @@ namespace PSAP.VIEW.BSVIEW
         //取消编辑
         private void tsbCancel_Click(object sender, EventArgs e)
         {
+            bS_UserInfoDataGridView.Enabled = true;
             ChangeEnabledState();
             this.bS_UserInfoBindingSource.CancelEdit();
         }

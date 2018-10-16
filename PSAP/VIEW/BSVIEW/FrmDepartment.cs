@@ -87,6 +87,8 @@ namespace PSAP.VIEW.BSVIEW
         //取消编辑
         private void tsbCancel_Click(object sender, EventArgs e)
         {
+            
+            bS_DepartmentDataGridView.Enabled = true;
             ChangeEnabledState();
             this.bS_DepartmentBindingSource.CancelEdit();
         }

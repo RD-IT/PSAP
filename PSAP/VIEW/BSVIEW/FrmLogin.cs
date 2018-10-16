@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using PSAP.DAO.BSDAO;
 using PSAP.BLL.BSBLL;
+using PSAP.VIEW.BSVIEW;
 
 namespace PSAP
 {
@@ -59,6 +60,13 @@ namespace PSAP
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             PSAPCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            FrmChangePassword f = new FrmChangePassword();
+            f.ShowDialog();
+
         }
     }
 }

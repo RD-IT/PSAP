@@ -24,9 +24,16 @@ namespace PSAP.VIEW.BSVIEW
         DockPanel dp1 = new DockPanel();
         public static int frmOpenFlag;
 
+        /// <summary>
+        /// 仅用于反射创建实例，取窗口text属性(暂时没用)
+        /// </summary>
+        public FrmMainTool()
+        {
+            InitializeComponent();
+        }
+
         public FrmMainTool(MenuStrip mnuS1)
         {
-            //this.frToolmMain = frmMain;
             sp1 = mnuS1;
             treeView = new TreeViewEx[sp1.Items.Count];//实例
             InitializeComponent();
@@ -147,6 +154,7 @@ namespace PSAP.VIEW.BSVIEW
                     TreeNode node1 = treeView[i].Nodes.Add(m1.Name, m1.Text);
                     //node1.Checked = true;
                     node1.Text = "";//隐藏根结点
+                    node1.Tag = "";
                     node1.ImageIndex = 3;//根节点图标
                     node1.SelectedImageIndex = 3;//根节点图标
                     GetMenu(node1, m1);
@@ -163,6 +171,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (m2 != null && m2.Enabled == true)
                 {
                     TreeNode node2 = node1.Nodes.Add(m2.Name, m2.Text);
+                    node2.Tag = m2.Tag;//??????
                     if (m2.DropDownItems.Count > 0)//判断是否为父节点
                     {
                         node2.ImageIndex = 3;//父节点图标
@@ -278,29 +287,16 @@ namespace PSAP.VIEW.BSVIEW
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
-            switch (e.Node.Name)
+            Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
+            UtilityLibrary.WinControls.TreeViewEx subItemTmp = (UtilityLibrary.WinControls.TreeViewEx)sender;
+            string strTag = e.Node.Tag.ToString();
+            if (strTag.Contains(":Role"))
             {
-                case "toolStripMenuItem5"://部门信息
-                    FrmDepartment frmDepartment = new FrmDepartment();
-                    FrmMain.frmMain.showRight(frmDepartment);
-                    break;
-                case "toolStripMenuItem6"://用户信息
-                    FrmUserInfo frmUserInfo = new FrmUserInfo();
-                    FrmMain.frmMain.showRight(frmUserInfo);
-                    break;
-                case "toolStripMenuItem7"://用户权限
-                    FrmUserRight frmUserRight = new FrmUserRight();
-                    FrmMain.frmMain.showRight(frmUserRight);
-
-                    break;
-                case "wWWWWWWWWWToolStripMenuItem"://"W":
-                    break;
-                case "toolStripMenuItem8":
-                    Form1 form1 = new Form1();
-                    FrmMain.frmMain.showRight(form1);
-                    break;
+                strTag = strTag.Substring(0, strTag.Length - 5);//strTag的值是“窗口”name+“:Role” 
             }
-
+            string strFrm = "PSAP.VIEW.BSVIEW." + strTag;
+            object obj = assembly.CreateInstance(strFrm); //类的完全限定名（即包括命名空间）
+            PSAP.VIEW.BSVIEW.FrmMain.frmMain.showRight((DockContent)obj);
         }
 
         private void FrmMainTool_FormClosing(object sender, FormClosingEventArgs e)

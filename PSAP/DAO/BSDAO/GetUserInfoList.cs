@@ -10,7 +10,6 @@ namespace PSAP.DAO.BSDAO
     {
         public static DataTable getUserInfoList(string strUserID ,string strLoginID, string strUserName,string strDepartmentName)
         {
-            //string sqlString = "select a.*,b.DepartmentName,c.RoleNo,d.RoleName " +
             string sqlString = "select a.autoID,a.loginID,a.empName,b.DepartmentName,d.RoleName,c.RoleNo " +
             "from BS_UserInfo a left join BS_Department b on a.DepartmentNo=b.DepartmentNo " +
             "left join BS_RoleUser c on a.AutoID=c.UserNo " +  //autoID是UserInfo表的关键字

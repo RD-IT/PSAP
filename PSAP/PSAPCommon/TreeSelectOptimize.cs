@@ -40,14 +40,6 @@ namespace PSAP
         {
             foreach (TreeNode node in treeNode.Nodes)
             {
-                if (nodeChecked)
-                {
-                    node.Tag = 1;
-                }
-                else
-                {
-                    node.Tag = 0;
-                }
                 node.Checked = nodeChecked;
                 if (node.Nodes.Count > 0)
                 {

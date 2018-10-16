@@ -52,11 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BSBLL\BSBLL.cs" />
+    <Compile Include="BLL\BSBLL\FrmMainBLL.cs" />
+    <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCheckUser.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
+    <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\GetDepartmentList.cs" />
     <Compile Include="DAO\BSDAO\GetUserInfoList.cs" />
+    <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
     <Compile Include="dsPSAP.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,10 +81,14 @@
     <Compile Include="PSAPCommon\EncryptMD5.cs" />
     <Compile Include="PSAPCommon\ExecuteStr.cs" />
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
-    <Compile Include="PSAPCommon\MnsInit.cs" />
     <Compile Include="PSAPCommon\PSAPCommon.cs" />
-    <Compile Include="PSAPCommon\TreeGetNodeForMns.cs" />
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
+    <Compile Include="VIEW\BSVIEW\FrmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmChangePassword.Designer.cs">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +119,11 @@
     <Compile Include="VIEW\BSVIEW\FrmUserInfo.Designer.cs">
       <DependentUpon>FrmUserInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\BSVIEW\FrmUserRight.cs">
+    <Compile Include="VIEW\BSVIEW\FrmRight.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\BSVIEW\FrmUserRight.Designer.cs">
-      <DependentUpon>FrmUserRight.cs</DependentUpon>
+    <Compile Include="VIEW\BSVIEW\FrmRight.Designer.cs">
+      <DependentUpon>FrmRight.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\Form1.cs">
       <SubType>Form</SubType>
@@ -132,6 +140,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmChangePassword.resx">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +151,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmMainTool.resx">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
@@ -147,11 +159,12 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUserInfo.resx">
       <DependentUpon>FrmUserInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\BSVIEW\FrmUserRight.resx">
-      <DependentUpon>FrmUserRight.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmRight.resx">
+      <DependentUpon>FrmRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="dsPSAP.xsc">

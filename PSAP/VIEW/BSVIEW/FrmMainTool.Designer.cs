@@ -120,6 +120,7 @@
             this.ClientSize = new System.Drawing.Size(176, 472);
             this.Name = "FrmMainTool";
             this.TabText = "功能导航";
+            this.Text = "功能导航";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMainTool_FormClosing);
             this.Load += new System.EventHandler(this.FrmMainTool_Load);
             this.ResumeLayout(false);

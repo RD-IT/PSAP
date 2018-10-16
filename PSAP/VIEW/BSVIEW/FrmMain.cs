@@ -12,6 +12,7 @@ using UtilityLibrary.WinControls;
 using PSAP.DAO.BSDAO;
 using System.Data.SqlClient;
 using System.Reflection;
+using PSAP.BLL;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -21,22 +22,21 @@ namespace PSAP.VIEW.BSVIEW
         #region 属性字段 
         #endregion
         public static FrmMain frmMain;
-        public static MenuStrip mnsMain=new MenuStrip();//主菜单
+        public static MenuStrip mnsMain = new MenuStrip();//主菜单
 
         public FrmMain()
         {
             frmMain = this;
             InitializeComponent();
             toolStripContainer1.TopToolStripPanel.Controls.Add(mnsMain);
-           /*为了调试暂时注释掉$
-            PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限
-            */
-            FrmMainTool frmMainTool = new FrmMainTool(menuStrip1);
+            //PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限(不用了这是以前设置实例菜单的)
+
+            FrmMainBLL.InitMenuItem(mnsMain);//初始化菜单
+            FrmMainBLL.SetMenuItemByRole(mnsMain, BSCheckUser.user.RoleNo);//初始化用户"角色"权限
+            FrmMainBLL.SetMenuItemByPersonal(mnsMain, BSCheckUser.user.AutoId.ToString());//初始化用户"个人"权限
+            FrmMainTool frmMainTool = new FrmMainTool(mnsMain);//menuStrip1(实例菜单)
             //frmMainTool.HideOnClose = true;//使用就无法触发窗口关闭事件了
             frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
-
-            PSAP.MnsInit.InitMenuItem(mnsMain);//初始化菜单
-            PSAP.MnsInit.SetMenuItemByRole(mnsMain,BSCheckUser.user.RoleNo);//初始化用户权限
         }
 
         //用于dock
@@ -70,6 +70,7 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Text = "天津容大机电有限公司   [" + BSCheckUser.user.DepartmentName + " - " + BSCheckUser.user.EmpName + "]";
+
         }
 
 
@@ -116,7 +117,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <param name="e"></param>
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            IDockContent[] documents =dockPanel1.DocumentsToArray();
+            IDockContent[] documents = dockPanel1.DocumentsToArray();
 
             foreach (IDockContent content in documents)
             {
@@ -144,29 +145,11 @@ namespace PSAP.VIEW.BSVIEW
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (FrmMainTool.frmOpenFlag==0)
+            if (FrmMainTool.frmOpenFlag == 0)
             {
-                FrmMainTool frmMainTool = new FrmMainTool(menuStrip1);
+                FrmMainTool frmMainTool = new FrmMainTool(mnsMain);//menuStrip1(实例菜单)
                 frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
             }
-        }
-
-        public void 部门信息ToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            FrmDepartment frmDepartment = new FrmDepartment();
-            FrmMain.frmMain.showRight(frmDepartment);
-        }
-
-        private void 用户信息ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmUserInfo frmUserInfo = new FrmUserInfo();
-            FrmMain.frmMain.showRight(frmUserInfo);
-        }
-
-        private void 用户权限ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmUserRight frmUserRight = new FrmUserRight();
-            FrmMain.frmMain.showRight(frmUserRight);
         }
 
         /// <summary>
@@ -175,21 +158,50 @@ namespace PSAP.VIEW.BSVIEW
         /// <param name="dc"></param>
         public void showRight(DockContent dc)
         {
-            IDockContent[] documents = dockPanel1.DocumentsToArray();
-            foreach (IDockContent content in documents)
+            if (dc != null)
             {
-                if (content.DockHandler.TabText.Equals(dc.DockHandler.TabText))
+                IDockContent[] documents = dockPanel1.DocumentsToArray();
+                foreach (IDockContent content in documents)
                 {
-                    content.DockHandler.Activate();
-                    return;
+                    if (content.DockHandler.TabText.Equals(dc.DockHandler.TabText))
+                    {
+                        content.DockHandler.Activate();
+                        return;
+                    }
                 }
-            }     
-                    dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
+
+                dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
+                BSBLL.SetFormRight(dc);//设置窗口中按钮的权限
+            }
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
 
+        }
+        /// <summary>
+        /// 单击系统图标时，更改系统主窗口状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                if (this.TopLevel == true)
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                }
+                else
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    this.WindowState = FormWindowState.Maximized;
+                }
+            }
         }
 
         //#region 初始化菜单

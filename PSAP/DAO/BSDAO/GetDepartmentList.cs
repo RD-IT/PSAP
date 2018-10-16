@@ -7,17 +7,8 @@ using System.Text;
 
 namespace PSAP.DAO.BSDAO
 {
-    class GetDepartmentList
+    class GetDepartmentList1
     {
-        public static DataTable getDepartmentList()
-        {
-            string sqlString = "select distinct a.DepartmentName " +
-            "from BS_Department a " +
-            "union " +
-            "select '' from BS_Department b ";
-            DataTable dtblTmp = new DataTable();
-            dtblTmp = BaseSQL.GetTableBySql(sqlString);
-            return dtblTmp;
-        }
+
     }
 }

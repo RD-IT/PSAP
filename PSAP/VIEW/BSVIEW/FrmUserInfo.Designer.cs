@@ -69,7 +69,7 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
-            this.tsbInsert = new System.Windows.Forms.ToolStripButton();
+            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -78,14 +78,14 @@
             this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
             this.bS_UserInfoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bdnCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bdnMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bdnMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bdnPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bdnMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bdnMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             bfree1Label = new System.Windows.Forms.Label();
             bfree2Label = new System.Windows.Forms.Label();
@@ -232,6 +232,8 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BS_DepartmentTableAdapter = null;
+            this.tableAdapterManager.BS_MenuTableAdapter = null;
+            this.tableAdapterManager.BS_RoleTableAdapter = null;
             this.tableAdapterManager.BS_UserInfoTableAdapter = this.bS_UserInfoTableAdapter;
             this.tableAdapterManager.BS_UserRightTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = PSAP.dsPSAPTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -414,6 +416,7 @@
             this.bS_UserInfoDataGridView.DataSource = this.bS_UserInfoBindingSource;
             this.bS_UserInfoDataGridView.Location = new System.Drawing.Point(0, 285);
             this.bS_UserInfoDataGridView.Name = "bS_UserInfoDataGridView";
+            this.bS_UserInfoDataGridView.ReadOnly = true;
             this.bS_UserInfoDataGridView.RowTemplate.Height = 23;
             this.bS_UserInfoDataGridView.Size = new System.Drawing.Size(830, 185);
             this.bS_UserInfoDataGridView.TabIndex = 39;
@@ -431,6 +434,7 @@
             this.dataGridViewTextBoxColumn4.DataPropertyName = "LoginId";
             this.dataGridViewTextBoxColumn4.HeaderText = "用户ID";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Width = 66;
             // 
             // dataGridViewTextBoxColumn2
@@ -438,6 +442,7 @@
             this.dataGridViewTextBoxColumn2.DataPropertyName = "EmpName";
             this.dataGridViewTextBoxColumn2.HeaderText = "用户姓名";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 78;
             // 
             // dataGridViewTextBoxColumn3
@@ -445,6 +450,7 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "DepartmentNo";
             this.dataGridViewTextBoxColumn3.HeaderText = "部门编号";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 78;
             // 
             // dataGridViewTextBoxColumn6
@@ -452,6 +458,7 @@
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Founder";
             this.dataGridViewTextBoxColumn6.HeaderText = "录入人";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 66;
             // 
             // dataGridViewTextBoxColumn7
@@ -459,13 +466,14 @@
             this.dataGridViewTextBoxColumn7.DataPropertyName = "CreateDate";
             this.dataGridViewTextBoxColumn7.HeaderText = "录入日期";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Width = 78;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tsControl);
             this.panel1.Controls.Add(this.bS_UserInfoBindingNavigator);
-            this.panel1.Location = new System.Drawing.Point(1, 12);
+            this.panel1.Location = new System.Drawing.Point(0, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(581, 58);
             this.panel1.TabIndex = 40;
@@ -474,8 +482,9 @@
             // 
             this.tsControl.AutoSize = false;
             this.tsControl.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsControl.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbInsert,
+            this.tsbAdd,
             this.tsbEdit,
             this.tsbDelete,
             this.tsbSave,
@@ -489,14 +498,14 @@
             this.tsControl.TabIndex = 28;
             this.tsControl.Text = "toolStrip1";
             // 
-            // tsbInsert
+            // tsbAdd
             // 
-            this.tsbInsert.Image = ((System.Drawing.Image)(resources.GetObject("tsbInsert.Image")));
-            this.tsbInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbInsert.Name = "tsbInsert";
-            this.tsbInsert.Size = new System.Drawing.Size(52, 22);
-            this.tsbInsert.Text = "新增";
-            this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
+            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
+            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdd.Name = "tsbAdd";
+            this.tsbAdd.Size = new System.Drawing.Size(52, 22);
+            this.tsbAdd.Text = "新增";
+            this.tsbAdd.Click += new System.EventHandler(this.tsbInsert_Click);
             // 
             // tsbEdit
             // 
@@ -565,91 +574,92 @@
             this.bS_UserInfoBindingNavigator.AddNewItem = null;
             this.bS_UserInfoBindingNavigator.AutoSize = false;
             this.bS_UserInfoBindingNavigator.BindingSource = this.bS_UserInfoBindingSource;
-            this.bS_UserInfoBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.bS_UserInfoBindingNavigator.CountItem = this.bdnCountItem;
             this.bS_UserInfoBindingNavigator.DeleteItem = null;
             this.bS_UserInfoBindingNavigator.Dock = System.Windows.Forms.DockStyle.None;
+            this.bS_UserInfoBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bS_UserInfoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
+            this.bdnMoveFirstItem,
+            this.bdnMovePreviousItem,
             this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
+            this.bdnPositionItem,
+            this.bdnCountItem,
             this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
+            this.bdnMoveNextItem,
+            this.bdnMoveLastItem,
             this.bindingNavigatorSeparator2});
             this.bS_UserInfoBindingNavigator.Location = new System.Drawing.Point(0, 25);
-            this.bS_UserInfoBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bS_UserInfoBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bS_UserInfoBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bS_UserInfoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bS_UserInfoBindingNavigator.MoveFirstItem = this.bdnMoveFirstItem;
+            this.bS_UserInfoBindingNavigator.MoveLastItem = this.bdnMoveLastItem;
+            this.bS_UserInfoBindingNavigator.MoveNextItem = this.bdnMoveNextItem;
+            this.bS_UserInfoBindingNavigator.MovePreviousItem = this.bdnMovePreviousItem;
             this.bS_UserInfoBindingNavigator.Name = "bS_UserInfoBindingNavigator";
-            this.bS_UserInfoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bS_UserInfoBindingNavigator.Size = new System.Drawing.Size(206, 25);
+            this.bS_UserInfoBindingNavigator.PositionItem = this.bdnPositionItem;
+            this.bS_UserInfoBindingNavigator.Size = new System.Drawing.Size(249, 25);
             this.bS_UserInfoBindingNavigator.TabIndex = 1;
             this.bS_UserInfoBindingNavigator.Text = "bindingNavigator1";
             // 
-            // bindingNavigatorCountItem
+            // bdnCountItem
             // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(32, 22);
-            this.bindingNavigatorCountItem.Text = "/ {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "总项数";
+            this.bdnCountItem.Name = "bdnCountItem";
+            this.bdnCountItem.Size = new System.Drawing.Size(32, 22);
+            this.bdnCountItem.Text = "/ {0}";
+            this.bdnCountItem.ToolTipText = "总项数";
             // 
-            // bindingNavigatorMoveFirstItem
+            // bdnMoveFirstItem
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "移到第一条记录";
+            this.bdnMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bdnMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMoveFirstItem.Image")));
+            this.bdnMoveFirstItem.Name = "bdnMoveFirstItem";
+            this.bdnMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bdnMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bdnMoveFirstItem.Text = "移到第一条记录";
             // 
-            // bindingNavigatorMovePreviousItem
+            // bdnMovePreviousItem
             // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "移到上一条记录";
+            this.bdnMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bdnMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMovePreviousItem.Image")));
+            this.bdnMovePreviousItem.Name = "bdnMovePreviousItem";
+            this.bdnMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bdnMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bdnMovePreviousItem.Text = "移到上一条记录";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
             this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
             // 
-            // bindingNavigatorPositionItem
+            // bdnPositionItem
             // 
-            this.bindingNavigatorPositionItem.AccessibleName = "位置";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "当前位置";
+            this.bdnPositionItem.AccessibleName = "位置";
+            this.bdnPositionItem.AutoSize = false;
+            this.bdnPositionItem.Name = "bdnPositionItem";
+            this.bdnPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bdnPositionItem.Text = "0";
+            this.bdnPositionItem.ToolTipText = "当前位置";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // bindingNavigatorMoveNextItem
+            // bdnMoveNextItem
             // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "移到下一条记录";
+            this.bdnMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bdnMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMoveNextItem.Image")));
+            this.bdnMoveNextItem.Name = "bdnMoveNextItem";
+            this.bdnMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bdnMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bdnMoveNextItem.Text = "移到下一条记录";
             // 
-            // bindingNavigatorMoveLastItem
+            // bdnMoveLastItem
             // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "移到最后一条记录";
+            this.bdnMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bdnMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMoveLastItem.Image")));
+            this.bdnMoveLastItem.Name = "bdnMoveLastItem";
+            this.bdnMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bdnMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bdnMoveLastItem.Text = "移到最后一条记录";
             // 
             // bindingNavigatorSeparator2
             // 
@@ -664,6 +674,7 @@
             this.Controls.Add(this.bS_UserInfoDataGridView);
             this.Controls.Add(this.pnlEdit);
             this.Font = new System.Drawing.Font("宋体", 9F);
+            this.HideOnClose = true;
             this.Name = "FrmUserInfo";
             this.TabText = "用户信息";
             this.Text = "用户信息";
@@ -716,17 +727,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.BindingNavigator bS_UserInfoBindingNavigator;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+        private System.Windows.Forms.ToolStripLabel bdnCountItem;
+        private System.Windows.Forms.ToolStripButton bdnMoveFirstItem;
+        private System.Windows.Forms.ToolStripButton bdnMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripTextBox bdnPositionItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+        private System.Windows.Forms.ToolStripButton bdnMoveNextItem;
+        private System.Windows.Forms.ToolStripButton bdnMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStrip tsControl;
-        private System.Windows.Forms.ToolStripButton tsbInsert;
+        private System.Windows.Forms.ToolStripButton tsbAdd;
         private System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbSave;
