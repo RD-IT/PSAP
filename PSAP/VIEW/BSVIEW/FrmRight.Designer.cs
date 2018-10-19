@@ -74,6 +74,9 @@
             this.tabRole = new System.Windows.Forms.TabPage();
             this.tvwRoleRight = new System.Windows.Forms.TreeView();
             this.dgvRoleList = new System.Windows.Forms.DataGridView();
+            this.autoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bS_RoleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlEdit = new System.Windows.Forms.Panel();
             this.roleNameTextBox = new System.Windows.Forms.TextBox();
@@ -81,15 +84,15 @@
             this.autoIdTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bS_RoleBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bdnCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bdnMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bdnMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bdnPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bdnMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bdnMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsControl = new System.Windows.Forms.ToolStrip();
             this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -104,9 +107,6 @@
             this.bS_RoleTableAdapter = new PSAP.dsPSAPTableAdapters.BS_RoleTableAdapter();
             this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
             this.bS_MenuTableAdapter = new PSAP.dsPSAPTableAdapters.BS_MenuTableAdapter();
-            this.autoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             autoIdLabel = new System.Windows.Forms.Label();
             roleNoLabel = new System.Windows.Forms.Label();
             roleNameLabel = new System.Windows.Forms.Label();
@@ -537,6 +537,31 @@
             this.dgvRoleList.TabIndex = 10;
             this.dgvRoleList.SelectionChanged += new System.EventHandler(this.dgvRoleList_SelectionChanged);
             // 
+            // autoIdDataGridViewTextBoxColumn
+            // 
+            this.autoIdDataGridViewTextBoxColumn.DataPropertyName = "AutoId";
+            this.autoIdDataGridViewTextBoxColumn.HeaderText = "编号";
+            this.autoIdDataGridViewTextBoxColumn.Name = "autoIdDataGridViewTextBoxColumn";
+            this.autoIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.autoIdDataGridViewTextBoxColumn.Visible = false;
+            this.autoIdDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // roleNoDataGridViewTextBoxColumn
+            // 
+            this.roleNoDataGridViewTextBoxColumn.DataPropertyName = "RoleNo";
+            this.roleNoDataGridViewTextBoxColumn.HeaderText = "角色编号";
+            this.roleNoDataGridViewTextBoxColumn.Name = "roleNoDataGridViewTextBoxColumn";
+            this.roleNoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.roleNoDataGridViewTextBoxColumn.Width = 78;
+            // 
+            // roleNameDataGridViewTextBoxColumn
+            // 
+            this.roleNameDataGridViewTextBoxColumn.DataPropertyName = "RoleName";
+            this.roleNameDataGridViewTextBoxColumn.HeaderText = "角色名称";
+            this.roleNameDataGridViewTextBoxColumn.Name = "roleNameDataGridViewTextBoxColumn";
+            this.roleNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.roleNameDataGridViewTextBoxColumn.Width = 78;
+            // 
             // bS_RoleBindingSource
             // 
             this.bS_RoleBindingSource.DataMember = "BS_Role";
@@ -596,97 +621,99 @@
             // 
             this.bS_RoleBindingNavigator.AddNewItem = null;
             this.bS_RoleBindingNavigator.BindingSource = this.bS_RoleBindingSource;
-            this.bS_RoleBindingNavigator.CountItem = this.bdnCountItem;
+            this.bS_RoleBindingNavigator.CountItem = this.toolStripLabel1;
             this.bS_RoleBindingNavigator.DeleteItem = null;
             this.bS_RoleBindingNavigator.Dock = System.Windows.Forms.DockStyle.None;
+            this.bS_RoleBindingNavigator.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.bS_RoleBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bS_RoleBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bdnMoveFirstItem,
-            this.bdnMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bdnPositionItem,
-            this.bdnCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bdnMoveNextItem,
-            this.bdnMoveLastItem,
-            this.bindingNavigatorSeparator2});
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripSeparator2,
+            this.toolStripTextBox1,
+            this.toolStripLabel1,
+            this.toolStripSeparator3,
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripSeparator4});
             this.bS_RoleBindingNavigator.Location = new System.Drawing.Point(0, 25);
-            this.bS_RoleBindingNavigator.MoveFirstItem = this.bdnMoveFirstItem;
-            this.bS_RoleBindingNavigator.MoveLastItem = this.bdnMoveLastItem;
-            this.bS_RoleBindingNavigator.MoveNextItem = this.bdnMoveNextItem;
-            this.bS_RoleBindingNavigator.MovePreviousItem = this.bdnMovePreviousItem;
+            this.bS_RoleBindingNavigator.MoveFirstItem = this.toolStripButton1;
+            this.bS_RoleBindingNavigator.MoveLastItem = this.toolStripButton4;
+            this.bS_RoleBindingNavigator.MoveNextItem = this.toolStripButton3;
+            this.bS_RoleBindingNavigator.MovePreviousItem = this.toolStripButton2;
             this.bS_RoleBindingNavigator.Name = "bS_RoleBindingNavigator";
-            this.bS_RoleBindingNavigator.PositionItem = this.bdnPositionItem;
+            this.bS_RoleBindingNavigator.PositionItem = this.toolStripTextBox1;
             this.bS_RoleBindingNavigator.Size = new System.Drawing.Size(197, 25);
-            this.bS_RoleBindingNavigator.TabIndex = 8;
+            this.bS_RoleBindingNavigator.TabIndex = 9;
             this.bS_RoleBindingNavigator.Text = "bindingNavigator1";
             // 
-            // bdnCountItem
+            // toolStripLabel1
             // 
-            this.bdnCountItem.Name = "bdnCountItem";
-            this.bdnCountItem.Size = new System.Drawing.Size(32, 22);
-            this.bdnCountItem.Text = "/ {0}";
-            this.bdnCountItem.ToolTipText = "总项数";
+            this.toolStripLabel1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(32, 22);
+            this.toolStripLabel1.Text = "/ {0}";
+            this.toolStripLabel1.ToolTipText = "总项数";
             // 
-            // bdnMoveFirstItem
+            // toolStripButton1
             // 
-            this.bdnMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bdnMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMoveFirstItem.Image")));
-            this.bdnMoveFirstItem.Name = "bdnMoveFirstItem";
-            this.bdnMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bdnMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bdnMoveFirstItem.Text = "移到第一条记录";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "移到第一条记录";
             // 
-            // bdnMovePreviousItem
+            // toolStripButton2
             // 
-            this.bdnMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bdnMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMovePreviousItem.Image")));
-            this.bdnMovePreviousItem.Name = "bdnMovePreviousItem";
-            this.bdnMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bdnMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bdnMovePreviousItem.Text = "移到上一条记录";
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "移到上一条记录";
             // 
-            // bindingNavigatorSeparator
+            // toolStripSeparator2
             // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // bdnPositionItem
+            // toolStripTextBox1
             // 
-            this.bdnPositionItem.AccessibleName = "位置";
-            this.bdnPositionItem.AutoSize = false;
-            this.bdnPositionItem.Name = "bdnPositionItem";
-            this.bdnPositionItem.Size = new System.Drawing.Size(50, 21);
-            this.bdnPositionItem.Text = "0";
-            this.bdnPositionItem.ToolTipText = "当前位置";
+            this.toolStripTextBox1.AccessibleName = "位置";
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(50, 25);
+            this.toolStripTextBox1.Text = "0";
+            this.toolStripTextBox1.ToolTipText = "当前位置";
             // 
-            // bindingNavigatorSeparator1
+            // toolStripSeparator3
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // bdnMoveNextItem
+            // toolStripButton3
             // 
-            this.bdnMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bdnMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMoveNextItem.Image")));
-            this.bdnMoveNextItem.Name = "bdnMoveNextItem";
-            this.bdnMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bdnMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bdnMoveNextItem.Text = "移到下一条记录";
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "移到下一条记录";
             // 
-            // bdnMoveLastItem
+            // toolStripButton4
             // 
-            this.bdnMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bdnMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bdnMoveLastItem.Image")));
-            this.bdnMoveLastItem.Name = "bdnMoveLastItem";
-            this.bdnMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bdnMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bdnMoveLastItem.Text = "移到最后一条记录";
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "移到最后一条记录";
             // 
-            // bindingNavigatorSeparator2
+            // toolStripSeparator4
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // tsControl
             // 
@@ -703,7 +730,7 @@
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(443, 25);
+            this.tsControl.Size = new System.Drawing.Size(474, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
@@ -759,6 +786,7 @@
             this.tsbQuery.Name = "tsbQuery";
             this.tsbQuery.Size = new System.Drawing.Size(52, 22);
             this.tsbQuery.Text = "查询";
+            this.tsbQuery.Click += new System.EventHandler(this.tsbQuery_Click);
             // 
             // tsbDGViewExportToCSV
             // 
@@ -805,31 +833,6 @@
             // bS_MenuTableAdapter
             // 
             this.bS_MenuTableAdapter.ClearBeforeFill = true;
-            // 
-            // autoIdDataGridViewTextBoxColumn
-            // 
-            this.autoIdDataGridViewTextBoxColumn.DataPropertyName = "AutoId";
-            this.autoIdDataGridViewTextBoxColumn.HeaderText = "编号";
-            this.autoIdDataGridViewTextBoxColumn.Name = "autoIdDataGridViewTextBoxColumn";
-            this.autoIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.autoIdDataGridViewTextBoxColumn.Visible = false;
-            this.autoIdDataGridViewTextBoxColumn.Width = 54;
-            // 
-            // roleNoDataGridViewTextBoxColumn
-            // 
-            this.roleNoDataGridViewTextBoxColumn.DataPropertyName = "RoleNo";
-            this.roleNoDataGridViewTextBoxColumn.HeaderText = "角色编号";
-            this.roleNoDataGridViewTextBoxColumn.Name = "roleNoDataGridViewTextBoxColumn";
-            this.roleNoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.roleNoDataGridViewTextBoxColumn.Width = 78;
-            // 
-            // roleNameDataGridViewTextBoxColumn
-            // 
-            this.roleNameDataGridViewTextBoxColumn.DataPropertyName = "RoleName";
-            this.roleNameDataGridViewTextBoxColumn.HeaderText = "角色名称";
-            this.roleNameDataGridViewTextBoxColumn.Name = "roleNameDataGridViewTextBoxColumn";
-            this.roleNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.roleNameDataGridViewTextBoxColumn.Width = 78;
             // 
             // FrmRight
             // 
@@ -917,16 +920,6 @@
         private System.Windows.Forms.TextBox roleNoTextBox;
         private System.Windows.Forms.TextBox autoIdTextBox;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.BindingNavigator bS_RoleBindingNavigator;
-        private System.Windows.Forms.ToolStripLabel bdnCountItem;
-        private System.Windows.Forms.ToolStripButton bdnMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bdnMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bdnPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bdnMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bdnMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStrip tsControl;
         private System.Windows.Forms.ToolStripButton tsbAdd;
         private System.Windows.Forms.ToolStripButton tsbEdit;
@@ -942,5 +935,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn autoIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingNavigator bS_RoleBindingNavigator;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

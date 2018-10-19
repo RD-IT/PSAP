@@ -170,6 +170,7 @@ namespace PSAP.DAO.BSDAO
             strSqlLlist.Add(strSql);
             BaseSQL.ExecuteSqlTran(strSqlLlist);
         }
+
         /// <summary>
         /// 删除与【角色】相关数据
         /// </summary>

@@ -35,6 +35,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUnitCatg));
             this.panel1 = new System.Windows.Forms.Panel();
             this.bS_DepartmentBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bS_UnitCatgBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsPSAP = new PSAP.dsPSAP();
             this.bdnCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bdnMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bdnMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -53,8 +55,6 @@
             this.tsbQuery = new System.Windows.Forms.ToolStripButton();
             this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
-            this.dsPSAP = new PSAP.dsPSAP();
-            this.bS_UnitCatgBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bS_UnitCatgTableAdapter = new PSAP.dsPSAPTableAdapters.BS_UnitCatgTableAdapter();
             this.tableAdapterManager = new PSAP.dsPSAPTableAdapters.TableAdapterManager();
             this.unitNoTextBox = new System.Windows.Forms.TextBox();
@@ -71,9 +71,9 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingNavigator)).BeginInit();
             this.bS_DepartmentBindingNavigator.SuspendLayout();
-            this.tsControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bS_UnitCatgBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
+            this.tsControl.SuspendLayout();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_UnitCatgDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -117,6 +117,7 @@
             // bS_DepartmentBindingNavigator
             // 
             this.bS_DepartmentBindingNavigator.AddNewItem = null;
+            this.bS_DepartmentBindingNavigator.BindingSource = this.bS_UnitCatgBindingSource;
             this.bS_DepartmentBindingNavigator.CountItem = this.bdnCountItem;
             this.bS_DepartmentBindingNavigator.DeleteItem = null;
             this.bS_DepartmentBindingNavigator.Dock = System.Windows.Forms.DockStyle.None;
@@ -139,9 +140,19 @@
             this.bS_DepartmentBindingNavigator.MovePreviousItem = this.bdnMovePreviousItem;
             this.bS_DepartmentBindingNavigator.Name = "bS_DepartmentBindingNavigator";
             this.bS_DepartmentBindingNavigator.PositionItem = this.bdnPositionItem;
-            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(179, 25);
+            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(197, 25);
             this.bS_DepartmentBindingNavigator.TabIndex = 3;
             this.bS_DepartmentBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bS_UnitCatgBindingSource
+            // 
+            this.bS_UnitCatgBindingSource.DataMember = "BS_UnitCatg";
+            this.bS_UnitCatgBindingSource.DataSource = this.dsPSAP;
+            // 
+            // dsPSAP
+            // 
+            this.dsPSAP.DataSetName = "dsPSAP";
+            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bdnCountItem
             // 
@@ -180,7 +191,7 @@
             this.bdnPositionItem.AccessibleName = "位置";
             this.bdnPositionItem.AutoSize = false;
             this.bdnPositionItem.Name = "bdnPositionItem";
-            this.bdnPositionItem.Size = new System.Drawing.Size(32, 23);
+            this.bdnPositionItem.Size = new System.Drawing.Size(50, 25);
             this.bdnPositionItem.Text = "0";
             this.bdnPositionItem.ToolTipText = "当前位置";
             // 
@@ -227,7 +238,7 @@
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(474, 25);
+            this.tsControl.Size = new System.Drawing.Size(443, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
@@ -283,6 +294,7 @@
             this.tsbQuery.Name = "tsbQuery";
             this.tsbQuery.Size = new System.Drawing.Size(52, 22);
             this.tsbQuery.Text = "查询";
+            this.tsbQuery.Click += new System.EventHandler(this.tsbQuery_Click);
             // 
             // tsbDGViewExportToCSV
             // 
@@ -301,16 +313,6 @@
             this.tsbClose.Size = new System.Drawing.Size(52, 22);
             this.tsbClose.Text = "退出";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
-            // 
-            // dsPSAP
-            // 
-            this.dsPSAP.DataSetName = "dsPSAP";
-            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bS_UnitCatgBindingSource
-            // 
-            this.bS_UnitCatgBindingSource.DataMember = "BS_UnitCatg";
-            this.bS_UnitCatgBindingSource.DataSource = this.dsPSAP;
             // 
             // bS_UnitCatgTableAdapter
             // 
@@ -332,7 +334,7 @@
             this.unitNoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_UnitCatgBindingSource, "UnitNo", true));
             this.unitNoTextBox.Location = new System.Drawing.Point(66, 12);
             this.unitNoTextBox.Name = "unitNoTextBox";
-            this.unitNoTextBox.Size = new System.Drawing.Size(100, 21);
+            this.unitNoTextBox.Size = new System.Drawing.Size(200, 21);
             this.unitNoTextBox.TabIndex = 7;
             this.unitNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitNoTextBox_KeyPress);
             // 
@@ -341,7 +343,7 @@
             this.unitNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_UnitCatgBindingSource, "UnitName", true));
             this.unitNameTextBox.Location = new System.Drawing.Point(66, 39);
             this.unitNameTextBox.Name = "unitNameTextBox";
-            this.unitNameTextBox.Size = new System.Drawing.Size(100, 21);
+            this.unitNameTextBox.Size = new System.Drawing.Size(200, 21);
             this.unitNameTextBox.TabIndex = 9;
             this.unitNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitNameTextBox_KeyPress);
             // 
@@ -350,7 +352,7 @@
             this.unitDescriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_UnitCatgBindingSource, "UnitDescription", true));
             this.unitDescriptionTextBox.Location = new System.Drawing.Point(66, 66);
             this.unitDescriptionTextBox.Name = "unitDescriptionTextBox";
-            this.unitDescriptionTextBox.Size = new System.Drawing.Size(100, 21);
+            this.unitDescriptionTextBox.Size = new System.Drawing.Size(200, 21);
             this.unitDescriptionTextBox.TabIndex = 11;
             this.unitDescriptionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitDescriptionTextBox_KeyPress);
             // 
@@ -418,10 +420,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bS_DepartmentBindingNavigator)).EndInit();
             this.bS_DepartmentBindingNavigator.ResumeLayout(false);
             this.bS_DepartmentBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bS_UnitCatgBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.tsControl.ResumeLayout(false);
             this.tsControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bS_UnitCatgBindingSource)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bS_UnitCatgDataGridView)).EndInit();

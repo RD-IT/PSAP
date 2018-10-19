@@ -61,6 +61,12 @@
             this.loginPwdTextBox = new System.Windows.Forms.TextBox();
             this.loginIdTextBox = new System.Windows.Forms.TextBox();
             this.bS_UserInfoDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
             this.tsbAdd = new System.Windows.Forms.ToolStripButton();
@@ -81,12 +87,6 @@
             this.bdnMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bdnMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             bfree1Label = new System.Windows.Forms.Label();
             bfree2Label = new System.Windows.Forms.Label();
             createDateLabel = new System.Windows.Forms.Label();
@@ -386,7 +386,6 @@
             // loginPwdTextBox
             // 
             this.loginPwdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bS_UserInfoBindingSource, "LoginPwd", true));
-            this.loginPwdTextBox.Enabled = false;
             this.loginPwdTextBox.Location = new System.Drawing.Point(98, 96);
             this.loginPwdTextBox.Name = "loginPwdTextBox";
             this.loginPwdTextBox.PasswordChar = '*';
@@ -421,6 +420,55 @@
             this.bS_UserInfoDataGridView.RowTemplate.Height = 23;
             this.bS_UserInfoDataGridView.Size = new System.Drawing.Size(830, 220);
             this.bS_UserInfoDataGridView.TabIndex = 39;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "AutoId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "编号";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 54;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "LoginId";
+            this.dataGridViewTextBoxColumn4.HeaderText = "用户ID";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 66;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "EmpName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "用户姓名";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 78;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "DepartmentNo";
+            this.dataGridViewTextBoxColumn3.HeaderText = "部门编号";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 78;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Founder";
+            this.dataGridViewTextBoxColumn6.HeaderText = "录入人";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 66;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "CreateDate";
+            this.dataGridViewTextBoxColumn7.HeaderText = "录入日期";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 78;
             // 
             // panel1
             // 
@@ -503,6 +551,7 @@
             this.tsbQuery.Name = "tsbQuery";
             this.tsbQuery.Size = new System.Drawing.Size(52, 22);
             this.tsbQuery.Text = "查询";
+            this.tsbQuery.Click += new System.EventHandler(this.tsbQuery_Click);
             // 
             // tsbDGViewExportToCSV
             // 
@@ -585,9 +634,8 @@
             // bdnPositionItem
             // 
             this.bdnPositionItem.AccessibleName = "位置";
-            this.bdnPositionItem.AutoSize = false;
             this.bdnPositionItem.Name = "bdnPositionItem";
-            this.bdnPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bdnPositionItem.Size = new System.Drawing.Size(50, 25);
             this.bdnPositionItem.Text = "0";
             this.bdnPositionItem.ToolTipText = "当前位置";
             // 
@@ -618,55 +666,6 @@
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "AutoId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "编号";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 54;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "LoginId";
-            this.dataGridViewTextBoxColumn4.HeaderText = "用户ID";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 66;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "EmpName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "用户姓名";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 78;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "DepartmentNo";
-            this.dataGridViewTextBoxColumn3.HeaderText = "部门编号";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 78;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Founder";
-            this.dataGridViewTextBoxColumn6.HeaderText = "录入人";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 66;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "CreateDate";
-            this.dataGridViewTextBoxColumn7.HeaderText = "录入日期";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 78;
             // 
             // FrmUserInfo
             // 

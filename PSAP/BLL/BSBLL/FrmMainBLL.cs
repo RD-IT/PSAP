@@ -87,7 +87,13 @@ namespace PSAP.BLL
             }
             string strFrm = "PSAP.VIEW.BSVIEW." + strTag;
             object obj = assembly.CreateInstance(strFrm); //类的完全限定名（即包括命名空间）
-            PSAP.VIEW.BSVIEW.FrmMain.frmMain.showRight((DockContent)obj);
+            if (obj != null)
+            {
+                if (obj.GetType().BaseType.ToString() == "WeifenLuo.WinFormsUI.Docking.DockContent")
+                {
+                    PSAP.VIEW.BSVIEW.FrmMain.frmMain.showRight((DockContent)obj);
+                }
+            }
         }
         #endregion
 

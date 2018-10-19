@@ -36,10 +36,10 @@ namespace PSAP.DAO.BSDAO
         /// <returns></returns>
         public static DataTable getDepartmentList()
         {
-            string sqlString = "select distinct a.DepartmentName " +
+            string sqlString = "select distinct a.DepartmentName,a.DepartmentNo " +
             "from BS_Department a " +
             "union " +
-            "select '' from BS_Department b ";
+            "select '','' from BS_Department b ";
             DataTable dtblTmp = new DataTable();
             dtblTmp = BaseSQL.GetTableBySql(sqlString);
             return dtblTmp;

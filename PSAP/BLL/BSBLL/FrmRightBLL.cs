@@ -135,7 +135,7 @@ namespace PSAP.BLL
         /// </summary>
         public static void TraverseFormControlToTable()
         {
-            DockContent DockContectFormN = new DockContent();
+            DockContent DockContentFormN = new DockContent();
             Assembly a = Assembly.LoadFile(Application.ExecutablePath);//.net中的反射
             Type[] types = a.GetTypes();
             FrmRightDAO.CreateButtonsTempTable();//在数据库中建button临时表
@@ -143,11 +143,29 @@ namespace PSAP.BLL
             {
                 if (t.BaseType.Name == "DockContent")
                 {
-                    DockContectFormN = (DockContent)Activator.CreateInstance(t, true);
+                    DockContentFormN = (DockContent)Activator.CreateInstance(t, true);
                     //MessageBox.Show(DockContectFormN.Text + " | " + DockContectFormN.Name);
-                    foreach (Control ctlForm in DockContectFormN.Controls)//遍历所有“DockContent”窗口
+                    foreach (Control ctl in DockContentFormN.Controls)//遍历所有“DockContent”窗口
                     {
-                        TraverseFormControls(DockContectFormN, ctlForm);
+                        if (ctl is Button)
+                        {
+                            FrmRightDAO.AddSqlStatement(DockContentFormN.Name, ctl.Name, ctl.Text);
+                        }
+                        if (ctl is ToolStrip)
+                        {
+                            ToolStrip tsTmp = (ToolStrip)ctl;
+                            for (int i = 0; i < tsTmp.Items.Count; i++)
+                            {
+                                if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                                {
+                                    FrmRightDAO.AddSqlStatement(DockContentFormN.Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text);
+                                }
+                            }
+                        }
+                        if (ctl.Controls.Count > 0)
+                        {
+                            TraverseFormControls(DockContentFormN, ctl);
+                        }
                     }
                 }
             }
@@ -231,13 +249,47 @@ namespace PSAP.BLL
                 if (t.BaseType.Name == "DockContent" && t.Name == strFormName)//遍历找到指定“DockContent”窗口
                 {
                     DockContectFormN = (DockContent)Activator.CreateInstance(t, true);
-                    foreach (Control ctlForm in DockContectFormN.Controls)//遍历
+                    foreach (Control ctl in DockContectFormN.Controls)//遍历
                     {
-                        TraverseFormControlsAddTree(DockContectFormN, ctlForm, tn, strUserNo);
+                        if (ctl is Button)
+                        {
+                            if (!strNotRightButton.Contains(ctl.Name))
+                            {
+                                tn.Nodes.Add(ctl.Name, ctl.Text);//增加按钮节点
+                            }
+                            foreach (TreeNode tn1 in tn.Nodes)
+                            {
+                                tn1.Tag = "button";//按钮节点
+                                VerifyButtonPersonalRight(strUserNo, tn.Name, tn1);
+
+                            }
+                        }
+                        if (ctl is ToolStrip)
+                        {
+                            ToolStrip tsTmp = (ToolStrip)ctl;
+                            for (int i = 0; i < tsTmp.Items.Count; i++)
+                            {
+                                if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                                {
+                                    if (!strNotRightButton.Contains(tsTmp.Items[i].Name))
+                                    {
+                                        tn.Nodes.Add(tsTmp.Items[i].Name, tsTmp.Items[i].Text);//增加按钮节点
+                                    }
+                                }
+                            }
+                            foreach (TreeNode tn1 in tn.Nodes)
+                            {
+                                tn1.Tag = "button";//按钮节点
+                                VerifyButtonPersonalRight(strUserNo, tn.Name, tn1);
+
+                            }
+                        }
+                        TraverseFormControlsAddTree(DockContectFormN, ctl, tn, strUserNo);
                     }
                 }
             }
         }
+
         //字符串中设定的“按钮”不需进行权限设定
         public static string strNotRightButton = "bdnMoveFirstItem " +
                                                 "bdnMoveLastItem " +
@@ -330,7 +382,7 @@ namespace PSAP.BLL
         {
             foreach (TreeNode tnSub in tn.Nodes)
             {
-                if (tnSub.Checked == true )
+                if (tnSub.Checked == true)
                 {
                     if (tnSub.Tag.ToString() == "button")
                     {
@@ -340,7 +392,7 @@ namespace PSAP.BLL
                     else
                     {
                         //将设定的用户“菜单”权限保存到数据库
-                        FrmRightDAO.AddSqlStatement_SaveRoleMenuButton(dgvTmp.CurrentRow.Cells[1].Value.ToString(),tnSub.Name);
+                        FrmRightDAO.AddSqlStatement_SaveRoleMenuButton(dgvTmp.CurrentRow.Cells[1].Value.ToString(), tnSub.Name);
                     }
                 }
                 SubNodeRole(tnSub, dgvTmp);

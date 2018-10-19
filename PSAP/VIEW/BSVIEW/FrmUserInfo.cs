@@ -12,7 +12,7 @@ using PSAP.PSAPCommon;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmUserInfo :DockContent
+    public partial class FrmUserInfo : DockContent
     {
         public FrmUserInfo()
         {
@@ -44,10 +44,35 @@ namespace PSAP.VIEW.BSVIEW
             {
                 EncryptMD5 en = new EncryptMD5(loginIdTextBox.Text);//实例化EncryptMD5
                 loginPwdTextBox.Text = en.str2;//加密后的数值
- 
+            }
+            else
+            {
+                EncryptMD5 en = new EncryptMD5(loginPwdTextBox.Text);//实例化EncryptMD5
+                loginPwdTextBox.Text = en.str2;//加密后的数值
             }
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
             founderTextBox.Text = FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
+
+            if (string.IsNullOrEmpty(loginIdTextBox.Text))
+            {
+                MessageBox.Show("【用户ID】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loginIdTextBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(empNameTextBox.Text))
+            {
+                MessageBox.Show("【用户姓名】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                empNameTextBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(comboBox1.Text))
+            {
+                MessageBox.Show("【部门名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                comboBox1.Focus();
+                return;
+            }
 
             try
             {
@@ -55,15 +80,6 @@ namespace PSAP.VIEW.BSVIEW
                 this.bS_UserInfoBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.dsPSAP);
                 ChangeEnabledState();//保存后更新控件状态
-            }
-            catch (System.Data.NoNullAllowedException)//字段为空
-            {
-                MessageBox.Show("【用户ID】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                if (string.IsNullOrEmpty(loginIdTextBox.Text))
-                {
-                    loginIdTextBox.Focus();
-                }
             }
             catch (System.Data.ConstraintException)//关键字字段值重复
             {
@@ -140,15 +156,16 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (bS_UserInfoBindingSource.Current != null)//当前是否有数据
             {
-                if (MessageBox.Show("确实要删除吗?", "确认", MessageBoxButtons.YesNo,
+                if (MessageBox.Show("确实要删除吗，与此用户的权限数据将一起被删除？", "确认", MessageBoxButtons.YesNo,
                                             MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    FrmUserInfoDAO.DeleteUserInfoCorrelationData((int)bS_UserInfoDataGridView.CurrentRow.Cells[0].Value);
                     bS_UserInfoBindingSource.RemoveCurrent();
                     this.tableAdapterManager.UpdateAll(dsPSAP);//更新数据集
                 }
             }
-             bS_UserInfoDataGridView.Enabled = true;//删除后数据表控件可用
-       }
+            bS_UserInfoDataGridView.Enabled = true;//删除后数据表控件可用
+        }
 
         //新增一条记录
         private void tsbInsert_Click(object sender, EventArgs e)
@@ -171,6 +188,30 @@ namespace PSAP.VIEW.BSVIEW
         {
 
         }
+        /// <summary>
+        ///  筛选绑定数据源中的数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsbQuery_Click(object sender, EventArgs e)
+        {
+            string[,] strsQueryTmp = new string[3, 2];
+            DataTable[] dt = new DataTable[strsQueryTmp.GetLongLength(0)];
+            strsQueryTmp[0, 0] = "用户ID";
+            strsQueryTmp[1, 0] = "用户姓名";
+            strsQueryTmp[2, 0] = "部门名称";
+            strsQueryTmp[0, 1] = "txt";
+            strsQueryTmp[1, 1] = "txt";
+            strsQueryTmp[2, 1] = "cbo";
+            dt[2] = BSCommon.getDepartmentList();
+            FrmQueryCondition f = new FrmQueryCondition(strsQueryTmp, dt);
+            f.ShowDialog();
 
+            string strFilter;
+            strFilter = "LoginId like '*" + strsQueryTmp[0, 1] + "*' " +
+                "and EmpName like '*" + strsQueryTmp[1, 1] + "*' " +
+                "and departmentNo like '*" + strsQueryTmp[2, 1] + "*'";
+            this.bS_UserInfoBindingSource.Filter = strFilter;
+        }
     }
 }

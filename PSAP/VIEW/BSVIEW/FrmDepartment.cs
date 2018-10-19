@@ -117,6 +117,19 @@ namespace PSAP.VIEW.BSVIEW
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
             founderTextBox.Text =FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
 
+            if (string.IsNullOrEmpty(departmentNoTextBox1.Text))
+            {
+                MessageBox.Show("【部门编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                departmentNoTextBox1.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(departmentNameTextBox1.Text))
+            {
+                MessageBox.Show("【部门名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                departmentNameTextBox1.Focus();
+                return;
+            }
+
             try
             {
                 this.Validate();
@@ -124,20 +137,7 @@ namespace PSAP.VIEW.BSVIEW
                 this.tableAdapterManager.UpdateAll(this.dsPSAP);
                 ChangeEnabledState();//保存后更新控件状态
             }
-            catch (System.Data.NoNullAllowedException )//字段为空
-            {
 
-                if (string.IsNullOrEmpty(departmentNoTextBox1.Text))
-                {
-                    MessageBox.Show("【部门编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    departmentNoTextBox1.Focus();
-                }
-                if(string.IsNullOrEmpty(departmentNameTextBox1.Text))
-                {
-                    MessageBox.Show("【部门名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    departmentNameTextBox1.Focus();
-                }
-            }
             catch (System.Data.ConstraintException )//关键字字段值重复
             {
                 MessageBox.Show("此部门编码已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -176,6 +176,27 @@ namespace PSAP.VIEW.BSVIEW
         {
             ChangeEnabledState();//更改控件状态
             departmentNoTextBox1.Focus();
+        }
+
+        private void tsbQuery_Click(object sender, EventArgs e)
+        {
+            string[,] strsQueryTmp = new string[3, 2];
+            DataTable[] dt = new DataTable[strsQueryTmp.GetLongLength(0)];
+            strsQueryTmp[0, 0] = "部门编号";
+            strsQueryTmp[1, 0] = "部门名称";
+            strsQueryTmp[2, 0] = "上级部门编号";
+            strsQueryTmp[0, 1] = "txt";
+            strsQueryTmp[1, 1] = "cbo";
+            strsQueryTmp[2, 1] = "txt";
+            dt[1] = BSCommon.getDepartmentList();//下标代表行号
+            FrmQueryCondition f = new FrmQueryCondition(strsQueryTmp, dt);
+            f.ShowDialog();
+
+            string strFilter;
+            strFilter = "DepartmentNo like '*" + strsQueryTmp[0, 1] + "*' " +
+                "and DepartmentNo like '*" + strsQueryTmp[1, 1] + "*' " +
+                "and ParentDepartmentNo like '*" + strsQueryTmp[2, 1] + "*'";
+            this.bS_DepartmentBindingSource.Filter = strFilter;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PSAP.PSAPCommon;
+﻿using PSAP.DAO.BSDAO;
+using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -94,6 +95,18 @@ namespace PSAP.VIEW.BSVIEW
         {
             //createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
             //founderTextBox.Text = BSCheckUser.user.EmpName;//获取当前登录用户姓名
+            if (string.IsNullOrEmpty(unitNoTextBox.Text))
+            {
+                MessageBox.Show("【单位编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                unitNoTextBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(unitNameTextBox.Text))
+            {
+                MessageBox.Show("【单位名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                unitNameTextBox.Focus();
+                return;
+            }
 
             try
             {
@@ -101,20 +114,6 @@ namespace PSAP.VIEW.BSVIEW
                 this.bS_UnitCatgBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.dsPSAP);
                 ChangeEnabledState();//保存后更新控件状态
-            }
-            catch (System.Data.NoNullAllowedException)//字段为空
-            {
-
-                if (string.IsNullOrEmpty(unitNoTextBox.Text))
-                {
-                    MessageBox.Show("【单位编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    unitNoTextBox.Focus();
-                }
-                if (string.IsNullOrEmpty(unitNameTextBox.Text))
-                {
-                    MessageBox.Show("【单位名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    unitNameTextBox.Focus();
-                }
             }
             catch (System.Data.ConstraintException)//关键字字段值重复
             {
@@ -151,6 +150,24 @@ namespace PSAP.VIEW.BSVIEW
         {
             ChangeEnabledState();//更改控件状态
             unitNoTextBox.Focus();
+
+        }
+
+        private void tsbQuery_Click(object sender, EventArgs e)
+        {
+            string[,] strsQueryTmp = new string[2, 2];
+            DataTable[] dt = new DataTable[strsQueryTmp.GetLongLength(0)];
+            strsQueryTmp[0, 0] = "单位编号";
+            strsQueryTmp[1, 0] = "单位名称";
+            strsQueryTmp[0, 1] = "txt";
+            strsQueryTmp[1, 1] = "txt";
+            FrmQueryCondition f = new FrmQueryCondition(strsQueryTmp, dt);
+            f.ShowDialog();
+
+            string strFilter;
+            strFilter = "UnitNo like '*" + strsQueryTmp[0, 1] + "*' " +
+                "and UnitName like '*" + strsQueryTmp[1, 1] + "*'";
+            this.bS_UnitCatgBindingSource.Filter = strFilter;
 
         }
     }

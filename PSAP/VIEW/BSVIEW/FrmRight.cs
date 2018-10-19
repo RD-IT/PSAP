@@ -80,7 +80,6 @@ namespace PSAP.VIEW.BSVIEW
             cboRoleName.DataSource = dtblTmp1;
             cboRoleName.DisplayMember = "RoleName";
             cboRoleName.ValueMember = "RoleNo";
-            //cboRoleName.SelectedValue = dtblTmp.Columns["RoleNo"].ToString();
 
             //初始化【菜单管理page】
             mnsMainMenu.Items.Clear();
@@ -354,27 +353,31 @@ namespace PSAP.VIEW.BSVIEW
         {
             //createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
             //founderTextBox.Text = BSCheckUser.user.EmpName;//获取当前登录用户姓名
+            if (string.IsNullOrEmpty(roleNoTextBox.Text))
+            {
+                MessageBox.Show("【角色编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                roleNoTextBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(roleNameTextBox.Text))
+            {
+                MessageBox.Show("【角色名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                roleNameTextBox.Focus();
+                return;
+            }
+
             try
             {
                 this.Validate();
                 this.bS_RoleBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.dsPSAP);
                 ChangeEnabledState();//保存后更新控件状态
-            }
-            catch (System.Data.NoNullAllowedException)//字段为空
-            {
 
-                if (string.IsNullOrEmpty(roleNoTextBox.Text))
-                {
-                    MessageBox.Show("【角色编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    roleNoTextBox.Focus();
-                    return;
-                }
-                if (string.IsNullOrEmpty(roleNameTextBox.Text))
-                {
-                    MessageBox.Show("【角色名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    roleNameTextBox.Focus();
-                }
+                //刷新角色combo
+                dtblTmp1 = BSCommon.getRoleList();
+                cboRoleName.DataSource = dtblTmp1;
+                cboRoleName.DisplayMember = "RoleName";
+                cboRoleName.ValueMember = "RoleNo";
             }
             catch (System.Data.ConstraintException)//关键字字段值重复
             {
@@ -464,6 +467,24 @@ namespace PSAP.VIEW.BSVIEW
 
         private void dgvUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void tsbQuery_Click(object sender, EventArgs e)
+        {
+            string[,] strsQueryTmp = new string[2, 2];
+            DataTable[] dt = new DataTable[strsQueryTmp.GetLongLength(0)];//有cbo时需给此对角赋值
+            strsQueryTmp[0, 0] = "角色编号";
+            strsQueryTmp[1, 0] = "角色名称";
+            strsQueryTmp[0, 1] = "txt";
+            strsQueryTmp[1, 1] = "txt";
+            FrmQueryCondition f = new FrmQueryCondition(strsQueryTmp, dt);
+            f.ShowDialog();
+
+            string strFilter;
+            strFilter = "RoleNo like '*" + strsQueryTmp[0, 1] + "*' " +
+                "and RoleName like '*" + strsQueryTmp[1, 1] + "*'";
+            this.bS_RoleBindingSource.Filter = strFilter;
 
         }
     }

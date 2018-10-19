@@ -280,6 +280,7 @@
             this.tsbQuery.Name = "tsbQuery";
             this.tsbQuery.Size = new System.Drawing.Size(52, 22);
             this.tsbQuery.Text = "查询";
+            this.tsbQuery.Click += new System.EventHandler(this.tsbQuery_Click);
             // 
             // tsbDGViewExportToCSV
             // 
@@ -334,7 +335,7 @@
             this.bS_DepartmentBindingNavigator.MovePreviousItem = this.bdnMovePreviousItem;
             this.bS_DepartmentBindingNavigator.Name = "bS_DepartmentBindingNavigator";
             this.bS_DepartmentBindingNavigator.PositionItem = this.bdnPositionItem;
-            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(179, 25);
+            this.bS_DepartmentBindingNavigator.Size = new System.Drawing.Size(197, 25);
             this.bS_DepartmentBindingNavigator.TabIndex = 3;
             this.bS_DepartmentBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -383,9 +384,8 @@
             // bdnPositionItem
             // 
             this.bdnPositionItem.AccessibleName = "位置";
-            this.bdnPositionItem.AutoSize = false;
             this.bdnPositionItem.Name = "bdnPositionItem";
-            this.bdnPositionItem.Size = new System.Drawing.Size(32, 23);
+            this.bdnPositionItem.Size = new System.Drawing.Size(50, 25);
             this.bdnPositionItem.Text = "0";
             this.bdnPositionItem.ToolTipText = "当前位置";
             // 
