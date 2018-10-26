@@ -11,7 +11,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using System.Collections;
 using PSAP.DAO.BSDAO;
 
-namespace PSAP.BLL
+namespace PSAP.BLL.BSBLL
 {
     class FrmRightBLL
     {

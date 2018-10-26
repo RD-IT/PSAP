@@ -57,10 +57,12 @@
     <Compile Include="BLL\BSBLL\BSBLL.cs" />
     <Compile Include="BLL\BSBLL\FrmLoginBLL.cs" />
     <Compile Include="BLL\BSBLL\FrmMainBLL.cs" />
+    <Compile Include="BLL\BSBLL\FrmOrganizationStruBLL.cs" />
     <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
     <Compile Include="DAO\BSDAO\FrmLoginDAO.cs" />
+    <Compile Include="DAO\BSDAO\FrmOrganizationStruDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmUserInfoDAO.cs" />
@@ -115,11 +117,23 @@
     <Compile Include="VIEW\BSVIEW\FrmMainTool.Designer.cs">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmOrganizationStru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmOrganizationStru.Designer.cs">
+      <DependentUpon>FrmOrganizationStru.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmQueryCondition.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmQueryCondition.Designer.cs">
       <DependentUpon>FrmQueryCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmReportQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmReportQuery.Designer.cs">
+      <DependentUpon>FrmReportQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUnitCatg.cs">
       <SubType>Form</SubType>
@@ -159,6 +173,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmChangePassword.resx">
       <DependentUpon>FrmChangePassword.cs</DependentUpon>
@@ -176,8 +191,14 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmMainTool.resx">
       <DependentUpon>FrmMainTool.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmOrganizationStru.resx">
+      <DependentUpon>FrmOrganizationStru.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmQueryCondition.resx">
       <DependentUpon>FrmQueryCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmReportQuery.resx">
+      <DependentUpon>FrmReportQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUnitCatg.resx">
       <DependentUpon>FrmUnitCatg.cs</DependentUpon>
@@ -195,7 +216,9 @@
     <EmbeddedResource Include="VIEW\REPORT\FrmPrintPreview.resx">
       <DependentUpon>FrmPrintPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\REPORT\Report111.rdlc" />
+    <EmbeddedResource Include="VIEW\REPORT\Report111.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="dsPSAP.xsc">
       <DependentUpon>dsPSAP.xsd</DependentUpon>
@@ -221,6 +244,9 @@
   <ItemGroup>
     <Content Include="PSAPCommon\UtilityLibrary.dll" />
     <Content Include="PSAPCommon\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\543.png" />
+    <None Include="Resources\345.png" />
+    <None Include="Resources\742.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

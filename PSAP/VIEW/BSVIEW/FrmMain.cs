@@ -153,6 +153,7 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        public Label editFlag;
         /// <summary>
         /// 打开指定窗口，如果已打开就激活窗口
         /// </summary>
@@ -171,8 +172,39 @@ namespace PSAP.VIEW.BSVIEW
                     }
                 }
 
+                //增加标签做为编辑状态标记,并增加关闭闭窗口事件，检查窗口状态
+                //新增、编辑="EDIT，保存、取消=""
+                editFlag = new Label();
+                editFlag.Text = "";
+                editFlag.Name = "lblEditFlag";
+                editFlag.Visible = false;
+                dc.Controls.Add(editFlag);
+                dc.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_FormClosing);
+                //
+
                 dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
                 BSBLL.SetFormRight(dc);//设置窗口中按钮的权限
+            }
+        }
+        /// <summary>
+        /// 退出DockContent时检查窗口状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Frm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (((Label)((DockContent)sender).Controls["lblEditFlag"]).Text == "EDIT")
+            {
+                ((DockContent)sender).Activate();
+                DialogResult result = MessageBox.Show("此界面有未保存信息，你确定要放弃修改吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information,MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.OK)
+                {
+                    e.Cancel = false;  //点击OK
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
 

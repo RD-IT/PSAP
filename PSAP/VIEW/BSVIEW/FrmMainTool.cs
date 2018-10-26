@@ -8,10 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using UtilityLibrary.WinControls;
-
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
-
 using System.Reflection;
 
 namespace PSAP.VIEW.BSVIEW
@@ -171,7 +169,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (m2 != null && m2.Enabled == true)
                 {
                     TreeNode node2 = node1.Nodes.Add(m2.Name, m2.Text);
-                    node2.Tag = m2.Tag;//??????
+                    node2.Tag = m2.Tag;
                     if (m2.DropDownItems.Count > 0)//判断是否为父节点
                     {
                         node2.ImageIndex = 3;//父节点图标

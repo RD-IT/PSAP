@@ -9,7 +9,7 @@ using System.Reflection;
 using WeifenLuo.WinFormsUI.Docking;
 using PSAP.DAO.BSDAO;
 
-namespace PSAP.BLL
+namespace PSAP.BLL.BSBLL
 {
     class FrmMainBLL
     {

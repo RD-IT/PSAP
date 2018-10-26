@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using WeifenLuo.WinFormsUI.Docking;
-using PSAP.BLL;
+using PSAP.BLL.BSBLL;
 using PSAP;
 using PSAP.DAO.BSDAO;
 using System.Data.SqlClient;
@@ -336,6 +336,17 @@ namespace PSAP.VIEW.BSVIEW
             {
                 b.Enabled = !b.Enabled;
             }
+
+            //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+            if (((Label)this.Controls["lblEditFlag"]).Text == "")
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+            }
+            else
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "";
+            }
+
         }
 
         /// <summary>

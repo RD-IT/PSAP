@@ -6,13 +6,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmUnitCatg :DockContent 
+    public partial class FrmUnitCatg : DockContent
     {
         public FrmUnitCatg()
         {
@@ -84,6 +85,16 @@ namespace PSAP.VIEW.BSVIEW
             {
                 b.Enabled = !b.Enabled;
             }
+
+            //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+            if (((Label)this.Controls["lblEditFlag"]).Text == "")
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+            }
+            else
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "";
+            }
         }
 
         private void tsbClose_Click(object sender, EventArgs e)
@@ -144,6 +155,7 @@ namespace PSAP.VIEW.BSVIEW
             ChangeEnabledState();//更改控件状态
             bS_UnitCatgBindingSource.AddNew();
             unitNoTextBox.Focus();
+
         }
 
         private void tsbEdit_Click(object sender, EventArgs e)

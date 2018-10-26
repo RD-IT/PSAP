@@ -20,7 +20,7 @@ namespace PSAP.VIEW.BSVIEW
             InitEnableState();//初始化控件Enable状态
         }
 
-           private void FrmDepartment_Load(object sender, EventArgs e)
+        private void FrmDepartment_Load(object sender, EventArgs e)
         {
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
@@ -74,7 +74,7 @@ namespace PSAP.VIEW.BSVIEW
         //取消编辑
         private void tsbCancel_Click(object sender, EventArgs e)
         {
-            
+
             bS_DepartmentDataGridView.Enabled = true;
             ChangeEnabledState();
             this.bS_DepartmentBindingSource.CancelEdit();
@@ -103,6 +103,17 @@ namespace PSAP.VIEW.BSVIEW
             {
                 b.Enabled = !b.Enabled;
             }
+
+            //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+            if (((Label)this.Controls["lblEditFlag"]).Text == "")
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+            }
+            else
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "";
+            }
+
         }
 
         //关闭窗口
@@ -115,7 +126,7 @@ namespace PSAP.VIEW.BSVIEW
         private void tsbSave_Click(object sender, EventArgs e)
         {
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
-            founderTextBox.Text =FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
+            founderTextBox.Text = FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
 
             if (string.IsNullOrEmpty(departmentNoTextBox1.Text))
             {
@@ -138,7 +149,7 @@ namespace PSAP.VIEW.BSVIEW
                 ChangeEnabledState();//保存后更新控件状态
             }
 
-            catch (System.Data.ConstraintException )//关键字字段值重复
+            catch (System.Data.ConstraintException)//关键字字段值重复
             {
                 MessageBox.Show("此部门编码已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 departmentNoTextBox1.Focus();
@@ -150,16 +161,16 @@ namespace PSAP.VIEW.BSVIEW
         private void tsbDelete_Click(object sender, EventArgs e)
         {
             if (bS_DepartmentBindingSource.Current != null)//当前是否有数据
-                {
-                    if (MessageBox.Show("确实要删除吗?", "确认", MessageBoxButtons.YesNo,
-                                                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (MessageBox.Show("确实要删除吗?", "确认", MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     bS_DepartmentBindingSource.RemoveCurrent();
                     this.tableAdapterManager.UpdateAll(dsPSAP);//更新数据集
                 }
             }
-              bS_DepartmentDataGridView.Enabled = true;//删除后数据表控件可用
-      }
+            bS_DepartmentDataGridView.Enabled = true;//删除后数据表控件可用
+        }
 
         //新增一条记录
         private void tsbInsert_Click(object sender, EventArgs e)

@@ -196,6 +196,7 @@
             this.dockPanel1.Font = new System.Drawing.Font("宋体", 9F);
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.ShowDocumentIcon = true;
             this.dockPanel1.Size = new System.Drawing.Size(1022, 529);
             this.dockPanel1.TabIndex = 12;
             // 

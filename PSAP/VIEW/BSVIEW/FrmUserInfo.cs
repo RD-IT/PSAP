@@ -143,6 +143,17 @@ namespace PSAP.VIEW.BSVIEW
             {
                 b.Enabled = !b.Enabled;
             }
+
+            //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+            if (((Label)this.Controls["lblEditFlag"]).Text == "")
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+            }
+            else
+            {
+                ((Label)this.Controls["lblEditFlag"]).Text = "";
+            }
+
         }
 
         //关闭窗口

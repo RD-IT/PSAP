@@ -1,8 +1,14 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using PSAP.BLL.BSBLL;
+using PSAP.DAO.BSDAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -10,7 +16,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class Form1 :DockContent
+    public partial class Form1 : DockContent
     {
         public Form1()
         {
@@ -32,13 +38,13 @@ namespace PSAP.VIEW.BSVIEW
 
             TableLayoutPanel tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel1.AutoScroll = true;
-            tableLayoutPanel1.Padding=new Padding(20);
+            tableLayoutPanel1.Padding = new Padding(20);
             tableLayoutPanel1.RowCount = 20;
             tableLayoutPanel1.Dock = DockStyle.Fill;
 
-            Label[] label1= new Label[10];
+            Label[] label1 = new Label[10];
             panel1.Controls.Add(tableLayoutPanel1);
-             for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 //label1[i].Text = "AAAAAA";
                 tableLayoutPanel1.Controls.Add(label1[i]);
@@ -84,22 +90,33 @@ namespace PSAP.VIEW.BSVIEW
 
         private void button4_Click(object sender, EventArgs e)
         {
-           // printDocument1.s
+            // printDocument1.s
         }
 
+        //打印预览功能
         private void btnPrint_Click(object sender, EventArgs e)
         {
             string path = @"..\..\VIEW\REPORT\Report111.rdlc";
-            //"RptDt1":报表中的数据源名称
-            //dsPSAP.Tables["BS_Menu"])当前界面数据对象名
-            dsPSAP ds = new dsPSAP();
             string str = @"select * from BS_Menu ";
             DataTable[] dt = new DataTable[1];//数据由报表数据集个数决定
-            dt[0]=PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(str);
+            dt[0] = BaseSQL.GetTableBySql(str);
             string[] strRptDataSetName = new string[1];
-            strRptDataSetName[0] = "Rpt1"; 
-            FrmPrintPreview f = new BSVIEW.FrmPrintPreview(path,strRptDataSetName,dt);
+            strRptDataSetName[0] = "Rpt1";//"RptDt1":报表中的数据源名称
+            FrmPrintPreview f = new BSVIEW.FrmPrintPreview(path, strRptDataSetName, dt);//数据源可以有多种形式
             f.ShowDialog();
+        }
+
+        //****直接打印功能***复杂表可以建视图作为数据源****************
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //打印清单
+            string str = @"select * from BS_Menu ";
+            DataTable[] dt = new DataTable[1];//数据由报表数据集个数决定
+            dt[0] = BaseSQL.GetTableBySql(str);
+            ReportViewer rvDoc = new ReportViewer();
+            rvDoc.LocalReport.ReportPath = @"..\..\VIEW\REPORT\Report111.rdlc";//设置报表的路径
+            rvDoc.LocalReport.DataSources.Add(new ReportDataSource("Rpt1", dt[0]));
+            BSBLL.PrintStream(rvDoc.LocalReport);
         }
     }
 }

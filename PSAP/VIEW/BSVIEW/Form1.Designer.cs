@@ -43,6 +43,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // outlookBarBand1
@@ -121,7 +122,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(272, 128);
+            this.button1.Location = new System.Drawing.Point(289, 200);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 23);
             this.button1.TabIndex = 1;
@@ -131,7 +132,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(272, 157);
+            this.button2.Location = new System.Drawing.Point(289, 229);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 23);
             this.button2.TabIndex = 2;
@@ -141,7 +142,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(272, 186);
+            this.button3.Location = new System.Drawing.Point(289, 258);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 23);
             this.button3.TabIndex = 3;
@@ -151,7 +152,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(272, 215);
+            this.button4.Location = new System.Drawing.Point(289, 287);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(150, 23);
             this.button4.TabIndex = 4;
@@ -165,15 +166,26 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(75, 23);
             this.btnPrint.TabIndex = 5;
-            this.btnPrint.Text = "打印报表";
+            this.btnPrint.Text = "打印预览";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(321, 88);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "直接打印";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 355);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -205,5 +217,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button button5;
     }
 }

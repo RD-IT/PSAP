@@ -33,10 +33,13 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Location = new System.Drawing.Point(44, -1);
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(679, 730);
-            this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.ShowBackButton = false;
+            this.reportViewer1.ShowFindControls = false;
+            this.reportViewer1.Size = new System.Drawing.Size(766, 732);
+            this.reportViewer1.TabIndex = 2;
             // 
             // FrmPrintPreview
             // 
@@ -47,7 +50,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FrmPrintPreview";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmPrint";
+            this.Text = "打印预览";
             this.ResumeLayout(false);
 
         }
