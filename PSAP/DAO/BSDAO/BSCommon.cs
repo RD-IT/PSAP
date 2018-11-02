@@ -1,6 +1,7 @@
 ﻿using PSAP.DAO.BSDAO;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace PSAP.DAO.BSDAO
         /// <param name="strUserNo"></param>
         /// <param name="strFormName"></param>
         /// <returns></returns>
-        public static DataTable GetFormButtonRightData(string strUserNo, string strFormName,string strButtonName)
+        public static DataTable GetFormButtonRightData(string strUserNo, string strFormName, string strButtonName)
         {
             string sql =
                 "select a.UserNo,b.*,c.FormName " +
@@ -25,7 +26,7 @@ namespace PSAP.DAO.BSDAO
                 "left join BS_Menu c on b.MenuName = c.MenuName " +
                 "where b.ButtonName <> 'menuItemFlag' and convert(varchar(20),a.UserNo) like '" + strUserNo + "' " +
                 "and c.FormName like '" + strFormName + "' " +
-                "and b.buttonName like '"+strButtonName+"'";
+                "and b.buttonName like '" + strButtonName + "'";
             DataTable dt = BaseSQL.GetTableBySql(sql);
             return dt;
         }
@@ -60,6 +61,14 @@ namespace PSAP.DAO.BSDAO
             return dtblTmp;
         }
 
+        /// <summary>
+        /// 获得用户信息表
+        /// </summary>
+        /// <param name="strUserID"></param>
+        /// <param name="strLoginID"></param>
+        /// <param name="strUserName"></param>
+        /// <param name="strDepartmentName"></param>
+        /// <returns></returns>
         public static DataTable getUserInfoList(string strUserID, string strLoginID, string strUserName, string strDepartmentName)
         {
             string sqlString = "select a.autoID,a.loginID,a.empName,b.DepartmentName,d.RoleName,c.RoleNo " +
@@ -70,6 +79,17 @@ namespace PSAP.DAO.BSDAO
             "and a.LoginID like '%" + strLoginID.Trim() + "%' " +
             "and b.DepartmentName like '%" + strDepartmentName.Trim() + "%' " +
             "and a.EmpName like '%" + strUserName.Trim() + "%'";
+            DataTable dtblTmp = new DataTable();
+            dtblTmp = BaseSQL.GetTableBySql(sqlString);
+            return dtblTmp;
+        }
+
+        public static DataTable getThemeInfo()
+        {
+            string n =PSAP.Properties.Settings.Default.ThemeId;
+            string sqlString = "select a.ThemeId,b.ThemeDescribe,a.ControlName,a.ControlProperty,a.ControlValue,a.ControlType " +
+            "from BS_ThemeDetail a left join BS_Theme b on a.ThemeId=b.AutoId " +
+            "where convert(varchar(10),a.ThemeId) like '" + n + "' and a.ControlValue<>'-' ";
             DataTable dtblTmp = new DataTable();
             dtblTmp = BaseSQL.GetTableBySql(sqlString);
             return dtblTmp;

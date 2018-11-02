@@ -384,6 +384,7 @@
             this.bS_UnitCatgDataGridView.RowTemplate.Height = 23;
             this.bS_UnitCatgDataGridView.Size = new System.Drawing.Size(636, 295);
             this.bS_UnitCatgDataGridView.TabIndex = 12;
+            this.bS_UnitCatgDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.bS_UnitCatgDataGridView_RowPostPaint);
             // 
             // dataGridViewTextBoxColumn2
             // 

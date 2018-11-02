@@ -33,5 +33,14 @@ namespace PSAP.Properties {
                 return ((string)(this["PSAPConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string ThemeId {
+            get {
+                return ((string)(this["ThemeId"]));
+            }
+        }
     }
 }

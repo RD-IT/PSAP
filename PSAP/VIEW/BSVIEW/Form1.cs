@@ -118,5 +118,35 @@ namespace PSAP.VIEW.BSVIEW
             rvDoc.LocalReport.DataSources.Add(new ReportDataSource("Rpt1", dt[0]));
             BSBLL.PrintStream(rvDoc.LocalReport);
         }
+
+        string[,] str = new string[10, 2];
+        public string buttonBackColor;
+        public string formBackColor;
+        private void button6_Click(object sender, EventArgs e)
+        {
+            str[0, 0] = "buttonBackColor";
+            str[0, 1] = "info";//大小写无所谓
+            str[1, 0] = "formBackColor";
+            str[1, 1] = "Red";
+
+            for (int i = 0; i <= 1; i++)
+            {
+
+                if (str[i, 0] == "buttonBackColor")
+                {
+                    buttonBackColor = str[i, 1];
+                    //button6.BackColor = Color.FromName(this.GetType().GetField(str[i, 0]).GetValue(this).ToString());
+                    button6.BackColor = Color.FromName(str[i, 1]);
+                    MessageBox.Show(this.GetType().GetField(str[i, 0]).GetValue(this).ToString());
+                }
+
+                if (str[i, 0] == "formBackColor")
+                {
+                    formBackColor = str[i, 1];
+                    this.BackColor = Color.FromName(str[i, 1]);
+                    MessageBox.Show(this.GetType().GetField(str[i, 0]).GetValue(this).ToString());
+                }
+                }
+        }
     }
 }

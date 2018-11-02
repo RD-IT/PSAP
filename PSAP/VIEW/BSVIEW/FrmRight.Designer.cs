@@ -32,9 +32,9 @@
             System.Windows.Forms.Label autoIdLabel;
             System.Windows.Forms.Label roleNoLabel;
             System.Windows.Forms.Label roleNameLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRight));
             this.tvwUserRight = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -168,7 +168,6 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabUserPower);
             this.tabControl1.Controls.Add(this.tabMainMenu);
             this.tabControl1.Controls.Add(this.tabRole);
@@ -196,10 +195,10 @@
             this.tabUserPower.Controls.Add(this.txtUserID);
             this.tabUserPower.Controls.Add(this.btnStretch);
             this.tabUserPower.Controls.Add(this.tvwUserRight);
-            this.tabUserPower.Location = new System.Drawing.Point(4, 25);
+            this.tabUserPower.Location = new System.Drawing.Point(4, 22);
             this.tabUserPower.Name = "tabUserPower";
             this.tabUserPower.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUserPower.Size = new System.Drawing.Size(998, 599);
+            this.tabUserPower.Size = new System.Drawing.Size(998, 602);
             this.tabUserPower.TabIndex = 0;
             this.tabUserPower.Text = "用户权限管理";
             this.tabUserPower.UseVisualStyleBackColor = true;
@@ -251,11 +250,11 @@
             this.dgvUserList.MultiSelect = false;
             this.dgvUserList.Name = "dgvUserList";
             this.dgvUserList.ReadOnly = true;
-            this.dgvUserList.RowHeadersVisible = false;
             this.dgvUserList.RowTemplate.Height = 23;
             this.dgvUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUserList.Size = new System.Drawing.Size(400, 504);
             this.dgvUserList.TabIndex = 11;
+            this.dgvUserList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvUserList_RowPostPaint);
             this.dgvUserList.SelectionChanged += new System.EventHandler(this.dgvUserList_SelectionChanged);
             // 
             // cboDepartmentName
@@ -340,10 +339,10 @@
             this.tabMainMenu.Controls.Add(this.btnSave);
             this.tabMainMenu.Controls.Add(this.bS_MenuDataGridView);
             this.tabMainMenu.Controls.Add(this.tvwMainMenu);
-            this.tabMainMenu.Location = new System.Drawing.Point(4, 25);
+            this.tabMainMenu.Location = new System.Drawing.Point(4, 22);
             this.tabMainMenu.Name = "tabMainMenu";
             this.tabMainMenu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainMenu.Size = new System.Drawing.Size(998, 599);
+            this.tabMainMenu.Size = new System.Drawing.Size(998, 602);
             this.tabMainMenu.TabIndex = 1;
             this.tabMainMenu.Text = "主菜单管理";
             this.tabMainMenu.UseVisualStyleBackColor = true;
@@ -378,12 +377,13 @@
             this.bS_MenuDataGridView.RowTemplate.Height = 23;
             this.bS_MenuDataGridView.Size = new System.Drawing.Size(711, 510);
             this.bS_MenuDataGridView.TabIndex = 1;
+            this.bS_MenuDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.bS_MenuDataGridView_RowPostPaint);
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "MenuName";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn2.HeaderText = "菜单ID";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -391,8 +391,8 @@
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "MenuText";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn3.HeaderText = "菜单名称";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -400,8 +400,8 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "ParentMenuName";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn7.HeaderText = "父菜单ID";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -439,10 +439,13 @@
             // tvwMainMenu
             // 
             this.tvwMainMenu.ContextMenuStrip = this.cmnsMainMeunTree;
+            this.tvwMainMenu.FullRowSelect = true;
+            this.tvwMainMenu.HotTracking = true;
             this.tvwMainMenu.ItemHeight = 20;
             this.tvwMainMenu.LabelEdit = true;
             this.tvwMainMenu.Location = new System.Drawing.Point(3, 6);
             this.tvwMainMenu.Name = "tvwMainMenu";
+            this.tvwMainMenu.ShowNodeToolTips = true;
             this.tvwMainMenu.ShowRootLines = false;
             this.tvwMainMenu.Size = new System.Drawing.Size(225, 510);
             this.tvwMainMenu.TabIndex = 0;
@@ -500,9 +503,9 @@
             this.tabRole.Controls.Add(this.dgvRoleList);
             this.tabRole.Controls.Add(this.pnlEdit);
             this.tabRole.Controls.Add(this.panel1);
-            this.tabRole.Location = new System.Drawing.Point(4, 25);
+            this.tabRole.Location = new System.Drawing.Point(4, 22);
             this.tabRole.Name = "tabRole";
-            this.tabRole.Size = new System.Drawing.Size(998, 599);
+            this.tabRole.Size = new System.Drawing.Size(998, 602);
             this.tabRole.TabIndex = 2;
             this.tabRole.Text = "角色权限管理";
             this.tabRole.UseVisualStyleBackColor = true;
@@ -535,6 +538,7 @@
             this.dgvRoleList.ShowEditingIcon = false;
             this.dgvRoleList.Size = new System.Drawing.Size(281, 377);
             this.dgvRoleList.TabIndex = 10;
+            this.dgvRoleList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvRoleList_RowPostPaint);
             this.dgvRoleList.SelectionChanged += new System.EventHandler(this.dgvRoleList_SelectionChanged);
             // 
             // autoIdDataGridViewTextBoxColumn
@@ -730,7 +734,7 @@
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(474, 25);
+            this.tsControl.Size = new System.Drawing.Size(443, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 

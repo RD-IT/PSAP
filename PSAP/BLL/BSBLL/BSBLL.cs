@@ -12,6 +12,9 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using Microsoft.Reporting.WinForms;
+using System.Drawing;
+using System.Xml;
+using PsapUserControlLibrary;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -85,6 +88,7 @@ namespace PSAP.BLL.BSBLL
         /// <param name="CurrentDockContent"></param>
         public static void SetFormRight(DockContent CurrentDockContent)
         {
+            SetDockContentStyle(CurrentDockContent);//调用窗口样式设定方法
             Control.ControlCollection CurrentControls = CurrentDockContent.Controls;
             SetFormButtonRight(CurrentControls, CurrentDockContent.Name);
         }
@@ -97,6 +101,8 @@ namespace PSAP.BLL.BSBLL
         {
             foreach (Control n in CurrentControls)
             {
+                SetFormControlStyle(n);//调用窗口控件样式设定方法
+
                 if (n is Button)
                 {
                     if (!FrmRightBLL.strNotRightButton.Contains(n.Name))
@@ -151,6 +157,286 @@ namespace PSAP.BLL.BSBLL
                 }
             }
         }
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        #region 初始化样式变量
+        static string FormBackColor;
+        static string FormBackGroundImage;
+        static string FormBackGroundImageLayout;
+        static string FormForeColor;
+        static string DockContentBackColor;
+        static string DockContentBackGroundImage;
+        static string DockContentBackGroundImageLayout;
+        static string DockContentForeColor;
+        static string ButtonBackColor;
+        static string ButtonBackgroundImage;
+        static string ButtonBackgroundImageLayout;
+        static string ButtonForeColor;
+        static string ButtonImage;
+        static string ToolStripButtonDisplayStyle;//None|Text|Image|ImageAndText
+        static string ToolStripButtonBackColor;//颜色名称
+        static string ToolStripButtonBackgroundImage;//图片全名
+        static string ToolStripButtonBackgroundImageLayout;//None|Tile|Center|Stretch|Zoom
+        static string ToolStripButtonForeColor;
+        static string ToolStripButtonImage;
+        static string ToolStripButtonImageTransparentColor;//透明色名称
+        static string LabelBACKCOLOR;
+        static string LabelForeColor;
+        static string LabelIimage;
+        static string DataGridViewRowsDefaultCellStyleBackColor;
+        static string DataGridViewRowsDefaultCellStyleForeColor;
+        static string DataGridViewRowsDefaultCellStyleSelectionBackColor;
+        static string DataGridViewRowsDefaultCellStyleSelectionForeColor;
+        static string DataGridViewAlternatingRowsDefaultCellStyleBackColor;
+        static string DataGridViewAlternatingRowsDefaultCellStyleForeColor;
+        static string DataGridViewAlternatingRowsDefaultCellStyleSelectionBackColor;
+        static string DataGridViewAlternatingRowsDefaultCellStyleSelectionForeColor;
+        static string DataGridViewExRowsDefaultCellStyleBackColor;
+        static string DataGridViewExRowsDefaultCellStyleForeColor;
+        static string DataGridViewExRowsDefaultCellStyleSelectionBackColor;
+        static string DataGridViewExRowsDefaultCellStyleSelectionForeColor;
+        static string DataGridViewExAlternatingRowsDefaultCellStyleBackColor;
+        static string DataGridViewExAlternatingRowsDefaultCellStyleForeColor;
+        static string DataGridViewExAlternatingRowsDefaultCellStyleSelectionBackColor;
+        static string DataGridViewExAlternatingRowsDefaultCellStyleSelectionForeColor;
+        static string strTmp;
+
+
+        /// <summary>
+        /// 初始化主题变量
+        /// </summary>
+        /// <param name="dc"></param>
+        public static void InitThemeVariable()
+        {
+            DataTable dtUserTheme = new DataTable();
+            if (File.Exists(Application.StartupPath + "\\Theme.xml"))
+            {
+                dtUserTheme = XmlFileToDataTable(Application.StartupPath + "\\Theme.xml");
+            }
+            else
+            {
+                MessageBox.Show("用户主题配置文件丢失，请重新启动系统！");
+                return;
+            }
+
+            foreach (DataRow dr in dtUserTheme.Rows)
+            {
+                //MessageBox.Show(dr[2] + "  " + dr[3] + "  " + dr[4]);
+
+                //%%%%%%%%%%%%%%%%%%%%%%%%%
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("buttonBackColor").ToUpper())
+                {
+                    ButtonBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("ButtonBackgroundImageLayout").ToUpper())
+                {
+                    ButtonBackgroundImageLayout = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("ButtonBackgroundImage").ToUpper())
+                {
+                    ButtonBackgroundImage = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("ButtonImage").ToUpper())
+                {
+                    ButtonImage = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("formBackColor").ToUpper())
+                {
+                    FormBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("DockContentBackColor").ToUpper())
+                {
+                    DockContentBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("ToolStripButtonBackColor").ToUpper())
+                {
+                    ToolStripButtonBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("DataGridViewRowsDefaultCellStyle.BackColor").ToUpper())
+                {
+                    DataGridViewRowsDefaultCellStyleBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("DataGridViewAlternatingRowsDefaultCellStyle.BackColor").ToUpper())
+                {
+                    DataGridViewAlternatingRowsDefaultCellStyleBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("DataGridViewExRowsDefaultCellStyle.BackColor").ToUpper())
+                {
+                    DataGridViewExRowsDefaultCellStyleBackColor = dr[4].ToString();
+                }
+
+                if ((dr[2].ToString() + dr[3].ToString()).ToUpper() == ("DataGridViewExAlternatingRowsDefaultCellStyle.BackColor").ToUpper())
+                {
+                    DataGridViewExAlternatingRowsDefaultCellStyleBackColor = dr[4].ToString();
+                }
+                
+            }
+        }
+
+        #endregion
+        //刷新用户主题配置文件
+        public static void RefreshUserThemeConfigFile()
+        {
+
+            //if (!File.Exists(Application.StartupPath+@"\Theme.xml"))//Testing调试期间先不判断文件是否存在一律刷新文（修改主题文件时也应刷新）
+            {
+                //DataTable dt = new DataTable();
+                //dt = PSAP.DAO.BSDAO.BSCommon.getThemeInfo();
+                DataSet ds = new DataSet();
+                ds.Tables.Add(PSAP.DAO.BSDAO.BSCommon.getThemeInfo());
+                DataTableToXmlFile(ds.Tables[0], Application.StartupPath + "\\Theme.xml");
+            }
+        }
+
+        // 将DataTable对象数据保存为XML文件
+        public static bool DataTableToXmlFile(DataTable dt, string xmlFilePath)
+        {
+            if ((dt != null) && (!string.IsNullOrEmpty(xmlFilePath)))
+            {
+                StringWriter writer = new StringWriter();
+                dt.WriteXml(writer);
+                string xmlstr = writer.ToString();
+                writer.Close();
+                File.WriteAllText(xmlFilePath, xmlstr);//不存在该XML文件时会自动生成一个文件
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //将Theme.xml文件中的数据，装入到DataTable对象中
+        public static DataTable XmlFileToDataTable(string xmlFilePath)
+        {
+            if (!string.IsNullOrEmpty(xmlFilePath))
+            {
+
+                try
+                {
+                    DataSet dtTmp = new DataSet();
+                    dtTmp.ReadXml(xmlFilePath);
+                    return dtTmp.Tables[0];
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
+
+        /// <summary>
+        /// 设置DockContent窗口样式
+        /// </summary>
+        /// <param name="dc"></param>
+        public static void SetDockContentStyle(DockContent dc)
+        {
+            //DockContent样式
+            if (!string.IsNullOrEmpty(DockContentBackColor) && DockContentBackColor != "-")
+            {
+                dc.BackColor = Color.FromName(DockContentBackColor);
+            }
+        }
+
+        /// <summary>
+        ///设置窗口控件样式 
+        /// </summary>
+        /// <param name="n"></param>
+        public static void SetFormControlStyle(Control n)
+        {
+            if (n is Panel || n is ToolStrip || n is BindingNavigator)
+            {
+                n.BackColor = Color.Transparent;
+                //((ToolStrip)n).
+            }
+
+            if (n is Button)
+            {
+                n.BackgroundImageLayout =ImageLayout.Stretch; //默认拉伸
+
+                strTmp = ButtonBackColor;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                { n.BackColor = Color.FromName(strTmp); }
+
+                strTmp = ButtonBackgroundImage;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                { n.BackgroundImage = Image.FromFile(Application.StartupPath + "\\skin\\" + strTmp); }
+
+                strTmp = ButtonImage;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                { ((Button)n).Image = Image.FromFile(Application.StartupPath + "\\skin\\" + strTmp); }
+
+            }
+
+            if (n is ToolStrip)
+            {
+                ToolStrip tsTmp = (ToolStrip)n;
+                for (int i = 0; i < tsTmp.Items.Count; i++)
+                {
+                    if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                    {
+                        strTmp = ToolStripButtonBackColor;
+                        if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                        { tsTmp.Items[i].BackColor = Color.FromName(strTmp); }
+                    }
+                }
+            }
+
+            if (n is TabPage)
+            {
+                strTmp = DockContentBackColor;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                { n.BackColor = Color.FromName(strTmp); }
+            }
+
+            if (n is DataGridView)
+            {
+                strTmp = DataGridViewRowsDefaultCellStyleBackColor;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                {
+                    ((DataGridView)n).RowsDefaultCellStyle.BackColor = Color.FromName(strTmp);
+                }
+
+                strTmp = DataGridViewAlternatingRowsDefaultCellStyleBackColor;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                {
+                    ((DataGridView)n).AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(strTmp);
+                }
+            }
+
+            if (n is DataGridViewEx)
+            {
+                strTmp = DataGridViewExRowsDefaultCellStyleBackColor;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                {
+                    ((DataGridViewEx)n).RowsDefaultCellStyle.BackColor = Color.FromName(strTmp);
+                }
+
+                strTmp = DataGridViewExAlternatingRowsDefaultCellStyleBackColor;
+                if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
+                {
+                    ((DataGridViewEx)n).AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(strTmp);
+                }
+            }
+
+        }
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
         #region 直接打印相关方法
 
@@ -270,7 +556,7 @@ namespace PSAP.BLL.BSBLL
             ev.HasMorePages = (m_currentPageIndex < m_streams.Count);
         }
 
-        public static new void Dispose()
+        public static void Dispose()
         {
             if (m_streams != null)
             {

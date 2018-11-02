@@ -420,6 +420,7 @@
             this.bS_UserInfoDataGridView.RowTemplate.Height = 23;
             this.bS_UserInfoDataGridView.Size = new System.Drawing.Size(830, 220);
             this.bS_UserInfoDataGridView.TabIndex = 39;
+            this.bS_UserInfoDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.bS_UserInfoDataGridView_RowPostPaint);
             // 
             // dataGridViewTextBoxColumn1
             // 

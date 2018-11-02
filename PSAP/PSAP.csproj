@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PSAP</RootNamespace>
     <AssemblyName>PSAP</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,10 +32,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="PsapUserControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PSAPUserControlLibrary\PSAPUserControlLibrary\bin\Debug\PsapUserControlLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -87,11 +94,18 @@
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
     <Compile Include="PSAPCommon\psapCommon.cs" />
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="VIEW\BSVIEW\FrmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmChangePassword.Designer.cs">
       <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDataQueryDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDataQueryDesign.Designer.cs">
+      <DependentUpon>FrmDataQueryDesign.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmDepartment.cs">
       <SubType>Form</SubType>
@@ -129,11 +143,11 @@
     <Compile Include="VIEW\BSVIEW\FrmQueryCondition.Designer.cs">
       <DependentUpon>FrmQueryCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\BSVIEW\FrmReportQuery.cs">
+    <Compile Include="VIEW\BSVIEW\FrmDataQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\BSVIEW\FrmReportQuery.Designer.cs">
-      <DependentUpon>FrmReportQuery.cs</DependentUpon>
+    <Compile Include="VIEW\BSVIEW\FrmDataQuery.Designer.cs">
+      <DependentUpon>FrmDataQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUnitCatg.cs">
       <SubType>Form</SubType>
@@ -178,6 +192,9 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmChangePassword.resx">
       <DependentUpon>FrmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmDataQueryDesign.resx">
+      <DependentUpon>FrmDataQueryDesign.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,8 +214,8 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmQueryCondition.resx">
       <DependentUpon>FrmQueryCondition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\BSVIEW\FrmReportQuery.resx">
-      <DependentUpon>FrmReportQuery.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmDataQuery.resx">
+      <DependentUpon>FrmDataQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUnitCatg.resx">
       <DependentUpon>FrmUnitCatg.cs</DependentUpon>
@@ -242,6 +259,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PSAPCommon\PsapUserControlLibrary.dll" />
     <Content Include="PSAPCommon\UtilityLibrary.dll" />
     <Content Include="PSAPCommon\WeifenLuo.WinFormsUI.Docking.dll" />
     <None Include="Resources\543.png" />

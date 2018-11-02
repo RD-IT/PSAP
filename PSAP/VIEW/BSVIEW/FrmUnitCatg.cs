@@ -182,5 +182,17 @@ namespace PSAP.VIEW.BSVIEW
             this.bS_UnitCatgBindingSource.Filter = strFilter;
 
         }
+
+        private void bS_UnitCatgDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            using (SolidBrush b = new SolidBrush(((DataGridView)sender).RowHeadersDefaultCellStyle.ForeColor))
+            {
+                int lineN = 0;
+                lineN = e.RowIndex + 1;
+                string strLineNo = lineN.ToString();
+                e.Graphics.DrawString(strLineNo, e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 13, e.RowBounds.Location.Y + 5);
+                SolidBrush B = new SolidBrush(Color.Red);
+            }
+        }
     }
 }

@@ -569,6 +569,7 @@
             this.bS_DepartmentDataGridView.ShowEditingIcon = false;
             this.bS_DepartmentDataGridView.Size = new System.Drawing.Size(824, 239);
             this.bS_DepartmentDataGridView.TabIndex = 5;
+            this.bS_DepartmentDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.bS_DepartmentDataGridView_RowPostPaint);
             // 
             // dataGridViewTextBoxColumn1
             // 

@@ -44,6 +44,13 @@
             this.button4 = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.dsPSAP1 = new PSAP.dsPSAP();
+            this.dataGridViewEx1 = new PsapUserControlLibrary.DataGridViewEx();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEx1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // outlookBarBand1
@@ -180,11 +187,48 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(639, 157);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(186, 23);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "字符口串转变量名";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // dsPSAP1
+            // 
+            this.dsPSAP1.DataSetName = "dsPSAP";
+            this.dsPSAP1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridViewEx1
+            // 
+            this.dataGridViewEx1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEx1.Location = new System.Drawing.Point(467, 200);
+            this.dataGridViewEx1.myColHeaderTreeView = null;
+            this.dataGridViewEx1.Name = "dataGridViewEx1";
+            this.dataGridViewEx1.RowTemplate.Height = 23;
+            this.dataGridViewEx1.Size = new System.Drawing.Size(251, 262);
+            this.dataGridViewEx1.TabIndex = 8;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(261, 329);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(178, 133);
+            this.dataGridView1.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(451, 355);
+            this.ClientSize = new System.Drawing.Size(904, 474);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewEx1);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.button4);
@@ -198,6 +242,9 @@
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEx1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,5 +265,9 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private dsPSAP dsPSAP1;
+        private PsapUserControlLibrary.DataGridViewEx dataGridViewEx1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

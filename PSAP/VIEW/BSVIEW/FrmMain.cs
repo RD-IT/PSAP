@@ -37,7 +37,10 @@ namespace PSAP.VIEW.BSVIEW
             FrmMainTool frmMainTool = new FrmMainTool(mnsMain);//menuStrip1(实例菜单)
             //frmMainTool.HideOnClose = true;//使用就无法触发窗口关闭事件了
             frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
-            
+            BSBLL.RefreshUserThemeConfigFile();//刷新用户主题配置文件
+            BSBLL.InitThemeVariable();//初始化主题变量
+
+
         }
 
         //用于dock

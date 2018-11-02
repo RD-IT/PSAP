@@ -18,6 +18,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             InitializeComponent();
             InitEnableState();//初始化控件Enable状态
+            
         }
 
         private void FrmDepartment_Load(object sender, EventArgs e)
@@ -208,6 +209,18 @@ namespace PSAP.VIEW.BSVIEW
                 "and DepartmentNo like '*" + strsQueryTmp[1, 1] + "*' " +
                 "and ParentDepartmentNo like '*" + strsQueryTmp[2, 1] + "*'";
             this.bS_DepartmentBindingSource.Filter = strFilter;
+        }
+
+        private void bS_DepartmentDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            using (SolidBrush b = new SolidBrush(((DataGridView)sender).RowHeadersDefaultCellStyle.ForeColor))
+            {
+                int lineN = 0;
+                lineN = e.RowIndex + 1;
+                string strLineNo = lineN.ToString();
+                e.Graphics.DrawString(strLineNo, e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 13, e.RowBounds.Location.Y + 5);
+                SolidBrush B = new SolidBrush(Color.Red);
+            }
         }
     }
 }

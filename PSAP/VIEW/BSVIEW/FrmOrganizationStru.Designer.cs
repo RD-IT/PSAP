@@ -119,6 +119,7 @@
             this.bS_DepartmentDataGridView.ShowEditingIcon = false;
             this.bS_DepartmentDataGridView.Size = new System.Drawing.Size(413, 420);
             this.bS_DepartmentDataGridView.TabIndex = 6;
+            this.bS_DepartmentDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.bS_DepartmentDataGridView_RowPostPaint);
             // 
             // autoIdDataGridViewTextBoxColumn
             // 
@@ -233,10 +234,13 @@
             // tvwOrganizationStru
             // 
             this.tvwOrganizationStru.ContextMenuStrip = this.cmnsOrganizationStruTree;
+            this.tvwOrganizationStru.FullRowSelect = true;
+            this.tvwOrganizationStru.HotTracking = true;
             this.tvwOrganizationStru.ItemHeight = 20;
             this.tvwOrganizationStru.LabelEdit = true;
             this.tvwOrganizationStru.Location = new System.Drawing.Point(0, 0);
             this.tvwOrganizationStru.Name = "tvwOrganizationStru";
+            this.tvwOrganizationStru.ShowNodeToolTips = true;
             this.tvwOrganizationStru.ShowRootLines = false;
             this.tvwOrganizationStru.Size = new System.Drawing.Size(359, 522);
             this.tvwOrganizationStru.TabIndex = 7;
