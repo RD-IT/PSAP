@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("节点7");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("节点8");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("节点9");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("节点10");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("节点0", new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("节点11");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("节点12");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("节点13");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
-            treeNode20,
-            treeNode21,
-            treeNode22});
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("节点2");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("节点3");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("节点4");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("节点5");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("节点6");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点7");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点8");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点9");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("节点10");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("节点0", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("节点11");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点12");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点13");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("节点3");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("节点4");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("节点5");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("节点6");
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tvtbQueryList = new PsapUserControlLibrary.TreeViewToolBoxEx();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -93,42 +93,42 @@
             this.tvtbQueryList.ItemHeight = 20;
             this.tvtbQueryList.Location = new System.Drawing.Point(3, 3);
             this.tvtbQueryList.Name = "tvtbQueryList";
-            treeNode15.Name = "节点7";
-            treeNode15.Text = "节点7";
-            treeNode16.Name = "节点8";
-            treeNode16.Text = "节点8";
-            treeNode17.Name = "节点9";
-            treeNode17.Text = "节点9";
-            treeNode18.Name = "节点10";
-            treeNode18.Text = "节点10";
-            treeNode19.Name = "节点0";
-            treeNode19.Text = "节点0";
-            treeNode20.Name = "节点11";
-            treeNode20.Text = "节点11";
-            treeNode21.Name = "节点12";
-            treeNode21.Text = "节点12";
-            treeNode22.Name = "节点13";
-            treeNode22.Text = "节点13";
-            treeNode23.Name = "节点1";
-            treeNode23.Text = "节点1";
-            treeNode24.Name = "节点2";
-            treeNode24.Text = "节点2";
-            treeNode25.Name = "节点3";
-            treeNode25.Text = "节点3";
-            treeNode26.Name = "节点4";
-            treeNode26.Text = "节点4";
-            treeNode27.Name = "节点5";
-            treeNode27.Text = "节点5";
-            treeNode28.Name = "节点6";
-            treeNode28.Text = "节点6";
+            treeNode1.Name = "节点7";
+            treeNode1.Text = "节点7";
+            treeNode2.Name = "节点8";
+            treeNode2.Text = "节点8";
+            treeNode3.Name = "节点9";
+            treeNode3.Text = "节点9";
+            treeNode4.Name = "节点10";
+            treeNode4.Text = "节点10";
+            treeNode5.Name = "节点0";
+            treeNode5.Text = "节点0";
+            treeNode6.Name = "节点11";
+            treeNode6.Text = "节点11";
+            treeNode7.Name = "节点12";
+            treeNode7.Text = "节点12";
+            treeNode8.Name = "节点13";
+            treeNode8.Text = "节点13";
+            treeNode9.Name = "节点1";
+            treeNode9.Text = "节点1";
+            treeNode10.Name = "节点2";
+            treeNode10.Text = "节点2";
+            treeNode11.Name = "节点3";
+            treeNode11.Text = "节点3";
+            treeNode12.Name = "节点4";
+            treeNode12.Text = "节点4";
+            treeNode13.Name = "节点5";
+            treeNode13.Text = "节点5";
+            treeNode14.Name = "节点6";
+            treeNode14.Text = "节点6";
             this.tvtbQueryList.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode23,
-            treeNode24,
-            treeNode25,
-            treeNode26,
-            treeNode27,
-            treeNode28});
+            treeNode5,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14});
             this.tvtbQueryList.ShowLines = false;
             this.tvtbQueryList.ShowPlusMinus = false;
             this.tvtbQueryList.ShowRootLines = false;
@@ -178,6 +178,7 @@
             this.btnQuery.TabIndex = 0;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // btnCancel
             // 

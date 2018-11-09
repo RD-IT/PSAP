@@ -200,7 +200,7 @@ namespace PSAP.VIEW.BSVIEW
             strsQueryTmp[0, 1] = "txt";
             strsQueryTmp[1, 1] = "cbo";
             strsQueryTmp[2, 1] = "txt";
-            dt[1] = BSCommon.getDepartmentList();//下标代表行号
+            dt[1] = BSCommon.getDepartmentList();//下标代表代号
             FrmQueryCondition f = new FrmQueryCondition(strsQueryTmp, dt);
             f.ShowDialog();
 

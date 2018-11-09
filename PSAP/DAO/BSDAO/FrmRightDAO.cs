@@ -62,7 +62,7 @@ namespace PSAP.DAO.BSDAO
 
         }
 
-        /// <summary>
+        /// <summary> 
         /// 将设定的个人权限保存到数据库中（向sql语句组中增加sql语句）
         /// </summary>
         /// <param name="strUserNo"></param>
