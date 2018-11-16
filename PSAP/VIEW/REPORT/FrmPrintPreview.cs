@@ -20,6 +20,11 @@ namespace PSAP.VIEW.BSVIEW  //REPORT
             LoadRDLC(path, dsName, ds);
         }
 
+        public FrmPrintPreview()
+        {
+            InitializeComponent();
+        }
+
         /// <summary>
         /// 调用报表打印预览界面
         /// </summary>

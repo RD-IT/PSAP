@@ -233,6 +233,8 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BS_DepartmentTableAdapter = null;
             this.tableAdapterManager.BS_MenuTableAdapter = null;
+            this.tableAdapterManager.BS_QuerySqlParameterTableAdapter = null;
+            this.tableAdapterManager.BS_QuerySqlTableAdapter = null;
             this.tableAdapterManager.BS_RoleTableAdapter = null;
             this.tableAdapterManager.BS_UnitCatgTableAdapter = null;
             this.tableAdapterManager.BS_UserInfoTableAdapter = this.bS_UserInfoTableAdapter;

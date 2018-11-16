@@ -101,6 +101,12 @@
             this.btnQuery = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cmnsColumnHeader = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.insertColumnHeader = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertChildColumnHeader = new System.Windows.Forms.ToolStripMenuItem();
+            this.createRootColumnHeader = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteColumnHeader = new System.Windows.Forms.ToolStripMenuItem();
             autoIdLabel = new System.Windows.Forms.Label();
             parentIdLabel = new System.Windows.Forms.Label();
             queryTextLabel = new System.Windows.Forms.Label();
@@ -126,6 +132,7 @@
             this.pnlQueryCondition.SuspendLayout();
             this.tableLayoutpnlQueryCondition.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.cmnsColumnHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // autoIdLabel
@@ -413,6 +420,7 @@
             this.dgveQueryItemList.Size = new System.Drawing.Size(554, 215);
             this.dgveQueryItemList.TabIndex = 1;
             this.dgveQueryItemList.CurrentCellChanged += new System.EventHandler(this.dgveQueryItemList_CurrentCellChanged);
+            this.dgveQueryItemList.SelectionChanged += new System.EventHandler(this.dgveQueryItemList_SelectionChanged);
             // 
             // autoIdDataGridViewTextBoxColumn
             // 
@@ -738,8 +746,8 @@
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 238F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tvtbQueryList_User, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
@@ -766,7 +774,7 @@
             this.tvtbQueryList_User.ShowLines = false;
             this.tvtbQueryList_User.ShowPlusMinus = false;
             this.tvtbQueryList_User.ShowRootLines = false;
-            this.tvtbQueryList_User.Size = new System.Drawing.Size(172, 475);
+            this.tvtbQueryList_User.Size = new System.Drawing.Size(148, 475);
             this.tvtbQueryList_User.TabIndex = 2;
             this.tvtbQueryList_User.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvtbQueryList_User_AfterSelect);
             // 
@@ -775,9 +783,9 @@
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.pnlQueryCondition);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(181, 3);
+            this.panel3.Location = new System.Drawing.Point(157, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(232, 476);
+            this.panel3.Size = new System.Drawing.Size(175, 476);
             this.panel3.TabIndex = 0;
             // 
             // pnlQueryCondition
@@ -786,7 +794,7 @@
             this.pnlQueryCondition.Controls.Add(this.tableLayoutpnlQueryCondition);
             this.pnlQueryCondition.Location = new System.Drawing.Point(3, 0);
             this.pnlQueryCondition.Name = "pnlQueryCondition";
-            this.pnlQueryCondition.Size = new System.Drawing.Size(228, 42);
+            this.pnlQueryCondition.Size = new System.Drawing.Size(171, 42);
             this.pnlQueryCondition.TabIndex = 5;
             // 
             // tableLayoutpnlQueryCondition
@@ -800,17 +808,17 @@
             this.tableLayoutpnlQueryCondition.Name = "tableLayoutpnlQueryCondition";
             this.tableLayoutpnlQueryCondition.RowCount = 1;
             this.tableLayoutpnlQueryCondition.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutpnlQueryCondition.Size = new System.Drawing.Size(228, 28);
+            this.tableLayoutpnlQueryCondition.Size = new System.Drawing.Size(171, 28);
             this.tableLayoutpnlQueryCondition.TabIndex = 4;
             this.tableLayoutpnlQueryCondition.Visible = false;
             // 
             // btnQuery
             // 
             this.btnQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuery.Location = new System.Drawing.Point(137, 3);
+            this.btnQuery.Location = new System.Drawing.Point(88, 3);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(3, 3, 16, 3);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(75, 23);
+            this.btnQuery.Size = new System.Drawing.Size(67, 23);
             this.btnQuery.TabIndex = 0;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
@@ -820,10 +828,10 @@
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(419, 3);
+            this.tabControl2.Location = new System.Drawing.Point(338, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(420, 476);
+            this.tabControl2.Size = new System.Drawing.Size(501, 476);
             this.tabControl2.TabIndex = 1;
             // 
             // tabPage3
@@ -831,10 +839,54 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(412, 450);
+            this.tabPage3.Size = new System.Drawing.Size(493, 450);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "查询结果";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cmnsColumnHeader
+            // 
+            this.cmnsColumnHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.insertColumnHeader,
+            this.insertChildColumnHeader,
+            this.createRootColumnHeader,
+            this.toolStripSeparator2,
+            this.deleteColumnHeader});
+            this.cmnsColumnHeader.Name = "contextMenuStrip1";
+            this.cmnsColumnHeader.Size = new System.Drawing.Size(153, 120);
+            // 
+            // insertColumnHeader
+            // 
+            this.insertColumnHeader.Name = "insertColumnHeader";
+            this.insertColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.insertColumnHeader.Text = "插入列标题";
+            this.insertColumnHeader.Click += new System.EventHandler(this.insertColumnHeader_Click);
+            // 
+            // insertChildColumnHeader
+            // 
+            this.insertChildColumnHeader.Name = "insertChildColumnHeader";
+            this.insertChildColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.insertChildColumnHeader.Text = "新建子列标题";
+            this.insertChildColumnHeader.Click += new System.EventHandler(this.insertChildColumnHeader_Click);
+            // 
+            // createRootColumnHeader
+            // 
+            this.createRootColumnHeader.Name = "createRootColumnHeader";
+            this.createRootColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.createRootColumnHeader.Text = "新建根列标题";
+            this.createRootColumnHeader.Click += new System.EventHandler(this.createRootColumnHeader_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteColumnHeader
+            // 
+            this.deleteColumnHeader.Name = "deleteColumnHeader";
+            this.deleteColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.deleteColumnHeader.Text = "删除列标题";
+            this.deleteColumnHeader.Click += new System.EventHandler(this.deleteRootColumnHeader_Click);
             // 
             // FrmDataQueryDesign
             // 
@@ -874,6 +926,7 @@
             this.pnlQueryCondition.ResumeLayout(false);
             this.tableLayoutpnlQueryCondition.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.cmnsColumnHeader.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -946,5 +999,11 @@
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private PsapUserControlLibrary.TreeViewToolBoxEx tvtbQueryList_User;
+        private System.Windows.Forms.ContextMenuStrip cmnsColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem insertColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem insertChildColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem createRootColumnHeader;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteColumnHeader;
     }
 }

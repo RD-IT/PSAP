@@ -1,8 +1,10 @@
 ﻿using PSAP.DAO.BSDAO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using WeifenLuo.WinFormsUI.Docking;
@@ -86,7 +88,7 @@ namespace PSAP.DAO.BSDAO
 
         public static DataTable getThemeInfo()
         {
-            string n =PSAP.Properties.Settings.Default.ThemeId;
+            string n = PSAP.Properties.Settings.Default.ThemeId;
             string sqlString = "select a.ThemeId,b.ThemeDescribe,a.ControlName,a.ControlProperty,a.ControlValue,a.ControlType " +
             "from BS_ThemeDetail a left join BS_Theme b on a.ThemeId=b.AutoId " +
             "where convert(varchar(10),a.ThemeId) like '" + n + "' and a.ControlValue<>'-' ";
@@ -94,5 +96,44 @@ namespace PSAP.DAO.BSDAO
             dtblTmp = BaseSQL.GetTableBySql(sqlString);
             return dtblTmp;
         }
+
+        #region 多语言系统功能%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        public static ArrayList strSqlLlist = new ArrayList();//存储生成的SQL语句
+
+        /// <summary>
+        /// 开始遍历系统控件文本
+        /// </summary>
+        public static void TraverseControlTextStart()
+        {
+            strSqlLlist.Clear();
+        }
+
+        /// <summary>
+        /// 向sql语句组中增加接的sql语句(保存对界面控件文本的遍历结果)
+        /// </summary>
+        /// <param name="strFormName"></param>
+        /// <param name="strButtonName"></param>
+        /// <param name="strButtonText"></param>
+        public static void TraverseControlTextAdd(string strFormName, string strControlsCategory, string strControlsName, string strCinese)
+        {
+            string strSql = "insert into BS_LanguageSetting(FormName,ControlsCategory,ControlsName,Chinese) " +
+                "select '" + strFormName + "','" + strControlsCategory + "','" + strControlsName + "','" + strCinese + "'" +
+                "where '" + strFormName + strControlsName + "' not in (" +
+                    "select FormName+ControlsName from BS_LanguageSetting)";
+            strSqlLlist.Add(strSql);
+            strSql = "update BS_LanguageSetting set Chinese='"+ strCinese + "' "+
+                "where FormName='"+strFormName+"' and ControlsName='"+strControlsName+"'";
+            strSqlLlist.Add(strSql);
+
+        }
+
+        /// <summary>
+        /// 以事务方式执行拼接好的sql语句组(保存对界面控件文本的遍历结果)
+        /// </summary>
+        public static void TraverseControlTextSave()
+        {
+            BaseSQL.ExecuteSqlTran(strSqlLlist);
+        }
+        #endregion
     }
 }

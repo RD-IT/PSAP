@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using PsapUserControlLibrary;
 
 namespace PSAP.PSAPCommon
 {
@@ -110,9 +111,9 @@ namespace PSAP.PSAPCommon
                     if (col.Visible)
                     {
                         //为禁止转义在前边多加上一个TAB符号(\t)
-                        strLine += "\"\t"+col.HeaderText.Trim().Replace("\"", "\\\"")+"\"" + "\t";
+                        strLine += "\"\t" + col.HeaderText.Trim().Replace("\"", "\\\"") + "\"" + "\t";
+                    }
                 }
-            }
                 strLine = strLine.Substring(0, strLine.Length - 1);
                 sw.WriteLine(strLine);
                 sw.Flush();
@@ -130,10 +131,10 @@ namespace PSAP.PSAPCommon
                             }
                             else
                             {
-                            //为禁止转义在前边多加上一个TAB符号(\t)
-                            strLine += "\"\t" + dgvc.Value.ToString().Trim().Replace("\"","\"\"") +"\"" + "\t";
+                                //为禁止转义在前边多加上一个TAB符号(\t)
+                                strLine += "\"\t" + dgvc.Value.ToString().Trim().Replace("\"", "\"\"") + "\"" + "\t";
+                            }
                         }
-                    }
                     }
                     sw.WriteLine(strLine);
                     sw.Flush();
@@ -151,6 +152,73 @@ namespace PSAP.PSAPCommon
         {
             prefix += DateTime.Now.ToString("yyyyMMdd");
             return prefix;
+        }
+
+        /// <summary>
+        /// 根据节点name定位树节点
+        /// </summary>
+        /// <param name="tvtbTmp"></param>
+        /// <param name="strTreeNodeName"></param>
+        public static void PositionTreeViewExNode(TreeViewToolBoxEx tvtbTmp, string strTreeNodeName)
+        {
+            foreach (TreeNode tn in tvtbTmp.Nodes)
+            {
+                if (tn.Name == strTreeNodeName)
+                {
+                    tvtbTmp.SelectedNode = tn;
+                    return;
+                }
+                SubNode(tn,tvtbTmp,strTreeNodeName);
+            }
+        }
+
+        //子过程
+        public static void SubNode(TreeNode tn,TreeViewToolBoxEx tvtbTmp,string strTreeNodeName)
+        {
+            foreach (TreeNode tnSub in tn.Nodes)
+            {
+                if (tnSub.Name == strTreeNodeName)
+                {
+                    tvtbTmp.SelectedNode = tnSub;
+                    return;
+                }
+                SubNode(tnSub,tvtbTmp,strTreeNodeName);
+            }
+        }
+
+        /// <summary>
+        /// 文本框只能输入数值型文本
+        /// </summary>
+        /// <param name="tn"></param>
+        /// <param name="tvtbTmp"></param>
+        /// <param name="strTreeNodeName"></param>
+        public static void TextBoxOnlyInputNumeric(object sender, KeyPressEventArgs e)
+        {
+            //判断按键是不是要输入的类型。
+            if
+            (((int)e.KeyChar < 48 || (int)e.KeyChar > 57) &&
+           (int)e.KeyChar != 8 && (int)e.KeyChar != 46)
+                e.Handled = true; //小数点的处理。
+            if ((int)e.KeyChar == 46) //小数点
+            {
+                if (((TextBox)sender).Text.Length <= 0)
+                    e.Handled = true; //小数点不能在第一位
+                else
+                {
+                    float f;
+                    float oldf;
+                    bool b1 = false, b2 = false;
+                    b1 = float.TryParse(((TextBox)sender).Text, out oldf);
+                    b2 = float.TryParse(((TextBox)sender).Text + e.KeyChar.ToString(), out f);
+                    if (b2 == false)
+                    {
+                        if (b1 == true)
+                            e.Handled = true;
+                        else
+                            e.Handled = false;
+                    }
+                }
+            }
         }
     }
 }

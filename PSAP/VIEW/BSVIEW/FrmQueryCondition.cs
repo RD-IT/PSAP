@@ -26,6 +26,11 @@ namespace PSAP.VIEW.BSVIEW
             dt = dtTmp;
         }
 
+        public FrmQueryCondition()
+        {
+            InitializeComponent();
+
+        }
         private void FrmQueryCondition_Load(object sender, EventArgs e)
         {
             addControl(strsControlTmp);

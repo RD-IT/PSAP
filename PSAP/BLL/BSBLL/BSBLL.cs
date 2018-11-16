@@ -15,6 +15,7 @@ using Microsoft.Reporting.WinForms;
 using System.Drawing;
 using System.Xml;
 using PsapUserControlLibrary;
+using System.Reflection;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -278,7 +279,7 @@ namespace PSAP.BLL.BSBLL
                 {
                     DataGridViewExAlternatingRowsDefaultCellStyleBackColor = dr[4].ToString();
                 }
-                
+
             }
         }
 
@@ -367,7 +368,7 @@ namespace PSAP.BLL.BSBLL
 
             if (n is Button)
             {
-                n.BackgroundImageLayout =ImageLayout.Stretch; //默认拉伸
+                n.BackgroundImageLayout = ImageLayout.Stretch; //默认拉伸
 
                 strTmp = ButtonBackColor;
                 if (!string.IsNullOrEmpty(strTmp) && strTmp != "-")
@@ -567,5 +568,245 @@ namespace PSAP.BLL.BSBLL
         }
 
         #endregion
+
+        #region 多语言系统功能%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        /// <summary>
+        /// 遍历窗口及其中控件,并将结果加至数据库表中
+        /// </summary>
+        public static void TraverseFormControlToTable()
+        {
+
+            DockContent DockContentFormN = new DockContent();
+            Form FormN = new Form();
+            Assembly a = Assembly.LoadFile(Application.ExecutablePath);//.net中的反射
+            Type[] types = a.GetTypes();
+            DataTable dt = new DataTable();
+            BSCommon.TraverseControlTextStart();
+            foreach (Type t in types)
+            {
+
+                if (t.BaseType.Name == "DockContent")
+                {
+                    DockContentFormN = (DockContent)Activator.CreateInstance(t, true);
+                    if (DockContentFormN.Text != null && DockContentFormN.Text != string.Empty)
+                    {
+                        //1.1
+                        BSCommon.TraverseControlTextAdd(DockContentFormN.Name, t.BaseType.Name, DockContentFormN.Name, DockContentFormN.Text);
+                    }
+
+                    //MessageBox.Show(DockContectFormN.Text + " | " + DockContectFormN.Name);
+                    foreach (Control ctl in DockContentFormN.Controls)//遍历所有“DockContent”窗口
+                    {
+                        if (ctl.Text != null && ctl.Text != string.Empty && ctl.Text != '0'.ToString() && ctl.Name != string.Empty)
+                        {
+                            //1.2
+                            BSCommon.TraverseControlTextAdd(DockContentFormN.Name, ctl.GetType().Name, ctl.Name, ctl.Text);
+                        }
+
+                        if (ctl is ToolStrip)
+                        {
+                            ToolStrip tsTmp = (ToolStrip)ctl;
+                            for (int i = 0; i < tsTmp.Items.Count; i++)
+                            {
+                                if (tsTmp.Items[i].GetType().Name == "ToolStripButton")//判断是否为ToolStripButton
+                                {
+                                    if (tsTmp.Items[i].Text != string.Empty)
+                                    {
+                                        //1.3
+                                        BSCommon.TraverseControlTextAdd(DockContentFormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (ctl.Controls.Count > 0)
+                        {
+                            TraverseFormControls(DockContentFormN, ctl);
+                        }
+                    }
+                }
+
+                //****************************Form
+                if (t.BaseType.Name == "Form")
+                {
+                    FormN = (Form)Activator.CreateInstance(t, true);
+
+                        if (FormN.Text != null && DockContentFormN.Text != string.Empty)
+                    {
+                        //2.1
+                        BSCommon.TraverseControlTextAdd(FormN.Name, t.BaseType.Name, FormN.Name, FormN.Text);
+
+                    }
+
+                    //MessageBox.Show(DockContectFormN.Text + " | " + DockContectFormN.Name);
+                    foreach (Control ctl in FormN.Controls)//遍历所有“DockContent”窗口
+                    {
+                        if (ctl.Text != null && ctl.Text != string.Empty && ctl.Text != '0'.ToString() && ctl.Name != string.Empty)
+                        {
+                            //2.2
+                            BSCommon.TraverseControlTextAdd(FormN.Name, ctl.GetType().Name, ctl.Name, ctl.Text);
+
+                        }
+
+
+                        if (ctl is ToolStrip)
+                        {
+                            ToolStrip tsTmp = (ToolStrip)ctl;
+                            for (int i = 0; i < tsTmp.Items.Count; i++)
+                            {
+                                if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                                {
+                                    if (tsTmp.Items[i].Text != string.Empty)
+                                    {
+                                        //2.3
+                                        BSCommon.TraverseControlTextAdd(FormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (ctl.Controls.Count > 0)
+                        {
+                            TraverseFormControls(FormN, ctl);
+                        }
+                    }
+                }
+                //*************Form
+            }
+            BSCommon.TraverseControlTextSave();//以事务方式执行拼接好的sql语句组
+        }
+
+
+
+
+        //DockContent
+        public static void TraverseFormControls(DockContent DockContentFormN, Control ctlTmp)
+        {
+            foreach (Control n in ctlTmp.Controls)
+            {
+                if (n.Text != null && n.Text != string.Empty && n.Text != '0'.ToString() && n.Name != string.Empty)
+                {
+                    //3.1
+                    BSCommon.TraverseControlTextAdd(DockContentFormN.Name, n.GetType().Name, n.Name, n.Text);
+
+                }
+
+                if (n is DataGridView)
+                {
+                    DataGridView dg = (DataGridView)n;
+                    foreach (object ch in dg.Columns)
+                    {
+                        {
+                            if (ch.GetType().Name == "DataGridViewTextBoxColumn")
+                            {
+                                //MessageBox.Show(((DataGridViewTextBoxColumn)ch).HeaderText + "!!!!!!!!!!" + ((DataGridViewTextBoxColumn)ch).ToolTipText);
+                                //3.1.1
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, ch.GetType().Name, ((DataGridViewTextBoxColumn)ch).Name, ((DataGridViewTextBoxColumn)ch).HeaderText);
+
+                            }
+                            if (ch.GetType().Name == "DataGridViewComboBoxColumn")
+                            {
+                                //MessageBox.Show(((DataGridViewComboBoxColumn)ch).HeaderText + "???????");
+                                //3.1.2
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, ch.GetType().Name, ((DataGridViewComboBoxColumn)ch).Name, ((DataGridViewComboBoxColumn)ch).HeaderText);
+                            }
+                        }
+                    }
+                }
+
+                if (n is ToolStrip)
+                {
+                    ToolStrip tsTmp = (ToolStrip)n;
+                    for (int i = 0; i < tsTmp.Items.Count; i++)
+                    {
+                        if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                        {
+                            //MessageBox.Show(DockContentFormN.Name + "==>" + tsTmp.Items[i].Text + "==>" + tsTmp.Items[i].Name + tsTmp.Items[i].ToolTipText);
+                            //MessageBox.Show(DockContentFormN.Name + "==>" + tsTmp.Items[i].Text + "==>" + tsTmp.Items[i].Name);
+                            if (tsTmp.Items[i].Text != string.Empty)
+                            {
+                                //3.3
+                                //++++toolTipText
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text);
+                            }
+                        }
+                    }
+                }
+
+
+                if (n.Controls.Count > 0)
+                {
+                    TraverseFormControls(DockContentFormN, n);
+                }
+            }
+        }
+        //Form---------------------------------------------
+        public static void TraverseFormControls(Form FormN, Control ctlTmp)
+        {
+            foreach (Control n in ctlTmp.Controls)
+            {
+                if (n.Text != null && n.Text != string.Empty && n.Text != '0'.ToString() && n.Name!=string.Empty )
+                {
+                    //MessageBox.Show(n.Text);
+                    //4.2
+                    BSCommon.TraverseControlTextAdd(FormN.Name, n.GetType().Name, n.Name, n.Text);
+
+                }
+
+                if (n is DataGridView)
+                {
+                    DataGridView dg = (DataGridView)n;
+                    foreach (object ch in dg.Columns)
+                    {
+                        {
+                            if (ch.GetType().Name == "DataGridViewTextBoxColumn")
+                            {
+                                //MessageBox.Show(((DataGridViewTextBoxColumn)ch).HeaderText + "!!!!!!!!!!" + ((DataGridViewTextBoxColumn)ch).ToolTipText);
+                                //4.1.1
+                                BSCommon.TraverseControlTextAdd(FormN.Name, ch.GetType().Name, ((DataGridViewTextBoxColumn)ch).Name, ((DataGridViewTextBoxColumn)ch).HeaderText);
+
+                            }
+                            if (ch.GetType().Name == "DataGridViewComboBoxColumn")
+                            {
+                                //MessageBox.Show(((DataGridViewComboBoxColumn)ch).HeaderText + "???????");
+                                //4.1.2
+                                BSCommon.TraverseControlTextAdd(FormN.Name, ch.GetType().Name, ((DataGridViewComboBoxColumn)ch).Name, ((DataGridViewComboBoxColumn)ch).HeaderText);
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (n is ToolStrip)
+                {
+                    ToolStrip tsTmp = (ToolStrip)n;
+                    for (int i = 0; i < tsTmp.Items.Count; i++)
+                    {
+                        if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                        {
+                            //MessageBox.Show(DockContentFormN.Name + "==>" + tsTmp.Items[i].Text + "==>" + tsTmp.Items[i].Name);
+                            //BSCommon.AddSqlStatement(DockContentFormN.Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text);
+                            if (tsTmp.Items[i].Text != string.Empty)
+                            {
+                                //4.3
+                                //++++toolTipText
+                                BSCommon.TraverseControlTextAdd(FormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text);
+                            }
+
+                        }
+                    }
+                }
+
+
+                if (n.Controls.Count > 0)
+                {
+                    TraverseFormControls(FormN, n);
+                }
+            }
+        }
+        #endregion
+
     }
 }

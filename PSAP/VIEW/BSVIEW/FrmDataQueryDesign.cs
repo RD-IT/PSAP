@@ -163,8 +163,7 @@ namespace PSAP.VIEW.BSVIEW
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                         {
                             //先删除对此数据有依赖关系的相关数数
-                            // FrmRightDAO.DeleteMenuCorrelationData(tvtbQueryList.SelectedNode.Name);//删除与菜单相关数据
-
+                            FrmDataQueryDesignDAO.DeleteQueryCorrelationData(Convert.ToInt16(tvtbQueryList.SelectedNode.Name));
                             //删除部门表数据
                             bS_QuerySqlBindingSource.RemoveCurrent();
                             Validate();
@@ -379,9 +378,6 @@ namespace PSAP.VIEW.BSVIEW
         private void querySqlTextBox_Leave(object sender, EventArgs e)
         {
             FrmDataQueryDesignDAO.CreateProcedureParaList(dgveQueryItemList.CurrentRow.Cells[0].Value.ToString(), querySqlTextBox.Text);
-            //dgveParaList.DataSource = bS_QuerySqlParameterBindingSource;
-
-
             //使sql更改同步到DataGridView
             bS_QuerySqlParameterTableAdapter.Fill(dsPSAP.BS_QuerySqlParameter);
             dgveParaList.DataSource = bS_QuerySqlParameterBindingSource;
@@ -421,6 +417,8 @@ namespace PSAP.VIEW.BSVIEW
         private Panel[] pnlQuery;
         private TextBox[] txtRemark;
         private TextBox[] txtTabText;//客户端不需要
+        private TreeView[] tvwTablesHeader;
+        TableLayoutPanel[] tableForTabs;
         private void tvtbQueryList_User_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Tag == null)
@@ -433,13 +431,14 @@ namespace PSAP.VIEW.BSVIEW
                 if (!string.IsNullOrEmpty(dtQueryPara.Rows[0].ItemArray[6].ToString().Trim()))
                 {
                     int iRowCount = dtQueryPara.Rows.Count;
-                    string[,] strsQueryTmp = new string[iRowCount, 2];
+                    string[,] strsQueryTmp = new string[iRowCount, 3];
                     DataTable[] dtTmp = new DataTable[iRowCount];
                     for (int i = 0; i < iRowCount; i++)
                     {
                         strsQueryTmp[i, 0] = dtQueryPara.Rows[i].ItemArray[5].ToString();
                         //"txt";/"cbo"/"dtp";
                         strsQueryTmp[i, 1] = FrmDataQueryDesignBLL.SqlChangeToControlAbbreviation(dtQueryPara.Rows[i].ItemArray[7].ToString());
+                        strsQueryTmp[i, 2] = dtQueryPara.Rows[i].ItemArray[7].ToString();
                         //dt[1] = BSCommon.getDepartmentList();//下标代表代号控件类型是cbo时用
                     }
                     strsControlTmp = strsQueryTmp;
@@ -456,10 +455,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             tabControl2.TabPages.Clear();
             DataSet ds = new DataSet();
-            DataTable dt = FrmDataQueryDesignDAO.GetUserQueryTabsInfo(tvtbQueryList_User.SelectedNode.Name);
             if (tvtbQueryList_User.SelectedNode.Tag == null)
             {
-                ds = FrmDataQueryDesignDAO.ExecUserProcedure(tvtbQueryList_User.SelectedNode.Name);
+                ds = FrmDataQueryDesignDAO.ExecUserProcedure(tvtbQueryList_User.SelectedNode.Name, strsControlTmp);
                 if (ds != null)
                 {
                     string strTabText;
@@ -471,27 +469,57 @@ namespace PSAP.VIEW.BSVIEW
                     txtTabText = new TextBox[intTablesCount];
                     Label[] lbl1 = new Label[intTablesCount];//客户端不用
                     Label[] lbl2 = new Label[intTablesCount];//客户端不用
+                    tvwTablesHeader = new TreeView[intTablesCount];
+                    tableForTabs = new TableLayoutPanel[intTablesCount];
+
                     for (int i = 0; i < intTablesCount; i++)
                     {
-                        if (!string.IsNullOrEmpty(dt.Rows[i].ItemArray[5].ToString()))
+                        strTabText = "报表" + Convert.ToString(i);
+                        strTabRemarks = "";
+                        FrmDataQueryDesignDAO.InitTabInfo(Convert.ToUInt16(tvtbQueryList_User.SelectedNode.Name), i, strTabText, strTabRemarks);
+                        //将结果集的每一个表的列标题初始化到数据库中
+                        FrmDataQueryDesignDAO.CreateProcedureParaList(dgveQueryItemList.CurrentRow.Cells[0].Value.ToString(), querySqlTextBox.Text);
+
+                        FrmDataQueryDesignDAO.CreateColumnsTempTable();//建表
+                        foreach (DataColumn dc in ds.Tables[i].Columns)
                         {
-                            strTabText = dt.Rows[i].ItemArray[5].ToString();
+                            FrmDataQueryDesignDAO.insertHeaderInfo(dc.ColumnName, dc.Caption);//添加记录
+                        }
+                        FrmDataQueryDesignDAO.ExecSqlTran();//执行
+                        FrmDataQueryDesignDAO.InitHeaderSetting(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name), i);
+                    }
+
+                    DataTable dt = FrmDataQueryDesignDAO.GetUserQueryTabsInfo(tvtbQueryList_User.SelectedNode.Name);
+                    for (int i = 0; i < intTablesCount; i++)
+                    {
+                        if (dt != null)
+                        {
+                            if (!string.IsNullOrEmpty(dt.Rows[i].ItemArray[5].ToString()))
+                            {
+                                strTabText = dt.Rows[i].ItemArray[5].ToString();
+                            }
+                            else
+                            {
+                                strTabText = "报表" + Convert.ToString(i);
+                            }
+
+                            if (!string.IsNullOrEmpty(dt.Rows[i].ItemArray[6].ToString()))
+                            {
+                                strTabRemarks = dt.Rows[i].ItemArray[6].ToString();
+                            }
+                            else
+                            {
+                                strTabRemarks = "";
+                            }
                         }
                         else
                         {
                             strTabText = "报表" + Convert.ToString(i);
-                        }
-
-                        if (!string.IsNullOrEmpty(dt.Rows[i].ItemArray[6].ToString()))
-                        {
                             strTabRemarks = dt.Rows[i].ItemArray[6].ToString();
-                        }
-                        else
-                        {
-                            strTabRemarks = "";
+
                         }
                         tabControl2.TabPages.Add(strTabText);
-                        tabControl2.TabPages[i].Tag = dt.Rows[i].ItemArray[7];
+                        //tabControl2.TabPages[i].Tag = dt.Rows[i].ItemArray[7];
 
                         pnlQuery[i] = new Panel();
                         pnlQuery[i].Anchor = AnchorStyles.Right & AnchorStyles.Left;
@@ -502,18 +530,25 @@ namespace PSAP.VIEW.BSVIEW
                         txtTabText[i] = new TextBox();
                         txtTabText[i].Text = tabControl2.TabPages[i].Text;
                         txtTabText[i].Left = 60;
+                        txtTabText[i].Leave += new System.EventHandler(txtTabText_Leave);//客户端不用
+                        txtTabText[i].KeyPress += new System.Windows.Forms.KeyPressEventHandler(ctl_KeyPress);
                         pnlQuery[i].Controls.Add(txtTabText[i]);//客户端不需要此控件
 
                         txtRemark[i] = new TextBox();
                         txtRemark[i].Multiline = true;
+                        txtRemark[i].ScrollBars = ScrollBars.Both;
                         txtRemark[i].MaxLength = 500;
                         txtRemark[i].Text = strTabRemarks;
                         txtRemark[i].Top = txtTabText[i].Top + txtTabText[i].Height + 5;//客户端不用
                         txtRemark[i].Width = pnlQuery[i].Width - 60;//客户端不用
                         txtRemark[i].Left = 60;//客户端不用
-                        //txtRemark[i].Dock = DockStyle.Bottom;
-                        //txtRemark[i].Dock = DockStyle.Fill;//客户端使用
+                                               //txtRemark[i].Dock = DockStyle.Bottom;
+                                               //txtRemark[i].Dock = DockStyle.Fill;//客户端使用
+                        txtRemark[i].Leave += new System.EventHandler(txtRemark_Leave);//客户端不用
                         pnlQuery[i].Controls.Add(txtRemark[i]);
+
+                        //
+                        //FrmDataQueryDesignDAO.InitTabInfo(Convert.ToUInt16(tvtbQueryList_User.SelectedNode.Name), i, strTabText, strTabRemarks);
 
                         lbl1[i] = new Label();
                         lbl1[i].Text = "页名";
@@ -527,15 +562,50 @@ namespace PSAP.VIEW.BSVIEW
                         lbl2[i].AutoSize = true;
                         pnlQuery[i].Controls.Add(lbl2[i]);//客户端不需要此控件
 
+                        //放Tree和DataGridViewEx
+                        tableForTabs[i] = new TableLayoutPanel();
+                        tableForTabs[i].RowCount = 1;
+                        tableForTabs[i].ColumnCount = 2;
+                        tableForTabs[i].Height = tabControl2.TabPages[i].Height - pnlQuery[i].Height;
+                        tableForTabs[i].Dock = DockStyle.Bottom;
+                        tabControl2.TabPages[i].Controls.Add(tableForTabs[i]);
+
+                        //标题设定TreeView
+                        tvwTablesHeader[i] = new TreeView();
+                        tvwTablesHeader[i].LabelEdit = true;
+                        tvwTablesHeader[i].Dock = DockStyle.Fill;
+                        tvwTablesHeader[i].ContextMenuStrip = cmnsColumnHeader;
+                        tvwTablesHeader[i].Tag = FrmDataQueryDesignDAO.GetDataSettingId(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name), i);
+                        FrmDataQueryDesignBLL.tvwTableHeaderGetNode(tvwTablesHeader[i], Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name), i);
+                        tvwTablesHeader[i].AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(tvwTablesHeader_AfterLabelEdit);
+                        tvwTablesHeader[i].NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(tvwTablesHeader_NodeMouseClick);
+                        tvwTablesHeader[i].ExpandAll();
+                        tableForTabs[i].Controls.Add(tvwTablesHeader[i], 0, 0);
+
                         dgveQuery[i] = new DataGridViewEx();
-                        dgveQuery[i].Height = tabControl2.TabPages[i].Height - pnlQuery[i].Height;
-                        dgveQuery[i].Anchor = AnchorStyles.Right & AnchorStyles.Bottom & AnchorStyles.Left;
-                        dgveQuery[i].Dock = DockStyle.Bottom;
+                        dgveQuery[i].Dock = DockStyle.Fill;
                         dgveQuery[i].DataSource = ds.Tables[i];
-                        tabControl2.TabPages[i].Controls.Add(dgveQuery[i]);
+                        dgveQuery[i].myColHeaderTreeView = tvwTablesHeader[i];
+                        tableForTabs[i].Controls.Add(dgveQuery[i], 1, 0);
                     }
                 }
             }
+        }
+
+        private void txtTabText_Leave(object sender, EventArgs e)
+        {
+            FrmDataQueryDesignDAO.UpdateTabText(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+               tabControl2.SelectedIndex, ((TextBox)sender).Text);
+            FrmMain.frmMain.tsrLblCurrentStatusText = "对【Tab标题】的修改，已成功保存";
+            tabControl2.TabPages[tabControl2.SelectedIndex].Text = ((TextBox)sender).Text;
+        }
+
+        private void txtRemark_Leave(object sender, EventArgs e)
+        {
+            FrmDataQueryDesignDAO.UpdateTabRemarks(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+               tabControl2.SelectedIndex, ((TextBox)sender).Text);
+            FrmMain.frmMain.tsrLblCurrentStatusText = "对【Tab说明】的修改，已成功保存";
+
         }
 
         //*******************************************************************************************************
@@ -592,7 +662,15 @@ namespace PSAP.VIEW.BSVIEW
                         txt[i] = new TextBox();//实例化
                         txt[i].Anchor = AnchorStyles.Left | AnchorStyles.Right;
                         txt[i].TextAlign = HorizontalAlignment.Left;
-                        txt[i].KeyPress += new System.Windows.Forms.KeyPressEventHandler(ctl_KeyPress);
+                        txt[i].Tag = strsQueryTmp[i, 2];//
+                        if ("int bigint bit decimal float money numeric real smallint smallmoney tinyint varbinary ".Contains(strsQueryTmp[i, 2]))
+                        {
+                            txt[i].KeyPress += new System.Windows.Forms.KeyPressEventHandler(ctlIsNumeric_KeyPress);
+                        }
+                        else
+                        {
+                            txt[i].KeyPress += new System.Windows.Forms.KeyPressEventHandler(ctl_KeyPress);
+                        }
                         table.Controls.Add(txt[i], 1, i);
                         break;
                     case "cbo":
@@ -601,12 +679,14 @@ namespace PSAP.VIEW.BSVIEW
                         cbo[i].DataSource = dt[i];
                         cbo[i].DisplayMember = dt[i].Columns[0].ToString();
                         cbo[i].ValueMember = dt[i].Columns[1].ToString();
+                        cbo[i].Tag = strsQueryTmp[i, 2];//
                         cbo[i].KeyPress += new System.Windows.Forms.KeyPressEventHandler(ctl_KeyPress);
                         table.Controls.Add(cbo[i], 1, i);
                         break;
                     case "dtp":
                         dtp[i] = new DateTimePicker();//实例化
                         dtp[i].Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                        dtp[i].Tag = strsQueryTmp[i, 2];//
                         dtp[i].KeyPress += new System.Windows.Forms.KeyPressEventHandler(ctl_KeyPress);
                         table.Controls.Add(dtp[i], 1, i);
                         break;
@@ -629,6 +709,17 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 只能输数字
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctlIsNumeric_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            psapCommon.TextBoxOnlyInputNumeric(sender, e);//判断按键是不是要输入的类型。
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        }
+
+        /// <summary>
         /// 保存设定的查询条件
         /// </summary>
         /// <returns></returns>
@@ -639,37 +730,161 @@ namespace PSAP.VIEW.BSVIEW
                 if (txt[i] != null)
                 {
                     strsControlTmp[i, 1] = txt[i].Text;
+                    strsControlTmp[i, 2] = txt[i].Tag.ToString();
                 }
 
                 if (cbo[i] != null)
                 {
                     strsControlTmp[i, 1] = cbo[i].SelectedValue.ToString();
+                    strsControlTmp[i, 2] = cbo[i].Tag.ToString();
                 }
 
                 if (dtp[i] != null)
                 {
                     strsControlTmp[i, 1] = dtp[i].Text;
+                    strsControlTmp[i, 2] = dtp[i].Tag.ToString();
                 }
             }
         }
-        ///// <summary>
-        /////取消查询给所有查询参数赋“”值
-        ///// </summary>
-        //private void CancleQueryParameter()
-        //{
-        //    for (int i = 0; i < strsControlTmp.GetLength(0); i++)
-        //    {
-        //        strsControlTmp[i, 1] = string.Empty;
-        //    }
-        //}
-
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-            CreateResultControl();
             saveQueryParameter();
+            CreateResultControl();
         }
-        //显示查询条件End
 
+        private void dgveQueryItemList_SelectionChanged(object sender, EventArgs e)
+        {
+            psapCommon.PositionTreeViewExNode(tvtbQueryList, dgveQueryItemList.CurrentRow.Cells[0].Value.ToString());
+        }
+
+        //显示查询条件End        
+
+        #region  表标题树相关方法
+        private void insertColumnHeader_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int i = tabControl2.SelectedIndex;
+                string nName;
+                nName = tvwTablesHeader[i].SelectedNode.Name;
+                if (tvwTablesHeader[i].SelectedNode.Parent != null)
+                {
+                    tvwTablesHeader[i].SelectedNode.Parent.Nodes.Insert(tvwTablesHeader[i].SelectedNode.Index, "插入列标题");
+                }
+                else
+                {
+                    tvwTablesHeader[i].Nodes.Insert(tvwTablesHeader[i].SelectedNode.Index, "插入列标题");
+                }
+                tvwTablesHeader[i].SelectedNode.Expand();
+                tvwTablesHeader[tabControl2.SelectedIndex].SelectedNode = tvwTablesHeader[i].SelectedNode.PrevNode;
+                string nodeId = FrmRightBLL.getNewNodeId();
+                tvwTablesHeader[i].SelectedNode.Name = nodeId;
+                FrmDataQueryDesignDAO.saveCreateChildNode(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+                    Convert.ToInt16(tvwTablesHeader[i].Tag), nodeId, tvwTablesHeader[i].SelectedNode.Text, tvwTablesHeader[i].SelectedNode.Parent != null ? tvwTablesHeader[i].SelectedNode.Parent.Name : null);
+
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+
+        }
+
+        private void insertChildColumnHeader_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int i = tabControl2.SelectedIndex;
+                tvwTablesHeader[i].SelectedNode.Nodes.Add("新建子列标题");
+                tvwTablesHeader[i].SelectedNode.Expand();
+                tvwTablesHeader[i].SelectedNode = tvwTablesHeader[i].SelectedNode.LastNode;
+                string nodeId = FrmRightBLL.getNewNodeId();
+                tvwTablesHeader[i].SelectedNode.Name = nodeId;
+                FrmDataQueryDesignDAO.saveCreateChildNode(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+    Convert.ToInt16(tvwTablesHeader[i].Tag), nodeId, tvwTablesHeader[i].SelectedNode.Text, tvwTablesHeader[i].SelectedNode.Parent.Name);
+
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+        }
+
+        private void deleteRootColumnHeader_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int i = tabControl2.SelectedIndex;
+                if (tvwTablesHeader[i].Nodes.Count > 1 || tvwTablesHeader[i].SelectedNode.Parent != null)
+                {
+                    if (tvwTablesHeader[i].SelectedNode.Nodes.Count > 0)
+                    {
+                        MessageBox.Show("包含子部门，不能直接删除，请从最低层部门开始删！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("真的要删除吗？", "删除确认", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            //删除数据库数据
+                            FrmDataQueryDesignDAO.saveDeleteNode(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+                                Convert.ToInt16(tvwTablesHeader[i].Tag), tvwTablesHeader[i].SelectedNode.Name);
+                            tvwTablesHeader[i].SelectedNode.Remove();
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("不能删除最后一个部门！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("当前部门已经被其它数据使用，不能删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+        }
+
+        private void createRootColumnHeader_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int i = tabControl2.SelectedIndex;
+                tvwTablesHeader[i].Nodes.Add("新建根列标题");
+                tvwTablesHeader[i].SelectedNode.Expand();
+                //选定新建节点
+                tvwTablesHeader[i].SelectedNode = tvwTablesHeader[i].Nodes[tvwTablesHeader[i].Nodes.Count - 1];
+                string nodeId = FrmRightBLL.getNewNodeId();
+                tvwTablesHeader[i].SelectedNode.Name = nodeId;
+                FrmDataQueryDesignDAO.saveCreateRootNode(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+                    Convert.ToInt16(tvwTablesHeader[i].Tag), nodeId, tvwTablesHeader[i].SelectedNode.Text);
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+        }
+
+        private void tvwTablesHeader_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(e.Label))
+            {
+                int i = tabControl2.SelectedIndex;
+                FrmDataQueryDesignDAO.saveLabelEdit(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+                    Convert.ToInt16(tvwTablesHeader[i].Tag), tvwTablesHeader[i].SelectedNode.Name, e.Label);
+            }
+        }
+
+        private void tvwTablesHeader_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            int i = tabControl2.SelectedIndex;
+            tvwTablesHeader[i].SelectedNode = e.Node;
+        }
+        #endregion
     }
 }

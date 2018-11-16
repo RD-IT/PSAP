@@ -48,6 +48,7 @@
             this.dsPSAP1 = new PSAP.dsPSAP();
             this.dataGridViewEx1 = new PsapUserControlLibrary.DataGridViewEx();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dsPSAP1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -221,11 +222,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(178, 133);
             this.dataGridView1.TabIndex = 9;
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(586, 35);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 10;
+            this.button7.Text = "遍历text";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 474);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridViewEx1);
             this.Controls.Add(this.button6);
@@ -269,5 +281,6 @@
         private dsPSAP dsPSAP1;
         private PsapUserControlLibrary.DataGridViewEx dataGridViewEx1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button7;
     }
 }
