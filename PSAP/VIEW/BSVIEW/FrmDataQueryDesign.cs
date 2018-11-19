@@ -761,35 +761,35 @@ namespace PSAP.VIEW.BSVIEW
         //显示查询条件End        
 
         #region  表标题树相关方法
-        private void insertColumnHeader_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int i = tabControl2.SelectedIndex;
-                string nName;
-                nName = tvwTablesHeader[i].SelectedNode.Name;
-                if (tvwTablesHeader[i].SelectedNode.Parent != null)
-                {
-                    tvwTablesHeader[i].SelectedNode.Parent.Nodes.Insert(tvwTablesHeader[i].SelectedNode.Index, "插入列标题");
-                }
-                else
-                {
-                    tvwTablesHeader[i].Nodes.Insert(tvwTablesHeader[i].SelectedNode.Index, "插入列标题");
-                }
-                tvwTablesHeader[i].SelectedNode.Expand();
-                tvwTablesHeader[tabControl2.SelectedIndex].SelectedNode = tvwTablesHeader[i].SelectedNode.PrevNode;
-                string nodeId = FrmRightBLL.getNewNodeId();
-                tvwTablesHeader[i].SelectedNode.Name = nodeId;
-                FrmDataQueryDesignDAO.saveCreateChildNode(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
-                    Convert.ToInt16(tvwTablesHeader[i].Tag), nodeId, tvwTablesHeader[i].SelectedNode.Text, tvwTablesHeader[i].SelectedNode.Parent != null ? tvwTablesHeader[i].SelectedNode.Parent.Name : null);
+        //private void insertColumnHeader_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        int i = tabControl2.SelectedIndex;
+        //        string nName;
+        //        nName = tvwTablesHeader[i].SelectedNode.Name;
+        //        if (tvwTablesHeader[i].SelectedNode.Parent != null)
+        //        {
+        //            tvwTablesHeader[i].SelectedNode.Parent.Nodes.Insert(tvwTablesHeader[i].SelectedNode.Index, "插入列标题");
+        //        }
+        //        else
+        //        {
+        //            tvwTablesHeader[i].Nodes.Insert(tvwTablesHeader[i].SelectedNode.Index, "插入列标题");
+        //        }
+        //        tvwTablesHeader[i].SelectedNode.Expand();
+        //        tvwTablesHeader[tabControl2.SelectedIndex].SelectedNode = tvwTablesHeader[i].SelectedNode.PrevNode;
+        //        string nodeId = FrmRightBLL.getNewNodeId();
+        //        tvwTablesHeader[i].SelectedNode.Name = nodeId;
+        //        FrmDataQueryDesignDAO.saveCreateChildNode(Convert.ToInt16(tvtbQueryList_User.SelectedNode.Name),
+        //            Convert.ToInt16(tvwTablesHeader[i].Tag), nodeId, tvwTablesHeader[i].SelectedNode.Text, tvwTablesHeader[i].SelectedNode.Parent != null && tvwTablesHeader[i].SelectedNode.Parent.Name != string.Empty ? tvwTablesHeader[i].SelectedNode.Parent.Name : null);
 
-            }
-            catch (Exception e1)
-            {
-                MessageBox.Show(e1.Message);
-            }
+        //    }
+        //    catch (Exception e1)
+        //    {
+        //        MessageBox.Show(e1.Message);
+        //    }
 
-        }
+        //}
 
         private void insertChildColumnHeader_Click(object sender, EventArgs e)
         {
@@ -820,7 +820,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (tvwTablesHeader[i].SelectedNode.Nodes.Count > 0)
                     {
-                        MessageBox.Show("包含子部门，不能直接删除，请从最低层部门开始删！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("包含子部门，不能直接删除，请从最低层列标题开始删！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -837,13 +837,13 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    MessageBox.Show("不能删除最后一个部门！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("不能删除最后一个标题！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (System.Data.SqlClient.SqlException)
-            {
-                MessageBox.Show("当前部门已经被其它数据使用，不能删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //catch (System.Data.SqlClient.SqlException)
+            //{
+            //    MessageBox.Show("当前标题已经被其它数据使用，不能删除！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
             catch (Exception e1)
             {
                 MessageBox.Show(e1.Message);

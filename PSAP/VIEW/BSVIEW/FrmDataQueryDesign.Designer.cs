@@ -781,6 +781,7 @@
             // panel3
             // 
             this.panel3.AutoScroll = true;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.pnlQueryCondition);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(157, 3);
@@ -853,38 +854,38 @@
             this.toolStripSeparator2,
             this.deleteColumnHeader});
             this.cmnsColumnHeader.Name = "contextMenuStrip1";
-            this.cmnsColumnHeader.Size = new System.Drawing.Size(153, 120);
+            this.cmnsColumnHeader.Size = new System.Drawing.Size(149, 98);
             // 
             // insertColumnHeader
             // 
             this.insertColumnHeader.Name = "insertColumnHeader";
-            this.insertColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.insertColumnHeader.Size = new System.Drawing.Size(148, 22);
             this.insertColumnHeader.Text = "插入列标题";
-            this.insertColumnHeader.Click += new System.EventHandler(this.insertColumnHeader_Click);
+            this.insertColumnHeader.Visible = false;
             // 
             // insertChildColumnHeader
             // 
             this.insertChildColumnHeader.Name = "insertChildColumnHeader";
-            this.insertChildColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.insertChildColumnHeader.Size = new System.Drawing.Size(148, 22);
             this.insertChildColumnHeader.Text = "新建子列标题";
             this.insertChildColumnHeader.Click += new System.EventHandler(this.insertChildColumnHeader_Click);
             // 
             // createRootColumnHeader
             // 
             this.createRootColumnHeader.Name = "createRootColumnHeader";
-            this.createRootColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.createRootColumnHeader.Size = new System.Drawing.Size(148, 22);
             this.createRootColumnHeader.Text = "新建根列标题";
             this.createRootColumnHeader.Click += new System.EventHandler(this.createRootColumnHeader_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             // 
             // deleteColumnHeader
             // 
             this.deleteColumnHeader.Name = "deleteColumnHeader";
-            this.deleteColumnHeader.Size = new System.Drawing.Size(152, 22);
+            this.deleteColumnHeader.Size = new System.Drawing.Size(148, 22);
             this.deleteColumnHeader.Text = "删除列标题";
             this.deleteColumnHeader.Click += new System.EventHandler(this.deleteRootColumnHeader_Click);
             // 
@@ -1000,10 +1001,10 @@
         private System.Windows.Forms.TabPage tabPage3;
         private PsapUserControlLibrary.TreeViewToolBoxEx tvtbQueryList_User;
         private System.Windows.Forms.ContextMenuStrip cmnsColumnHeader;
-        private System.Windows.Forms.ToolStripMenuItem insertColumnHeader;
         private System.Windows.Forms.ToolStripMenuItem insertChildColumnHeader;
         private System.Windows.Forms.ToolStripMenuItem createRootColumnHeader;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem deleteColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem insertColumnHeader;
     }
 }

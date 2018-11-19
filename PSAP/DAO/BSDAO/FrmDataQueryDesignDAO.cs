@@ -364,16 +364,16 @@ namespace PSAP.DAO.BSDAO
             "where DataSetting not in (select AutoId from BS_DataSetting) ";
             strSqlLlist.Add(strSql);
 
-            int iTmp = GetDataSettingId(iQuerySqlId, iTabIndex);
+            //int iTmp = GetDataSettingId(iQuerySqlId, iTabIndex);
             //strSql =
             //"delete from BS_DataHeaderSetting  " +
             //"where dataSetting= " + iTmp + " " +
             //"and HeaderName not in (select HeaderName from tmpColumns)";
             //strSqlLlist.Add(strSql);
 
-            strSql = "insert into BS_DataHeaderSetting(QuerySql,DataSetting,HeaderName,HeaderText) " +
-                       "select " + iQuerySqlId + "," + iTmp + ",HeaderName,HeaderText from tmpColumns where '" + iQuerySqlId.ToString() + iTmp.ToString() + "'+HeaderName not in (select convert(varchar(10),querySql)+convert(varchar(10),dataSetting)+headerName from BS_DataHeaderSetting) ";
-            strSqlLlist.Add(strSql);
+            //strSql = "insert into BS_DataHeaderSetting(QuerySql,DataSetting,HeaderName,HeaderText) " +
+            //           "select " + iQuerySqlId + "," + iTmp + ",HeaderName,HeaderText from tmpColumns where '" + iQuerySqlId.ToString() + iTmp.ToString() + "'+HeaderName not in (select convert(varchar(10),querySql)+convert(varchar(10),dataSetting)+headerName from BS_DataHeaderSetting) ";
+            //strSqlLlist.Add(strSql);
 
             strSql = @"drop table tmpColumns ";//删除建立的临时表
             strSqlLlist.Add(strSql);
@@ -477,6 +477,13 @@ namespace PSAP.DAO.BSDAO
             BaseSQL.ExecuteSql(sql);
         }
 
+        /// <summary>
+        /// 保存对节点名的修改
+        /// </summary>
+        /// <param name="iQuerySqlId"></param>
+        /// <param name="iDataSetting"></param>
+        /// <param name="strHeaderName"></param>
+        /// <param name="strHeaderText"></param>
         public static void saveLabelEdit(int iQuerySqlId, int iDataSetting, string strHeaderName,string strHeaderText)
         {
             string sql = "update BS_DataHeaderSetting set HeaderText='" + strHeaderText+"' " +

@@ -33,10 +33,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pnlQueryCondition = new System.Windows.Forms.Panel();
             this.tableLayoutpnlQueryCondition = new System.Windows.Forms.TableLayoutPanel();
+            this.btnExportData = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnExportData = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlQueryCondition.SuspendLayout();
@@ -84,6 +84,7 @@
             // panel3
             // 
             this.panel3.AutoScroll = true;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.pnlQueryCondition);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(157, 3);
@@ -116,6 +117,19 @@
             this.tableLayoutpnlQueryCondition.TabIndex = 4;
             this.tableLayoutpnlQueryCondition.Visible = false;
             // 
+            // btnExportData
+            // 
+            this.btnExportData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportData.Enabled = false;
+            this.btnExportData.Location = new System.Drawing.Point(137, 3);
+            this.btnExportData.Margin = new System.Windows.Forms.Padding(3, 3, 16, 3);
+            this.btnExportData.Name = "btnExportData";
+            this.btnExportData.Size = new System.Drawing.Size(75, 23);
+            this.btnExportData.TabIndex = 1;
+            this.btnExportData.Text = "导出数据";
+            this.btnExportData.UseVisualStyleBackColor = true;
+            this.btnExportData.Click += new System.EventHandler(this.btnExportData_Click);
+            // 
             // btnQuery
             // 
             this.btnQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -147,19 +161,6 @@
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "查询结果";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnExportData
-            // 
-            this.btnExportData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportData.Enabled = false;
-            this.btnExportData.Location = new System.Drawing.Point(137, 3);
-            this.btnExportData.Margin = new System.Windows.Forms.Padding(3, 3, 16, 3);
-            this.btnExportData.Name = "btnExportData";
-            this.btnExportData.Size = new System.Drawing.Size(75, 23);
-            this.btnExportData.TabIndex = 1;
-            this.btnExportData.Text = "导出数据";
-            this.btnExportData.UseVisualStyleBackColor = true;
-            this.btnExportData.Click += new System.EventHandler(this.btnExportData_Click);
             // 
             // FrmDataQuery
             // 
