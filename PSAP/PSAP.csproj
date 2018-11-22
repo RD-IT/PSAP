@@ -93,6 +93,9 @@
     <Compile Include="ENTITY\BSENTITY\UnitCatg.cs" />
     <Compile Include="ENTITY\BSENTITY\UserInfo.cs" />
     <Compile Include="ENTITY\BSENTITY\UserMenuButton.cs" />
+    <Compile Include="ENTITY\PURENTITY\PPurCategory.cs" />
+    <Compile Include="ENTITY\PURENTITY\PrReqHead.cs" />
+    <Compile Include="ENTITY\PURENTITY\PrReqList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSAPCommon\EncryptMD5.cs" />
@@ -276,7 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\PURDAO\" />
-    <Folder Include="ENTITY\PURENTITY\" />
     <Folder Include="PRINT\BSPRINT\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
