@@ -110,8 +110,8 @@ namespace PSAP.DAO.PURDAO
             {
                 string prReqNo = GetMaxOrderNo("PUR_PrReqHead", "PrReqNo", "PR", 11);
                 prReqHeadRow["PrReqNo"] = prReqNo;
-                prReqHeadRow["Applicant"] = FrmLoginDAO.user.RoleName;
-                prReqHeadRow["ApplicantIp"] = "";
+                prReqHeadRow["Applicant"] = SystemInfo.user.RoleName;
+                prReqHeadRow["ApplicantIp"] = SystemInfo.HostIpAddress;
                 prReqHeadRow["ApplicantTime"] = BaseSQL.GetServerDateTime();
 
                 #region Sql更新
@@ -140,8 +140,8 @@ namespace PSAP.DAO.PURDAO
             }
             else//修改
             {
-                prReqHeadRow["Modifier"] = FrmLoginDAO.user.RoleName;
-                prReqHeadRow["ModifierIp"] = "";
+                prReqHeadRow["Modifier"] = SystemInfo.user.RoleName;
+                prReqHeadRow["ModifierIp"] = SystemInfo.HostIpAddress;
                 prReqHeadRow["ModifierTime"] = BaseSQL.GetServerDateTime();
             }
 
@@ -173,7 +173,7 @@ namespace PSAP.DAO.PURDAO
                     catch(Exception ex)
                     {
                         trans.Rollback();
-                        throw;
+                        throw ex;
                     }
                 }
             }

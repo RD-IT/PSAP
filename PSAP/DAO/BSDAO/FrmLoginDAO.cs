@@ -1,4 +1,5 @@
 ﻿using PSAP.ENTITY.BSENTITY;
+using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +22,7 @@ namespace PSAP.DAO.BSDAO
 
         }
 
-        public static UserInfo user;
+        
         public static UserInfo CheckUser(string txtUserID, string txtPassword)
         {
             string sqlString = "select a.*,b.DepartmentName,c.RoleNo,d.RoleName " +
@@ -33,19 +34,19 @@ namespace PSAP.DAO.BSDAO
             ds = BaseSQL.Query(sqlString);
             if (ds.Tables[0].Rows.Count > 0)
             {
-                user = new UserInfo();
-                user.DepartmentNo = ds.Tables[0].Rows[0]["DepartmentNo"].ToString();
-                user.EmpName = ds.Tables[0].Rows[0]["EmpName"].ToString();
-                user.LoginID = ds.Tables[0].Rows[0]["LoginID"].ToString();
-                user.DepartmentName = ds.Tables[0].Rows[0]["DepartmentNo"].ToString();
-                user.RoleNo = ds.Tables[0].Rows[0]["RoleNo"].ToString();
-                user.RoleName = ds.Tables[0].Rows[0]["RoleName"].ToString();
-                user.AutoId = (int)ds.Tables[0].Rows[0]["AutoId"];
-                return user;
+                SystemInfo.user = new UserInfo();
+                SystemInfo.user.DepartmentNo = ds.Tables[0].Rows[0]["DepartmentNo"].ToString();
+                SystemInfo.user.EmpName = ds.Tables[0].Rows[0]["EmpName"].ToString();
+                SystemInfo.user.LoginID = ds.Tables[0].Rows[0]["LoginID"].ToString();
+                SystemInfo.user.DepartmentName = ds.Tables[0].Rows[0]["DepartmentNo"].ToString();
+                SystemInfo.user.RoleNo = ds.Tables[0].Rows[0]["RoleNo"].ToString();
+                SystemInfo.user.RoleName = ds.Tables[0].Rows[0]["RoleName"].ToString();
+                SystemInfo.user.AutoId = (int)ds.Tables[0].Rows[0]["AutoId"];
+                return SystemInfo.user;
             }
             else
             {
-                return user;
+                return SystemInfo.user;
             }
         }
     }

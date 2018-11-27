@@ -51,7 +51,7 @@ namespace PSAP.VIEW.BSVIEW
                 loginPwdTextBox.Text = en.str2;//加密后的数值
             }
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
-            founderTextBox.Text = FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
+            founderTextBox.Text = SystemInfo.user.EmpName;//获取当前登录用户姓名
 
             if (string.IsNullOrEmpty(loginIdTextBox.Text))
             {

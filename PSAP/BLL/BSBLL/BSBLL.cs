@@ -16,6 +16,7 @@ using System.Drawing;
 using System.Xml;
 using PsapUserControlLibrary;
 using System.Reflection;
+using PSAP.PSAPCommon;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -111,7 +112,7 @@ namespace PSAP.BLL.BSBLL
                         n.Enabled = false;//注释此行可关闭按钮权限设定【开发用】
                     }
 
-                    DataTable dt = BSCommon.GetFormButtonRightData(FrmLoginDAO.user.AutoId.ToString(), strCurrentFormName, n.Name);//n.name==>button Name
+                    DataTable dt = BSCommon.GetFormButtonRightData(SystemInfo.user.AutoId.ToString(), strCurrentFormName, n.Name);//n.name==>button Name
 
                     //if (dt.Rows.Count != 0)
                     if (dt != null)
@@ -136,7 +137,7 @@ namespace PSAP.BLL.BSBLL
                             {
                                 tsTmp.Items[i].Enabled = false;
                             }
-                            DataTable dt = BSCommon.GetFormButtonRightData(FrmLoginDAO.user.AutoId.ToString(), strCurrentFormName, tsTmp.Items[i].Name);//n.name==>button Name
+                            DataTable dt = BSCommon.GetFormButtonRightData(SystemInfo.user.AutoId.ToString(), strCurrentFormName, tsTmp.Items[i].Name);//n.name==>button Name
                             if (dt != null)
                             {
                                 foreach (DataRow dr in dt.Rows)

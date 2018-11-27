@@ -127,7 +127,7 @@ namespace PSAP.VIEW.BSVIEW
         private void tsbSave_Click(object sender, EventArgs e)
         {
             createDateDateTimePicker.Value = DateTime.Now;//建立日期设定为保存时间
-            founderTextBox.Text = FrmLoginDAO.user.EmpName;//获取当前登录用户姓名
+            founderTextBox.Text = SystemInfo.user.EmpName;//获取当前登录用户姓名
 
             if (string.IsNullOrEmpty(departmentNoTextBox1.Text))
             {

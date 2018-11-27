@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.bindingSource_PurCategory = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PurCategory = new System.Windows.Forms.BindingSource();
             this.dS_PUR = new PSAP.DS_PUR();
             this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.bindingSource_Department = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_Department = new System.Windows.Forms.BindingSource();
             this.dsPSAP = new PSAP.dsPSAP();
             this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
@@ -45,7 +44,7 @@
             this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -57,6 +56,14 @@
             this.dataColPurCategory = new System.Data.DataColumn();
             this.dataColReqState = new System.Data.DataColumn();
             this.dataColApplicant = new System.Data.DataColumn();
+            this.dataColApplicantIp = new System.Data.DataColumn();
+            this.dataColApplicantTime = new System.Data.DataColumn();
+            this.dataColModifier = new System.Data.DataColumn();
+            this.dataColModifierIp = new System.Data.DataColumn();
+            this.dataColModifierTime = new System.Data.DataColumn();
+            this.dataColApprover = new System.Data.DataColumn();
+            this.dataColApproverIp = new System.Data.DataColumn();
+            this.dataColApproverTime = new System.Data.DataColumn();
             this.dataTablePrReqList = new System.Data.DataTable();
             this.dataColumnAutoId = new System.Data.DataColumn();
             this.dataColumnPrReqNo = new System.Data.DataColumn();
@@ -83,7 +90,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -95,14 +102,7 @@
             this.bS_DepartmentTableAdapter = new PSAP.dsPSAPTableAdapters.BS_DepartmentTableAdapter();
             this.pUR_PurCategoryTableAdapter = new PSAP.DS_PURTableAdapters.PUR_PurCategoryTableAdapter();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.dataColApplicantIp = new System.Data.DataColumn();
-            this.dataColApplicantTime = new System.Data.DataColumn();
-            this.dataColModifier = new System.Data.DataColumn();
-            this.dataColModifierIp = new System.Data.DataColumn();
-            this.dataColModifierTime = new System.Data.DataColumn();
-            this.dataColApprover = new System.Data.DataColumn();
-            this.dataColApproverIp = new System.Data.DataColumn();
-            this.dataColApproverTime = new System.Data.DataColumn();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).BeginInit();
@@ -137,6 +137,7 @@
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.simpleButton1);
             this.pnltop.Controls.Add(this.lookUpPurCategory);
             this.pnltop.Controls.Add(this.labPurCategory);
             this.pnltop.Controls.Add(this.lookUpReqDep);
@@ -388,6 +389,49 @@
             // 
             this.dataColApplicant.Caption = "申请人";
             this.dataColApplicant.ColumnName = "Applicant";
+            // 
+            // dataColApplicantIp
+            // 
+            this.dataColApplicantIp.Caption = "申请人IP";
+            this.dataColApplicantIp.ColumnName = "ApplicantIp";
+            // 
+            // dataColApplicantTime
+            // 
+            this.dataColApplicantTime.Caption = "申请时间";
+            this.dataColApplicantTime.ColumnName = "ApplicantTime";
+            this.dataColApplicantTime.DataType = typeof(System.DateTime);
+            // 
+            // dataColModifier
+            // 
+            this.dataColModifier.Caption = "修改人";
+            this.dataColModifier.ColumnName = "Modifier";
+            // 
+            // dataColModifierIp
+            // 
+            this.dataColModifierIp.Caption = "修改人IP";
+            this.dataColModifierIp.ColumnName = "ModifierIp";
+            // 
+            // dataColModifierTime
+            // 
+            this.dataColModifierTime.Caption = "修改时间";
+            this.dataColModifierTime.ColumnName = "ModifierTime";
+            this.dataColModifierTime.DataType = typeof(System.DateTime);
+            // 
+            // dataColApprover
+            // 
+            this.dataColApprover.Caption = "审批人";
+            this.dataColApprover.ColumnName = "Approver";
+            // 
+            // dataColApproverIp
+            // 
+            this.dataColApproverIp.Caption = "审批人IP";
+            this.dataColApproverIp.ColumnName = "ApproverIp";
+            // 
+            // dataColApproverTime
+            // 
+            this.dataColApproverTime.Caption = "审批时间";
+            this.dataColApproverTime.ColumnName = "ApproverTime";
+            this.dataColApproverTime.DataType = typeof(System.DateTime);
             // 
             // dataTablePrReqList
             // 
@@ -775,48 +819,14 @@
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
-            // dataColApplicantIp
+            // simpleButton1
             // 
-            this.dataColApplicantIp.Caption = "申请人IP";
-            this.dataColApplicantIp.ColumnName = "ApplicantIp";
-            // 
-            // dataColApplicantTime
-            // 
-            this.dataColApplicantTime.Caption = "申请时间";
-            this.dataColApplicantTime.ColumnName = "ApplicantTime";
-            this.dataColApplicantTime.DataType = typeof(System.DateTime);
-            // 
-            // dataColModifier
-            // 
-            this.dataColModifier.Caption = "修改人";
-            this.dataColModifier.ColumnName = "Modifier";
-            // 
-            // dataColModifierIp
-            // 
-            this.dataColModifierIp.Caption = "修改人IP";
-            this.dataColModifierIp.ColumnName = "ModifierIp";
-            // 
-            // dataColModifierTime
-            // 
-            this.dataColModifierTime.Caption = "修改时间";
-            this.dataColModifierTime.ColumnName = "ModifierTime";
-            this.dataColModifierTime.DataType = typeof(System.DateTime);
-            // 
-            // dataColApprover
-            // 
-            this.dataColApprover.Caption = "审批人";
-            this.dataColApprover.ColumnName = "Approver";
-            // 
-            // dataColApproverIp
-            // 
-            this.dataColApproverIp.Caption = "审批人IP";
-            this.dataColApproverIp.ColumnName = "ApproverIp";
-            // 
-            // dataColApproverTime
-            // 
-            this.dataColApproverTime.Caption = "审批时间";
-            this.dataColApproverTime.ColumnName = "ApproverTime";
-            this.dataColApproverTime.DataType = typeof(System.DateTime);
+            this.simpleButton1.Location = new System.Drawing.Point(761, 17);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 9;
+            this.simpleButton1.Text = "查询";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // FrmPrReq
             // 
@@ -941,5 +951,6 @@
         private System.Data.DataColumn dataColApprover;
         private System.Data.DataColumn dataColApproverIp;
         private System.Data.DataColumn dataColApproverTime;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

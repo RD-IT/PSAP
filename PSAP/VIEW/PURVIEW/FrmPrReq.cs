@@ -436,5 +436,9 @@ namespace PSAP.VIEW.BSVIEW
             gridViewPrReqList.FocusedRowHandle = listView.FocusedRowHandle;
         }
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(new SystemHandler().GetIpAddress());
+        }
     }
 }
