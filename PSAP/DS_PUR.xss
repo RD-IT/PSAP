@@ -7,8 +7,8 @@
 <DiagramLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ex:showrelationlabel="False" ViewPortX="-10" ViewPortY="29" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:PUR_PrReqHead" ZOrder="5" X="70" Y="70" Height="305" Width="252" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:PUR_PrReqList" ZOrder="4" X="392" Y="274" Height="191" Width="241" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
-    <Shape ID="DesignTable:PUR_PurCategory" ZOrder="3" X="395" Y="71" Height="134" Width="260" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:PUR_PrReqList" ZOrder="4" X="394" Y="274" Height="191" Width="241" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
+    <Shape ID="DesignTable:PUR_PurCategory" ZOrder="3" X="395" Y="71" Height="153" Width="260" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK__PUR_PrReq__PurCa__11207638" ZOrder="2" LineWidth="11">
@@ -30,7 +30,7 @@
           <Y>324</Y>
         </Point>
         <Point>
-          <X>392</X>
+          <X>394</X>
           <Y>324</Y>
         </Point>
       </RoutePoints>

@@ -306,6 +306,27 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        /// <summary>
+        /// 执行查询语句
+        /// </summary>
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataSet</returns>
+        public static void Query(string SQLString,DataTable QueryTable)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
+                    command.Fill(QueryTable);
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
 
         #endregion
 
@@ -471,6 +492,22 @@ namespace PSAP.DAO.BSDAO
                 foreach (SqlParameter parm in cmdParms)
                     cmd.Parameters.Add(parm);
             }
+        }
+
+        public static void UpdateDataTable(SqlDataAdapter dataAdapter, DataTable dataTable)
+        {
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            commandBuilder.ConflictOption = ConflictOption.OverwriteChanges;
+            dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand(true);
+            dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
+            dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
+
+            dataAdapter.Update(dataTable);
+        }
+
+        public static DateTime GetServerDateTime()
+        {
+            return Convert.ToDateTime(GetSingle("select getdate()"));
         }
 
         #endregion

@@ -3495,11 +3495,16 @@ SELECT AutoId, PurCategory, PurCategoryText FROM PUR_PurCategory WHERE (PurCateg
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT AutoId, PurCategory, PurCategoryText FROM dbo.PUR_PurCategory";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "select 0 as AutoId,  \'全部\' as PurCategory, \'全部\' as PurCategoryText\r\nUnion\r\nSELECT " +
+                "AutoId, PurCategory, PurCategoryText FROM dbo.PUR_PurCategory";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3521,6 +3526,17 @@ SELECT AutoId, PurCategory, PurCategoryText FROM PUR_PurCategory WHERE (PurCateg
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual DS_PUR.PUR_PurCategoryDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            DS_PUR.PUR_PurCategoryDataTable dataTable = new DS_PUR.PUR_PurCategoryDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DS_PUR.PUR_PurCategoryDataTable GetDataByAddAll() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             DS_PUR.PUR_PurCategoryDataTable dataTable = new DS_PUR.PUR_PurCategoryDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
