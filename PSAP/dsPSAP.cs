@@ -9,3 +9,10 @@
         }
     }
 }
+
+namespace PSAP.dsPSAPTableAdapters {
+    
+    
+    public partial class BS_BussinessCategoryTableAdapter {
+    }
+}

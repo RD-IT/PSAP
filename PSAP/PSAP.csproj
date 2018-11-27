@@ -80,6 +80,7 @@
     <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
+    <Compile Include="DAO\BSDAO\FrmBussinessInfoDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmDataQueryDesignDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmLoginDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmOrganizationStruDAO.cs" />

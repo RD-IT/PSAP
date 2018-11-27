@@ -3653,7 +3653,7 @@ namespace PSAP {
                         null,
                         BussinessIsUse};
                 if ((parentBS_BussinessCategoryRowByFK__BS_Bussin__Bussi__7B313519 != null)) {
-                    columnValuesArray[3] = parentBS_BussinessCategoryRowByFK__BS_Bussin__Bussi__7B313519[1];
+                    columnValuesArray[3] = parentBS_BussinessCategoryRowByFK__BS_Bussin__Bussi__7B313519[0];
                 }
                 rowBS_BussinessBaseInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBS_BussinessBaseInfoRow);
@@ -4037,7 +4037,7 @@ namespace PSAP {
                     columnValuesArray[1] = parentBS_BussinessBaseInfoRowByFK__BS_Bussin__Bussi__7E0DA1C4[1];
                 }
                 if ((parentBS_CountryCodeManagementRowByFK__BS_Bussin__Count__7F01C5FD != null)) {
-                    columnValuesArray[9] = parentBS_CountryCodeManagementRowByFK__BS_Bussin__Count__7F01C5FD[1];
+                    columnValuesArray[9] = parentBS_CountryCodeManagementRowByFK__BS_Bussin__Count__7F01C5FD[0];
                 }
                 rowBS_BussinessDetailInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBS_BussinessDetailInfoRow);
@@ -4558,8 +4558,6 @@ namespace PSAP {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class BS_CountryCodeManagementDataTable : global::System.Data.TypedTableBase<BS_CountryCodeManagementRow> {
             
-            private global::System.Data.DataColumn columnAutoId;
-            
             private global::System.Data.DataColumn columnCountryCode;
             
             private global::System.Data.DataColumn columnCountryName;
@@ -4595,14 +4593,6 @@ namespace PSAP {
             protected BS_CountryCodeManagementDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AutoIdColumn {
-                get {
-                    return this.columnAutoId;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4661,7 +4651,6 @@ namespace PSAP {
             public BS_CountryCodeManagementRow AddBS_CountryCodeManagementRow(string CountryCode, string CountryName) {
                 BS_CountryCodeManagementRow rowBS_CountryCodeManagementRow = ((BS_CountryCodeManagementRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         CountryCode,
                         CountryName};
                 rowBS_CountryCodeManagementRow.ItemArray = columnValuesArray;
@@ -4693,7 +4682,6 @@ namespace PSAP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnAutoId = base.Columns["AutoId"];
                 this.columnCountryCode = base.Columns["CountryCode"];
                 this.columnCountryName = base.Columns["CountryName"];
             }
@@ -4701,19 +4689,12 @@ namespace PSAP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnAutoId = new global::System.Data.DataColumn("AutoId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAutoId);
                 this.columnCountryCode = new global::System.Data.DataColumn("CountryCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCountryCode);
                 this.columnCountryName = new global::System.Data.DataColumn("CountryName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCountryName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCountryCode}, true));
-                this.columnAutoId.AutoIncrement = true;
-                this.columnAutoId.AutoIncrementSeed = -1;
-                this.columnAutoId.AutoIncrementStep = -1;
-                this.columnAutoId.AllowDBNull = false;
-                this.columnAutoId.ReadOnly = true;
                 this.columnCountryCode.AllowDBNull = false;
                 this.columnCountryCode.Unique = true;
                 this.columnCountryCode.MaxLength = 20;
@@ -4851,8 +4832,6 @@ namespace PSAP {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class BS_BussinessCategoryDataTable : global::System.Data.TypedTableBase<BS_BussinessCategoryRow> {
             
-            private global::System.Data.DataColumn columnAutoId;
-            
             private global::System.Data.DataColumn columnBussinessCategory;
             
             private global::System.Data.DataColumn columnBussinessCategoryText;
@@ -4888,14 +4867,6 @@ namespace PSAP {
             protected BS_BussinessCategoryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AutoIdColumn {
-                get {
-                    return this.columnAutoId;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4954,7 +4925,6 @@ namespace PSAP {
             public BS_BussinessCategoryRow AddBS_BussinessCategoryRow(string BussinessCategory, string BussinessCategoryText) {
                 BS_BussinessCategoryRow rowBS_BussinessCategoryRow = ((BS_BussinessCategoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         BussinessCategory,
                         BussinessCategoryText};
                 rowBS_BussinessCategoryRow.ItemArray = columnValuesArray;
@@ -4986,7 +4956,6 @@ namespace PSAP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnAutoId = base.Columns["AutoId"];
                 this.columnBussinessCategory = base.Columns["BussinessCategory"];
                 this.columnBussinessCategoryText = base.Columns["BussinessCategoryText"];
             }
@@ -4994,23 +4963,15 @@ namespace PSAP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnAutoId = new global::System.Data.DataColumn("AutoId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAutoId);
                 this.columnBussinessCategory = new global::System.Data.DataColumn("BussinessCategory", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBussinessCategory);
                 this.columnBussinessCategoryText = new global::System.Data.DataColumn("BussinessCategoryText", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBussinessCategoryText);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBussinessCategory}, true));
-                this.columnAutoId.AutoIncrement = true;
-                this.columnAutoId.AutoIncrementSeed = -1;
-                this.columnAutoId.AutoIncrementStep = -1;
-                this.columnAutoId.AllowDBNull = false;
-                this.columnAutoId.ReadOnly = true;
                 this.columnBussinessCategory.AllowDBNull = false;
                 this.columnBussinessCategory.Unique = true;
                 this.columnBussinessCategory.MaxLength = 20;
-                this.columnBussinessCategoryText.AllowDBNull = false;
                 this.columnBussinessCategoryText.MaxLength = 50;
             }
             
@@ -6856,17 +6817,6 @@ namespace PSAP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int AutoId {
-                get {
-                    return ((int)(this[this.tableBS_CountryCodeManagement.AutoIdColumn]));
-                }
-                set {
-                    this[this.tableBS_CountryCodeManagement.AutoIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string CountryCode {
                 get {
                     return ((string)(this[this.tableBS_CountryCodeManagement.CountryCodeColumn]));
@@ -6932,17 +6882,6 @@ namespace PSAP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int AutoId {
-                get {
-                    return ((int)(this[this.tableBS_BussinessCategory.AutoIdColumn]));
-                }
-                set {
-                    this[this.tableBS_BussinessCategory.AutoIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string BussinessCategory {
                 get {
                     return ((string)(this[this.tableBS_BussinessCategory.BussinessCategoryColumn]));
@@ -6956,11 +6895,28 @@ namespace PSAP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string BussinessCategoryText {
                 get {
-                    return ((string)(this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn]));
+                    try {
+                        return ((string)(this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“BS_BussinessCategory”中列“BussinessCategoryText”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBussinessCategoryTextNull() {
+                return this.IsNull(this.tableBS_BussinessCategory.BussinessCategoryTextColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBussinessCategoryTextNull() {
+                this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12270,39 +12226,9 @@ SELECT AutoId, BussinessBaseNo, BussinessBaseText, BussinessCategory, BussinessI
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BS_CountryCodeManagement";
-            tableMapping.ColumnMappings.Add("AutoId", "AutoId");
             tableMapping.ColumnMappings.Add("CountryCode", "CountryCode");
             tableMapping.ColumnMappings.Add("CountryName", "CountryName");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[BS_CountryCodeManagement] WHERE (([AutoId] = @Original_AutoId)" +
-                " AND ([CountryCode] = @Original_CountryCode) AND ((@IsNull_CountryName = 1 AND [" +
-                "CountryName] IS NULL) OR ([CountryName] = @Original_CountryName)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AutoId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AutoId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CountryCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CountryName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CountryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[BS_CountryCodeManagement] ([CountryCode], [CountryName]) VALUE" +
-                "S (@CountryCode, @CountryName);\r\nSELECT AutoId, CountryCode, CountryName FROM BS" +
-                "_CountryCodeManagement WHERE (CountryCode = @CountryCode)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CountryCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CountryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[BS_CountryCodeManagement] SET [CountryCode] = @CountryCode, [CountryName] = @CountryName WHERE (([AutoId] = @Original_AutoId) AND ([CountryCode] = @Original_CountryCode) AND ((@IsNull_CountryName = 1 AND [CountryName] IS NULL) OR ([CountryName] = @Original_CountryName)));
-SELECT AutoId, CountryCode, CountryName FROM BS_CountryCodeManagement WHERE (CountryCode = @CountryCode)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CountryCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CountryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AutoId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AutoId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CountryCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CountryName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CountryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CountryName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12318,7 +12244,8 @@ SELECT AutoId, CountryCode, CountryName FROM BS_CountryCodeManagement WHERE (Cou
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT AutoId, CountryCode, CountryName FROM dbo.BS_CountryCodeManagement";
+            this._commandCollection[0].CommandText = "SELECT CountryCode, CountryName FROM dbo.BS_CountryCodeManagement\r\nunion\r\nselect " +
+                " \'\',\'\' ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12344,160 +12271,6 @@ SELECT AutoId, CountryCode, CountryName FROM BS_CountryCodeManagement WHERE (Cou
             dsPSAP.BS_CountryCodeManagementDataTable dataTable = new dsPSAP.BS_CountryCodeManagementDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsPSAP.BS_CountryCodeManagementDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsPSAP dataSet) {
-            return this.Adapter.Update(dataSet, "BS_CountryCodeManagement");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_AutoId, string Original_CountryCode, string Original_CountryName) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_AutoId));
-            if ((Original_CountryCode == null)) {
-                throw new global::System.ArgumentNullException("Original_CountryCode");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_CountryCode));
-            }
-            if ((Original_CountryName == null)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_CountryName));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string CountryCode, string CountryName) {
-            if ((CountryCode == null)) {
-                throw new global::System.ArgumentNullException("CountryCode");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(CountryCode));
-            }
-            if ((CountryName == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(CountryName));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string CountryCode, string CountryName, int Original_AutoId, string Original_CountryCode, string Original_CountryName) {
-            if ((CountryCode == null)) {
-                throw new global::System.ArgumentNullException("CountryCode");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(CountryCode));
-            }
-            if ((CountryName == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(CountryName));
-            }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_AutoId));
-            if ((Original_CountryCode == null)) {
-                throw new global::System.ArgumentNullException("Original_CountryCode");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_CountryCode));
-            }
-            if ((Original_CountryName == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_CountryName));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string CountryName, int Original_AutoId, string Original_CountryCode, string Original_CountryName) {
-            return this.Update(Original_CountryCode, CountryName, Original_AutoId, Original_CountryCode, Original_CountryName);
         }
     }
     
@@ -12622,36 +12395,9 @@ SELECT AutoId, CountryCode, CountryName FROM BS_CountryCodeManagement WHERE (Cou
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BS_BussinessCategory";
-            tableMapping.ColumnMappings.Add("AutoId", "AutoId");
             tableMapping.ColumnMappings.Add("BussinessCategory", "BussinessCategory");
             tableMapping.ColumnMappings.Add("BussinessCategoryText", "BussinessCategoryText");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[BS_BussinessCategory] WHERE (([AutoId] = @Original_AutoId) AND" +
-                " ([BussinessCategory] = @Original_BussinessCategory) AND ([BussinessCategoryText" +
-                "] = @Original_BussinessCategoryText))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AutoId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AutoId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BussinessCategory", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BussinessCategoryText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategoryText", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[BS_BussinessCategory] ([BussinessCategory], [BussinessCategoryText]) VALUES (@BussinessCategory, @BussinessCategoryText);
-SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategory WHERE (BussinessCategory = @BussinessCategory)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BussinessCategory", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BussinessCategoryText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategoryText", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[BS_BussinessCategory] SET [BussinessCategory] = @BussinessCategory, [BussinessCategoryText] = @BussinessCategoryText WHERE (([AutoId] = @Original_AutoId) AND ([BussinessCategory] = @Original_BussinessCategory) AND ([BussinessCategoryText] = @Original_BussinessCategoryText));
-SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategory WHERE (BussinessCategory = @BussinessCategory)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BussinessCategory", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BussinessCategoryText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategoryText", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AutoId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AutoId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BussinessCategory", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BussinessCategoryText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BussinessCategoryText", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12667,8 +12413,8 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT AutoId, BussinessCategory, BussinessCategoryText FROM dbo.BS_BussinessCate" +
-                "gory";
+            this._commandCollection[0].CommandText = "SELECT  BussinessCategory, BussinessCategoryText FROM dbo.BS_BussinessCategory\r\nu" +
+                "nion\r\nselect \'\',\'\'";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12694,156 +12440,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
             dsPSAP.BS_BussinessCategoryDataTable dataTable = new dsPSAP.BS_BussinessCategoryDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsPSAP.BS_BussinessCategoryDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsPSAP dataSet) {
-            return this.Adapter.Update(dataSet, "BS_BussinessCategory");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_AutoId, string Original_BussinessCategory, string Original_BussinessCategoryText) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_AutoId));
-            if ((Original_BussinessCategory == null)) {
-                throw new global::System.ArgumentNullException("Original_BussinessCategory");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_BussinessCategory));
-            }
-            if ((Original_BussinessCategoryText == null)) {
-                throw new global::System.ArgumentNullException("Original_BussinessCategoryText");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_BussinessCategoryText));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string BussinessCategory, string BussinessCategoryText) {
-            if ((BussinessCategory == null)) {
-                throw new global::System.ArgumentNullException("BussinessCategory");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(BussinessCategory));
-            }
-            if ((BussinessCategoryText == null)) {
-                throw new global::System.ArgumentNullException("BussinessCategoryText");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(BussinessCategoryText));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string BussinessCategory, string BussinessCategoryText, int Original_AutoId, string Original_BussinessCategory, string Original_BussinessCategoryText) {
-            if ((BussinessCategory == null)) {
-                throw new global::System.ArgumentNullException("BussinessCategory");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(BussinessCategory));
-            }
-            if ((BussinessCategoryText == null)) {
-                throw new global::System.ArgumentNullException("BussinessCategoryText");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(BussinessCategoryText));
-            }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_AutoId));
-            if ((Original_BussinessCategory == null)) {
-                throw new global::System.ArgumentNullException("Original_BussinessCategory");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_BussinessCategory));
-            }
-            if ((Original_BussinessCategoryText == null)) {
-                throw new global::System.ArgumentNullException("Original_BussinessCategoryText");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_BussinessCategoryText));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string BussinessCategoryText, int Original_AutoId, string Original_BussinessCategory, string Original_BussinessCategoryText) {
-            return this.Update(Original_BussinessCategory, BussinessCategoryText, Original_AutoId, Original_BussinessCategory, Original_BussinessCategoryText);
         }
     }
     
@@ -12880,10 +12476,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
         private BS_BussinessDetailInfoTableAdapter _bS_BussinessDetailInfoTableAdapter;
         
         private BS_BussinessFinancialInfoTableAdapter _bS_BussinessFinancialInfoTableAdapter;
-        
-        private BS_CountryCodeManagementTableAdapter _bS_CountryCodeManagementTableAdapter;
-        
-        private BS_BussinessCategoryTableAdapter _bS_BussinessCategoryTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -13056,34 +12648,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public BS_CountryCodeManagementTableAdapter BS_CountryCodeManagementTableAdapter {
-            get {
-                return this._bS_CountryCodeManagementTableAdapter;
-            }
-            set {
-                this._bS_CountryCodeManagementTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public BS_BussinessCategoryTableAdapter BS_BussinessCategoryTableAdapter {
-            get {
-                return this._bS_BussinessCategoryTableAdapter;
-            }
-            set {
-                this._bS_BussinessCategoryTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -13145,14 +12709,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                             && (this._bS_BussinessFinancialInfoTableAdapter.Connection != null))) {
                     return this._bS_BussinessFinancialInfoTableAdapter.Connection;
                 }
-                if (((this._bS_CountryCodeManagementTableAdapter != null) 
-                            && (this._bS_CountryCodeManagementTableAdapter.Connection != null))) {
-                    return this._bS_CountryCodeManagementTableAdapter.Connection;
-                }
-                if (((this._bS_BussinessCategoryTableAdapter != null) 
-                            && (this._bS_BussinessCategoryTableAdapter.Connection != null))) {
-                    return this._bS_BussinessCategoryTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -13199,12 +12755,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                 if ((this._bS_BussinessFinancialInfoTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._bS_CountryCodeManagementTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._bS_BussinessCategoryTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -13216,15 +12766,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(dsPSAP dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._bS_BussinessCategoryTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BS_BussinessCategory.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bS_BussinessCategoryTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._bS_QuerySqlTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.BS_QuerySql.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -13240,15 +12781,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._bS_BussinessBaseInfoTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._bS_CountryCodeManagementTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BS_CountryCodeManagement.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bS_CountryCodeManagementTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -13343,14 +12875,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(dsPSAP dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._bS_BussinessCategoryTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BS_BussinessCategory.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bS_BussinessCategoryTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._bS_QuerySqlTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.BS_QuerySql.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -13364,14 +12888,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._bS_BussinessBaseInfoTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._bS_CountryCodeManagementTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BS_CountryCodeManagement.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bS_CountryCodeManagementTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -13529,14 +13045,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bS_CountryCodeManagementTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BS_CountryCodeManagement.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bS_CountryCodeManagementTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._bS_BussinessBaseInfoTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.BS_BussinessBaseInfo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -13550,14 +13058,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._bS_QuerySqlTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bS_BussinessCategoryTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BS_BussinessCategory.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bS_BussinessCategoryTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -13642,14 +13142,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
             }
             if (((this._bS_BussinessFinancialInfoTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._bS_BussinessFinancialInfoTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
-            }
-            if (((this._bS_CountryCodeManagementTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._bS_CountryCodeManagementTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
-            }
-            if (((this._bS_BussinessCategoryTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._bS_BussinessCategoryTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
@@ -13782,24 +13274,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                         adaptersWithAcceptChangesDuringUpdate.Add(this._bS_BussinessFinancialInfoTableAdapter.Adapter);
                     }
                 }
-                if ((this._bS_CountryCodeManagementTableAdapter != null)) {
-                    revertConnections.Add(this._bS_CountryCodeManagementTableAdapter, this._bS_CountryCodeManagementTableAdapter.Connection);
-                    this._bS_CountryCodeManagementTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._bS_CountryCodeManagementTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._bS_CountryCodeManagementTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._bS_CountryCodeManagementTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._bS_CountryCodeManagementTableAdapter.Adapter);
-                    }
-                }
-                if ((this._bS_BussinessCategoryTableAdapter != null)) {
-                    revertConnections.Add(this._bS_BussinessCategoryTableAdapter, this._bS_BussinessCategoryTableAdapter.Connection);
-                    this._bS_BussinessCategoryTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._bS_BussinessCategoryTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._bS_BussinessCategoryTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._bS_BussinessCategoryTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._bS_BussinessCategoryTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -13901,14 +13375,6 @@ SELECT AutoId, BussinessCategory, BussinessCategoryText FROM BS_BussinessCategor
                 if ((this._bS_BussinessFinancialInfoTableAdapter != null)) {
                     this._bS_BussinessFinancialInfoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._bS_BussinessFinancialInfoTableAdapter]));
                     this._bS_BussinessFinancialInfoTableAdapter.Transaction = null;
-                }
-                if ((this._bS_CountryCodeManagementTableAdapter != null)) {
-                    this._bS_CountryCodeManagementTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._bS_CountryCodeManagementTableAdapter]));
-                    this._bS_CountryCodeManagementTableAdapter.Transaction = null;
-                }
-                if ((this._bS_BussinessCategoryTableAdapter != null)) {
-                    this._bS_BussinessCategoryTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._bS_BussinessCategoryTableAdapter]));
-                    this._bS_BussinessCategoryTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

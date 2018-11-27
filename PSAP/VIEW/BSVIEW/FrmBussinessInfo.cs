@@ -1,8 +1,10 @@
-﻿using PSAP.PSAPCommon;
+﻿using PSAP.DAO.BSDAO;
+using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,18 @@ namespace PSAP.VIEW.BSVIEW
         {
             InitializeComponent();
             InitEnableState();//初始化控件Enable状态
+            BindingDatatSource();
+        }
+
+
+        public void BindingDatatSource()
+        {
+            
+            dataSet1=FrmBussinessInfoDAO.InitDataSet();
+            gdBussinessBaseInfo.DataSource = dataSet1.Tables["BS_BussinessBaseInfo"];
+            bussinessBaseNoTextBox.DataBindings.Add("Text",dataSet1.Tables["BS_BussinessDetailInfo"],"BussinessBaseNo");
+            companyLRTextBox.DataBindings.Add("Text", dataSet1.Tables["BS_BussinessDetailInfo"], "CompanyLR");
+            companyAddressTextBox.DataBindings.Add("Text",dataSet1.Tables["BS_BussinessDetailInfo"],"CompanyAddress");
         }
 
         /// <summary>
@@ -27,7 +41,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             pnlEdit.Enabled = false;
             pnlEdit1.Enabled = false;
-            dgveBussinessBaseInfo.ReadOnly = true;
+            gdvBussinessBaseInfo.OptionsBehavior.Editable =false;//
+            tsbSave.Enabled = false;
+            tsbCancel.Enabled = false;
         }
 
         /// <summary>
@@ -39,8 +55,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             pnlEdit.Enabled = !pnlEdit.Enabled;
             pnlEdit1.Enabled = !pnlEdit1.Enabled;
-            dgveBussinessBaseInfo.ReadOnly = false;
-
+            gdvBussinessBaseInfo.OptionsBehavior.Editable  = !gdvBussinessBaseInfo.OptionsBehavior.Editable;//
+            tsbSave.Enabled = !tsbSave.Enabled;
+            tsbCancel.Enabled = !tsbCancel.Enabled;
             //检测窗口状态：编辑="EDIT"，浏览=""
             if (((Label)this.Controls["lblEditFlag"]).Text == "")
             {
@@ -50,16 +67,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 ((Label)this.Controls["lblEditFlag"]).Text = "";
             }
-
         }
-
-        //private void bS_BussinessBaseInfoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        //{
-        //    this.Validate();
-        //    this.bS_BussinessBaseInfoBindingSource.EndEdit();
-        //    this.tableAdapterManager.UpdateAll(this.dsPSAP);
-
-        //}
 
         private void FrmBussinessInfo_Load(object sender, EventArgs e)
         {
@@ -181,41 +189,17 @@ namespace PSAP.VIEW.BSVIEW
 
         }
 
-        private void dgveBussinessBaseInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void gdBussinessBaseInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (editFlag == 1
-                && !string.IsNullOrEmpty(dgveBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString())
-                && !string.IsNullOrEmpty(dgveBussinessBaseInfo.CurrentRow.Cells[2].Value.ToString()))
-            {
-               // bS_BussinessBaseInfoBindingSource.EndEdit();
-               // tableAdapterManager.UpdateAll(dsPSAP);
-
-                bS_BussinessDetailInfoBindingSource.AddNew();
-                bS_BussinessFinancialInfoBindingSource.AddNew();
-
-                bussinessBaseNoTextBox.Text = dgveBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString();
-                bussinessBaseNoTextBox1.Text = dgveBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString();
-                editFlag = 0;
-
-                bS_BussinessDetailInfoBindingSource.EndEdit();
-                //tableAdapterManager.UpdateAll(dsPSAP);
-
-
-                bS_BussinessFinancialInfoBindingSource.EndEdit();
-                tableAdapterManager.UpdateAll(dsPSAP);
-            }
-
-            
         }
 
-        private void dgveBussinessBaseInfo_RowLeave(object sender, DataGridViewCellEventArgs e)
+        private void gdBussinessBaseInfo_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            int index = bS_BussinessDetailInfoBindingSource.Find("BussinessBaseNo", dgveBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString());
-            if (index != -1)
-            {
-                bS_BussinessDetailInfoBindingSource.Position = index;//定位BindingSource
-            }
-
+            //int index = bS_BussinessDetailInfoBindingSource.Find("BussinessBaseNo",gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetDataRow(gdvBussinessBaseInfo.FocusedRowHandle).Field<>,"fgf"));
+            //if (index != -1)
+            //{
+            //    bS_BussinessDetailInfoBindingSource.Position = index;//定位BindingSource
+            //}
 
             //if (string.IsNullOrEmpty(departmentNameTextBox1.Text))
             //{
@@ -226,7 +210,7 @@ namespace PSAP.VIEW.BSVIEW
 
             try
             {
-                this.Validate();
+                //this.Validate();
                 //this.bS_BussinessBaseInfoBindingSource.EndEdit();
                 //this.tableAdapterManager.UpdateAll(this.dsPSAP);
                 //ChangeEnabledState();//保存后更新控件状态
@@ -237,11 +221,11 @@ namespace PSAP.VIEW.BSVIEW
                 MessageBox.Show("此部门编码已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //departmentNoTextBox1.Focus();
             }
-            //dgveBussinessBaseInfo.Enabled = true;//保存后数据表控件可用
+            //gdBussinessBaseInfo.Enabled = true;//保存后数据表控件可用
 
         }
-        private int editFlag=0; //1:新增
-        private void dgveBussinessBaseInfo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private int editFlag = 0; //1:新增
+        private void gdBussinessBaseInfo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             editFlag = 1;
 
@@ -249,10 +233,162 @@ namespace PSAP.VIEW.BSVIEW
 
         private void bussinessBaseNoTextBox_TextChanged(object sender, EventArgs e)
         {
-            bS_BussinessDetailInfoBindingSource.EndEdit();
-            tableAdapterManager.UpdateAll(dsPSAP);
+           // bS_BussinessDetailInfoBindingSource.EndEdit();
+            //tableAdapterManager.UpdateAll(dsPSAP);
 
         }
+
+        private void bS_BussinessBaseInfoBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbAdd_Click(object sender, EventArgs e)
+        {
+            ChangeEnabledState();//更改控件状态
+                                 //bS_BussinessBaseInfoBindingSource.AddNew();
+                                 //bS_BussinessDetailInfoBindingSource.AddNew();
+                                 // bS_BussinessFinancialInfoBindingSource.AddNew();
+            dataSet1.Tables["BS_BussinessBaseInfo"].Rows.Add();
+
+            //dataSet1.Tables["BS_BussinessDetailInfo"].Rows.Add();
+            dataSet1.Tables["BS_BussinessDetailInfo"].NewRow();
+            gdBussinessBaseInfo.Focus();
+        }
+
+        private void tsbEdit_Click(object sender, EventArgs e)
+        {
+            ChangeEnabledState();//更改控件状态
+            gdBussinessBaseInfo.Focus();
+        }
+
+        private void tsbDelete_Click(object sender, EventArgs e)
+        {
+            //if (bS_RoleBindingSource.Current != null)//当前是否有数据
+            //{
+            //    if (MessageBox.Show("确实要删除吗，与此【角色】相关的权限将一起被删除?", "确认", MessageBoxButtons.YesNo,
+            //                                MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
+            //        //先删除对此数据有依赖关系的相关数数
+            //        FrmRightDAO.DeleteRoleCorrelationData(roleNoTextBox.Text);//删除与角色相关数据
+
+            //        bS_RoleBindingSource.RemoveCurrent();
+            //        this.tableAdapterManager.UpdateAll(dsPSAP);//更新数据集
+            //    }
+            //}
+            //dgvRoleList.Enabled = true;//删除后数据表控件可用
+
+        }
+
+        private void tsbSave_Click(object sender, EventArgs e)
+        {
+            //if (string.IsNullOrEmpty(roleNoTextBox.Text))
+            {
+               // MessageBox.Show("【角色编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               /// gdBussinessBaseInfo.Focus();
+                //return;
+            }
+           // if (string.IsNullOrEmpty(roleNameTextBox.Text))
+            {
+               // MessageBox.Show("【角色名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               // gdBussinessBaseInfo.Focus();
+               // return;
+            }
+
+            try
+            {
+               // Validate();
+                //bS_BussinessBaseInfoBindingSource.EndEdit();
+               // bS_BussinessDetailInfoBindingSource.EndEdit();
+               // bS_BussinessFinancialInfoBindingSource.EndEdit();
+                //tableAdapterManager.UpdateAll(this.dsPSAP);
+
+
+                ChangeEnabledState();//保存后更新控件状态
+
+                using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+                {
+                    conn.Open();
+                    using (SqlTransaction trans = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            SqlCommand cmd = new SqlCommand("", conn, trans);
+                            cmd.CommandText = "select Top 0 * from BS_BussinessDetailInfo ";
+                            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            adp.Fill(dt);
+                            UpdateDataTable(adp, dataSet1.Tables["BS_BussinessDetailInfo"]);
+
+
+                             cmd = new SqlCommand("", conn, trans);
+                            cmd.CommandText = "select Top 0 * from BS_BussinessBaseInfo ";
+                             adp = new SqlDataAdapter(cmd);
+                             dt = new DataTable();
+                            adp.Fill(dt);
+                            UpdateDataTable(adp, dataSet1.Tables["BS_BussinessBaseInfo"]);
+
+
+                            trans.Commit();
+                           dataSet1.Tables["BS_BussinessBaseInfo"].AcceptChanges();
+                           dataSet1.Tables["BS_BussinessDetailInfo"].AcceptChanges();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            trans.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+            }
+            catch (System.Data.ConstraintException)//关键字字段值重复
+            {
+                MessageBox.Show("此角色【部门编码】已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                gdBussinessBaseInfo.Focus();
+            }
+
+            catch (System.Data.SqlClient.SqlException)//外键约束
+            {
+                MessageBox.Show("此角色【部门编码】已经被分配权限，不允许修改！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //执行一遍取消操作
+            }
+        }
+
+        public static void UpdateDataTable(SqlDataAdapter dataAdapter, DataTable dataTable)
+        {
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            commandBuilder.ConflictOption = ConflictOption.OverwriteChanges;
+            dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand(true);
+            dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
+            dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
+
+            dataAdapter.Update(dataTable);
+        }
+
+        //        if (editFlag == 1
+        //    && !string.IsNullOrEmpty(gdvBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString())
+        //    && !string.IsNullOrEmpty(gdvBussinessBaseInfo.CurrentRow.Cells[2].Value.ToString()))
+        //{
+        //    gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.row,);
+        //    // bS_BussinessBaseInfoBindingSource.EndEdit();
+        //    // tableAdapterManager.UpdateAll(dsPSAP);
+
+        //    bS_BussinessDetailInfoBindingSource.AddNew();
+        //    bS_BussinessFinancialInfoBindingSource.AddNew();
+
+        //    bussinessBaseNoTextBox.Text = gdBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString();
+        //    bussinessBaseNoTextBox1.Text = gdBussinessBaseInfo.CurrentRow.Cells[1].Value.ToString();
+        //    editFlag = 0;
+
+        //    bS_BussinessDetailInfoBindingSource.EndEdit();
+        //    //tableAdapterManager.UpdateAll(dsPSAP);
+
+
+        //    bS_BussinessFinancialInfoBindingSource.EndEdit();
+        //    tableAdapterManager.UpdateAll(dsPSAP);
+        //}
     }
 }
 
