@@ -2,37 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PSAP.ENTITY.BSENTITY
 {
-    class BButton
+    class LanguageCategory
     {
-        private string buttonName;
-        private string buttonText;
+        private string languageName;
+        private string languageText;
 
-        public string ButtonName
+        public string LanguageName
         {
             get
             {
-                return buttonName;
+                return languageName;
             }
 
             set
             {
-                buttonName = value;
+                languageName = value;
             }
         }
 
-        public string ButtonText
+        public string LanguageText
         {
             get
             {
-                return buttonText;
+                return languageText;
             }
 
             set
             {
-                buttonText = value;
+                languageText = value;
             }
         }
     }
