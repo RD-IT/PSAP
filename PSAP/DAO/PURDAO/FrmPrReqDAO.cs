@@ -60,7 +60,6 @@ namespace PSAP.DAO.PURDAO
         /// <param name="purCategoryStr"></param>
         public void QueryPrReqHead(DataTable queryDataTable, DateTime beginDate, DateTime endDate, string reqDepStr, string purCategoryStr, bool nullTable)
         {
-            //string sqlStr = string.Format(" ReqDate>='{0}' and ReqDate<'{1}'", beginDate.ToString("yyyy-MM-dd"), endDate.AddDays(1).ToString("yyyy-MM-dd"));
             string sqlStr = string.Format(" ReqDate between '{0}' and '{1}'", beginDate.ToString("yyyy-MM-dd"), endDate.AddDays(1).ToString("yyyy-MM-dd"));
             if (reqDepStr != "")
             {

@@ -113,6 +113,7 @@
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
     <Compile Include="PSAPCommon\MessageHandler.cs" />
     <Compile Include="PSAPCommon\psapCommon.cs" />
+    <Compile Include="PSAPCommon\SystemHandler.cs" />
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="VIEW\BSVIEW\FrmChangePassword.cs">
