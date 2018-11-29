@@ -110,12 +110,14 @@
     <Compile Include="PSAPCommon\DataTypeConvert.cs" />
     <Compile Include="PSAPCommon\EncryptMD5.cs" />
     <Compile Include="PSAPCommon\ExceptionHandler.cs" />
+    <Compile Include="PSAPCommon\FileHandler.cs" />
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
     <Compile Include="PSAPCommon\MessageHandler.cs" />
     <Compile Include="PSAPCommon\psapCommon.cs" />
     <Compile Include="PSAPCommon\SystemHandler.cs" />
     <Compile Include="PSAPCommon\SystemInfo.cs" />
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
+    <Compile Include="PSAPCommon\ViewHandler.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="VIEW\BSVIEW\FrmChangePassword.cs">
       <SubType>Form</SubType>

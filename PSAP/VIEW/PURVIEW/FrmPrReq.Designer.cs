@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.textCommon = new DevExpress.XtraEditors.TextEdit();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labApplicant = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApplicant = new DevExpress.XtraEditors.LookUpEdit();
@@ -115,10 +117,9 @@
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pUR_PurCategoryTableAdapter = new PSAP.DS_PURTableAdapters.PUR_PurCategoryTableAdapter();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
-            this.textCommon = new DevExpress.XtraEditors.TextEdit();
-            this.labCommon = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxReqState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApplicant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).BeginInit();
@@ -148,7 +149,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
@@ -173,6 +173,21 @@
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(989, 78);
             this.pnltop.TabIndex = 0;
+            // 
+            // textCommon
+            // 
+            this.textCommon.Location = new System.Drawing.Point(432, 44);
+            this.textCommon.Name = "textCommon";
+            this.textCommon.Size = new System.Drawing.Size(150, 20);
+            this.textCommon.TabIndex = 13;
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(366, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 14;
+            this.labCommon.Text = "通用查询：";
             // 
             // comboBoxReqState
             // 
@@ -225,7 +240,7 @@
             // lookUpPurCategory
             // 
             this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(555, 14);
+            this.lookUpPurCategory.Location = new System.Drawing.Point(562, 14);
             this.lookUpPurCategory.Name = "lookUpPurCategory";
             this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -240,7 +255,7 @@
             // 
             // labPurCategory
             // 
-            this.labPurCategory.Location = new System.Drawing.Point(489, 17);
+            this.labPurCategory.Location = new System.Drawing.Point(496, 17);
             this.labPurCategory.Name = "labPurCategory";
             this.labPurCategory.Size = new System.Drawing.Size(60, 14);
             this.labPurCategory.TabIndex = 7;
@@ -249,7 +264,7 @@
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(374, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(381, 14);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -264,7 +279,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(308, 17);
+            this.labReqDep.Location = new System.Drawing.Point(315, 17);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(60, 14);
             this.labReqDep.TabIndex = 5;
@@ -1021,21 +1036,6 @@
             this.splitterControl1.TabIndex = 3;
             this.splitterControl1.TabStop = false;
             // 
-            // textCommon
-            // 
-            this.textCommon.Location = new System.Drawing.Point(432, 44);
-            this.textCommon.Name = "textCommon";
-            this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 13;
-            // 
-            // labCommon
-            // 
-            this.labCommon.Location = new System.Drawing.Point(366, 47);
-            this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(60, 14);
-            this.labCommon.TabIndex = 14;
-            this.labCommon.Text = "通用查询：";
-            // 
             // FrmPrReq
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1047,10 +1047,12 @@
             this.Name = "FrmPrReq";
             this.TabText = "采购请购单";
             this.Text = "采购请购单";
+            this.Activated += new System.EventHandler(this.FrmPrReq_Activated);
             this.Load += new System.EventHandler(this.FrmPrReq_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxReqState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApplicant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).EndInit();
@@ -1080,7 +1082,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

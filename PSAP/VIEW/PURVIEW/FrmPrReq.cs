@@ -1,15 +1,11 @@
 ﻿using DevExpress.XtraGrid.Views.Base;
-using PSAP.BLL.BSBLL;
-using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
-using PsapUserControlLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -20,6 +16,11 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         int headFocusedLineNo = 0;
+
+        /// <summary>
+        /// 查询的请购单号
+        /// </summary>
+        public static string queryPrReqNo = "";
 
         public FrmPrReq()
         {
@@ -48,7 +49,8 @@ namespace PSAP.VIEW.BSVIEW
                 dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
                 dateReqDateEnd.DateTime = DateTime.Now.Date;
 
-                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime, dateReqDateEnd.DateTime, "", "", 0, "", "", true);
+                if(textCommon.Text=="")
+                    prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.AddDays(1).ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.ToString("yyyy-MM-dd"), "", "", 0, "", "", true);
 
             }
             catch (Exception ex)
@@ -71,7 +73,8 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_PrReq.Tables[0].Clear();
                 dataSet_PrReq.Tables[1].Clear();
-                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime, dateReqDateEnd.DateTime, reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
+                headFocusedLineNo = 0;
+                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
 
                 SetButtonAndColumnState(false);
             }
@@ -97,7 +100,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        if (gridViewPrReqHead.FocusedRowHandle != headFocusedLineNo) btnCancel_Click(null, null);
+                        if (gridViewPrReqHead.FocusedRowHandle != headFocusedLineNo&& gridViewPrReqHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
+                            btnCancel_Click(null, null);
                     }
 
                     if (DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]) != "")
@@ -558,6 +562,32 @@ namespace PSAP.VIEW.BSVIEW
             gridViewPrReqList.FocusedRowHandle = listView.FocusedRowHandle;
         }
 
+        private void FrmPrReq_Activated(object sender, EventArgs e)
+        {
+            if (queryPrReqNo != "")
+            {
+                textCommon.Text = queryPrReqNo;
+                queryPrReqNo = "";
+                lookUpReqDep.ItemIndex = 0;
+                lookUpPurCategory.ItemIndex = 0;
+                comboBoxReqState.SelectedIndex = 0;
+                lookUpApplicant.ItemIndex = 0;
 
+                dataSet_PrReq.Tables[0].Clear();
+                headFocusedLineNo = 0;
+                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "", textCommon.Text, false);
+                SetButtonAndColumnState(false);
+
+                if (dataSet_PrReq.Tables[0].Rows.Count > 0)
+                {
+                    dateReqDateBegin.DateTime = DataTypeConvert.GetDateTime(dataSet_PrReq.Tables[0].Rows[0]["ReqDate"]).Date;
+                    dateReqDateEnd.DateTime = dateReqDateBegin.DateTime.AddDays(7);
+                }
+            }
+            //else
+            //{
+            //    textCommon.Text = "";
+            //}
+        }
     }
 }
