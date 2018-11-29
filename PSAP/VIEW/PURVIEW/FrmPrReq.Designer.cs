@@ -28,8 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labApplicant = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpApplicant = new DevExpress.XtraEditors.LookUpEdit();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
+            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
+            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
+            this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
+            this.dateReqDateEnd = new DevExpress.XtraEditors.DateEdit();
+            this.lab = new DevExpress.XtraEditors.LabelControl();
+            this.labReqDate = new DevExpress.XtraEditors.LabelControl();
+            this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -58,22 +70,9 @@
             this.dataColRequirementDate = new System.Data.DataColumn();
             this.dataColPrReqListRemark = new System.Data.DataColumn();
             this.dataColCodeName = new System.Data.DataColumn();
-            this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labApplicant = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpApplicant = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
-            this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
-            this.dateReqDateEnd = new DevExpress.XtraEditors.DateEdit();
-            this.lab = new DevExpress.XtraEditors.LabelControl();
-            this.labReqDate = new DevExpress.XtraEditors.LabelControl();
-            this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -96,7 +95,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -116,11 +115,10 @@
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pUR_PurCategoryTableAdapter = new PSAP.DS_PURTableAdapters.PUR_PurCategoryTableAdapter();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this.textCommon = new DevExpress.XtraEditors.TextEdit();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxReqState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApplicant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).BeginInit();
@@ -129,6 +127,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).BeginInit();
@@ -147,10 +148,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.textCommon);
+            this.pnltop.Controls.Add(this.labCommon);
             this.pnltop.Controls.Add(this.comboBoxReqState);
             this.pnltop.Controls.Add(this.labApplicant);
             this.pnltop.Controls.Add(this.lookUpApplicant);
@@ -169,6 +173,163 @@
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(989, 78);
             this.pnltop.TabIndex = 0;
+            // 
+            // comboBoxReqState
+            // 
+            this.comboBoxReqState.EnterMoveNextControl = true;
+            this.comboBoxReqState.Location = new System.Drawing.Point(86, 44);
+            this.comboBoxReqState.Name = "comboBoxReqState";
+            this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxReqState.Properties.Items.AddRange(new object[] {
+            "全部",
+            "待审核",
+            "审核",
+            "关闭"});
+            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
+            this.comboBoxReqState.TabIndex = 4;
+            // 
+            // labApplicant
+            // 
+            this.labApplicant.Location = new System.Drawing.Point(202, 47);
+            this.labApplicant.Name = "labApplicant";
+            this.labApplicant.Size = new System.Drawing.Size(48, 14);
+            this.labApplicant.TabIndex = 11;
+            this.labApplicant.Text = "申请人：";
+            // 
+            // lookUpApplicant
+            // 
+            this.lookUpApplicant.EnterMoveNextControl = true;
+            this.lookUpApplicant.Location = new System.Drawing.Point(250, 44);
+            this.lookUpApplicant.Name = "lookUpApplicant";
+            this.lookUpApplicant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpApplicant.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 80, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LoginId", "用户名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EmpName", "员工名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpApplicant.Properties.DisplayMember = "EmpName";
+            this.lookUpApplicant.Properties.NullText = "";
+            this.lookUpApplicant.Properties.ValueMember = "EmpName";
+            this.lookUpApplicant.Size = new System.Drawing.Size(100, 20);
+            this.lookUpApplicant.TabIndex = 5;
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(20, 47);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(60, 14);
+            this.labReqState.TabIndex = 9;
+            this.labReqState.Text = "单据状态：";
+            // 
+            // lookUpPurCategory
+            // 
+            this.lookUpPurCategory.EnterMoveNextControl = true;
+            this.lookUpPurCategory.Location = new System.Drawing.Point(555, 14);
+            this.lookUpPurCategory.Name = "lookUpPurCategory";
+            this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpPurCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurCategory", "编号", 81, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurCategoryText", "名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
+            this.lookUpPurCategory.Properties.NullText = "";
+            this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
+            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPurCategory.TabIndex = 3;
+            // 
+            // labPurCategory
+            // 
+            this.labPurCategory.Location = new System.Drawing.Point(489, 17);
+            this.labPurCategory.Name = "labPurCategory";
+            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
+            this.labPurCategory.TabIndex = 7;
+            this.labPurCategory.Text = "采购类型：";
+            // 
+            // lookUpReqDep
+            // 
+            this.lookUpReqDep.EnterMoveNextControl = true;
+            this.lookUpReqDep.Location = new System.Drawing.Point(374, 14);
+            this.lookUpReqDep.Name = "lookUpReqDep";
+            this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpReqDep.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentNo", "部门编号", 95, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "部门名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
+            this.lookUpReqDep.Properties.NullText = "";
+            this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
+            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.TabIndex = 2;
+            // 
+            // labReqDep
+            // 
+            this.labReqDep.Location = new System.Drawing.Point(308, 17);
+            this.labReqDep.Name = "labReqDep";
+            this.labReqDep.Size = new System.Drawing.Size(60, 14);
+            this.labReqDep.TabIndex = 5;
+            this.labReqDep.Text = "申请部门：";
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.Location = new System.Drawing.Point(598, 43);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(75, 23);
+            this.btnQuery.TabIndex = 6;
+            this.btnQuery.Text = "查询";
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // dateReqDateEnd
+            // 
+            this.dateReqDateEnd.EditValue = null;
+            this.dateReqDateEnd.EnterMoveNextControl = true;
+            this.dateReqDateEnd.Location = new System.Drawing.Point(202, 14);
+            this.dateReqDateEnd.Name = "dateReqDateEnd";
+            this.dateReqDateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateReqDateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateReqDateEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dateReqDateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateReqDateEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dateReqDateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateReqDateEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dateReqDateEnd.Size = new System.Drawing.Size(100, 20);
+            this.dateReqDateEnd.TabIndex = 1;
+            // 
+            // lab
+            // 
+            this.lab.Location = new System.Drawing.Point(192, 17);
+            this.lab.Name = "lab";
+            this.lab.Size = new System.Drawing.Size(4, 14);
+            this.lab.TabIndex = 2;
+            this.lab.Text = "-";
+            // 
+            // labReqDate
+            // 
+            this.labReqDate.Location = new System.Drawing.Point(20, 17);
+            this.labReqDate.Name = "labReqDate";
+            this.labReqDate.Size = new System.Drawing.Size(60, 14);
+            this.labReqDate.TabIndex = 1;
+            this.labReqDate.Text = "请购日期：";
+            // 
+            // dateReqDateBegin
+            // 
+            this.dateReqDateBegin.EditValue = null;
+            this.dateReqDateBegin.EnterMoveNextControl = true;
+            this.dateReqDateBegin.Location = new System.Drawing.Point(86, 14);
+            this.dateReqDateBegin.Name = "dateReqDateBegin";
+            this.dateReqDateBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateReqDateBegin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateReqDateBegin.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dateReqDateBegin.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateReqDateBegin.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dateReqDateBegin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateReqDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dateReqDateBegin.Size = new System.Drawing.Size(100, 20);
+            this.dateReqDateBegin.TabIndex = 0;
             // 
             // dataSet_PrReq
             // 
@@ -342,163 +503,6 @@
             // 
             this.dataColCodeName.Caption = "零件名称";
             this.dataColCodeName.ColumnName = "CodeName";
-            // 
-            // comboBoxReqState
-            // 
-            this.comboBoxReqState.EnterMoveNextControl = true;
-            this.comboBoxReqState.Location = new System.Drawing.Point(86, 44);
-            this.comboBoxReqState.Name = "comboBoxReqState";
-            this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxReqState.Properties.Items.AddRange(new object[] {
-            "全部",
-            "待审核",
-            "审核",
-            "关闭"});
-            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
-            this.comboBoxReqState.TabIndex = 4;
-            // 
-            // labApplicant
-            // 
-            this.labApplicant.Location = new System.Drawing.Point(202, 47);
-            this.labApplicant.Name = "labApplicant";
-            this.labApplicant.Size = new System.Drawing.Size(48, 14);
-            this.labApplicant.TabIndex = 11;
-            this.labApplicant.Text = "申请人：";
-            // 
-            // lookUpApplicant
-            // 
-            this.lookUpApplicant.EnterMoveNextControl = true;
-            this.lookUpApplicant.Location = new System.Drawing.Point(250, 44);
-            this.lookUpApplicant.Name = "lookUpApplicant";
-            this.lookUpApplicant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpApplicant.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 80, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LoginId", "用户名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EmpName", "员工名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpApplicant.Properties.DisplayMember = "EmpName";
-            this.lookUpApplicant.Properties.NullText = "";
-            this.lookUpApplicant.Properties.ValueMember = "EmpName";
-            this.lookUpApplicant.Size = new System.Drawing.Size(100, 20);
-            this.lookUpApplicant.TabIndex = 5;
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(20, 47);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(60, 14);
-            this.labReqState.TabIndex = 9;
-            this.labReqState.Text = "单据状态：";
-            // 
-            // lookUpPurCategory
-            // 
-            this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(555, 14);
-            this.lookUpPurCategory.Name = "lookUpPurCategory";
-            this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpPurCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurCategory", "编号", 81, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurCategoryText", "名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
-            this.lookUpPurCategory.Properties.NullText = "";
-            this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
-            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
-            this.lookUpPurCategory.TabIndex = 3;
-            // 
-            // labPurCategory
-            // 
-            this.labPurCategory.Location = new System.Drawing.Point(489, 17);
-            this.labPurCategory.Name = "labPurCategory";
-            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
-            this.labPurCategory.TabIndex = 7;
-            this.labPurCategory.Text = "采购类型：";
-            // 
-            // lookUpReqDep
-            // 
-            this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(374, 14);
-            this.lookUpReqDep.Name = "lookUpReqDep";
-            this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpReqDep.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentNo", "部门编号", 95, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "部门名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
-            this.lookUpReqDep.Properties.NullText = "";
-            this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
-            this.lookUpReqDep.TabIndex = 2;
-            // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(308, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 5;
-            this.labReqDep.Text = "申请部门：";
-            // 
-            // btnQuery
-            // 
-            this.btnQuery.Location = new System.Drawing.Point(399, 43);
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 6;
-            this.btnQuery.Text = "查询";
-            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
-            // 
-            // dateReqDateEnd
-            // 
-            this.dateReqDateEnd.EditValue = null;
-            this.dateReqDateEnd.EnterMoveNextControl = true;
-            this.dateReqDateEnd.Location = new System.Drawing.Point(202, 14);
-            this.dateReqDateEnd.Name = "dateReqDateEnd";
-            this.dateReqDateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
-            this.dateReqDateEnd.Size = new System.Drawing.Size(100, 20);
-            this.dateReqDateEnd.TabIndex = 1;
-            // 
-            // lab
-            // 
-            this.lab.Location = new System.Drawing.Point(192, 17);
-            this.lab.Name = "lab";
-            this.lab.Size = new System.Drawing.Size(4, 14);
-            this.lab.TabIndex = 2;
-            this.lab.Text = "-";
-            // 
-            // labReqDate
-            // 
-            this.labReqDate.Location = new System.Drawing.Point(20, 17);
-            this.labReqDate.Name = "labReqDate";
-            this.labReqDate.Size = new System.Drawing.Size(60, 14);
-            this.labReqDate.TabIndex = 1;
-            this.labReqDate.Text = "请购日期：";
-            // 
-            // dateReqDateBegin
-            // 
-            this.dateReqDateBegin.EditValue = null;
-            this.dateReqDateBegin.EnterMoveNextControl = true;
-            this.dateReqDateBegin.Location = new System.Drawing.Point(86, 14);
-            this.dateReqDateBegin.Name = "dateReqDateBegin";
-            this.dateReqDateBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateBegin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateBegin.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateBegin.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateBegin.Properties.EditFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateBegin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
-            this.dateReqDateBegin.Size = new System.Drawing.Size(100, 20);
-            this.dateReqDateBegin.TabIndex = 0;
             // 
             // pnlMiddle
             // 
@@ -1017,6 +1021,21 @@
             this.splitterControl1.TabIndex = 3;
             this.splitterControl1.TabStop = false;
             // 
+            // textCommon
+            // 
+            this.textCommon.Location = new System.Drawing.Point(432, 44);
+            this.textCommon.Name = "textCommon";
+            this.textCommon.Size = new System.Drawing.Size(150, 20);
+            this.textCommon.TabIndex = 13;
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(366, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 14;
+            this.labCommon.Text = "通用查询：";
+            // 
             // FrmPrReq
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1032,9 +1051,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxReqState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApplicant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).EndInit();
@@ -1043,6 +1059,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).EndInit();
@@ -1061,6 +1080,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1154,5 +1174,7 @@
         private System.Data.DataColumn dataColCodeName;
         private DevExpress.XtraGrid.Columns.GridColumn colCodeName;
         private DevExpress.XtraEditors.SplitterControl splitterControl1;
+        private DevExpress.XtraEditors.TextEdit textCommon;
+        private DevExpress.XtraEditors.LabelControl labCommon;
     }
 }

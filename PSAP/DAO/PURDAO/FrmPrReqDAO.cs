@@ -91,7 +91,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="endDate"></param>
         /// <param name="reqDepStr"></param>
         /// <param name="purCategoryStr"></param>
-        public void QueryPrReqHead(DataTable queryDataTable, DateTime beginDate, DateTime endDate, string reqDepStr, string purCategoryStr, int reqStateInt,string applicantStr, bool nullTable)
+        public void QueryPrReqHead(DataTable queryDataTable, DateTime beginDate, DateTime endDate, string reqDepStr, string purCategoryStr, int reqStateInt,string applicantStr,string commonStr, bool nullTable)
         {
             string sqlStr = string.Format(" ReqDate between '{0}' and '{1}'", beginDate.ToString("yyyy-MM-dd"), endDate.AddDays(1).ToString("yyyy-MM-dd"));
             if (reqDepStr != "")
@@ -110,6 +110,10 @@ namespace PSAP.DAO.PURDAO
             if(applicantStr!="")
             {
                 sqlStr += string.Format(" and Applicant='{0}'", applicantStr);
+            }
+            if(commonStr!="")
+            {
+                sqlStr += string.Format(" and (PrReqNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%')", commonStr);
             }
             if (nullTable)
             {

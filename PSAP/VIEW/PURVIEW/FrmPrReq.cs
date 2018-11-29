@@ -48,7 +48,7 @@ namespace PSAP.VIEW.BSVIEW
                 dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
                 dateReqDateEnd.DateTime = DateTime.Now.Date;
 
-                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime, dateReqDateEnd.DateTime, "", "", 0, "", true);
+                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime, dateReqDateEnd.DateTime, "", "", 0, "", "", true);
 
             }
             catch (Exception ex)
@@ -68,9 +68,10 @@ namespace PSAP.VIEW.BSVIEW
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? lookUpPurCategory.EditValue.ToString() : "";
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
                 string empNameStr = lookUpApplicant.ItemIndex > 0 ? lookUpApplicant.EditValue.ToString() : "";
+                string commonStr = textCommon.Text.Trim();
                 dataSet_PrReq.Tables[0].Clear();
                 dataSet_PrReq.Tables[1].Clear();
-                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime, dateReqDateEnd.DateTime, reqDepStr, purCategoryStr, reqStateInt, empNameStr, false);
+                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime, dateReqDateEnd.DateTime, reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
 
                 SetButtonAndColumnState(false);
             }
