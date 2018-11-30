@@ -47,7 +47,7 @@ namespace PSAP
                 txtPassword.Focus();
             }
 
-            FrmLoginBLL.CheckUser(txtUserID.Text, en.str2,cboLanguage);// en.str2为加密后密码
+            FrmLoginBLL.CheckUser(txtUserID.Text, en.str2);// en.str2为加密后密码
 
             
         }
@@ -69,11 +69,6 @@ namespace PSAP
             f.ShowDialog();
             txtUserID.Focus();
 
-        }
-
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-            FrmLoginBLL.InitCboLanguage(cboLanguage);
         }
     }
 }

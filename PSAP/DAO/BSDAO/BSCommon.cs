@@ -114,15 +114,15 @@ namespace PSAP.DAO.BSDAO
         /// <param name="strFormName"></param>
         /// <param name="strButtonName"></param>
         /// <param name="strButtonText"></param>
-        public static void TraverseControlTextAdd(string strFormName, string strControlsCategory, string strControlsName, string strCinese, string strControlsProperties)
+        public static void TraverseControlTextAdd(string strFormName, string strControlsCategory, string strControlsName, string strCinese)
         {
-            string strSql = "insert into BS_LanguageSetting(FormName,ControlsCategory,ControlsName,Chinese,ControlsProperties) " +
-                "select '" + strFormName + "','" + strControlsCategory + "','" + strControlsName + "','" + strCinese + "','" + strControlsProperties + "' " +
-                "where '" + strFormName + strControlsName + strControlsProperties + "' not in (" +
-                    "select FormName+ControlsName+ControlsProperties from BS_LanguageSetting)";
+            string strSql = "insert into BS_LanguageSetting(FormName,ControlsCategory,ControlsName,Chinese) " +
+                "select '" + strFormName + "','" + strControlsCategory + "','" + strControlsName + "','" + strCinese + "'" +
+                "where '" + strFormName + strControlsName + "' not in (" +
+                    "select FormName+ControlsName from BS_LanguageSetting)";
             strSqlLlist.Add(strSql);
-            strSql = "update BS_LanguageSetting set Chinese='" + strCinese + "' " +
-                "where FormName='" + strFormName + "' and ControlsName='" + strControlsName + "' and ControlsProperties='" + strControlsProperties + "'";
+            strSql = "update BS_LanguageSetting set Chinese='"+ strCinese + "' "+
+                "where FormName='"+strFormName+"' and ControlsName='"+strControlsName+"'";
             strSqlLlist.Add(strSql);
 
         }
@@ -133,31 +133,6 @@ namespace PSAP.DAO.BSDAO
         public static void TraverseControlTextSave()
         {
             BaseSQL.ExecuteSqlTran(strSqlLlist);
-        }
-
-        /// <summary>
-        /// 获得窗口语种设定数据
-        /// </summary>
-        /// <param name="strFormName"></param>
-        /// <returns></returns>
-        public static DataTable GetFormLanuageData(string strFormName)
-        {
-            string sql =
-                "select AutoId,FormName,ControlsCategory,ControlsName,ControlsProperties," + FrmLoginDAO.user.Lanuage + " as LanguageText " +
-                "from BS_LanguageSetting " +
-                "where FormName like '" + strFormName + "'";
-            DataTable dt = BaseSQL.GetTableBySql(sql);
-            return dt;
-
-        }
-
-        public static EnumerableRowCollection<DataRow> LocationControlsText(DataTable dt,string strControlsName,string strControlsProperties)
-        {
-            var TextValue = from dr1 in dt.AsEnumerable()
-                            where dr1.Field<string>("ControlsName") == strControlsName
-                                && dr1.Field<string>("ControlsProperties") == strControlsProperties
-                            select dr1;
-            return TextValue;
         }
         #endregion
     }

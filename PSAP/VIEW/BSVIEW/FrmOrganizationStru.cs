@@ -90,7 +90,7 @@ namespace PSAP.VIEW.BSVIEW
                 bS_DepartmentDataGridView.CurrentRow.Cells[3].Value = tvwOrganizationStru.SelectedNode.Parent.Name;
             }
             bS_DepartmentDataGridView.CurrentRow.Cells[4].Value = DateTime.Now;
-            bS_DepartmentDataGridView.CurrentRow.Cells[5].Value = FrmLoginDAO.user.EmpName;
+            bS_DepartmentDataGridView.CurrentRow.Cells[5].Value = SystemInfo.user.EmpName;
             this.Validate();
             this.bS_DepartmentBindingSource.EndEdit();
             this.bS_DepartmentTableAdapter.Update(dsPSAP.BS_Department);

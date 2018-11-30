@@ -13,6 +13,7 @@ using PSAP.DAO.BSDAO;
 using System.Data.SqlClient;
 using System.Reflection;
 using PSAP.BLL;
+using PSAP.PSAPCommon;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -30,19 +31,17 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             toolStripContainer1.TopToolStripPanel.Controls.Add(mnsMain);
             //PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限(不用了这是以前设置实例菜单的)
+
             FrmMainBLL.InitMenuItem(mnsMain);//初始化菜单
-            FrmMainBLL.SetMenuItemByRole(mnsMain, FrmLoginDAO.user.RoleNo);//初始化用户"角色"权限
-            FrmMainBLL.SetMenuItemByPersonal(mnsMain, FrmLoginDAO.user.AutoId.ToString());//初始化用户"个人"权限
+            FrmMainBLL.SetMenuItemByRole(mnsMain, SystemInfo.user.RoleNo);//初始化用户"角色"权限
+            FrmMainBLL.SetMenuItemByPersonal(mnsMain, SystemInfo.user.AutoId.ToString());//初始化用户"个人"权限
             FrmMainTool frmMainTool = new FrmMainTool(mnsMain);//menuStrip1(实例菜单)
             //frmMainTool.HideOnClose = true;//使用就无法触发窗口关闭事件了
             frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
             BSBLL.RefreshUserThemeConfigFile();//刷新用户主题配置文件
             BSBLL.InitThemeVariable();//初始化主题变量
 
-            if (FrmLoginDAO.user.Lanuage != "Chinese")
-            {
-                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
-            }
+
         }
 
         //用于dock
@@ -75,7 +74,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.Text = "天津容大机电有限公司   [" + FrmLoginDAO.user.DepartmentName + " - " + FrmLoginDAO.user.EmpName + "]";
+            this.Text = "天津容大机电有限公司   [" + SystemInfo.user.DepartmentName + " - " + SystemInfo.user.EmpName + "]";
 
         }
 
@@ -189,10 +188,6 @@ namespace PSAP.VIEW.BSVIEW
 
                 dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
                 BSBLL.SetFormRight(dc);//设置窗口中按钮的权限
-                if (FrmLoginDAO.user.Lanuage!="Chinese")
-                {
-                    BSBLL.SetFormLanguages(dc);//设置DockContent中的语种
-                }
             }
         }
         /// <summary>

@@ -306,39 +306,25 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
-
         /// <summary>
-        ///         /// 执行查询语句，返回多表DataSet
+        /// 执行查询语句
         /// </summary>
-        /// <param name="SQLStringList"></param>
-        /// <param name="TablesName"></param>
-        /// <returns></returns>
-        public static DataSet GetDataSetBySql(ArrayList SQLStringList, ArrayList TablesName)
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataSet</returns>
+        public static void Query(string SQLString,DataTable QueryTable)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                DataSet ds = new DataSet();
                 try
                 {
                     connection.Open();
-                    //SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
-                    SqlDataAdapter command;
-                    string strsql;
-                    for (int n = 0; n < SQLStringList.Count; n++)
-                    {
-                        strsql = SQLStringList[n].ToString();
-                        if (strsql.Trim().Length > 1)
-                        {
-                            command = new SqlDataAdapter(strsql, connection);
-                            command.Fill(ds, TablesName[n].ToString());
-                        }
-                    }
+                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
+                    command.Fill(QueryTable);
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
                     throw new Exception(ex.Message);
                 }
-                return ds;
             }
         }
 
@@ -506,6 +492,22 @@ namespace PSAP.DAO.BSDAO
                 foreach (SqlParameter parm in cmdParms)
                     cmd.Parameters.Add(parm);
             }
+        }
+
+        public static void UpdateDataTable(SqlDataAdapter dataAdapter, DataTable dataTable)
+        {
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            commandBuilder.ConflictOption = ConflictOption.OverwriteChanges;
+            dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand(true);
+            dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
+            dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
+
+            dataAdapter.Update(dataTable);
+        }
+
+        public static DateTime GetServerDateTime()
+        {
+            return Convert.ToDateTime(GetSingle("select getdate()"));
         }
 
         #endregion

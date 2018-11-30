@@ -16,9 +16,9 @@ namespace PSAP.BLL.BSBLL
         /// </summary>
         /// <param name="strUserID"></param>
         /// <param name="strPassword"></param>
-        public static void CheckUser(string strUserID, string strPassword,ComboBox cboLanguage)
+        public static void CheckUser(string strUserID, string strPassword)
         {
-            if (FrmLoginDAO.CheckUser(strUserID, strPassword,cboLanguage.SelectedValue.ToString()) != null)
+            if (FrmLoginDAO.CheckUser(strUserID, strPassword) != null)
             {
                 FrmLogin.ActiveForm.Close();
             }
@@ -35,9 +35,9 @@ namespace PSAP.BLL.BSBLL
         /// <param name="strPassword"></param>
         /// <param name="strPasswordNew"></param>
         /// <param name="strPasswordNewV"></param>
-        public static void CheckUserChangePassword(string strUserID, string strPassword, string strPasswordNew)
+        public static void CheckUser(string strUserID, string strPassword, string strPasswordNew)
         {
-            if (FrmLoginDAO.CheckUser(strUserID, strPassword,"") != null)
+            if (FrmLoginDAO.CheckUser(strUserID, strPassword) != null)
             {
                 EncryptMD5 en = new EncryptMD5(strPasswordNew);//实例化EncryptMD5, 加密后值引用en.str2
                 FrmLoginDAO.ChangePassword(en.str2, strUserID);
@@ -47,14 +47,6 @@ namespace PSAP.BLL.BSBLL
             {
                 MessageBox.Show(string.Format("用ID或原密码错误！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-
-        public static void InitCboLanguage(ComboBox cbTmp)
-        {
-            cbTmp.DataSource = FrmLoginDAO.GegLanguageCategory();
-            cbTmp.DisplayMember = "LanguageText";
-            cbTmp.ValueMember = "LanguageName";
         }
     }
 }
