@@ -608,6 +608,44 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BS_CountryCodeManagementTableAdapter" GeneratorDataComponentClassName="BS_CountryCodeManagementTableAdapter" Name="BS_CountryCodeManagement" UserDataComponentName="BS_CountryCodeManagementTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PSAPConnectionString (Settings)" DbObjectName="PSAP.dbo.BS_CountryCodeManagement" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT CountryCode, CountryName FROM dbo.BS_CountryCodeManagement
+union
+select  '','' </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CountryCode" DataSetColumn="CountryCode" />
+              <Mapping SourceColumn="CountryName" DataSetColumn="CountryName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BS_BussinessCategoryTableAdapter" GeneratorDataComponentClassName="BS_BussinessCategoryTableAdapter" Name="BS_BussinessCategory" UserDataComponentName="BS_BussinessCategoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PSAPConnectionString (Settings)" DbObjectName="PSAP.dbo.BS_BussinessCategory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT  BussinessCategory, BussinessCategoryText FROM dbo.BS_BussinessCategory
+union
+select '',''</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BussinessCategory" DataSetColumn="BussinessCategory" />
+              <Mapping SourceColumn="BussinessCategoryText" DataSetColumn="BussinessCategoryText" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -616,7 +654,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
   <xs:element name="dsPSAP" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsPSAP" msprop:Generator_UserDSName="dsPSAP">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="BS_Department" msprop:Generator_TableClassName="BS_DepartmentDataTable" msprop:Generator_TableVarName="tableBS_Department" msprop:Generator_RowChangedName="BS_DepartmentRowChanged" msprop:Generator_TablePropName="BS_Department" msprop:Generator_RowDeletingName="BS_DepartmentRowDeleting" msprop:Generator_RowChangingName="BS_DepartmentRowChanging" msprop:Generator_RowEvHandlerName="BS_DepartmentRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_DepartmentRowDeleted" msprop:Generator_RowClassName="BS_DepartmentRow" msprop:Generator_UserTableName="BS_Department" msprop:Generator_RowEvArgName="BS_DepartmentRowChangeEvent">
+        <xs:element name="BS_Department" msprop:Generator_TableClassName="BS_DepartmentDataTable" msprop:Generator_TableVarName="tableBS_Department" msprop:Generator_TablePropName="BS_Department" msprop:Generator_RowDeletingName="BS_DepartmentRowDeleting" msprop:Generator_RowChangingName="BS_DepartmentRowChanging" msprop:Generator_RowEvHandlerName="BS_DepartmentRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_DepartmentRowDeleted" msprop:Generator_UserTableName="BS_Department" msprop:Generator_RowChangedName="BS_DepartmentRowChanged" msprop:Generator_RowEvArgName="BS_DepartmentRowChangeEvent" msprop:Generator_RowClassName="BS_DepartmentRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -687,7 +725,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_UserInfo" msprop:Generator_TableClassName="BS_UserInfoDataTable" msprop:Generator_TableVarName="tableBS_UserInfo" msprop:Generator_TablePropName="BS_UserInfo" msprop:Generator_RowDeletingName="BS_UserInfoRowDeleting" msprop:Generator_RowChangingName="BS_UserInfoRowChanging" msprop:Generator_RowEvHandlerName="BS_UserInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_UserInfoRowDeleted" msprop:Generator_UserTableName="BS_UserInfo" msprop:Generator_RowChangedName="BS_UserInfoRowChanged" msprop:Generator_RowEvArgName="BS_UserInfoRowChangeEvent" msprop:Generator_RowClassName="BS_UserInfoRow">
+        <xs:element name="BS_UserInfo" msprop:Generator_TableClassName="BS_UserInfoDataTable" msprop:Generator_TableVarName="tableBS_UserInfo" msprop:Generator_RowChangedName="BS_UserInfoRowChanged" msprop:Generator_TablePropName="BS_UserInfo" msprop:Generator_RowDeletingName="BS_UserInfoRowDeleting" msprop:Generator_RowChangingName="BS_UserInfoRowChanging" msprop:Generator_RowEvHandlerName="BS_UserInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_UserInfoRowDeleted" msprop:Generator_RowClassName="BS_UserInfoRow" msprop:Generator_UserTableName="BS_UserInfo" msprop:Generator_RowEvArgName="BS_UserInfoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -765,7 +803,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_UserRight" msprop:Generator_TableClassName="BS_UserRightDataTable" msprop:Generator_TableVarName="tableBS_UserRight" msprop:Generator_TablePropName="BS_UserRight" msprop:Generator_RowDeletingName="BS_UserRightRowDeleting" msprop:Generator_RowChangingName="BS_UserRightRowChanging" msprop:Generator_RowEvHandlerName="BS_UserRightRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_UserRightRowDeleted" msprop:Generator_UserTableName="BS_UserRight" msprop:Generator_RowChangedName="BS_UserRightRowChanged" msprop:Generator_RowEvArgName="BS_UserRightRowChangeEvent" msprop:Generator_RowClassName="BS_UserRightRow">
+        <xs:element name="BS_UserRight" msprop:Generator_TableClassName="BS_UserRightDataTable" msprop:Generator_TableVarName="tableBS_UserRight" msprop:Generator_RowChangedName="BS_UserRightRowChanged" msprop:Generator_TablePropName="BS_UserRight" msprop:Generator_RowDeletingName="BS_UserRightRowDeleting" msprop:Generator_RowChangingName="BS_UserRightRowChanging" msprop:Generator_RowEvHandlerName="BS_UserRightRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_UserRightRowDeleted" msprop:Generator_RowClassName="BS_UserRightRow" msprop:Generator_UserTableName="BS_UserRight" msprop:Generator_RowEvArgName="BS_UserRightRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -794,7 +832,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_Role" msprop:Generator_TableClassName="BS_RoleDataTable" msprop:Generator_TableVarName="tableBS_Role" msprop:Generator_RowChangedName="BS_RoleRowChanged" msprop:Generator_TablePropName="BS_Role" msprop:Generator_RowDeletingName="BS_RoleRowDeleting" msprop:Generator_RowChangingName="BS_RoleRowChanging" msprop:Generator_RowEvHandlerName="BS_RoleRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_RoleRowDeleted" msprop:Generator_RowClassName="BS_RoleRow" msprop:Generator_UserTableName="BS_Role" msprop:Generator_RowEvArgName="BS_RoleRowChangeEvent">
+        <xs:element name="BS_Role" msprop:Generator_TableClassName="BS_RoleDataTable" msprop:Generator_TableVarName="tableBS_Role" msprop:Generator_TablePropName="BS_Role" msprop:Generator_RowDeletingName="BS_RoleRowDeleting" msprop:Generator_RowChangingName="BS_RoleRowChanging" msprop:Generator_RowEvHandlerName="BS_RoleRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_RoleRowDeleted" msprop:Generator_UserTableName="BS_Role" msprop:Generator_RowChangedName="BS_RoleRowChanged" msprop:Generator_RowEvArgName="BS_RoleRowChangeEvent" msprop:Generator_RowClassName="BS_RoleRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -815,7 +853,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_Menu" msprop:Generator_TableClassName="BS_MenuDataTable" msprop:Generator_TableVarName="tableBS_Menu" msprop:Generator_TablePropName="BS_Menu" msprop:Generator_RowDeletingName="BS_MenuRowDeleting" msprop:Generator_RowChangingName="BS_MenuRowChanging" msprop:Generator_RowEvHandlerName="BS_MenuRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_MenuRowDeleted" msprop:Generator_UserTableName="BS_Menu" msprop:Generator_RowChangedName="BS_MenuRowChanged" msprop:Generator_RowEvArgName="BS_MenuRowChangeEvent" msprop:Generator_RowClassName="BS_MenuRow">
+        <xs:element name="BS_Menu" msprop:Generator_TableClassName="BS_MenuDataTable" msprop:Generator_TableVarName="tableBS_Menu" msprop:Generator_RowChangedName="BS_MenuRowChanged" msprop:Generator_TablePropName="BS_Menu" msprop:Generator_RowDeletingName="BS_MenuRowDeleting" msprop:Generator_RowChangingName="BS_MenuRowChanging" msprop:Generator_RowEvHandlerName="BS_MenuRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_MenuRowDeleted" msprop:Generator_RowClassName="BS_MenuRow" msprop:Generator_UserTableName="BS_Menu" msprop:Generator_RowEvArgName="BS_MenuRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -858,7 +896,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_UnitCatg" msprop:Generator_TableClassName="BS_UnitCatgDataTable" msprop:Generator_TableVarName="tableBS_UnitCatg" msprop:Generator_RowChangedName="BS_UnitCatgRowChanged" msprop:Generator_TablePropName="BS_UnitCatg" msprop:Generator_RowDeletingName="BS_UnitCatgRowDeleting" msprop:Generator_RowChangingName="BS_UnitCatgRowChanging" msprop:Generator_RowEvHandlerName="BS_UnitCatgRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_UnitCatgRowDeleted" msprop:Generator_RowClassName="BS_UnitCatgRow" msprop:Generator_UserTableName="BS_UnitCatg" msprop:Generator_RowEvArgName="BS_UnitCatgRowChangeEvent">
+        <xs:element name="BS_UnitCatg" msprop:Generator_TableClassName="BS_UnitCatgDataTable" msprop:Generator_TableVarName="tableBS_UnitCatg" msprop:Generator_TablePropName="BS_UnitCatg" msprop:Generator_RowDeletingName="BS_UnitCatgRowDeleting" msprop:Generator_RowChangingName="BS_UnitCatgRowChanging" msprop:Generator_RowEvHandlerName="BS_UnitCatgRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_UnitCatgRowDeleted" msprop:Generator_UserTableName="BS_UnitCatg" msprop:Generator_RowChangedName="BS_UnitCatgRowChanged" msprop:Generator_RowEvArgName="BS_UnitCatgRowChangeEvent" msprop:Generator_RowClassName="BS_UnitCatgRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -886,7 +924,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_QuerySql" msprop:Generator_TableClassName="BS_QuerySqlDataTable" msprop:Generator_TableVarName="tableBS_QuerySql" msprop:Generator_TablePropName="BS_QuerySql" msprop:Generator_RowDeletingName="BS_QuerySqlRowDeleting" msprop:Generator_RowChangingName="BS_QuerySqlRowChanging" msprop:Generator_RowEvHandlerName="BS_QuerySqlRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_QuerySqlRowDeleted" msprop:Generator_UserTableName="BS_QuerySql" msprop:Generator_RowChangedName="BS_QuerySqlRowChanged" msprop:Generator_RowEvArgName="BS_QuerySqlRowChangeEvent" msprop:Generator_RowClassName="BS_QuerySqlRow">
+        <xs:element name="BS_QuerySql" msprop:Generator_TableClassName="BS_QuerySqlDataTable" msprop:Generator_TableVarName="tableBS_QuerySql" msprop:Generator_RowChangedName="BS_QuerySqlRowChanged" msprop:Generator_TablePropName="BS_QuerySql" msprop:Generator_RowDeletingName="BS_QuerySqlRowDeleting" msprop:Generator_RowChangingName="BS_QuerySqlRowChanging" msprop:Generator_RowEvHandlerName="BS_QuerySqlRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_QuerySqlRowDeleted" msprop:Generator_RowClassName="BS_QuerySqlRow" msprop:Generator_UserTableName="BS_QuerySql" msprop:Generator_RowEvArgName="BS_QuerySqlRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -916,7 +954,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BS_QuerySqlParameter" msprop:Generator_TableClassName="BS_QuerySqlParameterDataTable" msprop:Generator_TableVarName="tableBS_QuerySqlParameter" msprop:Generator_TablePropName="BS_QuerySqlParameter" msprop:Generator_RowDeletingName="BS_QuerySqlParameterRowDeleting" msprop:Generator_RowChangingName="BS_QuerySqlParameterRowChanging" msprop:Generator_RowEvHandlerName="BS_QuerySqlParameterRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_QuerySqlParameterRowDeleted" msprop:Generator_UserTableName="BS_QuerySqlParameter" msprop:Generator_RowChangedName="BS_QuerySqlParameterRowChanged" msprop:Generator_RowEvArgName="BS_QuerySqlParameterRowChangeEvent" msprop:Generator_RowClassName="BS_QuerySqlParameterRow">
+        <xs:element name="BS_QuerySqlParameter" msprop:Generator_TableClassName="BS_QuerySqlParameterDataTable" msprop:Generator_TableVarName="tableBS_QuerySqlParameter" msprop:Generator_RowChangedName="BS_QuerySqlParameterRowChanged" msprop:Generator_TablePropName="BS_QuerySqlParameter" msprop:Generator_RowDeletingName="BS_QuerySqlParameterRowDeleting" msprop:Generator_RowChangingName="BS_QuerySqlParameterRowChanging" msprop:Generator_RowEvHandlerName="BS_QuerySqlParameterRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_QuerySqlParameterRowDeleted" msprop:Generator_RowClassName="BS_QuerySqlParameterRow" msprop:Generator_UserTableName="BS_QuerySqlParameter" msprop:Generator_RowEvArgName="BS_QuerySqlParameterRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAutoId" msprop:Generator_ColumnPropNameInRow="AutoId" msprop:Generator_ColumnPropNameInTable="AutoIdColumn" msprop:Generator_UserColumnName="AutoId" type="xs:int" />
@@ -939,6 +977,46 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BS_CountryCodeManagement" msprop:Generator_TableClassName="BS_CountryCodeManagementDataTable" msprop:Generator_TableVarName="tableBS_CountryCodeManagement" msprop:Generator_RowChangedName="BS_CountryCodeManagementRowChanged" msprop:Generator_TablePropName="BS_CountryCodeManagement" msprop:Generator_RowDeletingName="BS_CountryCodeManagementRowDeleting" msprop:Generator_RowChangingName="BS_CountryCodeManagementRowChanging" msprop:Generator_RowEvHandlerName="BS_CountryCodeManagementRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_CountryCodeManagementRowDeleted" msprop:Generator_RowClassName="BS_CountryCodeManagementRow" msprop:Generator_UserTableName="BS_CountryCodeManagement" msprop:Generator_RowEvArgName="BS_CountryCodeManagementRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CountryCode" msprop:Generator_ColumnVarNameInTable="columnCountryCode" msprop:Generator_ColumnPropNameInRow="CountryCode" msprop:Generator_ColumnPropNameInTable="CountryCodeColumn" msprop:Generator_UserColumnName="CountryCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CountryName" msprop:Generator_ColumnVarNameInTable="columnCountryName" msprop:Generator_ColumnPropNameInRow="CountryName" msprop:Generator_ColumnPropNameInTable="CountryNameColumn" msprop:Generator_UserColumnName="CountryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BS_BussinessCategory" msprop:Generator_TableClassName="BS_BussinessCategoryDataTable" msprop:Generator_TableVarName="tableBS_BussinessCategory" msprop:Generator_RowChangedName="BS_BussinessCategoryRowChanged" msprop:Generator_TablePropName="BS_BussinessCategory" msprop:Generator_RowDeletingName="BS_BussinessCategoryRowDeleting" msprop:Generator_RowChangingName="BS_BussinessCategoryRowChanging" msprop:Generator_RowEvHandlerName="BS_BussinessCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="BS_BussinessCategoryRowDeleted" msprop:Generator_RowClassName="BS_BussinessCategoryRow" msprop:Generator_UserTableName="BS_BussinessCategory" msprop:Generator_RowEvArgName="BS_BussinessCategoryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BussinessCategory" msprop:Generator_ColumnVarNameInTable="columnBussinessCategory" msprop:Generator_ColumnPropNameInRow="BussinessCategory" msprop:Generator_ColumnPropNameInTable="BussinessCategoryColumn" msprop:Generator_UserColumnName="BussinessCategory">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BussinessCategoryText" msprop:Generator_ColumnVarNameInTable="columnBussinessCategoryText" msprop:Generator_ColumnPropNameInRow="BussinessCategoryText" msprop:Generator_ColumnPropNameInTable="BussinessCategoryTextColumn" msprop:Generator_UserColumnName="BussinessCategoryText" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -980,12 +1058,18 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
       <xs:selector xpath=".//mstns:BS_QuerySqlParameter" />
       <xs:field xpath="mstns:AutoId" />
     </xs:unique>
+    <xs:unique name="BS_CountryCodeManagement_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BS_CountryCodeManagement" />
+      <xs:field xpath="mstns:CountryCode" />
+    </xs:unique>
+    <xs:unique name="BS_BussinessCategory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BS_BussinessCategory" />
+      <xs:field xpath="mstns:BussinessCategory" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK__BS_Employ__Depar__0519C6AF" msdata:parent="BS_Department" msdata:child="BS_UserInfo" msdata:parentkey="DepartmentNo" msdata:childkey="DepartmentNo" msprop:Generator_UserChildTable="BS_UserInfo" msprop:Generator_ChildPropName="GetBS_UserInfoRows" msprop:Generator_UserRelationName="FK__BS_Employ__Depar__0519C6AF" msprop:Generator_ParentPropName="BS_DepartmentRow" msprop:Generator_RelationVarName="relationFK__BS_Employ__Depar__0519C6AF" msprop:Generator_UserParentTable="BS_Department" />
-      <msdata:Relationship name="BS_UserInfo_BS_UserRight" msdata:parent="BS_UserInfo" msdata:child="BS_UserRight" msdata:parentkey="LoginId" msdata:childkey="LoginId" msprop:Generator_UserChildTable="BS_UserRight" msprop:Generator_ChildPropName="GetBS_UserRightRows" msprop:Generator_UserRelationName="BS_UserInfo_BS_UserRight" msprop:Generator_ParentPropName="BS_UserInfoRow" msprop:Generator_RelationVarName="relationBS_UserInfo_BS_UserRight" msprop:Generator_UserParentTable="BS_UserInfo" />
-      <msdata:Relationship name="FK__BS_QueryS__Query__53C2623D" msdata:parent="BS_QuerySql" msdata:child="BS_QuerySqlParameter" msdata:parentkey="AutoId" msdata:childkey="QuerySqlId" msprop:Generator_UserChildTable="BS_QuerySqlParameter" msprop:Generator_ChildPropName="GetBS_QuerySqlParameterRows" msprop:Generator_UserRelationName="FK__BS_QueryS__Query__53C2623D" msprop:Generator_ParentPropName="BS_QuerySqlRow" msprop:Generator_RelationVarName="relationFK__BS_QueryS__Query__53C2623D" msprop:Generator_UserParentTable="BS_QuerySql" />
+      <msdata:Relationship name="FK__BS_QueryS__Query__53C2623D" msdata:parent="BS_QuerySql" msdata:child="BS_QuerySqlParameter" msdata:parentkey="AutoId" msdata:childkey="QuerySqlId" msprop:Generator_UserChildTable="BS_QuerySqlParameter" msprop:Generator_ChildPropName="GetBS_QuerySqlParameterRows" msprop:Generator_UserRelationName="FK__BS_QueryS__Query__53C2623D" msprop:Generator_RelationVarName="relationFK__BS_QueryS__Query__53C2623D" msprop:Generator_UserParentTable="BS_QuerySql" msprop:Generator_ParentPropName="BS_QuerySqlRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
