@@ -27,7 +27,8 @@ namespace PSAP
             try
             {
                 //this.Close();
-                System.Environment.Exit(0);
+                Application.ExitThread();
+                //System.Environment.Exit(0);
             }
             catch
             {
@@ -59,16 +60,16 @@ namespace PSAP
             
         }
 
-        private void txtUserID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        //private void txtUserID_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
-        }
+        //}
 
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-        }
+        //private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        //}
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {

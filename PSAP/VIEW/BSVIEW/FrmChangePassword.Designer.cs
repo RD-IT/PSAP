@@ -60,15 +60,16 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.btnConfirm);
-            this.panel1.Location = new System.Drawing.Point(43, 44);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 200);
+            this.panel1.Size = new System.Drawing.Size(284, 281);
             this.panel1.TabIndex = 7;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(4, 129);
+            this.label4.Location = new System.Drawing.Point(49, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 14);
             this.label4.TabIndex = 9;
@@ -76,16 +77,16 @@
             // 
             // txtPasswordNewV
             // 
-            this.txtPasswordNewV.Location = new System.Drawing.Point(72, 125);
+            this.txtPasswordNewV.EnterMoveNextControl = true;
+            this.txtPasswordNewV.Location = new System.Drawing.Point(117, 155);
             this.txtPasswordNewV.Name = "txtPasswordNewV";
             this.txtPasswordNewV.Properties.PasswordChar = '*';
             this.txtPasswordNewV.Size = new System.Drawing.Size(100, 20);
             this.txtPasswordNewV.TabIndex = 3;
-            this.txtPasswordNewV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPasswordNewV_KeyPress);
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(29, 96);
+            this.label3.Location = new System.Drawing.Point(74, 126);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 14);
             this.label3.TabIndex = 7;
@@ -93,16 +94,16 @@
             // 
             // txtPasswordNew
             // 
-            this.txtPasswordNew.Location = new System.Drawing.Point(72, 92);
+            this.txtPasswordNew.EnterMoveNextControl = true;
+            this.txtPasswordNew.Location = new System.Drawing.Point(117, 122);
             this.txtPasswordNew.Name = "txtPasswordNew";
             this.txtPasswordNew.Properties.PasswordChar = '*';
             this.txtPasswordNew.Size = new System.Drawing.Size(100, 20);
             this.txtPasswordNew.TabIndex = 2;
-            this.txtPasswordNew.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPasswordNew_KeyPress);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(28, 30);
+            this.label1.Location = new System.Drawing.Point(73, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 14);
             this.label1.TabIndex = 2;
@@ -110,7 +111,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(28, 63);
+            this.label2.Location = new System.Drawing.Point(73, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 14);
             this.label2.TabIndex = 5;
@@ -118,15 +119,15 @@
             // 
             // txtUserID
             // 
-            this.txtUserID.Location = new System.Drawing.Point(72, 26);
+            this.txtUserID.EnterMoveNextControl = true;
+            this.txtUserID.Location = new System.Drawing.Point(117, 56);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(100, 20);
             this.txtUserID.TabIndex = 0;
-            this.txtUserID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserID_KeyPress);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(110, 170);
+            this.btnCancel.Location = new System.Drawing.Point(142, 204);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -135,16 +136,16 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(72, 59);
+            this.txtPassword.EnterMoveNextControl = true;
+            this.txtPassword.Location = new System.Drawing.Point(117, 89);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(4, 170);
+            this.btnConfirm.Location = new System.Drawing.Point(60, 204);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 4;
@@ -155,7 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 278);
+            this.ClientSize = new System.Drawing.Size(284, 281);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

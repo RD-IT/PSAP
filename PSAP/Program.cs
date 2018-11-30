@@ -34,14 +34,12 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 初始化系统信息
+        /// </summary>
         private static void InitializationSystemInfo()
         {
             SystemInfo.HostIpAddress = new SystemHandler().GetIpAddress();
-        }
-
-        private static void returnstr()
-        {
-            //////////
         }
     }
 }
