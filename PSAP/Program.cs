@@ -7,6 +7,7 @@ using PSAP;
 using PSAP.ENTITY.BSENTITY;
 using PSAP.DAO.BSDAO;
 using System.Configuration;
+using PSAP.PSAPCommon;
 
 namespace PSAP.VIEW.BSVIEW
 {
@@ -23,12 +24,19 @@ namespace PSAP.VIEW.BSVIEW
             ConfigurationManager.RefreshSection("ThemeId"); 
             Application.Run(new FrmLogin());
             //if (PSAPCommon.LoginInfo != null)
-            if(FrmLoginDAO.user!=null)
-            {
+            if(SystemInfo.user!=null)
+            {                
+                InitializationSystemInfo();
+
                 FrmMain frmMain = new FrmMain();
                 frmMain.WindowState = FormWindowState.Maximized;
                 Application.Run(frmMain);
             }
+        }
+
+        private static void InitializationSystemInfo()
+        {
+            SystemInfo.HostIpAddress = new SystemHandler().GetIpAddress();
         }
     }
 }

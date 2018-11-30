@@ -1,6 +1,4 @@
-﻿using PSAP.BLL.BSBLL;
-using PSAP.DAO.BSDAO;
-using PSAP.PSAPCommon;
+﻿using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,11 +24,6 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             strsControlTmp = strsTmp;
             dt = dtTmp;
-
-            if (FrmLoginDAO.user.Lanuage != "Chinese")
-            {
-                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
-            }
         }
 
         public FrmQueryCondition()

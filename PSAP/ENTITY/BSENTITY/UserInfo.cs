@@ -22,7 +22,6 @@ namespace PSAP.ENTITY.BSENTITY
         private string bfree5;
         private string roleNo;
         private string roleName;
-        private string lanuage;
 
         public string EmpName
         {
@@ -216,19 +215,6 @@ namespace PSAP.ENTITY.BSENTITY
             set
             {
                 autoId = value;
-            }
-        }
-
-        public string Lanuage
-        {
-            get
-            {
-                return lanuage;
-            }
-
-            set
-            {
-                lanuage = value;
             }
         }
     }
