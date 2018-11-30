@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label bussinessBaseNoLabel;
             System.Windows.Forms.Label companyLRLabel;
             System.Windows.Forms.Label companyAddressLabel;
             System.Windows.Forms.Label zipCodeLabel;
@@ -41,19 +40,10 @@
             System.Windows.Forms.Label bussinessLicenseLabel;
             System.Windows.Forms.Label bankAccoutLabel;
             System.Windows.Forms.Label bankAddressLabel;
-            System.Windows.Forms.Label bussinessBaseNoLabel1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBussinessInfo));
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.gdBussinessBaseInfo = new DevExpress.XtraGrid.GridControl();
-            this.gdvBussinessBaseInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBussinessBaseNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBussinessCategory = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.bsBussinessCategory = new System.Windows.Forms.BindingSource(this.components);
-            this.dsPSAP = new PSAP.dsPSAP();
-            this.colBussinessIsUse = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
             this.tsbAdd = new System.Windows.Forms.ToolStripButton();
@@ -61,41 +51,64 @@
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.tsbCancel = new System.Windows.Forms.ToolStripButton();
-            this.tsbQuery = new System.Windows.Forms.ToolStripButton();
             this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkUse = new System.Windows.Forms.CheckBox();
-            this.cboBussinessCategory = new System.Windows.Forms.ComboBox();
-            this.btnStretch = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtBussinessBaseNo = new System.Windows.Forms.TextBox();
-            this.txtBussinessBaseText = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bussinessBaseNoTextBox1 = new System.Windows.Forms.TextBox();
-            this.bussinessBaseNoTextBox = new System.Windows.Forms.TextBox();
+            this.gdBussinessBaseInfo = new DevExpress.XtraGrid.GridControl();
+            this.dataSet1 = new System.Data.DataSet();
+            this.dataTable1 = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
+            this.dataColumn5 = new System.Data.DataColumn();
+            this.dataTable2 = new System.Data.DataTable();
+            this.dataColumn6 = new System.Data.DataColumn();
+            this.dataColumn7 = new System.Data.DataColumn();
+            this.dataColumn8 = new System.Data.DataColumn();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataColumn10 = new System.Data.DataColumn();
+            this.dataColumn11 = new System.Data.DataColumn();
+            this.dataColumn12 = new System.Data.DataColumn();
+            this.dataColumn13 = new System.Data.DataColumn();
+            this.dataColumn14 = new System.Data.DataColumn();
+            this.dataColumn15 = new System.Data.DataColumn();
+            this.dataTable3 = new System.Data.DataTable();
+            this.dataColumn16 = new System.Data.DataColumn();
+            this.dataColumn17 = new System.Data.DataColumn();
+            this.dataColumn18 = new System.Data.DataColumn();
+            this.dataColumn19 = new System.Data.DataColumn();
+            this.dataColumn20 = new System.Data.DataColumn();
+            this.gdvBussinessBaseInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBussinessBaseNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBussinessCategory = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBussinessIsUse = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.bsBussinessCategory = new System.Windows.Forms.BindingSource(this.components);
+            this.dsPSAP = new PSAP.dsPSAP();
             this.tabBussinessInfo = new System.Windows.Forms.TabControl();
             this.tpBussinessDetailInfo = new System.Windows.Forms.TabPage();
             this.pnlEdit = new System.Windows.Forms.Panel();
-            this.cboCountryCode = new System.Windows.Forms.ComboBox();
-            this.companyLRTextBox = new System.Windows.Forms.TextBox();
-            this.companyAddressTextBox = new System.Windows.Forms.TextBox();
-            this.zipCodeTextBox = new System.Windows.Forms.TextBox();
-            this.phoneNoTextBox = new System.Windows.Forms.TextBox();
-            this.faxNoTextBox = new System.Windows.Forms.TextBox();
-            this.e_mailTextBox = new System.Windows.Forms.TextBox();
-            this.webSiteTextBox = new System.Windows.Forms.TextBox();
+            this.txtWebSite = new DevExpress.XtraEditors.TextEdit();
+            this.txtE_mail = new DevExpress.XtraEditors.TextEdit();
+            this.txtFaxNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtPhoneNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtZipCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtCompanyAddress = new DevExpress.XtraEditors.TextEdit();
+            this.TxtCompanyLR = new DevExpress.XtraEditors.TextEdit();
+            this.lueCountryCode = new DevExpress.XtraEditors.LookUpEdit();
             this.tpBussinessFinancialInfo = new System.Windows.Forms.TabPage();
             this.pnlEdit1 = new System.Windows.Forms.Panel();
-            this.bussinessLicenseTextBox = new System.Windows.Forms.TextBox();
-            this.bankAccoutTextBox = new System.Windows.Forms.TextBox();
-            this.bankAddressTextBox = new System.Windows.Forms.TextBox();
-            this.dataSet1 = new System.Data.DataSet();
-            this.bS_BussinessCategoryTableAdapter = new PSAP.dsPSAPTableAdapters.BS_BussinessCategoryTableAdapter();
+            this.txtBankAccout = new DevExpress.XtraEditors.TextEdit();
+            this.txtBankAddress = new DevExpress.XtraEditors.TextEdit();
+            this.txtBussinessLicense = new DevExpress.XtraEditors.TextEdit();
             this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
+            this.bS_BussinessCategoryTableAdapter = new PSAP.dsPSAPTableAdapters.BS_BussinessCategoryTableAdapter();
             this.bS_CountryCodeManagementTableAdapter = new PSAP.dsPSAPTableAdapters.BS_CountryCodeManagementTableAdapter();
-            bussinessBaseNoLabel = new System.Windows.Forms.Label();
+            this.bsBase = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDetail = new System.Windows.Forms.BindingSource(this.components);
+            this.bsFina = new System.Windows.Forms.BindingSource(this.components);
             companyLRLabel = new System.Windows.Forms.Label();
             companyAddressLabel = new System.Windows.Forms.Label();
             zipCodeLabel = new System.Windows.Forms.Label();
@@ -107,37 +120,42 @@
             bussinessLicenseLabel = new System.Windows.Forms.Label();
             bankAccoutLabel = new System.Windows.Forms.Label();
             bankAddressLabel = new System.Windows.Forms.Label();
-            bussinessBaseNoLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tsControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdBussinessBaseInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvBussinessBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBussinessCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.tsControl.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tabBussinessInfo.SuspendLayout();
             this.tpBussinessDetailInfo.SuspendLayout();
             this.pnlEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtE_mail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtZipCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCompanyAddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCompanyLR.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCountryCode.Properties)).BeginInit();
             this.tpBussinessFinancialInfo.SuspendLayout();
             this.pnlEdit1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccout.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFina)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bussinessBaseNoLabel
-            // 
-            bussinessBaseNoLabel.AutoSize = true;
-            bussinessBaseNoLabel.Location = new System.Drawing.Point(136, 261);
-            bussinessBaseNoLabel.Name = "bussinessBaseNoLabel";
-            bussinessBaseNoLabel.Size = new System.Drawing.Size(65, 12);
-            bussinessBaseNoLabel.TabIndex = 2;
-            bussinessBaseNoLabel.Text = "往来方编号";
-            bussinessBaseNoLabel.Visible = false;
             // 
             // companyLRLabel
             // 
@@ -238,16 +256,6 @@
             bankAddressLabel.TabIndex = 8;
             bankAddressLabel.Text = "开户行";
             // 
-            // bussinessBaseNoLabel1
-            // 
-            bussinessBaseNoLabel1.AutoSize = true;
-            bussinessBaseNoLabel1.Location = new System.Drawing.Point(322, 261);
-            bussinessBaseNoLabel1.Name = "bussinessBaseNoLabel1";
-            bussinessBaseNoLabel1.Size = new System.Drawing.Size(65, 12);
-            bussinessBaseNoLabel1.TabIndex = 21;
-            bussinessBaseNoLabel1.Text = "往来方编号";
-            bussinessBaseNoLabel1.Visible = false;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -257,13 +265,8 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.gdBussinessBaseInfo);
             this.splitContainer2.Panel1.Controls.Add(this.panel1);
-            this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer2.Panel1.Controls.Add(bussinessBaseNoLabel);
-            this.splitContainer2.Panel1.Controls.Add(this.bussinessBaseNoTextBox1);
-            this.splitContainer2.Panel1.Controls.Add(this.bussinessBaseNoTextBox);
-            this.splitContainer2.Panel1.Controls.Add(bussinessBaseNoLabel1);
+            this.splitContainer2.Panel1.Controls.Add(this.gdBussinessBaseInfo);
             // 
             // splitContainer2.Panel2
             // 
@@ -272,99 +275,10 @@
             this.splitContainer2.SplitterDistance = 531;
             this.splitContainer2.TabIndex = 2;
             // 
-            // gdBussinessBaseInfo
-            // 
-            this.gdBussinessBaseInfo.Location = new System.Drawing.Point(0, 145);
-            this.gdBussinessBaseInfo.MainView = this.gdvBussinessBaseInfo;
-            this.gdBussinessBaseInfo.Name = "gdBussinessBaseInfo";
-            this.gdBussinessBaseInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEdit1});
-            this.gdBussinessBaseInfo.Size = new System.Drawing.Size(511, 467);
-            this.gdBussinessBaseInfo.TabIndex = 24;
-            this.gdBussinessBaseInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gdvBussinessBaseInfo});
-            // 
-            // gdvBussinessBaseInfo
-            // 
-            this.gdvBussinessBaseInfo.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAutoId,
-            this.colBussinessBaseNo,
-            this.colBussinessBaseText,
-            this.colBussinessCategory,
-            this.colBussinessIsUse});
-            this.gdvBussinessBaseInfo.GridControl = this.gdBussinessBaseInfo;
-            this.gdvBussinessBaseInfo.Name = "gdvBussinessBaseInfo";
-            this.gdvBussinessBaseInfo.OptionsView.ShowDetailButtons = false;
-            this.gdvBussinessBaseInfo.OptionsView.ShowGroupPanel = false;
-            this.gdvBussinessBaseInfo.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gdvBussinessBaseInfo_SelectionChanged);
-            this.gdvBussinessBaseInfo.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gdvBussinessBaseInfo_FocusedRowChanged);
-            // 
-            // colAutoId
-            // 
-            this.colAutoId.FieldName = "AutoId";
-            this.colAutoId.Name = "colAutoId";
-            // 
-            // colBussinessBaseNo
-            // 
-            this.colBussinessBaseNo.Caption = "往来方编号";
-            this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
-            this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.Visible = true;
-            this.colBussinessBaseNo.VisibleIndex = 0;
-            // 
-            // colBussinessBaseText
-            // 
-            this.colBussinessBaseText.Caption = "往来方名称";
-            this.colBussinessBaseText.FieldName = "BussinessBaseText";
-            this.colBussinessBaseText.Name = "colBussinessBaseText";
-            this.colBussinessBaseText.Visible = true;
-            this.colBussinessBaseText.VisibleIndex = 1;
-            // 
-            // colBussinessCategory
-            // 
-            this.colBussinessCategory.Caption = "往来方分类";
-            this.colBussinessCategory.ColumnEdit = this.repositoryItemLookUpEdit1;
-            this.colBussinessCategory.FieldName = "BussinessCategory";
-            this.colBussinessCategory.Name = "colBussinessCategory";
-            this.colBussinessCategory.Visible = true;
-            this.colBussinessCategory.VisibleIndex = 2;
-            // 
-            // repositoryItemLookUpEdit1
-            // 
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "Auto Id", 65, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BussinessCategory", "", 113, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BussinessCategoryText", "往来方分类", 143, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.repositoryItemLookUpEdit1.DataSource = this.bsBussinessCategory;
-            this.repositoryItemLookUpEdit1.DisplayMember = "BussinessCategoryText";
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            this.repositoryItemLookUpEdit1.NullText = "";
-            this.repositoryItemLookUpEdit1.ValueMember = "BussinessCategory";
-            // 
-            // bsBussinessCategory
-            // 
-            this.bsBussinessCategory.DataMember = "BS_BussinessCategory";
-            this.bsBussinessCategory.DataSource = this.dsPSAP;
-            // 
-            // dsPSAP
-            // 
-            this.dsPSAP.DataSetName = "dsPSAP";
-            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // colBussinessIsUse
-            // 
-            this.colBussinessIsUse.Caption = "是否使用";
-            this.colBussinessIsUse.FieldName = "BussinessIsUse";
-            this.colBussinessIsUse.Name = "colBussinessIsUse";
-            this.colBussinessIsUse.Visible = true;
-            this.colBussinessIsUse.VisibleIndex = 3;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tsControl);
-            this.panel1.Location = new System.Drawing.Point(4, 105);
+            this.panel1.Location = new System.Drawing.Point(4, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(466, 25);
             this.panel1.TabIndex = 23;
@@ -379,12 +293,11 @@
             this.tsbDelete,
             this.tsbSave,
             this.tsbCancel,
-            this.tsbQuery,
             this.tsbDGViewExportToCSV,
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(443, 25);
+            this.tsControl.Size = new System.Drawing.Size(391, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
@@ -433,14 +346,6 @@
             this.tsbCancel.Text = "取消";
             this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
-            // tsbQuery
-            // 
-            this.tsbQuery.Image = ((System.Drawing.Image)(resources.GetObject("tsbQuery.Image")));
-            this.tsbQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQuery.Name = "tsbQuery";
-            this.tsbQuery.Size = new System.Drawing.Size(52, 22);
-            this.tsbQuery.Text = "查询";
-            // 
             // tsbDGViewExportToCSV
             // 
             this.tsbDGViewExportToCSV.Image = ((System.Drawing.Image)(resources.GetObject("tsbDGViewExportToCSV.Image")));
@@ -457,111 +362,241 @@
             this.tsbClose.Size = new System.Drawing.Size(52, 22);
             this.tsbClose.Text = "退出";
             // 
-            // groupBox1
+            // gdBussinessBaseInfo
             // 
-            this.groupBox1.Controls.Add(this.chkUse);
-            this.groupBox1.Controls.Add(this.cboBussinessCategory);
-            this.groupBox1.Controls.Add(this.btnStretch);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtBussinessBaseNo);
-            this.groupBox1.Controls.Add(this.txtBussinessBaseText);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(378, 92);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "商业往来方信息筛选";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.gdBussinessBaseInfo.DataMember = "BussinessBaseInfo";
+            this.gdBussinessBaseInfo.DataSource = this.dataSet1;
+            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level2";
+            this.gdBussinessBaseInfo.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1,
+            gridLevelNode2});
+            this.gdBussinessBaseInfo.Location = new System.Drawing.Point(0, 34);
+            this.gdBussinessBaseInfo.MainView = this.gdvBussinessBaseInfo;
+            this.gdBussinessBaseInfo.Name = "gdBussinessBaseInfo";
+            this.gdBussinessBaseInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1});
+            this.gdBussinessBaseInfo.Size = new System.Drawing.Size(511, 578);
+            this.gdBussinessBaseInfo.TabIndex = 24;
+            this.gdBussinessBaseInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gdvBussinessBaseInfo});
             // 
-            // chkUse
+            // dataSet1
             // 
-            this.chkUse.AutoSize = true;
-            this.chkUse.Location = new System.Drawing.Point(187, 60);
-            this.chkUse.Name = "chkUse";
-            this.chkUse.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkUse.Size = new System.Drawing.Size(48, 16);
-            this.chkUse.TabIndex = 20;
-            this.chkUse.Text = "使用";
-            this.chkUse.UseVisualStyleBackColor = true;
+            this.dataSet1.DataSetName = "NewDataSet";
+            this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
+            this.dataTable1,
+            this.dataTable2,
+            this.dataTable3});
             // 
-            // cboBussinessCategory
+            // dataTable1
             // 
-            this.cboBussinessCategory.DisplayMember = "BussinessCategory";
-            this.cboBussinessCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBussinessCategory.FormattingEnabled = true;
-            this.cboBussinessCategory.Location = new System.Drawing.Point(77, 56);
-            this.cboBussinessCategory.Name = "cboBussinessCategory";
-            this.cboBussinessCategory.Size = new System.Drawing.Size(73, 20);
-            this.cboBussinessCategory.TabIndex = 19;
-            this.cboBussinessCategory.ValueMember = "BussinessCategory";
+            this.dataTable1.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColumn5});
+            this.dataTable1.TableName = "BussinessBaseInfo";
             // 
-            // btnStretch
+            // dataColumn1
             // 
-            this.btnStretch.Location = new System.Drawing.Point(276, 56);
-            this.btnStretch.Name = "btnStretch";
-            this.btnStretch.Size = new System.Drawing.Size(85, 23);
-            this.btnStretch.TabIndex = 11;
-            this.btnStretch.Text = "筛选";
-            this.btnStretch.UseVisualStyleBackColor = true;
+            this.dataColumn1.Caption = "自动编号";
+            this.dataColumn1.ColumnName = "AutoId";
             // 
-            // label4
+            // dataColumn2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 59);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "往来方分类";
+            this.dataColumn2.Caption = "往来方编号";
+            this.dataColumn2.ColumnName = "BussinessBaseNo";
             // 
-            // txtBussinessBaseNo
+            // dataColumn3
             // 
-            this.txtBussinessBaseNo.Location = new System.Drawing.Point(76, 27);
-            this.txtBussinessBaseNo.Name = "txtBussinessBaseNo";
-            this.txtBussinessBaseNo.Size = new System.Drawing.Size(73, 21);
-            this.txtBussinessBaseNo.TabIndex = 12;
+            this.dataColumn3.Caption = "往来方名称";
+            this.dataColumn3.ColumnName = "BussinessBaseText";
             // 
-            // txtBussinessBaseText
+            // dataColumn4
             // 
-            this.txtBussinessBaseText.Location = new System.Drawing.Point(241, 27);
-            this.txtBussinessBaseText.Name = "txtBussinessBaseText";
-            this.txtBussinessBaseText.Size = new System.Drawing.Size(73, 21);
-            this.txtBussinessBaseText.TabIndex = 13;
+            this.dataColumn4.Caption = "往来方分类";
+            this.dataColumn4.ColumnName = "BussinessCategory";
             // 
-            // label2
+            // dataColumn5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(170, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "往来方名称";
+            this.dataColumn5.Caption = "是否使用";
+            this.dataColumn5.ColumnName = "BussinessIsUse";
             // 
-            // label1
+            // dataTable2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "往来方编号";
+            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn6,
+            this.dataColumn7,
+            this.dataColumn8,
+            this.dataColumn9,
+            this.dataColumn10,
+            this.dataColumn11,
+            this.dataColumn12,
+            this.dataColumn13,
+            this.dataColumn14,
+            this.dataColumn15});
+            this.dataTable2.TableName = "BussinessDetailInfo";
             // 
-            // bussinessBaseNoTextBox1
+            // dataColumn6
             // 
-            this.bussinessBaseNoTextBox1.Location = new System.Drawing.Point(378, 258);
-            this.bussinessBaseNoTextBox1.Name = "bussinessBaseNoTextBox1";
-            this.bussinessBaseNoTextBox1.Size = new System.Drawing.Size(100, 21);
-            this.bussinessBaseNoTextBox1.TabIndex = 20;
+            this.dataColumn6.Caption = "自动编号";
+            this.dataColumn6.ColumnName = "AutoId";
             // 
-            // bussinessBaseNoTextBox
+            // dataColumn7
             // 
-            this.bussinessBaseNoTextBox.Location = new System.Drawing.Point(207, 258);
-            this.bussinessBaseNoTextBox.Name = "bussinessBaseNoTextBox";
-            this.bussinessBaseNoTextBox.Size = new System.Drawing.Size(100, 21);
-            this.bussinessBaseNoTextBox.TabIndex = 3;
-            this.bussinessBaseNoTextBox.TextChanged += new System.EventHandler(this.bussinessBaseNoTextBox_TextChanged);
-            this.bussinessBaseNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bussinessBaseNoTextBox_KeyPress);
+            this.dataColumn7.Caption = "往来方编号";
+            this.dataColumn7.ColumnName = "BussinessBaseNo";
+            // 
+            // dataColumn8
+            // 
+            this.dataColumn8.Caption = "法人";
+            this.dataColumn8.ColumnName = "CompanyLR";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.Caption = "公司地址";
+            this.dataColumn9.ColumnName = "CompanyAddress";
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.Caption = "邮政编码";
+            this.dataColumn10.ColumnName = "ZipCode";
+            // 
+            // dataColumn11
+            // 
+            this.dataColumn11.Caption = "电话";
+            this.dataColumn11.ColumnName = "PhoneNo";
+            // 
+            // dataColumn12
+            // 
+            this.dataColumn12.Caption = "传真";
+            this.dataColumn12.ColumnName = "FaxNo";
+            // 
+            // dataColumn13
+            // 
+            this.dataColumn13.Caption = "邮箱";
+            this.dataColumn13.ColumnName = "E_mail";
+            // 
+            // dataColumn14
+            // 
+            this.dataColumn14.Caption = "网站";
+            this.dataColumn14.ColumnName = "WebSite";
+            // 
+            // dataColumn15
+            // 
+            this.dataColumn15.Caption = "国家";
+            this.dataColumn15.ColumnName = "CountryCode";
+            // 
+            // dataTable3
+            // 
+            this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn16,
+            this.dataColumn17,
+            this.dataColumn18,
+            this.dataColumn19,
+            this.dataColumn20});
+            this.dataTable3.TableName = "BussinessFinancialInfo";
+            // 
+            // dataColumn16
+            // 
+            this.dataColumn16.Caption = "自动编号";
+            this.dataColumn16.ColumnName = "AutoId";
+            // 
+            // dataColumn17
+            // 
+            this.dataColumn17.Caption = "往来方编号";
+            this.dataColumn17.ColumnName = "BussinessBaseNo";
+            // 
+            // dataColumn18
+            // 
+            this.dataColumn18.Caption = "营业执照号";
+            this.dataColumn18.ColumnName = "BussinessLicense";
+            // 
+            // dataColumn19
+            // 
+            this.dataColumn19.Caption = "银行账号";
+            this.dataColumn19.ColumnName = "BankAccout";
+            // 
+            // dataColumn20
+            // 
+            this.dataColumn20.Caption = "开户行";
+            this.dataColumn20.ColumnName = "BankAddress";
+            // 
+            // gdvBussinessBaseInfo
+            // 
+            this.gdvBussinessBaseInfo.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colAutoId,
+            this.colBussinessBaseNo,
+            this.colBussinessBaseText,
+            this.colBussinessCategory,
+            this.colBussinessIsUse});
+            this.gdvBussinessBaseInfo.GridControl = this.gdBussinessBaseInfo;
+            this.gdvBussinessBaseInfo.Name = "gdvBussinessBaseInfo";
+            this.gdvBussinessBaseInfo.OptionsView.ShowDetailButtons = false;
+            this.gdvBussinessBaseInfo.OptionsView.ShowGroupPanel = false;
+            this.gdvBussinessBaseInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gdvBussinessBaseInfo_CustomDrawRowIndicator);
+            this.gdvBussinessBaseInfo.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gdvBussinessBaseInfo_SelectionChanged);
+            this.gdvBussinessBaseInfo.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gdvBussinessBaseInfo_FocusedRowChanged);
+            this.gdvBussinessBaseInfo.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gdvBussinessBaseInfo_CellValueChanged);
+            // 
+            // colAutoId
+            // 
+            this.colAutoId.FieldName = "AutoId";
+            this.colAutoId.Name = "colAutoId";
+            // 
+            // colBussinessBaseNo
+            // 
+            this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
+            this.colBussinessBaseNo.Name = "colBussinessBaseNo";
+            this.colBussinessBaseNo.Visible = true;
+            this.colBussinessBaseNo.VisibleIndex = 0;
+            // 
+            // colBussinessBaseText
+            // 
+            this.colBussinessBaseText.FieldName = "BussinessBaseText";
+            this.colBussinessBaseText.Name = "colBussinessBaseText";
+            this.colBussinessBaseText.Visible = true;
+            this.colBussinessBaseText.VisibleIndex = 1;
+            // 
+            // colBussinessCategory
+            // 
+            this.colBussinessCategory.FieldName = "BussinessCategory";
+            this.colBussinessCategory.Name = "colBussinessCategory";
+            this.colBussinessCategory.Visible = true;
+            this.colBussinessCategory.VisibleIndex = 2;
+            // 
+            // colBussinessIsUse
+            // 
+            this.colBussinessIsUse.FieldName = "BussinessIsUse";
+            this.colBussinessIsUse.Name = "colBussinessIsUse";
+            this.colBussinessIsUse.Visible = true;
+            this.colBussinessIsUse.VisibleIndex = 3;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "Auto Id", 65, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BussinessCategory", "", 113, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BussinessCategoryText", "往来方分类", 143, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.repositoryItemLookUpEdit1.DataSource = this.bsBussinessCategory;
+            this.repositoryItemLookUpEdit1.DisplayMember = "BussinessCategoryText";
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.NullText = "";
+            this.repositoryItemLookUpEdit1.ValueMember = "BussinessCategory";
+            // 
+            // bsBussinessCategory
+            // 
+            this.bsBussinessCategory.DataMember = "BS_BussinessCategory";
+            this.bsBussinessCategory.DataSource = this.dsPSAP;
+            // 
+            // dsPSAP
+            // 
+            this.dsPSAP.DataSetName = "dsPSAP";
+            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tabBussinessInfo
             // 
@@ -589,21 +624,21 @@
             // pnlEdit
             // 
             this.pnlEdit.AutoSize = true;
-            this.pnlEdit.Controls.Add(this.cboCountryCode);
+            this.pnlEdit.Controls.Add(this.txtWebSite);
+            this.pnlEdit.Controls.Add(this.txtE_mail);
+            this.pnlEdit.Controls.Add(this.txtFaxNo);
+            this.pnlEdit.Controls.Add(this.txtPhoneNo);
+            this.pnlEdit.Controls.Add(this.txtZipCode);
+            this.pnlEdit.Controls.Add(this.txtCompanyAddress);
+            this.pnlEdit.Controls.Add(this.TxtCompanyLR);
+            this.pnlEdit.Controls.Add(this.lueCountryCode);
             this.pnlEdit.Controls.Add(companyLRLabel);
-            this.pnlEdit.Controls.Add(this.companyLRTextBox);
             this.pnlEdit.Controls.Add(companyAddressLabel);
-            this.pnlEdit.Controls.Add(this.companyAddressTextBox);
             this.pnlEdit.Controls.Add(zipCodeLabel);
-            this.pnlEdit.Controls.Add(this.zipCodeTextBox);
             this.pnlEdit.Controls.Add(phoneNoLabel);
-            this.pnlEdit.Controls.Add(this.phoneNoTextBox);
             this.pnlEdit.Controls.Add(faxNoLabel);
-            this.pnlEdit.Controls.Add(this.faxNoTextBox);
             this.pnlEdit.Controls.Add(e_mailLabel);
-            this.pnlEdit.Controls.Add(this.e_mailTextBox);
             this.pnlEdit.Controls.Add(webSiteLabel);
-            this.pnlEdit.Controls.Add(this.webSiteTextBox);
             this.pnlEdit.Controls.Add(countryCodeLabel);
             this.pnlEdit.Enabled = false;
             this.pnlEdit.Location = new System.Drawing.Point(6, 6);
@@ -611,73 +646,79 @@
             this.pnlEdit.Size = new System.Drawing.Size(392, 297);
             this.pnlEdit.TabIndex = 4;
             // 
-            // cboCountryCode
+            // txtWebSite
             // 
-            this.cboCountryCode.DataSource = this.bsCountry;
-            this.cboCountryCode.DisplayMember = "CountryName";
-            this.cboCountryCode.FormattingEnabled = true;
-            this.cboCountryCode.Location = new System.Drawing.Point(122, 225);
-            this.cboCountryCode.Name = "cboCountryCode";
-            this.cboCountryCode.Size = new System.Drawing.Size(100, 20);
-            this.cboCountryCode.TabIndex = 19;
-            this.cboCountryCode.ValueMember = "CountryCode";
-            this.cboCountryCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCountryCode_KeyPress);
+            this.txtWebSite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.WebSite", true));
+            this.txtWebSite.Location = new System.Drawing.Point(96, 197);
+            this.txtWebSite.Name = "txtWebSite";
+            this.txtWebSite.Size = new System.Drawing.Size(100, 20);
+            this.txtWebSite.TabIndex = 27;
             // 
-            // companyLRTextBox
+            // txtE_mail
             // 
-            this.companyLRTextBox.Location = new System.Drawing.Point(122, 36);
-            this.companyLRTextBox.Name = "companyLRTextBox";
-            this.companyLRTextBox.Size = new System.Drawing.Size(100, 21);
-            this.companyLRTextBox.TabIndex = 5;
-            this.companyLRTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.companyLRTextBox_KeyPress);
+            this.txtE_mail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.E_mail", true));
+            this.txtE_mail.Location = new System.Drawing.Point(96, 170);
+            this.txtE_mail.Name = "txtE_mail";
+            this.txtE_mail.Size = new System.Drawing.Size(100, 20);
+            this.txtE_mail.TabIndex = 26;
             // 
-            // companyAddressTextBox
+            // txtFaxNo
             // 
-            this.companyAddressTextBox.Location = new System.Drawing.Point(122, 63);
-            this.companyAddressTextBox.Name = "companyAddressTextBox";
-            this.companyAddressTextBox.Size = new System.Drawing.Size(100, 21);
-            this.companyAddressTextBox.TabIndex = 7;
-            this.companyAddressTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.companyAddressTextBox_KeyPress);
+            this.txtFaxNo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.FaxNo", true));
+            this.txtFaxNo.Location = new System.Drawing.Point(96, 143);
+            this.txtFaxNo.Name = "txtFaxNo";
+            this.txtFaxNo.Size = new System.Drawing.Size(100, 20);
+            this.txtFaxNo.TabIndex = 25;
             // 
-            // zipCodeTextBox
+            // txtPhoneNo
             // 
-            this.zipCodeTextBox.Location = new System.Drawing.Point(122, 90);
-            this.zipCodeTextBox.Name = "zipCodeTextBox";
-            this.zipCodeTextBox.Size = new System.Drawing.Size(100, 21);
-            this.zipCodeTextBox.TabIndex = 9;
-            this.zipCodeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zipCodeTextBox_KeyPress);
+            this.txtPhoneNo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.PhoneNo", true));
+            this.txtPhoneNo.Location = new System.Drawing.Point(96, 115);
+            this.txtPhoneNo.Name = "txtPhoneNo";
+            this.txtPhoneNo.Size = new System.Drawing.Size(100, 20);
+            this.txtPhoneNo.TabIndex = 24;
             // 
-            // phoneNoTextBox
+            // txtZipCode
             // 
-            this.phoneNoTextBox.Location = new System.Drawing.Point(122, 117);
-            this.phoneNoTextBox.Name = "phoneNoTextBox";
-            this.phoneNoTextBox.Size = new System.Drawing.Size(100, 21);
-            this.phoneNoTextBox.TabIndex = 11;
-            this.phoneNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneNoTextBox_KeyPress);
+            this.txtZipCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.ZipCode", true));
+            this.txtZipCode.Location = new System.Drawing.Point(96, 89);
+            this.txtZipCode.Name = "txtZipCode";
+            this.txtZipCode.Size = new System.Drawing.Size(100, 20);
+            this.txtZipCode.TabIndex = 23;
             // 
-            // faxNoTextBox
+            // txtCompanyAddress
             // 
-            this.faxNoTextBox.Location = new System.Drawing.Point(122, 144);
-            this.faxNoTextBox.Name = "faxNoTextBox";
-            this.faxNoTextBox.Size = new System.Drawing.Size(100, 21);
-            this.faxNoTextBox.TabIndex = 13;
-            this.faxNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.faxNoTextBox_KeyPress);
+            this.txtCompanyAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.CompanyAddress", true));
+            this.txtCompanyAddress.Location = new System.Drawing.Point(96, 62);
+            this.txtCompanyAddress.Name = "txtCompanyAddress";
+            this.txtCompanyAddress.Size = new System.Drawing.Size(100, 20);
+            this.txtCompanyAddress.TabIndex = 22;
             // 
-            // e_mailTextBox
+            // TxtCompanyLR
             // 
-            this.e_mailTextBox.Location = new System.Drawing.Point(122, 171);
-            this.e_mailTextBox.Name = "e_mailTextBox";
-            this.e_mailTextBox.Size = new System.Drawing.Size(100, 21);
-            this.e_mailTextBox.TabIndex = 15;
-            this.e_mailTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.e_mailTextBox_KeyPress);
+            this.TxtCompanyLR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.CompanyLR", true));
+            this.TxtCompanyLR.Location = new System.Drawing.Point(96, 36);
+            this.TxtCompanyLR.Name = "TxtCompanyLR";
+            this.TxtCompanyLR.Size = new System.Drawing.Size(100, 20);
+            this.TxtCompanyLR.TabIndex = 21;
             // 
-            // webSiteTextBox
+            // lueCountryCode
             // 
-            this.webSiteTextBox.Location = new System.Drawing.Point(122, 198);
-            this.webSiteTextBox.Name = "webSiteTextBox";
-            this.webSiteTextBox.Size = new System.Drawing.Size(100, 21);
-            this.webSiteTextBox.TabIndex = 17;
-            this.webSiteTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.webSiteTextBox_KeyPress);
+            this.lueCountryCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.dataSet1, "BussinessDetailInfo.CountryCode", true));
+            this.lueCountryCode.Location = new System.Drawing.Point(96, 225);
+            this.lueCountryCode.Name = "lueCountryCode";
+            this.lueCountryCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCountryCode.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CountryCode", "Name2", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CountryName", "Name3")});
+            this.lueCountryCode.Properties.DisplayMember = "CountryName";
+            this.lueCountryCode.Properties.NullText = "";
+            this.lueCountryCode.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.OnlyInPopup;
+            this.lueCountryCode.Properties.ValueMember = "CountryCode";
+            this.lueCountryCode.Size = new System.Drawing.Size(100, 20);
+            this.lueCountryCode.TabIndex = 20;
             // 
             // tpBussinessFinancialInfo
             // 
@@ -693,10 +734,10 @@
             // pnlEdit1
             // 
             this.pnlEdit1.AutoSize = true;
+            this.pnlEdit1.Controls.Add(this.txtBankAccout);
+            this.pnlEdit1.Controls.Add(this.txtBankAddress);
+            this.pnlEdit1.Controls.Add(this.txtBussinessLicense);
             this.pnlEdit1.Controls.Add(bankAccoutLabel);
-            this.pnlEdit1.Controls.Add(this.bussinessLicenseTextBox);
-            this.pnlEdit1.Controls.Add(this.bankAccoutTextBox);
-            this.pnlEdit1.Controls.Add(this.bankAddressTextBox);
             this.pnlEdit1.Controls.Add(bussinessLicenseLabel);
             this.pnlEdit1.Controls.Add(bankAddressLabel);
             this.pnlEdit1.Enabled = false;
@@ -705,46 +746,57 @@
             this.pnlEdit1.Size = new System.Drawing.Size(408, 187);
             this.pnlEdit1.TabIndex = 5;
             // 
-            // bussinessLicenseTextBox
+            // txtBankAccout
             // 
-            this.bussinessLicenseTextBox.Location = new System.Drawing.Point(122, 37);
-            this.bussinessLicenseTextBox.Name = "bussinessLicenseTextBox";
-            this.bussinessLicenseTextBox.Size = new System.Drawing.Size(100, 21);
-            this.bussinessLicenseTextBox.TabIndex = 5;
-            this.bussinessLicenseTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bussinessLicenseTextBox_KeyPress);
+            this.txtBankAccout.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessFinancialInfo.BankAccout", true));
+            this.txtBankAccout.Location = new System.Drawing.Point(106, 64);
+            this.txtBankAccout.Name = "txtBankAccout";
+            this.txtBankAccout.Size = new System.Drawing.Size(100, 20);
+            this.txtBankAccout.TabIndex = 24;
             // 
-            // bankAccoutTextBox
+            // txtBankAddress
             // 
-            this.bankAccoutTextBox.Location = new System.Drawing.Point(122, 64);
-            this.bankAccoutTextBox.Name = "bankAccoutTextBox";
-            this.bankAccoutTextBox.Size = new System.Drawing.Size(100, 21);
-            this.bankAccoutTextBox.TabIndex = 7;
-            this.bankAccoutTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bankAccoutTextBox_KeyPress);
+            this.txtBankAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessFinancialInfo.BankAddress", true));
+            this.txtBankAddress.Location = new System.Drawing.Point(106, 94);
+            this.txtBankAddress.Name = "txtBankAddress";
+            this.txtBankAddress.Size = new System.Drawing.Size(100, 20);
+            this.txtBankAddress.TabIndex = 23;
             // 
-            // bankAddressTextBox
+            // txtBussinessLicense
             // 
-            this.bankAddressTextBox.Location = new System.Drawing.Point(122, 91);
-            this.bankAddressTextBox.Name = "bankAddressTextBox";
-            this.bankAddressTextBox.Size = new System.Drawing.Size(100, 21);
-            this.bankAddressTextBox.TabIndex = 9;
-            this.bankAddressTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.bankAddressTextBox_KeyPress);
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "NewDataSet";
-            // 
-            // bS_BussinessCategoryTableAdapter
-            // 
-            this.bS_BussinessCategoryTableAdapter.ClearBeforeFill = true;
+            this.txtBussinessLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessFinancialInfo.BussinessLicense", true));
+            this.txtBussinessLicense.Location = new System.Drawing.Point(106, 37);
+            this.txtBussinessLicense.Name = "txtBussinessLicense";
+            this.txtBussinessLicense.Size = new System.Drawing.Size(100, 20);
+            this.txtBussinessLicense.TabIndex = 22;
             // 
             // bsCountry
             // 
             this.bsCountry.DataMember = "BS_CountryCodeManagement";
             this.bsCountry.DataSource = this.dsPSAP;
             // 
+            // bS_BussinessCategoryTableAdapter
+            // 
+            this.bS_BussinessCategoryTableAdapter.ClearBeforeFill = true;
+            // 
             // bS_CountryCodeManagementTableAdapter
             // 
             this.bS_CountryCodeManagementTableAdapter.ClearBeforeFill = true;
+            // 
+            // bsBase
+            // 
+            this.bsBase.DataMember = "BussinessBaseInfo";
+            this.bsBase.DataSource = this.dataSet1;
+            // 
+            // bsDetail
+            // 
+            this.bsDetail.DataMember = "BussinessDetailInfo";
+            this.bsDetail.DataSource = this.dataSet1;
+            // 
+            // bsFina
+            // 
+            this.bsFina.DataMember = "BussinessFinancialInfo";
+            this.bsFina.DataSource = this.dataSet1;
             // 
             // FrmBussinessInfo
             // 
@@ -758,64 +810,57 @@
             this.Text = "商业往来信息";
             this.Load += new System.EventHandler(this.FrmBussinessInfo_Load);
             this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gdBussinessBaseInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvBussinessBaseInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBussinessCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tsControl.ResumeLayout(false);
             this.tsControl.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gdBussinessBaseInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvBussinessBaseInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBussinessCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
             this.tabBussinessInfo.ResumeLayout(false);
             this.tpBussinessDetailInfo.ResumeLayout(false);
             this.tpBussinessDetailInfo.PerformLayout();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtE_mail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtZipCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCompanyAddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCompanyLR.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCountryCode.Properties)).EndInit();
             this.tpBussinessFinancialInfo.ResumeLayout(false);
             this.tpBussinessFinancialInfo.PerformLayout();
             this.pnlEdit1.ResumeLayout(false);
             this.pnlEdit1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccout.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFina)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ComboBox cboBussinessCategory;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBussinessBaseText;
-        private System.Windows.Forms.TextBox txtBussinessBaseNo;
-        private System.Windows.Forms.Button btnStretch;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkUse;
         private System.Windows.Forms.TabControl tabBussinessInfo;
         private System.Windows.Forms.TabPage tpBussinessDetailInfo;
         private System.Windows.Forms.TabPage tpBussinessFinancialInfo;
         private System.Windows.Forms.Panel pnlEdit;
-        private System.Windows.Forms.TextBox bussinessBaseNoTextBox;
-        private System.Windows.Forms.TextBox companyLRTextBox;
-        private System.Windows.Forms.TextBox companyAddressTextBox;
-        private System.Windows.Forms.TextBox zipCodeTextBox;
-        private System.Windows.Forms.TextBox phoneNoTextBox;
-        private System.Windows.Forms.TextBox faxNoTextBox;
-        private System.Windows.Forms.TextBox e_mailTextBox;
-        private System.Windows.Forms.TextBox webSiteTextBox;
         private System.Windows.Forms.Panel pnlEdit1;
-        private System.Windows.Forms.TextBox bussinessLicenseTextBox;
-        private System.Windows.Forms.TextBox bankAccoutTextBox;
-        private System.Windows.Forms.TextBox bankAddressTextBox;
-        private System.Windows.Forms.ComboBox cboCountryCode;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStrip tsControl;
         private System.Windows.Forms.ToolStripButton tsbAdd;
@@ -823,23 +868,58 @@
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripButton tsbCancel;
-        private System.Windows.Forms.ToolStripButton tsbQuery;
         private System.Windows.Forms.ToolStripButton tsbDGViewExportToCSV;
         private System.Windows.Forms.ToolStripButton tsbClose;
         private DevExpress.XtraGrid.GridControl gdBussinessBaseInfo;
         private DevExpress.XtraGrid.Views.Grid.GridView gdvBussinessBaseInfo;
-        private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colBussinessBaseNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colBussinessBaseText;
-        private DevExpress.XtraGrid.Columns.GridColumn colBussinessCategory;
-        private DevExpress.XtraGrid.Columns.GridColumn colBussinessIsUse;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private System.Data.DataSet dataSet1;
-        private System.Windows.Forms.TextBox bussinessBaseNoTextBox1;
         private System.Windows.Forms.BindingSource bsBussinessCategory;
         private dsPSAP dsPSAP;
         private dsPSAPTableAdapters.BS_BussinessCategoryTableAdapter bS_BussinessCategoryTableAdapter;
         private System.Windows.Forms.BindingSource bsCountry;
         private dsPSAPTableAdapters.BS_CountryCodeManagementTableAdapter bS_CountryCodeManagementTableAdapter;
+        private System.Data.DataTable dataTable1;
+        private DevExpress.XtraEditors.LookUpEdit lueCountryCode;
+        private DevExpress.XtraEditors.TextEdit txtWebSite;
+        private DevExpress.XtraEditors.TextEdit txtE_mail;
+        private DevExpress.XtraEditors.TextEdit txtFaxNo;
+        private DevExpress.XtraEditors.TextEdit txtPhoneNo;
+        private DevExpress.XtraEditors.TextEdit txtZipCode;
+        private DevExpress.XtraEditors.TextEdit txtCompanyAddress;
+        private DevExpress.XtraEditors.TextEdit TxtCompanyLR;
+        private DevExpress.XtraEditors.TextEdit txtBankAccout;
+        private DevExpress.XtraEditors.TextEdit txtBankAddress;
+        private DevExpress.XtraEditors.TextEdit txtBussinessLicense;
+        private System.Data.DataColumn dataColumn1;
+        private System.Data.DataColumn dataColumn2;
+        private System.Data.DataColumn dataColumn3;
+        private System.Data.DataColumn dataColumn4;
+        private System.Data.DataColumn dataColumn5;
+        private System.Data.DataTable dataTable2;
+        private System.Data.DataColumn dataColumn6;
+        private System.Data.DataColumn dataColumn7;
+        private System.Data.DataColumn dataColumn8;
+        private System.Data.DataColumn dataColumn9;
+        private System.Data.DataColumn dataColumn10;
+        private System.Data.DataColumn dataColumn11;
+        private System.Data.DataColumn dataColumn12;
+        private System.Data.DataColumn dataColumn13;
+        private System.Data.DataColumn dataColumn14;
+        private System.Data.DataColumn dataColumn15;
+        private System.Data.DataTable dataTable3;
+        private System.Data.DataColumn dataColumn16;
+        private System.Data.DataColumn dataColumn17;
+        private System.Data.DataColumn dataColumn18;
+        private System.Data.DataColumn dataColumn19;
+        private System.Data.DataColumn dataColumn20;
+        private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
+        private DevExpress.XtraGrid.Columns.GridColumn colBussinessBaseNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colBussinessBaseText;
+        private DevExpress.XtraGrid.Columns.GridColumn colBussinessCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn colBussinessIsUse;
+        private System.Windows.Forms.BindingSource bsBase;
+        private System.Windows.Forms.BindingSource bsDetail;
+        private System.Windows.Forms.BindingSource bsFina;
     }
 }

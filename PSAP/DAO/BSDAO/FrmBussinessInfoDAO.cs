@@ -22,17 +22,17 @@ namespace PSAP.DAO.BSDAO
             strSqlLlist.Clear();
             string strSql = "select * from BS_BussinessBaseInfo ";
             strSqlLlist.Add(strSql);
-            strSql = "BS_BussinessBaseInfo";
+            strSql = "BussinessBaseInfo";
             strTablesName.Add(strSql);
             
             strSql = "select * from BS_BussinessDetailInfo";
             strSqlLlist.Add(strSql);
-            strSql = "BS_BussinessDetailInfo";
+            strSql = "BussinessDetailInfo";
             strTablesName.Add(strSql);
 
             strSql = "select * from BS_BussinessFinancialInfo";
             strSqlLlist.Add(strSql);
-            strSql = "BS_BussinessFinancialInfo";
+            strSql = "BussinessFinancialInfo";
             strTablesName.Add(strSql);
             DataSet ds = new DataSet();
             ds=BSDAO.BaseSQL.GetDataSetBySql(strSqlLlist,strTablesName);
