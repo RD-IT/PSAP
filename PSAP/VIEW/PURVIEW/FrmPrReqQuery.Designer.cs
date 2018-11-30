@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -44,7 +45,7 @@
             this.lab = new DevExpress.XtraEditors.LabelControl();
             this.labReqDate = new DevExpress.XtraEditors.LabelControl();
             this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.dataSet_PrReq = new System.Data.DataSet();
@@ -81,7 +82,8 @@
             this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.gridBottomPrReq = new PSAP.VIEW.BSVIEW.GridBottom();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
@@ -93,8 +95,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
-            this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
+            this.pnlMiddle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
@@ -102,6 +104,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
+            this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -127,6 +131,15 @@
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(906, 78);
             this.pnltop.TabIndex = 1;
+            // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.Location = new System.Drawing.Point(679, 43);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveExcel.TabIndex = 13;
+            this.btnSaveExcel.Text = "存为Excel";
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
             // textCommon
             // 
@@ -300,14 +313,14 @@
             this.dateReqDateBegin.Size = new System.Drawing.Size(100, 20);
             this.dateReqDateBegin.TabIndex = 0;
             // 
-            // pnlBottom
+            // pnlMiddle
             // 
-            this.pnlBottom.Controls.Add(this.gridControlPrReqHead);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 78);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(906, 250);
-            this.pnlBottom.TabIndex = 2;
+            this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
+            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
+            this.pnlMiddle.Name = "pnlMiddle";
+            this.pnlMiddle.Size = new System.Drawing.Size(906, 192);
+            this.pnlMiddle.TabIndex = 2;
             // 
             // gridControlPrReqHead
             // 
@@ -319,7 +332,7 @@
             this.gridControlPrReqHead.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
-            this.gridControlPrReqHead.Size = new System.Drawing.Size(902, 246);
+            this.gridControlPrReqHead.Size = new System.Drawing.Size(902, 188);
             this.gridControlPrReqHead.TabIndex = 1;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqHead});
@@ -332,6 +345,7 @@
             // dataSet_PrReq
             // 
             this.dataSet_PrReq.DataSetName = "NewDataSet";
+            this.dataSet_PrReq.EnforceConstraints = false;
             this.dataSet_PrReq.Tables.AddRange(new System.Data.DataTable[] {
             this.dataTablePrReqHead});
             // 
@@ -631,21 +645,32 @@
             this.colApprover.VisibleIndex = 9;
             this.colApprover.Width = 70;
             // 
-            // btnSaveExcel
+            // pnlBottom
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(679, 43);
-            this.btnSaveExcel.Name = "btnSaveExcel";
-            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 13;
-            this.btnSaveExcel.Text = "存为Excel";
-            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            this.pnlBottom.Controls.Add(this.gridBottomPrReq);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 270);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(906, 58);
+            this.pnlBottom.TabIndex = 3;
+            // 
+            // gridBottomPrReq
+            // 
+            this.gridBottomPrReq.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridBottomPrReq.Location = new System.Drawing.Point(2, 2);
+            this.gridBottomPrReq.MasterDataSet = this.dataSet_PrReq;
+            this.gridBottomPrReq.Name = "gridBottomPrReq";
+            this.gridBottomPrReq.pageRowCount = 5;
+            this.gridBottomPrReq.Size = new System.Drawing.Size(902, 54);
+            this.gridBottomPrReq.TabIndex = 0;
             // 
             // FrmPrReqQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(906, 328);
-            this.Controls.Add(this.pnlBottom);
+            this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
+            this.Controls.Add(this.pnlBottom);
             this.Name = "FrmPrReqQuery";
             this.TabText = "采购请购单查询";
             this.Text = "采购请购单查询";
@@ -662,8 +687,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
-            this.pnlBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
+            this.pnlMiddle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
@@ -671,6 +696,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -693,7 +720,7 @@
         private DevExpress.XtraEditors.LabelControl lab;
         private DevExpress.XtraEditors.LabelControl labReqDate;
         private DevExpress.XtraEditors.DateEdit dateReqDateBegin;
-        private DevExpress.XtraEditors.PanelControl pnlBottom;
+        private DevExpress.XtraEditors.PanelControl pnlMiddle;
         private System.Data.DataSet dataSet_PrReq;
         private System.Data.DataTable dataTablePrReqHead;
         private System.Data.DataColumn dataColAutoId;
@@ -731,5 +758,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPrReqRemark;
         private DevExpress.XtraGrid.Columns.GridColumn colApprover;
         private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
+        private DevExpress.XtraEditors.PanelControl pnlBottom;
+        private GridBottom gridBottomPrReq;
     }
 }

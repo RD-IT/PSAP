@@ -115,7 +115,6 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pUR_PurCategoryTableAdapter = new PSAP.DS_PURTableAdapters.PUR_PurCategoryTableAdapter();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
@@ -842,7 +841,7 @@
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
-            this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
+            this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
             this.gridViewPrReqList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPrReqList_InitNewRow);
             this.gridViewPrReqList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqList_CellValueChanged);
             this.gridViewPrReqList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqList_KeyDown);
@@ -1022,10 +1021,6 @@
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 120;
             // 
-            // pUR_PurCategoryTableAdapter
-            // 
-            this.pUR_PurCategoryTableAdapter.ClearBeforeFill = true;
-            // 
             // splitterControl1
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
@@ -1102,7 +1097,6 @@
         private DevExpress.XtraEditors.LabelControl lab;
         private DevExpress.XtraGrid.GridControl gridControlPrReqHead;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqHead;
-        private DS_PURTableAdapters.PUR_PurCategoryTableAdapter pUR_PurCategoryTableAdapter;
         private System.Windows.Forms.BindingSource bindingSource_PrReqHead;
         private System.Data.DataSet dataSet_PrReq;
         private System.Data.DataTable dataTablePrReqHead;

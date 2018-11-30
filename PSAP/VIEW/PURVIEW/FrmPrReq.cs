@@ -15,6 +15,9 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmPrReq : DockContent
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
+        /// <summary>
+        /// 主表聚焦的行号
+        /// </summary>
         int headFocusedLineNo = 0;
 
         /// <summary>
@@ -56,6 +59,40 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 窗体激活事件
+        /// </summary>
+        private void FrmPrReq_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (queryPrReqNo != "")
+                {
+                    textCommon.Text = queryPrReqNo;
+                    queryPrReqNo = "";
+                    lookUpReqDep.ItemIndex = 0;
+                    lookUpPurCategory.ItemIndex = 0;
+                    comboBoxReqState.SelectedIndex = 0;
+                    lookUpApplicant.ItemIndex = 0;
+
+                    dataSet_PrReq.Tables[0].Clear();
+                    headFocusedLineNo = 0;
+                    prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "", textCommon.Text, false);
+                    SetButtonAndColumnState(false);
+
+                    if (dataSet_PrReq.Tables[0].Rows.Count > 0)
+                    {
+                        dateReqDateBegin.DateTime = DataTypeConvert.GetDateTime(dataSet_PrReq.Tables[0].Rows[0]["ReqDate"]).Date;
+                        dateReqDateEnd.DateTime = dateReqDateBegin.DateTime.AddDays(7);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
             }
         }
 
@@ -485,7 +522,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定按钮和表列状态
         /// </summary>
-        /// <param name="ret"></param>
+        /// <param name="ret">状态标准</param>
         private void SetButtonAndColumnState(bool ret)
         {
             if (ret)
@@ -521,9 +558,8 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 检测请购单状态
+        /// 检测请购单状态是否可以操作
         /// </summary>
-        /// <returns></returns>
         private bool CheckReqState()
         {
             int reqState = DataTypeConvert.GetInt(gridViewPrReqHead.GetFocusedDataRow()["ReqState"]);
@@ -561,33 +597,8 @@ namespace PSAP.VIEW.BSVIEW
             listView.FocusedColumn = listView.Columns[colName];
             gridViewPrReqList.FocusedRowHandle = listView.FocusedRowHandle;
         }
+        
 
-        private void FrmPrReq_Activated(object sender, EventArgs e)
-        {
-            if (queryPrReqNo != "")
-            {
-                textCommon.Text = queryPrReqNo;
-                queryPrReqNo = "";
-                lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.ItemIndex = 0;
-                comboBoxReqState.SelectedIndex = 0;
-                lookUpApplicant.ItemIndex = 0;
 
-                dataSet_PrReq.Tables[0].Clear();
-                headFocusedLineNo = 0;
-                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "", textCommon.Text, false);
-                SetButtonAndColumnState(false);
-
-                if (dataSet_PrReq.Tables[0].Rows.Count > 0)
-                {
-                    dateReqDateBegin.DateTime = DataTypeConvert.GetDateTime(dataSet_PrReq.Tables[0].Rows[0]["ReqDate"]).Date;
-                    dateReqDateEnd.DateTime = dateReqDateBegin.DateTime.AddDays(7);
-                }
-            }
-            //else
-            //{
-            //    textCommon.Text = "";
-            //}
-        }
     }
 }

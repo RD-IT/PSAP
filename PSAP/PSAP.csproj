@@ -35,8 +35,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.CodeParser.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
@@ -50,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Web.Services" />
@@ -209,6 +214,12 @@
     <Compile Include="VIEW\PURVIEW\FrmPrReqQuery.Designer.cs">
       <DependentUpon>FrmPrReqQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\GridBottom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\GridBottom.Designer.cs">
+      <DependentUpon>GridBottom.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\REPORT\FrmPrintPreview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqQuery.resx">
       <DependentUpon>FrmPrReqQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\GridBottom.resx">
+      <DependentUpon>GridBottom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\REPORT\FrmPrintPreview.resx">
       <DependentUpon>FrmPrintPreview.cs</DependentUpon>

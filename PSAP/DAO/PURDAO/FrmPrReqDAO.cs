@@ -15,7 +15,6 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询部门信息（增加一个全部选项）
         /// </summary>
-        /// <returns></returns>
         public DataTable QueryDepartment(bool addAllItem)
         {
             //string sqlStr = "select 0 as AutoId, '' as DepartmentNo, '全部' as DepartmentName union select AutoId, DepartmentNo, DepartmentName from BS_Department";
@@ -30,7 +29,6 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询采购类型（增加一个全部选项）
         /// </summary>
-        /// <returns></returns>
         public DataTable QueryPurCategory(bool addAllItem)
         {
             string sqlStr = "select AutoId, PurCategory, PurCategoryText from PUR_PurCategory order by AutoId";
@@ -44,7 +42,6 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询操作员信息
         /// </summary>
-        /// <returns></returns>
         public DataTable QueryUserInfo()
         {
             string sqlStr = "select 0 as AutoId, '全部' as LoginId, '全部' as EmpName union select AutoId, LoginId, EmpName from BS_UserInfo order by AutoId";
@@ -54,7 +51,6 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询物料信息表
         /// </summary>
-        /// <returns></returns>
         public DataTable QueryPartsCode()
         {
             string sqlStr = "select AutoId, CodeNo, CodeFileName, CodeName from SW_PartsCode order by AutoId";
@@ -86,13 +82,24 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询采购请购单表头表
         /// </summary>
-        /// <param name="queryDataTable"></param>
-        /// <param name="beginDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="reqDepStr"></param>
-        /// <param name="purCategoryStr"></param>
-        public void QueryPrReqHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, int reqStateInt,string applicantStr,string commonStr, bool nullTable)
+        /// <param name="queryDataTable">要查询填充的数据表</param>
+        /// <param name="beginDateStr">开始日期字符串</param>
+        /// <param name="endDateStr">结束日期字符串</param>
+        /// <param name="reqDepStr">部门编号</param>
+        /// <param name="purCategoryStr">采购类型</param>
+        /// <param name="reqStateInt">状态</param>
+        /// <param name="applicantStr">申请人</param>
+        /// <param name="commonStr">通用查询条件</param>
+        /// <param name="nullTable">是否查询空表</param>
+        public void QueryPrReqHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, int reqStateInt, string applicantStr, string commonStr, bool nullTable)
         {
+            BaseSQL.Query(QueryPrReqHead_SQL(beginDateStr,endDateStr,reqDepStr,purCategoryStr,reqStateInt,applicantStr,commonStr,nullTable), queryDataTable);
+        }
+        /// <summary>
+        /// 查询采购请购单表头表的SQL
+        /// </summary>
+        public string QueryPrReqHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, int reqStateInt, string applicantStr, string commonStr, bool nullTable)
+        { 
             string sqlStr = " 1=1";
             if (beginDateStr != "")
             {
@@ -124,14 +131,23 @@ namespace PSAP.DAO.PURDAO
                 sqlStr += " and 1=2";
             }
             sqlStr = string.Format("select * from PUR_PrReqHead where {0} order by AutoId", sqlStr);
-            BaseSQL.Query(sqlStr, queryDataTable);
+            return sqlStr;
+        }
+
+        /// <summary>
+        /// 统计要查询的SQL的数据的行数的SQL
+        /// </summary>
+        /// <param name="sqlStr">要查询的SQL</param>
+        public string QuerySqlTranTotalCountSql(string sqlStr)
+        {
+            return string.Format("select Count(*) from ({0}) as tmpTable", sqlStr.Replace("order by AutoId", ""));
         }
 
         /// <summary>
         /// 查询采购请购单明细表
         /// </summary>
-        /// <param name="queryDataTable"></param>
-        /// <param name="prReqNoStr"></param>
+        /// <param name="queryDataTable">要查询填充的数据表</param>
+        /// <param name="prReqNoStr">请购单号</param>
         public void QueryPrReqList(DataTable queryDataTable, string prReqNoStr)
         {
             string sqlStr = string.Format(" and PrReqNo='{0}'", prReqNoStr);
@@ -143,7 +159,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 根据请购单号删除请购单
         /// </summary>
-        /// <param name="prReqNoStr"></param>
+        /// <param name="prReqNoStr">请购单号</param>
         public void DeletePrReq(string prReqNoStr)
         {
             System.Collections.ArrayList sqlList = new System.Collections.ArrayList();
@@ -156,8 +172,8 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 保存请购单
         /// </summary>
-        /// <param name="prReqHeadRow"></param>
-        /// <param name="prReqListTable"></param>
+        /// <param name="prReqHeadRow">采购请购单表头数据表</param>
+        /// <param name="prReqListTable">采购请购单明细数据表</param>
         public void SavePrReq(DataRow prReqHeadRow,DataTable prReqListTable)
         {
             if(prReqHeadRow["PrReqNo"].ToString()=="")//新增
@@ -237,7 +253,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 审批请购单
         /// </summary>
-        /// <param name="prReqHeadRow"></param>
+        /// <param name="prReqHeadRow">采购请购单表头数据行</param>
         public void ApprovePrReq(DataRow prReqHeadRow)
         {
             prReqHeadRow["Approver"] = SystemInfo.user.EmpName;
@@ -278,7 +294,6 @@ namespace PSAP.DAO.PURDAO
         /// <param name="columnName">数据列名</param>
         /// <param name="headCharacter">头字母</param>
         /// <param name="numberLong">后数字的长度</param>
-        /// <returns></returns>
         public string GetMaxOrderNo(string tableName, string columnName, string headCharacter, int numberLong)
         {
             string sqlStr = string.Format("select max({1}) from {0}", tableName, columnName);
@@ -365,7 +380,6 @@ namespace PSAP.DAO.PURDAO
             }
             MessageHandler.ShowMessageBox(string.Format("对[{0}]表进行{1}操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption,pkValue, logStr));
         }
-
 
     }
 }
