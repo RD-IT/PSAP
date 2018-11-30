@@ -31,7 +31,6 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             toolStripContainer1.TopToolStripPanel.Controls.Add(mnsMain);
             //PSAP.BLL.BSBLL.BSBLL.InitUserMenus(this);//初始化主菜单用户权限(不用了这是以前设置实例菜单的)
-
             FrmMainBLL.InitMenuItem(mnsMain);//初始化菜单
             FrmMainBLL.SetMenuItemByRole(mnsMain, SystemInfo.user.RoleNo);//初始化用户"角色"权限
             FrmMainBLL.SetMenuItemByPersonal(mnsMain, SystemInfo.user.AutoId.ToString());//初始化用户"个人"权限
@@ -41,7 +40,10 @@ namespace PSAP.VIEW.BSVIEW
             BSBLL.RefreshUserThemeConfigFile();//刷新用户主题配置文件
             BSBLL.InitThemeVariable();//初始化主题变量
 
-
+            if (SystemInfo.user.Lanuage != "Chinese")
+            {
+                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
+            }
         }
 
         //用于dock
@@ -188,6 +190,10 @@ namespace PSAP.VIEW.BSVIEW
 
                 dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
                 BSBLL.SetFormRight(dc);//设置窗口中按钮的权限
+                if (SystemInfo.user.Lanuage!="Chinese")
+                {
+                    BSBLL.SetFormLanguages(dc);//设置DockContent中的语种
+                }
             }
         }
         /// <summary>

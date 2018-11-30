@@ -15,15 +15,14 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         /// <param name="strPassworNew"></param>
         /// <param name="strLoginId"></param>
-        public static void ChangePassword(string strPassworNew,string strLoginId)
+        public static void ChangePassword(string strPassworNew, string strLoginId)
         {
-            string sql= @"update BS_UserInfo set LoginPwd = '"+strPassworNew+"' where LoginId like '"+strLoginId+"'";
+            string sql = @"update BS_UserInfo set LoginPwd = '" + strPassworNew + "' where LoginId like '" + strLoginId + "'";
             BaseSQL.ExecuteSql(sql);
 
         }
 
-        
-        public static UserInfo CheckUser(string txtUserID, string txtPassword)
+        public static UserInfo CheckUser(string txtUserID, string txtPassword,string strLanuage)
         {
             string sqlString = "select a.*,b.DepartmentName,c.RoleNo,d.RoleName " +
             "from BS_UserInfo a left join BS_Department b on a.DepartmentNo=b.DepartmentNo " +
@@ -42,12 +41,25 @@ namespace PSAP.DAO.BSDAO
                 SystemInfo.user.RoleNo = ds.Tables[0].Rows[0]["RoleNo"].ToString();
                 SystemInfo.user.RoleName = ds.Tables[0].Rows[0]["RoleName"].ToString();
                 SystemInfo.user.AutoId = (int)ds.Tables[0].Rows[0]["AutoId"];
+                SystemInfo.user.Lanuage = strLanuage;
                 return SystemInfo.user;
             }
             else
             {
                 return SystemInfo.user;
             }
+        }
+
+        /// <summary>
+        /// 获得语种类别数据
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GegLanguageCategory()
+        {
+            DataTable dt;
+            string sql = "select LanguageName,LanguageText from BS_LanguageCategory";
+            dt=BaseSQL.GetTableBySql(sql);
+            return dt;
         }
     }
 }

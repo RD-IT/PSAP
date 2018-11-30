@@ -86,7 +86,7 @@ namespace PSAP.VIEW.BSVIEW
                 txtPasswordNew.Focus();
                 return;
             }
-            FrmLoginBLL.CheckUser(txtUserID.Text, en.str2,txtPasswordNew.Text);// en.str2为加密后密码
+            FrmLoginBLL.CheckUserChangePassword(txtUserID.Text, en.str2,txtPasswordNew.Text);// en.str2为加密后密码
         }
     }
 }

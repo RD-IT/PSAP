@@ -328,41 +328,6 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
-        /// <summary>
-        ///         /// 执行查询语句，返回多表DataSet
-        /// </summary>
-        /// <param name="SQLStringList"></param>
-        /// <param name="TablesName"></param>
-        /// <returns></returns>
-        public static DataSet GetDataSetBySql(ArrayList SQLStringList, ArrayList TablesName)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                DataSet ds = new DataSet();
-                try
-                {
-                    connection.Open();
-                    //SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
-                    SqlDataAdapter command;
-                    string strsql;
-                    for (int n = 0; n < SQLStringList.Count; n++)
-                    {
-                        strsql = SQLStringList[n].ToString();
-                        if (strsql.Trim().Length > 1)
-                        {
-                            command = new SqlDataAdapter(strsql, connection);
-                            command.Fill(ds, TablesName[n].ToString());
-                        }
-                    }
-                }
-                catch (System.Data.SqlClient.SqlException ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-                return ds;
-            }
-        }
-
         #endregion
 
         #region 执行带参数的SQL语句

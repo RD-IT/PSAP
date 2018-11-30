@@ -81,6 +81,7 @@
     <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
+    <Compile Include="DAO\BSDAO\FrmBussinessInfoDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmDataQueryDesignDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmLoginDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmOrganizationStruDAO.cs" />
@@ -92,6 +93,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DS_PUR.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ENTITY\BSENTITY\bomManagement.cs" />
+    <Compile Include="ENTITY\BSENTITY\BomMateriel.cs" />
+    <Compile Include="ENTITY\BSENTITY\BomMaterieState.cs" />
+    <Compile Include="ENTITY\BSENTITY\BussinessBaseInfo.cs" />
+    <Compile Include="ENTITY\BSENTITY\BussinessCategory.cs" />
+    <Compile Include="ENTITY\BSENTITY\BussinessDetailInfo.cs" />
+    <Compile Include="ENTITY\BSENTITY\BussinessFinancialInfo.cs" />
+    <Compile Include="ENTITY\BSENTITY\Button.cs" />
+    <Compile Include="ENTITY\BSENTITY\CountryCodeManagement.cs" />
+    <Compile Include="ENTITY\BSENTITY\DataHeaderSetting.cs" />
+    <Compile Include="ENTITY\BSENTITY\DataSetting.cs" />
+    <Compile Include="ENTITY\BSENTITY\LanguageCategory.cs" />
+    <Compile Include="ENTITY\BSENTITY\LanguageSetting.cs" />
+    <Compile Include="ENTITY\BSENTITY\QuerySql.cs" />
+    <Compile Include="ENTITY\BSENTITY\QuerySqlParameter.cs" />
+    <Compile Include="ENTITY\BSENTITY\Theme.cs" />
+    <Compile Include="ENTITY\BSENTITY\ThemeDetail.cs" />
     <Compile Include="ENTITY\FrmUserInfoDAO.cs" />
     <Compile Include="dsPSAP.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -124,6 +142,12 @@
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
     <Compile Include="PSAPCommon\ViewHandler.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="VIEW\BSVIEW\FrmBussinessInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBussinessInfo.Designer.cs">
+      <DependentUpon>FrmBussinessInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +261,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessInfo.resx">
+      <DependentUpon>FrmBussinessInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmChangePassword.resx">
       <DependentUpon>FrmChangePassword.cs</DependentUpon>
     </EmbeddedResource>

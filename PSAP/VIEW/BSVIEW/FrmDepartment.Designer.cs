@@ -627,9 +627,6 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BS_BussinessBaseInfoTableAdapter = null;
-            this.tableAdapterManager.BS_BussinessDetailInfoTableAdapter = null;
-            this.tableAdapterManager.BS_BussinessFinancialInfoTableAdapter = null;
             this.tableAdapterManager.BS_DepartmentTableAdapter = this.bS_DepartmentTableAdapter;
             this.tableAdapterManager.BS_MenuTableAdapter = null;
             this.tableAdapterManager.BS_QuerySqlParameterTableAdapter = null;
