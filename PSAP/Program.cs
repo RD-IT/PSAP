@@ -38,5 +38,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             SystemInfo.HostIpAddress = new SystemHandler().GetIpAddress();
         }
+
+        private static void returnstr()
+        {
+
+        }
     }
 }
