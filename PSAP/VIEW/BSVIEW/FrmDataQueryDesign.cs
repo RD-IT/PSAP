@@ -305,7 +305,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            psapCommon.DataGridViewExportToCSV(dgveQueryItemList, psapCommon.GetDateNumber("Sql查询"));
+            FileHandler.DataGridViewExportToCSV(dgveQueryItemList, psapCommon.GetDateNumber("Sql查询"));
         }
 
         private void tsbClose_Click(object sender, EventArgs e)

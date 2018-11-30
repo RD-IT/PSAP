@@ -24,8 +24,15 @@ namespace PSAP
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //this.Close();
-            System.Environment.Exit(0);
+            try
+            {
+                //this.Close();
+                System.Environment.Exit(0);
+            }
+            catch
+            {
+
+            }
         }
         /// <summary>
         /// 用户登录

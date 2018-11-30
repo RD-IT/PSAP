@@ -300,7 +300,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void btnExportData_Click(object sender, EventArgs e)
         {
-            psapCommon.DataGridViewExportToCSV(dgveQuery[tabControl2.SelectedIndex], psapCommon.GetDateNumber(tabControl2.TabPages[ tabControl2.SelectedIndex].Text));
+            FileHandler.DataGridViewExportToCSV(dgveQuery[tabControl2.SelectedIndex], psapCommon.GetDateNumber(tabControl2.TabPages[ tabControl2.SelectedIndex].Text));
 
         }
         //显示查询条件End

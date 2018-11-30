@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUserID = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnChangePassword = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtUserID = new DevExpress.XtraEditors.TextEdit();
+            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new DevExpress.XtraEditors.LabelControl();
+            this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.label2 = new DevExpress.XtraEditors.LabelControl();
+            this.panel1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
+            this.label3 = new DevExpress.XtraEditors.LabelControl();
             this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(107, 36);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Properties.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 21);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
@@ -74,7 +74,6 @@
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "登录";
-            this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnCancel
@@ -84,7 +83,6 @@
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消";
-            this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label2
@@ -122,7 +120,6 @@
             this.btnChangePassword.Size = new System.Drawing.Size(75, 23);
             this.btnChangePassword.TabIndex = 6;
             this.btnChangePassword.Text = "修改密码";
-            this.btnChangePassword.UseVisualStyleBackColor = true;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // label3
@@ -167,16 +164,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUserID;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnChangePassword;
+        private DevExpress.XtraEditors.TextEdit txtUserID;
+        private DevExpress.XtraEditors.TextEdit txtPassword;
+        private DevExpress.XtraEditors.LabelControl label1;
+        private DevExpress.XtraEditors.SimpleButton btnLogin;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.LabelControl label2;
+        private DevExpress.XtraEditors.PanelControl panel1;
+        private DevExpress.XtraEditors.SimpleButton btnChangePassword;
         private System.Windows.Forms.ComboBox cboLanguage;
-        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.LabelControl label3;
     }
 }
 

@@ -16,7 +16,7 @@ namespace PSAP.PSAPCommon
         /// 把DataGridView内容保存到Excel中
         /// </summary>
         /// <param name="dgv">DataGridView控件</param>
-        public static void SaveDataGridViewToExcel(DataGridView dgv)
+        public static void SaveDataGridViewExportToExcel(DataGridView dgv)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Excel files (*.xls)|*.xls";
@@ -83,7 +83,7 @@ namespace PSAP.PSAPCommon
         /// 把DevGridControl内容保存到Excel中
         /// </summary>
         /// <param name="GV">GridView控件</param>
-        public static void SaveDevGridControlToExcel(GridView GV)
+        public static void SaveDevGridControlExportToExcel(GridView GV)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Excel files (*.xls)|*.xls";
@@ -104,7 +104,7 @@ namespace PSAP.PSAPCommon
         /// 把DataTable内容保存到Excel中
         /// </summary>
         /// <param name="tmpDataTable">数据表</param>
-        public static void SaveDataTableToExcel(DataTable tmpDataTable)
+        public static void SaveDataTableExportToExcel(DataTable tmpDataTable)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Excel files (*.xls)|*.xls";
@@ -161,5 +161,65 @@ namespace PSAP.PSAPCommon
             }
         }
 
+        /// <summary>
+        /// 将DataGridView中的数据导出到CSV格式文件
+        /// </summary>
+        /// <param name="dgv">DataGridView对象名称</param>
+        /// <param name="fileName">导出文件的默认文件名</param>
+        public static void DataGridViewExportToCSV(DataGridView dgv, string fileName)
+        {
+            if (dgv.Rows.Count < 1)
+            {
+                MessageBox.Show("没有记录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            SaveFileDialog sfDialog = new SaveFileDialog();
+            sfDialog.Filter = "CSV文件(*.csv)|*.csv|文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            sfDialog.FilterIndex = 0;
+            sfDialog.FileName = fileName;
+            if (sfDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                string strFileName = sfDialog.FileName;
+                StreamWriter sw = new StreamWriter(strFileName, false, Encoding.Unicode);
+                string strLine = "";
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        //为禁止转义在前边多加上一个TAB符号(\t)
+                        strLine += "\"\t" + col.HeaderText.Trim().Replace("\"", "\\\"") + "\"" + "\t";
+                    }
+                }
+                strLine = strLine.Substring(0, strLine.Length - 1);
+                sw.WriteLine(strLine);
+                sw.Flush();
+
+                foreach (DataGridViewRow dgvr in dgv.Rows)
+                {
+                    strLine = "";
+                    foreach (DataGridViewCell dgvc in dgvr.Cells)
+                    {
+                        if (dgvc.Visible)
+                        {
+                            if (dgvc.Value == null)
+                            {
+                                strLine += "\t";
+                            }
+                            else
+                            {
+                                //为禁止转义在前边多加上一个TAB符号(\t)
+                                strLine += "\"\t" + dgvc.Value.ToString().Trim().Replace("\"", "\"\"") + "\"" + "\t";
+                            }
+                        }
+                    }
+                    sw.WriteLine(strLine);
+                    sw.Flush();
+                }
+                sw.Close();
+                MessageHandler.ShowMessageBox(string.Format("导出成功!数据已成功导出至\n{0}\n文件中!", strFileName));
+            }
+        }
     }
 }

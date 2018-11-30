@@ -298,7 +298,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            psapCommon.DataGridViewExportToCSV(dgvRoleList,psapCommon.GetDateNumber("角色"));
+            FileHandler.DataGridViewExportToCSV(dgvRoleList,psapCommon.GetDateNumber("角色"));
             
 
         }

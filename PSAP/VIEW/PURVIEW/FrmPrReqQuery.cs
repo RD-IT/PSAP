@@ -109,7 +109,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlToExcel(gridViewPrReqHead);
+                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
             }
             catch (Exception ex)
             {

@@ -10,6 +10,7 @@ using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Collections;
 using PSAP.DAO.BSDAO;
+using DevExpress.XtraEditors;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -151,7 +152,11 @@ namespace PSAP.BLL.BSBLL
                         {
                             FrmRightDAO.AddSqlStatement(DockContentFormN.Name, ctl.Name, ctl.Text);
                         }
-                        if (ctl is ToolStrip)
+                        else if(ctl is SimpleButton)
+                        {
+                            FrmRightDAO.AddSqlStatement(DockContentFormN.Name, ctl.Name, ctl.Text);
+                        }
+                        else if (ctl is ToolStrip)
                         {
                             ToolStrip tsTmp = (ToolStrip)ctl;
                             for (int i = 0; i < tsTmp.Items.Count; i++)
@@ -181,7 +186,11 @@ namespace PSAP.BLL.BSBLL
                     //MessageBox.Show(DockContentFormN.Name + "==>" + n.Text + "==>" + n.Name);
                     FrmRightDAO.AddSqlStatement(DockContentFormN.Name, n.Name, n.Text);
                 }
-                if (n is ToolStrip)
+                else if (n is SimpleButton)
+                {
+                    FrmRightDAO.AddSqlStatement(DockContentFormN.Name, n.Name, n.Text);
+                }
+                else if (n is ToolStrip)
                 {
                     ToolStrip tsTmp = (ToolStrip)n;
                     for (int i = 0; i < tsTmp.Items.Count; i++)
@@ -315,7 +324,20 @@ namespace PSAP.BLL.BSBLL
 
                     }
                 }
-                if (n is ToolStrip)
+                else if (n is SimpleButton)
+                {
+                    if (!strNotRightButton.Contains(n.Name))
+                    {
+                        tn.Nodes.Add(n.Name, n.Text);//增加按钮节点
+                    }
+                    foreach (TreeNode tn1 in tn.Nodes)
+                    {
+                        tn1.Tag = "button";//按钮节点
+                        VerifyButtonPersonalRight(strUserNo, tn.Name, tn1);
+
+                    }
+                }
+                else if (n is ToolStrip)
                 {
                     ToolStrip tsTmp = (ToolStrip)n;
                     for (int i = 0; i < tsTmp.Items.Count; i++)

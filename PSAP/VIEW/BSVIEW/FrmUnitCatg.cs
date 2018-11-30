@@ -49,7 +49,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            psapCommon.DataGridViewExportToCSV(bS_UnitCatgDataGridView, psapCommon.GetDateNumber("计量单位"));
+            FileHandler.DataGridViewExportToCSV(bS_UnitCatgDataGridView, psapCommon.GetDateNumber("计量单位"));
 
         }
 

@@ -261,7 +261,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void tsbDGViewExportToCSV_Click(object sender, EventArgs e)
         {
-            psapCommon.DataGridViewExportToCSV(bS_DepartmentDataGridView, psapCommon.GetDateNumber("部门信息"));
+            FileHandler.DataGridViewExportToCSV(bS_DepartmentDataGridView, psapCommon.GetDateNumber("部门信息"));
 
         }
 
