@@ -1539,8 +1539,8 @@
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Name = "FrmOrder";
-            this.TabText = "采购订单";
-            this.Text = "采购订单";
+            this.TabText = "采购单";
+            this.Text = "采购单";
             this.Activated += new System.EventHandler(this.FrmOrder_Activated);
             this.Load += new System.EventHandler(this.FrmOrder_Load);
             this.Shown += new System.EventHandler(this.FrmOrder_Shown);
