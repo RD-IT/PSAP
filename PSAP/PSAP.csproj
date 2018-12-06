@@ -233,6 +233,12 @@
     <Compile Include="VIEW\PURVIEW\FrmOrder.Designer.cs">
       <DependentUpon>FrmOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderQuery.Designer.cs">
+      <DependentUpon>FrmOrderQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PURVIEW\FrmPrReq.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderQuery.resx">
+      <DependentUpon>FrmOrderQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReq.resx">
       <DependentUpon>FrmPrReq.cs</DependentUpon>
