@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
@@ -47,7 +48,7 @@
             this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -68,6 +69,9 @@
             this.dataColApproverIp = new System.Data.DataColumn();
             this.dataColApproverTime = new System.Data.DataColumn();
             this.dataColPrReqRemark = new System.Data.DataColumn();
+            this.dataColClosed = new System.Data.DataColumn();
+            this.dataColClosedIp = new System.Data.DataColumn();
+            this.dataColClosedTime = new System.Data.DataColumn();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,8 +84,9 @@
             this.colPurCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomPrReq = new PSAP.VIEW.BSVIEW.GridBottom();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
@@ -129,12 +134,12 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(906, 78);
+            this.pnltop.Size = new System.Drawing.Size(1132, 78);
             this.pnltop.TabIndex = 1;
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(679, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(688, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 13;
@@ -143,6 +148,7 @@
             // 
             // textCommon
             // 
+            this.textCommon.EnterMoveNextControl = true;
             this.textCommon.Location = new System.Drawing.Point(432, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
@@ -319,7 +325,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(906, 192);
+            this.pnlMiddle.Size = new System.Drawing.Size(1132, 288);
             this.pnlMiddle.TabIndex = 2;
             // 
             // gridControlPrReqHead
@@ -332,7 +338,7 @@
             this.gridControlPrReqHead.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
-            this.gridControlPrReqHead.Size = new System.Drawing.Size(902, 188);
+            this.gridControlPrReqHead.Size = new System.Drawing.Size(1128, 284);
             this.gridControlPrReqHead.TabIndex = 1;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqHead});
@@ -369,7 +375,10 @@
             this.dataColApprover,
             this.dataColApproverIp,
             this.dataColApproverTime,
-            this.dataColPrReqRemark});
+            this.dataColPrReqRemark,
+            this.dataColClosed,
+            this.dataColClosedIp,
+            this.dataColClosedTime});
             this.dataTablePrReqHead.TableName = "PrReqHead";
             // 
             // dataColAutoId
@@ -467,6 +476,22 @@
             this.dataColPrReqRemark.Caption = "备注";
             this.dataColPrReqRemark.ColumnName = "PrReqRemark";
             // 
+            // dataColClosed
+            // 
+            this.dataColClosed.Caption = "关闭人";
+            this.dataColClosed.ColumnName = "Closed";
+            // 
+            // dataColClosedIp
+            // 
+            this.dataColClosedIp.Caption = "关闭人IP";
+            this.dataColClosedIp.ColumnName = "ClosedIp";
+            // 
+            // dataColClosedTime
+            // 
+            this.dataColClosedTime.Caption = "关闭时间";
+            this.dataColClosedTime.ColumnName = "ClosedTime";
+            this.dataColClosedTime.DataType = typeof(System.DateTime);
+            // 
             // gridViewPrReqHead
             // 
             this.gridViewPrReqHead.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -479,8 +504,9 @@
             this.colStnNo,
             this.colPurCategory,
             this.colApplicant,
-            this.colPrReqRemark,
-            this.colApprover});
+            this.colApprover,
+            this.colClosed,
+            this.colPrReqRemark});
             this.gridViewPrReqHead.GridControl = this.gridControlPrReqHead;
             this.gridViewPrReqHead.GroupPanelText = "拖拽列标题到此处可以按照该列进行分组";
             this.gridViewPrReqHead.IndicatorWidth = 40;
@@ -511,7 +537,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colPrReqNo.Visible = true;
             this.colPrReqNo.VisibleIndex = 0;
-            this.colPrReqNo.Width = 120;
+            this.colPrReqNo.Width = 110;
             // 
             // colReqState
             // 
@@ -622,17 +648,6 @@
             this.colApplicant.VisibleIndex = 8;
             this.colApplicant.Width = 70;
             // 
-            // colPrReqRemark
-            // 
-            this.colPrReqRemark.AppearanceHeader.Options.UseTextOptions = true;
-            this.colPrReqRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colPrReqRemark.FieldName = "PrReqRemark";
-            this.colPrReqRemark.Name = "colPrReqRemark";
-            this.colPrReqRemark.OptionsColumn.AllowEdit = false;
-            this.colPrReqRemark.Visible = true;
-            this.colPrReqRemark.VisibleIndex = 7;
-            this.colPrReqRemark.Width = 160;
-            // 
             // colApprover
             // 
             this.colApprover.AppearanceHeader.Options.UseTextOptions = true;
@@ -645,13 +660,35 @@
             this.colApprover.VisibleIndex = 9;
             this.colApprover.Width = 70;
             // 
+            // colClosed
+            // 
+            this.colClosed.AppearanceHeader.Options.UseTextOptions = true;
+            this.colClosed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colClosed.FieldName = "Closed";
+            this.colClosed.Name = "colClosed";
+            this.colClosed.OptionsColumn.AllowEdit = false;
+            this.colClosed.OptionsColumn.AllowFocus = false;
+            this.colClosed.Visible = true;
+            this.colClosed.VisibleIndex = 10;
+            // 
+            // colPrReqRemark
+            // 
+            this.colPrReqRemark.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPrReqRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPrReqRemark.FieldName = "PrReqRemark";
+            this.colPrReqRemark.Name = "colPrReqRemark";
+            this.colPrReqRemark.OptionsColumn.AllowEdit = false;
+            this.colPrReqRemark.Visible = true;
+            this.colPrReqRemark.VisibleIndex = 7;
+            this.colPrReqRemark.Width = 140;
+            // 
             // pnlBottom
             // 
             this.pnlBottom.Controls.Add(this.gridBottomPrReq);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 270);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 366);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(906, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1132, 58);
             this.pnlBottom.TabIndex = 3;
             // 
             // gridBottomPrReq
@@ -661,13 +698,13 @@
             this.gridBottomPrReq.MasterDataSet = this.dataSet_PrReq;
             this.gridBottomPrReq.Name = "gridBottomPrReq";
             this.gridBottomPrReq.pageRowCount = 5;
-            this.gridBottomPrReq.Size = new System.Drawing.Size(902, 54);
+            this.gridBottomPrReq.Size = new System.Drawing.Size(1128, 54);
             this.gridBottomPrReq.TabIndex = 0;
             // 
             // FrmPrReqQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(906, 328);
+            this.ClientSize = new System.Drawing.Size(1132, 424);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
@@ -760,5 +797,9 @@
         private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
         private DevExpress.XtraEditors.PanelControl pnlBottom;
         private GridBottom gridBottomPrReq;
+        private System.Data.DataColumn dataColClosed;
+        private System.Data.DataColumn dataColClosedIp;
+        private System.Data.DataColumn dataColClosedTime;
+        private DevExpress.XtraGrid.Columns.GridColumn colClosed;
     }
 }

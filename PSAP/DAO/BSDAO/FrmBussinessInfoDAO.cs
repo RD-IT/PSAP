@@ -143,25 +143,25 @@ namespace PSAP.DAO.BSDAO
                     {
                         MessageBox.Show("当前往来方编码已经被使用，不能修改！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         trans.Rollback();
-                        //dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
-                        //dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
-                        //dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
                     }
                     catch (System.Data.DBConcurrencyException)
                     {
-                        MessageBox.Show("当前往来方编码已经被使用，不能修改！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("当前往来方编码已经被使用，不能修改1111！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         trans.Rollback();
-                        //dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
-                        //dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
-                        //dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
                     }
 
                     catch (Exception ex)
                     {
                         trans.Rollback();
-                        //dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
-                        //dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
-                        //dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
+                        dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
                         throw ex;
                     }
                 }

@@ -23,29 +23,29 @@ namespace PSAP.VIEW.BSVIEW
             this.Close();
         }
 
-        private void txtUserID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        //private void txtUserID_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
-        }
+        //}
 
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        //private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
-        }
+        //}
 
-        private void txtPasswordNew_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        //private void txtPasswordNew_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
-        }
+        //}
 
-        private void txtPasswordNewV_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+        //private void txtPasswordNewV_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
 
-        }
+        //}
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {

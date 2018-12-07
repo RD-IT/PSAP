@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using PSAP.PSAPCommon;
 
 namespace PSAP.DAO.BSDAO
 {
@@ -34,6 +35,39 @@ namespace PSAP.DAO.BSDAO
             {
                 return int.Parse(obj.ToString());
             }
+        }
+
+        /// <summary>
+        /// 从SW_MaxCodeNo表中根据类别取最大编号
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="catgName"></param>
+        /// <returns></returns>
+        public static string GetMaxCodeNo(SqlCommand cmd, string catgName)
+        {
+            cmd.CommandText = string.Format("select * from SW_MaxCodeNo where CatgName='{0}'", catgName);
+            DataTable maxCodeNoTable = new DataTable();
+            SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+            adpt.Fill(maxCodeNoTable);
+            int maxCodeNoInt = 1;
+            string maxCodeNoStr = "";
+            if (maxCodeNoTable.Rows.Count > 0)
+            {
+                maxCodeNoInt = DataTypeConvert.GetInt(maxCodeNoTable.Rows[0]["MaxCodeNo"]);
+                int autoId = DataTypeConvert.GetInt(maxCodeNoTable.Rows[0]["AutoId"]);
+                maxCodeNoInt++;
+                maxCodeNoStr = catgName + maxCodeNoInt.ToString().PadLeft(11, '0');
+                cmd.CommandText = string.Format("Update SW_MaxCodeNo set MaxCodeNo='{1}', MaxCode='{2}' where AutoId={0}", autoId, maxCodeNoInt, maxCodeNoStr);
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                maxCodeNoStr = catgName + maxCodeNoInt.ToString().PadLeft(11, '0');
+                cmd.CommandText = string.Format("Insert into SW_MaxCodeNo(MaxCodeNo, MaxCode, CatgName) values ('{0}', '{1}', '{2}')", maxCodeNoInt, maxCodeNoStr, catgName);
+                cmd.ExecuteNonQuery();
+            }
+
+            return maxCodeNoStr;
         }
 
         //判断用Sql查询的数据是否存在,true表示存在，False表示不存在
@@ -641,5 +675,6 @@ namespace PSAP.DAO.BSDAO
             return command;
         }
         #endregion
+
     }
 }
