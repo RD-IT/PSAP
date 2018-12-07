@@ -536,7 +536,6 @@ namespace PSAP.DAO.BSDAO
             dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand(true);
             dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
             dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
-
             dataAdapter.Update(dataTable);
         }
 

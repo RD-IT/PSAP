@@ -41,6 +41,7 @@
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
@@ -81,6 +82,7 @@
     <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
+    <Compile Include="DAO\BSDAO\FrmBussinessCategoryDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmBussinessInfoDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmDataQueryDesignDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmLoginDAO.cs" />
@@ -142,6 +144,12 @@
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
     <Compile Include="PSAPCommon\ViewHandler.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="VIEW\BSVIEW\FrmBussinessCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBussinessCategory.Designer.cs">
+      <DependentUpon>FrmBussinessCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmBussinessInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +269,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessCategory.resx">
+      <DependentUpon>FrmBussinessCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessInfo.resx">
       <DependentUpon>FrmBussinessInfo.cs</DependentUpon>
     </EmbeddedResource>

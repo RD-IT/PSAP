@@ -3805,6 +3805,7 @@ namespace PSAP {
                 this.columnBussinessCategory.AllowDBNull = false;
                 this.columnBussinessCategory.Unique = true;
                 this.columnBussinessCategory.MaxLength = 20;
+                this.columnBussinessCategoryText.AllowDBNull = false;
                 this.columnBussinessCategoryText.MaxLength = 50;
             }
             
@@ -5131,28 +5132,11 @@ namespace PSAP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string BussinessCategoryText {
                 get {
-                    try {
-                        return ((string)(this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“BS_BussinessCategory”中列“BussinessCategoryText”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn]));
                 }
                 set {
                     this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsBussinessCategoryTextNull() {
-                return this.IsNull(this.tableBS_BussinessCategory.BussinessCategoryTextColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetBussinessCategoryTextNull() {
-                this[this.tableBS_BussinessCategory.BussinessCategoryTextColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9572,8 +9556,7 @@ SELECT AutoId, QuerySqlId, ParametersText, ParametersName, ParametersCatg FROM B
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT  BussinessCategory, BussinessCategoryText FROM dbo.BS_BussinessCategory\r\nu" +
-                "nion\r\nselect \'\',\'\'";
+            this._commandCollection[0].CommandText = "SELECT  BussinessCategory, BussinessCategoryText FROM dbo.BS_BussinessCategory\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

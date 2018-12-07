@@ -41,8 +41,6 @@
             System.Windows.Forms.Label bankAccoutLabel;
             System.Windows.Forms.Label bankAddressLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBussinessInfo));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
@@ -51,7 +49,6 @@
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.tsbCancel = new System.Windows.Forms.ToolStripButton();
-            this.tsbDGViewExportToCSV = new System.Windows.Forms.ToolStripButton();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
             this.gdBussinessBaseInfo = new DevExpress.XtraGrid.GridControl();
             this.dataSet1 = new System.Data.DataSet();
@@ -83,14 +80,18 @@
             this.colBussinessBaseNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBussinessCategory = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBussinessIsUse = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.bsBussinessCategory = new System.Windows.Forms.BindingSource(this.components);
             this.dsPSAP = new PSAP.dsPSAP();
+            this.colBussinessIsUse = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabBussinessInfo = new System.Windows.Forms.TabControl();
             this.tpBussinessDetailInfo = new System.Windows.Forms.TabPage();
             this.pnlEdit = new System.Windows.Forms.Panel();
             this.txtWebSite = new DevExpress.XtraEditors.TextEdit();
+            this.bsDetail = new System.Windows.Forms.BindingSource(this.components);
             this.txtE_mail = new DevExpress.XtraEditors.TextEdit();
             this.txtFaxNo = new DevExpress.XtraEditors.TextEdit();
             this.txtPhoneNo = new DevExpress.XtraEditors.TextEdit();
@@ -101,14 +102,13 @@
             this.tpBussinessFinancialInfo = new System.Windows.Forms.TabPage();
             this.pnlEdit1 = new System.Windows.Forms.Panel();
             this.txtBankAccout = new DevExpress.XtraEditors.TextEdit();
+            this.bsFina = new System.Windows.Forms.BindingSource(this.components);
             this.txtBankAddress = new DevExpress.XtraEditors.TextEdit();
             this.txtBussinessLicense = new DevExpress.XtraEditors.TextEdit();
             this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
             this.bS_BussinessCategoryTableAdapter = new PSAP.dsPSAPTableAdapters.BS_BussinessCategoryTableAdapter();
             this.bS_CountryCodeManagementTableAdapter = new PSAP.dsPSAPTableAdapters.BS_CountryCodeManagementTableAdapter();
             this.bsBase = new System.Windows.Forms.BindingSource(this.components);
-            this.bsDetail = new System.Windows.Forms.BindingSource(this.components);
-            this.bsFina = new System.Windows.Forms.BindingSource(this.components);
             companyLRLabel = new System.Windows.Forms.Label();
             companyAddressLabel = new System.Windows.Forms.Label();
             zipCodeLabel = new System.Windows.Forms.Label();
@@ -132,13 +132,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvBussinessBaseInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBussinessCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
             this.tabBussinessInfo.SuspendLayout();
             this.tpBussinessDetailInfo.SuspendLayout();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtE_mail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneNo.Properties)).BeginInit();
@@ -149,12 +153,11 @@
             this.tpBussinessFinancialInfo.SuspendLayout();
             this.pnlEdit1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccout.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFina)).BeginInit();
             this.SuspendLayout();
             // 
             // companyLRLabel
@@ -293,11 +296,10 @@
             this.tsbDelete,
             this.tsbSave,
             this.tsbCancel,
-            this.tsbDGViewExportToCSV,
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(391, 25);
+            this.tsControl.Size = new System.Drawing.Size(346, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
@@ -346,14 +348,6 @@
             this.tsbCancel.Text = "取消";
             this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
-            // tsbDGViewExportToCSV
-            // 
-            this.tsbDGViewExportToCSV.Image = ((System.Drawing.Image)(resources.GetObject("tsbDGViewExportToCSV.Image")));
-            this.tsbDGViewExportToCSV.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDGViewExportToCSV.Name = "tsbDGViewExportToCSV";
-            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(76, 22);
-            this.tsbDGViewExportToCSV.Text = "导出数据";
-            // 
             // tsbClose
             // 
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
@@ -361,21 +355,19 @@
             this.tsbClose.Name = "tsbClose";
             this.tsbClose.Size = new System.Drawing.Size(52, 22);
             this.tsbClose.Text = "退出";
+            this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
             // gdBussinessBaseInfo
             // 
             this.gdBussinessBaseInfo.DataMember = "BussinessBaseInfo";
             this.gdBussinessBaseInfo.DataSource = this.dataSet1;
-            gridLevelNode1.RelationName = "Level1";
-            gridLevelNode2.RelationName = "Level2";
-            this.gdBussinessBaseInfo.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1,
-            gridLevelNode2});
             this.gdBussinessBaseInfo.Location = new System.Drawing.Point(0, 34);
             this.gdBussinessBaseInfo.MainView = this.gdvBussinessBaseInfo;
             this.gdBussinessBaseInfo.Name = "gdBussinessBaseInfo";
             this.gdBussinessBaseInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEdit1});
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemGridLookUpEdit1,
+            this.repositoryItemLookUpEdit2});
             this.gdBussinessBaseInfo.Size = new System.Drawing.Size(511, 578);
             this.gdBussinessBaseInfo.TabIndex = 24;
             this.gdBussinessBaseInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -403,6 +395,7 @@
             // 
             this.dataColumn1.Caption = "自动编号";
             this.dataColumn1.ColumnName = "AutoId";
+            this.dataColumn1.DataType = typeof(int);
             // 
             // dataColumn2
             // 
@@ -423,6 +416,7 @@
             // 
             this.dataColumn5.Caption = "是否使用";
             this.dataColumn5.ColumnName = "BussinessIsUse";
+            this.dataColumn5.DataType = typeof(bool);
             // 
             // dataTable2
             // 
@@ -443,6 +437,7 @@
             // 
             this.dataColumn6.Caption = "自动编号";
             this.dataColumn6.ColumnName = "AutoId";
+            this.dataColumn6.DataType = typeof(int);
             // 
             // dataColumn7
             // 
@@ -503,6 +498,7 @@
             // 
             this.dataColumn16.Caption = "自动编号";
             this.dataColumn16.ColumnName = "AutoId";
+            this.dataColumn16.DataType = typeof(int);
             // 
             // dataColumn17
             // 
@@ -562,10 +558,36 @@
             // 
             // colBussinessCategory
             // 
+            this.colBussinessCategory.ColumnEdit = this.repositoryItemLookUpEdit2;
             this.colBussinessCategory.FieldName = "BussinessCategory";
             this.colBussinessCategory.Name = "colBussinessCategory";
             this.colBussinessCategory.Visible = true;
             this.colBussinessCategory.VisibleIndex = 2;
+            // 
+            // repositoryItemLookUpEdit2
+            // 
+            this.repositoryItemLookUpEdit2.AutoHeight = false;
+            this.repositoryItemLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit2.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "自动编号", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BussinessCategory", "往来方编号", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BussinessCategoryText", "往来方名称")});
+            this.repositoryItemLookUpEdit2.DataSource = this.bsBussinessCategory;
+            this.repositoryItemLookUpEdit2.DisplayMember = "BussinessCategoryText";
+            this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
+            this.repositoryItemLookUpEdit2.NullText = "";
+            this.repositoryItemLookUpEdit2.ValueMember = "BussinessCategory";
+            // 
+            // bsBussinessCategory
+            // 
+            this.bsBussinessCategory.DataMember = "BS_BussinessCategory";
+            this.bsBussinessCategory.DataSource = this.dsPSAP;
+            // 
+            // dsPSAP
+            // 
+            this.dsPSAP.DataSetName = "dsPSAP";
+            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // colBussinessIsUse
             // 
@@ -588,15 +610,20 @@
             this.repositoryItemLookUpEdit1.NullText = "";
             this.repositoryItemLookUpEdit1.ValueMember = "BussinessCategory";
             // 
-            // bsBussinessCategory
+            // repositoryItemGridLookUpEdit1
             // 
-            this.bsBussinessCategory.DataMember = "BS_BussinessCategory";
-            this.bsBussinessCategory.DataSource = this.dsPSAP;
+            this.repositoryItemGridLookUpEdit1.AutoHeight = false;
+            this.repositoryItemGridLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemGridLookUpEdit1.Name = "repositoryItemGridLookUpEdit1";
+            this.repositoryItemGridLookUpEdit1.View = this.repositoryItemGridLookUpEdit1View;
             // 
-            // dsPSAP
+            // repositoryItemGridLookUpEdit1View
             // 
-            this.dsPSAP.DataSetName = "dsPSAP";
-            this.dsPSAP.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
+            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // tabBussinessInfo
             // 
@@ -645,18 +672,26 @@
             this.pnlEdit.Name = "pnlEdit";
             this.pnlEdit.Size = new System.Drawing.Size(392, 297);
             this.pnlEdit.TabIndex = 4;
+            this.pnlEdit.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlEdit_Paint);
             // 
             // txtWebSite
             // 
-            this.txtWebSite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.WebSite", true));
+            this.txtWebSite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "WebSite", true));
+            this.txtWebSite.EnterMoveNextControl = true;
             this.txtWebSite.Location = new System.Drawing.Point(96, 197);
             this.txtWebSite.Name = "txtWebSite";
             this.txtWebSite.Size = new System.Drawing.Size(100, 20);
             this.txtWebSite.TabIndex = 27;
             // 
+            // bsDetail
+            // 
+            this.bsDetail.DataMember = "BussinessDetailInfo";
+            this.bsDetail.DataSource = this.dataSet1;
+            // 
             // txtE_mail
             // 
-            this.txtE_mail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.E_mail", true));
+            this.txtE_mail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "E_mail", true));
+            this.txtE_mail.EnterMoveNextControl = true;
             this.txtE_mail.Location = new System.Drawing.Point(96, 170);
             this.txtE_mail.Name = "txtE_mail";
             this.txtE_mail.Size = new System.Drawing.Size(100, 20);
@@ -664,7 +699,8 @@
             // 
             // txtFaxNo
             // 
-            this.txtFaxNo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.FaxNo", true));
+            this.txtFaxNo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "FaxNo", true));
+            this.txtFaxNo.EnterMoveNextControl = true;
             this.txtFaxNo.Location = new System.Drawing.Point(96, 143);
             this.txtFaxNo.Name = "txtFaxNo";
             this.txtFaxNo.Size = new System.Drawing.Size(100, 20);
@@ -672,7 +708,8 @@
             // 
             // txtPhoneNo
             // 
-            this.txtPhoneNo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.PhoneNo", true));
+            this.txtPhoneNo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "PhoneNo", true));
+            this.txtPhoneNo.EnterMoveNextControl = true;
             this.txtPhoneNo.Location = new System.Drawing.Point(96, 115);
             this.txtPhoneNo.Name = "txtPhoneNo";
             this.txtPhoneNo.Size = new System.Drawing.Size(100, 20);
@@ -680,7 +717,8 @@
             // 
             // txtZipCode
             // 
-            this.txtZipCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.ZipCode", true));
+            this.txtZipCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "ZipCode", true));
+            this.txtZipCode.EnterMoveNextControl = true;
             this.txtZipCode.Location = new System.Drawing.Point(96, 89);
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(100, 20);
@@ -688,7 +726,8 @@
             // 
             // txtCompanyAddress
             // 
-            this.txtCompanyAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.CompanyAddress", true));
+            this.txtCompanyAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "CompanyAddress", true));
+            this.txtCompanyAddress.EnterMoveNextControl = true;
             this.txtCompanyAddress.Location = new System.Drawing.Point(96, 62);
             this.txtCompanyAddress.Name = "txtCompanyAddress";
             this.txtCompanyAddress.Size = new System.Drawing.Size(100, 20);
@@ -696,7 +735,8 @@
             // 
             // TxtCompanyLR
             // 
-            this.TxtCompanyLR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessDetailInfo.CompanyLR", true));
+            this.TxtCompanyLR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "CompanyLR", true));
+            this.TxtCompanyLR.EnterMoveNextControl = true;
             this.TxtCompanyLR.Location = new System.Drawing.Point(96, 36);
             this.TxtCompanyLR.Name = "TxtCompanyLR";
             this.TxtCompanyLR.Size = new System.Drawing.Size(100, 20);
@@ -704,7 +744,8 @@
             // 
             // lueCountryCode
             // 
-            this.lueCountryCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.dataSet1, "BussinessDetailInfo.CountryCode", true));
+            this.lueCountryCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsDetail, "CountryCode", true));
+            this.lueCountryCode.EnterMoveNextControl = true;
             this.lueCountryCode.Location = new System.Drawing.Point(96, 225);
             this.lueCountryCode.Name = "lueCountryCode";
             this.lueCountryCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -712,7 +753,7 @@
             this.lueCountryCode.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CountryCode", "Name2", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CountryName", "Name3")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CountryName", "国家")});
             this.lueCountryCode.Properties.DisplayMember = "CountryName";
             this.lueCountryCode.Properties.NullText = "";
             this.lueCountryCode.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.OnlyInPopup;
@@ -748,23 +789,31 @@
             // 
             // txtBankAccout
             // 
-            this.txtBankAccout.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessFinancialInfo.BankAccout", true));
+            this.txtBankAccout.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsFina, "BankAccout", true));
+            this.txtBankAccout.EnterMoveNextControl = true;
             this.txtBankAccout.Location = new System.Drawing.Point(106, 64);
             this.txtBankAccout.Name = "txtBankAccout";
             this.txtBankAccout.Size = new System.Drawing.Size(100, 20);
-            this.txtBankAccout.TabIndex = 24;
+            this.txtBankAccout.TabIndex = 23;
+            // 
+            // bsFina
+            // 
+            this.bsFina.DataMember = "BussinessFinancialInfo";
+            this.bsFina.DataSource = this.dataSet1;
             // 
             // txtBankAddress
             // 
-            this.txtBankAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessFinancialInfo.BankAddress", true));
+            this.txtBankAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsFina, "BankAddress", true));
+            this.txtBankAddress.EnterMoveNextControl = true;
             this.txtBankAddress.Location = new System.Drawing.Point(106, 94);
             this.txtBankAddress.Name = "txtBankAddress";
             this.txtBankAddress.Size = new System.Drawing.Size(100, 20);
-            this.txtBankAddress.TabIndex = 23;
+            this.txtBankAddress.TabIndex = 24;
             // 
             // txtBussinessLicense
             // 
-            this.txtBussinessLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSet1, "BussinessFinancialInfo.BussinessLicense", true));
+            this.txtBussinessLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsFina, "BussinessLicense", true));
+            this.txtBussinessLicense.EnterMoveNextControl = true;
             this.txtBussinessLicense.Location = new System.Drawing.Point(106, 37);
             this.txtBussinessLicense.Name = "txtBussinessLicense";
             this.txtBussinessLicense.Size = new System.Drawing.Size(100, 20);
@@ -787,16 +836,6 @@
             // 
             this.bsBase.DataMember = "BussinessBaseInfo";
             this.bsBase.DataSource = this.dataSet1;
-            // 
-            // bsDetail
-            // 
-            this.bsDetail.DataMember = "BussinessDetailInfo";
-            this.bsDetail.DataSource = this.dataSet1;
-            // 
-            // bsFina
-            // 
-            this.bsFina.DataMember = "BussinessFinancialInfo";
-            this.bsFina.DataSource = this.dataSet1;
             // 
             // FrmBussinessInfo
             // 
@@ -823,15 +862,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvBussinessBaseInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBussinessCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsPSAP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
             this.tabBussinessInfo.ResumeLayout(false);
             this.tpBussinessDetailInfo.ResumeLayout(false);
             this.tpBussinessDetailInfo.PerformLayout();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtE_mail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneNo.Properties)).EndInit();
@@ -844,12 +887,11 @@
             this.pnlEdit1.ResumeLayout(false);
             this.pnlEdit1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccout.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFina)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -868,7 +910,6 @@
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripButton tsbCancel;
-        private System.Windows.Forms.ToolStripButton tsbDGViewExportToCSV;
         private System.Windows.Forms.ToolStripButton tsbClose;
         private DevExpress.XtraGrid.GridControl gdBussinessBaseInfo;
         private DevExpress.XtraGrid.Views.Grid.GridView gdvBussinessBaseInfo;
@@ -921,5 +962,8 @@
         private System.Windows.Forms.BindingSource bsBase;
         private System.Windows.Forms.BindingSource bsDetail;
         private System.Windows.Forms.BindingSource bsFina;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit1;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
     }
 }

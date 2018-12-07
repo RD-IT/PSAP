@@ -20,66 +20,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             InitializeComponent();
             InitEnableState();//初始化控件Enable状态
-            BindingDatatSource();
-        }
-
-        //private BindingSource bsBase;
-        //private BindingSource bsDetail;
-        //private BindingSource bsFina;
-        /// <summary>
-        /// 绑定数据源建立关联关系
-        /// </summary>
-        public void BindingDatatSource()
-        {
-            //dataSet1 = FrmBussinessInfoDAO.InitDataSet();
-            BaseSQL.Query("select * from BS_BussinessBaseInfo", dataSet1.Tables[0]);
-            BaseSQL.Query("select * from BS_BussinessDetailInfo", dataSet1.Tables[1]);
-            BaseSQL.Query("select * from BS_BussinessFinancialInfo", dataSet1.Tables[2]);
-
-            /*
-            DataColumn ParentBussinessBaseNo = dataSet1.Tables["BS_BussinessBaseInfo"].Columns["BussinessBaseNo"];
-            DataColumn Child1BussinessBaseNo = dataSet1.Tables["BS_BussinessDetailInfo"].Columns["BussinessBaseNo"];
-            DataColumn Child2BussinessBaseNo = dataSet1.Tables["BS_BussinessFinancialInfo"].Columns["BussinessBaseNo"];
-            DataRelation relation1 =
-                new DataRelation("FK_Base_Detail", ParentBussinessBaseNo, Child1BussinessBaseNo);
-            dataSet1.Relations.Add(relation1);
-            DataRelation relation2 =
-                new DataRelation("FK_Base_Fina", ParentBussinessBaseNo, Child2BussinessBaseNo);
-            dataSet1.Relations.Add(relation2);
-            */
-            //bsBase = new BindingSource();
-            //bsDetail = new BindingSource();
-            //bsFina = new BindingSource();
-            //bsBase.DataSource = dataSet1;
-            //bsBase.DataMember = "BS_BussinessBaseInfo";
-            //bsDetail.DataSource = dataSet1;
-            //bsDetail.DataMember = "BS_BussinessDetailInfo";
-            //bsFina.DataSource = dataSet1;
-            //bsFina.DataMember = "BS_BussinessFinancialInfo";
-            /*
-            bsDetail.DataSource = bsBase;
-            bsDetail.DataMember = "FK_Base_Detail";
-            bsFina.DataSource = bsBase;
-            bsFina.DataMember = "FK_Base_Fina";
-            */
-
-            ////grid
-            //gdBussinessBaseInfo.DataSource = bsBase;
-            ////BS_BussinessDetailInfo
-            //bussinessBaseNoTextBox.DataBindings.Add("Text", bsDetail, "BussinessBaseNo");
-            //companyLRTextBox.DataBindings.Add("Text", bsDetail, "CompanyLR");
-            //companyAddressTextBox.DataBindings.Add("Text", bsDetail, "CompanyAddress");
-            //zipCodeTextBox.DataBindings.Add("Text", bsDetail, "zipCode");
-            //phoneNoTextBox.DataBindings.Add("Text", bsDetail, "phoneNo");
-            //faxNoTextBox.DataBindings.Add("Text", bsDetail, "faxNo");
-            //e_mailTextBox.DataBindings.Add("Text", bsDetail, "e_mail");
-            //webSiteTextBox.DataBindings.Add("Text", bsDetail, "webSite");
-
-            ////BS_BussinessFinancialInfo
-            //bussinessBaseNoTextBox1.DataBindings.Add("Text", bsFina, "bussinessBaseNo");
-            //bussinessLicenseTextBox.DataBindings.Add("Text", bsFina, "bussinessLicense");
-            //bankAccoutTextBox.DataBindings.Add("Text", bsFina, "bankAccout");
-            //bankAddressTextBox.DataBindings.Add("Text", bsFina, "bankAddress");
+            FrmBussinessInfoDAO.InitBussinessBaseInfo(dataSet1);
+            gdvBussinessBaseInfo.IndicatorWidth = 45;
         }
 
         /// <summary>
@@ -92,7 +34,6 @@ namespace PSAP.VIEW.BSVIEW
             gdvBussinessBaseInfo.OptionsBehavior.Editable = false;//
             tsbSave.Enabled = false;
             tsbCancel.Enabled = false;
-
         }
 
         /// <summary>
@@ -138,116 +79,24 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEditOrBrowse_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void bussinessBaseNoTextBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-        }
-
-        private void bussinessLicenseTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void bankAccoutTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void bankAddressTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void bussinessBaseNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void companyLRTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void companyAddressTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void zipCodeTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void phoneNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void faxNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void e_mailTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void webSiteTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void cboCountryCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        }
-
-        private void bussinessBaseNoTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        //private int editFlag = 0; //1:新增
         private void tsbAdd_Click(object sender, EventArgs e)
         {
-            //bsBase.AddNew();
-            //bsDetail.AddNew();
-            //bsFina.AddNew();
-            //editFlag = 1;
             try
             {
+                //gdvBussinessBaseInfo.Columns[1].OptionsColumn.ReadOnly = false;//列可编辑
+                headFocusedLineNo = gdvBussinessBaseInfo.RowCount;//记录新增记录行号
+                newRowFlag = 1;
                 ChangeEnabledState();//更改控件状态
                 gdvBussinessBaseInfo.AddNewRow();
                 gdvBussinessBaseInfo.SetFocusedRowCellValue("BussinessIsUse", 1);
                 dataSet1.Tables["BussinessDetailInfo"].Clear();
-                DataRow dr1 = dataSet1.Tables["BussinessDetailInfo"].NewRow();
-                dataSet1.Tables["BussinessDetailInfo"].Rows.Add(dr1);
+                DataRow dr = dataSet1.Tables["BussinessDetailInfo"].NewRow();
+                dataSet1.Tables["BussinessDetailInfo"].Rows.Add(dr);
 
                 dataSet1.Tables["BussinessFinancialInfo"].Clear();
-                DataRow dr2 = dataSet1.Tables["BussinessFinancialInfo"].NewRow();
-                dataSet1.Tables["BussinessFinancialInfo"].Rows.Add(dr2);
-                gdBussinessBaseInfo.Focus();
+                dr = dataSet1.Tables["BussinessFinancialInfo"].NewRow();
+                dataSet1.Tables["BussinessFinancialInfo"].Rows.Add(dr);
+                tabBussinessInfo.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -257,8 +106,11 @@ namespace PSAP.VIEW.BSVIEW
 
         private void tsbEdit_Click(object sender, EventArgs e)
         {
+            //gdvBussinessBaseInfo.Columns[1].OptionsColumn.ReadOnly = true;//列只读
+            newRowFlag = 2;//编辑
+            headFocusedLineNo = gdvBussinessBaseInfo.FocusedRowHandle;//记录新增记录行号
             ChangeEnabledState();//更改控件状态
-            gdBussinessBaseInfo.Focus();
+            gdvBussinessBaseInfo.Focus();
         }
 
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -267,164 +119,135 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (MessageBox.Show("确实要删除吗?", "确认", MessageBoxButtons.YesNo,
                                             MessageBoxIcon.Question) == DialogResult.Yes)
+                //{
+                //    //删除相关数据
+                //    FrmBussinessInfoDAO.DeleteBussinessCorrelationData(gdvBussinessBaseInfo.GetRowCellValue
+                //        (gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());//删除相关数据
+                //    int index = bsDetail.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
+                //    if (index != -1)
+                //    {
+                //        bsDetail.Position = index;//定位BindingSource
+                //        bsDetail.RemoveCurrent();
+                //    }
+
+                //    index = bsFina.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
+                //    if (index != -1)
+                //    {
+                //        bsFina.Position = index;//定位BindingSource
+                //        bsFina.RemoveCurrent();
+                //    }
+                //    bsBase.RemoveCurrent();//
+                //}
                 {
                     //删除相关数据
-                    FrmBussinessInfoDAO.DeleteBussinessCorrelationData(gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());//删除相关数据
-                    int index = bsDetail.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
-                    if (index != -1)
+                    if (FrmBussinessInfoDAO.DeleteBussinessCorrelationData(gdvBussinessBaseInfo.GetRowCellValue
+                         (gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString(),dataSet1)) //删除相关数据
                     {
-                        bsDetail.Position = index;//定位BindingSource
-                        bsDetail.RemoveCurrent();
+                        int index = bsDetail.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
+                        if (index != -1)
+                        {
+                            bsDetail.Position = index;//定位BindingSource
+                            bsDetail.RemoveCurrent();
+                        }
+
+                        index = bsFina.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
+                        if (index != -1)
+                        {
+                            bsFina.Position = index;//定位BindingSource
+                            bsFina.RemoveCurrent();
+                        }
+                        //bsBase.RemoveCurrent();//
+                        gdvBussinessBaseInfo.DeleteSelectedRows();
                     }
-
-                    index = bsFina.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
-                    if (index != -1)
-                    {
-                        bsFina.Position = index;//定位BindingSource
-                        bsFina.RemoveCurrent();
-                    }
-
-                    bsBase.RemoveCurrent();//
-
-
                 }
-            }
 
+            }
         }
 
         private void tsbSave_Click(object sender, EventArgs e)
         {
-            //if (string.IsNullOrEmpty(roleNoTextBox.Text))
-            //{
-            //    MessageBox.Show("【角色编码】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    gdBussinessBaseInfo.Focus();
-            //    return;
-            //}
-            // if (string.IsNullOrEmpty(roleNameTextBox.Text))
-            //{
-            //     MessageBox.Show("【角色名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //     gdBussinessBaseInfo.Focus();
-            //     return;
-            //}
-            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            //gdvBussinessBaseInfo;
+            //Validate();
+            if (string.IsNullOrEmpty(gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseNo"].ToString()))
             {
-
-                //if (editFlag == 1
-                //    && !string.IsNullOrEmpty(gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString())
-                //    && !string.IsNullOrEmpty(gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseText").ToString()))
-                //{
-
-                //    //bussinessBaseNoTextBox.Text = gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString();
-                //    //bussinessBaseNoTextBox1.Text = gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString();
-
-                //}
-                Validate();
-                bsBase.EndEdit();
-                bsDetail.EndEdit();
-                bsFina.EndEdit();
-                conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
-                {
-                    try
-                    {
-                        SqlCommand cmd = new SqlCommand("", conn, trans);
-                        cmd.CommandText = "select Top 0 * from BS_BussinessBaseInfo ";
-                        SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        adp.Fill(dt);
-                        BaseSQL.UpdateDataTable(adp, dataSet1.Tables["BS_BussinessBaseInfo"]);
-
-                        cmd.CommandText = "select Top 0 * from BS_BussinessDetailInfo ";
-                        SqlDataAdapter adp1 = new SqlDataAdapter(cmd);
-                        dt = new DataTable();
-                        adp1.Fill(dt);
-                        BaseSQL.UpdateDataTable(adp1, dataSet1.Tables["BS_BussinessDetailInfo"]);
-
-                        cmd.CommandText = "select Top 0 * from BS_BussinessFinancialInfo ";
-                        SqlDataAdapter adp2 = new SqlDataAdapter(cmd);
-                        dt = new DataTable();
-                        adp2.Fill(dt);
-                        BaseSQL.UpdateDataTable(adp2, dataSet1.Tables["BS_BussinessFinancialInfo"]);
-                        ChangeEnabledState();//保存后更新控件状态
-                        //editFlag = 0;
-                        trans.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        dataSet1.Tables["BussinessBaseInfo"].RejectChanges();
-                        dataSet1.Tables["BussinessDetailInfo"].RejectChanges();
-                        dataSet1.Tables["BussinessFinancialInfo"].RejectChanges();
-                        throw ex;
-                    }
-
-                    //catch (System.Data.ConstraintException)//关键字字段值重复
-                    //{
-                    //    MessageBox.Show("此角色【部门编码】已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    gdBussinessBaseInfo.Focus();
-                    //}
-
-                    //catch (System.Data.SqlClient.SqlException)//外键约束
-                    //{
-                    //    MessageBox.Show("此角色【部门编码】已经被分配权限，不允许修改！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    //执行一遍取消操作
-                    //}
-                }
+                MessageBox.Show("【往来方编号】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-        }
+            if (string.IsNullOrEmpty(gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseText"].ToString()))
+            {
+                MessageBox.Show("【往来方名称】为必填项！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-        //public static void UpdateDataTable(SqlDataAdapter dataAdapter, DataTable dataTable)
-        //{
-        //    SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-        //    commandBuilder.ConflictOption = ConflictOption.OverwriteChanges;
-        //    dataAdapter.UpdateCommand = commandBuilder.GetUpdateCommand(true);
-        //    dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
-        //    dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
-        //    dataAdapter.Update(dataTable);
-        //}
+            if (newRowFlag == 1 && FrmBussinessInfoDAO.ExistsBussinessBaseInfoNo(gdvBussinessBaseInfo))
+            {
+                MessageBox.Show("此【往来方编号】已经存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            Validate();
+            bsBase.EndEdit();
+            bsDetail.EndEdit();
+            bsFina.EndEdit();
+            FrmBussinessInfoDAO.SaveBussinessBaseInfo(dataSet1);
+            ChangeEnabledState();//保存后更新控件状态
+            newRowFlag = 0;
+        }
 
         private void gdvBussinessBaseInfo_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
         }
 
+        /// <summary>
+        /// 主表聚焦的行号
+        /// </summary>        
+        int headFocusedLineNo = 0;
+        int newRowFlag = 0;
+
+        /// <summary>
+        /// 禁止在编辑状态时换行 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gdvBussinessBaseInfo_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            dataSet1.Tables[1].Clear();
-            string strSql = "select * from BS_BussinessDetailInfo where BussinessBaseNo like '"+ gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString() + "'";
-             BaseSQL.Query(strSql, dataSet1.Tables[1]);
+            DataRowState st = gdvBussinessBaseInfo.GetFocusedDataRow().RowState;
 
-            dataSet1.Tables[2].Clear();
-            strSql = "select * from BS_BussinessFinancialInfo where BussinessBaseNo like '" + gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString() + "'";
-            BaseSQL.Query("select * from BS_BussinessFinancialInfo", dataSet1.Tables[2]);
-
-
-            /*
-            int index = bsDetail.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
-            if (index != -1)
+            if ((newRowFlag == 1 || newRowFlag == 2) && gdvBussinessBaseInfo.GetFocusedDataRow().RowState != DataRowState.Added && gdvBussinessBaseInfo.GetFocusedDataRow().RowState != DataRowState.Detached)
             {
-                bsDetail.Position = index;//定位BindingSource
+                gdvBussinessBaseInfo.FocusedRowHandle = headFocusedLineNo;
+                FrmMain.frmMain.tsrLblCurrentStatusText = "请在【保存】或【取消】当前编辑后再进行换行操作！";
+                return;
+            }
+            else
+            {
+                FrmMain.frmMain.tsrLblCurrentStatusText = "";
             }
 
-            index = bsFina.Find("BussinessBaseNo", gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString());
-            if (index != -1)
+            if (gdvBussinessBaseInfo.GetFocusedDataRow() != null)
             {
-                bsFina.Position = index;//定位BindingSource
+                //新建换行控制
+                if (newRowFlag != 1 && newRowFlag != 2 && gdvBussinessBaseInfo.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    FrmBussinessInfoDAO.GetChildTableData(dataSet1, gdvBussinessBaseInfo);
+                }
             }
-            */
-
         }
 
         private void tsbCancel_Click(object sender, EventArgs e)
         {
-            bsBase.CancelEdit();
+            if (newRowFlag == 1)
+            {
+                gdvBussinessBaseInfo.DeleteSelectedRows();
+            }
+            ChangeEnabledState();
+            gdvBussinessBaseInfo.CancelUpdateCurrentRow();
             bsDetail.CancelEdit();
             bsFina.CancelEdit();
-            ChangeEnabledState();
-            //editFlag = 0;
+            newRowFlag = 0;
         }
 
         /// <summary>
-        /// 确定行号
+        /// 行号
         /// </summary>
         private void gdvBussinessBaseInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
@@ -438,16 +261,33 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Column.FieldName == "BussinessBaseNo")
+                if (newRowFlag == 1)
                 {
-                    dataSet1.Tables["BussinessDetailInfo"].Rows[0]["BussinessBaseNo"] = gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseNo"].ToString();
-                    dataSet1.Tables["BussinessFinancialInfo"].Rows[0]["BussinessBaseNo"] = gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseNo"].ToString();
+                    if (e.Column.FieldName == "BussinessBaseNo")
+                    {
+                        dataSet1.Tables["BussinessDetailInfo"].Rows[0]["BussinessBaseNo"] = gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseNo"].ToString();
+                        dataSet1.Tables["BussinessFinancialInfo"].Rows[0]["BussinessBaseNo"] = gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseNo"].ToString();
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void pnlEdit_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gdvBussinessBaseInfo_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+        }
+
+        private void tsbClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
