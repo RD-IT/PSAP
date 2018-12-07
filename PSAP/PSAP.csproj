@@ -88,6 +88,7 @@
     <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmOrderDAO.cs" />
+    <Compile Include="DAO\PURDAO\FrmPrReqApplyDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmPrReqDAO.cs" />
     <Compile Include="DS_PUR.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +246,12 @@
     <Compile Include="VIEW\PURVIEW\FrmPrReq.Designer.cs">
       <DependentUpon>FrmPrReq.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPrReqApply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPrReqApply.Designer.cs">
+      <DependentUpon>FrmPrReqApply.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PURVIEW\FrmPrReqQuery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReq.resx">
       <DependentUpon>FrmPrReq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqApply.resx">
+      <DependentUpon>FrmPrReqApply.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqQuery.resx">
       <DependentUpon>FrmPrReqQuery.cs</DependentUpon>

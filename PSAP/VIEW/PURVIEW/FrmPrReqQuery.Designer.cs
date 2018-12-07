@@ -139,7 +139,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(679, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(688, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 13;
@@ -148,6 +148,7 @@
             // 
             // textCommon
             // 
+            this.textCommon.EnterMoveNextControl = true;
             this.textCommon.Location = new System.Drawing.Point(432, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);

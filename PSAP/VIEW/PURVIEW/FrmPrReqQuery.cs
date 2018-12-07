@@ -41,6 +41,8 @@ namespace PSAP.VIEW.BSVIEW
                 dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
                 dateReqDateEnd.DateTime = DateTime.Now.Date;
 
+                gridBottomPrReq.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
+
                 btnQuery_Click(null, null);
             }
             catch (Exception ex)

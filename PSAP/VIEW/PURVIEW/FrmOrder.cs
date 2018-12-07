@@ -506,6 +506,25 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 请购适用按钮事件
+        /// </summary>
+        private void btnPrReqApply_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmPrReqApply prReqApplyForm = new FrmPrReqApply();
+                if (prReqApplyForm.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--请购适用按钮事件错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 主表设定默认值
         /// </summary>
         private void gridViewPrReqHead_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -517,8 +536,8 @@ namespace PSAP.VIEW.BSVIEW
                 gridViewPrReqHead.SetFocusedRowCellValue("PurCategory", DataTypeConvert.GetString(((DataTable)lookUpPurCategory.Properties.DataSource).Rows[1]["PurCategory"]));
                 gridViewPrReqHead.SetFocusedRowCellValue("ReqState", 1);
                 gridViewPrReqHead.SetFocusedRowCellValue("Prepared", SystemInfo.user.EmpName);
-                gridViewPrReqHead.SetFocusedRowCellValue("Tax", 0.16);
-                gridViewPrReqHead.SetFocusedRowCellValue("PlanDate", DateTime.Now.Date.AddDays(7)); 
+                gridViewPrReqHead.SetFocusedRowCellValue("Tax", SystemInfo.OrderList_DefaultTax);
+                gridViewPrReqHead.SetFocusedRowCellValue("PlanDate", DateTime.Now.Date.AddDays(7));
             }
             catch (Exception ex)
             {
@@ -849,5 +868,38 @@ namespace PSAP.VIEW.BSVIEW
             }
             dataSet_Order.Tables[0].AcceptChanges();
         }
+
+        /// <summary>
+        /// 请购单转成采购单
+        /// </summary>
+        /// <param name="prReqHeadRow"></param>
+        /// <param name="prReqListTable"></param>
+        private void PRToPO_Order(DataRow prReqHeadRow, DataTable prReqListTable)
+        {
+            ClearHeadGridAllSelect();
+            gridViewPrReqHead.AddNewRow();
+            FocusedHeadView("OrderHeadDate");
+
+            gridViewPrReqList.SetFocusedRowCellValue("PurCategory", prReqHeadRow["PurCategory"]);
+            gridViewPrReqList.SetFocusedRowCellValue("ReqDep", prReqHeadRow["ReqDep"]);
+            gridViewPrReqList.SetFocusedRowCellValue("ProjectNo", prReqHeadRow["ProjectNo"]);
+            gridViewPrReqList.SetFocusedRowCellValue("StnNo", prReqHeadRow["StnNo"]);
+
+            dataSet_Order.Tables[1].Clear();
+            for(int i=0;i< prReqListTable.Rows.Count;i++)
+            {
+                gridViewPrReqList.AddNewRow();
+                gridViewPrReqList.SetFocusedRowCellValue("CodeFileName", prReqListTable.Rows[i]["CodeFileName"]);
+                DataTable temp = (DataTable)repSearchCodeFileName.DataSource;
+                DataRow[] drs = temp.Select(string.Format("CodeFileName='{0}'", prReqListTable.Rows[i]["CodeFileName"]));
+                if (drs.Length > 0)
+                {
+                    gridViewPrReqList.SetFocusedRowCellValue("CodeName", DataTypeConvert.GetString(drs[0]["CodeName"]));
+                }
+                gridViewPrReqList.SetFocusedRowCellValue("Qty", prReqListTable.Rows[i]["Qty"]);
+                gridViewPrReqList.SetFocusedRowCellValue("PrReqNo", prReqListTable.Rows[i]["PrReqNo"]);
+            }
+        }
+
     }
 }

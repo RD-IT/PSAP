@@ -1,6 +1,6 @@
 ﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class FrmPrReq
+    partial class FrmPrReqApply
     {
         /// <summary>
         /// Required designer variable.
@@ -29,22 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pnltop = new DevExpress.XtraEditors.PanelControl();
-            this.textCommon = new DevExpress.XtraEditors.TextEdit();
-            this.labCommon = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labApplicant = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpApplicant = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
+            this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
-            this.dateReqDateEnd = new DevExpress.XtraEditors.DateEdit();
-            this.lab = new DevExpress.XtraEditors.LabelControl();
-            this.labReqDate = new DevExpress.XtraEditors.LabelControl();
-            this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
+            this.textPrReqNo = new DevExpress.XtraEditors.TextEdit();
+            this.labPrReqNo = new DevExpress.XtraEditors.LabelControl();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -77,9 +70,10 @@
             this.dataColRequirementDate = new System.Data.DataColumn();
             this.dataColPrReqListRemark = new System.Data.DataColumn();
             this.dataColCodeName = new System.Data.DataColumn();
-            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
-            this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
+            this.pnlMiddleBottom = new DevExpress.XtraEditors.PanelControl();
+            this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,7 +85,7 @@
             this.repLookUpReqDep = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repSearchProjectNo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.repSearchProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnRemark = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -102,23 +96,13 @@
             this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
-            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.btnNew = new DevExpress.XtraEditors.SimpleButton();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repSearchCodeFileName = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.repSearchCodeFileNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCodeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -127,243 +111,124 @@
             this.repSpinQty = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colRequirementDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqListRemark = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
-            ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
-            this.pnltop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxReqState.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpApplicant.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties)).BeginInit();
+            this.dataColListSelect = new System.Data.DataColumn();
+            this.colListSelect = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repCheckListSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
+            this.pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textPrReqNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
+            this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
+            this.pnlMiddle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
-            this.pnlMiddle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleTop)).BeginInit();
+            this.pnlMiddleTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleBottom)).BeginInit();
+            this.pnlMiddleBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNoView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPurCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleTop)).BeginInit();
-            this.pnlMiddleTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
-            this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repCheckListSelect)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnltop
+            // pnlTop
             // 
-            this.pnltop.Controls.Add(this.textCommon);
-            this.pnltop.Controls.Add(this.labCommon);
-            this.pnltop.Controls.Add(this.comboBoxReqState);
-            this.pnltop.Controls.Add(this.labApplicant);
-            this.pnltop.Controls.Add(this.lookUpApplicant);
-            this.pnltop.Controls.Add(this.labReqState);
-            this.pnltop.Controls.Add(this.lookUpPurCategory);
-            this.pnltop.Controls.Add(this.labPurCategory);
-            this.pnltop.Controls.Add(this.lookUpReqDep);
-            this.pnltop.Controls.Add(this.labReqDep);
-            this.pnltop.Controls.Add(this.btnQuery);
-            this.pnltop.Controls.Add(this.dateReqDateEnd);
-            this.pnltop.Controls.Add(this.lab);
-            this.pnltop.Controls.Add(this.labReqDate);
-            this.pnltop.Controls.Add(this.dateReqDateBegin);
-            this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(0, 0);
-            this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(989, 78);
-            this.pnltop.TabIndex = 0;
-            // 
-            // textCommon
-            // 
-            this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(432, 44);
-            this.textCommon.Name = "textCommon";
-            this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 13;
-            // 
-            // labCommon
-            // 
-            this.labCommon.Location = new System.Drawing.Point(366, 47);
-            this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(60, 14);
-            this.labCommon.TabIndex = 14;
-            this.labCommon.Text = "通用查询：";
-            // 
-            // comboBoxReqState
-            // 
-            this.comboBoxReqState.EnterMoveNextControl = true;
-            this.comboBoxReqState.Location = new System.Drawing.Point(86, 44);
-            this.comboBoxReqState.Name = "comboBoxReqState";
-            this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxReqState.Properties.Items.AddRange(new object[] {
-            "全部",
-            "待审核",
-            "审核",
-            "关闭"});
-            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
-            this.comboBoxReqState.TabIndex = 4;
-            // 
-            // labApplicant
-            // 
-            this.labApplicant.Location = new System.Drawing.Point(202, 47);
-            this.labApplicant.Name = "labApplicant";
-            this.labApplicant.Size = new System.Drawing.Size(48, 14);
-            this.labApplicant.TabIndex = 11;
-            this.labApplicant.Text = "申请人：";
-            // 
-            // lookUpApplicant
-            // 
-            this.lookUpApplicant.EnterMoveNextControl = true;
-            this.lookUpApplicant.Location = new System.Drawing.Point(250, 44);
-            this.lookUpApplicant.Name = "lookUpApplicant";
-            this.lookUpApplicant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpApplicant.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 80, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LoginId", "用户名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EmpName", "员工名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpApplicant.Properties.DisplayMember = "EmpName";
-            this.lookUpApplicant.Properties.NullText = "";
-            this.lookUpApplicant.Properties.ValueMember = "EmpName";
-            this.lookUpApplicant.Size = new System.Drawing.Size(100, 20);
-            this.lookUpApplicant.TabIndex = 5;
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(20, 47);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(60, 14);
-            this.labReqState.TabIndex = 9;
-            this.labReqState.Text = "单据状态：";
-            // 
-            // lookUpPurCategory
-            // 
-            this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(562, 14);
-            this.lookUpPurCategory.Name = "lookUpPurCategory";
-            this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpPurCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurCategory", "编号", 81, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurCategoryText", "名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
-            this.lookUpPurCategory.Properties.NullText = "";
-            this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
-            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
-            this.lookUpPurCategory.TabIndex = 3;
-            // 
-            // labPurCategory
-            // 
-            this.labPurCategory.Location = new System.Drawing.Point(496, 17);
-            this.labPurCategory.Name = "labPurCategory";
-            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
-            this.labPurCategory.TabIndex = 7;
-            this.labPurCategory.Text = "采购类型：";
-            // 
-            // lookUpReqDep
-            // 
-            this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(381, 14);
-            this.lookUpReqDep.Name = "lookUpReqDep";
-            this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpReqDep.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentNo", "部门编号", 95, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "部门名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
-            this.lookUpReqDep.Properties.NullText = "";
-            this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
-            this.lookUpReqDep.TabIndex = 2;
-            // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(315, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 5;
-            this.labReqDep.Text = "申请部门：";
+            this.pnlTop.Controls.Add(this.btnQuery);
+            this.pnlTop.Controls.Add(this.textPrReqNo);
+            this.pnlTop.Controls.Add(this.labPrReqNo);
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(1008, 51);
+            this.pnlTop.TabIndex = 0;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(598, 43);
+            this.btnQuery.Location = new System.Drawing.Point(251, 13);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 6;
+            this.btnQuery.TabIndex = 17;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
-            // dateReqDateEnd
+            // textPrReqNo
             // 
-            this.dateReqDateEnd.EditValue = null;
-            this.dateReqDateEnd.EnterMoveNextControl = true;
-            this.dateReqDateEnd.Location = new System.Drawing.Point(202, 14);
-            this.dateReqDateEnd.Name = "dateReqDateEnd";
-            this.dateReqDateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
-            this.dateReqDateEnd.Size = new System.Drawing.Size(100, 20);
-            this.dateReqDateEnd.TabIndex = 1;
+            this.textPrReqNo.EnterMoveNextControl = true;
+            this.textPrReqNo.Location = new System.Drawing.Point(86, 14);
+            this.textPrReqNo.Name = "textPrReqNo";
+            this.textPrReqNo.Size = new System.Drawing.Size(150, 20);
+            this.textPrReqNo.TabIndex = 15;
             // 
-            // lab
+            // labPrReqNo
             // 
-            this.lab.Location = new System.Drawing.Point(192, 17);
-            this.lab.Name = "lab";
-            this.lab.Size = new System.Drawing.Size(4, 14);
-            this.lab.TabIndex = 2;
-            this.lab.Text = "-";
+            this.labPrReqNo.Location = new System.Drawing.Point(20, 17);
+            this.labPrReqNo.Name = "labPrReqNo";
+            this.labPrReqNo.Size = new System.Drawing.Size(60, 14);
+            this.labPrReqNo.TabIndex = 16;
+            this.labPrReqNo.Text = "请购单号：";
             // 
-            // labReqDate
+            // pnlBottom
             // 
-            this.labReqDate.Location = new System.Drawing.Point(20, 17);
-            this.labReqDate.Name = "labReqDate";
-            this.labReqDate.Size = new System.Drawing.Size(60, 14);
-            this.labReqDate.TabIndex = 1;
-            this.labReqDate.Text = "请购日期：";
+            this.pnlBottom.Controls.Add(this.btnCancel);
+            this.pnlBottom.Controls.Add(this.BtnConfirm);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 693);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(1008, 36);
+            this.pnlBottom.TabIndex = 1;
             // 
-            // dateReqDateBegin
+            // btnCancel
             // 
-            this.dateReqDateBegin.EditValue = null;
-            this.dateReqDateBegin.EnterMoveNextControl = true;
-            this.dateReqDateBegin.Location = new System.Drawing.Point(86, 14);
-            this.dateReqDateBegin.Name = "dateReqDateBegin";
-            this.dateReqDateBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateBegin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateReqDateBegin.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateBegin.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateBegin.Properties.EditFormat.FormatString = "yyyy-MM-dd";
-            this.dateReqDateBegin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateReqDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
-            this.dateReqDateBegin.Size = new System.Drawing.Size(100, 20);
-            this.dateReqDateBegin.TabIndex = 0;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(919, 7);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "取消";
+            // 
+            // BtnConfirm
+            // 
+            this.BtnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnConfirm.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.BtnConfirm.Location = new System.Drawing.Point(838, 7);
+            this.BtnConfirm.Name = "BtnConfirm";
+            this.BtnConfirm.Size = new System.Drawing.Size(75, 23);
+            this.BtnConfirm.TabIndex = 0;
+            this.BtnConfirm.Text = "确定";
+            // 
+            // pnlMiddle
+            // 
+            this.pnlMiddle.Controls.Add(this.pnlMiddleBottom);
+            this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
+            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 51);
+            this.pnlMiddle.Name = "pnlMiddle";
+            this.pnlMiddle.Size = new System.Drawing.Size(1008, 642);
+            this.pnlMiddle.TabIndex = 2;
+            // 
+            // bindingSource_PrReqList
+            // 
+            this.bindingSource_PrReqList.DataMember = "PrReqList";
+            this.bindingSource_PrReqList.DataSource = this.dataSet_PrReq;
             // 
             // dataSet_PrReq
             // 
@@ -525,7 +390,8 @@
             this.dataColQty,
             this.dataColRequirementDate,
             this.dataColPrReqListRemark,
-            this.dataColCodeName});
+            this.dataColCodeName,
+            this.dataColListSelect});
             this.dataTablePrReqList.TableName = "PrReqList";
             // 
             // dataColumnAutoId
@@ -564,21 +430,34 @@
             this.dataColCodeName.Caption = "零件名称";
             this.dataColCodeName.ColumnName = "CodeName";
             // 
-            // pnlMiddle
+            // bindingSource_PrReqHead
             // 
-            this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
-            this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
-            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
-            this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(989, 212);
-            this.pnlMiddle.TabIndex = 1;
+            this.bindingSource_PrReqHead.DataMember = "PrReqHead";
+            this.bindingSource_PrReqHead.DataSource = this.dataSet_PrReq;
+            // 
+            // pnlMiddleTop
+            // 
+            this.pnlMiddleTop.Controls.Add(this.gridControlPrReqHead);
+            this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
+            this.pnlMiddleTop.Name = "pnlMiddleTop";
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1004, 188);
+            this.pnlMiddleTop.TabIndex = 0;
+            // 
+            // pnlMiddleBottom
+            // 
+            this.pnlMiddleBottom.Controls.Add(this.gridControlPrReqList);
+            this.pnlMiddleBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMiddleBottom.Location = new System.Drawing.Point(2, 190);
+            this.pnlMiddleBottom.Name = "pnlMiddleBottom";
+            this.pnlMiddleBottom.Size = new System.Drawing.Size(1004, 450);
+            this.pnlMiddleBottom.TabIndex = 1;
             // 
             // gridControlPrReqHead
             // 
             this.gridControlPrReqHead.DataSource = this.bindingSource_PrReqHead;
             this.gridControlPrReqHead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlPrReqHead.Location = new System.Drawing.Point(2, 36);
+            this.gridControlPrReqHead.Location = new System.Drawing.Point(2, 2);
             this.gridControlPrReqHead.MainView = this.gridViewPrReqHead;
             this.gridControlPrReqHead.Name = "gridControlPrReqHead";
             this.gridControlPrReqHead.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -587,15 +466,10 @@
             this.repSearchProjectNo,
             this.repComboBoxStnNo,
             this.repCheckSelect});
-            this.gridControlPrReqHead.Size = new System.Drawing.Size(985, 174);
-            this.gridControlPrReqHead.TabIndex = 0;
+            this.gridControlPrReqHead.Size = new System.Drawing.Size(1000, 184);
+            this.gridControlPrReqHead.TabIndex = 1;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqHead});
-            // 
-            // bindingSource_PrReqHead
-            // 
-            this.bindingSource_PrReqHead.DataMember = "PrReqHead";
-            this.bindingSource_PrReqHead.DataSource = this.dataSet_PrReq;
             // 
             // gridViewPrReqHead
             // 
@@ -611,8 +485,7 @@
             this.colPurCategory,
             this.colApplicant,
             this.colPrReqRemark,
-            this.colApprover,
-            this.colClosed});
+            this.colApprover});
             this.gridViewPrReqHead.GridControl = this.gridControlPrReqHead;
             this.gridViewPrReqHead.IndicatorWidth = 40;
             this.gridViewPrReqHead.Name = "gridViewPrReqHead";
@@ -623,9 +496,7 @@
             this.gridViewPrReqHead.OptionsView.ShowFooter = true;
             this.gridViewPrReqHead.OptionsView.ShowGroupPanel = false;
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
-            this.gridViewPrReqHead.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPrReqHead_InitNewRow);
             this.gridViewPrReqHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewPrReqHead_FocusedRowChanged);
-            this.gridViewPrReqHead.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqHead_CellValueChanged);
             this.gridViewPrReqHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewPrReqHead_CustomColumnDisplayText);
             // 
             // colAutoId
@@ -735,20 +606,19 @@
             this.repSearchProjectNo.Name = "repSearchProjectNo";
             this.repSearchProjectNo.NullText = "";
             this.repSearchProjectNo.ValueMember = "ProjectNo";
-            this.repSearchProjectNo.View = this.repSearchProjectNoView;
+            this.repSearchProjectNo.View = this.gridView1;
             // 
-            // repSearchProjectNoView
+            // gridView1
             // 
-            this.repSearchProjectNoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnProjectNo,
             this.gridColumnProjectName,
             this.gridColumnRemark});
-            this.repSearchProjectNoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repSearchProjectNoView.IndicatorWidth = 60;
-            this.repSearchProjectNoView.Name = "repSearchProjectNoView";
-            this.repSearchProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repSearchProjectNoView.OptionsView.ShowGroupPanel = false;
-            this.repSearchProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.repSearchCodeFileNameView_CustomDrawRowIndicator);
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.IndicatorWidth = 60;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumnProjectNo
             // 
@@ -855,102 +725,6 @@
             this.colApprover.VisibleIndex = 10;
             this.colApprover.Width = 70;
             // 
-            // colClosed
-            // 
-            this.colClosed.AppearanceHeader.Options.UseTextOptions = true;
-            this.colClosed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colClosed.FieldName = "Closed";
-            this.colClosed.Name = "colClosed";
-            this.colClosed.OptionsColumn.AllowEdit = false;
-            this.colClosed.OptionsColumn.AllowFocus = false;
-            this.colClosed.Visible = true;
-            this.colClosed.VisibleIndex = 11;
-            this.colClosed.Width = 70;
-            // 
-            // pnlMiddleTop
-            // 
-            this.pnlMiddleTop.Controls.Add(this.btnClose);
-            this.pnlMiddleTop.Controls.Add(this.btnApprove);
-            this.pnlMiddleTop.Controls.Add(this.btnDelete);
-            this.pnlMiddleTop.Controls.Add(this.btnCancel);
-            this.pnlMiddleTop.Controls.Add(this.btnSave);
-            this.pnlMiddleTop.Controls.Add(this.btnNew);
-            this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
-            this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
-            this.pnlMiddleTop.TabIndex = 1;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(410, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 15;
-            this.btnClose.TabStop = false;
-            this.btnClose.Text = "关闭";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnApprove
-            // 
-            this.btnApprove.Location = new System.Drawing.Point(329, 5);
-            this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(75, 23);
-            this.btnApprove.TabIndex = 14;
-            this.btnApprove.TabStop = false;
-            this.btnApprove.Text = "审批";
-            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(248, 5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 13;
-            this.btnDelete.TabStop = false;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Enabled = false;
-            this.btnCancel.Location = new System.Drawing.Point(167, 5);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 12;
-            this.btnCancel.TabStop = false;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(86, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 11;
-            this.btnSave.TabStop = false;
-            this.btnSave.Text = "修改";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnNew
-            // 
-            this.btnNew.Location = new System.Drawing.Point(5, 5);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 23);
-            this.btnNew.TabIndex = 10;
-            this.btnNew.TabStop = false;
-            this.btnNew.Text = "新增";
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Controls.Add(this.gridControlPrReqList);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 295);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(989, 156);
-            this.pnlBottom.TabIndex = 2;
-            // 
             // gridControlPrReqList
             // 
             this.gridControlPrReqList.DataSource = this.bindingSource_PrReqList;
@@ -961,27 +735,23 @@
             this.gridControlPrReqList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repSpinQty,
             this.repSearchCodeFileName,
-            this.repbtnDelete});
-            this.gridControlPrReqList.Size = new System.Drawing.Size(985, 152);
-            this.gridControlPrReqList.TabIndex = 1;
+            this.repbtnDelete,
+            this.repCheckListSelect});
+            this.gridControlPrReqList.Size = new System.Drawing.Size(1000, 446);
+            this.gridControlPrReqList.TabIndex = 2;
             this.gridControlPrReqList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqList});
-            // 
-            // bindingSource_PrReqList
-            // 
-            this.bindingSource_PrReqList.DataMember = "PrReqList";
-            this.bindingSource_PrReqList.DataSource = this.dataSet_PrReq;
             // 
             // gridViewPrReqList
             // 
             this.gridViewPrReqList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colAutoId1,
+            this.colListSelect,
             this.colPrReqNo1,
             this.colCodeFileName,
             this.colQty,
             this.colRequirementDate,
             this.colPrReqListRemark,
-            this.colDelete,
             this.colCodeName});
             this.gridViewPrReqList.GridControl = this.gridControlPrReqList;
             this.gridViewPrReqList.IndicatorWidth = 40;
@@ -992,10 +762,7 @@
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
-            this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
-            this.gridViewPrReqList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPrReqList_InitNewRow);
-            this.gridViewPrReqList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqList_CellValueChanged);
-            this.gridViewPrReqList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqList_KeyDown);
+            this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
             // 
             // colAutoId1
             // 
@@ -1014,7 +781,7 @@
             this.colPrReqNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colPrReqNo1.Visible = true;
-            this.colPrReqNo1.VisibleIndex = 0;
+            this.colPrReqNo1.VisibleIndex = 1;
             this.colPrReqNo1.Width = 110;
             // 
             // colCodeFileName
@@ -1026,7 +793,7 @@
             this.colCodeFileName.Name = "colCodeFileName";
             this.colCodeFileName.OptionsColumn.AllowEdit = false;
             this.colCodeFileName.Visible = true;
-            this.colCodeFileName.VisibleIndex = 1;
+            this.colCodeFileName.VisibleIndex = 2;
             this.colCodeFileName.Width = 110;
             // 
             // repSearchCodeFileName
@@ -1038,22 +805,21 @@
             this.repSearchCodeFileName.Name = "repSearchCodeFileName";
             this.repSearchCodeFileName.NullText = "";
             this.repSearchCodeFileName.ValueMember = "CodeFileName";
-            this.repSearchCodeFileName.View = this.repSearchCodeFileNameView;
+            this.repSearchCodeFileName.View = this.gridView2;
             // 
-            // repSearchCodeFileNameView
+            // gridView2
             // 
-            this.repSearchCodeFileNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnAutoId,
             this.gridColumnCodeNo,
             this.gridColumnCodeFileName,
             this.gridColumnCodeName});
-            this.repSearchCodeFileNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repSearchCodeFileNameView.IndicatorWidth = 60;
-            this.repSearchCodeFileNameView.Name = "repSearchCodeFileNameView";
-            this.repSearchCodeFileNameView.OptionsBehavior.Editable = false;
-            this.repSearchCodeFileNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repSearchCodeFileNameView.OptionsView.ShowGroupPanel = false;
-            this.repSearchCodeFileNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.repSearchCodeFileNameView_CustomDrawRowIndicator);
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.IndicatorWidth = 60;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumnAutoId
             // 
@@ -1104,7 +870,7 @@
             this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 3;
+            this.colQty.VisibleIndex = 4;
             this.colQty.Width = 80;
             // 
             // repSpinQty
@@ -1133,7 +899,7 @@
             this.colRequirementDate.Name = "colRequirementDate";
             this.colRequirementDate.OptionsColumn.AllowEdit = false;
             this.colRequirementDate.Visible = true;
-            this.colRequirementDate.VisibleIndex = 4;
+            this.colRequirementDate.VisibleIndex = 5;
             this.colRequirementDate.Width = 100;
             // 
             // colPrReqListRemark
@@ -1144,17 +910,8 @@
             this.colPrReqListRemark.Name = "colPrReqListRemark";
             this.colPrReqListRemark.OptionsColumn.AllowEdit = false;
             this.colPrReqListRemark.Visible = true;
-            this.colPrReqListRemark.VisibleIndex = 5;
+            this.colPrReqListRemark.VisibleIndex = 6;
             this.colPrReqListRemark.Width = 180;
-            // 
-            // colDelete
-            // 
-            this.colDelete.ColumnEdit = this.repbtnDelete;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-            this.colDelete.Visible = true;
-            this.colDelete.VisibleIndex = 6;
-            this.colDelete.Width = 27;
             // 
             // repbtnDelete
             // 
@@ -1163,7 +920,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.repbtnDelete.Name = "repbtnDelete";
             this.repbtnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repbtnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repbtnDelete_ButtonClick);
             // 
             // colCodeName
             // 
@@ -1174,91 +930,94 @@
             this.colCodeName.OptionsColumn.AllowEdit = false;
             this.colCodeName.OptionsColumn.AllowFocus = false;
             this.colCodeName.Visible = true;
-            this.colCodeName.VisibleIndex = 2;
+            this.colCodeName.VisibleIndex = 3;
             this.colCodeName.Width = 110;
             // 
-            // splitterControl1
+            // dataColListSelect
             // 
-            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(0, 290);
-            this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(989, 5);
-            this.splitterControl1.TabIndex = 3;
-            this.splitterControl1.TabStop = false;
+            this.dataColListSelect.Caption = "";
+            this.dataColListSelect.ColumnName = "ListSelect";
+            this.dataColListSelect.DataType = typeof(bool);
             // 
-            // FrmPrReq
+            // colListSelect
+            // 
+            this.colListSelect.ColumnEdit = this.repCheckListSelect;
+            this.colListSelect.FieldName = "ListSelect";
+            this.colListSelect.Name = "colListSelect";
+            this.colListSelect.Visible = true;
+            this.colListSelect.VisibleIndex = 0;
+            this.colListSelect.Width = 35;
+            // 
+            // repCheckListSelect
+            // 
+            this.repCheckListSelect.AutoHeight = false;
+            this.repCheckListSelect.Name = "repCheckListSelect";
+            this.repCheckListSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.repCheckListSelect.ValueGrayed = false;
+            this.repCheckListSelect.EditValueChanged += new System.EventHandler(this.repCheckListSelect_EditValueChanged);
+            // 
+            // FrmPrReqApply
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(989, 451);
-            this.Controls.Add(this.pnlBottom);
-            this.Controls.Add(this.splitterControl1);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.pnlMiddle);
-            this.Controls.Add(this.pnltop);
-            this.Name = "FrmPrReq";
-            this.TabText = "采购请购单";
-            this.Text = "采购请购单";
-            this.Activated += new System.EventHandler(this.FrmPrReq_Activated);
-            this.Load += new System.EventHandler(this.FrmPrReq_Load);
-            this.Shown += new System.EventHandler(this.FrmPrReq_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
-            this.pnltop.ResumeLayout(false);
-            this.pnltop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxReqState.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpApplicant.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpPurCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateReqDateBegin.Properties)).EndInit();
+            this.Controls.Add(this.pnlTop);
+            this.Controls.Add(this.pnlBottom);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmPrReqApply";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TabText = "请购适用";
+            this.Text = "请购适用";
+            this.Load += new System.EventHandler(this.FrmPrReqApply_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
+            this.pnlTop.ResumeLayout(false);
+            this.pnlTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textPrReqNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
+            this.pnlMiddle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
-            this.pnlMiddle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleTop)).EndInit();
+            this.pnlMiddleTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleBottom)).EndInit();
+            this.pnlMiddleBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNoView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPurCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleTop)).EndInit();
-            this.pnlMiddleTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
-            this.pnlBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repCheckListSelect)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl pnltop;
-        private DevExpress.XtraEditors.DateEdit dateReqDateBegin;
-        private DevExpress.XtraEditors.PanelControl pnlMiddle;
+        private DevExpress.XtraEditors.PanelControl pnlTop;
         private DevExpress.XtraEditors.PanelControl pnlBottom;
-        private DevExpress.XtraEditors.LabelControl labReqDate;
-        private DevExpress.XtraEditors.LookUpEdit lookUpPurCategory;
-        private DevExpress.XtraEditors.LabelControl labPurCategory;
-        private DevExpress.XtraEditors.LookUpEdit lookUpReqDep;
-        private DevExpress.XtraEditors.LabelControl labReqDep;
+        private DevExpress.XtraEditors.PanelControl pnlMiddle;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton BtnConfirm;
+        private DevExpress.XtraEditors.TextEdit textPrReqNo;
+        private DevExpress.XtraEditors.LabelControl labPrReqNo;
         private DevExpress.XtraEditors.SimpleButton btnQuery;
-        private DevExpress.XtraEditors.DateEdit dateReqDateEnd;
-        private DevExpress.XtraEditors.LabelControl lab;
-        private DevExpress.XtraGrid.GridControl gridControlPrReqHead;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqHead;
-        private System.Windows.Forms.BindingSource bindingSource_PrReqHead;
+        private System.Windows.Forms.BindingSource bindingSource_PrReqList;
         private System.Data.DataSet dataSet_PrReq;
         private System.Data.DataTable dataTablePrReqHead;
         private System.Data.DataColumn dataColAutoId;
@@ -1268,41 +1027,8 @@
         private System.Data.DataColumn dataColProjectNo;
         private System.Data.DataColumn dataColStnNo;
         private System.Data.DataColumn dataColPurCategory;
-        private System.Data.DataTable dataTablePrReqList;
-        private System.Data.DataColumn dataColumnAutoId;
-        private System.Data.DataColumn dataColumnPrReqNo;
-        private System.Data.DataColumn dataColCodeFileName;
-        private System.Data.DataColumn dataColQty;
-        private System.Data.DataColumn dataColRequirementDate;
-        private System.Data.DataColumn dataColPrReqListRemark;
-        private System.Windows.Forms.BindingSource bindingSource_PrReqList;
-        private DevExpress.XtraGrid.GridControl gridControlPrReqList;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqList;
-        private DevExpress.XtraGrid.Columns.GridColumn colAutoId1;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrReqNo1;
-        private DevExpress.XtraGrid.Columns.GridColumn colCodeFileName;
-        private DevExpress.XtraGrid.Columns.GridColumn colQty;
-        private DevExpress.XtraGrid.Columns.GridColumn colRequirementDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrReqListRemark;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpReqDep;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpPurCategory;
-        private DevExpress.XtraEditors.PanelControl pnlMiddleTop;
-        private DevExpress.XtraEditors.SimpleButton btnDelete;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.SimpleButton btnNew;
         private System.Data.DataColumn dataColReqState;
         private System.Data.DataColumn dataColApplicant;
-        private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrReqNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colReqDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colReqDep;
-        private DevExpress.XtraGrid.Columns.GridColumn colProjectNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colStnNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurCategory;
-        private DevExpress.XtraGrid.Columns.GridColumn colApplicant;
-        private DevExpress.XtraGrid.Columns.GridColumn colReqState;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinQty;
         private System.Data.DataColumn dataColApplicantIp;
         private System.Data.DataColumn dataColApplicantTime;
         private System.Data.DataColumn dataColModifier;
@@ -1311,40 +1037,64 @@
         private System.Data.DataColumn dataColApprover;
         private System.Data.DataColumn dataColApproverIp;
         private System.Data.DataColumn dataColApproverTime;
-        private DevExpress.XtraEditors.SimpleButton btnApprove;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxReqState;
-        private DevExpress.XtraEditors.LabelControl labApplicant;
-        private DevExpress.XtraEditors.LookUpEdit lookUpApplicant;
-        private DevExpress.XtraEditors.LabelControl labReqState;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchCodeFileName;
-        private DevExpress.XtraGrid.Views.Grid.GridView repSearchCodeFileNameView;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAutoId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeFileName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeName;
         private System.Data.DataColumn dataColPrReqRemark;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrReqRemark;
-        private DevExpress.XtraGrid.Columns.GridColumn colApprover;
-        private DevExpress.XtraGrid.Columns.GridColumn colDelete;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repbtnDelete;
-        private System.Data.DataColumn dataColCodeName;
-        private DevExpress.XtraGrid.Columns.GridColumn colCodeName;
-        private DevExpress.XtraEditors.SplitterControl splitterControl1;
-        private DevExpress.XtraEditors.TextEdit textCommon;
-        private DevExpress.XtraEditors.LabelControl labCommon;
-        private DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchProjectNo;
-        private DevExpress.XtraGrid.Views.Grid.GridView repSearchProjectNoView;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProjectNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProjectName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRemark;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repComboBoxStnNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColSelect;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckSelect;
         private System.Data.DataColumn dataColSelect;
         private System.Data.DataColumn dataColClosed;
         private System.Data.DataColumn dataColClosedIp;
         private System.Data.DataColumn dataColClosedTime;
-        private DevExpress.XtraGrid.Columns.GridColumn colClosed;
+        private System.Data.DataTable dataTablePrReqList;
+        private System.Data.DataColumn dataColumnAutoId;
+        private System.Data.DataColumn dataColumnPrReqNo;
+        private System.Data.DataColumn dataColCodeFileName;
+        private System.Data.DataColumn dataColQty;
+        private System.Data.DataColumn dataColRequirementDate;
+        private System.Data.DataColumn dataColPrReqListRemark;
+        private System.Data.DataColumn dataColCodeName;
+        private System.Windows.Forms.BindingSource bindingSource_PrReqHead;
+        private DevExpress.XtraEditors.PanelControl pnlMiddleBottom;
+        private DevExpress.XtraEditors.PanelControl pnlMiddleTop;
+        private DevExpress.XtraGrid.GridControl gridControlPrReqHead;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqHead;
+        private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColSelect;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckSelect;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrReqNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colReqState;
+        private DevExpress.XtraGrid.Columns.GridColumn colReqDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colReqDep;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpReqDep;
+        private DevExpress.XtraGrid.Columns.GridColumn colProjectNo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchProjectNo;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProjectNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProjectName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRemark;
+        private DevExpress.XtraGrid.Columns.GridColumn colStnNo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repComboBoxStnNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurCategory;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpPurCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn colApplicant;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrReqRemark;
+        private DevExpress.XtraGrid.Columns.GridColumn colApprover;
+        private DevExpress.XtraGrid.GridControl gridControlPrReqList;
+        private System.Data.DataColumn dataColListSelect;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqList;
+        private DevExpress.XtraGrid.Columns.GridColumn colAutoId1;
+        private DevExpress.XtraGrid.Columns.GridColumn colListSelect;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckListSelect;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrReqNo1;
+        private DevExpress.XtraGrid.Columns.GridColumn colCodeFileName;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchCodeFileName;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAutoId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeFileName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colQty;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinQty;
+        private DevExpress.XtraGrid.Columns.GridColumn colRequirementDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrReqListRemark;
+        private DevExpress.XtraGrid.Columns.GridColumn colCodeName;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repbtnDelete;
     }
 }

@@ -114,6 +114,7 @@
             this.colReqDep = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repLookUpReqDep = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colTax = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repSpinTax = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repSearchProjectNo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repSearchProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -128,6 +129,7 @@
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnPrReqApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -154,6 +156,7 @@
             this.repSpinQty = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTax1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repSpinTax1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colTaxAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSumAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPlanDate1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -188,6 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinTax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).BeginInit();
@@ -202,6 +206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinTax1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
             this.SuspendLayout();
             // 
@@ -232,6 +237,7 @@
             // 
             // searchLookUpBussinessBaseNo
             // 
+            this.searchLookUpBussinessBaseNo.EnterMoveNextControl = true;
             this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(731, 14);
             this.searchLookUpBussinessBaseNo.Name = "searchLookUpBussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -241,7 +247,7 @@
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
             this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(100, 20);
-            this.searchLookUpBussinessBaseNo.TabIndex = 17;
+            this.searchLookUpBussinessBaseNo.TabIndex = 4;
             // 
             // searchLookUpBussinessBaseNoView
             // 
@@ -296,10 +302,11 @@
             // 
             // textCommon
             // 
+            this.textCommon.EnterMoveNextControl = true;
             this.textCommon.Location = new System.Drawing.Point(432, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 13;
+            this.textCommon.TabIndex = 7;
             // 
             // labCommon
             // 
@@ -322,7 +329,7 @@
             "审核",
             "关闭"});
             this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
-            this.comboBoxReqState.TabIndex = 4;
+            this.comboBoxReqState.TabIndex = 5;
             // 
             // labPrepared
             // 
@@ -347,7 +354,7 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
-            this.lookUpPrepared.TabIndex = 5;
+            this.lookUpPrepared.TabIndex = 6;
             // 
             // labReqState
             // 
@@ -410,7 +417,7 @@
             this.btnQuery.Location = new System.Drawing.Point(598, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 6;
+            this.btnQuery.TabIndex = 8;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -489,7 +496,8 @@
             this.repSearchProjectNo,
             this.repComboBoxStnNo,
             this.repSearchBussinessBaseNo,
-            this.repCheckSelect});
+            this.repCheckSelect,
+            this.repSpinTax});
             this.gridControlPrReqHead.Size = new System.Drawing.Size(1366, 148);
             this.gridControlPrReqHead.TabIndex = 3;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -969,11 +977,29 @@
             // 
             this.colTax.AppearanceHeader.Options.UseTextOptions = true;
             this.colTax.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTax.ColumnEdit = this.repSpinTax;
             this.colTax.FieldName = "Tax";
             this.colTax.Name = "colTax";
             this.colTax.OptionsColumn.AllowEdit = false;
             this.colTax.Visible = true;
             this.colTax.VisibleIndex = 7;
+            // 
+            // repSpinTax
+            // 
+            this.repSpinTax.AutoHeight = false;
+            this.repSpinTax.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repSpinTax.DisplayFormat.FormatString = "p0";
+            this.repSpinTax.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinTax.EditFormat.FormatString = "p0";
+            this.repSpinTax.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinTax.Mask.EditMask = "p0";
+            this.repSpinTax.MaxValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.repSpinTax.Name = "repSpinTax";
             // 
             // colProjectNo
             // 
@@ -1117,6 +1143,7 @@
             // 
             // pnlMiddleTop
             // 
+            this.pnlMiddleTop.Controls.Add(this.btnPrReqApply);
             this.pnlMiddleTop.Controls.Add(this.btnClose);
             this.pnlMiddleTop.Controls.Add(this.btnApprove);
             this.pnlMiddleTop.Controls.Add(this.btnDelete);
@@ -1128,6 +1155,16 @@
             this.pnlMiddleTop.Name = "pnlMiddleTop";
             this.pnlMiddleTop.Size = new System.Drawing.Size(1366, 34);
             this.pnlMiddleTop.TabIndex = 2;
+            // 
+            // btnPrReqApply
+            // 
+            this.btnPrReqApply.Location = new System.Drawing.Point(491, 5);
+            this.btnPrReqApply.Name = "btnPrReqApply";
+            this.btnPrReqApply.Size = new System.Drawing.Size(75, 23);
+            this.btnPrReqApply.TabIndex = 17;
+            this.btnPrReqApply.TabStop = false;
+            this.btnPrReqApply.Text = "请购适用";
+            this.btnPrReqApply.Click += new System.EventHandler(this.btnPrReqApply_Click);
             // 
             // btnClose
             // 
@@ -1210,7 +1247,8 @@
             this.repSpinQty,
             this.repSearchCodeFileName,
             this.repbtnDelete,
-            this.repSpinUnit});
+            this.repSpinUnit,
+            this.repSpinTax1});
             this.gridControlPrReqList.Size = new System.Drawing.Size(1366, 178);
             this.gridControlPrReqList.TabIndex = 2;
             this.gridControlPrReqList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1433,12 +1471,30 @@
             // 
             this.colTax1.AppearanceHeader.Options.UseTextOptions = true;
             this.colTax1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTax1.ColumnEdit = this.repSpinTax1;
             this.colTax1.FieldName = "Tax";
             this.colTax1.Name = "colTax1";
             this.colTax1.OptionsColumn.AllowEdit = false;
             this.colTax1.Visible = true;
             this.colTax1.VisibleIndex = 6;
             this.colTax1.Width = 80;
+            // 
+            // repSpinTax1
+            // 
+            this.repSpinTax1.AutoHeight = false;
+            this.repSpinTax1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repSpinTax1.DisplayFormat.FormatString = "p0";
+            this.repSpinTax1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinTax1.EditFormat.FormatString = "p0";
+            this.repSpinTax1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinTax1.Mask.EditMask = "p0";
+            this.repSpinTax1.MaxValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.repSpinTax1.Name = "repSpinTax1";
             // 
             // colTaxAmount
             // 
@@ -1571,6 +1627,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinTax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).EndInit();
@@ -1585,6 +1642,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinTax1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
             this.ResumeLayout(false);
 
@@ -1725,5 +1783,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colPrReqNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinUnit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinTax;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinTax1;
+        private DevExpress.XtraEditors.SimpleButton btnPrReqApply;
     }
 }
