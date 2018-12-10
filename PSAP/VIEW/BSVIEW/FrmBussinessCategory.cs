@@ -27,7 +27,7 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 初始化控件Enable状态
+        /// 初始化控件Enable状态//
         /// </summary>
         private void InitEnableState()
         {
