@@ -30,6 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.checkPlanDate = new DevExpress.XtraEditors.CheckEdit();
+            this.labPlanDate = new DevExpress.XtraEditors.LabelControl();
+            this.lab2 = new DevExpress.XtraEditors.LabelControl();
+            this.datePlanDateEnd = new DevExpress.XtraEditors.DateEdit();
+            this.datePlanDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.searchLookUpBussinessBaseNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpBussinessBaseNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnBussinessBaseNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,10 +54,11 @@
             this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.dateOrderDateEnd = new DevExpress.XtraEditors.DateEdit();
-            this.lab = new DevExpress.XtraEditors.LabelControl();
+            this.lab1 = new DevExpress.XtraEditors.LabelControl();
             this.labOrderDate = new DevExpress.XtraEditors.LabelControl();
             this.dateOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_Order = new System.Data.DataSet();
@@ -129,6 +135,7 @@
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancelApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrReqApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
@@ -167,6 +174,11 @@
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPlanDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateEnd.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateEnd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateBegin.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateBegin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
@@ -180,6 +192,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateOrderDateBegin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAll.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).BeginInit();
@@ -212,6 +225,11 @@
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.checkPlanDate);
+            this.pnltop.Controls.Add(this.labPlanDate);
+            this.pnltop.Controls.Add(this.lab2);
+            this.pnltop.Controls.Add(this.datePlanDateEnd);
+            this.pnltop.Controls.Add(this.datePlanDateBegin);
             this.pnltop.Controls.Add(this.searchLookUpBussinessBaseNo);
             this.pnltop.Controls.Add(this.labBussinessBaseNo);
             this.pnltop.Controls.Add(this.textCommon);
@@ -226,7 +244,7 @@
             this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.btnQuery);
             this.pnltop.Controls.Add(this.dateOrderDateEnd);
-            this.pnltop.Controls.Add(this.lab);
+            this.pnltop.Controls.Add(this.lab1);
             this.pnltop.Controls.Add(this.labOrderDate);
             this.pnltop.Controls.Add(this.dateOrderDateBegin);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -234,6 +252,72 @@
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(1370, 78);
             this.pnltop.TabIndex = 1;
+            // 
+            // checkPlanDate
+            // 
+            this.checkPlanDate.Location = new System.Drawing.Point(101, 44);
+            this.checkPlanDate.Name = "checkPlanDate";
+            this.checkPlanDate.Properties.Caption = "";
+            this.checkPlanDate.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.checkPlanDate.Properties.ValueGrayed = false;
+            this.checkPlanDate.Size = new System.Drawing.Size(19, 19);
+            this.checkPlanDate.TabIndex = 6;
+            this.checkPlanDate.TabStop = false;
+            this.checkPlanDate.CheckedChanged += new System.EventHandler(this.checkPlanDate_CheckedChanged);
+            // 
+            // labPlanDate
+            // 
+            this.labPlanDate.Location = new System.Drawing.Point(20, 47);
+            this.labPlanDate.Name = "labPlanDate";
+            this.labPlanDate.Size = new System.Drawing.Size(84, 14);
+            this.labPlanDate.TabIndex = 20;
+            this.labPlanDate.Text = "计划到货日期：";
+            // 
+            // lab2
+            // 
+            this.lab2.Location = new System.Drawing.Point(230, 47);
+            this.lab2.Name = "lab2";
+            this.lab2.Size = new System.Drawing.Size(4, 14);
+            this.lab2.TabIndex = 19;
+            this.lab2.Text = "-";
+            // 
+            // datePlanDateEnd
+            // 
+            this.datePlanDateEnd.EditValue = null;
+            this.datePlanDateEnd.Enabled = false;
+            this.datePlanDateEnd.EnterMoveNextControl = true;
+            this.datePlanDateEnd.Location = new System.Drawing.Point(240, 44);
+            this.datePlanDateEnd.Name = "datePlanDateEnd";
+            this.datePlanDateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datePlanDateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datePlanDateEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.datePlanDateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datePlanDateEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.datePlanDateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datePlanDateEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.datePlanDateEnd.Size = new System.Drawing.Size(100, 20);
+            this.datePlanDateEnd.TabIndex = 8;
+            // 
+            // datePlanDateBegin
+            // 
+            this.datePlanDateBegin.EditValue = null;
+            this.datePlanDateBegin.Enabled = false;
+            this.datePlanDateBegin.EnterMoveNextControl = true;
+            this.datePlanDateBegin.Location = new System.Drawing.Point(124, 44);
+            this.datePlanDateBegin.Name = "datePlanDateBegin";
+            this.datePlanDateBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datePlanDateBegin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datePlanDateBegin.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.datePlanDateBegin.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datePlanDateBegin.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.datePlanDateBegin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datePlanDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.datePlanDateBegin.Size = new System.Drawing.Size(100, 20);
+            this.datePlanDateBegin.TabIndex = 7;
             // 
             // searchLookUpBussinessBaseNo
             // 
@@ -303,14 +387,14 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(432, 44);
+            this.textCommon.Location = new System.Drawing.Point(588, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 7;
+            this.textCommon.TabIndex = 10;
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(366, 47);
+            this.labCommon.Location = new System.Drawing.Point(522, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 14;
@@ -319,7 +403,7 @@
             // comboBoxReqState
             // 
             this.comboBoxReqState.EnterMoveNextControl = true;
-            this.comboBoxReqState.Location = new System.Drawing.Point(86, 44);
+            this.comboBoxReqState.Location = new System.Drawing.Point(913, 14);
             this.comboBoxReqState.Name = "comboBoxReqState";
             this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -333,7 +417,7 @@
             // 
             // labPrepared
             // 
-            this.labPrepared.Location = new System.Drawing.Point(202, 47);
+            this.labPrepared.Location = new System.Drawing.Point(358, 47);
             this.labPrepared.Name = "labPrepared";
             this.labPrepared.Size = new System.Drawing.Size(48, 14);
             this.labPrepared.TabIndex = 11;
@@ -342,7 +426,7 @@
             // lookUpPrepared
             // 
             this.lookUpPrepared.EnterMoveNextControl = true;
-            this.lookUpPrepared.Location = new System.Drawing.Point(250, 44);
+            this.lookUpPrepared.Location = new System.Drawing.Point(406, 44);
             this.lookUpPrepared.Name = "lookUpPrepared";
             this.lookUpPrepared.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -354,11 +438,11 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
-            this.lookUpPrepared.TabIndex = 6;
+            this.lookUpPrepared.TabIndex = 9;
             // 
             // labReqState
             // 
-            this.labReqState.Location = new System.Drawing.Point(20, 47);
+            this.labReqState.Location = new System.Drawing.Point(847, 17);
             this.labReqState.Name = "labReqState";
             this.labReqState.Size = new System.Drawing.Size(60, 14);
             this.labReqState.TabIndex = 9;
@@ -414,10 +498,10 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(598, 43);
+            this.btnQuery.Location = new System.Drawing.Point(756, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 8;
+            this.btnQuery.TabIndex = 11;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -439,13 +523,13 @@
             this.dateOrderDateEnd.Size = new System.Drawing.Size(100, 20);
             this.dateOrderDateEnd.TabIndex = 1;
             // 
-            // lab
+            // lab1
             // 
-            this.lab.Location = new System.Drawing.Point(192, 17);
-            this.lab.Name = "lab";
-            this.lab.Size = new System.Drawing.Size(4, 14);
-            this.lab.TabIndex = 2;
-            this.lab.Text = "-";
+            this.lab1.Location = new System.Drawing.Point(192, 17);
+            this.lab1.Name = "lab1";
+            this.lab1.Size = new System.Drawing.Size(4, 14);
+            this.lab1.TabIndex = 2;
+            this.lab1.Text = "-";
             // 
             // labOrderDate
             // 
@@ -475,6 +559,7 @@
             // 
             // pnlMiddle
             // 
+            this.pnlMiddle.Controls.Add(this.checkAll);
             this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
@@ -482,6 +567,18 @@
             this.pnlMiddle.Name = "pnlMiddle";
             this.pnlMiddle.Size = new System.Drawing.Size(1370, 186);
             this.pnlMiddle.TabIndex = 2;
+            // 
+            // checkAll
+            // 
+            this.checkAll.Location = new System.Drawing.Point(53, 38);
+            this.checkAll.Name = "checkAll";
+            this.checkAll.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkAll.Properties.Appearance.Options.UseBackColor = true;
+            this.checkAll.Properties.Caption = "";
+            this.checkAll.Size = new System.Drawing.Size(20, 19);
+            this.checkAll.TabIndex = 18;
+            this.checkAll.TabStop = false;
+            this.checkAll.CheckedChanged += new System.EventHandler(this.checkAll_CheckedChanged);
             // 
             // gridControlPrReqHead
             // 
@@ -983,6 +1080,7 @@
             this.colTax.OptionsColumn.AllowEdit = false;
             this.colTax.Visible = true;
             this.colTax.VisibleIndex = 7;
+            this.colTax.Width = 60;
             // 
             // repSpinTax
             // 
@@ -1143,6 +1241,7 @@
             // 
             // pnlMiddleTop
             // 
+            this.pnlMiddleTop.Controls.Add(this.btnCancelApprove);
             this.pnlMiddleTop.Controls.Add(this.btnPrReqApply);
             this.pnlMiddleTop.Controls.Add(this.btnClose);
             this.pnlMiddleTop.Controls.Add(this.btnApprove);
@@ -1156,9 +1255,19 @@
             this.pnlMiddleTop.Size = new System.Drawing.Size(1366, 34);
             this.pnlMiddleTop.TabIndex = 2;
             // 
+            // btnCancelApprove
+            // 
+            this.btnCancelApprove.Location = new System.Drawing.Point(410, 5);
+            this.btnCancelApprove.Name = "btnCancelApprove";
+            this.btnCancelApprove.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelApprove.TabIndex = 18;
+            this.btnCancelApprove.TabStop = false;
+            this.btnCancelApprove.Text = "取消审批";
+            this.btnCancelApprove.Click += new System.EventHandler(this.btnCancelApprove_Click);
+            // 
             // btnPrReqApply
             // 
-            this.btnPrReqApply.Location = new System.Drawing.Point(491, 5);
+            this.btnPrReqApply.Location = new System.Drawing.Point(572, 5);
             this.btnPrReqApply.Name = "btnPrReqApply";
             this.btnPrReqApply.Size = new System.Drawing.Size(75, 23);
             this.btnPrReqApply.TabIndex = 17;
@@ -1168,7 +1277,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(410, 5);
+            this.btnClose.Location = new System.Drawing.Point(491, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 16;
@@ -1403,12 +1512,14 @@
             this.colUnit.AppearanceHeader.Options.UseTextOptions = true;
             this.colUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colUnit.ColumnEdit = this.repSpinUnit;
+            this.colUnit.DisplayFormat.FormatString = "N4";
+            this.colUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colUnit.FieldName = "Unit";
             this.colUnit.Name = "colUnit";
             this.colUnit.OptionsColumn.AllowEdit = false;
             this.colUnit.Visible = true;
             this.colUnit.VisibleIndex = 3;
-            this.colUnit.Width = 80;
+            this.colUnit.Width = 100;
             // 
             // repSpinUnit
             // 
@@ -1458,11 +1569,13 @@
             // 
             this.colAmount.AppearanceHeader.Options.UseTextOptions = true;
             this.colAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colAmount.DisplayFormat.FormatString = "N2";
+            this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.OptionsColumn.AllowEdit = false;
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 5;
             this.colAmount.Width = 80;
@@ -1472,12 +1585,14 @@
             this.colTax1.AppearanceHeader.Options.UseTextOptions = true;
             this.colTax1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTax1.ColumnEdit = this.repSpinTax1;
+            this.colTax1.DisplayFormat.FormatString = "P0";
+            this.colTax1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTax1.FieldName = "Tax";
             this.colTax1.Name = "colTax1";
             this.colTax1.OptionsColumn.AllowEdit = false;
             this.colTax1.Visible = true;
             this.colTax1.VisibleIndex = 6;
-            this.colTax1.Width = 80;
+            this.colTax1.Width = 60;
             // 
             // repSpinTax1
             // 
@@ -1500,11 +1615,13 @@
             // 
             this.colTaxAmount.AppearanceHeader.Options.UseTextOptions = true;
             this.colTaxAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTaxAmount.DisplayFormat.FormatString = "N2";
+            this.colTaxAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTaxAmount.FieldName = "TaxAmount";
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.OptionsColumn.AllowEdit = false;
             this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;
             this.colTaxAmount.VisibleIndex = 7;
             this.colTaxAmount.Width = 80;
@@ -1513,11 +1630,13 @@
             // 
             this.colSumAmount.AppearanceHeader.Options.UseTextOptions = true;
             this.colSumAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSumAmount.DisplayFormat.FormatString = "N2";
+            this.colSumAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSumAmount.FieldName = "SumAmount";
             this.colSumAmount.Name = "colSumAmount";
             this.colSumAmount.OptionsColumn.AllowEdit = false;
             this.colSumAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.colSumAmount.Visible = true;
             this.colSumAmount.VisibleIndex = 8;
             this.colSumAmount.Width = 80;
@@ -1595,14 +1714,19 @@
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Name = "FrmOrder";
-            this.TabText = "采购单";
-            this.Text = "采购单";
+            this.TabText = "采购订单";
+            this.Text = "采购订单";
             this.Activated += new System.EventHandler(this.FrmOrder_Activated);
             this.Load += new System.EventHandler(this.FrmOrder_Load);
             this.Shown += new System.EventHandler(this.FrmOrder_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPlanDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateEnd.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateEnd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateBegin.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datePlanDateBegin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
@@ -1616,6 +1740,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateOrderDateBegin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).EndInit();
@@ -1663,7 +1788,7 @@
         private DevExpress.XtraEditors.LabelControl labReqDep;
         private DevExpress.XtraEditors.SimpleButton btnQuery;
         private DevExpress.XtraEditors.DateEdit dateOrderDateEnd;
-        private DevExpress.XtraEditors.LabelControl lab;
+        private DevExpress.XtraEditors.LabelControl lab1;
         private DevExpress.XtraEditors.LabelControl labOrderDate;
         private DevExpress.XtraEditors.DateEdit dateOrderDateBegin;
         private DevExpress.XtraEditors.PanelControl pnlMiddle;
@@ -1786,5 +1911,12 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinTax;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinTax1;
         private DevExpress.XtraEditors.SimpleButton btnPrReqApply;
+        private DevExpress.XtraEditors.SimpleButton btnCancelApprove;
+        private DevExpress.XtraEditors.CheckEdit checkAll;
+        private DevExpress.XtraEditors.CheckEdit checkPlanDate;
+        private DevExpress.XtraEditors.LabelControl labPlanDate;
+        private DevExpress.XtraEditors.LabelControl lab2;
+        private DevExpress.XtraEditors.DateEdit datePlanDateEnd;
+        private DevExpress.XtraEditors.DateEdit datePlanDateBegin;
     }
 }

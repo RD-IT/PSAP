@@ -78,6 +78,7 @@
             this.dataColPrReqListRemark = new System.Data.DataColumn();
             this.dataColCodeName = new System.Data.DataColumn();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -104,6 +105,7 @@
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancelApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -147,6 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAll.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqHead)).BeginInit();
@@ -195,14 +198,14 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(432, 44);
+            this.textCommon.Location = new System.Drawing.Point(436, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 13;
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(366, 47);
+            this.labCommon.Location = new System.Drawing.Point(370, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 14;
@@ -234,7 +237,7 @@
             // lookUpApplicant
             // 
             this.lookUpApplicant.EnterMoveNextControl = true;
-            this.lookUpApplicant.Location = new System.Drawing.Point(250, 44);
+            this.lookUpApplicant.Location = new System.Drawing.Point(254, 44);
             this.lookUpApplicant.Name = "lookUpApplicant";
             this.lookUpApplicant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -306,7 +309,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(598, 43);
+            this.btnQuery.Location = new System.Drawing.Point(602, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 6;
@@ -566,6 +569,7 @@
             // 
             // pnlMiddle
             // 
+            this.pnlMiddle.Controls.Add(this.checkAll);
             this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
@@ -573,6 +577,18 @@
             this.pnlMiddle.Name = "pnlMiddle";
             this.pnlMiddle.Size = new System.Drawing.Size(989, 212);
             this.pnlMiddle.TabIndex = 1;
+            // 
+            // checkAll
+            // 
+            this.checkAll.Location = new System.Drawing.Point(53, 38);
+            this.checkAll.Name = "checkAll";
+            this.checkAll.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkAll.Properties.Appearance.Options.UseBackColor = true;
+            this.checkAll.Properties.Caption = "";
+            this.checkAll.Size = new System.Drawing.Size(20, 19);
+            this.checkAll.TabIndex = 18;
+            this.checkAll.TabStop = false;
+            this.checkAll.CheckedChanged += new System.EventHandler(this.checkAll_CheckedChanged);
             // 
             // gridControlPrReqHead
             // 
@@ -869,6 +885,7 @@
             // 
             // pnlMiddleTop
             // 
+            this.pnlMiddleTop.Controls.Add(this.btnCancelApprove);
             this.pnlMiddleTop.Controls.Add(this.btnClose);
             this.pnlMiddleTop.Controls.Add(this.btnApprove);
             this.pnlMiddleTop.Controls.Add(this.btnDelete);
@@ -881,9 +898,19 @@
             this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
             this.pnlMiddleTop.TabIndex = 1;
             // 
+            // btnCancelApprove
+            // 
+            this.btnCancelApprove.Location = new System.Drawing.Point(410, 5);
+            this.btnCancelApprove.Name = "btnCancelApprove";
+            this.btnCancelApprove.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelApprove.TabIndex = 19;
+            this.btnCancelApprove.TabStop = false;
+            this.btnCancelApprove.Text = "取消审批";
+            this.btnCancelApprove.Click += new System.EventHandler(this.btnCancelApprove_Click);
+            // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(410, 5);
+            this.btnClose.Location = new System.Drawing.Point(491, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 15;
@@ -1218,6 +1245,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrReqHead)).EndInit();
@@ -1346,5 +1374,7 @@
         private System.Data.DataColumn dataColClosedIp;
         private System.Data.DataColumn dataColClosedTime;
         private DevExpress.XtraGrid.Columns.GridColumn colClosed;
+        private DevExpress.XtraEditors.SimpleButton btnCancelApprove;
+        private DevExpress.XtraEditors.CheckEdit checkAll;
     }
 }
