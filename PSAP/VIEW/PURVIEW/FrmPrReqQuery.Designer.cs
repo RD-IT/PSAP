@@ -139,7 +139,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(688, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(692, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 13;
@@ -149,14 +149,14 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(432, 44);
+            this.textCommon.Location = new System.Drawing.Point(436, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 6;
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(366, 47);
+            this.labCommon.Location = new System.Drawing.Point(370, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 12;
@@ -188,7 +188,7 @@
             // lookUpApplicant
             // 
             this.lookUpApplicant.EnterMoveNextControl = true;
-            this.lookUpApplicant.Location = new System.Drawing.Point(250, 44);
+            this.lookUpApplicant.Location = new System.Drawing.Point(254, 44);
             this.lookUpApplicant.Name = "lookUpApplicant";
             this.lookUpApplicant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -260,7 +260,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(598, 43);
+            this.btnQuery.Location = new System.Drawing.Point(602, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 7;
@@ -508,7 +508,6 @@
             this.colClosed,
             this.colPrReqRemark});
             this.gridViewPrReqHead.GridControl = this.gridControlPrReqHead;
-            this.gridViewPrReqHead.GroupPanelText = "拖拽列标题到此处可以按照该列进行分组";
             this.gridViewPrReqHead.IndicatorWidth = 40;
             this.gridViewPrReqHead.Name = "gridViewPrReqHead";
             this.gridViewPrReqHead.OptionsBehavior.Editable = false;

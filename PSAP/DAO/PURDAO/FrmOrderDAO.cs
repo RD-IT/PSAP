@@ -38,19 +38,23 @@ namespace PSAP.DAO.PURDAO
         /// <param name="preparedStr">申请人</param>
         /// <param name="commonStr">通用查询条件</param>
         /// <param name="nullTable">是否查询空表</param>
-        public void QueryOrderHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, string commonStr, bool nullTable)
+        public void QueryOrderHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, commonStr, nullTable), queryDataTable);
+            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, commonStr, nullTable), queryDataTable);
         }
         /// <summary>
         /// 查询采购单表头表的SQL
         /// </summary>
-        public string QueryOrderHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, string commonStr, bool nullTable)
+        public string QueryOrderHead_SQL(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, string commonStr, bool nullTable)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
             {
                 sqlStr += string.Format(" and OrderHeadDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (beginPlanDateStr != "")
+            {
+                sqlStr += string.Format(" and PlanDate between '{0}' and '{1}'", beginPlanDateStr, endPlanDateStr);
             }
             if (reqDepStr != "")
             {
@@ -60,7 +64,7 @@ namespace PSAP.DAO.PURDAO
             {
                 sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
             }
-            if(bussinessBaseNoStr!="")
+            if (bussinessBaseNoStr != "")
             {
                 sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
             }
@@ -82,7 +86,7 @@ namespace PSAP.DAO.PURDAO
             }
             sqlStr = string.Format("select * from PUR_OrderHead where {0} order by AutoId", sqlStr);
             return sqlStr;
-        }
+        }        
 
         /// <summary>
         /// 查询采购单明细表
@@ -101,20 +105,90 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
+        /// 查询采购单明细表关联表头表的SQL
+        /// </summary>
+        public string QueryOrderList_Head_SQL(string beginPlanDateStr, string endPlanDateStr, string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string projectNoStr, string codeFileNameStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginPlanDateStr != "")
+            {
+                sqlStr += string.Format(" and PlanDate between '{0}' and '{1}'", beginPlanDateStr, endPlanDateStr);
+            }
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and OrderHeadDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (reqDepStr != "")
+            {
+                sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
+            }
+            if (purCategoryStr != "")
+            {
+                sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
+            }
+            if (bussinessBaseNoStr != "")
+            {
+                sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
+            }
+            if (reqStateInt != 0)
+            {
+                sqlStr += string.Format(" and ReqState={0}", reqStateInt);
+            }
+            if (projectNoStr != "")
+            {
+                sqlStr += string.Format(" and ProjectNo='{0}'", projectNoStr);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and List.CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or Prepared like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%' and Remark like '%{0}%')", commonStr);
+            }
+            sqlStr = string.Format("select List.*, Parts.CodeName from V_PUR_OrderList_Head as List left join SW_PartsCode as Parts on List.CodeFileName = Parts.CodeFileName where {0} order by AutoId", sqlStr);
+            return sqlStr;
+        }
+
+        /// <summary>
         /// 根据采购单号删除采购订单
         /// </summary>
         /// <param name="orderHeadNoStr">采购单号</param>
         public bool DeleteOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true, false))
                 return false;
 
-            System.Collections.ArrayList sqlList = new System.Collections.ArrayList();
-            sqlList.Add(string.Format("Delete from PUR_OrderHead where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])));
-            sqlList.Add(string.Format("Delete from PUR_OrderList where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])));
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("select * from PUR_OrderList where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]));
+                        DataTable tmpTable = new DataTable();
+                        SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+                        adpt.Fill(tmpTable);                        
 
-            BaseSQL.ExecuteSqlTran(sqlList);
-            return true;
+                        cmd.CommandText = string.Format("Delete from PUR_OrderHead where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]));
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = string.Format("Delete from PUR_OrderList where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]));
+                        cmd.ExecuteNonQuery();
+
+                        Set_PrReqHead_End(cmd, tmpTable);
+
+                        trans.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -131,14 +205,38 @@ namespace PSAP.DAO.PURDAO
                 }
             }
             orderNoListStr = orderNoListStr.Substring(0, orderNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderNoListStr, true, true))
+            if (!CheckOrderState(orderHeadTable, null, orderNoListStr, true, true, false))
                 return false;
-            System.Collections.ArrayList sqlList = new System.Collections.ArrayList();
-            sqlList.Add(string.Format("Delete from PUR_OrderList where OrderHeadNo in ({0})", orderNoListStr));
-            sqlList.Add(string.Format("Delete from PUR_OrderHead where OrderHeadNo in ({0})", orderNoListStr));
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("select * from PUR_OrderList where OrderHeadNo in ({0})", orderNoListStr);
+                        DataTable tmpTable = new DataTable();
+                        SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+                        adpt.Fill(tmpTable);                        
 
-            BaseSQL.ExecuteSqlTran(sqlList);
-            return true;
+                        cmd.CommandText = string.Format("Delete from PUR_OrderList where OrderHeadNo in ({0})", orderNoListStr);
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = string.Format("Delete from PUR_OrderHead where OrderHeadNo in ({0})", orderNoListStr);
+                        cmd.ExecuteNonQuery();
+
+                        Set_PrReqHead_End(cmd, tmpTable);
+
+                        trans.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -161,7 +259,7 @@ namespace PSAP.DAO.PURDAO
                             string orderHeadNo = BaseSQL.GetMaxCodeNo(cmd, "PO");
                             orderHeadRow["OrderHeadNo"] = orderHeadNo;
                             orderHeadRow["PreparedIp"] = SystemInfo.HostIpAddress;
-                            orderHeadRow["OrderHeadDate"] = BaseSQL.GetServerDateTime();                            
+                            orderHeadRow["OrderHeadDate"] = BaseSQL.GetServerDateTime();
 
                             for (int i = 0; i < orderListTable.Rows.Count; i++)
                             {
@@ -170,7 +268,7 @@ namespace PSAP.DAO.PURDAO
                         }
                         else//修改
                         {
-                            if (!CheckOrderState(orderHeadRow.Table, orderListTable, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true))
+                            if (!CheckOrderState(orderHeadRow.Table, orderListTable, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true, false))
                                 return false;
 
                             orderHeadRow["Modifier"] = SystemInfo.user.EmpName;
@@ -189,6 +287,8 @@ namespace PSAP.DAO.PURDAO
                         DataTable tmpListTable = new DataTable();
                         adapterList.Fill(tmpListTable);
                         BaseSQL.UpdateDataTable(adapterList, orderListTable);
+
+                        Set_PrReqHead_End(cmd, orderListTable);
 
                         trans.Commit();
                         return true;
@@ -210,7 +310,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="orderHeadRow">采购单表头数据行</param>
         public bool ApproveOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true, false))
                 return false;
 
             DateTime serverTime = BaseSQL.GetServerDateTime();
@@ -263,7 +363,7 @@ namespace PSAP.DAO.PURDAO
             }
 
             orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, true))
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, true, false))
                 return false;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -292,12 +392,97 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
+        /// 取消审批采购单
+        /// </summary>
+        /// <param name="orderHeadRow">采购单表头数据行</param>
+        public bool CancelApproveOrder(DataRow orderHeadRow)
+        {
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, true))
+                return false;
+
+            orderHeadRow["Approver"] = "";
+            orderHeadRow["ApproverIp"] = "";
+            orderHeadRow["ApproverTime"] = "";
+            orderHeadRow["ReqState"] = 1;
+
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]), 1, "", "", "");
+                        cmd.ExecuteNonQuery();
+                        trans.Commit();
+                        orderHeadRow.AcceptChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        orderHeadRow.Table.RejectChanges();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消审批选中的多条请购单
+        /// </summary>
+        public bool CancelApproveOrder_Multi(DataTable orderHeadTable)
+        {
+            string orderHeadNoListStr = "";
+            for (int i = 0; i < orderHeadTable.Rows.Count; i++)
+            {
+                if (DataTypeConvert.GetBoolean(orderHeadTable.Rows[i]["Select"]))
+                {
+                    orderHeadNoListStr += string.Format("'{0}',", DataTypeConvert.GetString(orderHeadTable.Rows[i]["OrderHeadNo"]));
+                    orderHeadTable.Rows[i]["Approver"] = "";
+                    orderHeadTable.Rows[i]["ApproverIp"] = "";
+                    orderHeadTable.Rows[i]["ApproverTime"] = DBNull.Value;
+                    orderHeadTable.Rows[i]["ReqState"] = 1;
+                }
+            }
+
+            orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, true))
+                return false;
+
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime=null where OrderHeadNo in ({0})", orderHeadNoListStr, 1, "", "");
+
+                        cmd.ExecuteNonQuery();
+                        trans.Commit();
+                        orderHeadTable.AcceptChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        orderHeadTable.RejectChanges();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 关闭请购单
         /// </summary>
         /// <param name="orderHeadRow">采购请购单表头数据行</param>
         public bool CloseOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, false))
                 return false;
 
             DateTime serverTime = BaseSQL.GetServerDateTime();
@@ -350,7 +535,7 @@ namespace PSAP.DAO.PURDAO
             }
 
             orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true))
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, false))
                 return false;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -380,7 +565,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 检测数据库中请购单状态是否可以操作
         /// </summary>
-        public bool CheckOrderState(DataTable orderHeadTable, DataTable orderListTable, string orderHeadNoListStr, bool checkApprover, bool checkClosed)
+        public bool CheckOrderState(DataTable orderHeadTable, DataTable orderListTable, string orderHeadNoListStr, bool checkApprover, bool checkClosed, bool checkNoApprover)
         {
             string sqlStr = string.Format("select OrderHeadNo, ReqState from PUR_OrderHead where OrderHeadNo in ({0})", orderHeadNoListStr);
             DataTable tmpTable = BaseSQL.Query(sqlStr).Tables[0];
@@ -389,6 +574,16 @@ namespace PSAP.DAO.PURDAO
                 int reqState = DataTypeConvert.GetInt(tmpTable.Rows[i]["ReqState"]);
                 switch (reqState)
                 {
+                    case 1:
+                        if (checkNoApprover)
+                        {
+                            MessageHandler.ShowMessageBox("采购请购单未审核，不可以操作。");
+                            orderHeadTable.RejectChanges();
+                            if (orderListTable != null)
+                                orderListTable.RejectChanges();
+                            return false;
+                        }
+                        break;
                     case 2:
                         if (checkApprover)
                         {
@@ -414,5 +609,40 @@ namespace PSAP.DAO.PURDAO
 
             return true;
         }
+
+        ///// <summary>
+        ///// 根据项目号得到往来方编号
+        ///// </summary>
+        ///// <param name="projectNoStr">项目号</param>
+        //public string GetBussinessBaseNo_ProjectNo(string projectNoStr)
+        //{
+        //    string sqlStr = string.Format("select BussinessBaseNo from BS_ProjectList where ProjectNo='{0}'", projectNoStr);
+        //    return DataTypeConvert.GetString(BaseSQL.GetSingle(sqlStr));
+        //}
+
+        /// <summary>
+        /// 设定请购单完结标志
+        /// </summary>
+        public void Set_PrReqHead_End(SqlCommand cmd, DataTable prReqListTable)
+        {
+            string prReqNoStr = "";
+            IEnumerable<IGrouping<string, DataRow>> result = prReqListTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PrReqNo"].ToString());//按PrReqNo分组
+            foreach (IGrouping<string, DataRow> ig in result)
+            {
+                if (ig.Key != "")
+                {
+                    prReqNoStr = ig.Key;
+                    cmd.CommandText = string.Format("select Count(*) from V_PUR_PrReqList_Order where PrReqNo = '{0}' and Qty>OrderCount", prReqNoStr);
+                    int count = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+                    int isEnd = 0;
+                    if (count == 0)
+                        isEnd = 1;
+                    cmd.CommandText = string.Format("Update PUR_PrReqHead set IsEnd={1} where PrReqNo='{0}'", prReqNoStr, isEnd);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        
     }
 }

@@ -55,9 +55,9 @@ namespace PSAP.VIEW.BSVIEW
 
                 repLookUpReqDep.DataSource = prReqDAO.QueryDepartment(false);
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
-                repSearchProjectNo.DataSource = prReqDAO.QueryProjectList();
+                repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
 
-                repSearchCodeFileName.DataSource = prReqDAO.QueryPartsCode();                
+                repSearchCodeFileName.DataSource = prReqDAO.QueryPartsCode(false);                
 
                 if(textCommon.Text=="")
                     prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), "", "", 0, "", "", true);
@@ -129,6 +129,7 @@ namespace PSAP.VIEW.BSVIEW
                 prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
 
                 SetButtonAndColumnState(false);
+                checkAll.Checked = false;
             }
             catch (Exception ex)
             {
@@ -400,7 +401,7 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
 
-                if (!CheckReqState_Multi(true,true))
+                if (!CheckReqState_Multi(true,true, false))
                     return;                
 
                 if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要删除当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
@@ -433,7 +434,7 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
 
-                if (!CheckReqState_Multi(true,true))
+                if (!CheckReqState_Multi(true,true, false))
                     return;
 
                 if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要审核当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
@@ -451,6 +452,37 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 取消审批按钮事件
+        /// </summary>
+        private void btnCancelApprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = dataSet_PrReq.Tables[0].Select("select=1").Length;
+                if (count == 0)
+                {
+                    MessageHandler.ShowMessageBox("请在要操作的记录前面选中。");
+                    return;
+                }
+
+                if (!CheckReqState_Multi(false, true, true))
+                    return;
+
+                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要审核当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                if (!prReqDAO.CancelApprovePrReq_Multi(dataSet_PrReq.Tables[0]))
+                    btnQuery_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--取消审批按钮事件错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 关闭按钮事件
         /// </summary>
         private void btnClose_Click(object sender, EventArgs e)
@@ -464,7 +496,7 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
 
-                if (!CheckReqState_Multi(false, true))
+                if (!CheckReqState_Multi(false, true, false))
                     return;
 
                 if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要关闭当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
@@ -478,6 +510,23 @@ namespace PSAP.VIEW.BSVIEW
             {
                 ExceptionHandler.HandleException(this.Text + "--关闭按钮事件错误。", ex);
             }
+        }
+
+        /// <summary>
+        /// 全部选中
+        /// </summary>
+        private void checkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            bool value = false;
+            if (checkAll.Checked)
+            {
+                value = true;
+            }
+            foreach (DataRow dr in dataSet_PrReq.Tables[0].Rows)
+            {
+                dr["Select"] = value;
+            }
+            onlySelectColChangeRowState = true;
         }
 
         /// <summary>
@@ -665,6 +714,7 @@ namespace PSAP.VIEW.BSVIEW
                 btnDelete.Enabled = false;
                 btnApprove.Enabled = false;
                 btnClose.Enabled = false;
+                btnCancelApprove.Enabled = false;
             }
             else
             {
@@ -674,6 +724,7 @@ namespace PSAP.VIEW.BSVIEW
                 btnDelete.Enabled = true;
                 btnApprove.Enabled = true;
                 btnClose.Enabled = true;
+                btnCancelApprove.Enabled = true;
             }
 
             colReqDate.OptionsColumn.AllowEdit = ret;
@@ -715,7 +766,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 检测当前选中的请购单状态是否可以操作
         /// </summary>
-        private bool CheckReqState_Multi(bool checkApprover, bool checkClosed)
+        private bool CheckReqState_Multi(bool checkApprover, bool checkClosed,bool checkNoApprover)
         {
             for (int i = 0; i < gridViewPrReqHead.DataRowCount; i++)
             {
@@ -724,6 +775,14 @@ namespace PSAP.VIEW.BSVIEW
                     int reqState = DataTypeConvert.GetInt(gridViewPrReqHead.GetDataRow(i)["ReqState"]);
                     switch (reqState)
                     {
+                        case 1:
+                            if (checkNoApprover)
+                            {
+                                MessageHandler.ShowMessageBox("采购请购单未审核，不可以操作。");
+                                gridViewPrReqHead.FocusedRowHandle = i;
+                                return false;
+                            }
+                            break;
                         case 2:
                             if (checkApprover)
                             {

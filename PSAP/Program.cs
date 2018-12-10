@@ -21,7 +21,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             Application.EnableVisualStyles();
             ConfigurationManager.RefreshSection("PSAP.Properties.Settings.PSAPConnectionString");//重新加载新的配置文件  
-            ConfigurationManager.RefreshSection("ThemeId"); 
+            ConfigurationManager.RefreshSection("ThemeId");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
             Application.Run(new FrmLogin());
             //if (PSAPCommon.LoginInfo != null)
             if(SystemInfo.user!=null)
