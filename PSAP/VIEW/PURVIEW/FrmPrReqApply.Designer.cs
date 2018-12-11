@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -59,7 +58,7 @@
             this.pnlMiddleBottom = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -117,7 +116,7 @@
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -781,6 +780,7 @@
             this.gridViewPrReqList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
             this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
@@ -1056,6 +1056,7 @@
             this.gridViewPrReqHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPrReqHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqHead.OptionsView.ShowGroupPanel = false;
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
             this.gridViewPrReqHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewPrReqHead_FocusedRowChanged);

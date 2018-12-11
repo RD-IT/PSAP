@@ -153,7 +153,6 @@
             this.repSearchCodeFileName = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repSearchCodeFileNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnCodeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -884,6 +883,7 @@
             this.gridViewPrReqHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPrReqHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqHead.OptionsView.ShowFooter = true;
             this.gridViewPrReqHead.OptionsView.ShowGroupPanel = false;
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
@@ -1392,6 +1392,7 @@
             this.gridViewPrReqList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
             this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
@@ -1446,7 +1447,6 @@
             // 
             this.repSearchCodeFileNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumnCodeNo,
             this.gridColumnCodeFileName,
             this.gridColumnCodeName});
             this.repSearchCodeFileNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
@@ -1462,17 +1462,6 @@
             this.gridColumn1.Caption = "AutoId";
             this.gridColumn1.Name = "gridColumn1";
             // 
-            // gridColumnCodeNo
-            // 
-            this.gridColumnCodeNo.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnCodeNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnCodeNo.Caption = "编号";
-            this.gridColumnCodeNo.FieldName = "CodeNo";
-            this.gridColumnCodeNo.Name = "gridColumnCodeNo";
-            this.gridColumnCodeNo.Visible = true;
-            this.gridColumnCodeNo.VisibleIndex = 0;
-            this.gridColumnCodeNo.Width = 100;
-            // 
             // gridColumnCodeFileName
             // 
             this.gridColumnCodeFileName.AppearanceHeader.Options.UseTextOptions = true;
@@ -1481,7 +1470,7 @@
             this.gridColumnCodeFileName.FieldName = "CodeFileName";
             this.gridColumnCodeFileName.Name = "gridColumnCodeFileName";
             this.gridColumnCodeFileName.Visible = true;
-            this.gridColumnCodeFileName.VisibleIndex = 1;
+            this.gridColumnCodeFileName.VisibleIndex = 0;
             this.gridColumnCodeFileName.Width = 130;
             // 
             // gridColumnCodeName
@@ -1492,7 +1481,7 @@
             this.gridColumnCodeName.FieldName = "CodeName";
             this.gridColumnCodeName.Name = "gridColumnCodeName";
             this.gridColumnCodeName.Visible = true;
-            this.gridColumnCodeName.VisibleIndex = 2;
+            this.gridColumnCodeName.VisibleIndex = 1;
             this.gridColumnCodeName.Width = 130;
             // 
             // colCodeName
@@ -1880,7 +1869,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchCodeFileName;
         private DevExpress.XtraGrid.Views.Grid.GridView repSearchCodeFileNameView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeFileName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeName;
         private DevExpress.XtraGrid.Columns.GridColumn colQty;

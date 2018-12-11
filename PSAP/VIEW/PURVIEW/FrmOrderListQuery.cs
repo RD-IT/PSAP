@@ -146,7 +146,7 @@ namespace PSAP.VIEW.BSVIEW
                 string querySqlStr = orderDAO.QueryOrderList_Head_SQL(planDateBeginStr, planDateEndStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
 
                 string countSqlStr = prReqDAO.QuerySqlTranTotalCountSql(querySqlStr);
-                gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);
+                gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);  
             }
             catch (Exception ex)
             {

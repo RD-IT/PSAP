@@ -405,6 +405,8 @@ namespace PSAP.DAO.PURDAO
             orderHeadRow["ApproverTime"] = "";
             orderHeadRow["ReqState"] = 1;
 
+            //检查是否有下级的入库订单
+
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
                 conn.Open();
@@ -450,6 +452,8 @@ namespace PSAP.DAO.PURDAO
             orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
             if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, true))
                 return false;
+
+            //检查是否有下级的入库订单
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -577,7 +581,7 @@ namespace PSAP.DAO.PURDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox("采购请购单未审核，不可以操作。");
+                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审核，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
                             orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
@@ -587,7 +591,7 @@ namespace PSAP.DAO.PURDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox("采购单已经审核，不可以操作。");
+                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审核，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
                             orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
@@ -597,7 +601,7 @@ namespace PSAP.DAO.PURDAO
                     case 3:
                         if (checkClosed)
                         {
-                            MessageHandler.ShowMessageBox("采购单已经关闭，不可以操作。");
+                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
                             orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();

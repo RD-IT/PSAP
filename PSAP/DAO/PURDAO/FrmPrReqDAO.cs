@@ -53,10 +53,10 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         public DataTable QueryPartsCode(bool addAllItem)
         {
-            string sqlStr = "select AutoId, CodeNo, CodeFileName, CodeName from SW_PartsCode order by AutoId";
+            string sqlStr = "select AutoId, CodeFileName, CodeName from SW_PartsCode order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as CodeNo, '全部' as CodeFileName, '全部' as CodeName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '全部' as CodeFileName, '全部' as CodeName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -420,6 +420,7 @@ namespace PSAP.DAO.PURDAO
             if (!CheckReqState(prReqHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), false, true, true))
                 return false;
 
+            //检查是否有下级的采购订单
             if (!CheckApplyOrder(string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]))))
                 return false;
 
@@ -474,7 +475,7 @@ namespace PSAP.DAO.PURDAO
             if (!CheckReqState(prReqHeadTable, null, prReqNoListStr, false, true, true))
                 return false;
 
-            if (!CheckApplyOrder(prReqNoListStr))
+            if (!CheckApplyOrder(prReqNoListStr))//检查是否有下级的采购订单
                 return false;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -603,7 +604,7 @@ namespace PSAP.DAO.PURDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox("采购请购单未审核，不可以操作。");
+                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]未审核，不可以操作。",DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
@@ -613,7 +614,7 @@ namespace PSAP.DAO.PURDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox("采购请购单已经审核，不可以操作。");
+                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审核，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
@@ -623,7 +624,7 @@ namespace PSAP.DAO.PURDAO
                     case 3:
                         if (checkClosed)
                         {
-                            MessageHandler.ShowMessageBox("采购请购单已经关闭，不可以操作。");
+                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();

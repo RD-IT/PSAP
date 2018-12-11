@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
@@ -48,7 +47,7 @@
             this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -514,6 +513,7 @@
             this.gridViewPrReqHead.OptionsBehavior.ReadOnly = true;
             this.gridViewPrReqHead.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPrReqHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqHead.OptionsView.ShowFooter = true;
             this.gridViewPrReqHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrReqHead_RowClick);
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);

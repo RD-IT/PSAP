@@ -34,7 +34,6 @@
             this.searchLookUpCodeFileName = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpCodeFileNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -237,7 +236,6 @@
             // 
             this.searchLookUpCodeFileNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumn2,
             this.gridColumn3});
             this.searchLookUpCodeFileNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.searchLookUpCodeFileNameView.IndicatorWidth = 60;
@@ -254,21 +252,13 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "物料编号";
-            this.gridColumn2.FieldName = "CodeNo";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "零件名称";
             this.gridColumn3.FieldName = "CodeName";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 1;
             // 
             // searchLookUpProjectNo
             // 
@@ -855,6 +845,7 @@
             this.gridViewPrReqHead.OptionsBehavior.ReadOnly = true;
             this.gridViewPrReqHead.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPrReqHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqHead.OptionsView.ShowFooter = true;
             this.gridViewPrReqHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrReqHead_RowClick);
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
@@ -1437,7 +1428,6 @@
         private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpCodeFileName;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpCodeFileNameView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpProjectNo;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpProjectNoView;
