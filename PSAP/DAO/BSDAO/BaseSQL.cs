@@ -144,6 +144,15 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        public static int ExecuteSql(SqlCommand cmd, string SQLString)
+        {
+            cmd.CommandText = SQLString;
+            return cmd.ExecuteNonQuery();
+        }
+
         public static DataTable GetTableBySql(string SQLString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -296,6 +305,24 @@ namespace PSAP.DAO.BSDAO
                 }
             }
         }
+
+        /// <summary>
+        /// 执行一条计算查询结果语句，返回查询结果（object）。
+        /// </summary>
+        public static object GetSingle(SqlCommand cmd , string SQLString)
+        {
+            cmd.CommandText = SQLString;
+            object obj = cmd.ExecuteScalar();
+            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+            {
+                return null;
+            }
+            else
+            {
+                return obj;
+            }
+        }
+
         /// <summary>
         /// 执行查询语句，返回SqlDataReader
         /// </summary>

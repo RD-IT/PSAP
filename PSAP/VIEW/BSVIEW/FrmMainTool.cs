@@ -283,24 +283,14 @@ namespace PSAP.VIEW.BSVIEW
 
         //打开指定窗口【单击】
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-
-            Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
+        {            
             UtilityLibrary.WinControls.TreeViewEx subItemTmp = (UtilityLibrary.WinControls.TreeViewEx)sender;
             string strTag = e.Node.Tag.ToString();
             if (strTag.Contains(":Role"))
             {
                 strTag = strTag.Substring(0, strTag.Length - 5);//strTag的值是“窗口”name+“:Role” 
             }
-            string strFrm = "PSAP.VIEW.BSVIEW." + strTag;
-            object obj = assembly.CreateInstance(strFrm); //类的完全限定名（即包括命名空间）
-            if (obj != null)
-            {
-                if (obj.GetType().BaseType.ToString() == "WeifenLuo.WinFormsUI.Docking.DockContent")
-                {
-                    PSAP.VIEW.BSVIEW.FrmMain.frmMain.showRight((DockContent)obj);
-                }
-            }
+            PSAPCommon.ViewHandler.ShowRightWindow(strTag);
         }
 
         private void FrmMainTool_FormClosing(object sender, FormClosingEventArgs e)

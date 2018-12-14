@@ -57,10 +57,12 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
 
-                repSearchCodeFileName.DataSource = prReqDAO.QueryPartsCode(false);                
+                repSearchCodeFileName.DataSource = prReqDAO.QueryPartsCode(false);
 
-                if(textCommon.Text=="")
-                    prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), "", "", 0, "", "", true);
+                if (textCommon.Text == "")
+                {
+                    prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "", "", true);
+                }
 
             }
             catch (Exception ex)
@@ -754,10 +756,10 @@ namespace PSAP.VIEW.BSVIEW
             switch (reqState)
             {
                 case 2:
-                    MessageHandler.ShowMessageBox("采购请购单已经审核，不可以操作。");
+                    MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审核，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
                     return false;
                 case 3:
-                    MessageHandler.ShowMessageBox("采购请购单已经关闭，不可以操作。");
+                    MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
                     return false;
             }
             return true;
@@ -778,7 +780,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 1:
                             if (checkNoApprover)
                             {
-                                MessageHandler.ShowMessageBox("采购请购单未审核，不可以操作。");
+                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]未审核，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }
@@ -786,7 +788,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 2:
                             if (checkApprover)
                             {
-                                MessageHandler.ShowMessageBox("采购请购单已经审核，不可以操作。");
+                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审核，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }
@@ -794,7 +796,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 3:
                             if (checkClosed)
                             {
-                                MessageHandler.ShowMessageBox("采购请购单已经关闭，不可以操作。");
+                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }

@@ -75,116 +75,122 @@ namespace PSAP.VIEW.BSVIEW
         /// <param name="isFirst">是否首次查询</param>
         public void QueryGridData(ref DataSet dataSet, string dsTableName, string tableSql, string countSql, bool isFirst)
         {
-            try
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
-                if (masterDataSet == null)
-                    masterDataSet = dataSet;
-                if (masterDataSet.Tables.Count > 0)
-                    masterDataSet.Tables[dsTableName].Rows.Clear();
+                try
+                {
+                    if (masterDataSet == null)
+                        masterDataSet = dataSet;
+                    if (masterDataSet.Tables.Count > 0)
+                        masterDataSet.Tables[dsTableName].Rows.Clear();
 
-                SqlConnection conn = new SqlConnection(BaseSQL.connectionString);
-                SqlCommand cmd = new SqlCommand(countSql, conn);
-                conn.Open();
-                rowCount = DataTypeConvert.GetInt(cmd.ExecuteScalar());
-                queryCountSql = countSql;
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(countSql, conn);                    
+                    rowCount = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+                    queryCountSql = countSql;
 
-                if (rowCount == 0)
-                {
-                    btnFirst.Enabled = false;
-                    btnLeft.Enabled = false;
-                    btnRight.Enabled = false;
-                    btnEnd.Enabled = false;
-                    curPage = 0;
-                    pageCount = 0;
-                    rowCount = 0;
-                    comboBoxPageNo.Properties.Items.Clear();
-                    comboBoxPageNo.Text = "1";
-                    lMemo.Text = "共计0条记录，每页" + pageRowCount + "条";
-                    return;
-                }
-
-                if (rowCount > 0 && isFirst)
-                {
-                    curPage = 1;
-                    startLine = 0;
-                }
-                int yushu = rowCount % pageRowCount;
-                if (yushu == 0)
-                {
-                    if (rowCount > 0 && rowCount <= pageRowCount)
-                    {
-                        pageCount = 1;
-                    }
-                    else
-                    {
-                        pageCount = rowCount / pageRowCount;
-                    }
-                }
-                else
-                {
-                    pageCount = rowCount / pageRowCount + 1;
-                }
-                comboxChange = false;
-                if (isFirst)
-                {
-                    if (pageCount > 0)
-                    {
-                        comboBoxPageNo.Properties.Items.Clear();
-                        for (int no = 1; no <= pageCount; no++)
-                            comboBoxPageNo.Properties.Items.Add(no);
-                    }
-                    lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页" + pageRowCount + "条，共" + pageCount.ToString() + "页";
-                    comboBoxPageNo.Text = curPage.ToString();
-                }
-                else
-                {
-                    lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页" + pageRowCount + "条，共" + pageCount.ToString() + "页";
-                    comboBoxPageNo.Text = curPage.ToString();
-                }
-
-                if (pageCount == 1)
-                {
-                    btnFirst.Enabled = false;
-                    btnLeft.Enabled = false;
-                    btnRight.Enabled = false;
-                    btnEnd.Enabled = false;
-                }
-                else
-                {
-                    if (curPage == 1)
+                    if (rowCount == 0)
                     {
                         btnFirst.Enabled = false;
                         btnLeft.Enabled = false;
-                        btnRight.Enabled = true;
-                        btnEnd.Enabled = true;
+                        btnRight.Enabled = false;
+                        btnEnd.Enabled = false;
+                        curPage = 0;
+                        pageCount = 0;
+                        rowCount = 0;
+                        comboBoxPageNo.Properties.Items.Clear();
+                        comboBoxPageNo.Text = "1";
+                        lMemo.Text = "共计0条记录，每页" + pageRowCount + "条";
+                        return;
                     }
-                    else if (curPage == pageCount)
+
+                    if (rowCount > 0 && isFirst)
                     {
-                        btnFirst.Enabled = true;
-                        btnLeft.Enabled = true;
+                        curPage = 1;
+                        startLine = 0;
+                    }
+                    int yushu = rowCount % pageRowCount;
+                    if (yushu == 0)
+                    {
+                        if (rowCount > 0 && rowCount <= pageRowCount)
+                        {
+                            pageCount = 1;
+                        }
+                        else
+                        {
+                            pageCount = rowCount / pageRowCount;
+                        }
+                    }
+                    else
+                    {
+                        pageCount = rowCount / pageRowCount + 1;
+                    }
+                    comboxChange = false;
+                    if (isFirst)
+                    {
+                        if (pageCount > 0)
+                        {
+                            comboBoxPageNo.Properties.Items.Clear();
+                            for (int no = 1; no <= pageCount; no++)
+                                comboBoxPageNo.Properties.Items.Add(no);
+                        }
+                        lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页" + pageRowCount + "条，共" + pageCount.ToString() + "页";
+                        comboBoxPageNo.Text = curPage.ToString();
+                    }
+                    else
+                    {
+                        lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页" + pageRowCount + "条，共" + pageCount.ToString() + "页";
+                        comboBoxPageNo.Text = curPage.ToString();
+                    }
+
+                    if (pageCount == 1)
+                    {
+                        btnFirst.Enabled = false;
+                        btnLeft.Enabled = false;
                         btnRight.Enabled = false;
                         btnEnd.Enabled = false;
                     }
                     else
                     {
-                        btnFirst.Enabled = true;
-                        btnLeft.Enabled = true;
-                        btnRight.Enabled = true;
-                        btnEnd.Enabled = true;
+                        if (curPage == 1)
+                        {
+                            btnFirst.Enabled = false;
+                            btnLeft.Enabled = false;
+                            btnRight.Enabled = true;
+                            btnEnd.Enabled = true;
+                        }
+                        else if (curPage == pageCount)
+                        {
+                            btnFirst.Enabled = true;
+                            btnLeft.Enabled = true;
+                            btnRight.Enabled = false;
+                            btnEnd.Enabled = false;
+                        }
+                        else
+                        {
+                            btnFirst.Enabled = true;
+                            btnLeft.Enabled = true;
+                            btnRight.Enabled = true;
+                            btnEnd.Enabled = true;
+                        }
                     }
+
+                    comboxChange = true;
+                    tableName = dsTableName;
+                    queryTableSql = tableSql;
+
+                    cmd.CommandText = queryTableSql;
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                    dataAdapter.Fill(masterDataSet, startLine, pageRowCount, dsTableName);
                 }
-
-                comboxChange = true;
-                tableName = dsTableName;
-                queryTableSql = tableSql;
-
-                cmd.CommandText = queryTableSql;
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-                dataAdapter.Fill(masterDataSet, startLine, pageRowCount, dsTableName);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
 

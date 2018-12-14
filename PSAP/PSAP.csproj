@@ -35,15 +35,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.CodeParser.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\ReportViewer\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -134,11 +136,13 @@
     <Compile Include="ENTITY\PURENTITY\PrReqList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSAPCommon\ControlHandler.cs" />
     <Compile Include="PSAPCommon\DataTypeConvert.cs" />
     <Compile Include="PSAPCommon\EncryptMD5.cs" />
     <Compile Include="PSAPCommon\ExceptionHandler.cs" />
     <Compile Include="PSAPCommon\FileHandler.cs" />
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
+    <Compile Include="PSAPCommon\LogHandler.cs" />
     <Compile Include="PSAPCommon\MessageHandler.cs" />
     <Compile Include="PSAPCommon\psapCommon.cs" />
     <Compile Include="PSAPCommon\SystemHandler.cs" />
@@ -200,6 +204,12 @@
     <Compile Include="VIEW\BSVIEW\FrmOrganizationStru.Designer.cs">
       <DependentUpon>FrmOrganizationStru.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmProjectList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmProjectList.Designer.cs">
+      <DependentUpon>FrmProjectList.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmQueryCondition.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +221,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmDataQuery.Designer.cs">
       <DependentUpon>FrmDataQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmStnList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmStnList.Designer.cs">
+      <DependentUpon>FrmStnList.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUnitCatg.cs">
       <SubType>Form</SubType>
@@ -235,6 +251,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmBaseEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmBaseEdit.Designer.cs">
+      <DependentUpon>FrmBaseEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmOrder.cs">
       <SubType>Form</SubType>
@@ -272,11 +294,23 @@
     <Compile Include="VIEW\PURVIEW\FrmPrReqQuery.Designer.cs">
       <DependentUpon>FrmPrReqQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPurCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPurCategory.Designer.cs">
+      <DependentUpon>FrmPurCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PURVIEW\FrmTest_WF.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmTest_WF.Designer.cs">
       <DependentUpon>FrmTest_WF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmTest_WF2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmTest_WF2.Designer.cs">
+      <DependentUpon>FrmTest_WF2.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\GridBottom.cs">
       <SubType>UserControl</SubType>
@@ -329,11 +363,17 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmOrganizationStru.resx">
       <DependentUpon>FrmOrganizationStru.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmProjectList.resx">
+      <DependentUpon>FrmProjectList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmQueryCondition.resx">
       <DependentUpon>FrmQueryCondition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDataQuery.resx">
       <DependentUpon>FrmDataQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmStnList.resx">
+      <DependentUpon>FrmStnList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUnitCatg.resx">
       <DependentUpon>FrmUnitCatg.cs</DependentUpon>
@@ -347,6 +387,9 @@
     <EmbeddedResource Include="VIEW\BSVIEW\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmBaseEdit.resx">
+      <DependentUpon>FrmBaseEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
@@ -366,8 +409,14 @@
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqQuery.resx">
       <DependentUpon>FrmPrReqQuery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmPurCategory.resx">
+      <DependentUpon>FrmPurCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF.resx">
       <DependentUpon>FrmTest_WF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF2.resx">
+      <DependentUpon>FrmTest_WF2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\GridBottom.resx">
       <DependentUpon>GridBottom.cs</DependentUpon>
