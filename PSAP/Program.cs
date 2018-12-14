@@ -23,6 +23,10 @@ namespace PSAP.VIEW.BSVIEW
             ConfigurationManager.RefreshSection("PSAP.Properties.Settings.PSAPConnectionString");//重新加载新的配置文件  
             ConfigurationManager.RefreshSection("ThemeId");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
+
+            DevExpress.UserSkins.BonusSkins.Register();
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+
             Application.Run(new FrmLogin());
             //if (PSAPCommon.LoginInfo != null)
             if(SystemInfo.user!=null)

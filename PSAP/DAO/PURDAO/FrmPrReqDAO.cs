@@ -192,12 +192,37 @@ namespace PSAP.DAO.PURDAO
             if (!CheckReqState(prReqHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), true, true, false))
                 return false;
 
-            System.Collections.ArrayList sqlList = new System.Collections.ArrayList();
-            sqlList.Add(string.Format("Delete from PUR_PrReqList where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])));
-            sqlList.Add(string.Format("Delete from PUR_PrReqHead where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])));
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
 
-            BaseSQL.ExecuteSqlTran(sqlList);
-            return true;
+                        //保存日志到日志表中
+                        string logStr = LogHandler.RecordLog_DeleteRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo");
+
+                        cmd.CommandText = string.Format("Delete from PUR_PrReqList where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]));
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = string.Format("Delete from PUR_PrReqHead where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]));
+                        cmd.ExecuteNonQuery();
+
+                        trans.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -216,12 +241,41 @@ namespace PSAP.DAO.PURDAO
             prReqNoListStr = prReqNoListStr.Substring(0, prReqNoListStr.Length - 1);
             if (!CheckReqState(prReqHeadTable, null, prReqNoListStr, true, true, false))
                 return false;
-            System.Collections.ArrayList sqlList = new System.Collections.ArrayList();
-            sqlList.Add(string.Format("Delete from PUR_PrReqList where PrReqNo in ({0})", prReqNoListStr));
-            sqlList.Add(string.Format("Delete from PUR_PrReqHead where PrReqNo in ({0})", prReqNoListStr));
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
 
-            BaseSQL.ExecuteSqlTran(sqlList);
-            return true;
+                        //保存日志到日志表中
+                        DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
+                        for (int i = 0; i < prReqHeadRows.Length; i++)
+                        {
+                            string logStr = LogHandler.RecordLog_DeleteRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo");
+                        }
+
+                        cmd.CommandText = string.Format("Delete from PUR_PrReqList where PrReqNo in ({0})", prReqNoListStr);
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = string.Format("Delete from PUR_PrReqHead where PrReqNo in ({0})", prReqNoListStr);
+                        cmd.ExecuteNonQuery();
+
+                        trans.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -293,6 +347,9 @@ namespace PSAP.DAO.PURDAO
                             prReqHeadRow["ModifierTime"] = BaseSQL.GetServerDateTime();
                         }
 
+                        //保存日志到日志表中
+                        string logStr = LogHandler.RecordLog_DataRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo");
+
                         cmd.CommandText = "select * from PUR_PrReqHead where 1=2";
                         SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
                         DataTable tmpHeadTable = new DataTable();
@@ -314,6 +371,10 @@ namespace PSAP.DAO.PURDAO
                         prReqHeadRow.Table.RejectChanges();
                         prReqListTable.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -349,6 +410,10 @@ namespace PSAP.DAO.PURDAO
                         //BaseSQL.UpdateDataTable(adapterHead, prReqHeadRow.Table);
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]), 2, SystemInfo.user.EmpName, SystemInfo.HostIpAddress, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
                         trans.Commit();
                         prReqHeadRow.AcceptChanges();
                         return true;
@@ -358,6 +423,10 @@ namespace PSAP.DAO.PURDAO
                         trans.Rollback();
                         prReqHeadRow.Table.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -395,8 +464,15 @@ namespace PSAP.DAO.PURDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where PrReqNo in ({0})", prReqNoListStr, 2, SystemInfo.user.EmpName, SystemInfo.HostIpAddress, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
-
                         cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
+                        for (int i = 0; i < prReqHeadRows.Length; i++)
+                        {
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
                         trans.Commit();
                         prReqHeadTable.AcceptChanges();
                         return true;
@@ -406,6 +482,10 @@ namespace PSAP.DAO.PURDAO
                         trans.Rollback();
                         prReqHeadTable.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -439,6 +519,10 @@ namespace PSAP.DAO.PURDAO
                         SqlCommand cmd = new SqlCommand("", conn, trans);
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]), 1, "", "", "");
                         cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
                         trans.Commit();
                         prReqHeadRow.AcceptChanges();
                         return true;
@@ -448,6 +532,10 @@ namespace PSAP.DAO.PURDAO
                         trans.Rollback();
                         prReqHeadRow.Table.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -487,8 +575,15 @@ namespace PSAP.DAO.PURDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime=null where PrReqNo in ({0})", prReqNoListStr, 1, "", "");
-
                         cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
+                        for (int i = 0; i < prReqHeadRows.Length; i++)
+                        {
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
                         trans.Commit();
                         prReqHeadTable.AcceptChanges();
                         return true;
@@ -498,6 +593,10 @@ namespace PSAP.DAO.PURDAO
                         trans.Rollback();
                         prReqHeadTable.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -528,6 +627,10 @@ namespace PSAP.DAO.PURDAO
                         SqlCommand cmd = new SqlCommand("", conn, trans);
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Closed='{2}', ClosedIp='{3}', ClosedTime='{4}' where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]), 3, SystemInfo.user.EmpName, SystemInfo.HostIpAddress, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo", "关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
                         trans.Commit();
                         prReqHeadRow.AcceptChanges();
                         return true;
@@ -537,6 +640,10 @@ namespace PSAP.DAO.PURDAO
                         trans.Rollback();
                         prReqHeadRow.Table.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -575,6 +682,14 @@ namespace PSAP.DAO.PURDAO
                         SqlCommand cmd = new SqlCommand("", conn, trans);
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where PrReqNo in ({0})", prReqNoListStr, 3, SystemInfo.user.EmpName, SystemInfo.HostIpAddress, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
+                        for (int i = 0; i < prReqHeadRows.Length; i++)
+                        {
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
                         trans.Commit();
                         prReqHeadTable.AcceptChanges();
                         return true;
@@ -584,6 +699,10 @@ namespace PSAP.DAO.PURDAO
                         trans.Rollback();
                         prReqHeadTable.RejectChanges();
                         throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
             }
@@ -672,77 +791,7 @@ namespace PSAP.DAO.PURDAO
         //        maxNo = headCharacter + (number + 1).ToString().PadLeft(numberLong, '0');
         //        return maxNo;
         //    }
-        //}
-
-        /// <summary>
-        /// 记录绑定的DataTable里面变化的数据的日志
-        /// </summary>
-        /// <param name="tableCaption"></param>
-        /// <param name="dataTable_NoHandle"></param>
-        /// <param name="primaryKeyColumn"></param>
-        public void RecordLog_DataTable(string tableCaption, DataTable dataTable_NoHandle, string primaryKeyColumn)
-        {
-            string logStr = "";
-            string typeStr = "";
-            string pkCaption = "";
-            string pkValue = "";
-            for (int i = 0; i < dataTable_NoHandle.Rows.Count; i++)
-            {
-                DataRow dr = dataTable_NoHandle.Rows[i];
-                if (dr.RowState == DataRowState.Added)
-                {
-                    for (int j = 0; j < dataTable_NoHandle.Columns.Count; j++)
-                    {
-                        if (dataTable_NoHandle.Columns[j].ColumnName == primaryKeyColumn)
-                        {
-                            pkCaption = dataTable_NoHandle.Columns[j].Caption;
-                            pkValue = DataTypeConvert.GetString(dr[j]);
-                            continue;
-                        }
-                        string tmpValue = DataTypeConvert.GetString(dr[j]);
-                        if (tmpValue != "")
-                            logStr += string.Format("{0}的值为[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
-                    }
-                    typeStr = "新增";
-                }
-                else if (dr.RowState == DataRowState.Modified)
-                {
-                    for (int j = 0; j < dataTable_NoHandle.Columns.Count; j++)
-                    {
-                        if (dataTable_NoHandle.Columns[j].ColumnName == primaryKeyColumn)
-                        {
-                            pkCaption = dataTable_NoHandle.Columns[j].Caption;
-                            pkValue = DataTypeConvert.GetString(dr[j]);
-                            continue;
-                        }
-
-                        string oldValue = DataTypeConvert.GetString(dr[j, DataRowVersion.Original]);
-                        string newValue = DataTypeConvert.GetString(dr[j, DataRowVersion.Current]);
-                        if (oldValue != newValue)
-                            logStr += string.Format("{0}的值由[{1}]变为[{2}]，", dataTable_NoHandle.Columns[j].Caption, oldValue, newValue);
-                    }
-                    typeStr = "修改";
-                }
-                else if (dr.RowState == DataRowState.Deleted)
-                {
-                    for (int j = 0; j < dataTable_NoHandle.Columns.Count; j++)
-                    {
-                        if (dataTable_NoHandle.Columns[j].ColumnName == primaryKeyColumn)
-                        {
-                            pkCaption = dataTable_NoHandle.Columns[j].Caption;
-                            pkValue = DataTypeConvert.GetString(dr[j]);
-                            continue;
-                        }
-
-                        string tmpValue = DataTypeConvert.GetString(dr[j]);
-                        if (tmpValue != "")
-                            logStr += string.Format("{0}的原值为[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
-                    }
-                    typeStr = "删除";
-                }
-            }
-            MessageHandler.ShowMessageBox(string.Format("对[{0}]表进行{1}操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, logStr));
-        }
+        //}       
 
     }
 }

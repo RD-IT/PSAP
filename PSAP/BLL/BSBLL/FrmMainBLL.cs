@@ -76,7 +76,6 @@ namespace PSAP.BLL.BSBLL
         /// <param name="e"></param>
         static void subItem_Click(object sender, EventArgs e)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
             System.Windows.Forms.ToolStripMenuItem subItemTmp = (System.Windows.Forms.ToolStripMenuItem)sender;
             string strTag;
             strTag = subItemTmp.Tag.ToString();
@@ -85,15 +84,7 @@ namespace PSAP.BLL.BSBLL
             {
                 strTag = strTag.Substring(0, strTag.Length - 5);//strTag的值是“窗口”name+“:Role” 
             }
-            string strFrm = "PSAP.VIEW.BSVIEW." + strTag;
-            object obj = assembly.CreateInstance(strFrm); //类的完全限定名（即包括命名空间）
-            if (obj != null)
-            {
-                if (obj.GetType().BaseType.ToString() == "WeifenLuo.WinFormsUI.Docking.DockContent")
-                {
-                    PSAP.VIEW.BSVIEW.FrmMain.frmMain.showRight((DockContent)obj);
-                }
-            }
+            PSAPCommon.ViewHandler.ShowRightWindow(strTag);
         }
         #endregion
 
