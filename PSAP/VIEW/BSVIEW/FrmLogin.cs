@@ -17,12 +17,12 @@ namespace PSAP
     {
         public FrmLogin()
         {
-            InitializeComponent();
-            txtUserID.Text = "ADMIN";//测试用
-            txtPassword.Text = "ADMIN";//测试用
-        }
+                InitializeComponent();
+                txtUserID.Text = "ADMIN";//测试用
+                txtPassword.Text = "ADMIN";//测试用
+}
 
-        private void btnCancel_Click(object sender, EventArgs e)
+private void btnCancel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -42,6 +42,7 @@ namespace PSAP
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
             EncryptMD5 en = new EncryptMD5(txtPassword.Text);//实例化EncryptMD5, 加密后值引用en.str2
             if (txtUserID.Text == string.Empty )
             {
@@ -81,7 +82,14 @@ namespace PSAP
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            FrmLoginBLL.InitCboLanguage(cboLanguage);
+            try
+            {
+                FrmLoginBLL.InitCboLanguage(cboLanguage);
+            }
+            catch
+            {
+                MessageBox.Show(string.Format("数据库连接错误，请检查服务器连接情况！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

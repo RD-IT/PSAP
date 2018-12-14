@@ -19,20 +19,20 @@ namespace PSAP.VIEW.BSVIEW
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            ConfigurationManager.RefreshSection("PSAP.Properties.Settings.PSAPConnectionString");//重新加载新的配置文件  
-            ConfigurationManager.RefreshSection("ThemeId");
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
-            Application.Run(new FrmLogin());
-            //if (PSAPCommon.LoginInfo != null)
-            if(SystemInfo.user!=null)
-            {                
-                InitializationSystemInfo();
+                Application.EnableVisualStyles();
+                ConfigurationManager.RefreshSection("PSAP.Properties.Settings.PSAPConnectionString");//重新加载新的配置文件  
+                ConfigurationManager.RefreshSection("ThemeId");
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
+                Application.Run(new FrmLogin());
+                //if (PSAPCommon.LoginInfo != null)
+                if (SystemInfo.user != null)
+                {
+                    InitializationSystemInfo();
 
-                FrmMain frmMain = new FrmMain();
-                frmMain.WindowState = FormWindowState.Maximized;
-                Application.Run(frmMain);
-            }
+                    FrmMain frmMain = new FrmMain();
+                    frmMain.WindowState = FormWindowState.Maximized;
+                    Application.Run(frmMain);
+                }
         }
 
         /// <summary>

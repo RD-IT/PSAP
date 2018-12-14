@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using PSAP.PSAPCommon;
+using System.Windows.Forms;
 
 namespace PSAP.DAO.BSDAO
 {
@@ -14,7 +15,7 @@ namespace PSAP.DAO.BSDAO
     public abstract class BaseSQL
     {
         //数据库连接字符串(app.config来配置)
-        public static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PSAP.Properties.Settings.PSAPConnectionString"].ConnectionString; 
+        public static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PSAP.Properties.Settings.PSAPConnectionString"].ConnectionString;
 
         public BaseSQL()
         {
@@ -345,7 +346,7 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         /// <param name="SQLString">查询语句</param>
         /// <returns>DataSet</returns>
-        public static void Query(string SQLString,DataTable QueryTable)
+        public static void Query(string SQLString, DataTable QueryTable)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -462,7 +463,7 @@ namespace PSAP.DAO.BSDAO
                 }
             }
         }
-        
+
         /// <summary>
         /// 执行一条计算查询结果语句，返回查询结果（object）。
         /// </summary>
