@@ -53,7 +53,9 @@ namespace PSAP.DAO.BSDAO
             //根据父菜单项加载子菜单
             string sql = "select * from BS_Menu " +
                 "where ParentMenuName ='" + mname + "'" +
-                "and MenuName in (select b.MenuName from BS_UserMenuButton a inner join BS_MenuButton b on a.MenuButtonId=b.AutoId where b.buttonName like 'menuItemFlag' and convert(varchar(20),a.UserNo)='" + strPersonalNo.Trim() + "')";
+                "and MenuName in (select b.MenuName from BS_UserMenuButton a inner join BS_MenuButton b "+
+                "on a.MenuButtonId=b.AutoId where b.buttonName like 'menuItemFlag' "+
+                    "and convert(varchar(20),a.UserNo)='" + strPersonalNo.Trim() + "')";
             DataTable dt = PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql);
             return dt;
         }

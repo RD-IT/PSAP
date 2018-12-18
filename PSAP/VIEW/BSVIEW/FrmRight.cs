@@ -87,7 +87,7 @@ namespace PSAP.VIEW.BSVIEW
             FrmRightBLL.TreeGetNodeForMns(tvwMainMenu, mnsMainMenu);
             tvwMainMenu.ExpandAll();
             FrmRightBLL.InitDataGridViewComboFormName(dataGridViewComboFormName);//初始化窗口名下拉列表
-            FrmRightBLL.TraverseFormControlToTable();// 遍历所有DockContent窗口及其中控件,并将结果加至数据库表中
+            FrmRightBLL.TraverseFormControlToTable();// 遍历所有DockContent窗口及其中控件,并将结果加至数据库表中(系统完成后可停用)
 
             //初始化【角色管理page】
             InitEnableState();//初始化控件按钮状态
