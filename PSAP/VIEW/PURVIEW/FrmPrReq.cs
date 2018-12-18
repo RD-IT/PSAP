@@ -857,5 +857,28 @@ namespace PSAP.VIEW.BSVIEW
             dataSet_PrReq.Tables[0].AcceptChanges();
         }
 
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt1 = dataSet_PrReq.Tables[0].Clone();
+            dt1.ImportRow(gridViewPrReqHead.GetFocusedDataRow());
+            DataTable dt2 = dataSet_PrReq.Tables[1].Copy();
+            ds.Tables.Add(dt1);
+            ds.Tables.Add(dt2);
+
+            ReportHandler.XtraReport_Handle(new REPORT.XReport_PrReq(), "Report_PrReq.repx", ds, null, 1);
+        }
+
+        private void btnDesigner_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt1 = dataSet_PrReq.Tables[0].Clone();
+            dt1.ImportRow(gridViewPrReqHead.GetFocusedDataRow());
+            DataTable dt2 = dataSet_PrReq.Tables[1].Copy();
+            ds.Tables.Add(dt1);
+            ds.Tables.Add(dt2);
+
+            ReportHandler.XtraReport_Handle(new REPORT.XReport_PrReq(), "Report_PrReq.repx", ds, null, 3);
+        }
     }
 }

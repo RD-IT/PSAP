@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
@@ -80,7 +79,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,6 +104,8 @@
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnDesigner = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancelApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
@@ -114,7 +115,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -885,6 +886,8 @@
             // 
             // pnlMiddleTop
             // 
+            this.pnlMiddleTop.Controls.Add(this.btnDesigner);
+            this.pnlMiddleTop.Controls.Add(this.btnPreview);
             this.pnlMiddleTop.Controls.Add(this.btnCancelApprove);
             this.pnlMiddleTop.Controls.Add(this.btnClose);
             this.pnlMiddleTop.Controls.Add(this.btnApprove);
@@ -897,6 +900,26 @@
             this.pnlMiddleTop.Name = "pnlMiddleTop";
             this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
             this.pnlMiddleTop.TabIndex = 1;
+            // 
+            // btnDesigner
+            // 
+            this.btnDesigner.Location = new System.Drawing.Point(733, 5);
+            this.btnDesigner.Name = "btnDesigner";
+            this.btnDesigner.Size = new System.Drawing.Size(75, 23);
+            this.btnDesigner.TabIndex = 21;
+            this.btnDesigner.TabStop = false;
+            this.btnDesigner.Text = "设计";
+            this.btnDesigner.Click += new System.EventHandler(this.btnDesigner_Click);
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Location = new System.Drawing.Point(652, 5);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(75, 23);
+            this.btnPreview.TabIndex = 20;
+            this.btnPreview.TabStop = false;
+            this.btnPreview.Text = "预览";
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnCancelApprove
             // 
@@ -1364,5 +1387,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colClosed;
         private DevExpress.XtraEditors.SimpleButton btnCancelApprove;
         private DevExpress.XtraEditors.CheckEdit checkAll;
+        private DevExpress.XtraEditors.SimpleButton btnDesigner;
+        private DevExpress.XtraEditors.SimpleButton btnPreview;
     }
 }

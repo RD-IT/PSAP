@@ -28,5 +28,10 @@ namespace PSAP.PSAPCommon
         /// 订单明细里面的默认税率值
         /// </summary>
         public static double OrderList_DefaultTax = 0.16;
+
+        /// <summary>
+        /// 默认打印机名称
+        /// </summary>
+        public static string DefaultPrinterName = "";
     }
 }
