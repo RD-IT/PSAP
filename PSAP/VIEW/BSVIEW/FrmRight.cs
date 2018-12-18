@@ -286,7 +286,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void roleNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
+            psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件//
 
         }
 
