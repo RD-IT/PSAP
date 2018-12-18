@@ -125,6 +125,8 @@ namespace PSAP.BLL.BSBLL
                         pItem.DropDownItems[subItem.Name].Enabled = true;
                         pItem.DropDownItems[subItem.Name].Tag = pItem.DropDownItems[subItem.Name].Tag + ":Role";
 
+                        SetSubMenuItemByRole(pItem.DropDownItems[subItem.Name], strRoleNo);//
+
                     }
                     catch (Exception e)
                     {
@@ -163,13 +165,16 @@ namespace PSAP.BLL.BSBLL
             DataTable dt = FrmMainDAO.GetChildMenuPersonalRightData(mname, strPersonalNo);
             if (dt.Rows.Count != 0)
             {
+
                 foreach (DataRow dr in dt.Rows)
                 {
                     ToolStripMenuItem subItem = new ToolStripMenuItem();
                     subItem.Name = dr["MenuName"].ToString();
+
                     try
                     {
                         pItem.DropDownItems[subItem.Name].Enabled = true;
+                        SetSubMenuItemByPersonal(pItem.DropDownItems[subItem.Name], strPersonalNo);//
                     }
                     catch (Exception e)
                     {
