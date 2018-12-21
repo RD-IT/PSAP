@@ -87,9 +87,11 @@ namespace PSAP.VIEW.BSVIEW
             if (e.Column.FieldName == "ReqState")
             {
                 if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审核";
+                    e.DisplayText = "待审批";
                 else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审核";
+                    e.DisplayText = "审批";
+                else if (e.Value.ToString() == "4")
+                    e.DisplayText = "审批中";
                 else
                     e.DisplayText = "关闭";
             }

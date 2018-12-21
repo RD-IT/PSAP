@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
+using System.IO;
+using System.Drawing;
 
 namespace PSAP.PSAPCommon
 {
@@ -31,6 +33,20 @@ namespace PSAP.PSAPCommon
                     return ipa.ToString();
             }
             throw new Exception("获取本机的IP地址异常。");
+        }
+
+        /// <summary>
+        /// 初始化系统信息
+        /// </summary>
+        public void InitializationSystemInfo()
+        {
+            SystemInfo.HostIpAddress = GetIpAddress();
+            string SourFilePath = "Images\\CompanyLogo.jpg";
+            if (File.Exists(SourFilePath))
+            {
+                Image img = new Bitmap(SourFilePath);
+                SystemInfo.CompImage = img;
+            }
         }
     }
 }

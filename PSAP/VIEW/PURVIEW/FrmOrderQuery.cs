@@ -34,7 +34,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
-                lookUpPrepared.Properties.DataSource = prReqDAO.QueryUserInfo();
+                lookUpPrepared.Properties.DataSource = prReqDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
                 searchLookUpBussinessBaseNo.Properties.DataSource = orderDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
@@ -43,6 +43,8 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
                 repSearchBussinessBaseNo.DataSource = orderDAO.QueryBussinessBaseInfo(false);
+                repLookUpApprovalType.DataSource = orderDAO.QueryApprovalType(false);
+                repLookUpPayTypeNo.DataSource = orderDAO.QueryPayType(false);
 
                 dateOrderDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
                 dateOrderDateEnd.DateTime = DateTime.Now.Date;
@@ -85,9 +87,11 @@ namespace PSAP.VIEW.BSVIEW
             if (e.Column.FieldName == "ReqState")
             {
                 if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审核";
+                    e.DisplayText = "待审批";
                 else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审核";
+                    e.DisplayText = "审批";
+                else if (e.Value.ToString() == "4")
+                    e.DisplayText = "审批中";
                 else
                     e.DisplayText = "关闭";
             }
@@ -129,7 +133,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.QueryOrderHead_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, empNameStr, commonStr, false);
+                string querySqlStr = orderDAO.QueryOrderHead_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, empNameStr, -1, commonStr, false);
 
                 string countSqlStr = prReqDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);

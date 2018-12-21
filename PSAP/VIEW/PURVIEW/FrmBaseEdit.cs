@@ -55,6 +55,20 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 编辑状态
+        /// </summary>
+        public bool EditState
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 删除后是否刷新
+        /// </summary>
+        public bool DeleteAfterRefresh = false;
+
+        /// <summary>
         /// DataSet是主数据集
         /// </summary>
         private DataSet masterDataSet;
@@ -178,7 +192,8 @@ namespace PSAP.VIEW.BSVIEW
 
                 Set_Button_State(false);
                 Set_EditZone_ControlReadOnly(false);
-                masterEditPanel.SelectNextControl(null, true, true, true, true);
+                if (masterEditPanel != null)
+                    masterEditPanel.SelectNextControl(null, true, true, true, true);
             }
             catch (Exception ex)
             {
@@ -195,14 +210,19 @@ namespace PSAP.VIEW.BSVIEW
             {
                 try
                 {
-                    Set_Button_State(false);
-                    Set_EditZone_ControlReadOnly(false);
-                    masterEditPanel.SelectNextControl(null, true, true, true, true);
+                    if (masterBindingSource.Current != null)
+                    {
+                        Set_Button_State(false);
+                        Set_EditZone_ControlReadOnly(false);
+                        if (masterEditPanel != null)
+                            masterEditPanel.SelectNextControl(null, true, true, true, true);
+                    }
                 }
                 catch (Exception ex)
                 {
                     ExceptionHandler.HandleException(this.Text + "--修改按钮事件错误。", ex);
-                    masterEditPanel.SelectNextControl(null, true, true, true, true);
+                    if (masterEditPanel != null)
+                        masterEditPanel.SelectNextControl(null, true, true, true, true);
                 }
             }
             else
@@ -224,7 +244,8 @@ namespace PSAP.VIEW.BSVIEW
                     if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
                     {
                         MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
-                        masterEditPanel.SelectNextControl(null, true, true, true, true);
+                        if (masterEditPanel != null)
+                            masterEditPanel.SelectNextControl(null, true, true, true, true);
                         return false;
                     }
                 }
@@ -234,7 +255,8 @@ namespace PSAP.VIEW.BSVIEW
                     if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
                     {
                         MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
-                        masterEditPanel.SelectNextControl(null, true, true, true, true);
+                        if (masterEditPanel != null)
+                            masterEditPanel.SelectNextControl(null, true, true, true, true);
                         return false;
                     }
                 }
@@ -267,7 +289,8 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
-                masterEditPanel.SelectNextControl(null, true, true, true, true);
+                if(masterEditPanel!=null)
+                    masterEditPanel.SelectNextControl(null, true, true, true, true);
                 return false;
             }
         }
@@ -279,10 +302,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                masterBindingSource.CancelEdit();
-                ((DataRowView)masterBindingSource.Current).Row.RejectChanges();
-                Set_Button_State(true);
-                Set_EditZone_ControlReadOnly(true);
+                if (masterBindingSource.Current != null)
+                {
+                    masterBindingSource.CancelEdit();
+                    ((DataRowView)masterBindingSource.Current).Row.RejectChanges();
+                    Set_Button_State(true);
+                    Set_EditZone_ControlReadOnly(true);
+                }
             }
             catch (Exception ex)
             {
@@ -305,6 +331,10 @@ namespace PSAP.VIEW.BSVIEW
                 DataRow dr = ((DataRowView)masterBindingSource.Current).Row;
                 ((DataRowView)masterBindingSource.Current).Row.Delete();
                 DoDelete(dr);
+
+                if (DeleteAfterRefresh)
+                    btnRefresh_Click(null, null);
+
                 Set_Button_State(true);
                 Set_EditZone_ControlReadOnly(true);
             }
@@ -524,9 +554,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <param name="readOnlyState">ReadOnly状态</param>
         private void Set_EditZone_ControlReadOnly(bool readOnlyState)
         {
-            foreach (Control ctl in masterEditPanel.Controls)
+            if (masterEditPanel != null)
             {
-                ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                foreach (Control ctl in masterEditPanel.Controls)
+                {
+                    ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                }
+            }
+            else
+            {
+                browseXtraGridView.OptionsBehavior.Editable = !readOnlyState;
             }
         }
 
@@ -544,15 +581,19 @@ namespace PSAP.VIEW.BSVIEW
             btnDelete.Enabled = state;
             btnRefresh.Enabled = state;
             btnSaveExcel.Enabled = state;
+            EditState = !state;
 
-            //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
-            if (state)
+            if (this.ParentForm.Controls.ContainsKey("lblEditFlag"))
             {
-                ((Label)this.ParentForm.Controls["lblEditFlag"]).Text = "";
-            }
-            else
-            {
-                ((Label)this.ParentForm.Controls["lblEditFlag"]).Text = "EDIT";
+                //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+                if (state)
+                {
+                    ((Label)this.ParentForm.Controls["lblEditFlag"]).Text = "";
+                }
+                else
+                {
+                    ((Label)this.ParentForm.Controls["lblEditFlag"]).Text = "EDIT";
+                }
             }
         }
     }

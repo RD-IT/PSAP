@@ -16,19 +16,22 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmBaseEdit editForm = null;
-        /// <summary>
-        /// 调用该页面传的项目号参数
-        /// </summary>
-        public static string projectNoStr = "";
+
         /// <summary>
         /// 本地存放的项目号
         /// </summary>
-        private string pNoStr = "";
-
+        public string projectNoStr = "";
 
         public FrmStnList()
         {
             InitializeComponent();
+        }
+
+        public FrmStnList(string pNoStr,string pNameStr)
+        {
+            InitializeComponent();
+            projectNoStr = pNoStr;
+            this.Text = string.Format("项目【{0}】的站号信息", pNameStr);
         }
 
         /// <summary>
@@ -102,22 +105,22 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void FrmStnList_Activated(object sender, EventArgs e)
         {
-            try
-            {
-                if (projectNoStr != "")
-                {
-                    editForm.btnRefresh_Click(null, null);
+            //try
+            //{
+            //    if (projectNoStr != "")
+            //    {
+            //        editForm.btnRefresh_Click(null, null);
 
-                    string filter = string.Format("ProjectNo='{0}'", projectNoStr);
-                    gridViewStnList.ActiveFilterString = filter;
-                    pNoStr = projectNoStr;
-                    projectNoStr = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
-            }
+            //        string filter = string.Format("ProjectNo='{0}'", projectNoStr);
+            //        gridViewStnList.ActiveFilterString = filter;
+            //        pNoStr = projectNoStr;
+            //        projectNoStr = "";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+            //}
         }
 
         /// <summary>
@@ -130,7 +133,7 @@ namespace PSAP.VIEW.BSVIEW
             //else
             //    editForm.Sql = string.Format("select BS_StnList.*, BS_ProjectList.ProjectName from BS_StnList left join BS_ProjectList on BS_StnList.ProjectNo=BS_ProjectList.ProjectNo where BS_StnList.ProjectNo='{0}' order by BS_StnList.AutoId", projectNoStr);
 
-            editForm.Sql = "select BS_StnList.*, BS_ProjectList.ProjectName from BS_StnList left join BS_ProjectList on BS_StnList.ProjectNo=BS_ProjectList.ProjectNo order by BS_StnList.AutoId";
+            editForm.Sql = string.Format("select BS_StnList.*, BS_ProjectList.ProjectName from BS_StnList left join BS_ProjectList on BS_StnList.ProjectNo=BS_ProjectList.ProjectNo where BS_StnList.ProjectNo='{0}' order by BS_StnList.AutoId",projectNoStr);
         }
 
         /// <summary>
@@ -140,9 +143,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (pNoStr != "" && gridViewStnList.ActiveFilterString != "")
+                //if (pNoStr != "" && gridViewStnList.ActiveFilterString != "")
+                if (projectNoStr != "")
                 {
-                    gridViewStnList.SetFocusedRowCellValue("ProjectNo", pNoStr);
+                    gridViewStnList.SetFocusedRowCellValue("ProjectNo", projectNoStr);
                 }
             }
             catch (Exception ex)
@@ -158,9 +162,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (pNoStr != "" && gridViewStnList.ActiveFilterString != "")
+                //if (pNoStr != "" && gridViewStnList.ActiveFilterString != "")
+                if (projectNoStr != "")
                 {
-                    e.Row["ProjectNo"] = pNoStr;
+                    e.Row["ProjectNo"] = projectNoStr;
                 }
             }
             catch (Exception ex)

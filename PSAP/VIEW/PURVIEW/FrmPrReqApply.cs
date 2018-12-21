@@ -37,7 +37,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
-                lookUpApplicant.Properties.DataSource = prReqDAO.QueryUserInfo();
+                lookUpApplicant.Properties.DataSource = prReqDAO.QueryUserInfo(true);
                 lookUpApplicant.ItemIndex = 0;
                 searchLookUpProjectNo.Properties.DataSource = prReqDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
@@ -124,9 +124,9 @@ namespace PSAP.VIEW.BSVIEW
             if (e.Column.FieldName == "ReqState")
             {
                 if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审核";
+                    e.DisplayText = "待审批";
                 else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审核";
+                    e.DisplayText = "审批";
                 else
                     e.DisplayText = "关闭";
             }

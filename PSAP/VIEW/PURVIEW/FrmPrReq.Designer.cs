@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
@@ -79,7 +80,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -115,7 +116,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -133,6 +134,7 @@
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this.btnCancelClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
@@ -220,8 +222,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxReqState.Properties.Items.AddRange(new object[] {
             "全部",
-            "待审核",
-            "审核",
+            "待审批",
+            "审批",
             "关闭"});
             this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxReqState.TabIndex = 4;
@@ -886,6 +888,7 @@
             // 
             // pnlMiddleTop
             // 
+            this.pnlMiddleTop.Controls.Add(this.btnCancelClose);
             this.pnlMiddleTop.Controls.Add(this.btnDesigner);
             this.pnlMiddleTop.Controls.Add(this.btnPreview);
             this.pnlMiddleTop.Controls.Add(this.btnCancelApprove);
@@ -903,7 +906,7 @@
             // 
             // btnDesigner
             // 
-            this.btnDesigner.Location = new System.Drawing.Point(733, 5);
+            this.btnDesigner.Location = new System.Drawing.Point(826, 5);
             this.btnDesigner.Name = "btnDesigner";
             this.btnDesigner.Size = new System.Drawing.Size(75, 23);
             this.btnDesigner.TabIndex = 21;
@@ -913,7 +916,7 @@
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(652, 5);
+            this.btnPreview.Location = new System.Drawing.Point(745, 5);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
             this.btnPreview.TabIndex = 20;
@@ -1226,6 +1229,16 @@
             this.splitterControl1.TabIndex = 3;
             this.splitterControl1.TabStop = false;
             // 
+            // btnCancelClose
+            // 
+            this.btnCancelClose.Location = new System.Drawing.Point(572, 5);
+            this.btnCancelClose.Name = "btnCancelClose";
+            this.btnCancelClose.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelClose.TabIndex = 22;
+            this.btnCancelClose.TabStop = false;
+            this.btnCancelClose.Text = "取消关闭";
+            this.btnCancelClose.Click += new System.EventHandler(this.btnCancelClose_Click);
+            // 
             // FrmPrReq
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1389,5 +1402,6 @@
         private DevExpress.XtraEditors.CheckEdit checkAll;
         private DevExpress.XtraEditors.SimpleButton btnDesigner;
         private DevExpress.XtraEditors.SimpleButton btnPreview;
+        private DevExpress.XtraEditors.SimpleButton btnCancelClose;
     }
 }

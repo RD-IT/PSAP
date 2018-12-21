@@ -56,46 +56,58 @@ namespace PSAP.PSAPCommon
             }
 
             report.RequestParameters = false;
-
             report.CreateDocument();
-            report.PrintingSystem.SetCommandVisibility(new PrintingSystemCommand[]{ PrintingSystemCommand.Find,
-                    PrintingSystemCommand.Open,
-                    PrintingSystemCommand.Parameters,
-                    PrintingSystemCommand.Scale,
-                    PrintingSystemCommand.Watermark,
-                    PrintingSystemCommand.ExportMht,
-                    PrintingSystemCommand.ExportXls ,
-                    PrintingSystemCommand.ExportXlsx ,
-                    PrintingSystemCommand.ExportPdf   ,
-                    PrintingSystemCommand.ExportTxt  ,
-                    PrintingSystemCommand.ExportRtf,
-                    PrintingSystemCommand.ExportXps,
-                    PrintingSystemCommand.ExportHtm,
-                    PrintingSystemCommand.ExportGraphic,
-                    PrintingSystemCommand.Zoom ,
-                    PrintingSystemCommand.SendCsv,
-                    PrintingSystemCommand.SendFile,
-                    PrintingSystemCommand.SendGraphic,
-                    PrintingSystemCommand.SendMht,
-                    PrintingSystemCommand.SendPdf,
-                    PrintingSystemCommand.SendRtf,
-                    PrintingSystemCommand.SendTxt,
-                    PrintingSystemCommand.SendXls,
-                    PrintingSystemCommand.SendXlsx,
-                    PrintingSystemCommand.SendXps,
-                    PrintingSystemCommand.EditPageHF,
-                    PrintingSystemCommand.ClosePreview,
-                    PrintingSystemCommand.Scale,
-                    PrintingSystemCommand.ExportCsv,
-                    PrintingSystemCommand.FillBackground,
-                    PrintingSystemCommand.HandTool,
-                    PrintingSystemCommand.Zoom,
-                    PrintingSystemCommand.Find ,
-                    PrintingSystemCommand.PageSetup ,
-                    PrintingSystemCommand.ShowFirstPage ,
-                    PrintingSystemCommand.ShowLastPage,
-                    PrintingSystemCommand.ZoomToPageWidth ,
-                    PrintingSystemCommand.PageLayoutContinuous
+            ReportPrintTool rptPrintTool = new ReportPrintTool(report);
+            PrintingSystemBase prtSysBase = rptPrintTool.PrintingSystem;
+
+            prtSysBase.SetCommandVisibility(new PrintingSystemCommand[]{
+                        //PrintingSystemCommand.Background,
+                        //PrintingSystemCommand.ClosePreview,
+                        //PrintingSystemCommand.Customize,
+                        //PrintingSystemCommand.DocumentMap,
+                        //PrintingSystemCommand.EditPageHF,
+                        //PrintingSystemCommand.ExportCsv,
+                        //PrintingSystemCommand.ExportFile,
+                        //PrintingSystemCommand.ExportGraphic,
+                        //PrintingSystemCommand.ExportHtm,
+                        //PrintingSystemCommand.ExportMht,
+                        //PrintingSystemCommand.ExportPdf,
+                        //PrintingSystemCommand.ExportRtf,
+                        //PrintingSystemCommand.ExportTxt,
+                        //PrintingSystemCommand.ExportXls,
+                        //PrintingSystemCommand.ExportXlsx,
+                        //PrintingSystemCommand.ExportXps,
+                        //PrintingSystemCommand.File,
+                        //PrintingSystemCommand.FillBackground ,
+                        //PrintingSystemCommand.Find,
+                        //PrintingSystemCommand.HandTool,
+                        //PrintingSystemCommand.Magnifier,
+                        //PrintingSystemCommand.MultiplePages,
+                        //PrintingSystemCommand.Open,
+                        //PrintingSystemCommand.PageLayout,
+                        //PrintingSystemCommand.PageLayoutContinuous,
+                        //PrintingSystemCommand.PageMargins,
+                        //PrintingSystemCommand.PageOrientation,
+                        //PrintingSystemCommand.PageSetup,
+                        //PrintingSystemCommand.PaperSize,
+                        PrintingSystemCommand.Parameters,
+                        //PrintingSystemCommand.Pointer,
+                        //PrintingSystemCommand.Print,
+                        //PrintingSystemCommand.PrintDirect ,
+                        //PrintingSystemCommand.Save,
+                        //PrintingSystemCommand.SendCsv,
+                        //PrintingSystemCommand.SendFile,
+                        //PrintingSystemCommand.SendGraphic,
+                        //PrintingSystemCommand.SendMht,
+                        //PrintingSystemCommand.SendPdf,
+                        //PrintingSystemCommand.SendRtf,
+                        //PrintingSystemCommand.SendTxt,
+                        //PrintingSystemCommand.SendXls,
+                        //PrintingSystemCommand.SendXlsx,
+                        //PrintingSystemCommand.SendXps,
+                        PrintingSystemCommand.SubmitParameters,
+                        //PrintingSystemCommand.View,
+                        //PrintingSystemCommand.Watermark                
             }, DevExpress.XtraPrinting.CommandVisibility.None);
 
             switch (handleType)
@@ -139,5 +151,43 @@ namespace PSAP.PSAPCommon
             designForm.Dispose();
         }
 
+        /// <summary>
+        /// 得到包含系统信息的参数列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<Parameter> GetSystemInfo_ParamList()
+        {
+            List<Parameter> paramList = new List<Parameter>();
+            Parameter p1 = new Parameter();
+            p1.Name = "公司名称";
+            p1.Value = SystemInfo.CompanyName;            
+            paramList.Add(p1);
+            Parameter p2 = new Parameter();
+            p2.Name = "公司地址";
+            p2.Value = SystemInfo.CompAddress;            
+            paramList.Add(p2);
+            Parameter p3 = new Parameter();
+            p3.Name = "公司邮编";
+            p3.Value = SystemInfo.CompZipCode;            
+            paramList.Add(p3);
+            Parameter p4 = new Parameter();
+            p4.Name = "公司电话";
+            p4.Value = SystemInfo.CompTel;            
+            paramList.Add(p4);
+            Parameter p5 = new Parameter();
+            p5.Name = "公司传真";
+            p5.Value = SystemInfo.CompFax;            
+            paramList.Add(p5);
+            Parameter p6 = new Parameter();
+            p6.Name = "公司网址";
+            p6.Value = SystemInfo.CompWebSite;           
+            paramList.Add(p6);
+            Parameter p7 = new Parameter();
+            p7.Name = "公司商标";
+            p7.Value = SystemInfo.CompImage;
+            paramList.Add(p7);
+
+            return paramList;
+        }
     }
 }

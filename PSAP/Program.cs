@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using PSAP.BLL.BSBLL;
-using PSAP;
-using PSAP.ENTITY.BSENTITY;
-using PSAP.DAO.BSDAO;
 using System.Configuration;
 using PSAP.PSAPCommon;
 
@@ -30,8 +24,8 @@ namespace PSAP.VIEW.BSVIEW
             Application.Run(new FrmLogin());
             //if (PSAPCommon.LoginInfo != null)
             if(SystemInfo.user!=null)
-            {                
-                InitializationSystemInfo();
+            {
+                new SystemHandler().InitializationSystemInfo();
 
                 FrmMain frmMain = new FrmMain();
                 frmMain.WindowState = FormWindowState.Maximized;
@@ -39,12 +33,6 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
-        /// <summary>
-        /// 初始化系统信息
-        /// </summary>
-        private static void InitializationSystemInfo()
-        {
-            SystemInfo.HostIpAddress = new SystemHandler().GetIpAddress();
-        }
+
     }
 }

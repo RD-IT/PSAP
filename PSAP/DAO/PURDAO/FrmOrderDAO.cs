@@ -26,6 +26,32 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
+        /// 查询审批类型信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryApprovalType(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, TypeNo, TypeNoText, ApprovalCat, ApprovalText from V_PUR_ApprovalType Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as TypeNo, '全部' as TypeNoText, 0 as ApprovalCat, '' as ApprovalText union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询付款类型信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryPayType(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, PayTypeNo, PayTypeNoText from PUR_PayType Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as PayTypeNo, '全部' as PayTypeNoText union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
         /// 查询采购单表头表
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
@@ -38,14 +64,14 @@ namespace PSAP.DAO.PURDAO
         /// <param name="preparedStr">申请人</param>
         /// <param name="commonStr">通用查询条件</param>
         /// <param name="nullTable">是否查询空表</param>
-        public void QueryOrderHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, string commonStr, bool nullTable)
+        public void QueryOrderHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, commonStr, nullTable), queryDataTable);
+            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
         }
         /// <summary>
         /// 查询采购单表头表的SQL
         /// </summary>
-        public string QueryOrderHead_SQL(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, string commonStr, bool nullTable)
+        public string QueryOrderHead_SQL(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
@@ -78,7 +104,17 @@ namespace PSAP.DAO.PURDAO
             }
             if (commonStr != "")
             {
-                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%')", commonStr);
+                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%' or PUR_OrderHead.ApprovalType like '%{0}%' or PayTypeNo like '%{0}%')", commonStr);
+            }
+            if (approverInt >= 0)
+            {
+                if (approverInt == 0)
+                    sqlStr += string.Format(" and ReqState in (1,4)");
+                else
+                {
+                    sqlStr = string.Format("select PUR_OrderHead.* from PUR_OrderHead left join PUR_ApprovalType on PUR_OrderHead.ApprovalType = PUR_ApprovalType.TypeNo where {0} and PUR_OrderHead.ReqState in (1, 2) and( (PUR_ApprovalType.ApprovalCat = 0 and exists (select * from (select top 1 * from F_OrderNoApprovalList(PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType) Order by AppSequence) as minlist where Approver = {1})) or (PUR_ApprovalType.ApprovalCat = 1 and exists (select * from F_OrderNoApprovalList(PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType) where Approver = {1}))) order by AutoId", sqlStr, approverInt);
+                    return sqlStr;
+                }
             }
             if (nullTable)
             {
@@ -86,7 +122,7 @@ namespace PSAP.DAO.PURDAO
             }
             sqlStr = string.Format("select * from PUR_OrderHead where {0} order by AutoId", sqlStr);
             return sqlStr;
-        }        
+        }
 
         /// <summary>
         /// 查询采购单明细表
@@ -156,7 +192,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="orderHeadNoStr">采购单号</param>
         public bool DeleteOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true, false))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, true, true))
                 return false;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -212,7 +248,7 @@ namespace PSAP.DAO.PURDAO
                 }
             }
             orderNoListStr = orderNoListStr.Substring(0, orderNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderNoListStr, true, true, false))
+            if (!CheckOrderState(orderHeadTable, null, orderNoListStr, false, true, true, true))
                 return false;
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -286,7 +322,7 @@ namespace PSAP.DAO.PURDAO
                         }
                         else//修改
                         {
-                            if (!CheckOrderState(orderHeadRow.Table, orderListTable, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true, false))
+                            if (!CheckOrderState(orderHeadRow.Table, orderListTable, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, true, true))
                                 return false;
 
                             orderHeadRow["Modifier"] = SystemInfo.user.EmpName;
@@ -335,7 +371,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="orderHeadRow">采购单表头数据行</param>
         public bool ApproveOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, true, false))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, true, false))
                 return false;
 
             DateTime serverTime = BaseSQL.GetServerDateTime();
@@ -396,7 +432,7 @@ namespace PSAP.DAO.PURDAO
             }
 
             orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, true, false))
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, true, false))
                 return false;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -441,7 +477,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="orderHeadRow">采购单表头数据行</param>
         public bool CancelApproveOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, true))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), true, false, true, false))
                 return false;
 
             orderHeadRow["Approver"] = "";
@@ -502,7 +538,7 @@ namespace PSAP.DAO.PURDAO
             }
 
             orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, true))
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, false, true, false))
                 return false;
 
             //检查是否有下级的入库订单
@@ -549,7 +585,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="orderHeadRow">采购请购单表头数据行</param>
         public bool CloseOrder(DataRow orderHeadRow)
         {
-            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, false))
+            if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, false, true, false))
                 return false;
 
             DateTime serverTime = BaseSQL.GetServerDateTime();
@@ -610,7 +646,7 @@ namespace PSAP.DAO.PURDAO
             }
 
             orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
-            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, false))
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, false, true, false))
                 return false;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -621,7 +657,7 @@ namespace PSAP.DAO.PURDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
-                        cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where OrderHeadNo in ({0})", orderHeadNoListStr, 3, SystemInfo.user.EmpName, SystemInfo.HostIpAddress, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Closed='{2}', ClosedIp='{3}', ClosedTime='{4}' where OrderHeadNo in ({0})", orderHeadNoListStr, 3, SystemInfo.user.EmpName, SystemInfo.HostIpAddress, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         cmd.ExecuteNonQuery();
 
                         //保存日志到日志表中
@@ -650,9 +686,97 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
+        /// 取消关闭选中的多条请购单
+        /// </summary>
+        public bool CancelCloseOrder_Multi(DataTable orderHeadTable)
+        {
+            string orderHeadNoListStr = "";
+            DateTime serverTime = BaseSQL.GetServerDateTime();
+            for (int i = 0; i < orderHeadTable.Rows.Count; i++)
+            {
+                if (DataTypeConvert.GetBoolean(orderHeadTable.Rows[i]["Select"]))
+                {
+                    orderHeadNoListStr += string.Format("'{0}',", DataTypeConvert.GetString(orderHeadTable.Rows[i]["OrderHeadNo"]));
+                    orderHeadTable.Rows[i]["Closed"] = "";
+                    orderHeadTable.Rows[i]["ClosedIp"] = "";
+                    orderHeadTable.Rows[i]["ClosedTime"] = DBNull.Value;
+                }
+            }
+
+            orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, true, false, true))
+                return false;
+
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        for (int i = 0; i < orderHeadTable.Rows.Count; i++)
+                        {
+                            if (DataTypeConvert.GetBoolean(orderHeadTable.Rows[i]["Select"]))
+                            {
+                                DataRow dr = orderHeadTable.Rows[i];
+                                string orderHeadNoStr = DataTypeConvert.GetString(dr["OrderHeadNo"]);
+                                string approvalTypeStr = DataTypeConvert.GetString(dr["ApprovalType"]);
+                                cmd.CommandText = string.Format("select ApprovalCat from PUR_ApprovalType where TypeNo='{0}'", approvalTypeStr);
+                                int approvalCatInt = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+                                cmd.CommandText = string.Format("select Count(*) from F_OrderNoApprovalList('{0}','{1}')", orderHeadNoStr, approvalTypeStr);
+                                int noAppListCount = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+                                cmd.CommandText = string.Format("select Count(*) from PUR_ApprovalList where TypeNo='{0}'", approvalTypeStr);
+                                int appListCount = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+                                switch(approvalCatInt)
+                                {
+                                    case 0:
+                                    case 1:
+                                        if (noAppListCount == 0)
+                                            dr["ReqState"] = 2;
+                                        else if (noAppListCount == appListCount)
+                                            dr["ReqState"] = 1;
+                                        else
+                                            dr["ReqState"] = 4;
+                                        break;
+                                    case 2:
+                                        if (noAppListCount < appListCount)
+                                            dr["ReqState"] = 2;
+                                        else
+                                            dr["ReqState"] = 1;
+                                        break;
+                                }                               
+
+                                cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Closed='{2}', ClosedIp='{3}', ClosedTime=null where OrderHeadNo = '{0}'", DataTypeConvert.GetString(dr["OrderHeadNo"]), DataTypeConvert.GetInt(dr["ReqState"]), "", "");
+                                cmd.ExecuteNonQuery();
+
+                                //保存日志到日志表中
+                                string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadTable.Rows[i], "OrderHeadNo", "取消关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                            }
+                        }
+
+                        trans.Commit();
+                        orderHeadTable.AcceptChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        orderHeadTable.RejectChanges();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 检测数据库中请购单状态是否可以操作
         /// </summary>
-        public bool CheckOrderState(DataTable orderHeadTable, DataTable orderListTable, string orderHeadNoListStr, bool checkApprover, bool checkClosed, bool checkNoApprover)
+        public bool CheckOrderState(DataTable orderHeadTable, DataTable orderListTable, string orderHeadNoListStr, bool checkNoApprover, bool checkApprover, bool checkClosed, bool checkApproverBetween)
         {
             string sqlStr = string.Format("select OrderHeadNo, ReqState from PUR_OrderHead where OrderHeadNo in ({0})", orderHeadNoListStr);
             DataTable tmpTable = BaseSQL.Query(sqlStr).Tables[0];
@@ -664,7 +788,7 @@ namespace PSAP.DAO.PURDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审核，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
                             orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
@@ -674,7 +798,7 @@ namespace PSAP.DAO.PURDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审核，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
                             orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
@@ -685,6 +809,16 @@ namespace PSAP.DAO.PURDAO
                         if (checkClosed)
                         {
                             MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            orderHeadTable.RejectChanges();
+                            if (orderListTable != null)
+                                orderListTable.RejectChanges();
+                            return false;
+                        }
+                        break;
+                    case 4:
+                        if (checkApproverBetween)
+                        {
+                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
                             orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
@@ -730,6 +864,173 @@ namespace PSAP.DAO.PURDAO
             }
         }
 
-        
+        /// <summary>
+        /// 审批选中的多条请购单
+        /// </summary>
+        public bool OrderApprovalInfo_Multi(DataTable orderHeadTable,ref int successCountInt)
+        {
+            string orderHeadNoListStr = "";
+            for (int i = 0; i < orderHeadTable.Rows.Count; i++)
+            {
+                if (DataTypeConvert.GetBoolean(orderHeadTable.Rows[i]["Select"]))
+                {
+                    orderHeadNoListStr += string.Format("'{0}',", DataTypeConvert.GetString(orderHeadTable.Rows[i]["OrderHeadNo"]));
+                }
+            }
+
+            orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, false, true, true, false))
+                return false;
+            successCountInt = 0;
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        DateTime serverTime = BaseSQL.GetServerDateTime();
+                        for (int i = 0; i < orderHeadTable.Rows.Count; i++)
+                        {
+                            if (DataTypeConvert.GetBoolean(orderHeadTable.Rows[i]["Select"]))
+                            {
+                                DataRow orderRow = orderHeadTable.Rows[i];
+                                string orderHeadNoStr = DataTypeConvert.GetString(orderRow["OrderHeadNo"]);
+
+                                cmd.CommandText = string.Format("select PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType, PUR_ApprovalType.ApprovalCat from PUR_OrderHead left join PUR_ApprovalType on PUR_OrderHead.ApprovalType = PUR_ApprovalType.TypeNo where OrderHeadNo='{0}'", orderHeadNoStr);
+                                DataTable tmpTable = new DataTable();
+                                SqlDataAdapter orderadpt = new SqlDataAdapter(cmd);
+                                orderadpt.Fill(tmpTable);
+                                if (tmpTable.Rows.Count == 0)
+                                {
+                                    trans.Rollback();
+                                    MessageHandler.ShowMessageBox("未查询到要操作的采购订单，请刷新后再进行操作。");
+                                    return false;
+                                }
+                                string approvalTypeStr = DataTypeConvert.GetString(tmpTable.Rows[0]["ApprovalType"]);
+                                cmd.CommandText = string.Format("select * from F_OrderNoApprovalList('{0}','{1}') Order by AppSequence", orderHeadNoStr, approvalTypeStr);
+                                DataTable listTable = new DataTable();
+                                SqlDataAdapter listadpt = new SqlDataAdapter(cmd);
+                                listadpt.Fill(listTable);
+                                if (listTable.Rows.Count == 0)
+                                {
+                                    cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState=2 where OrderHeadNo='{0}'", orderHeadNoStr);
+                                    cmd.ExecuteNonQuery();
+                                    orderHeadTable.Rows[i]["ReqState"] = 2;
+                                    continue;
+                                }
+                                int approvalCatInt = DataTypeConvert.GetInt(tmpTable.Rows[0]["ApprovalCat"]);
+                                switch (approvalCatInt)
+                                {
+                                    case 0:
+                                        if (DataTypeConvert.GetInt(listTable.Rows[0]["Approver"]) != SystemInfo.user.AutoId)
+                                            continue;
+                                        break;
+                                    case 1:
+                                    case 2:
+                                        if (listTable.Select(string.Format("Approver={0}", SystemInfo.user.AutoId)).Length == 0)
+                                            continue;
+                                        break;
+                                }
+
+                                cmd.CommandText = string.Format("Insert into PUR_OrderApprovalInfo(OrderHeadNo, Approver, ApproverTime) values ('{0}', {1}, '{2}')", orderHeadNoStr, SystemInfo.user.AutoId, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                                cmd.ExecuteNonQuery();
+
+                                if (listTable.Rows.Count == 1 || approvalCatInt == 2)
+                                {
+                                    cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState=2 where OrderHeadNo='{0}'", orderHeadNoStr);
+                                    cmd.ExecuteNonQuery();
+                                    orderHeadTable.Rows[i]["ReqState"] = 2;
+                                }
+                                else
+                                {
+                                    cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState=4 where OrderHeadNo='{0}'", orderHeadNoStr);
+                                    cmd.ExecuteNonQuery();
+                                    orderHeadTable.Rows[i]["ReqState"] = 4;
+                                }
+
+                                //保存日志到日志表中
+                                string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadTable.Rows[i], "OrderHeadNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                                successCountInt++;
+                            }
+                        }
+
+                        trans.Commit();
+                        orderHeadTable.AcceptChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        orderHeadTable.RejectChanges();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消审批选中的多条请购单
+        /// </summary>
+        public bool CancalOrderApprovalInfo_Multi(DataTable orderHeadTable)
+        {
+            string orderHeadNoListStr = "";
+            for (int i = 0; i < orderHeadTable.Rows.Count; i++)
+            {
+                if (DataTypeConvert.GetBoolean(orderHeadTable.Rows[i]["Select"]))
+                {
+                    orderHeadNoListStr += string.Format("'{0}',", DataTypeConvert.GetString(orderHeadTable.Rows[i]["OrderHeadNo"]));
+                    orderHeadTable.Rows[i]["ReqState"] = 1;
+                }
+            }
+
+            orderHeadNoListStr = orderHeadNoListStr.Substring(0, orderHeadNoListStr.Length - 1);
+            if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, false, true, false))
+                return false;
+
+            //检查是否有下级的入库订单
+
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("Delete from PUR_OrderApprovalInfo where OrderHeadNo in ({0})", orderHeadNoListStr);
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState=1 where OrderHeadNo in ({0})", orderHeadNoListStr);
+                        cmd.ExecuteNonQuery();
+
+                        //保存日志到日志表中
+                        DataRow[] orderHeadRows = orderHeadTable.Select("select=1");
+                        for (int i = 0; i < orderHeadRows.Length; i++)
+                        {
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
+                        trans.Commit();
+                        orderHeadTable.AcceptChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        orderHeadTable.RejectChanges();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
     }
 }

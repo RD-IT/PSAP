@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -124,8 +126,8 @@ namespace PSAP.PSAPCommon
                     //写入列标题
                     for (int i = 0; i < tmpDataTable.Columns.Count; i++)
                     {
-                            columnTitle += tmpDataTable.Columns[i].Caption;
-                            columnTitle += "\t";                        
+                        columnTitle += tmpDataTable.Columns[i].Caption;
+                        columnTitle += "\t";
                     }
                     columnTitle = columnTitle.Substring(0, columnTitle.Length - 1);
 
@@ -137,15 +139,15 @@ namespace PSAP.PSAPCommon
                         string columnValue = "";
                         for (int k = 0; k < tmpDataTable.Columns.Count; k++)
                         {
-                                if (tmpDataTable.Rows[j][k] == null)
-                                {
-                                    columnValue += "";
-                                }
-                                else
-                                {
-                                    columnValue += tmpDataTable.Rows[j][k].ToString().Trim();
-                                }
-                                columnValue += "\t";                            
+                            if (tmpDataTable.Rows[j][k] == null)
+                            {
+                                columnValue += "";
+                            }
+                            else
+                            {
+                                columnValue += tmpDataTable.Rows[j][k].ToString().Trim();
+                            }
+                            columnValue += "\t";
                         }
                         columnValue = columnValue.Substring(0, columnValue.Length - 1);
                         sw.WriteLine(columnValue);
@@ -221,5 +223,49 @@ namespace PSAP.PSAPCommon
                 MessageHandler.ShowMessageBox(string.Format("导出成功!数据已成功导出至\n{0}\n文件中!", strFileName));
             }
         }
+
+        /// <summary>
+        /// 将图片文件转换为数据流
+        /// </summary>
+        /// <param name="sourceFilePathStr">图片文件路径</param>
+        public static byte[] FileToStream(string sourceFilePathStr)
+        {
+            Image img = new Bitmap(sourceFilePathStr);
+            MemoryStream stream = new MemoryStream();
+            img.Save(stream, ImageFormat.Bmp);
+            BinaryReader br = new BinaryReader(stream);
+            byte[] bytes = stream.ToArray();
+            stream.Close();
+            return bytes;
+        }
+
+        /// <summary>
+        /// 将数据流转换为Image类型变量
+        /// </summary>
+        /// <param name="bytes">数据流</param>
+        public static Image StreamToImage(byte[] bytes)
+        {
+            MemoryStream ms = new MemoryStream(bytes);
+            ms.Position = 0;
+            Image img = Image.FromStream(ms);
+            ms.Close();
+            return img;
+        }
+
+        /// <summary>
+        /// 将数据流转换为文件
+        /// </summary>
+        /// <param name="bytes">数据流</param>
+        /// <param name="saveFilePath">保存图片文件路径</param>
+        public int StreamToFile(byte[] bytes, string saveFilePath)
+        {
+            FileStream fs = new FileStream(saveFilePath, FileMode.Create, FileAccess.Write);
+            fs.Write(bytes, 0, bytes.Length);
+            fs.Flush();
+            fs.Close();
+            return 0;
+        }
+
+
     }
 }

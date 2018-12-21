@@ -25,7 +25,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmStnList_Load(object sender, EventArgs e)
+        private void FrmProjectList_Load(object sender, EventArgs e)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (editForm == null)
                 {
-                    FrmBaseEdit editForm = new FrmBaseEdit();
+                    editForm = new FrmBaseEdit();
                     editForm.FormBorderStyle = FormBorderStyle.None;
                     editForm.TopLevel = false;
                     editForm.TableName = "BS_ProjectList";
@@ -94,11 +94,24 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 设定站号信息
+        /// </summary>
         private void btnStnList_Click(object sender, EventArgs e)
         {
-            string projectNoStr = DataTypeConvert.GetString(gridViewProjectList.GetFocusedDataRow()["ProjectNo"]);
-            FrmStnList.projectNoStr = projectNoStr;
-            ViewHandler.ShowRightWindow("FrmStnList");
+            //string projectNoStr = DataTypeConvert.GetString(gridViewProjectList.GetFocusedDataRow()["ProjectNo"]);
+            //FrmStnList.projectNoStr = projectNoStr;
+            //ViewHandler.ShowRightWindow("FrmStnList");
+            if (!editForm.EditState)
+            {
+                DataRow dr = gridViewProjectList.GetFocusedDataRow();
+                FrmStnList stnList = new FrmStnList(DataTypeConvert.GetString(dr["ProjectNo"]),DataTypeConvert.GetString(dr["ProjectName"]));
+                stnList.ShowDialog();
+            }
+            else
+            {
+                MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+            }
         }
     }
 }
