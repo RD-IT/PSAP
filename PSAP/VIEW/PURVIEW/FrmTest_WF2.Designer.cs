@@ -60,41 +60,35 @@
             this.dataColClosed = new System.Data.DataColumn();
             this.dataColClosedIp = new System.Data.DataColumn();
             this.dataColClosedTime = new System.Data.DataColumn();
-            this.winExplorerView1 = new DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView();
-            this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrReqNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colReqDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colReqDep = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colStnNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurCategory = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colReqState = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApplicantIp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApplicantTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModifier = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModifierIp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModifierTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApproverIp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApproverTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colClosedIp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colClosedTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.winExplorerView = new DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView();
+            this.columnName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.columnPath = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.columnCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.columnGroup = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.columnImage = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.barManagerToolBar = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barToolBar = new DevExpress.XtraBars.Bar();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.修改 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.winExplorerView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winExplorerView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManagerToolBar)).BeginInit();
             this.SuspendLayout();
             // 
             // treeList1
             // 
-            this.treeList1.Location = new System.Drawing.Point(12, 12);
+            this.treeList1.Location = new System.Drawing.Point(12, 36);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.treeList1.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
@@ -116,9 +110,9 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(501, 24);
+            this.simpleButton1.Location = new System.Drawing.Point(309, 23);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(159, 46);
+            this.simpleButton1.Size = new System.Drawing.Size(163, 53);
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Text = "simpleButton1";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -144,13 +138,13 @@
             // 
             this.gridControl1.DataMember = "PrReqHead";
             this.gridControl1.DataSource = this.dataSet_PrReq;
-            this.gridControl1.Location = new System.Drawing.Point(279, 76);
-            this.gridControl1.MainView = this.winExplorerView1;
+            this.gridControl1.Location = new System.Drawing.Point(279, 116);
+            this.gridControl1.MainView = this.winExplorerView;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(504, 274);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.winExplorerView1});
+            this.winExplorerView});
             // 
             // dataSet_PrReq
             // 
@@ -302,212 +296,185 @@
             this.dataColClosedTime.ColumnName = "ClosedTime";
             this.dataColClosedTime.DataType = typeof(System.DateTime);
             // 
-            // winExplorerView1
+            // winExplorerView
             // 
-            this.winExplorerView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAutoId,
-            this.colPrReqNo,
-            this.colReqDate,
-            this.colReqDep,
-            this.colProjectNo,
-            this.colStnNo,
-            this.colPurCategory,
-            this.colReqState,
-            this.colApplicant,
-            this.colApplicantIp,
-            this.colApplicantTime,
-            this.colModifier,
-            this.colModifierIp,
-            this.colModifierTime,
-            this.colApprover,
-            this.colApproverIp,
-            this.colApproverTime,
-            this.colPrReqRemark,
-            this.colSelect,
-            this.colClosed,
-            this.colClosedIp,
-            this.colClosedTime});
-            this.winExplorerView1.ColumnSet.MediumImageIndexColumn = this.colReqState;
-            this.winExplorerView1.ColumnSet.TextColumn = this.colPrReqNo;
-            this.winExplorerView1.GridControl = this.gridControl1;
-            this.winExplorerView1.MediumImages = this.imageList1;
-            this.winExplorerView1.Name = "winExplorerView1";
-            this.winExplorerView1.OptionsImageLoad.AnimationType = DevExpress.Utils.ImageContentAnimationType.Slide;
-            this.winExplorerView1.OptionsImageLoad.AsyncLoad = true;
-            this.winExplorerView1.OptionsImageLoad.CacheThumbnails = false;
-            this.winExplorerView1.OptionsImageLoad.LoadThumbnailImagesFromDataSource = false;
-            this.winExplorerView1.OptionsSelection.AllowMarqueeSelection = true;
-            this.winExplorerView1.OptionsSelection.ItemSelectionMode = DevExpress.XtraGrid.Views.WinExplorer.IconItemSelectionMode.Click;
-            this.winExplorerView1.OptionsSelection.MultiSelect = true;
-            this.winExplorerView1.OptionsView.ShowExpandCollapseButtons = true;
-            this.winExplorerView1.OptionsView.Style = DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewStyle.Medium;
-            this.winExplorerView1.OptionsViewStyles.Content.ItemWidth = 502;
-            this.winExplorerView1.OptionsViewStyles.ExtraLarge.ImageSize = new System.Drawing.Size(220, 129);
-            this.winExplorerView1.OptionsViewStyles.Large.ImageSize = new System.Drawing.Size(96, 56);
-            this.winExplorerView1.OptionsViewStyles.Medium.ImageSize = new System.Drawing.Size(32, 32);
+            this.winExplorerView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.winExplorerView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.columnName,
+            this.columnPath,
+            this.columnCheck,
+            this.columnGroup,
+            this.columnImage});
+            this.winExplorerView.ColumnSet.CheckBoxColumn = this.columnCheck;
+            this.winExplorerView.ColumnSet.DescriptionColumn = this.columnPath;
+            this.winExplorerView.ColumnSet.ExtraLargeImageColumn = this.columnImage;
+            this.winExplorerView.ColumnSet.GroupColumn = this.columnGroup;
+            this.winExplorerView.ColumnSet.LargeImageColumn = this.columnImage;
+            this.winExplorerView.ColumnSet.MediumImageColumn = this.columnImage;
+            this.winExplorerView.ColumnSet.SmallImageColumn = this.columnImage;
+            this.winExplorerView.ColumnSet.TextColumn = this.columnName;
+            this.winExplorerView.GridControl = this.gridControl1;
+            this.winExplorerView.GroupCount = 1;
+            this.winExplorerView.Name = "winExplorerView";
+            this.winExplorerView.OptionsBehavior.Editable = false;
+            this.winExplorerView.OptionsSelection.AllowMarqueeSelection = true;
+            this.winExplorerView.OptionsSelection.ItemSelectionMode = DevExpress.XtraGrid.Views.WinExplorer.IconItemSelectionMode.Click;
+            this.winExplorerView.OptionsSelection.MultiSelect = true;
+            this.winExplorerView.OptionsView.ImageLayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.Stretch;
+            this.winExplorerView.OptionsView.ShowCheckBoxes = true;
+            this.winExplorerView.OptionsView.ShowViewCaption = true;
+            this.winExplorerView.OptionsView.Style = DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewStyle.Small;
+            this.winExplorerView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.columnGroup, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.winExplorerView.ItemDoubleClick += new DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewItemDoubleClickEventHandler(this.OnWinExplorerViewItemDoubleClick);
             // 
-            // colAutoId
+            // columnName
             // 
-            this.colAutoId.FieldName = "AutoId";
-            this.colAutoId.Name = "colAutoId";
-            this.colAutoId.Visible = true;
-            this.colAutoId.VisibleIndex = 0;
+            this.columnName.Caption = "columnName";
+            this.columnName.FieldName = "Name";
+            this.columnName.Name = "columnName";
+            this.columnName.Visible = true;
+            this.columnName.VisibleIndex = 0;
             // 
-            // colPrReqNo
+            // columnPath
             // 
-            this.colPrReqNo.FieldName = "PrReqNo";
-            this.colPrReqNo.Name = "colPrReqNo";
-            this.colPrReqNo.Visible = true;
-            this.colPrReqNo.VisibleIndex = 1;
+            this.columnPath.Caption = "columnPath";
+            this.columnPath.FieldName = "Path";
+            this.columnPath.Name = "columnPath";
+            this.columnPath.Visible = true;
+            this.columnPath.VisibleIndex = 0;
             // 
-            // colReqDate
+            // columnCheck
             // 
-            this.colReqDate.FieldName = "ReqDate";
-            this.colReqDate.Name = "colReqDate";
-            this.colReqDate.Visible = true;
-            this.colReqDate.VisibleIndex = 2;
+            this.columnCheck.Caption = "columnCheck";
+            this.columnCheck.FieldName = "IsCheck";
+            this.columnCheck.Name = "columnCheck";
+            this.columnCheck.Visible = true;
+            this.columnCheck.VisibleIndex = 0;
             // 
-            // colReqDep
+            // columnGroup
             // 
-            this.colReqDep.FieldName = "ReqDep";
-            this.colReqDep.Name = "colReqDep";
-            this.colReqDep.Visible = true;
-            this.colReqDep.VisibleIndex = 3;
+            this.columnGroup.Caption = "columnGroup";
+            this.columnGroup.FieldName = "Group";
+            this.columnGroup.Name = "columnGroup";
+            this.columnGroup.Visible = true;
+            this.columnGroup.VisibleIndex = 0;
             // 
-            // colProjectNo
+            // columnImage
             // 
-            this.colProjectNo.FieldName = "ProjectNo";
-            this.colProjectNo.Name = "colProjectNo";
-            this.colProjectNo.Visible = true;
-            this.colProjectNo.VisibleIndex = 4;
+            this.columnImage.Caption = "columnImage";
+            this.columnImage.FieldName = "Image";
+            this.columnImage.Name = "columnImage";
+            this.columnImage.Visible = true;
+            this.columnImage.VisibleIndex = 0;
             // 
-            // colStnNo
+            // simpleButton2
             // 
-            this.colStnNo.FieldName = "StnNo";
-            this.colStnNo.Name = "colStnNo";
-            this.colStnNo.Visible = true;
-            this.colStnNo.VisibleIndex = 5;
+            this.simpleButton2.Location = new System.Drawing.Point(499, 23);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(163, 53);
+            this.simpleButton2.TabIndex = 4;
+            this.simpleButton2.Text = "simpleButton2";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
-            // colPurCategory
+            // barManagerToolBar
             // 
-            this.colPurCategory.FieldName = "PurCategory";
-            this.colPurCategory.Name = "colPurCategory";
-            this.colPurCategory.Visible = true;
-            this.colPurCategory.VisibleIndex = 6;
+            this.barManagerToolBar.AllowCustomization = false;
+            this.barManagerToolBar.AllowMoveBarOnToolbar = false;
+            this.barManagerToolBar.AllowQuickCustomization = false;
+            this.barManagerToolBar.AllowShowToolbarsPopup = false;
+            this.barManagerToolBar.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.barToolBar});
+            this.barManagerToolBar.DockControls.Add(this.barDockControlTop);
+            this.barManagerToolBar.DockControls.Add(this.barDockControlBottom);
+            this.barManagerToolBar.DockControls.Add(this.barDockControlLeft);
+            this.barManagerToolBar.DockControls.Add(this.barDockControlRight);
+            this.barManagerToolBar.Form = this;
+            this.barManagerToolBar.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonItem1,
+            this.修改,
+            this.barButtonItem2});
+            this.barManagerToolBar.MainMenu = this.barToolBar;
+            this.barManagerToolBar.MaxItemId = 3;
             // 
-            // colReqState
+            // barDockControlTop
             // 
-            this.colReqState.FieldName = "ReqState";
-            this.colReqState.Name = "colReqState";
-            this.colReqState.Visible = true;
-            this.colReqState.VisibleIndex = 7;
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(789, 24);
             // 
-            // colApplicant
+            // barDockControlBottom
             // 
-            this.colApplicant.FieldName = "Applicant";
-            this.colApplicant.Name = "colApplicant";
-            this.colApplicant.Visible = true;
-            this.colApplicant.VisibleIndex = 8;
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 414);
+            this.barDockControlBottom.Size = new System.Drawing.Size(789, 0);
             // 
-            // colApplicantIp
+            // barDockControlLeft
             // 
-            this.colApplicantIp.FieldName = "ApplicantIp";
-            this.colApplicantIp.Name = "colApplicantIp";
-            this.colApplicantIp.Visible = true;
-            this.colApplicantIp.VisibleIndex = 9;
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 390);
             // 
-            // colApplicantTime
+            // barDockControlRight
             // 
-            this.colApplicantTime.FieldName = "ApplicantTime";
-            this.colApplicantTime.Name = "colApplicantTime";
-            this.colApplicantTime.Visible = true;
-            this.colApplicantTime.VisibleIndex = 10;
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(789, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 390);
             // 
-            // colModifier
+            // barToolBar
             // 
-            this.colModifier.FieldName = "Modifier";
-            this.colModifier.Name = "colModifier";
-            this.colModifier.Visible = true;
-            this.colModifier.VisibleIndex = 11;
+            this.barToolBar.BarName = "Main menu";
+            this.barToolBar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+            this.barToolBar.DockCol = 0;
+            this.barToolBar.DockRow = 0;
+            this.barToolBar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.barToolBar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.修改)});
+            this.barToolBar.OptionsBar.AllowQuickCustomization = false;
+            this.barToolBar.OptionsBar.AutoPopupMode = DevExpress.XtraBars.BarAutoPopupMode.None;
+            this.barToolBar.OptionsBar.DisableClose = true;
+            this.barToolBar.OptionsBar.DisableCustomization = true;
+            this.barToolBar.OptionsBar.UseWholeRow = true;
+            this.barToolBar.Text = "Main menu";
             // 
-            // colModifierIp
+            // barButtonItem1
             // 
-            this.colModifierIp.FieldName = "ModifierIp";
-            this.colModifierIp.Name = "colModifierIp";
-            this.colModifierIp.Visible = true;
-            this.colModifierIp.VisibleIndex = 12;
+            this.barButtonItem1.Caption = "新增";
+            this.barButtonItem1.Id = 0;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
-            // colModifierTime
+            // 修改
             // 
-            this.colModifierTime.FieldName = "ModifierTime";
-            this.colModifierTime.Name = "colModifierTime";
-            this.colModifierTime.Visible = true;
-            this.colModifierTime.VisibleIndex = 13;
+            this.修改.Caption = "修改";
+            this.修改.Enabled = false;
+            this.修改.Id = 1;
+            this.修改.Name = "修改";
             // 
-            // colApprover
+            // barButtonItem2
             // 
-            this.colApprover.FieldName = "Approver";
-            this.colApprover.Name = "colApprover";
-            this.colApprover.Visible = true;
-            this.colApprover.VisibleIndex = 14;
-            // 
-            // colApproverIp
-            // 
-            this.colApproverIp.FieldName = "ApproverIp";
-            this.colApproverIp.Name = "colApproverIp";
-            this.colApproverIp.Visible = true;
-            this.colApproverIp.VisibleIndex = 15;
-            // 
-            // colApproverTime
-            // 
-            this.colApproverTime.FieldName = "ApproverTime";
-            this.colApproverTime.Name = "colApproverTime";
-            this.colApproverTime.Visible = true;
-            this.colApproverTime.VisibleIndex = 16;
-            // 
-            // colPrReqRemark
-            // 
-            this.colPrReqRemark.FieldName = "PrReqRemark";
-            this.colPrReqRemark.Name = "colPrReqRemark";
-            this.colPrReqRemark.Visible = true;
-            this.colPrReqRemark.VisibleIndex = 17;
-            // 
-            // colSelect
-            // 
-            this.colSelect.FieldName = "Select";
-            this.colSelect.Name = "colSelect";
-            this.colSelect.Visible = true;
-            this.colSelect.VisibleIndex = 18;
-            // 
-            // colClosed
-            // 
-            this.colClosed.FieldName = "Closed";
-            this.colClosed.Name = "colClosed";
-            this.colClosed.Visible = true;
-            this.colClosed.VisibleIndex = 19;
-            // 
-            // colClosedIp
-            // 
-            this.colClosedIp.FieldName = "ClosedIp";
-            this.colClosedIp.Name = "colClosedIp";
-            this.colClosedIp.Visible = true;
-            this.colClosedIp.VisibleIndex = 20;
-            // 
-            // colClosedTime
-            // 
-            this.colClosedTime.FieldName = "ClosedTime";
-            this.colClosedTime.Name = "colClosedTime";
-            this.colClosedTime.Visible = true;
-            this.colClosedTime.VisibleIndex = 21;
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 2;
+            this.barButtonItem2.Name = "barButtonItem2";
             // 
             // FrmTest_WF2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(789, 414);
+            this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.searchLookUpEdit1);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.treeList1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Name = "FrmTest_WF2";
             this.TabText = "FrmTest_WF2";
             this.Text = "FrmTest_WF2";
@@ -518,8 +485,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.winExplorerView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winExplorerView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManagerToolBar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -531,7 +500,7 @@
         private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit1;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView winExplorerView1;
+        private DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView winExplorerView;
         private System.Data.DataSet dataSet_PrReq;
         private System.Data.DataTable dataTablePrReqHead;
         private System.Data.DataColumn dataColAutoId;
@@ -555,28 +524,21 @@
         private System.Data.DataColumn dataColSelect;
         private System.Data.DataColumn dataColClosed;
         private System.Data.DataColumn dataColClosedIp;
-        private System.Data.DataColumn dataColClosedTime;
-        private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrReqNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colReqDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colReqDep;
-        private DevExpress.XtraGrid.Columns.GridColumn colProjectNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colStnNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurCategory;
-        private DevExpress.XtraGrid.Columns.GridColumn colReqState;
-        private DevExpress.XtraGrid.Columns.GridColumn colApplicant;
-        private DevExpress.XtraGrid.Columns.GridColumn colApplicantIp;
-        private DevExpress.XtraGrid.Columns.GridColumn colApplicantTime;
-        private DevExpress.XtraGrid.Columns.GridColumn colModifier;
-        private DevExpress.XtraGrid.Columns.GridColumn colModifierIp;
-        private DevExpress.XtraGrid.Columns.GridColumn colModifierTime;
-        private DevExpress.XtraGrid.Columns.GridColumn colApprover;
-        private DevExpress.XtraGrid.Columns.GridColumn colApproverIp;
-        private DevExpress.XtraGrid.Columns.GridColumn colApproverTime;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrReqRemark;
-        private DevExpress.XtraGrid.Columns.GridColumn colSelect;
-        private DevExpress.XtraGrid.Columns.GridColumn colClosed;
-        private DevExpress.XtraGrid.Columns.GridColumn colClosedIp;
-        private DevExpress.XtraGrid.Columns.GridColumn colClosedTime;
+        private System.Data.DataColumn dataColClosedTime;        
+        private DevExpress.XtraGrid.Columns.GridColumn columnName;
+        private DevExpress.XtraGrid.Columns.GridColumn columnPath;
+        private DevExpress.XtraGrid.Columns.GridColumn columnCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn columnGroup;
+        private DevExpress.XtraGrid.Columns.GridColumn columnImage;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraBars.BarManager barManagerToolBar;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem 修改;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        public DevExpress.XtraBars.Bar barToolBar;
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.CodeParser.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v15.2.UI, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -103,6 +104,7 @@
     <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmApprovalDAO.cs" />
+    <Compile Include="DAO\PURDAO\FrmDocumentTempletDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmOrderDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmPayTypeDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmPrReqApplyDAO.cs" />
@@ -362,6 +364,12 @@
     <Compile Include="VIEW\PURVIEW\GridBottom.Designer.cs">
       <DependentUpon>GridBottom.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\REPORT\FrmDocumentTemplet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\REPORT\FrmDocumentTemplet.Designer.cs">
+      <DependentUpon>FrmDocumentTemplet.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\REPORT\FrmPrintPreview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -485,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\GridBottom.resx">
       <DependentUpon>GridBottom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\REPORT\FrmDocumentTemplet.resx">
+      <DependentUpon>FrmDocumentTemplet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\REPORT\FrmPrintPreview.resx">
       <DependentUpon>FrmPrintPreview.cs</DependentUpon>

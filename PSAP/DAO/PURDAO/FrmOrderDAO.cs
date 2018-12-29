@@ -298,7 +298,7 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         /// <param name="orderHeadRow">采购单表头数据表</param>
         /// <param name="orderListTable">采购单明细数据表</param>
-        public bool SaveOrder(DataRow orderHeadRow, DataTable orderListTable)
+        public int SaveOrder(DataRow orderHeadRow, DataTable orderListTable)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -308,6 +308,12 @@ namespace PSAP.DAO.PURDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
+
+                        if (!CheckPrReqApplyBeyondCount(cmd, orderHeadRow["OrderHeadNo"].ToString(), orderListTable))
+                        {
+                            return 0;
+                        }
+
                         if (orderHeadRow["OrderHeadNo"].ToString() == "")//新增
                         {
                             string orderHeadNo = BaseSQL.GetMaxCodeNo(cmd, "PO");
@@ -323,7 +329,7 @@ namespace PSAP.DAO.PURDAO
                         else//修改
                         {
                             if (!CheckOrderState(orderHeadRow.Table, orderListTable, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, true, true, true))
-                                return false;
+                                return -1;
 
                             orderHeadRow["Modifier"] = SystemInfo.user.EmpName;
                             orderHeadRow["ModifierIp"] = SystemInfo.HostIpAddress;
@@ -348,7 +354,7 @@ namespace PSAP.DAO.PURDAO
                         Set_PrReqHead_End(cmd, orderListTable);
 
                         trans.Commit();
-                        return true;
+                        return 1;
                     }
                     catch (Exception ex)
                     {
@@ -908,6 +914,16 @@ namespace PSAP.DAO.PURDAO
                                     MessageHandler.ShowMessageBox("未查询到要操作的采购订单，请刷新后再进行操作。");
                                     return false;
                                 }
+
+                                //审核检查订单明细数量是否超过请购明细数量
+                                DataTable orderListTable = new DataTable();
+                                QueryOrderList(orderListTable, orderHeadNoStr, false);
+                                if (!CheckPrReqApplyBeyondCount(cmd, orderHeadNoStr, orderListTable))
+                                {
+                                    trans.Rollback();
+                                    return false;
+                                }
+
                                 string approvalTypeStr = DataTypeConvert.GetString(tmpTable.Rows[0]["ApprovalType"]);
                                 cmd.CommandText = string.Format("select * from F_OrderNoApprovalList('{0}','{1}') Order by AppSequence", orderHeadNoStr, approvalTypeStr);
                                 DataTable listTable = new DataTable();
@@ -1032,5 +1048,256 @@ namespace PSAP.DAO.PURDAO
                 }
             }
         }
+
+        /// <summary>
+        /// 打印处理
+        /// </summary>
+        /// <param name="orderHeadNoStr">订购单号</param>
+        /// <param name="handleTypeInt">打印处理类型：1 预览 2 打印 3 设计</param>
+        public void PrintHandle(string orderHeadNoStr, int handleTypeInt)
+        {
+            DataSet ds = new DataSet();
+            DataTable headTable = DAO.BSDAO.BaseSQL.GetTableBySql(string.Format("select * from V_Prn_PUR_OrderHead where OrderHeadNo = '{0}' order by AutoId", orderHeadNoStr));
+            headTable.TableName = "OrderHead";
+            for (int i = 0; i < headTable.Columns.Count; i++)
+            {
+                #region 设定主表显示的标题
+
+                switch (headTable.Columns[i].ColumnName)
+                {
+                    case "OrderHeadNo":
+                        headTable.Columns[i].Caption = "采购单号";
+                        break;
+                    case "OrderHeadDate":
+                        headTable.Columns[i].Caption = "订购日期";
+                        break;
+                    case "PurCategory":
+                        headTable.Columns[i].Caption = "采购类型编号";
+                        break;
+                    case "PurCategoryText":
+                        headTable.Columns[i].Caption = "采购类型名称";
+                        break;
+                    case "BussinessBaseNo":
+                        headTable.Columns[i].Caption = "往来方编号";
+                        break;
+                    case "BussinessBaseText":
+                        headTable.Columns[i].Caption = "往来方名称";
+                        break;
+                    case "BussAddress":
+                        headTable.Columns[i].Caption = "往来方公司地址";
+                        break;
+                    case "BussPhoneNo":
+                        headTable.Columns[i].Caption = "往来方电话";
+                        break;
+                    case "BussFaxNo":
+                        headTable.Columns[i].Caption = "往来方传真";
+                        break;
+                    case "BussContact":
+                        headTable.Columns[i].Caption = "往来方联系人";
+                        break;
+                    case "Tax":
+                        headTable.Columns[i].Caption = "税率";
+                        break;
+                    case "DepartmentNo":
+                        headTable.Columns[i].Caption = "部门编号";
+                        break;
+                    case "DepartmentName":
+                        headTable.Columns[i].Caption = "部门名称";
+                        break;
+                    case "ProjectNo":
+                        headTable.Columns[i].Caption = "项目号";
+                        break;
+                    case "ProjectName":
+                        headTable.Columns[i].Caption = "项目名称";
+                        break;
+                    case "StnNo":
+                        headTable.Columns[i].Caption = "站号";
+                        break;
+                    case "PlanDate":
+                        headTable.Columns[i].Caption = "计划到货日期";
+                        break;
+                    case "ReqState":
+                        headTable.Columns[i].Caption = "单据状态";
+                        break;
+                    case "ReqStateDesc":
+                        headTable.Columns[i].Caption = "单据状态描述";
+                        break;
+                    case "Prepared":
+                        headTable.Columns[i].Caption = "制单人";
+                        break;
+                    case "PreparedIp":
+                        headTable.Columns[i].Caption = "制单人IP";
+                        break;
+                    case "Approver":
+                        headTable.Columns[i].Caption = "审批人";
+                        break;
+                    case "ApproverIp":
+                        headTable.Columns[i].Caption = "审批人IP";
+                        break;
+                    case "ApproverTime":
+                        headTable.Columns[i].Caption = "审批时间";
+                        break;
+                    case "Modifier":
+                        headTable.Columns[i].Caption = "修改人";
+                        break;
+                    case "ModifierIp":
+                        headTable.Columns[i].Caption = "修改人IP";
+                        break;
+                    case "ModifierTime":
+                        headTable.Columns[i].Caption = "修改时间";
+                        break;
+                    case "PrReqRemark":
+                        headTable.Columns[i].Caption = "备注";
+                        break;
+                    case "Closed":
+                        headTable.Columns[i].Caption = "关闭人";
+                        break;
+                    case "ClosedIp":
+                        headTable.Columns[i].Caption = "关闭人IP";
+                        break;
+                    case "ClosedTime":
+                        headTable.Columns[i].Caption = "关闭时间";
+                        break;
+                    case "ApprovalTypeNo":
+                        headTable.Columns[i].Caption = "审批类型编码";
+                        break;
+                    case "ApprovalTypeNoText":
+                        headTable.Columns[i].Caption = "审批类型名称";
+                        break;
+                    case "PayTypeNo":
+                        headTable.Columns[i].Caption = "付款类型";
+                        break;
+                    case "PayTypeNoText":
+                        headTable.Columns[i].Caption = "付款说明";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(headTable);
+
+            DataTable listTable = BaseSQL.GetTableBySql(string.Format("select *, ROW_NUMBER() over (order by AutoId) as RowNum from V_Prn_PUR_OrderList where OrderHeadNo = '{0}' order by AutoId", orderHeadNoStr));
+            listTable.TableName = "OrderList";
+            for (int i = 0; i < listTable.Columns.Count; i++)
+            {
+                #region 设定子表显示的标题
+
+                switch (listTable.Columns[i].ColumnName)
+                {
+                    case "RowNum":
+                        listTable.Columns[i].Caption = "行号";
+                        break;
+                    case "OrderHeadNo":
+                        listTable.Columns[i].Caption = "订购单号";
+                        break;
+                    case "CodeNo":
+                        listTable.Columns[i].Caption = "物料编号";
+                        break;
+                    case "CodeFileName":
+                        listTable.Columns[i].Caption = "文件名称";
+                        break;
+                    case "CodeName":
+                        listTable.Columns[i].Caption = "零件名称";
+                        break;
+                    case "CatgName":
+                        listTable.Columns[i].Caption = "分类名称";
+                        break;
+                    case "CatgDescription":
+                        listTable.Columns[i].Caption = "分类说明";
+                        break;
+                    case "CodeSpec":
+                        listTable.Columns[i].Caption = "规格型号";
+                        break;
+                    case "CodeWeight":
+                        listTable.Columns[i].Caption = "重量";
+                        break;
+                    case "MaterialVersion":
+                        listTable.Columns[i].Caption = "物料版本";
+                        break;
+                    case "LibName":
+                        listTable.Columns[i].Caption = "Level 1";
+                        break;
+                    case "MaterialCategory":
+                        listTable.Columns[i].Caption = "Level 2";
+                        break;
+                    case "MaterialName":
+                        listTable.Columns[i].Caption = "Level 3";
+                        break;
+                    case "Brand":
+                        listTable.Columns[i].Caption = "品牌";
+                        break;
+                    case "FinishCatg":
+                        listTable.Columns[i].Caption = "表面处理";
+                        break;
+                    case "LevelCatg":
+                        listTable.Columns[i].Caption = "加工等级";
+                        break;
+                    case "Unit":
+                        listTable.Columns[i].Caption = "单位";
+                        break;
+                    case "Qty":
+                        listTable.Columns[i].Caption = "数量";
+                        break;
+                    case "Price":
+                        listTable.Columns[i].Caption = "单价";
+                        break;
+                    case "Amount":
+                        listTable.Columns[i].Caption = "金额";
+                        break;
+                    case "Tax":
+                        listTable.Columns[i].Caption = "税率";
+                        break;
+                    case "TaxAmount":
+                        listTable.Columns[i].Caption = "税额";
+                        break;
+                    case "SumAmount":
+                        listTable.Columns[i].Caption = "价税合计";
+                        break;
+                    case "PlanDate":
+                        listTable.Columns[i].Caption = "计划到货日期";
+                        break;
+                    case "Remark":
+                        listTable.Columns[i].Caption = "备注";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(listTable);
+
+            List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
+
+            ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "PUR_OrderHead", ds, paralist, handleTypeInt);
+        }
+
+        /// <summary>
+        /// 检查订单明细的数量是否超过请购单明细的数量
+        /// </summary>
+        private bool CheckPrReqApplyBeyondCount(SqlCommand cmd, string orderHeadNoStr, DataTable orderListTable)
+        {
+            if (SystemInfo.PrReqApplyBeyondCountIsSave)
+                return true;
+
+            DataRow[] listRows = orderListTable.Select("IsNull(PrReqNo,'')<>''");
+            foreach (DataRow lrow in listRows)
+            {
+                string prReqNoStr = DataTypeConvert.GetString(lrow["PrReqNo"]);
+                string codeFileNameStr = DataTypeConvert.GetString(lrow["CodeFileName"]);
+                int prListAutoId = DataTypeConvert.GetInt(lrow["PrListAutoId"]);
+                string sqlStr = string.Format("IsNull(PrReqNo, '') <> '' and PrListAutoId = {0}", prListAutoId);
+                double qtySum = DataTypeConvert.GetDouble(orderListTable.Compute("Sum(Qty)", sqlStr));
+                cmd.CommandText = string.Format("select Sum(Qty) from PUR_OrderList where PrListAutoId = {0} and OrderHeadNo != '{1}'", prListAutoId, orderHeadNoStr);
+                double otherOrderQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
+                cmd.CommandText = string.Format("select Qty from PUR_PrReqList where AutoId = {0}", prListAutoId);
+                double prReqQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
+                if (qtySum + otherOrderQtySum > prReqQtySum)
+                {
+                    MessageHandler.ShowMessageBox(string.Format("采购订单中明细[{0}]的数量[{1}]超过请购单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherOrderQtySum, prReqQtySum));
+                    return false;
+                }
+            }
+            return true;
+        }
+
     }
 }

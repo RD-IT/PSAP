@@ -39,6 +39,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterDataSet = dSPayType;
                     editForm.MasterBindingSource = bSPayType;
                     editForm.MasterEditPanel = pnlEdit;
+                    editForm.PrimaryKeyControl = textPayTypeNo;
                     editForm.BrowseXtraGridView = gridViewPayType;
                     editForm.CheckControl += CheckControl;
                     this.pnlToolBar.Controls.Add(editForm);

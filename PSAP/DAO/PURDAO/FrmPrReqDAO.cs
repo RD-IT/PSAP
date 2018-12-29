@@ -299,7 +299,7 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         /// <param name="prReqHeadRow">采购请购单表头数据表</param>
         /// <param name="prReqListTable">采购请购单明细数据表</param>
-        public bool SavePrReq(DataRow prReqHeadRow, DataTable prReqListTable)
+        public int SavePrReq(DataRow prReqHeadRow, DataTable prReqListTable)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -344,7 +344,7 @@ namespace PSAP.DAO.PURDAO
                         else//修改
                         {
                             if (!CheckReqState(prReqHeadRow.Table, prReqListTable, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), true, true, false))
-                                return false;
+                                return -1;
 
                             prReqHeadRow["Modifier"] = SystemInfo.user.EmpName;
                             prReqHeadRow["ModifierIp"] = SystemInfo.HostIpAddress;
@@ -367,7 +367,7 @@ namespace PSAP.DAO.PURDAO
                         BaseSQL.UpdateDataTable(adapterList, prReqListTable);
 
                         trans.Commit();
-                        return true;
+                        return 1;
                     }
                     catch (Exception ex)
                     {
@@ -742,9 +742,9 @@ namespace PSAP.DAO.PURDAO
                 {
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("", conn, trans);                        
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        
+
                         DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
                         for (int i = 0; i < prReqHeadRows.Length; i++)
                         {
@@ -858,5 +858,178 @@ namespace PSAP.DAO.PURDAO
         //    }
         //}       
 
+        /// <summary>
+        /// 打印处理
+        /// </summary>
+        /// <param name="prReqNoStr">请购单号</param>
+        /// <param name="handleTypeInt">打印处理类型：1 预览 2 打印 3 设计</param>
+        public void PrintHandle(string prReqNoStr,int handleTypeInt)
+        {
+            DataSet ds = new DataSet();
+            DataTable headTable = BaseSQL.GetTableBySql(string.Format("select * from V_Prn_PUR_PrReqHead where PrReqNo = '{0}' order by AutoId", prReqNoStr));
+            headTable.TableName = "PrReqHead";
+            for (int i = 0; i < headTable.Columns.Count; i++)
+            {
+                #region 设定主表显示的标题
+
+                switch (headTable.Columns[i].ColumnName)
+                {
+                    case "PrReqNo":
+                        headTable.Columns[i].Caption = "请购单号";
+                        break;
+                    case "ReqDate":
+                        headTable.Columns[i].Caption = "请购日期";
+                        break;
+                    case "DepartmentNo":
+                        headTable.Columns[i].Caption = "部门编号";
+                        break;
+                    case "DepartmentName":
+                        headTable.Columns[i].Caption = "部门名称";
+                        break;
+                    case "ProjectNo":
+                        headTable.Columns[i].Caption = "项目号";
+                        break;
+                    case "ProjectName":
+                        headTable.Columns[i].Caption = "项目名称";
+                        break;
+                    case "StnNo":
+                        headTable.Columns[i].Caption = "站号";
+                        break;
+                    case "PurCategory":
+                        headTable.Columns[i].Caption = "采购类型编号";
+                        break;
+                    case "PurCategoryText":
+                        headTable.Columns[i].Caption = "采购类型名称";
+                        break;
+                    case "ReqState":
+                        headTable.Columns[i].Caption = "单据状态";
+                        break;
+                    case "ReqStateDesc":
+                        headTable.Columns[i].Caption = "单据状态描述";
+                        break;
+                    case "Applicant":
+                        headTable.Columns[i].Caption = "申请人";
+                        break;
+                    case "ApplicantIp":
+                        headTable.Columns[i].Caption = "申请人IP";
+                        break;
+                    case "ApplicantTime":
+                        headTable.Columns[i].Caption = "申请时间";
+                        break;
+                    case "Approver":
+                        headTable.Columns[i].Caption = "审批人";
+                        break;
+                    case "ApproverIp":
+                        headTable.Columns[i].Caption = "审批人IP";
+                        break;
+                    case "ApproverTime":
+                        headTable.Columns[i].Caption = "审批时间";
+                        break;
+                    case "Modifier":
+                        headTable.Columns[i].Caption = "修改人";
+                        break;
+                    case "ModifierIp":
+                        headTable.Columns[i].Caption = "修改人IP";
+                        break;
+                    case "ModifierTime":
+                        headTable.Columns[i].Caption = "修改时间";
+                        break;
+                    case "PrReqRemark":
+                        headTable.Columns[i].Caption = "备注";
+                        break;
+                    case "Closed":
+                        headTable.Columns[i].Caption = "关闭人";
+                        break;
+                    case "ClosedIp":
+                        headTable.Columns[i].Caption = "关闭人IP";
+                        break;
+                    case "ClosedTime":
+                        headTable.Columns[i].Caption = "关闭时间";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(headTable);
+
+            DataTable listTable = BaseSQL.GetTableBySql(string.Format("select *, ROW_NUMBER() over (order by AutoId) as RowNum from V_Prn_PUR_PrReqList where PrReqNo = '{0}' order by AutoId", prReqNoStr));
+            listTable.TableName = "PrReqList";
+            for (int i = 0; i < listTable.Columns.Count; i++)
+            {
+                #region 设定子表显示的标题
+
+                switch (listTable.Columns[i].ColumnName)
+                {
+                    case "RowNum":
+                        listTable.Columns[i].Caption = "行号";
+                        break;
+                    case "PrReqNo":
+                        listTable.Columns[i].Caption = "请购单号";
+                        break;
+                    case "CodeNo":
+                        listTable.Columns[i].Caption = "物料编号";
+                        break;
+                    case "CodeFileName":
+                        listTable.Columns[i].Caption = "文件名称";
+                        break;
+                    case "CodeName":
+                        listTable.Columns[i].Caption = "零件名称";
+                        break;
+                    case "CatgName":
+                        listTable.Columns[i].Caption = "分类名称";
+                        break;
+                    case "CatgDescription":
+                        listTable.Columns[i].Caption = "分类说明";
+                        break;
+                    case "CodeSpec":
+                        listTable.Columns[i].Caption = "规格型号";
+                        break;
+                    case "CodeWeight":
+                        listTable.Columns[i].Caption = "重量";
+                        break;
+                    case "MaterialVersion":
+                        listTable.Columns[i].Caption = "物料版本";
+                        break;
+                    case "LibName":
+                        listTable.Columns[i].Caption = "Level 1";
+                        break;
+                    case "MaterialCategory":
+                        listTable.Columns[i].Caption = "Level 2";
+                        break;
+                    case "MaterialName":
+                        listTable.Columns[i].Caption = "Level 3";
+                        break;
+                    case "Brand":
+                        listTable.Columns[i].Caption = "品牌";
+                        break;
+                    case "FinishCatg":
+                        listTable.Columns[i].Caption = "表面处理";
+                        break;
+                    case "LevelCatg":
+                        listTable.Columns[i].Caption = "加工等级";
+                        break;
+                    case "Unit":
+                        listTable.Columns[i].Caption = "单位";
+                        break;
+                    case "Qty":
+                        listTable.Columns[i].Caption = "数量";
+                        break;
+                    case "RequirementDate":
+                        listTable.Columns[i].Caption = "需求日期";
+                        break;
+                    case "PrReqListRemark":
+                        listTable.Columns[i].Caption = "备注";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(listTable);
+
+            List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
+
+            ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "PUR_PrReqHead", ds, paralist, handleTypeInt);
+
+        }
     }
 }

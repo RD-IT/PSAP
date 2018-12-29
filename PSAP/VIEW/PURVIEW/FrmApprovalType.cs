@@ -40,6 +40,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterDataSet = dSApprovalType;
                     editForm.MasterBindingSource = bSApprovalType;
                     editForm.MasterEditPanel = pnlEdit;
+                    editForm.PrimaryKeyControl = textTypeNo;
                     editForm.BrowseXtraGridView = gridViewApprovalType;
                     editForm.CheckControl += CheckControl;
                     this.pnlToolBar.Controls.Add(editForm);

@@ -29,12 +29,12 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 公司电话
         /// </summary>
-        public static string CompTel = "+86-22-83717906";
+        public static string CompTel = "86-22-83717906";
 
         /// <summary>
         /// 公司传真
         /// </summary>
-        public static string CompFax = "+86-22-83719776";
+        public static string CompFax = "86-22-83719776";
 
         /// <summary>
         /// 公司网址
@@ -87,6 +87,11 @@ namespace PSAP.PSAPCommon
         /// 订单明细里面的默认税率值
         /// </summary>
         public static double OrderList_DefaultTax = 0.16;
+
+        /// <summary>
+        /// 请购单适用转换为采购订单，明细的合计总数是否可以超过原请购单的数量 
+        /// </summary>
+        public static bool PrReqApplyBeyondCountIsSave = false;
 
         #endregion
     }

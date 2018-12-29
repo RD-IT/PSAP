@@ -136,6 +136,7 @@
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
+            this.dataColPrListAutoId = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpCodeFileName.Properties)).BeginInit();
@@ -674,7 +675,8 @@
             this.dataColSumAmount,
             this.dataColPlanDate,
             this.dataColRemark,
-            this.dataColCodeName});
+            this.dataColCodeName,
+            this.dataColPrListAutoId});
             this.dataTableOrderHead.TableName = "OrderHead";
             // 
             // dataColAutoId
@@ -1267,6 +1269,11 @@
             this.gridBottomOrderHead.Size = new System.Drawing.Size(1150, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
+            // dataColPrListAutoId
+            // 
+            this.dataColPrListAutoId.ColumnName = "PrListAutoId";
+            this.dataColPrListAutoId.DataType = typeof(int);
+            // 
             // FrmOrderListQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1430,5 +1437,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTaxAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colSumAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colRemark;
+        private System.Data.DataColumn dataColPrListAutoId;
     }
 }
