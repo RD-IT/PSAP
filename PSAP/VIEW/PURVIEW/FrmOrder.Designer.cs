@@ -105,6 +105,7 @@
             this.dataColRemark = new System.Data.DataColumn();
             this.dataColCodeName = new System.Data.DataColumn();
             this.dataColPrReqNo = new System.Data.DataColumn();
+            this.dataColPrListAutoId = new System.Data.DataColumn();
             this.gridViewOrderHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -180,9 +181,8 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colPrReqNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
-            this.dataColPrListAutoId = new System.Data.DataColumn();
             this.colPrListAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprover.Properties)).BeginInit();
@@ -916,6 +916,11 @@
             // 
             this.dataColPrReqNo.Caption = "请购单号";
             this.dataColPrReqNo.ColumnName = "PrReqNo";
+            // 
+            // dataColPrListAutoId
+            // 
+            this.dataColPrListAutoId.Caption = "请购单明细ID";
+            this.dataColPrListAutoId.ColumnName = "PrListAutoId";
             // 
             // gridViewOrderHead
             // 
@@ -1820,6 +1825,11 @@
             this.colPrReqNo.VisibleIndex = 11;
             this.colPrReqNo.Width = 110;
             // 
+            // colPrListAutoId
+            // 
+            this.colPrListAutoId.FieldName = "PrListAutoId";
+            this.colPrListAutoId.Name = "colPrListAutoId";
+            // 
             // splitterControl1
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
@@ -1829,16 +1839,6 @@
             this.splitterControl1.Size = new System.Drawing.Size(1370, 5);
             this.splitterControl1.TabIndex = 4;
             this.splitterControl1.TabStop = false;
-            // 
-            // dataColPrListAutoId
-            // 
-            this.dataColPrListAutoId.Caption = "请购单明细ID";
-            this.dataColPrListAutoId.ColumnName = "PrListAutoId";
-            // 
-            // colPrListAutoId
-            // 
-            this.colPrListAutoId.FieldName = "PrListAutoId";
-            this.colPrListAutoId.Name = "colPrListAutoId";
             // 
             // FrmOrder
             // 

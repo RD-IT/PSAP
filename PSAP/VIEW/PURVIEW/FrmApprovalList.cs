@@ -42,8 +42,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                repItemLookUpTypeNo.DataSource = new DAO.PURDAO.FrmOrderDAO().QueryApprovalType(false);
-                repItemLookUpApprover.DataSource = new DAO.PURDAO.FrmPrReqDAO().QueryUserInfo(false);
+                FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
+                repItemLookUpTypeNo.DataSource = prReqDAO.QueryApprovalType(false);
+                repItemLookUpApprover.DataSource = prReqDAO.QueryUserInfo(false);
 
                 if (editForm == null)
                 {

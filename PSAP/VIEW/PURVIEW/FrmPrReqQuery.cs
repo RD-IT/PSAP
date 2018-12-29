@@ -58,12 +58,21 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ReqState")
             {
-                if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审批";
-                else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审批";
-                else
-                    e.DisplayText = "关闭";
+                switch (e.Value.ToString())
+                {
+                    case "1":
+                        e.DisplayText = "待审批";
+                        break;
+                    case "2":
+                        e.DisplayText = "审批";
+                        break;
+                    case "3":
+                        e.DisplayText = "关闭";
+                        break;
+                    case "4":
+                        e.DisplayText = "审批中";
+                        break;
+                }
             }
         }
 
@@ -93,7 +102,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_PrReq.Tables[0].Clear();
                 //prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
 
-                string querySqlStr = prReqDAO.QueryPrReqHead_SQL(dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
+                string querySqlStr = prReqDAO.QueryPrReqHead_SQL(dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, -1, commonStr, false);
 
                 string countSqlStr = prReqDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqHead", querySqlStr, countSqlStr, true);

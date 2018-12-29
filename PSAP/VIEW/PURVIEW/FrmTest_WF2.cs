@@ -90,7 +90,7 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 searchLookUpEdit1.Properties.DataSource = null;
-                new FrmPrReqDAO().QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "", "", false);
+                new FrmPrReqDAO().QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "",-1, "", false);
 
                 string currentPath = Application.StartupPath;
                 gridControl1.DataSource = FileSystemHelper.GetFileSystemEntries(currentPath, GetItemSizeType(ViewStyle), GetItemSize(ViewStyle));

@@ -25,18 +25,7 @@ namespace PSAP.DAO.PURDAO
             return BaseSQL.GetTableBySql(sqlStr);
         }
 
-        /// <summary>
-        /// 查询审批类型信息（增加一个全部选项）
-        /// </summary>
-        public DataTable QueryApprovalType(bool addAllItem)
-        {
-            string sqlStr = "select AutoId, TypeNo, TypeNoText, ApprovalCat, ApprovalText from V_PUR_ApprovalType Order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '全部' as TypeNo, '全部' as TypeNoText, 0 as ApprovalCat, '' as ApprovalText union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }
+
 
         /// <summary>
         /// 查询付款类型信息（增加一个全部选项）
@@ -871,7 +860,7 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
-        /// 审批选中的多条请购单
+        /// 审批选中的多条采购订单
         /// </summary>
         public bool OrderApprovalInfo_Multi(DataTable orderHeadTable,ref int successCountInt)
         {
@@ -991,7 +980,7 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
-        /// 取消审批选中的多条请购单
+        /// 取消审批选中的多条采购订单
         /// </summary>
         public bool CancalOrderApprovalInfo_Multi(DataTable orderHeadTable)
         {

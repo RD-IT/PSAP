@@ -66,7 +66,7 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
                 repSearchBussinessBaseNo.DataSource = orderDAO.QueryBussinessBaseInfo(false);
-                repLookUpApprovalType.DataSource = orderDAO.QueryApprovalType(false);
+                repLookUpApprovalType.DataSource = prReqDAO.QueryApprovalType(false);
                 repLookUpPayTypeNo.DataSource = orderDAO.QueryPayType(false);
 
                 repSearchCodeFileName.DataSource = prReqDAO.QueryPartsCode(false);
@@ -272,14 +272,21 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ReqState")
             {
-                if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审批";
-                else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审批";
-                else if (e.Value.ToString() == "4")
-                    e.DisplayText = "审批中";
-                else
-                    e.DisplayText = "关闭";
+                switch (e.Value.ToString())
+                {
+                    case "1":
+                        e.DisplayText = "待审批";
+                        break;
+                    case "2":
+                        e.DisplayText = "审批";
+                        break;
+                    case "3":
+                        e.DisplayText = "关闭";
+                        break;
+                    case "4":
+                        e.DisplayText = "审批中";
+                        break;
+                }
             }
         }
 
@@ -536,7 +543,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     //弹出审批页面
                     FrmApprovalOrder frmOrder = new FrmApprovalOrder(DataTypeConvert.GetString(dataSet_Order.Tables[0].Select("select=1")[0]["OrderHeadNo"]));
-                    if(frmOrder.ShowDialog()==DialogResult.OK)
+                    if (frmOrder.ShowDialog() == DialogResult.OK)
                         btnQuery_Click(null, null);
                 }
                 else
@@ -583,7 +590,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (!CheckReqState_Multi(true, false, true, false))
                     return;
 
-                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要审批当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
+                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要取消审批当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
                 {
                     return;
                 }
