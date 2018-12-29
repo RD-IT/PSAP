@@ -132,11 +132,11 @@
             this.repLookUpReqDep = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colOrderHeadDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
+            this.dataColPrListAutoId = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpCodeFileName.Properties)).BeginInit();
@@ -482,9 +482,10 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxReqState.Properties.Items.AddRange(new object[] {
             "全部",
-            "待审核",
-            "审核",
-            "关闭"});
+            "待审批",
+            "审批",
+            "关闭",
+            "审批中"});
             this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxReqState.TabIndex = 5;
             // 
@@ -674,7 +675,8 @@
             this.dataColSumAmount,
             this.dataColPlanDate,
             this.dataColRemark,
-            this.dataColCodeName});
+            this.dataColCodeName,
+            this.dataColPrListAutoId});
             this.dataTableOrderHead.TableName = "OrderHead";
             // 
             // dataColAutoId
@@ -836,7 +838,6 @@
             this.colReqDep,
             this.colOrderHeadDate,
             this.colPrepared,
-            this.colApprover,
             this.colClosed});
             this.gridViewPrReqHead.GridControl = this.gridControlPrReqHead;
             this.gridViewPrReqHead.IndicatorWidth = 40;
@@ -1230,18 +1231,6 @@
             this.colPrepared.VisibleIndex = 18;
             this.colPrepared.Width = 70;
             // 
-            // colApprover
-            // 
-            this.colApprover.AppearanceHeader.Options.UseTextOptions = true;
-            this.colApprover.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colApprover.FieldName = "Approver";
-            this.colApprover.Name = "colApprover";
-            this.colApprover.OptionsColumn.AllowEdit = false;
-            this.colApprover.OptionsColumn.AllowFocus = false;
-            this.colApprover.Visible = true;
-            this.colApprover.VisibleIndex = 19;
-            this.colApprover.Width = 70;
-            // 
             // colClosed
             // 
             this.colClosed.AppearanceHeader.Options.UseTextOptions = true;
@@ -1251,7 +1240,7 @@
             this.colClosed.OptionsColumn.AllowEdit = false;
             this.colClosed.OptionsColumn.AllowFocus = false;
             this.colClosed.Visible = true;
-            this.colClosed.VisibleIndex = 20;
+            this.colClosed.VisibleIndex = 19;
             this.colClosed.Width = 70;
             // 
             // repCheckSelect
@@ -1280,6 +1269,11 @@
             this.gridBottomOrderHead.Size = new System.Drawing.Size(1150, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
+            // dataColPrListAutoId
+            // 
+            this.dataColPrListAutoId.ColumnName = "PrListAutoId";
+            this.dataColPrListAutoId.DataType = typeof(int);
+            // 
             // FrmOrderListQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1288,8 +1282,8 @@
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
             this.Name = "FrmOrderListQuery";
-            this.TabText = "采购订单明细查询";
-            this.Text = "采购订单明细查询";
+            this.TabText = "采购单查询-按明细";
+            this.Text = "采购单查询-按明细";
             this.Load += new System.EventHandler(this.FrmOrderQuery_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
@@ -1404,7 +1398,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repComboBoxStnNo;
         private DevExpress.XtraGrid.Columns.GridColumn colPlanDate;
         private DevExpress.XtraGrid.Columns.GridColumn colPrepared;
-        private DevExpress.XtraGrid.Columns.GridColumn colApprover;
         private DevExpress.XtraGrid.Columns.GridColumn colClosed;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckSelect;
         private DevExpress.XtraEditors.PanelControl pnlBottom;
@@ -1444,5 +1437,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTaxAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colSumAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colRemark;
+        private System.Data.DataColumn dataColPrListAutoId;
     }
 }

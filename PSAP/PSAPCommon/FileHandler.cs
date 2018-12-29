@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +15,11 @@ namespace PSAP.PSAPCommon
 {
     class FileHandler
     {
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
         /// <summary>
         /// 把DataGridView内容保存到Excel中
         /// </summary>
@@ -124,8 +132,8 @@ namespace PSAP.PSAPCommon
                     //写入列标题
                     for (int i = 0; i < tmpDataTable.Columns.Count; i++)
                     {
-                            columnTitle += tmpDataTable.Columns[i].Caption;
-                            columnTitle += "\t";                        
+                        columnTitle += tmpDataTable.Columns[i].Caption;
+                        columnTitle += "\t";
                     }
                     columnTitle = columnTitle.Substring(0, columnTitle.Length - 1);
 
@@ -137,15 +145,15 @@ namespace PSAP.PSAPCommon
                         string columnValue = "";
                         for (int k = 0; k < tmpDataTable.Columns.Count; k++)
                         {
-                                if (tmpDataTable.Rows[j][k] == null)
-                                {
-                                    columnValue += "";
-                                }
-                                else
-                                {
-                                    columnValue += tmpDataTable.Rows[j][k].ToString().Trim();
-                                }
-                                columnValue += "\t";                            
+                            if (tmpDataTable.Rows[j][k] == null)
+                            {
+                                columnValue += "";
+                            }
+                            else
+                            {
+                                columnValue += tmpDataTable.Rows[j][k].ToString().Trim();
+                            }
+                            columnValue += "\t";
                         }
                         columnValue = columnValue.Substring(0, columnValue.Length - 1);
                         sw.WriteLine(columnValue);
@@ -220,6 +228,108 @@ namespace PSAP.PSAPCommon
                 sw.Close();
                 MessageHandler.ShowMessageBox(string.Format("导出成功!数据已成功导出至\n{0}\n文件中!", strFileName));
             }
+        }
+
+        /// <summary>
+        /// 将图片文件转换为Byte数组
+        /// </summary>
+        /// <param name="filePathStr">图片文件路径</param>
+        public static byte[] ImageFileToByteArray(string filePathStr)
+        {
+            if (File.Exists(filePathStr))
+            {
+                Image img = new Bitmap(filePathStr);
+                MemoryStream stream = new MemoryStream();
+                img.Save(stream, ImageFormat.Bmp);
+                BinaryReader br = new BinaryReader(stream);
+                byte[] bytes = stream.ToArray();
+                stream.Close();
+                return bytes;
+            }
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// 将Byte数组转换为Image类型变量
+        /// </summary>
+        /// <param name="bytes">数据流</param>
+        public static Image StreamToImage(byte[] bytes)
+        {
+            MemoryStream ms = new MemoryStream(bytes);
+            ms.Position = 0;
+            Image img = Image.FromStream(ms);
+            ms.Close();
+            return img;
+        }
+
+        /// <summary>
+        /// 将数据流转换为文件
+        /// </summary>
+        /// <param name="bytes">数据流</param>
+        /// <param name="saveFilePath">保存图片文件路径</param>
+        public int StreamToFile(byte[] bytes, string saveFilePath)
+        {
+            FileStream fs = new FileStream(saveFilePath, FileMode.Create, FileAccess.Write);
+            fs.Write(bytes, 0, bytes.Length);
+            fs.Flush();
+            fs.Close();
+            return 0;
+        }
+
+        /// <summary>
+        /// 将文件转换为Byte数组
+        /// </summary>
+        public static Byte[] FileToByteArray(string filePathStr,ref long streamLength)
+        {
+            if (File.Exists(filePathStr))
+            {
+                FileStream fStream = new FileInfo(filePathStr).OpenRead();
+                Byte[] bytes = new Byte[fStream.Length];
+                fStream.Read(bytes, 0, Convert.ToInt32(fStream.Length));
+                streamLength = fStream.Length;
+                fStream.Close();
+                return bytes;
+            }
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// 将Byte数组保存为指定路径文件
+        /// </summary>
+        public static void ByteArrayToFile(Byte[] bytes, string filePathStr)
+        {
+            MemoryStream mStream = new MemoryStream(bytes);
+            string file = string.Format(filePathStr,
+            Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase));
+            FileStream fStream = new FileStream(file, FileMode.Create);
+            mStream.WriteTo(fStream);
+            mStream.Close();
+            fStream.Close();
+        }
+
+        /// <summary> 
+        /// 写入INI文件 
+        /// </summary> 
+        /// <param name="section">项目名称(如 [TypeName] )</param> 
+        /// <param name="key">键</param> 
+        /// <param name="value">值</param> 
+        public static void IniWriteValue(string iniPath, string section, string key, string value)
+        {
+            WritePrivateProfileString(section, key, value, iniPath);
+        }
+
+        /// <summary> 
+        /// 读出INI文件 
+        /// </summary> 
+        /// <param name="section">项目名称(如 [TypeName] )</param> 
+        /// <param name="key">键</param> 
+        public static string IniReadValue(string iniPath, string section, string key)
+        {
+            StringBuilder temp = new StringBuilder(500);
+            int i = GetPrivateProfileString(section, key, "", temp, 500, iniPath);
+            return temp.ToString();
         }
     }
 }

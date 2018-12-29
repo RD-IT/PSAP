@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.checkPlanDate = new DevExpress.XtraEditors.CheckEdit();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
@@ -59,7 +60,7 @@
             this.dateOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_Order = new System.Data.DataSet();
             this.dataTableOrderHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -85,6 +86,8 @@
             this.dataColClosed = new System.Data.DataColumn();
             this.dataColClosedIp = new System.Data.DataColumn();
             this.dataColClosedTime = new System.Data.DataColumn();
+            this.dataColApprovalType = new System.Data.DataColumn();
+            this.dataColPayTypeNo = new System.Data.DataColumn();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOrderHeadNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -110,10 +113,13 @@
             this.gridColumnRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStnNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repComboBoxStnNo = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.colApprovalType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repLookUpApprovalType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colPayTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repLookUpPayTypeNo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colPlanDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
@@ -150,6 +156,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpApprovalType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpPayTypeNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
@@ -350,9 +358,10 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxReqState.Properties.Items.AddRange(new object[] {
             "全部",
-            "待审核",
-            "审核",
-            "关闭"});
+            "待审批",
+            "审批",
+            "关闭",
+            "审批中"});
             this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxReqState.TabIndex = 5;
             // 
@@ -520,7 +529,9 @@
             this.repSearchProjectNo,
             this.repComboBoxStnNo,
             this.repSearchBussinessBaseNo,
-            this.repCheckSelect});
+            this.repCheckSelect,
+            this.repLookUpApprovalType,
+            this.repLookUpPayTypeNo});
             this.gridControlPrReqHead.Size = new System.Drawing.Size(1150, 283);
             this.gridControlPrReqHead.TabIndex = 4;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -563,7 +574,9 @@
             this.dataColPrReqRemark,
             this.dataColClosed,
             this.dataColClosedIp,
-            this.dataColClosedTime});
+            this.dataColClosedTime,
+            this.dataColApprovalType,
+            this.dataColPayTypeNo});
             this.dataTableOrderHead.TableName = "OrderHead";
             // 
             // dataColAutoId
@@ -688,6 +701,16 @@
             this.dataColClosedTime.ColumnName = "ClosedTime";
             this.dataColClosedTime.DataType = typeof(System.DateTime);
             // 
+            // dataColApprovalType
+            // 
+            this.dataColApprovalType.Caption = "审批类型";
+            this.dataColApprovalType.ColumnName = "ApprovalType";
+            // 
+            // dataColPayTypeNo
+            // 
+            this.dataColPayTypeNo.Caption = "付款类型";
+            this.dataColPayTypeNo.ColumnName = "PayTypeNo";
+            // 
             // gridViewPrReqHead
             // 
             this.gridViewPrReqHead.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -701,10 +724,11 @@
             this.colTax,
             this.colProjectNo,
             this.colStnNo,
+            this.colApprovalType,
+            this.colPayTypeNo,
             this.colPlanDate,
             this.colPrReqRemark,
             this.colPrepared,
-            this.colApprover,
             this.colClosed});
             this.gridViewPrReqHead.GridControl = this.gridControlPrReqHead;
             this.gridViewPrReqHead.IndicatorWidth = 40;
@@ -972,6 +996,50 @@
             this.repComboBoxStnNo.ImmediatePopup = true;
             this.repComboBoxStnNo.Name = "repComboBoxStnNo";
             // 
+            // colApprovalType
+            // 
+            this.colApprovalType.AppearanceHeader.Options.UseTextOptions = true;
+            this.colApprovalType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colApprovalType.ColumnEdit = this.repLookUpApprovalType;
+            this.colApprovalType.FieldName = "ApprovalType";
+            this.colApprovalType.Name = "colApprovalType";
+            this.colApprovalType.OptionsColumn.AllowEdit = false;
+            this.colApprovalType.Visible = true;
+            this.colApprovalType.VisibleIndex = 9;
+            this.colApprovalType.Width = 100;
+            // 
+            // repLookUpApprovalType
+            // 
+            this.repLookUpApprovalType.AutoHeight = false;
+            this.repLookUpApprovalType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repLookUpApprovalType.DisplayMember = "TypeNoText";
+            this.repLookUpApprovalType.Name = "repLookUpApprovalType";
+            this.repLookUpApprovalType.NullText = "";
+            this.repLookUpApprovalType.ValueMember = "TypeNo";
+            // 
+            // colPayTypeNo
+            // 
+            this.colPayTypeNo.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPayTypeNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPayTypeNo.ColumnEdit = this.repLookUpPayTypeNo;
+            this.colPayTypeNo.FieldName = "PayTypeNo";
+            this.colPayTypeNo.Name = "colPayTypeNo";
+            this.colPayTypeNo.OptionsColumn.AllowEdit = false;
+            this.colPayTypeNo.Visible = true;
+            this.colPayTypeNo.VisibleIndex = 10;
+            this.colPayTypeNo.Width = 100;
+            // 
+            // repLookUpPayTypeNo
+            // 
+            this.repLookUpPayTypeNo.AutoHeight = false;
+            this.repLookUpPayTypeNo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repLookUpPayTypeNo.DisplayMember = "PayTypeNoText";
+            this.repLookUpPayTypeNo.Name = "repLookUpPayTypeNo";
+            this.repLookUpPayTypeNo.NullText = "";
+            this.repLookUpPayTypeNo.ValueMember = "PayTypeNo";
+            // 
             // colPlanDate
             // 
             this.colPlanDate.AppearanceHeader.Options.UseTextOptions = true;
@@ -982,7 +1050,7 @@
             this.colPlanDate.Name = "colPlanDate";
             this.colPlanDate.OptionsColumn.AllowEdit = false;
             this.colPlanDate.Visible = true;
-            this.colPlanDate.VisibleIndex = 9;
+            this.colPlanDate.VisibleIndex = 11;
             this.colPlanDate.Width = 90;
             // 
             // colPrReqRemark
@@ -993,7 +1061,7 @@
             this.colPrReqRemark.Name = "colPrReqRemark";
             this.colPrReqRemark.OptionsColumn.AllowEdit = false;
             this.colPrReqRemark.Visible = true;
-            this.colPrReqRemark.VisibleIndex = 10;
+            this.colPrReqRemark.VisibleIndex = 12;
             this.colPrReqRemark.Width = 140;
             // 
             // colPrepared
@@ -1005,20 +1073,8 @@
             this.colPrepared.OptionsColumn.AllowEdit = false;
             this.colPrepared.OptionsColumn.AllowFocus = false;
             this.colPrepared.Visible = true;
-            this.colPrepared.VisibleIndex = 11;
+            this.colPrepared.VisibleIndex = 13;
             this.colPrepared.Width = 70;
-            // 
-            // colApprover
-            // 
-            this.colApprover.AppearanceHeader.Options.UseTextOptions = true;
-            this.colApprover.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colApprover.FieldName = "Approver";
-            this.colApprover.Name = "colApprover";
-            this.colApprover.OptionsColumn.AllowEdit = false;
-            this.colApprover.OptionsColumn.AllowFocus = false;
-            this.colApprover.Visible = true;
-            this.colApprover.VisibleIndex = 12;
-            this.colApprover.Width = 70;
             // 
             // colClosed
             // 
@@ -1029,7 +1085,7 @@
             this.colClosed.OptionsColumn.AllowEdit = false;
             this.colClosed.OptionsColumn.AllowFocus = false;
             this.colClosed.Visible = true;
-            this.colClosed.VisibleIndex = 13;
+            this.colClosed.VisibleIndex = 14;
             // 
             // repCheckSelect
             // 
@@ -1065,8 +1121,8 @@
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
             this.Name = "FrmOrderQuery";
-            this.TabText = "采购订单查询";
-            this.Text = "采购订单查询";
+            this.TabText = "采购单查询-按订单";
+            this.Text = "采购单查询-按订单";
             this.Load += new System.EventHandler(this.FrmOrderQuery_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
@@ -1101,6 +1157,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpApprovalType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpPayTypeNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
@@ -1189,7 +1247,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPlanDate;
         private DevExpress.XtraGrid.Columns.GridColumn colPrReqRemark;
         private DevExpress.XtraGrid.Columns.GridColumn colPrepared;
-        private DevExpress.XtraGrid.Columns.GridColumn colApprover;
         private DevExpress.XtraGrid.Columns.GridColumn colClosed;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckSelect;
         private DevExpress.XtraEditors.PanelControl pnlBottom;
@@ -1200,5 +1257,11 @@
         private DevExpress.XtraEditors.LabelControl lab2;
         private DevExpress.XtraEditors.DateEdit datePlanDateEnd;
         private DevExpress.XtraEditors.DateEdit datePlanDateBegin;
+        private System.Data.DataColumn dataColApprovalType;
+        private System.Data.DataColumn dataColPayTypeNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colApprovalType;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpApprovalType;
+        private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpPayTypeNo;
     }
 }

@@ -33,7 +33,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
-                lookUpApplicant.Properties.DataSource = prReqDAO.QueryUserInfo();
+                lookUpApplicant.Properties.DataSource = prReqDAO.QueryUserInfo(true);
                 lookUpApplicant.EditValue = SystemInfo.user.EmpName;
                 repositoryItemLookUpEdit1.DataSource = prReqDAO.QueryDepartment(false);
                 repositoryItemLookUpEdit2.DataSource = prReqDAO.QueryPurCategory(false);
@@ -59,9 +59,9 @@ namespace PSAP.VIEW.BSVIEW
             if (e.Column.FieldName == "ReqState")
             {
                 if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审核";
+                    e.DisplayText = "待审批";
                 else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审核";
+                    e.DisplayText = "审批";
                 else
                     e.DisplayText = "关闭";
             }

@@ -170,8 +170,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxReqState.Properties.Items.AddRange(new object[] {
             "全部",
-            "待审核",
-            "审核",
+            "待审批",
+            "审批",
             "关闭"});
             this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxReqState.TabIndex = 4;

@@ -182,6 +182,7 @@
             this.gridViewPurCategory.OptionsFilter.AllowFilterEditor = false;
             this.gridViewPurCategory.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPurCategory.OptionsView.ColumnAutoWidth = false;
+            this.gridViewPurCategory.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPurCategory.OptionsView.ShowFooter = true;
             this.gridViewPurCategory.OptionsView.ShowGroupPanel = false;
             this.gridViewPurCategory.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPurCategory_CustomDrawRowIndicator);

@@ -105,6 +105,8 @@
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClosed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancelClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancelApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
@@ -113,6 +115,7 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -219,8 +222,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxReqState.Properties.Items.AddRange(new object[] {
             "全部",
-            "待审核",
-            "审核",
+            "待审批",
+            "审批",
             "关闭"});
             this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxReqState.TabIndex = 4;
@@ -653,6 +656,7 @@
             // 
             this.gridColSelect.ColumnEdit = this.repCheckSelect;
             this.gridColSelect.FieldName = "Select";
+            this.gridColSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.gridColSelect.Name = "gridColSelect";
             this.gridColSelect.Visible = true;
             this.gridColSelect.VisibleIndex = 0;
@@ -885,6 +889,8 @@
             // 
             // pnlMiddleTop
             // 
+            this.pnlMiddleTop.Controls.Add(this.btnCancelClose);
+            this.pnlMiddleTop.Controls.Add(this.btnPreview);
             this.pnlMiddleTop.Controls.Add(this.btnCancelApprove);
             this.pnlMiddleTop.Controls.Add(this.btnClose);
             this.pnlMiddleTop.Controls.Add(this.btnApprove);
@@ -897,6 +903,26 @@
             this.pnlMiddleTop.Name = "pnlMiddleTop";
             this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
             this.pnlMiddleTop.TabIndex = 1;
+            // 
+            // btnCancelClose
+            // 
+            this.btnCancelClose.Location = new System.Drawing.Point(572, 5);
+            this.btnCancelClose.Name = "btnCancelClose";
+            this.btnCancelClose.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelClose.TabIndex = 22;
+            this.btnCancelClose.TabStop = false;
+            this.btnCancelClose.Text = "取消关闭";
+            this.btnCancelClose.Click += new System.EventHandler(this.btnCancelClose_Click);
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Location = new System.Drawing.Point(653, 5);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(75, 23);
+            this.btnPreview.TabIndex = 20;
+            this.btnPreview.TabStop = false;
+            this.btnPreview.Text = "预览";
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnCancelApprove
             // 
@@ -971,12 +997,23 @@
             // 
             // pnlBottom
             // 
+            this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlPrReqList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(0, 295);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(989, 156);
             this.pnlBottom.TabIndex = 2;
+            // 
+            // btnListAdd
+            // 
+            this.btnListAdd.Enabled = false;
+            this.btnListAdd.Location = new System.Drawing.Point(2, 2);
+            this.btnListAdd.Name = "btnListAdd";
+            this.btnListAdd.Size = new System.Drawing.Size(40, 21);
+            this.btnListAdd.TabIndex = 2;
+            this.btnListAdd.Text = "+";
+            this.btnListAdd.Click += new System.EventHandler(this.btnListAdd_Click);
             // 
             // gridControlPrReqList
             // 
@@ -1364,5 +1401,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colClosed;
         private DevExpress.XtraEditors.SimpleButton btnCancelApprove;
         private DevExpress.XtraEditors.CheckEdit checkAll;
+        private DevExpress.XtraEditors.SimpleButton btnPreview;
+        private DevExpress.XtraEditors.SimpleButton btnCancelClose;
+        private DevExpress.XtraEditors.SimpleButton btnListAdd;
     }
 }

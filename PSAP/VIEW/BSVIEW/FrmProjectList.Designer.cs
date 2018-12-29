@@ -48,6 +48,7 @@
             this.colProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
+            this.btnStnList = new DevExpress.XtraEditors.SimpleButton();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.labRemark = new DevExpress.XtraEditors.LabelControl();
             this.labProjectName = new DevExpress.XtraEditors.LabelControl();
@@ -62,7 +63,6 @@
             this.gridColumnBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.textProjectNo = new DevExpress.XtraEditors.TextEdit();
-            this.btnStnList = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dSProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSProjectList)).BeginInit();
@@ -71,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
+            this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textRemark.Properties)).BeginInit();
@@ -168,6 +169,7 @@
             this.gridViewProjectList.OptionsBehavior.Editable = false;
             this.gridViewProjectList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewProjectList.OptionsView.ColumnAutoWidth = false;
+            this.gridViewProjectList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewProjectList.OptionsView.ShowFooter = true;
             this.gridViewProjectList.OptionsView.ShowGroupPanel = false;
             this.gridViewProjectList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewProjectList_CustomDrawRowIndicator);
@@ -231,15 +233,26 @@
             // 
             // pnlToolBar
             // 
+            this.pnlToolBar.Controls.Add(this.btnStnList);
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
             this.pnlToolBar.Size = new System.Drawing.Size(767, 40);
             this.pnlToolBar.TabIndex = 0;
             // 
+            // btnStnList
+            // 
+            this.btnStnList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStnList.Location = new System.Drawing.Point(680, 9);
+            this.btnStnList.Name = "btnStnList";
+            this.btnStnList.Size = new System.Drawing.Size(75, 23);
+            this.btnStnList.TabIndex = 16;
+            this.btnStnList.TabStop = false;
+            this.btnStnList.Text = "站号";
+            this.btnStnList.Click += new System.EventHandler(this.btnStnList_Click);
+            // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.btnStnList);
             this.pnlEdit.Controls.Add(this.labRemark);
             this.pnlEdit.Controls.Add(this.labProjectName);
             this.pnlEdit.Controls.Add(this.labBussinessBaseNo);
@@ -369,15 +382,6 @@
             this.textProjectNo.Size = new System.Drawing.Size(120, 20);
             this.textProjectNo.TabIndex = 0;
             // 
-            // btnStnList
-            // 
-            this.btnStnList.Location = new System.Drawing.Point(664, 54);
-            this.btnStnList.Name = "btnStnList";
-            this.btnStnList.Size = new System.Drawing.Size(50, 23);
-            this.btnStnList.TabIndex = 16;
-            this.btnStnList.Text = "站号";
-            this.btnStnList.Click += new System.EventHandler(this.btnStnList_Click);
-            // 
             // FrmProjectList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -388,7 +392,7 @@
             this.Name = "FrmProjectList";
             this.TabText = "项目号";
             this.Text = "项目号";
-            this.Load += new System.EventHandler(this.FrmStnList_Load);
+            this.Load += new System.EventHandler(this.FrmProjectList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dSProjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableProjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSProjectList)).EndInit();
@@ -397,6 +401,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlProjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
+            this.pnlToolBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();

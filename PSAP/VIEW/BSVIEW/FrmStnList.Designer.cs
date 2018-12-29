@@ -270,6 +270,7 @@
             this.gridViewStnList.OptionsFilter.AllowFilterEditor = false;
             this.gridViewStnList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewStnList.OptionsView.ColumnAutoWidth = false;
+            this.gridViewStnList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewStnList.OptionsView.ShowFooter = true;
             this.gridViewStnList.OptionsView.ShowGroupPanel = false;
             this.gridViewStnList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewStnList_CustomDrawRowIndicator);
@@ -296,7 +297,6 @@
             this.colProjectName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
-            this.colProjectName.OptionsFilter.AllowFilter = false;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 2;
             this.colProjectName.Width = 120;
@@ -307,7 +307,6 @@
             this.colStnNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
-            this.colStnNo.OptionsFilter.AllowFilter = false;
             this.colStnNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "StnNo", "共计{0}条")});
             this.colStnNo.Visible = true;
@@ -320,7 +319,6 @@
             this.colRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
-            this.colRemark.OptionsFilter.AllowFilter = false;
             this.colRemark.Visible = true;
             this.colRemark.VisibleIndex = 3;
             this.colRemark.Width = 150;
@@ -332,7 +330,11 @@
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.pnlToolBar);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmStnList";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "站号";
             this.Text = "站号";
             this.Activated += new System.EventHandler(this.FrmStnList_Activated);

@@ -132,6 +132,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnNew;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
-        private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
+        public DevExpress.XtraEditors.SimpleButton btnSaveExcel;
     }
 }
