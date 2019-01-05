@@ -39,6 +39,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterDataSet = dSPurCategory;
                     editForm.MasterBindingSource = bSPurCategory;
                     editForm.MasterEditPanel = pnlEdit;
+                    editForm.PrimaryKeyControl = textPurCategory;
                     editForm.BrowseXtraGridView = gridViewPurCategory;
                     editForm.CheckControl += CheckControl;
                     this.pnlToolBar.Controls.Add(editForm);

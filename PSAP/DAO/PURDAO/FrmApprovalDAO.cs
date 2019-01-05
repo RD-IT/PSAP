@@ -215,5 +215,22 @@ namespace PSAP.DAO.PURDAO
             BaseSQL.Query(sqlStr, queryDataTable);
         }
 
+        /// <summary>
+        /// 查询请购订单信息
+        /// </summary>
+        public void QueryPrReqHead(DataTable queryDataTable, string prReqNoStr)
+        {
+            string sqlStr = string.Format("select PUR_PrReqHead.*, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat from PUR_PrReqHead left join PUR_ApprovalType on PUR_PrReqHead.ApprovalType=PUR_ApprovalType.TypeNo where PrReqNo='{0}'", prReqNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询订单审批信息记录
+        /// </summary>
+        public void QueryPrReqApprovalInfo(DataTable queryDataTable, string prReqNoStr, string typeNoStr)
+        {
+            string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.PrReqNo , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join PUR_PrApprovalInfo as info on list.Approver = info.Approver and info.PrReqNo = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, prReqNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
     }
 }

@@ -1,5 +1,8 @@
-﻿using DevExpress.XtraGrid;
+﻿using DevExpress.Utils.Helpers;
+using DevExpress.XtraBars;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.WinExplorer;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -84,9 +87,92 @@ namespace PSAP.VIEW.BSVIEW
 
         private void FrmTest_WF2_Load(object sender, EventArgs e)
         {
-            searchLookUpEdit1.Properties.DataSource = null;
-            new FrmPrReqDAO().QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "", "", false);
+            try
+            {
+                searchLookUpEdit1.Properties.DataSource = null;
+                new FrmPrReqDAO().QueryPrReqHead(dataSet_PrReq.Tables[0], "", "", "", "", 0, "",-1, "", false);
+
+                string currentPath = Application.StartupPath;
+                gridControl1.DataSource = FileSystemHelper.GetFileSystemEntries(currentPath, GetItemSizeType(ViewStyle), GetItemSize(ViewStyle));
+
+                BarButtonItem btnItem = new BarButtonItem();
+                btnItem.Name = "Function";
+                btnItem.Caption = "标题";
+                btnItem.Enabled = false;
+                btnItem.ItemClick += this.barButtonItem1_ItemClick;
+                barToolBar.AddItem(btnItem);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private IconSizeType GetItemSizeType(WinExplorerViewStyle viewStyle)
+        {
+            switch (viewStyle)
+            {
+                case WinExplorerViewStyle.Large:
+                case WinExplorerViewStyle.ExtraLarge:
+                    return IconSizeType.ExtraLarge;
+                case WinExplorerViewStyle.List:
+                case WinExplorerViewStyle.Small:
+                    return IconSizeType.Small;
+                case WinExplorerViewStyle.Tiles:
+                case WinExplorerViewStyle.Medium:
+                case WinExplorerViewStyle.Content:
+                    return IconSizeType.Large;
+                default: return IconSizeType.ExtraLarge;
+            }
         }
 
+        private Size GetItemSize(WinExplorerViewStyle viewStyle)
+        {
+            switch (viewStyle)
+            {
+                case WinExplorerViewStyle.ExtraLarge:
+                    return new Size(256, 256);
+                case WinExplorerViewStyle.Large:
+                    return new Size(96, 96);
+                case WinExplorerViewStyle.Content:
+                    return new Size(32, 32);
+                case WinExplorerViewStyle.Small:
+                    return new Size(16, 16);
+                case WinExplorerViewStyle.Tiles:
+                case WinExplorerViewStyle.Default:
+                case WinExplorerViewStyle.List:
+                case WinExplorerViewStyle.Medium:
+                default: return new Size(96, 96);
+            }
+        }
+
+        public WinExplorerViewStyle ViewStyle { get { return winExplorerView.OptionsView.Style; } }
+
+        void OnWinExplorerViewItemDoubleClick(object sender, WinExplorerViewItemDoubleClickEventArgs e)
+        {
+            try
+            {
+                if (e.MouseInfo.Button != MouseButtons.Left)
+                    return;
+                winExplorerView.ClearSelection();
+                string s = ((DevExpress.Utils.Helpers.FileSystemEntry)e.ItemInfo.Row.RowKey).Path;
+                gridControl1.DataSource = FileSystemHelper.GetFileSystemEntries(s, GetItemSizeType(ViewStyle), GetItemSize(ViewStyle));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            winExplorerView.RefreshData();
+            gridControl1.RefreshDataSource();
+            gridControl1.Refresh();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MessageHandler.ShowMessageBox("123");
+        }
     }
 }

@@ -153,8 +153,9 @@
             this.labApprovalCatDesc.Name = "labApprovalCatDesc";
             this.labApprovalCatDesc.Size = new System.Drawing.Size(576, 42);
             this.labApprovalCatDesc.TabIndex = 17;
+            this.labApprovalCatDesc.Tag = "      多选一审批是指在审批信息中的任意审批人通过，则订单修改审批状态。";
             this.labApprovalCatDesc.Text = "注：串行审批是指必须按照审批信息中的顺序，审批人进行逐一审批，全部审批人通过后订单修改审批状态；\r\n      并行审批是指无须按照审批信息中的顺序，审批人直接进" +
-    "行审批，全部审批人通过后订单修改审批状态；\r\n      多选一审批是指在审批信息中的任意审批人通过，则订单修改审批状态。\r\n";
+    "行审批，全部审批人通过后订单修改审批状态；\r\n\r\n";
             // 
             // labApprovalCat
             // 
@@ -174,9 +175,8 @@
             this.radioApprovalCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioApprovalCat.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(0, "串行审批"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "并行审批"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(2, "多选一审核")});
-            this.radioApprovalCat.Size = new System.Drawing.Size(278, 22);
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "并行审批")});
+            this.radioApprovalCat.Size = new System.Drawing.Size(198, 22);
             this.radioApprovalCat.TabIndex = 2;
             // 
             // labTypeNoText

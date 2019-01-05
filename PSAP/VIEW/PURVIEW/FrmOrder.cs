@@ -66,7 +66,7 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
                 repSearchBussinessBaseNo.DataSource = orderDAO.QueryBussinessBaseInfo(false);
-                repLookUpApprovalType.DataSource = orderDAO.QueryApprovalType(false);
+                repLookUpApprovalType.DataSource = prReqDAO.QueryApprovalType(false);
                 repLookUpPayTypeNo.DataSource = orderDAO.QueryPayType(false);
 
                 repSearchCodeFileName.DataSource = prReqDAO.QueryPartsCode(false);
@@ -187,7 +187,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (gridViewPrReqHead.GetFocusedDataRow() != null)
+                if (gridViewOrderHead.GetFocusedDataRow() != null)
                 {
                     if (onlySelectColChangeRowState)
                     {
@@ -196,33 +196,33 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        if (headFocusedLineNo < gridViewPrReqHead.DataRowCount && gridViewPrReqHead.FocusedRowHandle != headFocusedLineNo && gridViewPrReqHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
+                        if (headFocusedLineNo < gridViewOrderHead.DataRowCount && gridViewOrderHead.FocusedRowHandle != headFocusedLineNo && gridViewOrderHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
                         {
                             MessageHandler.ShowMessageBox("当前采购单已经修改，请保存后再进行换行。");
-                            gridViewPrReqHead.FocusedRowHandle = headFocusedLineNo;
+                            gridViewOrderHead.FocusedRowHandle = headFocusedLineNo;
                         }
-                        else if (headFocusedLineNo == gridViewPrReqHead.DataRowCount)
+                        else if (headFocusedLineNo == gridViewOrderHead.DataRowCount)
                         {
 
                         }
                         else
                         {
-                            if (gridViewPrReqHead.FocusedRowHandle != headFocusedLineNo && gridViewPrReqHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
+                            if (gridViewOrderHead.FocusedRowHandle != headFocusedLineNo && gridViewOrderHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
                                 btnCancel_Click(null, null);
-                            else if (gridViewPrReqHead.GetDataRow(headFocusedLineNo).RowState == DataRowState.Unchanged)
+                            else if (gridViewOrderHead.GetDataRow(headFocusedLineNo).RowState == DataRowState.Unchanged)
                                 btnCancel_Click(null, null);
                         }
                     }
 
-                    if (DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]) != "")
+                    if (DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]) != "")
                     {
                         dataSet_Order.Tables[1].Clear();
-                        orderDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]), false);
+                        orderDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]), false);
                     }
 
-                    if (gridViewPrReqHead.FocusedRowHandle >= 0)
+                    if (gridViewOrderHead.FocusedRowHandle >= 0)
                     {
-                        headFocusedLineNo = gridViewPrReqHead.FocusedRowHandle;
+                        headFocusedLineNo = gridViewOrderHead.FocusedRowHandle;
                     }
                 }
             }
@@ -272,14 +272,21 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ReqState")
             {
-                if (e.Value.ToString() == "1")
-                    e.DisplayText = "待审批";
-                else if (e.Value.ToString() == "2")
-                    e.DisplayText = "审批";
-                else if (e.Value.ToString() == "4")
-                    e.DisplayText = "审批中";
-                else
-                    e.DisplayText = "关闭";
+                switch (e.Value.ToString())
+                {
+                    case "1":
+                        e.DisplayText = "待审批";
+                        break;
+                    case "2":
+                        e.DisplayText = "审批";
+                        break;
+                    case "3":
+                        e.DisplayText = "关闭";
+                        break;
+                    case "4":
+                        e.DisplayText = "审批中";
+                        break;
+                }
             }
         }
 
@@ -310,15 +317,15 @@ namespace PSAP.VIEW.BSVIEW
                 ClearHeadGridAllSelect();
 
                 //gridViewPrReqHead.PostEditor();
-                gridViewPrReqHead.AddNewRow();
+                gridViewOrderHead.AddNewRow();
                 FocusedHeadView("OrderHeadDate");
 
                 dataSet_Order.Tables[1].Clear();
-                gridViewPrReqList.AddNewRow();
+                gridViewOrderList.AddNewRow();
                 FocusedListView(false, "CodeFileName");
 
                 SetButtonAndColumnState(true);
-                headFocusedLineNo = gridViewPrReqHead.DataRowCount;
+                headFocusedLineNo = gridViewOrderHead.DataRowCount;
             }
             catch (Exception ex)
             {
@@ -333,7 +340,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (gridViewPrReqHead.GetFocusedDataRow() == null)
+                if (gridViewOrderHead.GetFocusedDataRow() == null)
                     return;
 
                 if (!CheckReqState())
@@ -349,7 +356,19 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    DataRow headRow = gridViewPrReqHead.GetFocusedDataRow();
+                    DataRow headRow = gridViewOrderHead.GetFocusedDataRow();
+                    if (DataTypeConvert.GetString(headRow["PurCategory"]) == "")
+                    {
+                        MessageHandler.ShowMessageBox("采购类型不能为空，请填写后再进行保存。");
+                        FocusedHeadView("PurCategory");
+                        return;
+                    }
+                    if (DataTypeConvert.GetString(headRow["BussinessBaseNo"]) == "")
+                    {
+                        MessageHandler.ShowMessageBox("往来方不能为空，请填写后再进行保存。");
+                        FocusedHeadView("BussinessBaseNo");
+                        return;
+                    }
                     if (DataTypeConvert.GetString(headRow["ReqDep"]) == "")
                     {
                         MessageHandler.ShowMessageBox("申请部门不能为空，请填写后再进行保存。");
@@ -380,18 +399,6 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedHeadView("PayTypeNo");
                         return;
                     }
-                    if (DataTypeConvert.GetString(headRow["PurCategory"]) == "")
-                    {
-                        MessageHandler.ShowMessageBox("采购类型不能为空，请填写后再进行保存。");
-                        FocusedHeadView("PurCategory");
-                        return;
-                    }
-                    if (DataTypeConvert.GetString(headRow["BussinessBaseNo"]) == "")
-                    {
-                        MessageHandler.ShowMessageBox("往来方不能为空，请填写后再进行保存。");
-                        FocusedHeadView("BussinessBaseNo");
-                        return;
-                    }
                     if (DataTypeConvert.GetString(headRow["Tax"]) == "")
                     {
                         MessageHandler.ShowMessageBox("税率不能为空，请填写后再进行保存。");
@@ -406,12 +413,12 @@ namespace PSAP.VIEW.BSVIEW
                         return;
                     }
 
-                    for (int i = gridViewPrReqList.DataRowCount - 1; i >= 0; i--)
+                    for (int i = gridViewOrderList.DataRowCount - 1; i >= 0; i--)
                     {
-                        DataRow listRow = gridViewPrReqList.GetDataRow(i);
+                        DataRow listRow = gridViewOrderList.GetDataRow(i);
                         if (DataTypeConvert.GetString(listRow["CodeFileName"]) == "")
                         {
-                            gridViewPrReqList.DeleteRow(i);
+                            gridViewOrderList.DeleteRow(i);
                             continue;
                         }
                         if (DataTypeConvert.GetString(listRow["Qty"]) == "")
@@ -428,14 +435,18 @@ namespace PSAP.VIEW.BSVIEW
                         }
                     }
 
-                    if (!orderDAO.SaveOrder(gridViewPrReqHead.GetFocusedDataRow(), dataSet_Order.Tables[1]))
+                    int ret = orderDAO.SaveOrder(gridViewOrderHead.GetFocusedDataRow(), dataSet_Order.Tables[1]);
+                    switch (ret)
                     {
-                        btnQuery_Click(null, null);
-                    }
-                    else
-                    {
-                        dataSet_Order.Tables[1].Clear();
-                        orderDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]), false);
+                        case -1:
+                            btnQuery_Click(null, null);
+                            break;
+                        case 1:
+                            dataSet_Order.Tables[1].Clear();
+                            orderDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]), false);
+                            break;
+                        case 0:
+                            return;
                     }
 
                     SetButtonAndColumnState(false);
@@ -454,15 +465,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (gridViewPrReqHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
+                if (gridViewOrderHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
                 {
-                    if (DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(headFocusedLineNo)["OrderHeadNo"]) == "")
+                    if (DataTypeConvert.GetString(gridViewOrderHead.GetDataRow(headFocusedLineNo)["OrderHeadNo"]) == "")
                     {
-                        gridViewPrReqHead.DeleteRow(headFocusedLineNo);
+                        gridViewOrderHead.DeleteRow(headFocusedLineNo);
                     }
                     else
                     {
-                        gridViewPrReqHead.GetFocusedDataRow().RejectChanges();
+                        gridViewOrderHead.GetFocusedDataRow().RejectChanges();
                     }
 
                 }
@@ -470,8 +481,8 @@ namespace PSAP.VIEW.BSVIEW
                 SetButtonAndColumnState(false);
 
                 dataSet_Order.Tables[1].Clear();
-                if (gridViewPrReqHead.GetFocusedDataRow() != null)
-                    orderDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]), false);
+                if (gridViewOrderHead.GetFocusedDataRow() != null)
+                    orderDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]), false);
             }
             catch (Exception ex)
             {
@@ -532,7 +543,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     //弹出审批页面
                     FrmApprovalOrder frmOrder = new FrmApprovalOrder(DataTypeConvert.GetString(dataSet_Order.Tables[0].Select("select=1")[0]["OrderHeadNo"]));
-                    if(frmOrder.ShowDialog()==DialogResult.OK)
+                    if (frmOrder.ShowDialog() == DialogResult.OK)
                         btnQuery_Click(null, null);
                 }
                 else
@@ -579,7 +590,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (!CheckReqState_Multi(true, false, true, false))
                     return;
 
-                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要审批当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
+                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要取消审批当前选中的{0}条记录吗？", count)) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -690,19 +701,37 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 子表新增一行事件
+        /// </summary>
+        private void btnListAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!colRemark.OptionsColumn.AllowEdit)
+                    return;
+
+                ListNewRow();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--子表新增一行事件错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 主表设定默认值
         /// </summary>
         private void gridViewPrReqHead_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             try
             {
-                gridViewPrReqHead.SetFocusedRowCellValue("OrderHeadDate", DateTime.Now);
-                gridViewPrReqHead.SetFocusedRowCellValue("ReqDep", SystemInfo.user.DepartmentNo);
-                gridViewPrReqHead.SetFocusedRowCellValue("PurCategory", DataTypeConvert.GetString(((DataTable)lookUpPurCategory.Properties.DataSource).Rows[1]["PurCategory"]));
-                gridViewPrReqHead.SetFocusedRowCellValue("ReqState", 1);
-                gridViewPrReqHead.SetFocusedRowCellValue("Prepared", SystemInfo.user.EmpName);
-                gridViewPrReqHead.SetFocusedRowCellValue("Tax", SystemInfo.OrderList_DefaultTax);
-                gridViewPrReqHead.SetFocusedRowCellValue("PlanDate", DateTime.Now.Date.AddDays(7));
+                gridViewOrderHead.SetFocusedRowCellValue("OrderHeadDate", DateTime.Now);
+                gridViewOrderHead.SetFocusedRowCellValue("ReqDep", SystemInfo.user.DepartmentNo);
+                gridViewOrderHead.SetFocusedRowCellValue("PurCategory", DataTypeConvert.GetString(((DataTable)lookUpPurCategory.Properties.DataSource).Rows[1]["PurCategory"]));
+                gridViewOrderHead.SetFocusedRowCellValue("ReqState", 1);
+                gridViewOrderHead.SetFocusedRowCellValue("Prepared", SystemInfo.user.EmpName);
+                gridViewOrderHead.SetFocusedRowCellValue("Tax", SystemInfo.OrderList_DefaultTax);
+                gridViewOrderHead.SetFocusedRowCellValue("PlanDate", DateTime.Now.Date.AddDays(7));
             }
             catch (Exception ex)
             {
@@ -717,10 +746,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                gridViewPrReqList.SetFocusedRowCellValue("OrderHeadNo", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]));
-                double d = DataTypeConvert.GetDouble(gridViewPrReqHead.GetFocusedDataRow()["Tax"]);
-                gridViewPrReqList.SetFocusedRowCellValue("Tax", DataTypeConvert.GetDouble(gridViewPrReqHead.GetFocusedDataRow()["Tax"]));
-                gridViewPrReqList.SetFocusedRowCellValue("PlanDate", DataTypeConvert.GetDateTime(gridViewPrReqHead.GetFocusedDataRow()["PlanDate"]));
+                gridViewOrderList.SetFocusedRowCellValue("OrderHeadNo", DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]));
+                double d = DataTypeConvert.GetDouble(gridViewOrderHead.GetFocusedDataRow()["Tax"]);
+                gridViewOrderList.SetFocusedRowCellValue("Tax", DataTypeConvert.GetDouble(gridViewOrderHead.GetFocusedDataRow()["Tax"]));
+                gridViewOrderList.SetFocusedRowCellValue("PlanDate", DataTypeConvert.GetDateTime(gridViewOrderHead.GetFocusedDataRow()["PlanDate"]));
             }
             catch (Exception ex)
             {
@@ -740,18 +769,13 @@ namespace PSAP.VIEW.BSVIEW
                     if (!colRemark.OptionsColumn.AllowEdit)
                         return;
 
-                    if (gridViewPrReqList.GetFocusedDataSourceRowIndex() >= gridViewPrReqList.DataRowCount - 1 && gridViewPrReqList.FocusedColumn.Name == "colRemark")
+                    if (gridViewOrderList.GetFocusedDataSourceRowIndex() >= gridViewOrderList.DataRowCount - 1 && gridViewOrderList.FocusedColumn.Name == "colRemark")
                     {
-                        if (IsHaveBlankLine())
-                            return;
-
-                        //gridViewPrReqList.PostEditor();
-                        gridViewPrReqList.AddNewRow();
-                        FocusedListView(true, "CodeFileName");
+                        ListNewRow();
                     }
-                    else if (gridViewPrReqList.FocusedColumn.Name == "colRemark")
+                    else if (gridViewOrderList.FocusedColumn.Name == "colRemark")
                     {
-                        gridViewPrReqList.FocusedRowHandle = gridViewPrReqList.FocusedRowHandle + 1;
+                        gridViewOrderList.FocusedRowHandle = gridViewOrderList.FocusedRowHandle + 1;
                         FocusedListView(true, "CodeFileName");
                     }
                 }
@@ -769,7 +793,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                gridViewPrReqList.DeleteRow(gridViewPrReqList.FocusedRowHandle);
+                gridViewOrderList.DeleteRow(gridViewOrderList.FocusedRowHandle);
             }
             catch (Exception ex)
             {
@@ -805,31 +829,31 @@ namespace PSAP.VIEW.BSVIEW
                 switch (e.Column.FieldName)
                 {
                     case "CodeFileName":
-                        string tmpStr = DataTypeConvert.GetString(gridViewPrReqList.GetDataRow(e.RowHandle)["CodeFileName"]);
+                        string tmpStr = DataTypeConvert.GetString(gridViewOrderList.GetDataRow(e.RowHandle)["CodeFileName"]);
                         if (tmpStr == "")
-                            gridViewPrReqList.SetRowCellValue(e.RowHandle, "CodeName", "");
+                            gridViewOrderList.SetRowCellValue(e.RowHandle, "CodeName", "");
                         else
                         {
                             DataTable temp = (DataTable)repSearchCodeFileName.DataSource;
                             DataRow[] drs = temp.Select(string.Format("CodeFileName='{0}'", tmpStr));
                             if (drs.Length > 0)
                             {
-                                gridViewPrReqList.SetRowCellValue(e.RowHandle, "CodeName", DataTypeConvert.GetString(drs[0]["CodeName"]));
+                                gridViewOrderList.SetRowCellValue(e.RowHandle, "CodeName", DataTypeConvert.GetString(drs[0]["CodeName"]));
                             }
                         }
                         break;
                     case "Qty":
                     case "Unit":
                     case "Tax":
-                        double qtyDouble = DataTypeConvert.GetDouble(gridViewPrReqList.GetDataRow(e.RowHandle)["Qty"]);
-                        double unitDouble = DataTypeConvert.GetDouble(gridViewPrReqList.GetDataRow(e.RowHandle)["Unit"]);
+                        double qtyDouble = DataTypeConvert.GetDouble(gridViewOrderList.GetDataRow(e.RowHandle)["Qty"]);
+                        double unitDouble = DataTypeConvert.GetDouble(gridViewOrderList.GetDataRow(e.RowHandle)["Unit"]);
                         double amountDouble = Math.Round(qtyDouble * unitDouble, 2, MidpointRounding.AwayFromZero);
-                        double taxDouble = DataTypeConvert.GetDouble(gridViewPrReqList.GetDataRow(e.RowHandle)["Tax"]);
+                        double taxDouble = DataTypeConvert.GetDouble(gridViewOrderList.GetDataRow(e.RowHandle)["Tax"]);
                         double taxAmountDouble = Math.Round(amountDouble * taxDouble, 2, MidpointRounding.AwayFromZero);
                         double sumAmountDouble = amountDouble + taxAmountDouble;
-                        gridViewPrReqList.SetRowCellValue(e.RowHandle, "Amount", amountDouble);
-                        gridViewPrReqList.SetRowCellValue(e.RowHandle, "TaxAmount", taxAmountDouble);
-                        gridViewPrReqList.SetRowCellValue(e.RowHandle, "SumAmount", sumAmountDouble);
+                        gridViewOrderList.SetRowCellValue(e.RowHandle, "Amount", amountDouble);
+                        gridViewOrderList.SetRowCellValue(e.RowHandle, "TaxAmount", taxAmountDouble);
+                        gridViewOrderList.SetRowCellValue(e.RowHandle, "SumAmount", sumAmountDouble);
                         break;
                 }
             }
@@ -844,10 +868,10 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repCheckSelect_EditValueChanged(object sender, EventArgs e)
         {
-            if (DataTypeConvert.GetBoolean(gridViewPrReqHead.GetFocusedDataRow()["Select"]))
-                gridViewPrReqHead.GetFocusedDataRow()["Select"] = false;
+            if (DataTypeConvert.GetBoolean(gridViewOrderHead.GetFocusedDataRow()["Select"]))
+                gridViewOrderHead.GetFocusedDataRow()["Select"] = false;
             else
-                gridViewPrReqHead.GetFocusedDataRow()["Select"] = true;
+                gridViewOrderHead.GetFocusedDataRow()["Select"] = true;
             onlySelectColChangeRowState = true;
         }
 
@@ -856,32 +880,45 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private bool IsHaveBlankLine()
         {
-            gridViewPrReqList.FocusedRowHandle = 0;
-            for (int i = 0; i < gridViewPrReqList.DataRowCount; i++)
+            gridViewOrderList.FocusedRowHandle = 0;
+            for (int i = 0; i < gridViewOrderList.DataRowCount; i++)
             {
-                if (DataTypeConvert.GetString(gridViewPrReqList.GetDataRow(i)["CodeFileName"]) == "")
+                if (DataTypeConvert.GetString(gridViewOrderList.GetDataRow(i)["CodeFileName"]) == "")
                 {
-                    gridViewPrReqList.Focus();
-                    gridViewPrReqList.FocusedColumn = colCodeFileName;
-                    gridViewPrReqList.FocusedRowHandle = i;
+                    gridViewOrderList.Focus();
+                    gridViewOrderList.FocusedColumn = colCodeFileName;
+                    gridViewOrderList.FocusedRowHandle = i;
                     return true;
                 }
-                if (DataTypeConvert.GetString(gridViewPrReqList.GetDataRow(i)["Qty"]) == "")
+                if (DataTypeConvert.GetString(gridViewOrderList.GetDataRow(i)["Qty"]) == "")
                 {
-                    gridViewPrReqList.Focus();
-                    gridViewPrReqList.FocusedColumn = colQty;
-                    gridViewPrReqList.FocusedRowHandle = i;
+                    gridViewOrderList.Focus();
+                    gridViewOrderList.FocusedColumn = colQty;
+                    gridViewOrderList.FocusedRowHandle = i;
                     return true;
                 }
-                if (DataTypeConvert.GetString(gridViewPrReqList.GetDataRow(i)["Unit"]) == "")
+                if (DataTypeConvert.GetString(gridViewOrderList.GetDataRow(i)["Unit"]) == "")
                 {
-                    gridViewPrReqList.Focus();
-                    gridViewPrReqList.FocusedColumn = colUnit;
-                    gridViewPrReqList.FocusedRowHandle = i;
+                    gridViewOrderList.Focus();
+                    gridViewOrderList.FocusedColumn = colUnit;
+                    gridViewOrderList.FocusedRowHandle = i;
                     return true;
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 子表新增一行
+        /// </summary>
+        private void ListNewRow()
+        {
+            if (IsHaveBlankLine())
+                return;
+
+            //gridViewPrReqList.PostEditor();
+            gridViewOrderList.AddNewRow();
+            FocusedListView(true, "CodeFileName");
         }
 
         /// <summary>
@@ -896,22 +933,22 @@ namespace PSAP.VIEW.BSVIEW
                 btnSave.Text = "保存";
                 btnCancel.Enabled = true;
                 btnDelete.Enabled = false;
-                btnApprove.Enabled = false;
-                btnClose.Enabled = false;
-                btnCancelApprove.Enabled = false;
-                btnPrReqApply.Enabled = false;
             }
             else
             {
                 btnNew.Enabled = true;
                 btnSave.Text = "修改";
                 btnCancel.Enabled = false;
-                btnDelete.Enabled = true;
-                btnApprove.Enabled = true;
-                btnClose.Enabled = true;
-                btnCancelApprove.Enabled = true;
-                btnPrReqApply.Enabled = true;
+                btnDelete.Enabled = true;                
             }
+            btnApprove.Enabled = !ret;
+            btnCancelApprove.Enabled = !ret;
+            btnClose.Enabled = !ret;
+            btnCancelClose.Enabled = !ret;
+            btnPrReqApply.Enabled = !ret;            
+            btnPreview.Enabled = !ret;
+
+            btnListAdd.Enabled = ret;
 
             colOrderHeadDate.OptionsColumn.AllowEdit = ret;
             colPurCategory.OptionsColumn.AllowEdit = ret;
@@ -941,19 +978,19 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private bool CheckReqState()
         {
-            if (gridViewPrReqHead.GetFocusedDataRow() == null)
+            if (gridViewOrderHead.GetFocusedDataRow() == null)
                 return false;
-            int reqState = DataTypeConvert.GetInt(gridViewPrReqHead.GetFocusedDataRow()["ReqState"]);
+            int reqState = DataTypeConvert.GetInt(gridViewOrderHead.GetFocusedDataRow()["ReqState"]);
             switch (reqState)
             {
                 case 2:
-                    MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"])));
+                    MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"])));
                     return false;
                 case 3:
-                    MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"])));
+                    MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"])));
                     return false;
                 case 4:
-                    MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"])));
+                    MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"])));
                     return false;
             }
             return true;
@@ -964,42 +1001,42 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private bool CheckReqState_Multi(bool checkNoApprover, bool checkApprover, bool checkClosed, bool checkApproverBetween)
         {
-            for (int i = 0; i < gridViewPrReqHead.DataRowCount; i++)
+            for (int i = 0; i < gridViewOrderHead.DataRowCount; i++)
             {
-                if (DataTypeConvert.GetBoolean(gridViewPrReqHead.GetDataRow(i)["Select"]))
+                if (DataTypeConvert.GetBoolean(gridViewOrderHead.GetDataRow(i)["Select"]))
                 {
-                    int reqState = DataTypeConvert.GetInt(gridViewPrReqHead.GetDataRow(i)["ReqState"]);
+                    int reqState = DataTypeConvert.GetInt(gridViewOrderHead.GetDataRow(i)["ReqState"]);
                     switch (reqState)
                     {
                         case 1:
                             if (checkNoApprover)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["OrderHeadNo"])));
-                                gridViewPrReqHead.FocusedRowHandle = i;
+                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetDataRow(i)["OrderHeadNo"])));
+                                gridViewOrderHead.FocusedRowHandle = i;
                                 return false;
                             }
                             break;
                         case 2:
                             if (checkApprover)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["OrderHeadNo"])));
-                                gridViewPrReqHead.FocusedRowHandle = i;
+                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetDataRow(i)["OrderHeadNo"])));
+                                gridViewOrderHead.FocusedRowHandle = i;
                                 return false;
                             }
                             break;
                         case 3:
                             if (checkClosed)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["OrderHeadNo"])));
-                                gridViewPrReqHead.FocusedRowHandle = i;
+                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetDataRow(i)["OrderHeadNo"])));
+                                gridViewOrderHead.FocusedRowHandle = i;
                                 return false;
                             }
                             break;
                         case 4:
                             if (checkApproverBetween)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["OrderHeadNo"])));
-                                gridViewPrReqHead.FocusedRowHandle = i;
+                                MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewOrderHead.GetDataRow(i)["OrderHeadNo"])));
+                                gridViewOrderHead.FocusedRowHandle = i;
                                 return false;
                             }
                             break;
@@ -1014,10 +1051,10 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void FocusedHeadView(string colName)
         {
-            gridControlPrReqHead.Focus();
-            ColumnView headView = (ColumnView)gridControlPrReqHead.FocusedView;
+            gridControlOrderHead.Focus();
+            ColumnView headView = (ColumnView)gridControlOrderHead.FocusedView;
             headView.FocusedColumn = headView.Columns[colName];
-            gridViewPrReqHead.FocusedRowHandle = headView.FocusedRowHandle;
+            gridViewOrderHead.FocusedRowHandle = headView.FocusedRowHandle;
         }
 
         /// <summary>
@@ -1026,10 +1063,10 @@ namespace PSAP.VIEW.BSVIEW
         private void FocusedListView(bool isFocusedControl, string colName)
         {
             if (isFocusedControl)
-                gridControlPrReqList.Focus();
-            ColumnView listView = (ColumnView)gridControlPrReqList.FocusedView;
+                gridControlOrderList.Focus();
+            ColumnView listView = (ColumnView)gridControlOrderList.FocusedView;
             listView.FocusedColumn = listView.Columns[colName];
-            gridViewPrReqList.FocusedRowHandle = listView.FocusedRowHandle;
+            gridViewOrderList.FocusedRowHandle = listView.FocusedRowHandle;
         }
 
         /// <summary>
@@ -1037,7 +1074,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void BingStnListComboBox()
         {
-            string tmpStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["ProjectNo"]);
+            string tmpStr = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["ProjectNo"]);
             DataTable stnListTable = prReqDAO.QueryStnList(tmpStr);
             repComboBoxStnNo.Items.Clear();
             for (int i = 0; i < stnListTable.Rows.Count; i++)
@@ -1067,14 +1104,14 @@ namespace PSAP.VIEW.BSVIEW
         private void PRToPO_Order(DataRow prReqHeadRow, DataTable prReqListTable)
         {
             ClearHeadGridAllSelect();
-            gridViewPrReqHead.AddNewRow();
+            gridViewOrderHead.AddNewRow();
             FocusedHeadView("BussinessBaseNo");
 
-            gridViewPrReqHead.SetFocusedRowCellValue("PurCategory", prReqHeadRow["PurCategory"]);
-            gridViewPrReqHead.SetFocusedRowCellValue("ReqDep", prReqHeadRow["ReqDep"]);
+            gridViewOrderHead.SetFocusedRowCellValue("PurCategory", prReqHeadRow["PurCategory"]);
+            gridViewOrderHead.SetFocusedRowCellValue("ReqDep", prReqHeadRow["ReqDep"]);
             //gridViewPrReqHead.SetFocusedRowCellValue("BussinessBaseNo", orderDAO.GetBussinessBaseNo_ProjectNo(prReqHeadRow["ProjectNo"].ToString()));
-            gridViewPrReqHead.SetFocusedRowCellValue("ProjectNo", prReqHeadRow["ProjectNo"]);
-            gridViewPrReqHead.SetFocusedRowCellValue("StnNo", prReqHeadRow["StnNo"]);
+            gridViewOrderHead.SetFocusedRowCellValue("ProjectNo", prReqHeadRow["ProjectNo"]);
+            gridViewOrderHead.SetFocusedRowCellValue("StnNo", prReqHeadRow["StnNo"]);
 
             dataSet_Order.Tables[1].Clear();
             for (int i = 0; i < prReqListTable.Rows.Count; i++)
@@ -1082,18 +1119,54 @@ namespace PSAP.VIEW.BSVIEW
                 DataRow dr = prReqListTable.Rows[i];
                 if (DataTypeConvert.GetBoolean(dr["ListSelect"]))
                 {
-                    gridViewPrReqList.AddNewRow();
-                    gridViewPrReqList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
-                    gridViewPrReqList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
-                    gridViewPrReqList.SetFocusedRowCellValue("Qty", DataTypeConvert.GetDouble(dr["Overplus"]));
-                    gridViewPrReqList.SetFocusedRowCellValue("PrReqNo", dr["PrReqNo"]);
+                    gridViewOrderList.AddNewRow();
+                    gridViewOrderList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
+                    gridViewOrderList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
+                    gridViewOrderList.SetFocusedRowCellValue("Qty", DataTypeConvert.GetDouble(dr["Overplus"]));
+                    gridViewOrderList.SetFocusedRowCellValue("PrReqNo", dr["PrReqNo"]); 
+                    gridViewOrderList.SetFocusedRowCellValue("PrListAutoId", dr["AutoId"]); 
                 }
             }
             FocusedListView(false, "Unit");
 
             SetButtonAndColumnState(true);
-            headFocusedLineNo = gridViewPrReqHead.DataRowCount;
+            headFocusedLineNo = gridViewOrderHead.DataRowCount;
         }
 
+        /// <summary>
+        /// 打印预览
+        /// </summary>
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string orderHeadNoString = "";
+                if (gridViewOrderHead.GetFocusedDataRow() != null)
+                    orderHeadNoString = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]);
+                orderDAO.PrintHandle(orderHeadNoString, 1);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--打印预览操作错误。", ex);
+            }
+        }
+
+        ///// <summary>
+        ///// 打印设计
+        ///// </summary>
+        //private void btnDesigner_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string orderHeadNoString = "";
+        //        if (gridViewOrderHead.GetFocusedDataRow() != null)
+        //            orderHeadNoString = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]);
+        //        orderDAO.PrintHandle(orderHeadNoString, 3);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHandler.HandleException(this.Text + "--打印设计操作错误。", ex);
+        //    }
+        //}
     }
 }

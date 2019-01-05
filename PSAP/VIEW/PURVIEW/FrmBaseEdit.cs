@@ -102,6 +102,22 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 主键绑定的控件
+        /// </summary>
+        private Control primaryKeyControl=null;
+        public Control PrimaryKeyControl
+        {
+            get
+            {
+                return primaryKeyControl;
+            }
+            set
+            {
+                primaryKeyControl = value;
+            }
+        }
+
+        /// <summary>
         /// 编辑区Panel
         /// </summary>
         private PanelControl masterEditPanel;
@@ -165,6 +181,8 @@ namespace PSAP.VIEW.BSVIEW
 
         ControlHandler ctlHandler = new ControlHandler();
 
+        bool newState = false;
+
         public FrmBaseEdit()
         {
             InitializeComponent();
@@ -190,6 +208,7 @@ namespace PSAP.VIEW.BSVIEW
                 masterDataSet.Tables[0].Rows.Add(dr);
                 masterBindingSource.MoveLast();
 
+                newState = true;
                 Set_Button_State(false);
                 Set_EditZone_ControlReadOnly(false);
                 if (masterEditPanel != null)
@@ -212,10 +231,20 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (masterBindingSource.Current != null)
                     {
+                        newState = false;
                         Set_Button_State(false);
                         Set_EditZone_ControlReadOnly(false);
                         if (masterEditPanel != null)
+                        {
                             masterEditPanel.SelectNextControl(null, true, true, true, true);
+                            if (primaryKeyControl != null)
+                            {
+                                if (primaryKeyControl.BindingContext == this.ParentForm.ActiveControl.BindingContext)
+                                {
+                                    masterEditPanel.SelectNextControl(primaryKeyControl, true, false, false, false);
+                                }
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -265,6 +294,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (DoSave(dr))
                     {
+                        newState = false;
                         Set_Button_State(true);
                         Set_EditZone_ControlReadOnly(true);
 
@@ -277,6 +307,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
+                    newState = false;
                     Set_Button_State(true);
                     Set_EditZone_ControlReadOnly(true);
 
@@ -306,6 +337,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     masterBindingSource.CancelEdit();
                     ((DataRowView)masterBindingSource.Current).Row.RejectChanges();
+                    newState = false;
                     Set_Button_State(true);
                     Set_EditZone_ControlReadOnly(true);
                 }
@@ -556,9 +588,30 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (masterEditPanel != null)
             {
-                foreach (Control ctl in masterEditPanel.Controls)
+                if (readOnlyState)
                 {
-                    ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                    foreach (Control ctl in masterEditPanel.Controls)
+                    {
+                        ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                    }
+                }
+                else
+                {
+                    foreach (Control ctl in masterEditPanel.Controls)
+                    {
+                        if(newState)
+                        {
+                            if (ctl != primaryKeyControl)
+                                ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                            else
+                                ctlHandler.Set_Control_ReadOnly(ctl, false);
+                        }
+                        else
+                        {
+                            if (ctl != primaryKeyControl)
+                                ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                        }                            
+                    }
                 }
             }
             else

@@ -2,13 +2,18 @@
 using DevExpress.XtraReports.Parameters;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraReports.UserDesigner;
+using PSAP.DAO.BSDAO;
+using PSAP.DAO.PURDAO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PSAP.PSAPCommon
 {
@@ -22,22 +27,48 @@ namespace PSAP.PSAPCommon
         /// <param name="outputdataset"></param>
         /// <param name="paralist"></param>
         /// <param name="handleType">处理类型：1 预览 2 打印 3 设计</param>
-        public static void XtraReport_Handle(XtraReport DefReport, string repxFileName, DataSet outputdataset, List<Parameter> paralist, int handleType)
+        public static void XtraReport_Handle(XtraReport DefReport, string tableNameStr, DataSet outputdataset, List<Parameter> paralist, int handleType)
         {
-            string path = "Report\\" + repxFileName;
-            XtraReport report = new XtraReport();
-            if (File.Exists(path))
-                report.LoadLayout(path);
-            else
+            FrmDocumentTempletDAO docDAO = new FrmDocumentTempletDAO();
+            DataTable docTempletTable = docDAO.QueryDocTemplet(tableNameStr);
+            if(docTempletTable.Rows.Count==0)
             {
-                if (DefReport == null)
+                MessageHandler.ShowMessageBox("未查询到当前单据模板的信息记录，操作错误。");
+                return;
+            }
+
+            string path = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocPath"]) + DataTypeConvert.GetString(docTempletTable.Rows[0]["DocFileName"]);
+            string docVerStr = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocVersion"]);
+
+            string iniPath = "Report\\DocTemplet.ini";
+            string sectionStr = "DocTemplet";
+            if (File.Exists(path))
+            {
+                if (File.Exists(iniPath))
                 {
-                    MessageHandler.ShowMessageBox("没有找到当前打印的模板文件，请检查软件的目录文件。");
-                    return;
+                    string localVerStr = FileHandler.IniReadValue(iniPath, sectionStr, tableNameStr);
+                    if (localVerStr != docVerStr && handleType != 3)
+                    {
+                        Byte[] fileByte = docDAO.QueryDocTemplet_FileByte(tableNameStr);
+                        FileHandler.ByteArrayToFile(fileByte, path);
+                        FileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
+                    }
                 }
                 else
-                    report = DefReport;
+                {
+                    Byte[] fileByte = docDAO.QueryDocTemplet_FileByte(tableNameStr);
+                    FileHandler.ByteArrayToFile(fileByte, path);
+                    FileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
+                }
             }
+            else
+            {
+                Byte[] fileByte = docDAO.QueryDocTemplet_FileByte(tableNameStr);
+                FileHandler.ByteArrayToFile(fileByte, path);
+                FileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
+            }
+            XtraReport report = new XtraReport();
+            report.LoadLayout(path);
 
             report.DataSource = outputdataset;
             if (paralist != null)
@@ -189,5 +220,6 @@ namespace PSAP.PSAPCommon
 
             return paramList;
         }
+
     }
 }
