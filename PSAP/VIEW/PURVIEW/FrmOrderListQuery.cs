@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Base;
+using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -15,6 +16,7 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmOrderListQuery : DockContent
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
 
         public FrmOrderListQuery()
@@ -35,22 +37,22 @@ namespace PSAP.VIEW.BSVIEW
                 dateOrderDateEnd.DateTime = DateTime.Now.Date;
                 checkOrderDate.Checked = false;
 
-                lookUpReqDep.Properties.DataSource = prReqDAO.QueryDepartment(true);
+                lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
-                searchLookUpBussinessBaseNo.Properties.DataSource = orderDAO.QueryBussinessBaseInfo(true);
+                searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
                 comboBoxReqState.SelectedIndex = 0;
-                searchLookUpProjectNo.Properties.DataSource = prReqDAO.QueryProjectList(true);
+                searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
-                searchLookUpCodeFileName.Properties.DataSource = prReqDAO.QueryPartsCode(true);
+                searchLookUpCodeFileName.Properties.DataSource = commonDAO.QueryPartsCode(true);
                 searchLookUpCodeFileName.Text = "全部";
 
-                repLookUpReqDep.DataSource = prReqDAO.QueryDepartment(false);
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
-                repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
-                repSearchBussinessBaseNo.DataSource = orderDAO.QueryBussinessBaseInfo(false);
+                repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
+                repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 
@@ -86,21 +88,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ReqState")
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -143,18 +131,18 @@ namespace PSAP.VIEW.BSVIEW
                     orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
 
-                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? lookUpReqDep.EditValue.ToString() : "";
-                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? lookUpPurCategory.EditValue.ToString() : "";
-                string bussinessBaseNoStr = searchLookUpBussinessBaseNo.EditValue.ToString() != "全部" ? searchLookUpBussinessBaseNo.EditValue.ToString() : "";
+                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
+                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
+                string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
-                string projectNoStr = searchLookUpProjectNo.Text != "全部" ? searchLookUpProjectNo.EditValue.ToString() : "";
-                string codeFileNameStr = searchLookUpCodeFileName.Text != "全部" ? searchLookUpCodeFileName.EditValue.ToString() : "";
+                string projectNoStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
+                string codeFileNameStr = searchLookUpCodeFileName.Text != "全部" ? DataTypeConvert.GetString(searchLookUpCodeFileName.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
                 dataSet_Order.Tables[0].Clear();
 
                 string querySqlStr = orderDAO.QueryOrderList_Head_SQL(planDateBeginStr, planDateEndStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
 
-                string countSqlStr = prReqDAO.QuerySqlTranTotalCountSql(querySqlStr);
+                string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);  
             }
             catch (Exception ex)
@@ -189,6 +177,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     string orderHeadNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]);
                     FrmOrder.queryOrderHeadNo = orderHeadNoStr;
+                    FrmOrder.queryListAutoId = 0;
                     ViewHandler.ShowRightWindow("FrmOrder");
                 }
             }

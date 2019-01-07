@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Base;
+﻿using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -13,7 +12,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmApprovalPrReq : DockContent
+    public partial class FrmPrReqApproval : DockContent
     {
         /// <summary>
         /// 请购单号
@@ -23,12 +22,12 @@ namespace PSAP.VIEW.BSVIEW
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
 
-        public FrmApprovalPrReq()
+        public FrmPrReqApproval()
         {
             InitializeComponent();
         }
 
-        public FrmApprovalPrReq(string prReqNo)
+        public FrmPrReqApproval(string prReqNo)
         {
             InitializeComponent();
             this.prReqNoStr = prReqNo;
@@ -41,7 +40,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                lookUpApprovalType.Properties.DataSource = prReqDAO.QueryApprovalType(false);
+                lookUpApprovalType.Properties.DataSource = new FrmCommonDAO().QueryApprovalType(false);
 
                 approvalDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr);
                 if (dataSet_PrReq.Tables[0].Rows.Count == 0)
@@ -100,21 +99,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -125,18 +110,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                switch (e.Value.ToString())
-                {
-                    case "0":
-                        e.DisplayText = "串行审批";
-                        break;                        
-                    case "1":
-                        e.DisplayText = "并行审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "多选一审核";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_ApprovalCat_Desc(e.Value.ToString());
             }
         }
 

@@ -1,6 +1,6 @@
-﻿namespace PSAP.VIEW.INVVIEW
+﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class FrmWarehouseWarrantHead
+    partial class FrmWarehouseWarrantQuery
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "FrmWarehouseWarrantHead";
+            this.SuspendLayout();
+            // 
+            // FrmWarehouseWarrantQuery
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(806, 447);
+            this.Name = "FrmWarehouseWarrantQuery";
+            this.TabText = "FrmWarehouseWarrantQuery";
+            this.Text = "FrmWarehouseWarrantQuery";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -749,6 +749,7 @@
             this.colReqDate.FieldName = "ReqDate";
             this.colReqDate.Name = "colReqDate";
             this.colReqDate.OptionsColumn.AllowEdit = false;
+            this.colReqDate.OptionsColumn.AllowFocus = false;
             this.colReqDate.Visible = true;
             this.colReqDate.VisibleIndex = 3;
             this.colReqDate.Width = 90;

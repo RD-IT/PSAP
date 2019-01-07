@@ -81,7 +81,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 各种登记单查询的列表每页显示行数
         /// </summary>
-        public static int OrderQueryGrid_PageRowCount = 50;
+        public static int OrderQueryGrid_PageRowCount = 100;
 
         /// <summary>
         /// 订单明细里面的默认税率值
@@ -92,6 +92,16 @@ namespace PSAP.PSAPCommon
         /// 请购单适用转换为采购订单，明细的合计总数是否可以超过原请购单的数量 
         /// </summary>
         public static bool PrReqApplyBeyondCountIsSave = false;
+
+        /// <summary>
+        /// 采购订单适用转换为入库单，明细的合计总数是否可以超过原采购订单的数量 
+        /// </summary>
+        public static bool OrderApplyBeyondCountIsSave = false;
+
+        /// <summary>
+        /// 入库单是否可以修改入库日期
+        /// </summary>
+        public static bool WWarehouseWarrantIsAlterDate = false;
 
         #endregion
     }

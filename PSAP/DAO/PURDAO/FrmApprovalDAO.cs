@@ -232,5 +232,24 @@ namespace PSAP.DAO.PURDAO
             string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.PrReqNo , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join PUR_PrApprovalInfo as info on list.Approver = info.Approver and info.PrReqNo = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, prReqNoStr);
             BaseSQL.Query(sqlStr, queryDataTable);
         }
+
+        /// <summary>
+        /// 查询入库单信息
+        /// </summary>
+        public void QueryWarehouseHead(DataTable queryDataTable, string wwHeadNoStr)
+        {
+            string sqlStr = string.Format("select INV_WarehouseWarrantHead.*, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat from INV_WarehouseWarrantHead left join PUR_ApprovalType on INV_WarehouseWarrantHead.ApprovalType = PUR_ApprovalType.TypeNo where WarehouseWarrant = '{0}'", wwHeadNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询入库单审批信息记录
+        /// </summary>
+        public void QueryWarehouseApprovalInfo(DataTable queryDataTable,string wwHeadNoStr, string typeNoStr)
+        {
+            string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.WarehouseWarrant , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join INV_WarehouseApprovalInfo as info on list.Approver = info.Approver and info.WarehouseWarrant = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, wwHeadNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+
+        }
     }
 }

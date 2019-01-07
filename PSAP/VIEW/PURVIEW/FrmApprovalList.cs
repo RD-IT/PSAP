@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+﻿using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -42,9 +42,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
-                repItemLookUpTypeNo.DataSource = prReqDAO.QueryApprovalType(false);
-                repItemLookUpApprover.DataSource = prReqDAO.QueryUserInfo(false);
+                FrmCommonDAO commonDAO = new FrmCommonDAO();
+                repItemLookUpTypeNo.DataSource = commonDAO.QueryApprovalType(false);
+                repItemLookUpApprover.DataSource = commonDAO.QueryUserInfo(false);
 
                 if (editForm == null)
                 {

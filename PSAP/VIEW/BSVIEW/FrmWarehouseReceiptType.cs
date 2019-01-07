@@ -14,12 +14,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmWarehouseWarrantType : DockContent
+    public partial class FrmWarehouseReceiptType : DockContent
     {
         FrmBaseEdit editForm = null;
         FrmWarehouseWarrantDAO wwDAO = new FrmWarehouseWarrantDAO();
 
-        public FrmWarehouseWarrantType()
+        public FrmWarehouseReceiptType()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmWarehouseWarrantType_Load(object sender, EventArgs e)
+        private void FrmWarehouseReceiptType_Load(object sender, EventArgs e)
         {
             try
             {
@@ -36,15 +36,15 @@ namespace PSAP.VIEW.BSVIEW
                     editForm = new FrmBaseEdit();
                     editForm.FormBorderStyle = FormBorderStyle.None;
                     editForm.TopLevel = false;
-                    editForm.TableName = "BS_WarehouseWarrantType";
-                    editForm.TableCaption = "入库类别";
-                    editForm.Sql = "select * from BS_WarehouseWarrantType Order by AutoId";
-                    editForm.PrimaryKeyColumn = "WarehouseWarrantTypeNo";
-                    editForm.MasterDataSet = dSWarehouseWarrantType;
-                    editForm.MasterBindingSource = bSWarehouseWarrantType;
+                    editForm.TableName = "BS_WarehouseReceiptType";
+                    editForm.TableCaption = "出库类别";
+                    editForm.Sql = "select * from BS_WarehouseReceiptType Order by AutoId";
+                    editForm.PrimaryKeyColumn = "WarehouseReceiptTypeNo";
+                    editForm.MasterDataSet = dSWarehouseReceiptType;
+                    editForm.MasterBindingSource = bSWarehouseReceiptType;
                     editForm.MasterEditPanel = pnlEdit;
-                    editForm.PrimaryKeyControl = textWarehouseWarrantTypeNo;
-                    editForm.BrowseXtraGridView = gridViewWarehouseWarrantType;
+                    editForm.PrimaryKeyControl = textWarehouseReceiptTypeNo;
+                    editForm.BrowseXtraGridView = gridViewWarehouseReceiptType;
                     editForm.CheckControl += CheckControl;
                     editForm.SaveRowBefore += SaveRowBefore_Handle;
                     this.pnlToolBar.Controls.Add(editForm);
@@ -63,16 +63,16 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public bool CheckControl()
         {
-            if (textWarehouseWarrantTypeNo.Text.Trim() == "")
+            if (textWarehouseReceiptTypeNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("入库类别编号不能为空，请重新操作。");
-                textWarehouseWarrantTypeNo.Focus();
+                MessageHandler.ShowMessageBox("出库类别编号不能为空，请重新操作。");
+                textWarehouseReceiptTypeNo.Focus();
                 return false;
             }
-            if (textWarehouseWarrantTypeName.Text.Trim() == "")
+            if (textWarehouseReceiptTypeName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("入库类别名称不能为空，请重新操作。");
-                textWarehouseWarrantTypeName.Focus();
+                MessageHandler.ShowMessageBox("出库类别名称不能为空，请重新操作。");
+                textWarehouseReceiptTypeName.Focus();
                 return false;
             }
 
@@ -84,7 +84,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public bool SaveRowBefore_Handle(DataRow dr, SqlCommand cmd)
         {
-            int count = wwDAO.Get_WarehouseType_DefaultCount(cmd, "BS_WarehouseWarrantType");
+            int count = wwDAO.Get_WarehouseType_DefaultCount(cmd, "BS_WarehouseReceiptType");
             if (count == 0)
                 dr["IsDefault"] = true;
             return true;
@@ -93,7 +93,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewWarehouseWarrantType_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewWarehouseReceiptType_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
@@ -104,7 +104,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定默认值
         /// </summary>
-        private void TableWarehouseWarrantType_TableNewRow(object sender, DataTableNewRowEventArgs e)
+        private void TableWarehouseReceiptType_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
             e.Row["IsDefault"] = false;
         }
@@ -118,12 +118,12 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (!editForm.EditState)
                 {
-                    DataRow dr = gridViewWarehouseWarrantType.GetFocusedDataRow();
+                    DataRow dr = gridViewWarehouseReceiptType.GetFocusedDataRow();
                     if (dr != null)
                     {
-                        if (wwDAO.Update_WarehouseType_Default(DataTypeConvert.GetString(dr["WarehouseWarrantTypeNo"]), "BS_WarehouseWarrantType", "WarehouseWarrantTypeNo", "入库类别"))
+                        if (wwDAO.Update_WarehouseType_Default(DataTypeConvert.GetString(dr["WarehouseReceiptTypeNo"]), "BS_WarehouseReceiptType", "WarehouseReceiptTypeNo", "出库类别"))
                         {
-                            MessageHandler.ShowMessageBox("设定默认入库类别成功。");
+                            MessageHandler.ShowMessageBox("设定默认出库类别成功。");
                             editForm.btnRefresh_Click(null, null);
                         }
                     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -58,7 +59,7 @@
             this.pnlMiddleBottom = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -116,7 +117,7 @@
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -783,6 +784,7 @@
             this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
+            this.gridViewPrReqList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrReqList_RowClick);
             this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
             // 
             // colAutoId1
@@ -794,6 +796,7 @@
             // 
             this.colListSelect.ColumnEdit = this.repCheckListSelect;
             this.colListSelect.FieldName = "ListSelect";
+            this.colListSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colListSelect.Name = "colListSelect";
             this.colListSelect.Visible = true;
             this.colListSelect.VisibleIndex = 0;
@@ -1395,7 +1398,6 @@
         private DevExpress.XtraEditors.PanelControl pnlMiddleBottom;
         private DevExpress.XtraEditors.PanelControl pnlMiddleTop;
         private DevExpress.XtraGrid.GridControl gridControlPrReqHead;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqHead;
         private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColSelect;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckSelect;
@@ -1462,5 +1464,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColProjectNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColProjectName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColRemark;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqHead;
     }
 }

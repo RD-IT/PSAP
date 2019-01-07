@@ -17,16 +17,16 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
         /// <param name="prReqNoStr">请购单号</param>
-        public void QueryPrReqHead(DataTable queryDataTable, string prReqNoStr,string orderDateBeginStr,string orderDateEndStr, string reqDepStr, string purCategoryStr, string applicantStr, string projectNoStr, string commonStr)
+        public void QueryPrReqHead(DataTable queryDataTable, string prReqNoStr,string reqDateBeginStr,string reqDateEndStr, string reqDepStr, string purCategoryStr, string applicantStr, string projectNoStr, string commonStr)
         {
             string sqlStr = " ReqState in (2) and IsNull(isEnd, 0)=0 ";
             if (prReqNoStr != "")
             {
                 sqlStr += string.Format(" and PrReqNo='{0}'", prReqNoStr);
             }
-            if (orderDateBeginStr != "")
+            if (reqDateBeginStr != "")
             {
-                sqlStr += string.Format(" and ReqDate between '{0}' and '{1}'", orderDateBeginStr, orderDateEndStr);
+                sqlStr += string.Format(" and ReqDate between '{0}' and '{1}'", reqDateBeginStr, reqDateEndStr);
             }
             if (reqDepStr != "")
             {

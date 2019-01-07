@@ -38,6 +38,33 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        public static string GetMaxCodeNo(string catgName)
+        {
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        string codeNoStr = GetMaxCodeNo(cmd, catgName);
+                        trans.Commit();
+                        return codeNoStr;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 从SW_MaxCodeNo表中根据类别取最大编号
         /// </summary>

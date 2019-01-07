@@ -13,34 +13,6 @@ namespace PSAP.DAO.PURDAO
     class FrmOrderDAO
     {
         /// <summary>
-        /// 查询往来方信息（增加一个全部选项）
-        /// </summary>
-        public DataTable QueryBussinessBaseInfo(bool addAllItem)
-        {
-            string sqlStr = "select Info.AutoId, Info.BussinessBaseNo, Info.BussinessBaseText, Cate.BussinessCategoryText from BS_BussinessBaseInfo as Info left join BS_BussinessCategory as Cate on Info.BussinessCategory=Cate.BussinessCategory where BussinessIsUse=1 Order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '全部' as BussinessBaseNo, '全部' as BussinessBaseText, '全部' as BussinessCategoryText union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }
-
-
-
-        /// <summary>
-        /// 查询付款类型信息（增加一个全部选项）
-        /// </summary>
-        public DataTable QueryPayType(bool addAllItem)
-        {
-            string sqlStr = "select AutoId, PayTypeNo, PayTypeNoText from PUR_PayType Order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '全部' as PayTypeNo, '全部' as PayTypeNoText union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }
-
-        /// <summary>
         /// 查询采购单表头表
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
@@ -101,7 +73,7 @@ namespace PSAP.DAO.PURDAO
                     sqlStr += string.Format(" and ReqState in (1,4)");
                 else
                 {
-                    sqlStr = string.Format("select PUR_OrderHead.* from PUR_OrderHead left join PUR_ApprovalType on PUR_OrderHead.ApprovalType = PUR_ApprovalType.TypeNo where {0} and PUR_OrderHead.ReqState in (1, 2) and( (PUR_ApprovalType.ApprovalCat = 0 and exists (select * from (select top 1 * from F_OrderNoApprovalList(PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType) Order by AppSequence) as minlist where Approver = {1})) or (PUR_ApprovalType.ApprovalCat = 1 and exists (select * from F_OrderNoApprovalList(PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType) where Approver = {1}))) order by AutoId", sqlStr, approverInt);
+                    sqlStr = string.Format("select PUR_OrderHead.* from PUR_OrderHead left join PUR_ApprovalType on PUR_OrderHead.ApprovalType = PUR_ApprovalType.TypeNo where {0} and PUR_OrderHead.ReqState in (1, 4) and( (PUR_ApprovalType.ApprovalCat = 0 and exists (select * from (select top 1 * from F_OrderNoApprovalList(PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType) Order by AppSequence) as minlist where Approver = {1})) or (PUR_ApprovalType.ApprovalCat = 1 and exists (select * from F_OrderNoApprovalList(PUR_OrderHead.OrderHeadNo, PUR_OrderHead.ApprovalType) where Approver = {1}))) order by AutoId", sqlStr, approverInt);
                     return sqlStr;
                 }
             }
@@ -478,9 +450,7 @@ namespace PSAP.DAO.PURDAO
             orderHeadRow["Approver"] = "";
             orderHeadRow["ApproverIp"] = "";
             orderHeadRow["ApproverTime"] = "";
-            orderHeadRow["ReqState"] = 1;
-
-            //检查是否有下级的入库订单
+            orderHeadRow["ReqState"] = 1;            
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -490,6 +460,16 @@ namespace PSAP.DAO.PURDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
+
+                        //检查是否有下级的入库单
+                        if (CheckApplyWarehouseWarrant(cmd, DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])))
+                        {
+                            trans.Rollback();
+                            orderHeadRow.Table.RejectChanges();
+                            MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
+                            return false;
+                        }
+
                         cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]), 1, "", "", "");
                         cmd.ExecuteNonQuery();
 
@@ -536,8 +516,6 @@ namespace PSAP.DAO.PURDAO
             if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, false, true, false))
                 return false;
 
-            //检查是否有下级的入库订单
-
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
                 conn.Open();
@@ -553,6 +531,15 @@ namespace PSAP.DAO.PURDAO
                         DataRow[] orderHeadRows = orderHeadTable.Select("select=1");
                         for (int i = 0; i < orderHeadRows.Length; i++)
                         {
+                            //检查是否有下级的入库单
+                            if (CheckApplyWarehouseWarrant(cmd, DataTypeConvert.GetString(orderHeadRows[i]["OrderHeadNo"])))
+                            {
+                                trans.Rollback();
+                                orderHeadTable.RejectChanges();
+                                MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
+                                return false;
+                            }
+
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
@@ -913,6 +900,8 @@ namespace PSAP.DAO.PURDAO
                                     return false;
                                 }
 
+                                Set_PrReqHead_End(cmd, orderListTable);
+
                                 string approvalTypeStr = DataTypeConvert.GetString(tmpTable.Rows[0]["ApprovalType"]);
                                 cmd.CommandText = string.Format("select * from F_OrderNoApprovalList('{0}','{1}') Order by AppSequence", orderHeadNoStr, approvalTypeStr);
                                 DataTable listTable = new DataTable();
@@ -920,7 +909,7 @@ namespace PSAP.DAO.PURDAO
                                 listadpt.Fill(listTable);
                                 if (listTable.Rows.Count == 0)
                                 {
-                                    cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState=2 where OrderHeadNo='{0}'", orderHeadNoStr);
+                                    cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState = 2 where OrderHeadNo='{0}'", orderHeadNoStr);
                                     cmd.ExecuteNonQuery();
                                     orderHeadTable.Rows[i]["ReqState"] = 2;
                                     continue;
@@ -998,8 +987,6 @@ namespace PSAP.DAO.PURDAO
             if (!CheckOrderState(orderHeadTable, null, orderHeadNoListStr, true, false, true, false))
                 return false;
 
-            //检查是否有下级的入库订单
-
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
                 conn.Open();
@@ -1017,6 +1004,15 @@ namespace PSAP.DAO.PURDAO
                         DataRow[] orderHeadRows = orderHeadTable.Select("select=1");
                         for (int i = 0; i < orderHeadRows.Length; i++)
                         {
+                            //检查是否有下级的入库单
+                            if (CheckApplyWarehouseWarrant(cmd, DataTypeConvert.GetString(orderHeadRows[i]["OrderHeadNo"])))
+                            {
+                                trans.Rollback();
+                                orderHeadTable.RejectChanges();
+                                MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
+                                return false;
+                            }
+
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
@@ -1275,7 +1271,7 @@ namespace PSAP.DAO.PURDAO
                 int prListAutoId = DataTypeConvert.GetInt(lrow["PrListAutoId"]);
                 string sqlStr = string.Format("IsNull(PrReqNo, '') <> '' and PrListAutoId = {0}", prListAutoId);
                 double qtySum = DataTypeConvert.GetDouble(orderListTable.Compute("Sum(Qty)", sqlStr));
-                cmd.CommandText = string.Format("select Sum(Qty) from PUR_OrderList where PrListAutoId = {0} and OrderHeadNo != '{1}'", prListAutoId, orderHeadNoStr);
+                cmd.CommandText = string.Format("select Sum(List.Qty) from PUR_OrderList as List join PUR_OrderHead as Head on List.OrderHeadNo = Head.OrderHeadNo where List.PrListAutoId = {0} and List.OrderHeadNo != '{1}' and Head.ReqState in (1, 2, 4)", prListAutoId, orderHeadNoStr);
                 double otherOrderQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
                 cmd.CommandText = string.Format("select Qty from PUR_PrReqList where AutoId = {0}", prListAutoId);
                 double prReqQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
@@ -1288,5 +1284,13 @@ namespace PSAP.DAO.PURDAO
             return true;
         }
 
+        /// <summary>
+        /// 检测数据库中入库单是否有采购适用的记录
+        /// </summary>
+        private bool CheckApplyWarehouseWarrant(SqlCommand cmd, string orderHeadNoStr)
+        {
+            cmd.CommandText = string.Format("select Count(*) from INV_WarehouseWarrantHead where OrderHeadNo = '{0}'", orderHeadNoStr);
+            return DataTypeConvert.GetInt(cmd.ExecuteScalar()) > 0;
+        }
     }
 }

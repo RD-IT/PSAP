@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using PSAP.DAO.PURDAO;
+using PSAP.DAO.BSDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmStnList : DockContent
     {
-        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmBaseEdit editForm = null;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                searchLookUpProjectNo.Properties.DataSource = prReqDAO.QueryProjectList(false);
+                searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(false);
 
                 if (editForm == null)
                 {

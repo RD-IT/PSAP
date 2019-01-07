@@ -1,11 +1,12 @@
-﻿using DevExpress.XtraGrid.Views.Base;
-using PSAP.DAO.BSDAO;
+﻿using PSAP.DAO.BSDAO;
+using PSAP.DAO.INVDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -13,13 +14,13 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmPrReqApply : DockContent
+    public partial class FrmOrderApply : DockContent
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
-        FrmPrReqApplyDAO applyDAO = new FrmPrReqApplyDAO();
+        FrmOrderApplyDAO orderApplyDAO = new FrmOrderApplyDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
-        public FrmPrReqApply()
+        public FrmOrderApply()
         {
             InitializeComponent();
         }
@@ -27,26 +28,28 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmPrReqApply_Load(object sender, EventArgs e)
+        private void FrmOrderApply_Load(object sender, EventArgs e)
         {
             try
             {
-                dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateReqDateEnd.DateTime = DateTime.Now.Date;
-                checkReqDate.Checked = false;
+                dateOrderDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
+                dateOrderDateEnd.DateTime = DateTime.Now.Date;
+                checkOrderDate.Checked = false;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
-                lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
-                lookUpApplicant.ItemIndex = 0;
+                lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
+                lookUpPrepared.ItemIndex = 0;
                 searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
+                searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
+                searchLookUpBussinessBaseNo.Text = "全部";
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
                 repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
-                repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
+                repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
             }
             catch (Exception ex)
             {
@@ -61,23 +64,24 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                string prReqNoStr = textPrReqNo.Text.Trim();
+                string orderHeadNoStr = textOrderHeadNo.Text.Trim();
                 string orderDateBeginStr = "";
                 string orderDateEndStr = "";
-                if (checkReqDate.Checked)
+                if (checkOrderDate.Checked)
                 {
-                    orderDateBeginStr = dateReqDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    orderDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+                    orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
+                    orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
-                string empNameStr = lookUpApplicant.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpApplicant.EditValue) : "";
+                string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 string projectNoStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
+                string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
 
-                dataSet_PrReq.Tables[0].Clear();
-                dataSet_PrReq.Tables[1].Clear();
-                applyDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, empNameStr, projectNoStr, commonStr);
+                dataSet_Order.Tables[0].Clear();
+                dataSet_Order.Tables[1].Clear();
+                orderApplyDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, empNameStr, projectNoStr, bussinessBaseNoStr, commonStr);
             }
             catch (Exception ex)
             {
@@ -88,31 +92,9 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewPrReqHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewOrderHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void gridViewPrReqList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void searchLookUpProjectNoView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -121,7 +103,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定列表显示信息
         /// </summary>
-        private void gridViewPrReqHead_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        private void gridViewOrderHead_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "ReqState")
             {
@@ -132,16 +114,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 主表聚焦行改变事件
         /// </summary>
-        private void gridViewPrReqHead_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        private void gridViewOrderHead_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             try
             {
-                if (gridViewPrReqHead.GetFocusedDataRow() != null)
+                if (gridViewOrderHead.GetFocusedDataRow() != null)
                 {
-                    if (DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]) != "")
+                    if (DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]) != "")
                     {
-                        dataSet_PrReq.Tables[1].Clear();
-                        applyDAO.QueryPrReqList(dataSet_PrReq.Tables[1], DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]));                        
+                        dataSet_Order.Tables[1].Clear();
+                        orderApplyDAO.QueryOrderList(dataSet_Order.Tables[1], DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]));
                     }
                 }
             }
@@ -149,7 +131,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 ExceptionHandler.HandleException(this.Text + "--主表聚焦行改变事件错误。", ex);
             }
-        }        
+        }
 
         /// <summary>
         /// 设定子表当前行选择事件
@@ -158,20 +140,20 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (DataTypeConvert.GetBoolean(gridViewPrReqList.GetFocusedDataRow()["ListSelect"]))
+                if (DataTypeConvert.GetBoolean(gridViewOrderList.GetFocusedDataRow()["ListSelect"]))
                 {
-                    gridViewPrReqList.GetFocusedDataRow()["ListSelect"] = false;
+                    gridViewOrderList.GetFocusedDataRow()["ListSelect"] = false;
                 }
                 else
                 {
-                    gridViewPrReqList.GetFocusedDataRow()["ListSelect"] = true;
+                    gridViewOrderList.GetFocusedDataRow()["ListSelect"] = true;
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--设定子表当前行选择事件错误。", ex);
             }
-        }        
+        }
 
         /// <summary>
         /// 全部选中
@@ -179,11 +161,11 @@ namespace PSAP.VIEW.BSVIEW
         private void checkAll_CheckedChanged(object sender, EventArgs e)
         {
             bool value = false;
-            if(checkAll.Checked)
+            if (checkAll.Checked)
             {
                 value = true;
             }
-            foreach(DataRow dr in dataSet_PrReq.Tables[1].Rows)
+            foreach (DataRow dr in dataSet_Order.Tables[1].Rows)
             {
                 dr["ListSelect"] = value;
             }
@@ -192,17 +174,17 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 选择请购日期
         /// </summary>
-        private void checkReqDate_CheckedChanged(object sender, EventArgs e)
+        private void checkOrderDate_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkReqDate.Checked)
+            if (checkOrderDate.Checked)
             {
-                dateReqDateBegin.Enabled = true;
-                dateReqDateEnd.Enabled = true;
+                dateOrderDateBegin.Enabled = true;
+                dateOrderDateEnd.Enabled = true;
             }
             else
             {
-                dateReqDateBegin.Enabled = false;
-                dateReqDateEnd.Enabled = false;
+                dateOrderDateBegin.Enabled = false;
+                dateOrderDateEnd.Enabled = false;
             }
         }
 
@@ -213,17 +195,17 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (gridViewPrReqHead.GetFocusedDataRow() == null)
+                if (gridViewOrderHead.GetFocusedDataRow() == null)
                 {
-                    MessageHandler.ShowMessageBox("请选择要适用的一个请购单，请重新操作。");
-                    textPrReqNo.Focus();
+                    MessageHandler.ShowMessageBox("请选择要适用的一个采购单，请重新操作。");
+                    textOrderHeadNo.Focus();
                     return;
                 }
-                int count = dataSet_PrReq.Tables[1].Select("ListSelect=1").Length;
+                int count = dataSet_Order.Tables[1].Select("ListSelect=1").Length;
                 if (count == 0)
                 {
-                    MessageHandler.ShowMessageBox("请选择要适用的请购单明细记录，请重新操作。");
-                    gridViewPrReqList.Focus();
+                    MessageHandler.ShowMessageBox("请选择要适用的采购订单明细记录，请重新操作。");
+                    gridViewOrderList.Focus();
                     return;
                 }
 
@@ -239,19 +221,19 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 双击选中
         /// </summary>
-        private void gridViewPrReqList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridViewOrderList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
                 if (e.Clicks == 2)
                 {
-                    if (DataTypeConvert.GetBoolean(gridViewPrReqList.GetFocusedDataRow()["ListSelect"]))
+                    if (DataTypeConvert.GetBoolean(gridViewOrderList.GetFocusedDataRow()["ListSelect"]))
                     {
-                        gridViewPrReqList.GetFocusedDataRow()["ListSelect"] = false;
+                        gridViewOrderList.GetFocusedDataRow()["ListSelect"] = false;
                     }
                     else
                     {
-                        gridViewPrReqList.GetFocusedDataRow()["ListSelect"] = true;
+                        gridViewOrderList.GetFocusedDataRow()["ListSelect"] = true;
                     }
                 }
             }
