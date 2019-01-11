@@ -32,16 +32,17 @@ namespace PSAP.VIEW.BSVIEW
             {
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
                 lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpApplicant.EditValue = SystemInfo.user.EmpName;
                 repositoryItemLookUpEdit1.DataSource = commonDAO.QueryDepartment(false);
-                repositoryItemLookUpEdit2.DataSource = prReqDAO.QueryPurCategory(false);
+                repositoryItemLookUpEdit2.DataSource = commonDAO.QueryPurCategory(false);
 
-                dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateReqDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateReqDateEnd.DateTime = nowDate.Date;
 
                 gridBottomPrReq.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 

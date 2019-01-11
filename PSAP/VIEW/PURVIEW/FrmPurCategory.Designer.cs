@@ -105,10 +105,10 @@
             // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.labPurCategoryText);
-            this.pnlEdit.Controls.Add(this.labPurCategory);
             this.pnlEdit.Controls.Add(this.textPurCategoryText);
             this.pnlEdit.Controls.Add(this.textPurCategory);
+            this.pnlEdit.Controls.Add(this.labPurCategoryText);
+            this.pnlEdit.Controls.Add(this.labPurCategory);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";

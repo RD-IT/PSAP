@@ -31,13 +31,14 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateReqDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateReqDateEnd.DateTime = nowDate.Date;
                 checkReqDate.Checked = false;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpApplicant.ItemIndex = 0;
@@ -45,7 +46,7 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpProjectNo.Text = "全部";
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
             }
             catch (Exception ex)

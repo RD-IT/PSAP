@@ -51,6 +51,19 @@ namespace PSAP.DAO.INVDAO
         }
 
         /// <summary>
+        /// 查询货架信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryShelfInfo(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, ShelfNo, ShelfLocation from BS_ShelfInfo Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as ShelfNo, '全部' as ShelfLocation union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
         /// 查询入库类别（增加一个全部选项）
         /// </summary>
         public DataTable QueryWarehouseWarrantType(bool addAllItem)
@@ -112,15 +125,15 @@ namespace PSAP.DAO.INVDAO
         /// <param name="preparedStr">制单人</param>
         /// <param name="commonStr">通用查询条件</param>
         /// <param name="nullTable">是否查询空表</param>
-        public void QueryWarehouseWarrantHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
+        public void QueryWarehouseWarrantHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryWarehouseWarrantHead_SQL(beginDateStr, endDateStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, reqStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
+            BaseSQL.Query(QueryWarehouseWarrantHead_SQL(beginDateStr, endDateStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
         }
 
         /// <summary>
         /// 查询入库单表头的SQL
         /// </summary>
-        public string QueryWarehouseWarrantHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
+        public string QueryWarehouseWarrantHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
@@ -143,9 +156,9 @@ namespace PSAP.DAO.INVDAO
             {
                 sqlStr += string.Format(" and WarehouseWarrantTypeNo='{0}'", wwTypeNoStr);
             }
-            if (reqStateInt != 0)
+            if (warehouseStateInt != 0)
             {
-                sqlStr += string.Format(" and WarehouseState={0}", reqStateInt);
+                sqlStr += string.Format(" and WarehouseState={0}", warehouseStateInt);
             }
             if (preparedStr != "")
             {
@@ -247,7 +260,7 @@ namespace PSAP.DAO.INVDAO
                         adapterList.Fill(tmpListTable);
                         BaseSQL.UpdateDataTable(adapterList, wwListTable);
 
-                        //Set_PrReqHead_End(cmd, wwListTable);
+                        Set_OrderHead_End(cmd, wwListTable);
 
                         trans.Commit();
 
@@ -270,7 +283,7 @@ namespace PSAP.DAO.INVDAO
 
 
         /// <summary>
-        /// 检测数据库中请购单状态是否可以操作
+        /// 检测数据库中入库单状态是否可以操作
         /// </summary>
         public bool CheckWarehouseState(DataTable wwHeadTable, DataTable wwListTable, string warehouseWarrantListStr, bool checkNoApprover, bool checkApprover, bool checkSettle, bool checkApproverBetween)
         {
@@ -328,7 +341,7 @@ namespace PSAP.DAO.INVDAO
         }
 
         /// <summary>
-        /// 检查订单明细的数量是否超过请购单明细的数量
+        /// 检查订单明细的数量是否超过采购订单明细的数量
         /// </summary>
         private bool CheckOrderApplyBeyondCount(SqlCommand cmd, string wwHeadNoStr, DataTable wwListTable)
         {
@@ -347,7 +360,7 @@ namespace PSAP.DAO.INVDAO
                 double orderQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
                 if (qtySum + otherWWQtySum > orderQtySum)
                 {
-                    MessageHandler.ShowMessageBox(string.Format("入库单中明细[{0}]的数量[{1}]超过请购单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherWWQtySum, orderQtySum));
+                    MessageHandler.ShowMessageBox(string.Format("入库单中明细[{0}]的数量[{1}]超过采购订单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherWWQtySum, orderQtySum));
                     return false;
                 }
             }
@@ -395,7 +408,7 @@ namespace PSAP.DAO.INVDAO
                         cmd.CommandText = string.Format("Delete from INV_WarehouseWarrantHead where WarehouseWarrant in ({0})", wwHeadNoListStr);
                         cmd.ExecuteNonQuery();
 
-                        //Set_PrReqHead_End(cmd, tmpTable);
+                        Set_OrderHead_End(cmd, tmpTable);
 
                         trans.Commit();
                         return true;
@@ -409,6 +422,29 @@ namespace PSAP.DAO.INVDAO
                     {
                         conn.Close();
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 设定采购单完结标志
+        /// </summary>
+        public void Set_OrderHead_End(SqlCommand cmd, DataTable orderListTable)
+        {
+            string orderHeadNoStr = "";
+            IEnumerable<IGrouping<string, DataRow>> result = orderListTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["OrderHeadNo"].ToString());//按OrderHeadNo分组
+            foreach (IGrouping<string, DataRow> ig in result)
+            {
+                if (ig.Key != "")
+                {
+                    orderHeadNoStr = ig.Key;
+                    cmd.CommandText = string.Format("select Count(*) from V_PUR_OrderList_WarehouseWarrent where OrderHeadNo = '{0}' and Qty>WarehouseWarrentCount", orderHeadNoStr);
+                    int count = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+                    int isEnd = 0;
+                    if (count == 0)
+                        isEnd = 1;
+                    cmd.CommandText = string.Format("Update PUR_OrderHead set IsEnd={1} where OrderHeadNo='{0}'", orderHeadNoStr, isEnd);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -467,7 +503,7 @@ namespace PSAP.DAO.INVDAO
                                     return false;
                                 }
 
-                                //Set_PrReqHead_End(cmd, orderListTable);
+                                Set_OrderHead_End(cmd, orderListTable);
 
                                 string approvalTypeStr = DataTypeConvert.GetString(tmpTable.Rows[0]["ApprovalType"]);
                                 cmd.CommandText = string.Format("select * from F_WarehouseWarrantNoApprovalList('{0}','{1}') Order by AppSequence", wwHeadNoStr, approvalTypeStr);
@@ -536,7 +572,7 @@ namespace PSAP.DAO.INVDAO
         }
 
         /// <summary>
-        /// 取消审批选中的多条采购订单
+        /// 取消审批选中的多条入库单
         /// </summary>
         public bool CancalWWApprovalInfo_Multi(DataTable wwHeadTable)
         {
@@ -580,7 +616,7 @@ namespace PSAP.DAO.INVDAO
                             //    return false;
                             //}
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -601,7 +637,199 @@ namespace PSAP.DAO.INVDAO
             }
         }
 
+        /// <summary>
+        /// 打印处理
+        /// </summary>
+        /// <param name="wwHeadNoStr">入库单号</param>
+        /// <param name="handleTypeInt">打印处理类型：1 预览 2 打印 3 设计</param>
+        public void PrintHandle(string wwHeadNoStr, int handleTypeInt)
+        {
+            DataSet ds = new DataSet();
+            DataTable headTable = DAO.BSDAO.BaseSQL.GetTableBySql(string.Format("select * from V_Prn_INV_WarehouseWarrantHead where WarehouseWarrant = '{0}' order by AutoId", wwHeadNoStr));
+            headTable.TableName = "WarehouseWarrantHead";
+            for (int i = 0; i < headTable.Columns.Count; i++)
+            {
+                #region 设定主表显示的标题
 
+                switch (headTable.Columns[i].ColumnName)
+                {
+                    case "WarehouseWarrant":
+                        headTable.Columns[i].Caption = "入库单号";
+                        break;
+                    case "WarehouseWarrantDate":
+                        headTable.Columns[i].Caption = "入库日期";
+                        break;
+                    case "BussinessBaseNo":
+                        headTable.Columns[i].Caption = "供应商编号";
+                        break;
+                    case "BussinessBaseText":
+                        headTable.Columns[i].Caption = "供应商名称";
+                        break;
+                    case "BussAddress":
+                        headTable.Columns[i].Caption = "供应商公司地址";
+                        break;
+                    case "BussPhoneNo":
+                        headTable.Columns[i].Caption = "供应商电话";
+                        break;
+                    case "BussFaxNo":
+                        headTable.Columns[i].Caption = "供应商传真";
+                        break;
+                    case "BussContact":
+                        headTable.Columns[i].Caption = "供应商联系人";
+                        break;
+                    case "RepertoryNo":
+                        headTable.Columns[i].Caption = "入库仓库编号";
+                        break;
+                    case "RepertoryName":
+                        headTable.Columns[i].Caption = "入库仓库名称";
+                        break;
+                    case "WarehouseWarrantTypeNo":
+                        headTable.Columns[i].Caption = "入库类别编号";
+                        break;
+                    case "WarehouseWarrantTypeName":
+                        headTable.Columns[i].Caption = "入库类别名称";
+                        break;
+                    case "Prepared":
+                        headTable.Columns[i].Caption = "制单人";
+                        break;
+                    case "PreparedIp":
+                        headTable.Columns[i].Caption = "制单人IP";
+                        break;
+                    case "Remark":
+                        headTable.Columns[i].Caption = "备注";
+                        break;
+                    case "ApprovalTypeNo":
+                        headTable.Columns[i].Caption = "审批类型编码";
+                        break;
+                    case "ApprovalTypeNoText":
+                        headTable.Columns[i].Caption = "审批类型名称";
+                        break;
+                    case "Modifier":
+                        headTable.Columns[i].Caption = "修改人";
+                        break;
+                    case "ModifierIp":
+                        headTable.Columns[i].Caption = "修改人IP";
+                        break;
+                    case "ModifierTime":
+                        headTable.Columns[i].Caption = "修改时间";
+                        break;
+                    case "WarehouseState":
+                        headTable.Columns[i].Caption = "单据状态";
+                        break;
+                    case "WarehouseStateDesc":
+                        headTable.Columns[i].Caption = "单据状态描述";
+                        break;
+                    case "DepartmentNo":
+                        headTable.Columns[i].Caption = "部门编号";
+                        break;
+                    case "DepartmentName":
+                        headTable.Columns[i].Caption = "部门名称";
+                        break;                    
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(headTable);
+
+            DataTable listTable = BaseSQL.GetTableBySql(string.Format("select *, ROW_NUMBER() over (order by AutoId) as RowNum from V_Prn_INV_WarehouseWarrantList where WarehouseWarrant = '{0}' order by AutoId", wwHeadNoStr));
+            listTable.TableName = "WarehouseWarrantList";
+            for (int i = 0; i < listTable.Columns.Count; i++)
+            {
+                #region 设定子表显示的标题
+
+                switch (listTable.Columns[i].ColumnName)
+                {
+                    case "RowNum":
+                        listTable.Columns[i].Caption = "行号";
+                        break;
+                    case "WarehouseWarrant":
+                        listTable.Columns[i].Caption = "入库单号";
+                        break;
+                    case "CodeNo":
+                        listTable.Columns[i].Caption = "物料编号";
+                        break;
+                    case "CodeFileName":
+                        listTable.Columns[i].Caption = "文件名称";
+                        break;
+                    case "CodeName":
+                        listTable.Columns[i].Caption = "零件名称";
+                        break;
+                    case "CatgName":
+                        listTable.Columns[i].Caption = "分类名称";
+                        break;
+                    case "CatgDescription":
+                        listTable.Columns[i].Caption = "分类说明";
+                        break;
+                    case "CodeSpec":
+                        listTable.Columns[i].Caption = "规格型号";
+                        break;
+                    case "CodeWeight":
+                        listTable.Columns[i].Caption = "重量";
+                        break;
+                    case "MaterialVersion":
+                        listTable.Columns[i].Caption = "物料版本";
+                        break;
+                    case "LibName":
+                        listTable.Columns[i].Caption = "Level 1";
+                        break;
+                    case "MaterialCategory":
+                        listTable.Columns[i].Caption = "Level 2";
+                        break;
+                    case "MaterialName":
+                        listTable.Columns[i].Caption = "Level 3";
+                        break;
+                    case "Brand":
+                        listTable.Columns[i].Caption = "品牌";
+                        break;
+                    case "FinishCatg":
+                        listTable.Columns[i].Caption = "表面处理";
+                        break;
+                    case "LevelCatg":
+                        listTable.Columns[i].Caption = "加工等级";
+                        break;
+                    case "Unit":
+                        listTable.Columns[i].Caption = "单位";
+                        break;
+                    case "Qty":
+                        listTable.Columns[i].Caption = "入库数量";
+                        break;
+                    case "ProjectNo":
+                        listTable.Columns[i].Caption = "项目号";
+                        break;
+                    case "ProjectName":
+                        listTable.Columns[i].Caption = "项目名称";
+                        break;
+                    case "StnNo":
+                        listTable.Columns[i].Caption = "站号";
+                        break;
+                    case "Remark":
+                        listTable.Columns[i].Caption = "备注";
+                        break;
+                    case "OrderHeadNo":
+                        listTable.Columns[i].Caption = "采购单号";
+                        break;
+                    case "Price":
+                        listTable.Columns[i].Caption = "单价";
+                        break;
+                    case "ShelfId":
+                        listTable.Columns[i].Caption = "货架ID";
+                        break;
+                    case "ShelfNo":
+                        listTable.Columns[i].Caption = "货架号";
+                        break;
+                    case "ShelfLocation":
+                        listTable.Columns[i].Caption = "货架位置";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(listTable);
+
+            List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
+
+            ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "INV_WarehouseWarrantHead", ds, paralist, handleTypeInt);
+        }
 
     }
 }

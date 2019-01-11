@@ -46,8 +46,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dateWWDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateWWDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateWWDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateWWDateEnd.DateTime = nowDate.Date;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
@@ -152,11 +153,11 @@ namespace PSAP.VIEW.BSVIEW
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
-                string repertoryNoStr = lookUpRepertoryNo.ItemIndex > 0 ? lookUpRepertoryNo.EditValue.ToString() : "";
-                string wwTypeNoStr = lookUpWarehouseWarrantTypeNo.ItemIndex > 0 ? lookUpWarehouseWarrantTypeNo.EditValue.ToString() : "";
+                string repertoryNoStr = lookUpRepertoryNo.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpRepertoryNo.EditValue) : "";
+                string wwTypeNoStr = lookUpWarehouseWarrantTypeNo.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpWarehouseWarrantTypeNo.EditValue) : "";
                 
                 int warehouseStateInt = comboBoxWarehouseState.SelectedIndex > 0 ? comboBoxWarehouseState.SelectedIndex : 0;
-                string empNameStr = lookUpPrepared.ItemIndex > 0 ? lookUpPrepared.EditValue.ToString() : "";
+                string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 int approverInt = -1;
                 if (lookUpApprover.ItemIndex == 0)
                     approverInt = 0;
@@ -194,8 +195,6 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        DataRowState s = gridViewWWHead.GetDataRow(headFocusedLineNo).RowState;
-
                         if (headFocusedLineNo < gridViewWWHead.DataRowCount && gridViewWWHead.FocusedRowHandle != headFocusedLineNo && gridViewWWHead.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
                         {
                             MessageHandler.ShowMessageBox("当前入库单已经修改，请保存后再进行换行。");
@@ -307,7 +306,7 @@ namespace PSAP.VIEW.BSVIEW
                 else
                 {
                     DataRow headRow = gridViewWWHead.GetFocusedDataRow();
-                    if(DataTypeConvert.GetString(headRow["ReqDep"])=="")
+                    if (DataTypeConvert.GetString(headRow["ReqDep"]) == "")
                     {
                         MessageHandler.ShowMessageBox("入库部门不能为空，请填写后再进行保存。");
                         FocusedHeadView("ReqDep");
@@ -344,7 +343,7 @@ namespace PSAP.VIEW.BSVIEW
                         if (DataTypeConvert.GetString(listRow["Qty"]) == "" || DataTypeConvert.GetDouble(listRow["Qty"]) == 0)
                         {
                             MessageHandler.ShowMessageBox("数量不能为空，请填写后再进行保存。");
-                            FocusedListView(true, "Qty");
+                            FocusedListView(true, "Qty",i);
                             return;
                         }
                     }
@@ -521,7 +520,17 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnPreview_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string wwHeadNoStr = "";
+                if (gridViewWWHead.GetFocusedDataRow() != null)
+                    wwHeadNoStr = DataTypeConvert.GetString(gridViewWWHead.GetFocusedDataRow()["WarehouseWarrant"]);
+                wwDAO.PrintHandle(wwHeadNoStr, 1);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--打印预览操作错误。", ex);
+            }
         }
 
         /// <summary>
@@ -649,7 +658,7 @@ namespace PSAP.VIEW.BSVIEW
             btnCancelApprove.Enabled = !ret;
             btnPreview.Enabled = !ret;
 
-            if (SystemInfo.WWarehouseWarrantIsAlterDate)
+            if (SystemInfo.WarehouseWarrantIsAlterDate)
             {
                 colWarehouseWarrantDate.OptionsColumn.AllowEdit = ret;
                 colWarehouseWarrantDate.OptionsColumn.AllowFocus = ret;
@@ -666,6 +675,19 @@ namespace PSAP.VIEW.BSVIEW
             repbtnDelete.Buttons[0].Enabled = ret;
             repCheckSelect.ReadOnly = ret;
             checkAll.ReadOnly = ret;
+
+            if (this.Controls.ContainsKey("lblEditFlag"))
+            {
+                //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+                if (ret)
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+                }
+                else
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "";
+                }
+            }
         }
 
         /// <summary>
@@ -755,13 +777,13 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 聚焦子表当前行的列
         /// </summary>
-        private void FocusedListView(bool isFocusedControl, string colName)
+        private void FocusedListView(bool isFocusedControl, string colName, int lineNo)
         {
             if (isFocusedControl)
                 gridControlWWList.Focus();
             ColumnView listView = (ColumnView)gridControlWWList.FocusedView;
             listView.FocusedColumn = listView.Columns[colName];
-            gridViewWWList.FocusedRowHandle = listView.FocusedRowHandle;
+            gridViewWWList.FocusedRowHandle = lineNo;
         }
 
         /// <summary>
@@ -812,7 +834,7 @@ namespace PSAP.VIEW.BSVIEW
                     gridViewWWList.SetFocusedRowCellValue("OrderHeadNo", orderHeadRow["OrderHeadNo"]);
                 }
             }
-            FocusedListView(false, "Qty");
+            FocusedListView(false, "Qty", gridViewWWList.GetFocusedDataSourceRowIndex());
             gridViewWWList.RefreshData();
 
             SetButtonAndColumnState(true);

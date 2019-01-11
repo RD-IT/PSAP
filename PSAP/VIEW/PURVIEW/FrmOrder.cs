@@ -15,7 +15,6 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmOrder : DockContent
     {
-        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
@@ -51,15 +50,16 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dateOrderDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateOrderDateEnd.DateTime = DateTime.Now.Date;
-                datePlanDateBegin.DateTime = DateTime.Now.Date;
-                datePlanDateEnd.DateTime = DateTime.Now.Date.AddDays(7);
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateOrderDateEnd.DateTime = nowDate.Date;
+                datePlanDateBegin.DateTime = nowDate.Date;
+                datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 checkPlanDate.Checked = false;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
@@ -70,7 +70,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.ItemIndex = -1;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
@@ -328,7 +328,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_Order.Tables[1].Clear();
                 gridViewOrderList.AddNewRow();
-                FocusedListView(false, "CodeFileName");
+                FocusedListView(false, "CodeFileName", gridViewOrderList.GetFocusedDataSourceRowIndex());
                 gridViewOrderList.RefreshData();
 
                 SetButtonAndColumnState(true);
@@ -431,13 +431,13 @@ namespace PSAP.VIEW.BSVIEW
                         if (DataTypeConvert.GetString(listRow["Qty"]) == "")
                         {
                             MessageHandler.ShowMessageBox("数量不能为空，请填写后再进行保存。");
-                            FocusedListView(true, "Qty");
+                            FocusedListView(true, "Qty",i);
                             return;
                         }
                         if (DataTypeConvert.GetString(listRow["Unit"]) == "")
                         {
                             MessageHandler.ShowMessageBox("单价不能为空，请填写后再进行保存。");
-                            FocusedListView(true, "Unit");
+                            FocusedListView(true, "Unit",i);
                             return;
                         }
                     }
@@ -701,10 +701,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                string orderHeadNoString = "";
+                string orderHeadNoStr = "";
                 if (gridViewOrderHead.GetFocusedDataRow() != null)
-                    orderHeadNoString = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]);
-                orderDAO.PrintHandle(orderHeadNoString, 1);
+                    orderHeadNoStr = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]);
+                orderDAO.PrintHandle(orderHeadNoStr, 1);
             }
             catch (Exception ex)
             {
@@ -719,10 +719,10 @@ namespace PSAP.VIEW.BSVIEW
         //{
         //    try
         //    {
-        //        string orderHeadNoString = "";
+        //        string orderHeadNoStr = "";
         //        if (gridViewOrderHead.GetFocusedDataRow() != null)
-        //            orderHeadNoString = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]);
-        //        orderDAO.PrintHandle(orderHeadNoString, 3);
+        //            orderHeadNoStr = DataTypeConvert.GetString(gridViewOrderHead.GetFocusedDataRow()["OrderHeadNo"]);
+        //        orderDAO.PrintHandle(orderHeadNoStr, 3);
         //    }
         //    catch (Exception ex)
         //    {
@@ -772,13 +772,14 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                gridViewOrderHead.SetFocusedRowCellValue("OrderHeadDate", DateTime.Now);
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                gridViewOrderHead.SetFocusedRowCellValue("OrderHeadDate", nowDate);
                 gridViewOrderHead.SetFocusedRowCellValue("ReqDep", SystemInfo.user.DepartmentNo);
                 gridViewOrderHead.SetFocusedRowCellValue("PurCategory", DataTypeConvert.GetString(((DataTable)lookUpPurCategory.Properties.DataSource).Rows[1]["PurCategory"]));
                 gridViewOrderHead.SetFocusedRowCellValue("ReqState", 1);
                 gridViewOrderHead.SetFocusedRowCellValue("Prepared", SystemInfo.user.EmpName);
                 gridViewOrderHead.SetFocusedRowCellValue("Tax", SystemInfo.OrderList_DefaultTax);
-                gridViewOrderHead.SetFocusedRowCellValue("PlanDate", DateTime.Now.Date.AddDays(7));
+                gridViewOrderHead.SetFocusedRowCellValue("PlanDate", nowDate.Date.AddDays(7));
             }
             catch (Exception ex)
             {
@@ -823,7 +824,7 @@ namespace PSAP.VIEW.BSVIEW
                     else if (gridViewOrderList.FocusedColumn.Name == "colRemark")
                     {
                         gridViewOrderList.FocusedRowHandle = gridViewOrderList.FocusedRowHandle + 1;
-                        FocusedListView(true, "CodeFileName");
+                        FocusedListView(true, "CodeFileName", gridViewOrderList.GetFocusedDataSourceRowIndex());
                     }
                 }
             }
@@ -965,8 +966,8 @@ namespace PSAP.VIEW.BSVIEW
 
             //gridViewPrReqList.PostEditor();
             gridViewOrderList.AddNewRow();
-            FocusedListView(true, "CodeFileName");
-            gridViewOrderList.RefreshData();
+            FocusedListView(true, "CodeFileName", gridViewOrderList.GetFocusedDataSourceRowIndex());
+            //gridViewOrderList.RefreshData();
         }
 
         /// <summary>
@@ -1019,6 +1020,19 @@ namespace PSAP.VIEW.BSVIEW
             repbtnDelete.Buttons[0].Enabled = ret;
             repCheckSelect.ReadOnly = ret;
             checkAll.ReadOnly = ret;
+
+            if (this.Controls.ContainsKey("lblEditFlag"))
+            {
+                //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+                if (ret)
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+                }
+                else
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "";
+                }
+            }
         }
 
         /// <summary>
@@ -1108,13 +1122,13 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 聚焦子表当前行的列
         /// </summary>
-        private void FocusedListView(bool isFocusedControl, string colName)
+        private void FocusedListView(bool isFocusedControl, string colName, int lineNo)
         {
             if (isFocusedControl)
                 gridControlOrderList.Focus();
             ColumnView listView = (ColumnView)gridControlOrderList.FocusedView;
             listView.FocusedColumn = listView.Columns[colName];
-            gridViewOrderList.FocusedRowHandle = listView.FocusedRowHandle;
+            gridViewOrderList.FocusedRowHandle = lineNo;
         }
 
         /// <summary>
@@ -1177,7 +1191,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
             }
             gridViewOrderList.RefreshData();
-            FocusedListView(false, "Unit");
+            FocusedListView(false, "Unit", gridViewOrderList.GetFocusedDataSourceRowIndex());
 
             SetButtonAndColumnState(true);
             headFocusedLineNo = gridViewOrderHead.DataRowCount;

@@ -16,7 +16,6 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmOrderApply : DockContent
     {
-        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmOrderApplyDAO orderApplyDAO = new FrmOrderApplyDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
@@ -32,13 +31,14 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dateOrderDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateOrderDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateOrderDateEnd.DateTime = nowDate.Date;
                 checkOrderDate.Checked = false;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.ItemIndex = 0;
@@ -48,7 +48,7 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpBussinessBaseNo.Text = "全部";
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
             }
             catch (Exception ex)

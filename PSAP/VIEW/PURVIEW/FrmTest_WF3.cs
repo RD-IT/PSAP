@@ -32,7 +32,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void FrmTest_WF3_Shown(object sender, EventArgs e)
         {
-            panelControl1.Width = this.Width / 2;
+            dockPanel1.Width = this.Width / 2;
         }
 
         private void FrmTest_WF3_Load(object sender, EventArgs e)

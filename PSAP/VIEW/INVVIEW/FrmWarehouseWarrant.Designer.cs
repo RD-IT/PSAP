@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
+            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxWarehouseState = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
             this.lookUpWarehouseWarrantTypeNo = new DevExpress.XtraEditors.LookUpEdit();
@@ -144,11 +146,10 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnOrderApply = new DevExpress.XtraEditors.SimpleButton();
-            this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxWarehouseState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpWarehouseWarrantTypeNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpRepertoryNo.Properties)).BeginInit();
@@ -190,37 +191,60 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpApprovalType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleTop)).BeginInit();
             this.pnlMiddleTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
             // 
             this.pnltop.Controls.Add(this.lookUpReqDep);
-            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.comboBoxWarehouseState);
-            this.pnltop.Controls.Add(this.labWarehouseState);
             this.pnltop.Controls.Add(this.lookUpWarehouseWarrantTypeNo);
-            this.pnltop.Controls.Add(this.labWarehouseWarrantTypeNo);
             this.pnltop.Controls.Add(this.lookUpRepertoryNo);
-            this.pnltop.Controls.Add(this.labRepertoryNo);
-            this.pnltop.Controls.Add(this.labApprover);
             this.pnltop.Controls.Add(this.btnQuery);
             this.pnltop.Controls.Add(this.lookUpApprover);
             this.pnltop.Controls.Add(this.textCommon);
-            this.pnltop.Controls.Add(this.labCommon);
-            this.pnltop.Controls.Add(this.labPrepared);
             this.pnltop.Controls.Add(this.lookUpPrepared);
             this.pnltop.Controls.Add(this.searchLookUpBussinessBaseNo);
-            this.pnltop.Controls.Add(this.labBussinessBaseNo);
             this.pnltop.Controls.Add(this.dateWWDateEnd);
+            this.pnltop.Controls.Add(this.dateWWDateBegin);
+            this.pnltop.Controls.Add(this.labReqDep);
+            this.pnltop.Controls.Add(this.labWarehouseState);
+            this.pnltop.Controls.Add(this.labWarehouseWarrantTypeNo);
+            this.pnltop.Controls.Add(this.labRepertoryNo);
+            this.pnltop.Controls.Add(this.labApprover);
+            this.pnltop.Controls.Add(this.labCommon);
+            this.pnltop.Controls.Add(this.labPrepared);
+            this.pnltop.Controls.Add(this.labBussinessBaseNo);
             this.pnltop.Controls.Add(this.lab1);
             this.pnltop.Controls.Add(this.labWWDate);
-            this.pnltop.Controls.Add(this.dateWWDateBegin);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(1299, 78);
             this.pnltop.TabIndex = 0;
+            // 
+            // lookUpReqDep
+            // 
+            this.lookUpReqDep.EnterMoveNextControl = true;
+            this.lookUpReqDep.Location = new System.Drawing.Point(913, 14);
+            this.lookUpReqDep.Name = "lookUpReqDep";
+            this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpReqDep.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentNo", "部门编号", 95, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "部门名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
+            this.lookUpReqDep.Properties.NullText = "";
+            this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
+            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.TabIndex = 5;
+            // 
+            // labReqDep
+            // 
+            this.labReqDep.Location = new System.Drawing.Point(847, 17);
+            this.labReqDep.Name = "labReqDep";
+            this.labReqDep.Size = new System.Drawing.Size(60, 14);
+            this.labReqDep.TabIndex = 32;
+            this.labReqDep.Text = "入库部门：";
             // 
             // comboBoxWarehouseState
             // 
@@ -233,7 +257,8 @@
             "全部",
             "待审批",
             "审批",
-            "已结账"});
+            "已结账",
+            "审批中"});
             this.comboBoxWarehouseState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
             // 
@@ -1388,30 +1413,6 @@
             this.btnOrderApply.Text = "订单适用";
             this.btnOrderApply.Click += new System.EventHandler(this.btnOrderApply_Click);
             // 
-            // lookUpReqDep
-            // 
-            this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(913, 14);
-            this.lookUpReqDep.Name = "lookUpReqDep";
-            this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpReqDep.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentNo", "部门编号", 95, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "部门名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
-            this.lookUpReqDep.Properties.NullText = "";
-            this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
-            this.lookUpReqDep.TabIndex = 5;
-            // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(847, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 32;
-            this.labReqDep.Text = "入库部门：";
-            // 
             // splitterControl1
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
@@ -1439,6 +1440,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxWarehouseState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpWarehouseWarrantTypeNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpRepertoryNo.Properties)).EndInit();
@@ -1480,7 +1482,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpApprovalType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddleTop)).EndInit();
             this.pnlMiddleTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

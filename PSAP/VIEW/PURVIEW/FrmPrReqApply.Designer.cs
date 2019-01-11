@@ -188,22 +188,22 @@
             // pnlTop
             // 
             this.pnlTop.Controls.Add(this.searchLookUpProjectNo);
-            this.pnlTop.Controls.Add(this.labProjectNo);
             this.pnlTop.Controls.Add(this.checkReqDate);
             this.pnlTop.Controls.Add(this.textCommon);
-            this.pnlTop.Controls.Add(this.labCommon);
-            this.pnlTop.Controls.Add(this.labApplicant);
             this.pnlTop.Controls.Add(this.lookUpApplicant);
             this.pnlTop.Controls.Add(this.lookUpPurCategory);
-            this.pnlTop.Controls.Add(this.labPurCategory);
             this.pnlTop.Controls.Add(this.lookUpReqDep);
-            this.pnlTop.Controls.Add(this.labReqDep);
             this.pnlTop.Controls.Add(this.dateReqDateEnd);
-            this.pnlTop.Controls.Add(this.lab);
-            this.pnlTop.Controls.Add(this.labReqDate);
             this.pnlTop.Controls.Add(this.dateReqDateBegin);
             this.pnlTop.Controls.Add(this.btnQuery);
             this.pnlTop.Controls.Add(this.textPrReqNo);
+            this.pnlTop.Controls.Add(this.labProjectNo);
+            this.pnlTop.Controls.Add(this.labCommon);
+            this.pnlTop.Controls.Add(this.labApplicant);
+            this.pnlTop.Controls.Add(this.labPurCategory);
+            this.pnlTop.Controls.Add(this.labReqDep);
+            this.pnlTop.Controls.Add(this.lab);
+            this.pnlTop.Controls.Add(this.labReqDate);
             this.pnlTop.Controls.Add(this.labPrReqNo);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);

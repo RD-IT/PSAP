@@ -236,7 +236,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询入库单信息
         /// </summary>
-        public void QueryWarehouseHead(DataTable queryDataTable, string wwHeadNoStr)
+        public void QueryWarehouseWarrantHead(DataTable queryDataTable, string wwHeadNoStr)
         {
             string sqlStr = string.Format("select INV_WarehouseWarrantHead.*, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat from INV_WarehouseWarrantHead left join PUR_ApprovalType on INV_WarehouseWarrantHead.ApprovalType = PUR_ApprovalType.TypeNo where WarehouseWarrant = '{0}'", wwHeadNoStr);
             BaseSQL.Query(sqlStr, queryDataTable);
@@ -245,11 +245,46 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询入库单审批信息记录
         /// </summary>
-        public void QueryWarehouseApprovalInfo(DataTable queryDataTable,string wwHeadNoStr, string typeNoStr)
+        public void QueryWarehouseWarrantApprovalInfo(DataTable queryDataTable,string wwHeadNoStr, string typeNoStr)
         {
             string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.WarehouseWarrant , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join INV_WarehouseApprovalInfo as info on list.Approver = info.Approver and info.WarehouseWarrant = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, wwHeadNoStr);
             BaseSQL.Query(sqlStr, queryDataTable);
+        }
 
+        /// <summary>
+        /// 查询出库单信息
+        /// </summary>
+        public void QueryWarehouseReceiptHead(DataTable queryDataTable,string wrHeadNoStr)
+        {
+            string sqlStr = string.Format("select INV_WarehouseReceiptHead.*, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat from INV_WarehouseReceiptHead left join PUR_ApprovalType on INV_WarehouseReceiptHead.ApprovalType = PUR_ApprovalType.TypeNo where WarehouseReceipt = '{0}'", wrHeadNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询出库单审批信息记录
+        /// </summary>
+        public void QueryWarehouseReceiptApprovalInfo(DataTable queryDataTable, string wrHeadNoStr, string typeNoStr)
+        {
+            string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.WarehouseReceipt , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join INV_WarehouseReceiptApprovalInfo as info on list.Approver = info.Approver and info.WarehouseReceipt = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, wrHeadNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询采购国内结账信息
+        /// </summary>
+        public void QuerySettlementHead(DataTable queryDataTable,string settlementNoStr)
+        {
+            string sqlStr = string.Format("select PUR_SettlementHead.*, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat from PUR_SettlementHead left join PUR_ApprovalType on PUR_SettlementHead.ApprovalType = PUR_ApprovalType.TypeNo where SettlementNo = '{0}'", settlementNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询采购国内结账审批信息记录
+        /// </summary>
+        public void QuerySettlementApprovalInfo(DataTable queryDataTable, string settlementNoStr, string typeNoStr)
+        {
+            string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.SettlementNo , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join PUR_SettlementApprovalInfo as info on list.Approver = info.Approver and info.SettlementNo = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, settlementNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
         }
     }
 }

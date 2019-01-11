@@ -33,16 +33,16 @@
             this.labWarehouseReceiptTypeName = new DevExpress.XtraEditors.LabelControl();
             this.labWarehouseReceiptTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.textWarehouseReceiptTypeName = new DevExpress.XtraEditors.TextEdit();
-            this.textWarehouseReceiptTypeNo = new DevExpress.XtraEditors.TextEdit();
-            this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
-            this.btnSetDefault = new DevExpress.XtraEditors.SimpleButton();
+            this.bSWarehouseReceiptType = new System.Windows.Forms.BindingSource(this.components);
             this.dSWarehouseReceiptType = new System.Data.DataSet();
             this.TableWarehouseReceiptType = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColWarehouseReceiptTypeNo = new System.Data.DataColumn();
             this.dataColWarehouseReceiptTypeName = new System.Data.DataColumn();
             this.dataColIsDefault = new System.Data.DataColumn();
-            this.bSWarehouseReceiptType = new System.Windows.Forms.BindingSource(this.components);
+            this.textWarehouseReceiptTypeNo = new DevExpress.XtraEditors.TextEdit();
+            this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
+            this.btnSetDefault = new DevExpress.XtraEditors.SimpleButton();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlWarehouseReceiptType = new DevExpress.XtraGrid.GridControl();
             this.gridViewWarehouseReceiptType = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -53,12 +53,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseReceiptTypeName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSWarehouseReceiptType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSWarehouseReceiptType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseReceiptType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseReceiptTypeNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dSWarehouseReceiptType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseReceiptType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSWarehouseReceiptType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).BeginInit();
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWarehouseReceiptType)).BeginInit();
@@ -67,10 +67,10 @@
             // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.labWarehouseReceiptTypeName);
-            this.pnlEdit.Controls.Add(this.labWarehouseReceiptTypeNo);
             this.pnlEdit.Controls.Add(this.textWarehouseReceiptTypeName);
             this.pnlEdit.Controls.Add(this.textWarehouseReceiptTypeNo);
+            this.pnlEdit.Controls.Add(this.labWarehouseReceiptTypeName);
+            this.pnlEdit.Controls.Add(this.labWarehouseReceiptTypeNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
@@ -79,7 +79,7 @@
             // 
             // labWarehouseReceiptTypeName
             // 
-            this.labWarehouseReceiptTypeName.Location = new System.Drawing.Point(266, 24);
+            this.labWarehouseReceiptTypeName.Location = new System.Drawing.Point(291, 24);
             this.labWarehouseReceiptTypeName.Name = "labWarehouseReceiptTypeName";
             this.labWarehouseReceiptTypeName.Size = new System.Drawing.Size(72, 14);
             this.labWarehouseReceiptTypeName.TabIndex = 15;
@@ -96,39 +96,15 @@
             // textWarehouseReceiptTypeName
             // 
             this.textWarehouseReceiptTypeName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseReceiptType, "WarehouseReceiptTypeName", true));
-            this.textWarehouseReceiptTypeName.Location = new System.Drawing.Point(353, 21);
+            this.textWarehouseReceiptTypeName.Location = new System.Drawing.Point(389, 21);
             this.textWarehouseReceiptTypeName.Name = "textWarehouseReceiptTypeName";
             this.textWarehouseReceiptTypeName.Size = new System.Drawing.Size(120, 20);
             this.textWarehouseReceiptTypeName.TabIndex = 1;
             // 
-            // textWarehouseReceiptTypeNo
+            // bSWarehouseReceiptType
             // 
-            this.textWarehouseReceiptTypeNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseReceiptType, "WarehouseReceiptTypeNo", true));
-            this.textWarehouseReceiptTypeNo.EnterMoveNextControl = true;
-            this.textWarehouseReceiptTypeNo.Location = new System.Drawing.Point(123, 21);
-            this.textWarehouseReceiptTypeNo.Name = "textWarehouseReceiptTypeNo";
-            this.textWarehouseReceiptTypeNo.Size = new System.Drawing.Size(120, 20);
-            this.textWarehouseReceiptTypeNo.TabIndex = 0;
-            // 
-            // pnlToolBar
-            // 
-            this.pnlToolBar.Controls.Add(this.btnSetDefault);
-            this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
-            this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(784, 40);
-            this.pnlToolBar.TabIndex = 8;
-            // 
-            // btnSetDefault
-            // 
-            this.btnSetDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetDefault.Location = new System.Drawing.Point(700, 9);
-            this.btnSetDefault.Name = "btnSetDefault";
-            this.btnSetDefault.Size = new System.Drawing.Size(75, 23);
-            this.btnSetDefault.TabIndex = 17;
-            this.btnSetDefault.TabStop = false;
-            this.btnSetDefault.Text = "设为默认";
-            this.btnSetDefault.Click += new System.EventHandler(this.btnSetDefault_Click);
+            this.bSWarehouseReceiptType.DataMember = "WarehouseReceiptType";
+            this.bSWarehouseReceiptType.DataSource = this.dSWarehouseReceiptType;
             // 
             // dSWarehouseReceiptType
             // 
@@ -167,10 +143,34 @@
             this.dataColIsDefault.ColumnName = "IsDefault";
             this.dataColIsDefault.DataType = typeof(bool);
             // 
-            // bSWarehouseReceiptType
+            // textWarehouseReceiptTypeNo
             // 
-            this.bSWarehouseReceiptType.DataMember = "WarehouseReceiptType";
-            this.bSWarehouseReceiptType.DataSource = this.dSWarehouseReceiptType;
+            this.textWarehouseReceiptTypeNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseReceiptType, "WarehouseReceiptTypeNo", true));
+            this.textWarehouseReceiptTypeNo.EnterMoveNextControl = true;
+            this.textWarehouseReceiptTypeNo.Location = new System.Drawing.Point(131, 21);
+            this.textWarehouseReceiptTypeNo.Name = "textWarehouseReceiptTypeNo";
+            this.textWarehouseReceiptTypeNo.Size = new System.Drawing.Size(120, 20);
+            this.textWarehouseReceiptTypeNo.TabIndex = 0;
+            // 
+            // pnlToolBar
+            // 
+            this.pnlToolBar.Controls.Add(this.btnSetDefault);
+            this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
+            this.pnlToolBar.Name = "pnlToolBar";
+            this.pnlToolBar.Size = new System.Drawing.Size(784, 40);
+            this.pnlToolBar.TabIndex = 8;
+            // 
+            // btnSetDefault
+            // 
+            this.btnSetDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetDefault.Location = new System.Drawing.Point(700, 9);
+            this.btnSetDefault.Name = "btnSetDefault";
+            this.btnSetDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnSetDefault.TabIndex = 17;
+            this.btnSetDefault.TabStop = false;
+            this.btnSetDefault.Text = "设为默认";
+            this.btnSetDefault.Click += new System.EventHandler(this.btnSetDefault_Click);
             // 
             // pnlGrid
             // 
@@ -264,12 +264,12 @@
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseReceiptTypeName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSWarehouseReceiptType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSWarehouseReceiptType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseReceiptType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseReceiptTypeNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
             this.pnlToolBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dSWarehouseReceiptType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseReceiptType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSWarehouseReceiptType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).EndInit();
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWarehouseReceiptType)).EndInit();

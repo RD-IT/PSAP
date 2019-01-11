@@ -15,7 +15,6 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmOrderQuery : DockContent
     {
-        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
@@ -33,7 +32,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
@@ -42,16 +41,17 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpBussinessBaseNo.Text = "全部";
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
                 repLookUpPayTypeNo.DataSource = commonDAO.QueryPayType(false);
 
-                dateOrderDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateOrderDateEnd.DateTime = DateTime.Now.Date;
-                datePlanDateBegin.DateTime = DateTime.Now.Date;
-                datePlanDateEnd.DateTime = DateTime.Now.Date.AddDays(7);
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateOrderDateEnd.DateTime = nowDate.Date;
+                datePlanDateBegin.DateTime = nowDate.Date;
+                datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 checkPlanDate.Checked = false;
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
@@ -164,9 +164,9 @@ namespace PSAP.VIEW.BSVIEW
                 if (e.Clicks == 2)
                 {
                     string orderHeadNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]);
-                    FrmOrder.queryOrderHeadNo = orderHeadNoStr;
-                    FrmOrder.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmOrder");
+                    FrmOrder_Drag.queryOrderHeadNo = orderHeadNoStr;
+                    FrmOrder_Drag.queryListAutoId = 0;
+                    ViewHandler.ShowRightWindow("FrmOrder_Drag");
                 }
             }
             catch (Exception ex)

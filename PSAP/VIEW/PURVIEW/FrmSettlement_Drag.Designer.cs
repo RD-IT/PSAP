@@ -1,6 +1,6 @@
-﻿namespace PSAP.VIEW.BSVIEW
+﻿namespace PSAP.VIEW.PURVIEW
 {
-    partial class FrmWarehouseReceipt
+    partial class FrmSettlement_Drag
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // FrmWarehouseReceipt
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "FrmWarehouseReceipt";
-            this.TabText = "FrmWarehouseReceipt";
-            this.Text = "FrmWarehouseReceipt";
-            this.ResumeLayout(false);
-
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Text = "FrmSettlement_Drag";
         }
 
         #endregion

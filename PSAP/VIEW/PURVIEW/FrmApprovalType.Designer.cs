@@ -134,12 +134,12 @@
             // pnlEdit
             // 
             this.pnlEdit.Controls.Add(this.labApprovalCatDesc);
-            this.pnlEdit.Controls.Add(this.labApprovalCat);
             this.pnlEdit.Controls.Add(this.radioApprovalCat);
-            this.pnlEdit.Controls.Add(this.labTypeNoText);
-            this.pnlEdit.Controls.Add(this.labTypeNo);
             this.pnlEdit.Controls.Add(this.textTypeNoText);
             this.pnlEdit.Controls.Add(this.textTypeNo);
+            this.pnlEdit.Controls.Add(this.labApprovalCat);
+            this.pnlEdit.Controls.Add(this.labTypeNoText);
+            this.pnlEdit.Controls.Add(this.labTypeNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";

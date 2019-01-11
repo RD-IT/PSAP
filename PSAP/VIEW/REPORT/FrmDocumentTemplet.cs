@@ -3,6 +3,7 @@ using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTreeList.Nodes;
 using PSAP.DAO.BSDAO;
+using PSAP.DAO.INVDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -62,13 +63,20 @@ namespace PSAP.VIEW.BSVIEW
                     case 0:
                         switch (tableNameStr)
                         {
-                            case "PUR_PrReqHead"://采购请购单
+                            case "PUR_PrReqHead"://请购单
                                 new FrmPrReqDAO().PrintHandle("", 3);
                                 break;
                             case "PUR_OrderHead"://采购订单
                                 new FrmOrderDAO().PrintHandle("", 3);
                                 break;
-
+                            case "INV_WarehouseWarrantHead"://入库单
+                                new FrmWarehouseWarrantDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_WarehouseReceiptHead"://材料出库单
+                                new FrmWarehouseReceiptDAO().PrintHandle("", 3);
+                                break;
+                            default:
+                                return;
                         }
                         if (MessageHandler.ShowMessageBox_YesNo("模板设计完是否要上传更新服务器的版本吗?") == DialogResult.Yes)
                         {

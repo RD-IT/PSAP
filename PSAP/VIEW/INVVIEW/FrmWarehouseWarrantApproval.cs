@@ -42,7 +42,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 lookUpApprovalType.Properties.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryApprovalType(false);
 
-                approvalDAO.QueryWarehouseHead(dataSet_WW.Tables[0], wwHeadNoStr);
+                approvalDAO.QueryWarehouseWarrantHead(dataSet_WW.Tables[0], wwHeadNoStr);
                 if (dataSet_WW.Tables[0].Rows.Count == 0)
                 {
                     MessageHandler.ShowMessageBox("查询入库单信息错误，请重新操作。");
@@ -50,7 +50,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 string typeNoStr = DataTypeConvert.GetString(dataSet_WW.Tables[0].Rows[0]["ApprovalType"]);
                 int approvalCatInt = DataTypeConvert.GetInt(dataSet_WW.Tables[0].Rows[0]["ApprovalCat"]);
-                approvalDAO.QueryWarehouseApprovalInfo(dataSet_WW.Tables[1], wwHeadNoStr, typeNoStr);
+                approvalDAO.QueryWarehouseWarrantApprovalInfo(dataSet_WW.Tables[1], wwHeadNoStr, typeNoStr);
 
                 if (approvalCatInt == 0)
                 {

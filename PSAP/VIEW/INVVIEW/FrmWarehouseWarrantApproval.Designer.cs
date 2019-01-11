@@ -32,16 +32,7 @@
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApprovalType = new DevExpress.XtraEditors.LookUpEdit();
-            this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
-            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
-            this.textReqState = new DevExpress.XtraEditors.TextEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
-            this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
-            this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
-            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.bsWWHead = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_WW = new System.Data.DataSet();
             this.dataTableWWHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -60,6 +51,7 @@
             this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColWarehouseState = new System.Data.DataColumn();
             this.dataColSelect = new System.Data.DataColumn();
+            this.dataColApprovalCat = new System.Data.DataColumn();
             this.TableWarehouseApprovalInfo = new System.Data.DataTable();
             this.dataColAutoId1 = new System.Data.DataColumn();
             this.dataColTypeNo = new System.Data.DataColumn();
@@ -70,8 +62,19 @@
             this.dataColLoginId = new System.Data.DataColumn();
             this.dataColumnWarehouseWarrant = new System.Data.DataColumn();
             this.dataColApproverTime = new System.Data.DataColumn();
-            this.gridCrlWAppInfo = new DevExpress.XtraGrid.GridControl();
-            this.gridViewWAppInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
+            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
+            this.textReqState = new DevExpress.XtraEditors.TextEdit();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
+            this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
+            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.gridCrlWWAppInfo = new DevExpress.XtraGrid.GridControl();
+            this.bsWWApprovalInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.gridViewWWAppInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTypeNoText = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -81,12 +84,13 @@
             this.colLoginId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOrderHeadNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApproverTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bsOrderApprovalInfo = new System.Windows.Forms.BindingSource(this.components);
-            this.bsOrderHead = new System.Windows.Forms.BindingSource(this.components);
-            this.dataColApprovalCat = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWWHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WW)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableWWHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseApprovalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textApprovalCat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textReqState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOrderHeadNo.Properties)).BeginInit();
@@ -94,24 +98,20 @@
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WW)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableWWHead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseApprovalInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridCrlWAppInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewWAppInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOrderApprovalInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOrderHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCrlWWAppInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWWApprovalInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewWWAppInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTop
             // 
-            this.pnlTop.Controls.Add(this.labApprovalCat);
             this.pnlTop.Controls.Add(this.lookUpApprovalType);
             this.pnlTop.Controls.Add(this.textApprovalCat);
-            this.pnlTop.Controls.Add(this.labApprovalType);
             this.pnlTop.Controls.Add(this.textReqState);
-            this.pnlTop.Controls.Add(this.labReqState);
             this.pnlTop.Controls.Add(this.textOrderHeadNo);
+            this.pnlTop.Controls.Add(this.labApprovalCat);
+            this.pnlTop.Controls.Add(this.labApprovalType);
+            this.pnlTop.Controls.Add(this.labReqState);
             this.pnlTop.Controls.Add(this.labOrderHeadNo);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
@@ -129,7 +129,7 @@
             // 
             // lookUpApprovalType
             // 
-            this.lookUpApprovalType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsOrderHead, "ApprovalType", true));
+            this.lookUpApprovalType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsWWHead, "ApprovalType", true));
             this.lookUpApprovalType.EnterMoveNextControl = true;
             this.lookUpApprovalType.Location = new System.Drawing.Point(95, 53);
             this.lookUpApprovalType.Name = "lookUpApprovalType";
@@ -146,101 +146,10 @@
             this.lookUpApprovalType.Size = new System.Drawing.Size(120, 20);
             this.lookUpApprovalType.TabIndex = 2;
             // 
-            // textApprovalCat
+            // bsWWHead
             // 
-            this.textApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsOrderHead, "ApprovalCat", true));
-            this.textApprovalCat.Location = new System.Drawing.Point(312, 53);
-            this.textApprovalCat.Name = "textApprovalCat";
-            this.textApprovalCat.Properties.AllowFocused = false;
-            this.textApprovalCat.Properties.ReadOnly = true;
-            this.textApprovalCat.Size = new System.Drawing.Size(120, 20);
-            this.textApprovalCat.TabIndex = 3;
-            this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
-            // 
-            // labApprovalType
-            // 
-            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
-            this.labApprovalType.Name = "labApprovalType";
-            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalType.TabIndex = 4;
-            this.labApprovalType.Text = "审批类型";
-            // 
-            // textReqState
-            // 
-            this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsOrderHead, "WarehouseState", true));
-            this.textReqState.Location = new System.Drawing.Point(312, 23);
-            this.textReqState.Name = "textReqState";
-            this.textReqState.Properties.AllowFocused = false;
-            this.textReqState.Properties.ReadOnly = true;
-            this.textReqState.Size = new System.Drawing.Size(120, 20);
-            this.textReqState.TabIndex = 1;
-            this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(239, 26);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(48, 14);
-            this.labReqState.TabIndex = 2;
-            this.labReqState.Text = "单据状态";
-            // 
-            // textOrderHeadNo
-            // 
-            this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsOrderHead, "WarehouseWarrant", true));
-            this.textOrderHeadNo.Location = new System.Drawing.Point(95, 23);
-            this.textOrderHeadNo.Name = "textOrderHeadNo";
-            this.textOrderHeadNo.Properties.ReadOnly = true;
-            this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
-            this.textOrderHeadNo.TabIndex = 0;
-            // 
-            // labOrderHeadNo
-            // 
-            this.labOrderHeadNo.Location = new System.Drawing.Point(28, 26);
-            this.labOrderHeadNo.Name = "labOrderHeadNo";
-            this.labOrderHeadNo.Size = new System.Drawing.Size(48, 14);
-            this.labOrderHeadNo.TabIndex = 0;
-            this.labOrderHeadNo.Text = "入库单号";
-            // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Controls.Add(this.btnCancel);
-            this.pnlBottom.Controls.Add(this.btnApproval);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(584, 40);
-            this.pnlBottom.TabIndex = 7;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(497, 8);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.TabStop = false;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnApproval
-            // 
-            this.btnApproval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApproval.Location = new System.Drawing.Point(416, 8);
-            this.btnApproval.Name = "btnApproval";
-            this.btnApproval.Size = new System.Drawing.Size(75, 23);
-            this.btnApproval.TabIndex = 1;
-            this.btnApproval.TabStop = false;
-            this.btnApproval.Text = "审批";
-            this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
-            // 
-            // pnlMiddle
-            // 
-            this.pnlMiddle.Controls.Add(this.gridCrlWAppInfo);
-            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
-            this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
-            this.pnlMiddle.TabIndex = 8;
+            this.bsWWHead.DataMember = "WWHead";
+            this.bsWWHead.DataSource = this.dataSet_WW;
             // 
             // dataSet_WW
             // 
@@ -355,6 +264,12 @@
             this.dataColSelect.ColumnName = "Select";
             this.dataColSelect.DataType = typeof(bool);
             // 
+            // dataColApprovalCat
+            // 
+            this.dataColApprovalCat.Caption = "审批方式";
+            this.dataColApprovalCat.ColumnName = "ApprovalCat";
+            this.dataColApprovalCat.DataType = typeof(int);
+            // 
             // TableWarehouseApprovalInfo
             // 
             this.TableWarehouseApprovalInfo.Columns.AddRange(new System.Data.DataColumn[] {
@@ -417,21 +332,122 @@
             this.dataColApproverTime.ColumnName = "ApproverTime";
             this.dataColApproverTime.DataType = typeof(System.DateTime);
             // 
-            // gridCrlWAppInfo
+            // textApprovalCat
             // 
-            this.gridCrlWAppInfo.DataSource = this.bsOrderApprovalInfo;
-            this.gridCrlWAppInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridCrlWAppInfo.Location = new System.Drawing.Point(2, 2);
-            this.gridCrlWAppInfo.MainView = this.gridViewWAppInfo;
-            this.gridCrlWAppInfo.Name = "gridCrlWAppInfo";
-            this.gridCrlWAppInfo.Size = new System.Drawing.Size(580, 228);
-            this.gridCrlWAppInfo.TabIndex = 10;
-            this.gridCrlWAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewWAppInfo});
+            this.textApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsWWHead, "ApprovalCat", true));
+            this.textApprovalCat.Location = new System.Drawing.Point(312, 53);
+            this.textApprovalCat.Name = "textApprovalCat";
+            this.textApprovalCat.Properties.AllowFocused = false;
+            this.textApprovalCat.Properties.ReadOnly = true;
+            this.textApprovalCat.Size = new System.Drawing.Size(120, 20);
+            this.textApprovalCat.TabIndex = 3;
+            this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
             // 
-            // gridViewWAppInfo
+            // labApprovalType
             // 
-            this.gridViewWAppInfo.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
+            this.labApprovalType.Name = "labApprovalType";
+            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalType.TabIndex = 4;
+            this.labApprovalType.Text = "审批类型";
+            // 
+            // textReqState
+            // 
+            this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsWWHead, "WarehouseState", true));
+            this.textReqState.Location = new System.Drawing.Point(312, 23);
+            this.textReqState.Name = "textReqState";
+            this.textReqState.Properties.AllowFocused = false;
+            this.textReqState.Properties.ReadOnly = true;
+            this.textReqState.Size = new System.Drawing.Size(120, 20);
+            this.textReqState.TabIndex = 1;
+            this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(239, 26);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(48, 14);
+            this.labReqState.TabIndex = 2;
+            this.labReqState.Text = "单据状态";
+            // 
+            // textOrderHeadNo
+            // 
+            this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsWWHead, "WarehouseWarrant", true));
+            this.textOrderHeadNo.Location = new System.Drawing.Point(95, 23);
+            this.textOrderHeadNo.Name = "textOrderHeadNo";
+            this.textOrderHeadNo.Properties.ReadOnly = true;
+            this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
+            this.textOrderHeadNo.TabIndex = 0;
+            // 
+            // labOrderHeadNo
+            // 
+            this.labOrderHeadNo.Location = new System.Drawing.Point(28, 26);
+            this.labOrderHeadNo.Name = "labOrderHeadNo";
+            this.labOrderHeadNo.Size = new System.Drawing.Size(48, 14);
+            this.labOrderHeadNo.TabIndex = 0;
+            this.labOrderHeadNo.Text = "入库单号";
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Controls.Add(this.btnCancel);
+            this.pnlBottom.Controls.Add(this.btnApproval);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(584, 40);
+            this.pnlBottom.TabIndex = 7;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(497, 8);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabStop = false;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnApproval
+            // 
+            this.btnApproval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApproval.Location = new System.Drawing.Point(416, 8);
+            this.btnApproval.Name = "btnApproval";
+            this.btnApproval.Size = new System.Drawing.Size(75, 23);
+            this.btnApproval.TabIndex = 1;
+            this.btnApproval.TabStop = false;
+            this.btnApproval.Text = "审批";
+            this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
+            // 
+            // pnlMiddle
+            // 
+            this.pnlMiddle.Controls.Add(this.gridCrlWWAppInfo);
+            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
+            this.pnlMiddle.Name = "pnlMiddle";
+            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
+            this.pnlMiddle.TabIndex = 8;
+            // 
+            // gridCrlWWAppInfo
+            // 
+            this.gridCrlWWAppInfo.DataSource = this.bsWWApprovalInfo;
+            this.gridCrlWWAppInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridCrlWWAppInfo.Location = new System.Drawing.Point(2, 2);
+            this.gridCrlWWAppInfo.MainView = this.gridViewWWAppInfo;
+            this.gridCrlWWAppInfo.Name = "gridCrlWWAppInfo";
+            this.gridCrlWWAppInfo.Size = new System.Drawing.Size(580, 228);
+            this.gridCrlWWAppInfo.TabIndex = 10;
+            this.gridCrlWWAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewWWAppInfo});
+            // 
+            // bsWWApprovalInfo
+            // 
+            this.bsWWApprovalInfo.DataMember = "OrderApprovalInfo";
+            this.bsWWApprovalInfo.DataSource = this.dataSet_WW;
+            // 
+            // gridViewWWAppInfo
+            // 
+            this.gridViewWWAppInfo.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colAutoId,
             this.colTypeNo,
             this.colTypeNoText,
@@ -441,16 +457,16 @@
             this.colLoginId,
             this.colOrderHeadNo,
             this.colApproverTime});
-            this.gridViewWAppInfo.GridControl = this.gridCrlWAppInfo;
-            this.gridViewWAppInfo.IndicatorWidth = 40;
-            this.gridViewWAppInfo.Name = "gridViewWAppInfo";
-            this.gridViewWAppInfo.OptionsBehavior.Editable = false;
-            this.gridViewWAppInfo.OptionsFilter.AllowFilterEditor = false;
-            this.gridViewWAppInfo.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewWAppInfo.OptionsView.ColumnAutoWidth = false;
-            this.gridViewWAppInfo.OptionsView.EnableAppearanceOddRow = true;
-            this.gridViewWAppInfo.OptionsView.ShowGroupPanel = false;
-            this.gridViewWAppInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWAppInfo_CustomDrawRowIndicator);
+            this.gridViewWWAppInfo.GridControl = this.gridCrlWWAppInfo;
+            this.gridViewWWAppInfo.IndicatorWidth = 40;
+            this.gridViewWWAppInfo.Name = "gridViewWWAppInfo";
+            this.gridViewWWAppInfo.OptionsBehavior.Editable = false;
+            this.gridViewWWAppInfo.OptionsFilter.AllowFilterEditor = false;
+            this.gridViewWWAppInfo.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewWWAppInfo.OptionsView.ColumnAutoWidth = false;
+            this.gridViewWWAppInfo.OptionsView.EnableAppearanceOddRow = true;
+            this.gridViewWWAppInfo.OptionsView.ShowGroupPanel = false;
+            this.gridViewWWAppInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWAppInfo_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 
@@ -535,23 +551,7 @@
             this.colApproverTime.VisibleIndex = 5;
             this.colApproverTime.Width = 135;
             // 
-            // bsOrderApprovalInfo
-            // 
-            this.bsOrderApprovalInfo.DataMember = "OrderApprovalInfo";
-            this.bsOrderApprovalInfo.DataSource = this.dataSet_WW;
-            // 
-            // bsOrderHead
-            // 
-            this.bsOrderHead.DataMember = "WWHead";
-            this.bsOrderHead.DataSource = this.dataSet_WW;
-            // 
-            // dataColApprovalCat
-            // 
-            this.dataColApprovalCat.Caption = "审批方式";
-            this.dataColApprovalCat.ColumnName = "ApprovalCat";
-            this.dataColApprovalCat.DataType = typeof(int);
-            // 
-            // FrmApprovalWarehouseWarrant
+            // FrmWarehouseWarrantApproval
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(584, 361);
@@ -560,7 +560,7 @@
             this.Controls.Add(this.pnlTop);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmApprovalWarehouseWarrant";
+            this.Name = "FrmWarehouseWarrantApproval";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "审批信息";
@@ -570,6 +570,10 @@
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWWHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WW)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableWWHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseApprovalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textApprovalCat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textReqState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOrderHeadNo.Properties)).EndInit();
@@ -577,13 +581,9 @@
             this.pnlBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WW)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableWWHead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseApprovalInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridCrlWAppInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewWAppInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOrderApprovalInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOrderHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCrlWWAppInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWWApprovalInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewWWAppInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -631,8 +631,8 @@
         private System.Data.DataColumn dataColLoginId;
         private System.Data.DataColumn dataColumnWarehouseWarrant;
         private System.Data.DataColumn dataColApproverTime;
-        private DevExpress.XtraGrid.GridControl gridCrlWAppInfo;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewWAppInfo;
+        private DevExpress.XtraGrid.GridControl gridCrlWWAppInfo;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewWWAppInfo;
         private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn colTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colTypeNoText;
@@ -642,8 +642,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLoginId;
         private DevExpress.XtraGrid.Columns.GridColumn colOrderHeadNo;
         private DevExpress.XtraGrid.Columns.GridColumn colApproverTime;
-        private System.Windows.Forms.BindingSource bsOrderApprovalInfo;
-        private System.Windows.Forms.BindingSource bsOrderHead;
+        private System.Windows.Forms.BindingSource bsWWApprovalInfo;
+        private System.Windows.Forms.BindingSource bsWWHead;
         private System.Data.DataColumn dataColApprovalCat;
     }
 }

@@ -43,6 +43,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterBindingSource = bSProjectList;
                     editForm.MasterEditPanel = pnlEdit;
                     editForm.PrimaryKeyControl = textProjectNo;
+                    editForm.OtherNoChangeControl = new List<Control>() { textProjectName };
                     editForm.BrowseXtraGridView = gridViewProjectList;
                     editForm.CheckControl += CheckControl;
                     this.pnlToolBar.Controls.Add(editForm);

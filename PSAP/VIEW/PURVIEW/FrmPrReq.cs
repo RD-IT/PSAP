@@ -15,6 +15,8 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmPrReq : DockContent
     {
+        #region 私有变量
+
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
@@ -38,10 +40,18 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         bool onlySelectColChangeRowState = false;
 
+        #endregion
+
+        #region 构造方法
+
         public FrmPrReq()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region 窗体事件
 
         /// <summary>
         /// 窗体加载事件
@@ -50,12 +60,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateReqDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateReqDateEnd.DateTime = nowDate.Date;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
                 lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
@@ -64,7 +75,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.ItemIndex = -1;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
                 repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
 
@@ -123,6 +134,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
         }
+
+        #endregion
+
+        #region 下面请购单模块的相关事件和方法
 
         /// <summary>
         /// 删除选项
@@ -289,7 +304,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_PrReq.Tables[1].Clear();
                 gridViewPrReqList.AddNewRow();
-                FocusedListView(false, "CodeFileName");
+                FocusedListView(false, "CodeFileName", gridViewPrReqList.GetFocusedDataSourceRowIndex());
                 gridViewPrReqList.RefreshData();
 
                 SetButtonAndColumnState(true);
@@ -374,7 +389,7 @@ namespace PSAP.VIEW.BSVIEW
                         if (DataTypeConvert.GetString(listRow["Qty"]) == "")
                         {
                             MessageHandler.ShowMessageBox("数量不能为空，请填写后再进行保存。");
-                            FocusedListView(true, "Qty");
+                            FocusedListView(true, "Qty",i);
                             return;
                         }
                     }
@@ -632,10 +647,10 @@ namespace PSAP.VIEW.BSVIEW
                 //List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
                 //ReportHandler.XtraReport_Handle(new REPORT.XReport_PrReq(), "Report_PrReq.repx", ds, paralist, 1);
 
-                string prReqNoString = "";
+                string prReqNoStr = "";
                 if (gridViewPrReqHead.GetFocusedDataRow() != null)
-                    prReqNoString = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]);
-                prReqDAO.PrintHandle(prReqNoString, 1);
+                    prReqNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]);
+                prReqDAO.PrintHandle(prReqNoStr, 1);
             }
             catch (Exception ex)
             {
@@ -659,10 +674,10 @@ namespace PSAP.VIEW.BSVIEW
         //        //List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
         //        //ReportHandler.XtraReport_Handle(new REPORT.XReport_PrReq(), "Report_PrReq.repx", ds, paralist, 3);
 
-        //        string prReqNoString = "";
+        //        string prReqNoStr = "";
         //        if (gridViewPrReqHead.GetFocusedDataRow() != null)
-        //            prReqNoString = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]);
-        //        prReqDAO.PrintHandle(prReqNoString, 3);
+        //            prReqNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]);
+        //        prReqDAO.PrintHandle(prReqNoStr, 3);
         //    }
         //    catch (Exception ex)
         //    {
@@ -712,7 +727,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                gridViewPrReqHead.SetFocusedRowCellValue("ReqDate", DateTime.Now);
+                gridViewPrReqHead.SetFocusedRowCellValue("ReqDate", BaseSQL.GetServerDateTime());
                 gridViewPrReqHead.SetFocusedRowCellValue("ReqDep", SystemInfo.user.DepartmentNo);
                 gridViewPrReqHead.SetFocusedRowCellValue("PurCategory", DataTypeConvert.GetString(((DataTable)lookUpPurCategory.Properties.DataSource).Rows[1]["PurCategory"]));
                 gridViewPrReqHead.SetFocusedRowCellValue("ReqState", 1);
@@ -759,7 +774,7 @@ namespace PSAP.VIEW.BSVIEW
                     else if(gridViewPrReqList.FocusedColumn.Name == "colPrReqListRemark")
                     {
                         gridViewPrReqList.FocusedRowHandle = gridViewPrReqList.FocusedRowHandle + 1;
-                        FocusedListView(true, "CodeFileName");
+                        FocusedListView(true, "CodeFileName", gridViewPrReqList.GetFocusedDataSourceRowIndex());
                     }
                 }
             }
@@ -881,8 +896,8 @@ namespace PSAP.VIEW.BSVIEW
 
             //gridViewPrReqList.PostEditor();
             gridViewPrReqList.AddNewRow();
-            FocusedListView(true, "CodeFileName");
-            gridViewPrReqList.RefreshData();
+            FocusedListView(true, "CodeFileName", gridViewPrReqList.GetFocusedDataSourceRowIndex());
+            //gridViewPrReqList.RefreshData();
         }
 
         /// <summary>
@@ -927,6 +942,19 @@ namespace PSAP.VIEW.BSVIEW
             repbtnDelete.Buttons[0].Enabled = ret;
             repCheckSelect.ReadOnly = ret;
             checkAll.ReadOnly = ret;
+
+            if (this.Controls.ContainsKey("lblEditFlag"))
+            {
+                //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+                if (ret)
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+                }
+                else
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "";
+                }
+            }
         }
 
         /// <summary>
@@ -940,13 +968,13 @@ namespace PSAP.VIEW.BSVIEW
             switch (reqState)
             {
                 case 2:
-                    MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
+                    MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
                     return false;
                 case 3:
-                    MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
+                    MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
                     return false;
                 case 4:
-                    MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
+                    MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"])));
                     return false;
             }
             return true;
@@ -967,7 +995,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 1:
                             if (checkNoApprover)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
+                                MessageHandler.ShowMessageBox(string.Format("请购单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }
@@ -975,7 +1003,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 2:
                             if (checkApprover)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
+                                MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }
@@ -983,7 +1011,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 3:
                             if (checkClosed)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
+                                MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }
@@ -991,7 +1019,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 4:
                             if (checkApproverBetween)
                             {
-                                MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
+                                MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewPrReqHead.GetDataRow(i)["PrReqNo"])));
                                 gridViewPrReqHead.FocusedRowHandle = i;
                                 return false;
                             }
@@ -1016,13 +1044,13 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 聚焦子表当前行的列
         /// </summary>
-        private void FocusedListView(bool isFocusedControl, string colName)
+        private void FocusedListView(bool isFocusedControl, string colName, int lineNo)
         {
             if (isFocusedControl)
                 gridControlPrReqList.Focus();
             ColumnView listView = (ColumnView)gridControlPrReqList.FocusedView;
             listView.FocusedColumn = listView.Columns[colName];
-            gridViewPrReqList.FocusedRowHandle = listView.FocusedRowHandle;
+            gridViewPrReqList.FocusedRowHandle = lineNo;
         }
 
         /// <summary>
@@ -1052,6 +1080,8 @@ namespace PSAP.VIEW.BSVIEW
             dataSet_PrReq.Tables[0].AcceptChanges();
             onlySelectColChangeRowState = false;
         }
+
+        #endregion
 
     }
 }

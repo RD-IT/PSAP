@@ -13,7 +13,7 @@ namespace PSAP.DAO.PURDAO
     class FrmPrReqApplyDAO
     {
         /// <summary>
-        /// 查询采购请购单表
+        /// 查询请购单表
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
         /// <param name="prReqNoStr">请购单号</param>
@@ -22,7 +22,7 @@ namespace PSAP.DAO.PURDAO
             string sqlStr = " ReqState in (2) and IsNull(isEnd, 0)=0 ";
             if (prReqNoStr != "")
             {
-                sqlStr += string.Format(" and PrReqNo='{0}'", prReqNoStr);
+                sqlStr += string.Format(" and PrReqNo like '%{0}%'", prReqNoStr);
             }
             if (reqDateBeginStr != "")
             {
@@ -53,7 +53,7 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
-        /// 查询采购请购单明细表
+        /// 查询请购单明细表
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
         /// <param name="prReqNoStr">请购单号</param>

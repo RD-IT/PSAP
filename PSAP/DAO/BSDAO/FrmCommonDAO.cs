@@ -40,6 +40,19 @@ namespace PSAP.DAO.BSDAO
         }
 
         /// <summary>
+        /// 查询采购类型（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryPurCategory(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, PurCategory, PurCategoryText from PUR_PurCategory order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '' as PurCategory, '全部' as PurCategoryText union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
         /// 查询物料信息表
         /// </summary>
         public DataTable QueryPartsCode(bool addAllItem)

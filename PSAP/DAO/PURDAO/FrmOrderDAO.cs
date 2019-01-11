@@ -474,7 +474,7 @@ namespace PSAP.DAO.PURDAO
                         cmd.ExecuteNonQuery();
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRow, "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRow, "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
 
                         trans.Commit();
                         orderHeadRow.AcceptChanges();
@@ -540,7 +540,7 @@ namespace PSAP.DAO.PURDAO
                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -564,7 +564,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 关闭请购单
         /// </summary>
-        /// <param name="orderHeadRow">采购请购单表头数据行</param>
+        /// <param name="orderHeadRow">请购单表头数据行</param>
         public bool CloseOrder(DataRow orderHeadRow)
         {
             if (!CheckOrderState(orderHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"])), false, false, true, false))
@@ -1013,7 +1013,7 @@ namespace PSAP.DAO.PURDAO
                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -1289,7 +1289,7 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         private bool CheckApplyWarehouseWarrant(SqlCommand cmd, string orderHeadNoStr)
         {
-            cmd.CommandText = string.Format("select Count(*) from INV_WarehouseWarrantHead where OrderHeadNo = '{0}'", orderHeadNoStr);
+            cmd.CommandText = string.Format("select Count(*) from INV_WarehouseWarrantList where OrderHeadNo = '{0}'", orderHeadNoStr);
             return DataTypeConvert.GetInt(cmd.ExecuteScalar()) > 0;
         }
     }

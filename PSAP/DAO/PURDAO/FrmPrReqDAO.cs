@@ -12,19 +12,6 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmPrReqDAO
     {
-        /// <summary>
-        /// 查询采购类型（增加一个全部选项）
-        /// </summary>
-        public DataTable QueryPurCategory(bool addAllItem)
-        {
-            string sqlStr = "select AutoId, PurCategory, PurCategoryText from PUR_PurCategory order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '' as PurCategory, '全部' as PurCategoryText union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }        
-
         #region 部门只能设定最后一级，不用此方法的递归了，暂时注释
 
         ///// <summary>
@@ -48,7 +35,7 @@ namespace PSAP.DAO.PURDAO
         # endregion
 
         /// <summary>
-        /// 查询采购请购单表头表
+        /// 查询请购单表头表
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
         /// <param name="beginDateStr">开始日期字符串</param>
@@ -64,7 +51,7 @@ namespace PSAP.DAO.PURDAO
             BaseSQL.Query(QueryPrReqHead_SQL(beginDateStr, endDateStr, reqDepStr, purCategoryStr, reqStateInt, applicantStr, approverInt, commonStr, nullTable), queryDataTable);
         }
         /// <summary>
-        /// 查询采购请购单表头表的SQL
+        /// 查询请购单表头表的SQL
         /// </summary>
         public string QueryPrReqHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, int reqStateInt, string applicantStr, int approverInt, string commonStr, bool nullTable)
         {
@@ -113,7 +100,7 @@ namespace PSAP.DAO.PURDAO
         }
 
         /// <summary>
-        /// 查询采购请购单明细表
+        /// 查询请购单明细表
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
         /// <param name="prReqNoStr">请购单号</param>
@@ -144,7 +131,7 @@ namespace PSAP.DAO.PURDAO
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_DeleteRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo");
+                        string logStr = LogHandler.RecordLog_DeleteRow(cmd, "请购单", prReqHeadRow, "PrReqNo");
 
                         cmd.CommandText = string.Format("Delete from PUR_PrReqList where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]));
                         cmd.ExecuteNonQuery();
@@ -196,7 +183,7 @@ namespace PSAP.DAO.PURDAO
                         DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
                         for (int i = 0; i < prReqHeadRows.Length; i++)
                         {
-                            string logStr = LogHandler.RecordLog_DeleteRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo");
+                            string logStr = LogHandler.RecordLog_DeleteRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo");
                         }
 
                         cmd.CommandText = string.Format("Delete from PUR_PrReqList where PrReqNo in ({0})", prReqNoListStr);
@@ -235,8 +222,8 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 保存请购单
         /// </summary>
-        /// <param name="prReqHeadRow">采购请购单表头数据表</param>
-        /// <param name="prReqListTable">采购请购单明细数据表</param>
+        /// <param name="prReqHeadRow">请购单表头数据表</param>
+        /// <param name="prReqListTable">请购单明细数据表</param>
         public int SavePrReq(DataRow prReqHeadRow, DataTable prReqListTable)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -246,7 +233,7 @@ namespace PSAP.DAO.PURDAO
                 {
                     try
                     {
-                        //RecordLog_DataTable("采购请购单",prReqHeadRow.Table, "PrReqNo");
+                        //RecordLog_DataTable("请购单",prReqHeadRow.Table, "PrReqNo");
                         SqlCommand cmd = new SqlCommand("", conn, trans);
                         if (prReqHeadRow["PrReqNo"].ToString() == "")//新增
                         {
@@ -290,7 +277,7 @@ namespace PSAP.DAO.PURDAO
                         }
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_DataRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo");
+                        string logStr = LogHandler.RecordLog_DataRow(cmd, "请购单", prReqHeadRow, "PrReqNo");
 
                         cmd.CommandText = "select * from PUR_PrReqHead where 1=2";
                         SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
@@ -325,7 +312,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 审批请购单
         /// </summary>
-        /// <param name="prReqHeadRow">采购请购单表头数据行</param>
+        /// <param name="prReqHeadRow">请购单表头数据行</param>
         public bool ApprovePrReq(DataRow prReqHeadRow)
         {
             if (!CheckReqState(prReqHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), false, true, true, false))
@@ -354,7 +341,7 @@ namespace PSAP.DAO.PURDAO
                         cmd.ExecuteNonQuery();
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRow, "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
                         trans.Commit();
                         prReqHeadRow.AcceptChanges();
@@ -412,7 +399,7 @@ namespace PSAP.DAO.PURDAO
                         DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
                         for (int i = 0; i < prReqHeadRows.Length; i++)
                         {
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -436,7 +423,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 取消审批请购单
         /// </summary>
-        /// <param name="prReqHeadRow">采购请购单表头数据行</param>
+        /// <param name="prReqHeadRow">请购单表头数据行</param>
         public bool CancelApprovePrReq(DataRow prReqHeadRow)
         {
             if (!CheckReqState(prReqHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), true, false, true, false))
@@ -461,7 +448,7 @@ namespace PSAP.DAO.PURDAO
                         {
                             trans.Rollback();
                             prReqHeadRow.Table.RejectChanges();
-                            MessageHandler.ShowMessageBox("采购请购单已经有适用的采购订单记录，不可以操作。");
+                            MessageHandler.ShowMessageBox("请购单已经有适用的采购订单记录，不可以操作。");
                             return false;
                         }
 
@@ -469,7 +456,7 @@ namespace PSAP.DAO.PURDAO
                         cmd.ExecuteNonQuery();
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRow, "PrReqNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
 
                         trans.Commit();
                         prReqHeadRow.AcceptChanges();
@@ -531,11 +518,11 @@ namespace PSAP.DAO.PURDAO
                             {
                                 trans.Rollback();
                                 prReqHeadTable.RejectChanges();
-                                MessageHandler.ShowMessageBox("采购请购单已经有适用的采购订单记录，不可以操作。");
+                                MessageHandler.ShowMessageBox("请购单已经有适用的采购订单记录，不可以操作。");
                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -559,7 +546,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 关闭请购单
         /// </summary>
-        /// <param name="prReqHeadRow">采购请购单表头数据行</param>
+        /// <param name="prReqHeadRow">请购单表头数据行</param>
         public bool ClosePrReq(DataRow prReqHeadRow)
         {
             if (!CheckReqState(prReqHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), false, false, true, false))
@@ -583,7 +570,7 @@ namespace PSAP.DAO.PURDAO
                         cmd.ExecuteNonQuery();
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRow, "PrReqNo", "关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRow, "PrReqNo", "关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
                         trans.Commit();
                         prReqHeadRow.AcceptChanges();
@@ -641,7 +628,7 @@ namespace PSAP.DAO.PURDAO
                         DataRow[] prReqHeadRows = prReqHeadTable.Select("select=1");
                         for (int i = 0; i < prReqHeadRows.Length; i++)
                         {
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -702,7 +689,7 @@ namespace PSAP.DAO.PURDAO
                             cmd.ExecuteNonQuery();
 
                             //保存日志到日志表中
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "取消关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "取消关闭", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
@@ -738,7 +725,7 @@ namespace PSAP.DAO.PURDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            MessageHandler.ShowMessageBox(string.Format("请购单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
@@ -748,7 +735,7 @@ namespace PSAP.DAO.PURDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
@@ -758,7 +745,7 @@ namespace PSAP.DAO.PURDAO
                     case 3:
                         if (checkClosed)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
@@ -768,7 +755,7 @@ namespace PSAP.DAO.PURDAO
                     case 4:
                         if (checkApproverBetween)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
                             prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
@@ -789,7 +776,7 @@ namespace PSAP.DAO.PURDAO
             return DataTypeConvert.GetInt(cmd.ExecuteScalar()) > 0;
             //if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
             //{
-            //    MessageHandler.ShowMessageBox("采购请购单已经有请购适用的记录，不可以操作。");
+            //    MessageHandler.ShowMessageBox("请购单已经有请购适用的记录，不可以操作。");
             //    return false;
             //}
             //return true;
@@ -861,7 +848,7 @@ namespace PSAP.DAO.PURDAO
                                 if (tmpTable.Rows.Count == 0)
                                 {
                                     trans.Rollback();
-                                    MessageHandler.ShowMessageBox("未查询到要操作的采购请购单，请刷新后再进行操作。");
+                                    MessageHandler.ShowMessageBox("未查询到要操作的请购单，请刷新后再进行操作。");
                                     return false;
                                 }
 
@@ -908,7 +895,7 @@ namespace PSAP.DAO.PURDAO
                                 }
 
                                 //保存日志到日志表中
-                                string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadTable.Rows[i], "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                                string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadTable.Rows[i], "PrReqNo", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                                 successCountInt++;
                             }
                         }
@@ -972,11 +959,11 @@ namespace PSAP.DAO.PURDAO
                             {
                                 trans.Rollback();
                                 prReqHeadTable.RejectChanges();
-                                MessageHandler.ShowMessageBox("采购请购单已经有适用的采购订单记录，不可以操作。");
+                                MessageHandler.ShowMessageBox("请购单已经有适用的采购订单记录，不可以操作。");
                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();

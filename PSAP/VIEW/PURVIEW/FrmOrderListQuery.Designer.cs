@@ -97,6 +97,7 @@
             this.dataColPlanDate = new System.Data.DataColumn();
             this.dataColRemark = new System.Data.DataColumn();
             this.dataColCodeName = new System.Data.DataColumn();
+            this.dataColPrListAutoId = new System.Data.DataColumn();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOrderHeadNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -136,7 +137,6 @@
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
-            this.dataColPrListAutoId = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpCodeFileName.Properties)).BeginInit();
@@ -179,31 +179,31 @@
             // 
             // pnltop
             // 
-            this.pnltop.Controls.Add(this.labCodeFileName);
             this.pnltop.Controls.Add(this.searchLookUpCodeFileName);
             this.pnltop.Controls.Add(this.searchLookUpProjectNo);
-            this.pnltop.Controls.Add(this.labProjectNo);
             this.pnltop.Controls.Add(this.checkOrderDate);
             this.pnltop.Controls.Add(this.btnSaveExcel);
-            this.pnltop.Controls.Add(this.labPlanDate);
             this.pnltop.Controls.Add(this.searchLookUpBussinessBaseNo);
-            this.pnltop.Controls.Add(this.lab2);
-            this.pnltop.Controls.Add(this.labBussinessBaseNo);
             this.pnltop.Controls.Add(this.datePlanDateEnd);
             this.pnltop.Controls.Add(this.textCommon);
             this.pnltop.Controls.Add(this.datePlanDateBegin);
-            this.pnltop.Controls.Add(this.labCommon);
             this.pnltop.Controls.Add(this.comboBoxReqState);
-            this.pnltop.Controls.Add(this.labReqState);
             this.pnltop.Controls.Add(this.lookUpPurCategory);
-            this.pnltop.Controls.Add(this.labPurCategory);
             this.pnltop.Controls.Add(this.lookUpReqDep);
-            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.btnQuery);
             this.pnltop.Controls.Add(this.dateOrderDateEnd);
+            this.pnltop.Controls.Add(this.dateOrderDateBegin);
+            this.pnltop.Controls.Add(this.labCodeFileName);
+            this.pnltop.Controls.Add(this.labProjectNo);
+            this.pnltop.Controls.Add(this.labPlanDate);
+            this.pnltop.Controls.Add(this.lab2);
+            this.pnltop.Controls.Add(this.labBussinessBaseNo);
+            this.pnltop.Controls.Add(this.labCommon);
+            this.pnltop.Controls.Add(this.labReqState);
+            this.pnltop.Controls.Add(this.labPurCategory);
+            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.lab);
             this.pnltop.Controls.Add(this.labOrderDate);
-            this.pnltop.Controls.Add(this.dateOrderDateBegin);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
@@ -815,6 +815,11 @@
             this.dataColCodeName.Caption = "零件名称";
             this.dataColCodeName.ColumnName = "CodeName";
             // 
+            // dataColPrListAutoId
+            // 
+            this.dataColPrListAutoId.ColumnName = "PrListAutoId";
+            this.dataColPrListAutoId.DataType = typeof(int);
+            // 
             // gridViewPrReqHead
             // 
             this.gridViewPrReqHead.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -1268,11 +1273,6 @@
             this.gridBottomOrderHead.pageRowCount = 5;
             this.gridBottomOrderHead.Size = new System.Drawing.Size(1150, 54);
             this.gridBottomOrderHead.TabIndex = 0;
-            // 
-            // dataColPrListAutoId
-            // 
-            this.dataColPrListAutoId.ColumnName = "PrListAutoId";
-            this.dataColPrListAutoId.DataType = typeof(int);
             // 
             // FrmOrderListQuery
             // 

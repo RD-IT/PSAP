@@ -253,14 +253,14 @@
             // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.labRemark);
-            this.pnlEdit.Controls.Add(this.labProjectName);
-            this.pnlEdit.Controls.Add(this.labBussinessBaseNo);
-            this.pnlEdit.Controls.Add(this.labProjectNo);
             this.pnlEdit.Controls.Add(this.textRemark);
             this.pnlEdit.Controls.Add(this.textProjectName);
             this.pnlEdit.Controls.Add(this.searchLookUpBussinessBaseNo);
             this.pnlEdit.Controls.Add(this.textProjectNo);
+            this.pnlEdit.Controls.Add(this.labRemark);
+            this.pnlEdit.Controls.Add(this.labProjectName);
+            this.pnlEdit.Controls.Add(this.labBussinessBaseNo);
+            this.pnlEdit.Controls.Add(this.labProjectNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";

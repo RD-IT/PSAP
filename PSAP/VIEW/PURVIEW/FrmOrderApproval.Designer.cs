@@ -115,13 +115,13 @@
             // 
             // pnlTop
             // 
-            this.pnlTop.Controls.Add(this.labApprovalCat);
             this.pnlTop.Controls.Add(this.lookUpApprovalType);
             this.pnlTop.Controls.Add(this.textApprovalCat);
-            this.pnlTop.Controls.Add(this.labApprovalType);
             this.pnlTop.Controls.Add(this.textReqState);
-            this.pnlTop.Controls.Add(this.labReqState);
             this.pnlTop.Controls.Add(this.textOrderHeadNo);
+            this.pnlTop.Controls.Add(this.labApprovalCat);
+            this.pnlTop.Controls.Add(this.labApprovalType);
+            this.pnlTop.Controls.Add(this.labReqState);
             this.pnlTop.Controls.Add(this.labOrderHeadNo);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
@@ -625,7 +625,7 @@
             this.btnApproval.Text = "审批";
             this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
             // 
-            // FrmApprovalOrder
+            // FrmOrderApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -635,7 +635,7 @@
             this.Controls.Add(this.pnlBottom);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmApprovalOrder";
+            this.Name = "FrmOrderApproval";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "审批信息";

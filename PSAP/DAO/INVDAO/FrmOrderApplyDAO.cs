@@ -15,10 +15,10 @@ namespace PSAP.DAO.INVDAO
         /// </summary>
         public void QueryOrderHead(DataTable queryDataTable,string orderHeadNoStr,string orderDateBeginStr,string orderDateEndStr, string reqDepStr, string purCategoryStr, string preparedStr, string projectNoStr, string bussinessBaseNoStr, string commonStr)
         {
-            string sqlStr = " Head.ReqState in (2)";
+            string sqlStr = " Head.ReqState in (2) and IsNull(isEnd, 0)=0 ";
             if (orderHeadNoStr != "")
             {
-                sqlStr += string.Format(" and Head.OrderHeadNo='{0}'", orderHeadNoStr);
+                sqlStr += string.Format(" and Head.OrderHeadNo like '%{0}%'", orderHeadNoStr);
             }
             if (orderDateBeginStr != "")
             {

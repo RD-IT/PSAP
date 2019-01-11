@@ -85,10 +85,10 @@
             // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.labPayTypeNoText);
-            this.pnlEdit.Controls.Add(this.labPayTypeNo);
             this.pnlEdit.Controls.Add(this.textPayTypeNoText);
             this.pnlEdit.Controls.Add(this.textPayTypeNo);
+            this.pnlEdit.Controls.Add(this.labPayTypeNoText);
+            this.pnlEdit.Controls.Add(this.labPayTypeNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";

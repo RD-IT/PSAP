@@ -94,5 +94,23 @@ namespace PSAP.PSAPCommon
             }
             return repertoryTypeDescStr;
         }
+
+        /// <summary>
+        /// 根据工程类型编号得到工程类型描述
+        /// </summary>
+        public static string Get_ManufactureType_Desc(string manufactureTypeStr)
+        {
+            string manufactureTypeDescStr = "";
+            switch (manufactureTypeStr)
+            {
+                case "1":
+                    manufactureTypeDescStr = "正常";
+                    break;
+                case "2":
+                    manufactureTypeDescStr = "虚拟";
+                    break;
+            }
+            return manufactureTypeDescStr;
+        }
     }
 }

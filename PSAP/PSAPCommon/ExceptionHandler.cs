@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PSAP.DAO.BSDAO;
 
 namespace PSAP.PSAPCommon
 {
@@ -66,8 +67,9 @@ namespace PSAP.PSAPCommon
         /// <param name="msg">异常信息</param>
         private void RecordLocalLogText(string msg)
         {
+            DateTime nowDate = BaseSQL.GetServerDateTime();
             string logPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "Log";
-            string filePath = logPath + @"\logtext" + DateTime.Now.Date.ToString("yyyyMMdd") + ".txt";
+            string filePath = logPath + @"\logtext" + nowDate.ToString("yyyyMMdd") + ".txt";
             StreamWriter text;
             if (File.Exists(filePath))
             {
@@ -81,7 +83,7 @@ namespace PSAP.PSAPCommon
                 }
                 text = File.CreateText(filePath);
             }
-            text.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), msg));
+            text.WriteLine(string.Format("{0} | {1}", nowDate.ToString("yyyy-MM-dd HH:mm:ss"), msg));
             text.Close();
         }
 

@@ -118,6 +118,22 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 除了主键控件外其他不允许修改的控件列表
+        /// </summary>
+        private List<Control> otherNoChangeControl = null;
+        public List<Control> OtherNoChangeControl
+        {
+            get
+            {
+                return otherNoChangeControl;
+            }
+            set
+            {
+                otherNoChangeControl = value;
+            }
+        }
+
+        /// <summary>
         /// 编辑区Panel
         /// </summary>
         private PanelControl masterEditPanel;
@@ -225,7 +241,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (btnSave.Text != "保存")
+            if (btnSave.Text != "保存")//修改
             {
                 try
                 {
@@ -254,12 +270,15 @@ namespace PSAP.VIEW.BSVIEW
                         masterEditPanel.SelectNextControl(null, true, true, true, true);
                 }
             }
-            else
+            else//保存
             {
                 btnSave_Click();
             }
         }
 
+        /// <summary>
+        /// 单击保存按钮事件
+        /// </summary>
         private bool btnSave_Click()
         {
             try
@@ -599,18 +618,18 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     foreach (Control ctl in masterEditPanel.Controls)
                     {
-                        if(newState)
+                        if (newState)
                         {
-                            if (ctl != primaryKeyControl)
+                            if (ctl != primaryKeyControl && (otherNoChangeControl == null || otherNoChangeControl.IndexOf(ctl) < 0))
                                 ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                             else
                                 ctlHandler.Set_Control_ReadOnly(ctl, false);
                         }
                         else
                         {
-                            if (ctl != primaryKeyControl)
+                            if (ctl != primaryKeyControl && (otherNoChangeControl ==null ||otherNoChangeControl.IndexOf(ctl) < 0))
                                 ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
-                        }                            
+                        }
                     }
                 }
             }

@@ -131,11 +131,11 @@
             // pnlEdit
             // 
             this.pnlEdit.Controls.Add(this.searchLookUpProjectNo);
+            this.pnlEdit.Controls.Add(this.textRemark);
+            this.pnlEdit.Controls.Add(this.textStnNo);
             this.pnlEdit.Controls.Add(this.labRemark);
             this.pnlEdit.Controls.Add(this.labProjectNo);
             this.pnlEdit.Controls.Add(this.labStnNo);
-            this.pnlEdit.Controls.Add(this.textRemark);
-            this.pnlEdit.Controls.Add(this.textStnNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";

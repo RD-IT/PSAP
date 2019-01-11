@@ -129,10 +129,10 @@
             // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.labWarehouseWarrantTypeName);
-            this.pnlEdit.Controls.Add(this.labWarehouseWarrantTypeNo);
             this.pnlEdit.Controls.Add(this.textWarehouseWarrantTypeName);
             this.pnlEdit.Controls.Add(this.textWarehouseWarrantTypeNo);
+            this.pnlEdit.Controls.Add(this.labWarehouseWarrantTypeName);
+            this.pnlEdit.Controls.Add(this.labWarehouseWarrantTypeNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
@@ -141,7 +141,7 @@
             // 
             // labWarehouseWarrantTypeName
             // 
-            this.labWarehouseWarrantTypeName.Location = new System.Drawing.Point(266, 24);
+            this.labWarehouseWarrantTypeName.Location = new System.Drawing.Point(284, 24);
             this.labWarehouseWarrantTypeName.Name = "labWarehouseWarrantTypeName";
             this.labWarehouseWarrantTypeName.Size = new System.Drawing.Size(72, 14);
             this.labWarehouseWarrantTypeName.TabIndex = 15;
@@ -158,7 +158,7 @@
             // textWarehouseWarrantTypeName
             // 
             this.textWarehouseWarrantTypeName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseWarrantType, "WarehouseWarrantTypeName", true));
-            this.textWarehouseWarrantTypeName.Location = new System.Drawing.Point(353, 21);
+            this.textWarehouseWarrantTypeName.Location = new System.Drawing.Point(384, 21);
             this.textWarehouseWarrantTypeName.Name = "textWarehouseWarrantTypeName";
             this.textWarehouseWarrantTypeName.Size = new System.Drawing.Size(120, 20);
             this.textWarehouseWarrantTypeName.TabIndex = 1;
@@ -167,7 +167,7 @@
             // 
             this.textWarehouseWarrantTypeNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseWarrantType, "WarehouseWarrantTypeNo", true));
             this.textWarehouseWarrantTypeNo.EnterMoveNextControl = true;
-            this.textWarehouseWarrantTypeNo.Location = new System.Drawing.Point(123, 21);
+            this.textWarehouseWarrantTypeNo.Location = new System.Drawing.Point(130, 21);
             this.textWarehouseWarrantTypeNo.Name = "textWarehouseWarrantTypeNo";
             this.textWarehouseWarrantTypeNo.Size = new System.Drawing.Size(120, 20);
             this.textWarehouseWarrantTypeNo.TabIndex = 0;
