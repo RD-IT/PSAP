@@ -41,6 +41,7 @@
             System.Windows.Forms.Label bankAccoutLabel;
             System.Windows.Forms.Label bankAddressLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBussinessInfo));
+            System.Windows.Forms.Label label1;
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
@@ -109,6 +110,8 @@
             this.bS_BussinessCategoryTableAdapter = new PSAP.dsPSAPTableAdapters.BS_BussinessCategoryTableAdapter();
             this.bS_CountryCodeManagementTableAdapter = new PSAP.dsPSAPTableAdapters.BS_CountryCodeManagementTableAdapter();
             this.bsBase = new System.Windows.Forms.BindingSource(this.components);
+            this.dataColumn21 = new System.Data.DataColumn();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             companyLRLabel = new System.Windows.Forms.Label();
             companyAddressLabel = new System.Windows.Forms.Label();
             zipCodeLabel = new System.Windows.Forms.Label();
@@ -120,6 +123,7 @@
             bussinessLicenseLabel = new System.Windows.Forms.Label();
             bankAccoutLabel = new System.Windows.Forms.Label();
             bankAddressLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -158,6 +162,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // companyLRLabel
@@ -299,61 +304,67 @@
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(346, 25);
+            this.tsControl.Size = new System.Drawing.Size(219, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
             // tsbAdd
             // 
+            this.tsbAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
             this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAdd.Name = "tsbAdd";
-            this.tsbAdd.Size = new System.Drawing.Size(52, 22);
+            this.tsbAdd.Size = new System.Drawing.Size(36, 22);
             this.tsbAdd.Text = "新增";
             this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // tsbEdit
             // 
+            this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.Size = new System.Drawing.Size(52, 22);
+            this.tsbEdit.Size = new System.Drawing.Size(36, 22);
             this.tsbEdit.Text = "编辑";
             this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
             // tsbDelete
             // 
+            this.tsbDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbDelete.Image")));
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.Size = new System.Drawing.Size(52, 22);
+            this.tsbDelete.Size = new System.Drawing.Size(36, 22);
             this.tsbDelete.Text = "删除";
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // tsbSave
             // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
             this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(52, 22);
+            this.tsbSave.Size = new System.Drawing.Size(36, 22);
             this.tsbSave.Text = "保存";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
             // tsbCancel
             // 
+            this.tsbCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
             this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCancel.Name = "tsbCancel";
-            this.tsbCancel.Size = new System.Drawing.Size(52, 22);
+            this.tsbCancel.Size = new System.Drawing.Size(36, 22);
             this.tsbCancel.Text = "取消";
             this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
             // tsbClose
             // 
+            this.tsbClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(52, 22);
+            this.tsbClose.Size = new System.Drawing.Size(36, 22);
             this.tsbClose.Text = "退出";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
@@ -430,7 +441,8 @@
             this.dataColumn12,
             this.dataColumn13,
             this.dataColumn14,
-            this.dataColumn15});
+            this.dataColumn15,
+            this.dataColumn21});
             this.dataTable2.TableName = "BussinessDetailInfo";
             // 
             // dataColumn6
@@ -651,6 +663,8 @@
             // pnlEdit
             // 
             this.pnlEdit.AutoSize = true;
+            this.pnlEdit.Controls.Add(this.textEdit1);
+            this.pnlEdit.Controls.Add(label1);
             this.pnlEdit.Controls.Add(this.txtWebSite);
             this.pnlEdit.Controls.Add(this.txtE_mail);
             this.pnlEdit.Controls.Add(this.txtFaxNo);
@@ -837,6 +851,29 @@
             this.bsBase.DataMember = "BussinessBaseInfo";
             this.bsBase.DataSource = this.dataSet1;
             // 
+            // dataColumn21
+            // 
+            this.dataColumn21.Caption = "联系人";
+            this.dataColumn21.ColumnName = "Contact";
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "Contact", true));
+            this.textEdit1.EnterMoveNextControl = true;
+            this.textEdit1.Location = new System.Drawing.Point(96, 253);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(100, 20);
+            this.textEdit1.TabIndex = 29;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(3, 257);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(41, 12);
+            label1.TabIndex = 28;
+            label1.Text = "联系人";
+            // 
             // FrmBussinessInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -892,6 +929,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -965,5 +1003,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit1;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
+        private System.Data.DataColumn dataColumn21;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
     }
 }

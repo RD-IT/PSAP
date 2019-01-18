@@ -86,70 +86,77 @@
             this.tsbClose});
             this.tsControl.Location = new System.Drawing.Point(0, 0);
             this.tsControl.Name = "tsControl";
-            this.tsControl.Size = new System.Drawing.Size(422, 25);
+            this.tsControl.Size = new System.Drawing.Size(310, 25);
             this.tsControl.TabIndex = 4;
             this.tsControl.Text = "toolStrip1";
             // 
             // tsbAdd
             // 
+            this.tsbAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
             this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAdd.Name = "tsbAdd";
-            this.tsbAdd.Size = new System.Drawing.Size(52, 22);
+            this.tsbAdd.Size = new System.Drawing.Size(36, 22);
             this.tsbAdd.Text = "新增";
             this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // tsbEdit
             // 
+            this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.Size = new System.Drawing.Size(52, 22);
+            this.tsbEdit.Size = new System.Drawing.Size(36, 22);
             this.tsbEdit.Text = "编辑";
             this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
             // tsbDelete
             // 
+            this.tsbDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbDelete.Image")));
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.Size = new System.Drawing.Size(52, 22);
+            this.tsbDelete.Size = new System.Drawing.Size(36, 22);
             this.tsbDelete.Text = "删除";
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // tsbSave
             // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
             this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(52, 22);
+            this.tsbSave.Size = new System.Drawing.Size(36, 22);
             this.tsbSave.Text = "保存";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
             // tsbCancel
             // 
+            this.tsbCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
             this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCancel.Name = "tsbCancel";
-            this.tsbCancel.Size = new System.Drawing.Size(52, 22);
+            this.tsbCancel.Size = new System.Drawing.Size(36, 22);
             this.tsbCancel.Text = "取消";
             this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
             // tsbDGViewExportToCSV
             // 
+            this.tsbDGViewExportToCSV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbDGViewExportToCSV.Image = ((System.Drawing.Image)(resources.GetObject("tsbDGViewExportToCSV.Image")));
             this.tsbDGViewExportToCSV.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDGViewExportToCSV.Name = "tsbDGViewExportToCSV";
-            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(76, 22);
+            this.tsbDGViewExportToCSV.Size = new System.Drawing.Size(60, 22);
             this.tsbDGViewExportToCSV.Text = "导出数据";
             this.tsbDGViewExportToCSV.Click += new System.EventHandler(this.tsbDGViewExportToCSV_Click);
             // 
             // tsbClose
             // 
+            this.tsbClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(52, 22);
+            this.tsbClose.Size = new System.Drawing.Size(36, 22);
             this.tsbClose.Text = "退出";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
