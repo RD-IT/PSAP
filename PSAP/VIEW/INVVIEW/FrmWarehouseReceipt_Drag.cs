@@ -67,7 +67,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpRepertoryNo.Properties.DataSource = wwDAO.QueryRepertoryInfo(true);
+                lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
                 lookUpRepertoryNo.ItemIndex = 0;
                 lookUpWarehouseReceiptTypeNo.Properties.DataSource = wrDAO.QueryWarehouseReceiptType(true);
                 lookUpWarehouseReceiptTypeNo.ItemIndex = 0;
@@ -80,20 +80,20 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpManufactureNo.ItemIndex = 0;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpRepertoryNo.DataSource = wwDAO.QueryRepertoryInfo(false);
+                repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
                 repLookUpWRTypeNo.DataSource = wrDAO.QueryWarehouseReceiptType(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
                 repLookUpManufactureNo.DataSource = wrDAO.QueryManufactureInfo(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
-                repSearchShelfId.DataSource = wwDAO.QueryShelfInfo(false);
+                repSearchShelfId.DataSource = commonDAO.QueryShelfInfo(false);
                 repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
 
                 if (textCommon.Text == "")
                 {
                     wrDAO.QueryWarehouseReceiptHead(dataSet_WR.Tables[0], "", "", "", "", "", "", 0, "", -1, "", true);
                     wrDAO.QueryWarehouseReceiptList(dataSet_WR.Tables[1], "", true);
-                }
+                }                
             }
             catch (Exception ex)
             {
@@ -144,6 +144,8 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmWarehouseReceipt_Shown(object sender, EventArgs e)
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
+
+            dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
 
         /// <summary>

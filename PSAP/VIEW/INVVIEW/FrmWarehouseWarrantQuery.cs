@@ -18,6 +18,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmWarehouseWarrantDAO wwDAO = new FrmWarehouseWarrantDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
+        /// <summary>
+        /// 采购订单明细ID
+        /// </summary>
+        public static int orderListAutoId = 0;
+
         public FrmWarehouseWarrantQuery()
         {
             InitializeComponent();
@@ -38,7 +43,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpReqDep.ItemIndex = 0;
                 searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
-                lookUpRepertoryNo.Properties.DataSource = wwDAO.QueryRepertoryInfo(true);
+                lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
                 lookUpRepertoryNo.ItemIndex = 0;
                 lookUpWarehouseWarrantTypeNo.Properties.DataSource = wwDAO.QueryWarehouseWarrantType(true);
                 lookUpWarehouseWarrantTypeNo.ItemIndex = 0;
@@ -47,7 +52,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpRepertoryNo.DataSource = wwDAO.QueryRepertoryInfo(false);
+                repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
                 repLookUpWWTypeNo.DataSource = wwDAO.QueryWarehouseWarrantType(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
@@ -59,6 +64,54 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 窗体激活事件
+        /// </summary>
+        private void FrmWarehouseWarrantQuery_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (orderListAutoId != 0)
+                {
+                    spinorderListAutoId.Value = orderListAutoId;
+                    orderListAutoId = 0;
+                    checkorderListAutoId.Checked = true;
+
+                    DateTime nowDate = BaseSQL.GetServerDateTime();
+                    dateWWDateBegin.DateTime = nowDate.AddMonths(-6);
+                    dateWWDateEnd.DateTime = nowDate.AddMonths(6);
+                    searchLookUpBussinessBaseNo.Text = "全部";
+                    lookUpRepertoryNo.ItemIndex = 0;
+                    lookUpReqDep.ItemIndex = 0;
+                    lookUpWarehouseWarrantTypeNo.ItemIndex = 0;
+                    comboBoxWarehouseState.SelectedIndex = 0;
+                    lookUpPrepared.ItemIndex = 0;
+                    textCommon.Text = "";
+
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 选择采购单明细ID
+        /// </summary>
+        private void checkorderListAutoId_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkorderListAutoId.Checked)
+            {
+                spinorderListAutoId.Enabled = true;
+            }
+            else
+            {
+                spinorderListAutoId.Enabled = false;
             }
         }
 
@@ -101,11 +154,11 @@ namespace PSAP.VIEW.BSVIEW
 
                 int warehouseStateInt = comboBoxWarehouseState.SelectedIndex > 0 ? comboBoxWarehouseState.SelectedIndex : 0;
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? lookUpPrepared.EditValue.ToString() : "";
-                int approverInt = -1;
                 string commonStr = textCommon.Text.Trim();
+                int orderListAutoIdInt = (checkorderListAutoId.Checked && spinorderListAutoId.Value > 0) ? DataTypeConvert.GetInt(spinorderListAutoId.Value) : 0;
 
                 dataSet_WW.Tables[0].Rows.Clear();
-                string querySqlStr = wwDAO.QueryWarehouseWarrantHead_SQL(orderDateBeginStr, orderDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, empNameStr, approverInt, commonStr, false);
+                string querySqlStr = wwDAO.QueryWarehouseWarrantHead_SQL(orderDateBeginStr, orderDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, empNameStr, -1, commonStr, orderListAutoIdInt, false);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
@@ -152,6 +205,5 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
             }
         }
-        
     }
 }

@@ -519,7 +519,7 @@ namespace PSAP.DAO.INVDAO
         public void PrintHandle(string wrHeadNoStr, int handleTypeInt)
         {
             DataSet ds = new DataSet();
-            DataTable headTable = DAO.BSDAO.BaseSQL.GetTableBySql(string.Format("select * from V_Prn_INV_WarehouseReceiptHead where WarehouseReceipt = '{0}' order by AutoId", wrHeadNoStr));
+            DataTable headTable = BaseSQL.GetTableBySql(string.Format("select * from V_Prn_INV_WarehouseReceiptHead where WarehouseReceipt = '{0}' order by AutoId", wrHeadNoStr));
             headTable.TableName = "WarehouseReceiptHead";
             for (int i = 0; i < headTable.Columns.Count; i++)
             {

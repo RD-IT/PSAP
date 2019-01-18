@@ -13,12 +13,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmPrReqQuery : DockContent
+    public partial class FrmPrReqList_Overplus : DockContent
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
-        public FrmPrReqQuery()
+        public FrmPrReqList_Overplus()
         {
             InitializeComponent();
         }
@@ -26,23 +26,27 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmPrReqQuery_Load(object sender, EventArgs e)
+        private void FrmPrReqList_Overplus_Load(object sender, EventArgs e)
         {
             try
             {
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateReqDateEnd.DateTime = nowDate.Date;
+
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
+                searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
+                searchLookUpProjectNo.Text = "全部";
+                searchLookUpCodeFileName.Properties.DataSource = commonDAO.QueryPartsCode(true);
+                searchLookUpCodeFileName.Text = "全部";
                 comboBoxReqState.SelectedIndex = 0;
-                lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
-                lookUpApplicant.EditValue = SystemInfo.user.EmpName;
-                repositoryItemLookUpEdit1.DataSource = commonDAO.QueryDepartment(false);
-                repositoryItemLookUpEdit2.DataSource = commonDAO.QueryPurCategory(false);
 
-                DateTime nowDate = BaseSQL.GetServerDateTime();
-                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
-                dateReqDateEnd.DateTime = nowDate.Date;
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
+                repLookUpProjectNo.DataSource = commonDAO.QueryProjectList(false);
 
                 gridBottomPrReq.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 
@@ -57,7 +61,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定列表显示信息
         /// </summary>
-        private void gridViewPrReqHead_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        private void gridViewPrReqList_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "ReqState")
             {
@@ -68,7 +72,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewPrReqHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewPrReqList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
@@ -85,16 +89,16 @@ namespace PSAP.VIEW.BSVIEW
             {
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
+                string projectNoStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
-                string empNameStr = lookUpApplicant.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpApplicant.EditValue) : "";
+                string codeFileNameStr = searchLookUpCodeFileName.Text != "全部" ? DataTypeConvert.GetString(searchLookUpCodeFileName.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
                 dataSet_PrReq.Tables[0].Clear();
-                //prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
 
-                string querySqlStr = prReqDAO.QueryPrReqHead_SQL(dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, -1, commonStr, false);
+                string querySqlStr = prReqDAO.Query_PrReqList_Overplus(dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, projectNoStr, reqStateInt, codeFileNameStr, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
-                gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqHead", querySqlStr, countSqlStr, true);
+                gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqList", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
             {
@@ -109,7 +113,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
+                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
             }
             catch (Exception ex)
             {
@@ -120,15 +124,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 双击查询明细
         /// </summary>
-        private void gridViewPrReqHead_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridViewPrReqList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
                 if (e.Clicks == 2)
                 {
-                    string prReqNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]);
+                    string prReqNoStr = DataTypeConvert.GetString(gridViewPrReqList.GetFocusedDataRow()["PrReqNo"]);
+                    int autoIdInt=DataTypeConvert.GetInt(gridViewPrReqList.GetFocusedDataRow()["AutoId"]);
                     FrmPrReq.queryPrReqNo = prReqNoStr;
-                    FrmPrReq.queryListAutoId = 0;
+                    FrmPrReq.queryListAutoId = autoIdInt;
                     ViewHandler.ShowRightWindow("FrmPrReq");
                 }
             }

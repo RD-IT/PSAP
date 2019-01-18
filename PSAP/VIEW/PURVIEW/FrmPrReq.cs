@@ -861,6 +861,47 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 鼠标操作明细行事件
+        /// </summary>
+        private void gridViewPrReqList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (btnNew.Enabled)
+                {
+                    if (e.Button == MouseButtons.Right)
+                    {
+                        popupMenuList.ShowPopup(Control.MousePosition);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--鼠标操作明细行事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询明细的下一级采购订单
+        /// </summary>
+        private void barButtonUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gridViewPrReqList.GetFocusedDataRow() != null)
+                {
+                    int autoIdInt = DataTypeConvert.GetInt(gridViewPrReqList.GetFocusedDataRow()["AutoId"]);
+                    FrmOrderQuery.prReqListAutoId = autoIdInt;
+                    ViewHandler.ShowRightWindow("FrmOrderQuery");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询明细的下一级采购订单错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 检查是否有未填写字段
         /// </summary>
         private bool IsHaveBlankLine()
@@ -1083,5 +1124,8 @@ namespace PSAP.VIEW.BSVIEW
 
         #endregion
 
+
+
+        
     }
 }

@@ -38,32 +38,6 @@ namespace PSAP.DAO.INVDAO
         }
 
         /// <summary>
-        /// 查询仓库信息（增加一个全部选项）
-        /// </summary>
-        public DataTable QueryRepertoryInfo(bool addAllItem)
-        {
-            string sqlStr = "select AutoId, RepertoryNo, RepertoryName, RepertoryType, RepertoryTypeText from V_BS_RepertoryInfo Order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '全部' as RepertoryNo, '全部' as RepertoryName, 1 as RepertoryType, '正常' as RepertoryTypeText union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }
-
-        /// <summary>
-        /// 查询货架信息（增加一个全部选项）
-        /// </summary>
-        public DataTable QueryShelfInfo(bool addAllItem)
-        {
-            string sqlStr = "select AutoId, ShelfNo, ShelfLocation from BS_ShelfInfo Order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '全部' as ShelfNo, '全部' as ShelfLocation union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }
-
-        /// <summary>
         /// 查询入库类别（增加一个全部选项）
         /// </summary>
         public DataTable QueryWarehouseWarrantType(bool addAllItem)
@@ -127,20 +101,20 @@ namespace PSAP.DAO.INVDAO
         /// <param name="nullTable">是否查询空表</param>
         public void QueryWarehouseWarrantHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryWarehouseWarrantHead_SQL(beginDateStr, endDateStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
+            BaseSQL.Query(QueryWarehouseWarrantHead_SQL(beginDateStr, endDateStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, preparedStr, approverInt, commonStr,0, nullTable), queryDataTable);
         }
 
         /// <summary>
         /// 查询入库单表头的SQL
         /// </summary>
-        public string QueryWarehouseWarrantHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
+        public string QueryWarehouseWarrantHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, int orderListAutoIdInt, bool nullTable)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
             {
                 sqlStr += string.Format(" and WarehouseWarrantDate between '{0}' and '{1}'", beginDateStr, endDateStr);
             }
-            if(reqDepStr!="")
+            if (reqDepStr != "")
             {
                 sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
             }
@@ -167,6 +141,10 @@ namespace PSAP.DAO.INVDAO
             if (commonStr != "")
             {
                 sqlStr += string.Format(" and (WarehouseWarrant like '%{0}%' or Remark like '%{0}%')", commonStr);
+            }
+            if (orderListAutoIdInt > 0)
+            {
+                sqlStr += string.Format("and WarehouseWarrant in (Select WarehouseWarrant from INV_WarehouseWarrantList where PoListAutoId = {0})", orderListAutoIdInt);
             }
             if (approverInt >= 0)
             {
@@ -350,6 +328,9 @@ namespace PSAP.DAO.INVDAO
 
             foreach (DataRow lrow in wwListTable.Rows)
             {
+                if (lrow.RowState == DataRowState.Deleted)
+                    continue;
+
                 string codeFileNameStr = DataTypeConvert.GetString(lrow["CodeFileName"]);
                 int poListAutoId = DataTypeConvert.GetInt(lrow["PoListAutoId"]);
                 string sqlStr = string.Format("PoListAutoId = {0}", poListAutoId);
@@ -514,7 +495,7 @@ namespace PSAP.DAO.INVDAO
                                 {
                                     cmd.CommandText = string.Format("Update INV_WarehouseWarrantHead set WarehouseState = 2 where WarehouseWarrant='{0}'", wwHeadNoStr);
                                     cmd.ExecuteNonQuery();
-                                    wwHeadTable.Rows[i]["ReqState"] = 2;
+                                    wwHeadTable.Rows[i]["WarehouseState"] = 2;
                                     continue;
                                 }
                                 int approvalCatInt = DataTypeConvert.GetInt(tmpTable.Rows[0]["ApprovalCat"]);
@@ -607,14 +588,14 @@ namespace PSAP.DAO.INVDAO
                         DataRow[] orderHeadRows = wwHeadTable.Select("select=1");
                         for (int i = 0; i < orderHeadRows.Length; i++)
                         {
-                            ////检查是否有下级的主单
-                            //if (CheckApplyWarehouseWarrant(cmd, DataTypeConvert.GetString(orderHeadRows[i]["OrderHeadNo"])))
-                            //{
-                            //    trans.Rollback();
-                            //    wwHeadTable.RejectChanges();
-                            //    MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
-                            //    return false;
-                            //}
+                            //检查是否有下级的主单
+                            if (CheckApplySettlement(cmd, DataTypeConvert.GetString(orderHeadRows[i]["WarehouseWarrant"])))
+                            {
+                                trans.Rollback();
+                                wwHeadTable.RejectChanges();
+                                MessageHandler.ShowMessageBox("入库单已经有适用的采购结账单记录，不可以操作。");
+                                return false;
+                            }
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
                         }
@@ -645,7 +626,7 @@ namespace PSAP.DAO.INVDAO
         public void PrintHandle(string wwHeadNoStr, int handleTypeInt)
         {
             DataSet ds = new DataSet();
-            DataTable headTable = DAO.BSDAO.BaseSQL.GetTableBySql(string.Format("select * from V_Prn_INV_WarehouseWarrantHead where WarehouseWarrant = '{0}' order by AutoId", wwHeadNoStr));
+            DataTable headTable = BaseSQL.GetTableBySql(string.Format("select * from V_Prn_INV_WarehouseWarrantHead where WarehouseWarrant = '{0}' order by AutoId", wwHeadNoStr));
             headTable.TableName = "WarehouseWarrantHead";
             for (int i = 0; i < headTable.Columns.Count; i++)
             {
@@ -831,5 +812,22 @@ namespace PSAP.DAO.INVDAO
             ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "INV_WarehouseWarrantHead", ds, paralist, handleTypeInt);
         }
 
+        /// <summary>
+        /// 检测数据库中采购结账单是否有采购适用的记录
+        /// </summary>
+        private bool CheckApplySettlement(SqlCommand cmd, string wwHeadNoStr)
+        {
+            cmd.CommandText = string.Format("select Count(*) from PUR_SettlementList where WarehouseWarrant = '{0}'", wwHeadNoStr);
+            return DataTypeConvert.GetInt(cmd.ExecuteScalar()) > 0;
+        }
+
+        ///// <summary>
+        ///// 根据入库单明细记录ID查询下级采购结账单
+        ///// </summary>
+        //public DataTable QueryDownSettlement(int autoIdInt)
+        //{
+        //    string sqlStr = string.Format("select SettlementNo from PUR_SettlementList where WarehouseWarrantListAutoId = {0}", autoIdInt);
+        //    return BaseSQL.Query(sqlStr).Tables[0];
+        //}
     }
 }

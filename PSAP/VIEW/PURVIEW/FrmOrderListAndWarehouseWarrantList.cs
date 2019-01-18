@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using PSAP.DAO.BSDAO;
+using PSAP.DAO.INVDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -13,12 +15,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmOrderListQuery : DockContent
+    public partial class FrmOrderListAndWarehouseWarrantList : DockContent
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
 
-        public FrmOrderListQuery()
+        public FrmOrderListAndWarehouseWarrantList()
         {
             InitializeComponent();
         }
@@ -26,16 +28,13 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件错误
         /// </summary>
-        private void FrmOrderQuery_Load(object sender, EventArgs e)
+        private void FrmOrderListAndWarehouseWarrantList_Load(object sender, EventArgs e)
         {
             try
             {
                 DateTime nowDate = BaseSQL.GetServerDateTime();
-                datePlanDateBegin.DateTime = nowDate.Date;
-                datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateOrderDateEnd.DateTime = nowDate.Date;
-                checkOrderDate.Checked = false;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
@@ -49,10 +48,12 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpCodeFileName.Properties.DataSource = commonDAO.QueryPartsCode(true);
                 searchLookUpCodeFileName.Text = "全部";
 
-                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
+                repSearchShelfId.DataSource = commonDAO.QueryShelfInfo(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 
@@ -65,50 +66,28 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 选择订购日期
-        /// </summary>
-        private void checkOrderDate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkOrderDate.Checked)
-            {
-                dateOrderDateBegin.Enabled = true;
-                dateOrderDateEnd.Enabled = true;
-            }
-            else
-            {
-                dateOrderDateBegin.Enabled = false;
-                dateOrderDateEnd.Enabled = false;
-            }
-        }
-
-        /// <summary>
         /// 设定列表显示信息
         /// </summary>
-        private void gridViewPrReqHead_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        private void gridViewOrderList_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
-            if (e.Column.FieldName == "ReqState")
+            switch(e.Column.FieldName)
             {
-                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
+                case "ReqState":
+                    e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
+                    break;
+                case "WarehouseState":
+                    e.DisplayText = CommonHandler.Get_WarehouseState_Desc(e.Value.ToString());
+                    break;
             }
+            
         }
 
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewPrReqHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewOrderList_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void searchLookUpBussinessBaseNoView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -121,15 +100,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                string planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
-                string planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
-                string orderDateBeginStr = "";
-                string orderDateEndStr = "";
-                if (checkOrderDate.Checked)
-                {
-                    orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
-                }
+                string orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
+                string orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
@@ -140,10 +112,10 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.QueryOrderList_Head_SQL(planDateBeginStr, planDateEndStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
+                string querySqlStr = orderDAO.Query_OrderListAndWarehouseWarrantList(orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
-                gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);  
+                gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderList", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
             {
@@ -158,7 +130,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
+                FileHandler.SaveDevGridControlExportToExcel(gridViewOrderList);
             }
             catch (Exception ex)
             {
@@ -169,16 +141,17 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 双击查询明细
         /// </summary>
-        private void gridViewPrReqHead_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridViewOrderList_RowClick(object sender, RowClickEventArgs e)
         {
             try
             {
                 if (e.Clicks == 2)
                 {
-                    string orderHeadNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]);
-                    FrmOrder_Drag.queryOrderHeadNo = orderHeadNoStr;
-                    FrmOrder_Drag.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmOrder_Drag");
+                    string orderHeadNoStr = DataTypeConvert.GetString(gridViewOrderList.GetFocusedDataRow()["OrderHeadNo"]);
+                    int autoIdInt = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["AutoId"]);
+                    FrmOrder.queryOrderHeadNo = orderHeadNoStr;
+                    FrmOrder.queryListAutoId = autoIdInt;
+                    ViewHandler.ShowRightWindow("FrmOrder");
                 }
             }
             catch (Exception ex)
@@ -187,5 +160,42 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 设置Grid单元格合并
+        /// </summary>
+        private void gridViewOrderList_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                string firstColumnFieldName = "AutoId";
+
+                switch (e.Column.FieldName)
+                {
+                    case "WarehouseWarrant":
+                    case "WarehouseWarrantDate":
+                    case "WarehouseState":
+                    case "WWQty":
+                    case "RepertoryNo":
+                    case "ShelfId":
+
+                        break;
+                    default:
+                        {
+                            string valueFirstColumn1 = Convert.ToString(view.GetRowCellValue(e.RowHandle1, firstColumnFieldName));
+                            string valueFirstColumn2 = Convert.ToString(view.GetRowCellValue(e.RowHandle2, firstColumnFieldName));
+                            string valueOtherColumn1 = Convert.ToString(view.GetRowCellValue(e.RowHandle1, e.Column.FieldName));
+                            string valueOtherColumn2 = Convert.ToString(view.GetRowCellValue(e.RowHandle2, e.Column.FieldName));
+                            e.Merge = valueFirstColumn1 == valueFirstColumn2 && valueOtherColumn1 == valueOtherColumn2;
+                            e.Handled = true;
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
+            }
+        }
     }
 }

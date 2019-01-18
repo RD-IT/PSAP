@@ -117,35 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="dataSet_WR.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>141, 3</value>
+  <metadata name="dataSet_Order.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 6</value>
   </metadata>
-  <metadata name="bindingSource_WRHead.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>249, 3</value>
+  <metadata name="bindingSource_OrderList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>150, 6</value>
   </metadata>
-  <metadata name="bindingSource_WRList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>428, 3</value>
-  </metadata>
-  <metadata name="dockManagerLeft.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>3, 3</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="dockPnlLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAfdEVYdFRpdGxlAEJvbGQ7QmFycztSaWJib247U3RhbmRhcmTfzSrKAAACB0lEQVQ4T6VRS2sT
-        URjNf9Cdjy5MsdW2ptroJKlNa9oopsRa24VCKU3BKKQ2CBF8UB+bbrVbN+IDQXQndVcnMyFSFGuhKNSV
-        TaDNZDJNZjIzSWaS4x1BmAu1vg4cLudyz/m++30OAP/FLS//hpRoNBoPDNNka7UaW61Wkz9pGAZrmuZ1
-        ch50ENg9lCCP2OC5OILDcfSGougbvIz+oRiuzczluNSHJStk24B6vc4ucO+XA2di6A5OYrNY5B8/f73q
-        Px3FlcRsjnQz/7sOXJqmJXtDl8CcGEO5rHKZ7HraMzAO78CYqarqm20DLGi6njx+ahK+YASCkE89fPTy
-        q9t/ARenbgtlEkDe7aA8lCBQSQeewDgOeUbQwZxFp28Ubv95RKfvCJ+/rC6SQU5QHkoQkCpcFzG0ucPI
-        5YSUJEn8zbv3Mx3MMBI3ZjOkwBPKQwkCRSlznd5RtLhOolgqcZVKZeIt9+7jga4wPH0jmiRtPqU8dkH2
-        7yqSybcfG4KzLfBjC5qmRxbY9JKzvR9Hu8NaoVB4ZvdQAWRN7ItX8yutRwbRejiEb2tr6fWNjVQ8cS+7
-        t9mHqaszWVlWfv0FVdWSTS09aNrvg2XY0+zFbieDXfsYxOK3sp+WVxZ1vRKxe6iAmmHMlci/RbHA5/Mi
-        YZ63VimKIq8oijWPiCzLO+0eKuBfuOXlnxOO705lyZSE2CWLAAAAAElFTkSuQmCC
-</value>
-  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>39</value>
+    <value>46</value>
   </metadata>
 </root>

@@ -1157,5 +1157,81 @@ namespace PSAP.DAO.PURDAO
             ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "PUR_PrReqHead", ds, paralist, handleTypeInt);
 
         }
+
+        /// <summary>
+        /// 查询请购余量表的SQL
+        /// </summary>
+        public string Query_PrReqList_Overplus(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string projectNoStr, int reqStateInt, string codeFileNameStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and ReqDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (reqDepStr != "")
+            {
+                sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
+            }
+            if (purCategoryStr != "")
+            {
+                sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
+            }
+            if(projectNoStr !="")
+            {
+                sqlStr += string.Format(" and ProjectNo='{0}'", projectNoStr);
+            }
+            if (reqStateInt != 0)
+            {
+                sqlStr += string.Format(" and ReqState={0}", reqStateInt);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (PrReqNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqListRemark like '%{0}%')", commonStr);
+            }
+            sqlStr = string.Format("select * from V_PUR_PrReqList_Overplus where {0} order by AutoId", sqlStr);
+            return sqlStr;
+        }
+
+        /// <summary>
+        /// 请购与采购查询的SQL
+        /// </summary>
+        public string Query_PrReqListAndOrderList(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string projectNoStr, int reqStateInt, string codeFileNameStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and ReqDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (reqDepStr != "")
+            {
+                sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
+            }
+            if (purCategoryStr != "")
+            {
+                sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
+            }
+            if (projectNoStr != "")
+            {
+                sqlStr += string.Format(" and ProjectNo='{0}'", projectNoStr);
+            }
+            if (reqStateInt != 0)
+            {
+                sqlStr += string.Format(" and ReqState={0}", reqStateInt);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (PrReqNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqListRemark like '%{0}%')", commonStr);
+            }
+            sqlStr = string.Format("select * from V_PUR_PrReqListAndOrderList where {0} order by AutoId", sqlStr);
+            return sqlStr;
+        }
     }
 }

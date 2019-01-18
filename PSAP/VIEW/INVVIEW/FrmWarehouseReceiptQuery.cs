@@ -17,7 +17,6 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmWarehouseReceiptQuery : DockContent
     {
         FrmWarehouseReceiptDAO wrDAO = new FrmWarehouseReceiptDAO();
-        FrmWarehouseWarrantDAO wwDAO = new FrmWarehouseWarrantDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
 
@@ -39,7 +38,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpRepertoryNo.Properties.DataSource = wwDAO.QueryRepertoryInfo(true);
+                lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
                 lookUpRepertoryNo.ItemIndex = 0;
                 lookUpWarehouseReceiptTypeNo.Properties.DataSource = wrDAO.QueryWarehouseReceiptType(true);
                 lookUpWarehouseReceiptTypeNo.ItemIndex = 0;
@@ -50,7 +49,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpManufactureNo.ItemIndex = 0;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpRepertoryNo.DataSource = wwDAO.QueryRepertoryInfo(false);
+                repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
                 repLookUpWRTypeNo.DataSource = wrDAO.QueryWarehouseReceiptType(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
                 repLookUpManufactureNo.DataSource = wrDAO.QueryManufactureInfo(false);

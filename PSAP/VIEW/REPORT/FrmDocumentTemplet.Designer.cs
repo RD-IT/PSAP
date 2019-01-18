@@ -30,19 +30,30 @@
         {
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.treeListDocTemp = new DevExpress.XtraTreeList.TreeList();
             this.treeColModuleName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeColTableName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeColDocFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeColDocPath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeColDocVersion = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repTextDocVersion = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.treeColUpload = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repItemBtnEdtUpload = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListDocTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repTextDocVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemBtnEdtUpload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // treeListDocTemp
             // 
@@ -51,6 +62,7 @@
             this.treeColTableName,
             this.treeColDocFileName,
             this.treeColDocPath,
+            this.treeColDocVersion,
             this.treeColUpload});
             this.treeListDocTemp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeListDocTemp.KeyFieldName = "AutoId";
@@ -62,18 +74,19 @@
             null,
             null,
             null,
+            null,
             null}, -1);
             this.treeListDocTemp.EndUnboundLoad();
-            this.treeListDocTemp.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeListDocTemp.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeListDocTemp.OptionsCustomization.AllowBandMoving = false;
-            this.treeListDocTemp.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.treeListDocTemp.ParentFieldName = "ParentId";
             this.treeListDocTemp.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repItemBtnEdtUpload});
-            this.treeListDocTemp.Size = new System.Drawing.Size(780, 437);
+            this.repItemBtnEdtUpload,
+            this.repTextDocVersion});
+            this.treeListDocTemp.Size = new System.Drawing.Size(983, 437);
             this.treeListDocTemp.TabIndex = 0;
+            this.treeListDocTemp.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListDocTemp_FocusedNodeChanged);
+            this.treeListDocTemp.FocusedColumnChanged += new DevExpress.XtraTreeList.FocusedColumnChangedEventHandler(this.treeListDocTemp_FocusedColumnChanged);
             this.treeListDocTemp.CustomDrawNodeCell += new DevExpress.XtraTreeList.CustomDrawNodeCellEventHandler(this.treeListDocTemp_CustomDrawNodeCell);
+            this.treeListDocTemp.CellValueChanged += new DevExpress.XtraTreeList.CellValueChangedEventHandler(this.treeListDocTemp_CellValueChanged);
             this.treeListDocTemp.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.treeListDocTemp_ShowingEditor);
             // 
             // treeColModuleName
@@ -87,7 +100,7 @@
             this.treeColModuleName.OptionsColumn.AllowEdit = false;
             this.treeColModuleName.Visible = true;
             this.treeColModuleName.VisibleIndex = 0;
-            this.treeColModuleName.Width = 325;
+            this.treeColModuleName.Width = 300;
             // 
             // treeColTableName
             // 
@@ -106,7 +119,7 @@
             this.treeColDocFileName.OptionsColumn.AllowEdit = false;
             this.treeColDocFileName.Visible = true;
             this.treeColDocFileName.VisibleIndex = 2;
-            this.treeColDocFileName.Width = 176;
+            this.treeColDocFileName.Width = 160;
             // 
             // treeColDocPath
             // 
@@ -118,7 +131,25 @@
             this.treeColDocPath.OptionsColumn.AllowEdit = false;
             this.treeColDocPath.Visible = true;
             this.treeColDocPath.VisibleIndex = 1;
-            this.treeColDocPath.Width = 182;
+            this.treeColDocPath.Width = 160;
+            // 
+            // treeColDocVersion
+            // 
+            this.treeColDocVersion.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeColDocVersion.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeColDocVersion.Caption = "版本号";
+            this.treeColDocVersion.ColumnEdit = this.repTextDocVersion;
+            this.treeColDocVersion.FieldName = "DocVersion";
+            this.treeColDocVersion.Name = "treeColDocVersion";
+            this.treeColDocVersion.OptionsColumn.AllowEdit = false;
+            this.treeColDocVersion.Visible = true;
+            this.treeColDocVersion.VisibleIndex = 3;
+            this.treeColDocVersion.Width = 100;
+            // 
+            // repTextDocVersion
+            // 
+            this.repTextDocVersion.AutoHeight = false;
+            this.repTextDocVersion.Name = "repTextDocVersion";
             // 
             // treeColUpload
             // 
@@ -127,15 +158,16 @@
             this.treeColUpload.FieldName = "Upload";
             this.treeColUpload.Name = "treeColUpload";
             this.treeColUpload.Visible = true;
-            this.treeColUpload.VisibleIndex = 3;
-            this.treeColUpload.Width = 79;
+            this.treeColUpload.VisibleIndex = 4;
+            this.treeColUpload.Width = 90;
             // 
             // repItemBtnEdtUpload
             // 
             this.repItemBtnEdtUpload.AutoHeight = false;
             this.repItemBtnEdtUpload.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "编辑", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "上传", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "上传", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "版本", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.repItemBtnEdtUpload.Name = "repItemBtnEdtUpload";
             this.repItemBtnEdtUpload.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repItemBtnEdtUpload.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repItemBtnEdtUpload_ButtonClick);
@@ -146,19 +178,21 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(784, 441);
+            this.pnlTop.Size = new System.Drawing.Size(987, 441);
             this.pnlTop.TabIndex = 1;
             // 
             // FrmDocumentTemplet
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(784, 441);
+            this.ClientSize = new System.Drawing.Size(987, 441);
             this.Controls.Add(this.pnlTop);
             this.Name = "FrmDocumentTemplet";
             this.TabText = "单据模板设计";
             this.Text = "单据模板设计";
             this.Load += new System.EventHandler(this.FrmDocumentTemplet_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListDocTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repTextDocVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemBtnEdtUpload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
@@ -176,5 +210,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeColDocFileName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeColUpload;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repItemBtnEdtUpload;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeColDocVersion;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repTextDocVersion;
     }
 }

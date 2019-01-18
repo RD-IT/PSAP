@@ -101,6 +101,8 @@
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
+            this.spinorderListAutoId = new DevExpress.XtraEditors.SpinEdit();
+            this.checkorderListAutoId = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).BeginInit();
@@ -131,10 +133,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkorderListAutoId.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.spinorderListAutoId);
+            this.pnltop.Controls.Add(this.checkorderListAutoId);
             this.pnltop.Controls.Add(this.btnSaveExcel);
             this.pnltop.Controls.Add(this.lookUpReqDep);
             this.pnltop.Controls.Add(this.comboBoxWarehouseState);
@@ -163,7 +169,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(697, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(885, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 33;
@@ -239,7 +245,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(605, 43);
+            this.btnQuery.Location = new System.Drawing.Point(793, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 10;
@@ -879,6 +885,33 @@
             this.gridBottomOrderHead.Size = new System.Drawing.Size(1035, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
+            // spinorderListAutoId
+            // 
+            this.spinorderListAutoId.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinorderListAutoId.Enabled = false;
+            this.spinorderListAutoId.EnterMoveNextControl = true;
+            this.spinorderListAutoId.Location = new System.Drawing.Point(709, 44);
+            this.spinorderListAutoId.Name = "spinorderListAutoId";
+            this.spinorderListAutoId.Properties.Mask.EditMask = "d";
+            this.spinorderListAutoId.Size = new System.Drawing.Size(66, 20);
+            this.spinorderListAutoId.TabIndex = 35;
+            this.spinorderListAutoId.TabStop = false;
+            // 
+            // checkorderListAutoId
+            // 
+            this.checkorderListAutoId.EnterMoveNextControl = true;
+            this.checkorderListAutoId.Location = new System.Drawing.Point(603, 44);
+            this.checkorderListAutoId.Name = "checkorderListAutoId";
+            this.checkorderListAutoId.Properties.Caption = "采购单明细ID";
+            this.checkorderListAutoId.Size = new System.Drawing.Size(100, 19);
+            this.checkorderListAutoId.TabIndex = 34;
+            this.checkorderListAutoId.TabStop = false;
+            this.checkorderListAutoId.CheckedChanged += new System.EventHandler(this.checkorderListAutoId_CheckedChanged);
+            // 
             // FrmWarehouseWarrantQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -889,6 +922,7 @@
             this.Name = "FrmWarehouseWarrantQuery";
             this.TabText = "入库单查询";
             this.Text = "入库单查询";
+            this.Activated += new System.EventHandler(this.FrmWarehouseWarrantQuery_Activated);
             this.Load += new System.EventHandler(this.FrmWarehouseWarrantQuery_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
@@ -921,6 +955,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkorderListAutoId.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -999,5 +1035,7 @@
         private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
         private DevExpress.XtraEditors.PanelControl pnlBottom;
         private GridBottom gridBottomOrderHead;
+        private DevExpress.XtraEditors.SpinEdit spinorderListAutoId;
+        private DevExpress.XtraEditors.CheckEdit checkorderListAutoId;
     }
 }

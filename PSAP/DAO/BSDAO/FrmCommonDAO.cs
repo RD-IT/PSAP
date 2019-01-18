@@ -147,5 +147,31 @@ namespace PSAP.DAO.BSDAO
             int count = DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
             return count == 0 ? false : true;
         }
+
+        /// <summary>
+        /// 查询仓库信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryRepertoryInfo(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, RepertoryNo, RepertoryName, RepertoryType, RepertoryTypeText from V_BS_RepertoryInfo Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as RepertoryNo, '全部' as RepertoryName, 1 as RepertoryType, '正常' as RepertoryTypeText union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询货架信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryShelfInfo(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, ShelfNo, ShelfLocation from BS_ShelfInfo Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as ShelfNo, '全部' as ShelfLocation union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
     }
 }

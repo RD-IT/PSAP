@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWarehouseReceipt_Drag));
             this.dataSet_WR = new System.Data.DataSet();
             this.dataTableWRHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -422,12 +423,13 @@
             this.dockPnlLeft.Controls.Add(this.dockPanel1_Container);
             this.dockPnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.ID = new System.Guid("4ba7657e-bce7-4673-b4b1-e0411cd846f3");
+            this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
             this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dockPnlLeft.Name = "dockPnlLeft";
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
             this.dockPnlLeft.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.SavedIndex = 0;
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 709);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 545);
             this.dockPnlLeft.Text = "Bom";
             this.dockPnlLeft.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
             // 
@@ -435,7 +437,7 @@
             // 
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 682);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 518);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // pnlRight

@@ -160,7 +160,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (checkPlanDate.Checked)
                 {
                     planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    planDateEndStr = datePlanDateEnd.DateTime.ToString("yyyy-MM-dd");
+                    planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";

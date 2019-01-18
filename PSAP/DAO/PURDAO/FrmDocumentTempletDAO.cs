@@ -19,7 +19,7 @@ namespace PSAP.DAO.PURDAO
         /// <returns></returns>
         public DataTable QueryDocTemplet()
         {
-            string sqlStr = "select AutoId, ParentId, ModuleName, TableName, DocFileName, DocPath from BS_DocumentTemplet";
+            string sqlStr = "select AutoId, ParentId, ModuleName, TableName, DocFileName, DocPath, DocVersion from BS_DocumentTemplet";
             return BaseSQL.GetTableBySql(sqlStr);
         }
 
@@ -45,7 +45,6 @@ namespace PSAP.DAO.PURDAO
                 return false;
             }
             string docPathStr = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocPath"]) + DataTypeConvert.GetString(docTempletTable.Rows[0]["DocFileName"]);
-            string oldDocVerStr = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocVersion"]);
 
             if (!File.Exists(docPathStr))
                 return false;
@@ -57,12 +56,10 @@ namespace PSAP.DAO.PURDAO
             p1.Value = streamLength;
             SqlParameter p2 = new SqlParameter("@filebyte", SqlDbType.Image);
             p2.Value = buffer;
-            SqlParameter p3 = new SqlParameter("@docversion", SqlDbType.VarChar, 10);
-            p3.Value = oldDocVerStr;
-            SqlParameter p4 = new SqlParameter("@tablename", SqlDbType.VarChar, 50);
-            p4.Value = tableNameStr;
-            SqlParameter[] paraList = { p1, p2, p3, p4 };
-            BaseSQL.GetSingle("Update BS_DocumentTemplet Set Size = @size, FileByte = @filebyte, DocVersion = @docversion where TableName = @tablename", paraList);
+            SqlParameter p3 = new SqlParameter("@tablename", SqlDbType.VarChar, 50);
+            p3.Value = tableNameStr;
+            SqlParameter[] paraList = { p1, p2, p3};
+            BaseSQL.GetSingle("Update BS_DocumentTemplet Set Size = @size, FileByte = @filebyte where TableName = @tablename", paraList);
 
             return true;
         }
@@ -77,6 +74,16 @@ namespace PSAP.DAO.PURDAO
             if (docTable.Rows.Count == 0)
                 throw new Exception("查询模板文件异常。");
             return (byte[])docTable.Rows[0]["FileByte"];
+        }
+
+        /// <summary>
+        /// 更新单据模板的版本号
+        /// </summary>
+        public bool UpdateDocTemplet_Version(string tableNameStr,string docVersionStr)
+        {
+            string sqlStr = string.Format("Update BS_DocumentTemplet set DocVersion='{1}' where TableName='{0}'", tableNameStr, docVersionStr);
+            int resultInt = BaseSQL.ExecuteSql(sqlStr);
+            return resultInt > 0;
         }
     }
 }

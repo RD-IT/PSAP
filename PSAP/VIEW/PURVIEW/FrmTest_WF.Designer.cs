@@ -15,6 +15,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listBoxControl2 = new DevExpress.XtraEditors.ListBoxControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
@@ -24,11 +25,31 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dataSet_WNowInfo = new System.Data.DataSet();
+            this.TableWNowInfo = new System.Data.DataTable();
+            this.dataColAutoId = new System.Data.DataColumn();
+            this.dataColCodeFileName = new System.Data.DataColumn();
+            this.dataColCodeNo = new System.Data.DataColumn();
+            this.dataColCodeName = new System.Data.DataColumn();
+            this.dataColCatgName = new System.Data.DataColumn();
+            this.dataColCodeSpec = new System.Data.DataColumn();
+            this.dataColCodeWeight = new System.Data.DataColumn();
+            this.dataColMaterialVersion = new System.Data.DataColumn();
+            this.dataColBrand = new System.Data.DataColumn();
+            this.dataColUnit = new System.Data.DataColumn();
+            this.dataColProjectName = new System.Data.DataColumn();
+            this.dataColRepertoryNo = new System.Data.DataColumn();
+            this.dataColShelfNo = new System.Data.DataColumn();
+            this.dataColQty = new System.Data.DataColumn();
+            this.bindingSource_WNowInfo = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WNowInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWNowInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WNowInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxControl2
@@ -108,6 +129,102 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
+            // dataSet_WNowInfo
+            // 
+            this.dataSet_WNowInfo.DataSetName = "NewDataSet";
+            this.dataSet_WNowInfo.Tables.AddRange(new System.Data.DataTable[] {
+            this.TableWNowInfo});
+            // 
+            // TableWNowInfo
+            // 
+            this.TableWNowInfo.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColAutoId,
+            this.dataColCodeFileName,
+            this.dataColCodeNo,
+            this.dataColCodeName,
+            this.dataColCatgName,
+            this.dataColCodeSpec,
+            this.dataColCodeWeight,
+            this.dataColMaterialVersion,
+            this.dataColBrand,
+            this.dataColUnit,
+            this.dataColProjectName,
+            this.dataColRepertoryNo,
+            this.dataColShelfNo,
+            this.dataColQty});
+            this.TableWNowInfo.TableName = "WNowInfo";
+            // 
+            // dataColAutoId
+            // 
+            this.dataColAutoId.ColumnName = "AutoId";
+            this.dataColAutoId.DataType = typeof(int);
+            // 
+            // dataColCodeFileName
+            // 
+            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.ColumnName = "CodeFileName";
+            // 
+            // dataColCodeNo
+            // 
+            this.dataColCodeNo.Caption = "物料编号";
+            this.dataColCodeNo.ColumnName = "CodeNo";
+            // 
+            // dataColCodeName
+            // 
+            this.dataColCodeName.Caption = "零件名称";
+            this.dataColCodeName.ColumnName = "CodeName";
+            // 
+            // dataColCatgName
+            // 
+            this.dataColCatgName.Caption = "分类名称";
+            this.dataColCatgName.ColumnName = "CatgName";
+            // 
+            // dataColCodeSpec
+            // 
+            this.dataColCodeSpec.Caption = "规格型号";
+            this.dataColCodeSpec.ColumnName = "CodeSpec";
+            // 
+            // dataColCodeWeight
+            // 
+            this.dataColCodeWeight.Caption = "重量";
+            this.dataColCodeWeight.ColumnName = "CodeWeight";
+            // 
+            // dataColMaterialVersion
+            // 
+            this.dataColMaterialVersion.Caption = "物料版本";
+            this.dataColMaterialVersion.ColumnName = "MaterialVersion";
+            // 
+            // dataColBrand
+            // 
+            this.dataColBrand.Caption = "品牌";
+            this.dataColBrand.ColumnName = "Brand";
+            // 
+            // dataColUnit
+            // 
+            this.dataColUnit.Caption = "单位";
+            this.dataColUnit.ColumnName = "Unit";
+            // 
+            // dataColProjectName
+            // 
+            this.dataColProjectName.Caption = "项目名称";
+            this.dataColProjectName.ColumnName = "ProjectName";
+            // 
+            // dataColRepertoryNo
+            // 
+            this.dataColRepertoryNo.Caption = "仓库";
+            this.dataColRepertoryNo.ColumnName = "RepertoryNo";
+            // 
+            // dataColShelfNo
+            // 
+            this.dataColShelfNo.Caption = "货架号";
+            this.dataColShelfNo.ColumnName = "ShelfNo";
+            // 
+            // dataColQty
+            // 
+            this.dataColQty.Caption = "数量";
+            this.dataColQty.ColumnName = "Qty";
+            this.dataColQty.DataType = typeof(double);
+            // 
             // FrmTest_WF
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -126,6 +243,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WNowInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWNowInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WNowInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -141,5 +261,22 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private System.Data.DataSet dataSet_WNowInfo;
+        private System.Data.DataTable TableWNowInfo;
+        private System.Data.DataColumn dataColAutoId;
+        private System.Data.DataColumn dataColCodeFileName;
+        private System.Data.DataColumn dataColCodeNo;
+        private System.Data.DataColumn dataColCodeName;
+        private System.Data.DataColumn dataColCatgName;
+        private System.Data.DataColumn dataColCodeSpec;
+        private System.Data.DataColumn dataColCodeWeight;
+        private System.Data.DataColumn dataColMaterialVersion;
+        private System.Data.DataColumn dataColBrand;
+        private System.Data.DataColumn dataColUnit;
+        private System.Data.DataColumn dataColProjectName;
+        private System.Data.DataColumn dataColRepertoryNo;
+        private System.Data.DataColumn dataColShelfNo;
+        private System.Data.DataColumn dataColQty;
+        private System.Windows.Forms.BindingSource bindingSource_WNowInfo;
     }
 }

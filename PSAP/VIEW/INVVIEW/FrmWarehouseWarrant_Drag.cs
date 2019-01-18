@@ -35,6 +35,11 @@ namespace PSAP.VIEW.BSVIEW
         public static string queryWWHeadNo = "";
 
         /// <summary>
+        /// 查询的明细AutoId
+        /// </summary>
+        public static int queryListAutoId = 0;
+
+        /// <summary>
         /// 只有选择列改变行状态的时候
         /// </summary>
         bool onlySelectColChangeRowState = false;
@@ -72,7 +77,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpReqDep.ItemIndex = 0;
                 searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
-                lookUpRepertoryNo.Properties.DataSource = wwDAO.QueryRepertoryInfo(true);
+                lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
                 lookUpRepertoryNo.ItemIndex = 0;
                 lookUpWarehouseWarrantTypeNo.Properties.DataSource = wwDAO.QueryWarehouseWarrantType(true);
                 lookUpWarehouseWarrantTypeNo.ItemIndex = 0;
@@ -83,13 +88,13 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.ItemIndex = -1;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpRepertoryNo.DataSource = wwDAO.QueryRepertoryInfo(false);
+                repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
                 repLookUpWWTypeNo.DataSource = wwDAO.QueryWarehouseWarrantType(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
-                repSearchShelfId.DataSource = wwDAO.QueryShelfInfo(false);
+                repSearchShelfId.DataSource = commonDAO.QueryShelfInfo(false);
 
                 dateOrderDateBegin.DateTime = dateWWDateBegin.DateTime;
                 dateOrderDateEnd.DateTime = dateWWDateEnd.DateTime;
@@ -102,12 +107,11 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpOrderApprovalType.DataSource = commonDAO.QueryApprovalType(false);
                 repLookUpOrderPayTypeNo.DataSource = commonDAO.QueryPayType(false);
 
-
                 if (textCommon.Text == "")
                 {
                     wwDAO.QueryWarehouseWarrantHead(dataSet_WW.Tables[0], "", "", "", "", "", "", 0, "", -1, "", true);
                     wwDAO.QueryWarehouseWarrantList(dataSet_WW.Tables[1], "", true);
-                }
+                }                
             }
             catch (Exception ex)
             {
@@ -160,6 +164,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
             pnlLeftMiddle.Height = gridControlWWHead.Height + 2;
+
+            dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
 
         #endregion
@@ -253,6 +259,18 @@ namespace PSAP.VIEW.BSVIEW
                     {
                         dataSet_WW.Tables[1].Clear();
                         wwDAO.QueryWarehouseWarrantList(dataSet_WW.Tables[1], DataTypeConvert.GetString(gridViewWWHead.GetFocusedDataRow()["WarehouseWarrant"]), false);
+                        if (queryListAutoId > 0)
+                        {
+                            for (int i = 0; i < gridViewWWList.DataRowCount; i++)
+                            {
+                                if (DataTypeConvert.GetInt(gridViewWWList.GetDataRow(i)["AutoId"]) == queryListAutoId)
+                                {
+                                    gridViewWWList.FocusedRowHandle = i;
+                                    queryListAutoId = 0;
+                                    break;
+                                }
+                            }
+                        }
                     }
 
                     if (gridViewWWHead.FocusedRowHandle >= 0)
@@ -658,13 +676,38 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 双击查询明细的上一级
+        /// 鼠标操作明细行事件
         /// </summary>
         private void gridViewWWList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
-                if (e.Clicks == 2 && btnOrderApply.Enabled)
+                if (btnOrderApply.Enabled)
+                {
+                    if (e.Clicks == 2&&e.Button==MouseButtons.Left)
+                    {
+                        barButtonUp_ItemClick(null, null);
+                    }
+                    else if(e.Button==MouseButtons.Right)
+                    {
+                        popupMenuList.ShowPopup(Control.MousePosition);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--鼠标操作明细行事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询明细的上一级采购单
+        /// </summary>
+        private void barButtonUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gridViewWWList.GetFocusedDataRow() != null)
                 {
                     string orderHeadNoStr = DataTypeConvert.GetString(gridViewWWList.GetFocusedDataRow()["OrderHeadNo"]);
                     int poListAutoId = DataTypeConvert.GetInt(gridViewWWList.GetFocusedDataRow()["PoListAutoId"]);
@@ -677,7 +720,27 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细的上一级错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--查询明细的上一级采购单错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询明细的下一级采购结账单
+        /// </summary>
+        private void barButtonDown_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gridViewWWList.GetFocusedDataRow() != null)
+                {
+                    int autoIdInt = DataTypeConvert.GetInt(gridViewWWList.GetFocusedDataRow()["AutoId"]);
+                    FrmSettlementQuery.wwListAutoId = autoIdInt;
+                    ViewHandler.ShowRightWindow("FrmSettlementQuery");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询明细的下一级采购结账单错误。", ex);
             }
         }
 
@@ -899,6 +962,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (DataTypeConvert.GetBoolean(dr["ListSelect"]))
                 {
                     gridViewWWList.AddNewRow();
+                    gridViewWWList.SetFocusedRowCellValue("WarehouseWarrant", gridViewWWHead.GetFocusedDataRow()["WarehouseWarrant"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
                     gridViewWWList.SetFocusedRowCellValue("Qty", DataTypeConvert.GetDouble(dr["Overplus"]));
@@ -1095,6 +1159,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     DataRow dr = drs[i];
                     gridViewWWList.AddNewRow();
+                    gridViewWWList.SetFocusedRowCellValue("WarehouseWarrant", gridViewWWHead.GetFocusedDataRow()["WarehouseWarrant"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
                     gridViewWWList.SetFocusedRowCellValue("Qty", DataTypeConvert.GetDouble(dr["Overplus"]));
@@ -1132,6 +1197,7 @@ namespace PSAP.VIEW.BSVIEW
                     if (dataSet_WW.Tables[1].Select(string.Format("PoListAutoId={0}", DataTypeConvert.GetString(dr["AutoId"]))).Length > 0)
                         continue;
                     gridViewWWList.AddNewRow();
+                    gridViewWWList.SetFocusedRowCellValue("WarehouseWarrant", gridViewWWHead.GetFocusedDataRow()["WarehouseWarrant"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
                     gridViewWWList.SetFocusedRowCellValue("Qty", DataTypeConvert.GetDouble(dr["Overplus"]));
@@ -1160,7 +1226,9 @@ namespace PSAP.VIEW.BSVIEW
                     dataSet_Order.Tables[1].Rows.RemoveAt(i);
             }
         }
-        
+
         #endregion
+
+
     }
 }

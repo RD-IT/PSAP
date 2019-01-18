@@ -109,7 +109,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     orderDAO.QueryOrderHead(dataSet_Order.Tables[0], "", "", "", "", "", "", "", 0, "", -1, "", true);
                     orderDAO.QueryOrderList(dataSet_Order.Tables[1], "", true);
-                }
+                }                
             }
             catch (Exception ex)
             {
@@ -161,6 +161,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
             pnlLeftMiddle.Height = gridControlOrderHead.Height + 2;
+
+            dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
 
         #endregion
@@ -192,7 +194,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (checkPlanDate.Checked)
                 {
                     planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    planDateEndStr = datePlanDateEnd.DateTime.ToString("yyyy-MM-dd");
+                    planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
@@ -928,6 +930,11 @@ namespace PSAP.VIEW.BSVIEW
                                 gridViewOrderList.SetRowCellValue(e.RowHandle, "CodeName", DataTypeConvert.GetString(drs[0]["CodeName"]));
                             }
                         }
+                        if(DataTypeConvert.GetString(gridViewOrderList.GetDataRow(e.RowHandle)["PrReqNo"])!="")
+                        {
+                            gridViewOrderList.SetRowCellValue(e.RowHandle, "PrReqNo", "");
+                            gridViewOrderList.SetRowCellValue(e.RowHandle, "PrListAutoId", 0);
+                        }
                         break;
                     case "Qty":
                     case "Unit":
@@ -963,13 +970,38 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 双击查询明细的上一级
+        /// 鼠标操作明细行事件
         /// </summary>
         private void gridViewOrderList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
-                if (e.Clicks == 2 && btnNew.Enabled)
+                if (btnNew.Enabled)
+                {
+                    if (e.Clicks == 2 && e.Button == MouseButtons.Left)
+                    {
+                        barButtonUp_ItemClick(null, null);
+                    }
+                    else if (e.Button == MouseButtons.Right)
+                    {
+                        popupMenuList.ShowPopup(Control.MousePosition);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--鼠标操作明细行事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询明细的上一级请购单
+        /// </summary>
+        private void barButtonUp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gridViewOrderList.GetFocusedDataRow() != null)
                 {
                     string prReqNoStr = DataTypeConvert.GetString(gridViewOrderList.GetFocusedDataRow()["PrReqNo"]);
                     int prListAutoId = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["PrListAutoId"]);
@@ -982,7 +1014,27 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细的上一级错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--查询明细的上一级请购单错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询明细的下一级入库单
+        /// </summary>
+        private void barButtonDown_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gridViewOrderList.GetFocusedDataRow() != null)
+                {
+                    int autoIdInt = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["AutoId"]);
+                    FrmWarehouseWarrantQuery.orderListAutoId = autoIdInt;
+                    ViewHandler.ShowRightWindow("FrmWarehouseWarrantQuery");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询明细的下一级入库单错误。", ex);
             }
         }
 

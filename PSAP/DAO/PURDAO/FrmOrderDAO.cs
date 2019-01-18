@@ -27,12 +27,12 @@ namespace PSAP.DAO.PURDAO
         /// <param name="nullTable">是否查询空表</param>
         public void QueryOrderHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
+            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, approverInt, commonStr,0, nullTable), queryDataTable);
         }
         /// <summary>
         /// 查询采购单表头表的SQL
         /// </summary>
-        public string QueryOrderHead_SQL(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
+        public string QueryOrderHead_SQL(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, int prReqListAutoIdInt, bool nullTable)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
@@ -66,6 +66,10 @@ namespace PSAP.DAO.PURDAO
             if (commonStr != "")
             {
                 sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%' or PUR_OrderHead.ApprovalType like '%{0}%' or PayTypeNo like '%{0}%')", commonStr);
+            }
+            if(prReqListAutoIdInt>0)
+            {
+                sqlStr += string.Format(" and OrderHeadNo in (Select OrderHeadNo from PUR_OrderList where PrListAutoId = {0})", prReqListAutoIdInt);
             }
             if (approverInt >= 0)
             {
@@ -1042,7 +1046,7 @@ namespace PSAP.DAO.PURDAO
         public void PrintHandle(string orderHeadNoStr, int handleTypeInt)
         {
             DataSet ds = new DataSet();
-            DataTable headTable = DAO.BSDAO.BaseSQL.GetTableBySql(string.Format("select * from V_Prn_PUR_OrderHead where OrderHeadNo = '{0}' order by AutoId", orderHeadNoStr));
+            DataTable headTable = BaseSQL.GetTableBySql(string.Format("select * from V_Prn_PUR_OrderHead where OrderHeadNo = '{0}' order by AutoId", orderHeadNoStr));
             headTable.TableName = "OrderHead";
             for (int i = 0; i < headTable.Columns.Count; i++)
             {
@@ -1266,6 +1270,9 @@ namespace PSAP.DAO.PURDAO
             DataRow[] listRows = orderListTable.Select("IsNull(PrReqNo,'')<>''");
             foreach (DataRow lrow in listRows)
             {
+                if (lrow.RowState == DataRowState.Deleted)
+                    continue;
+
                 string prReqNoStr = DataTypeConvert.GetString(lrow["PrReqNo"]);
                 string codeFileNameStr = DataTypeConvert.GetString(lrow["CodeFileName"]);
                 int prListAutoId = DataTypeConvert.GetInt(lrow["PrListAutoId"]);
@@ -1291,6 +1298,95 @@ namespace PSAP.DAO.PURDAO
         {
             cmd.CommandText = string.Format("select Count(*) from INV_WarehouseWarrantList where OrderHeadNo = '{0}'", orderHeadNoStr);
             return DataTypeConvert.GetInt(cmd.ExecuteScalar()) > 0;
+        }
+
+        /// <summary>
+        /// 查询采购入库表的SQL
+        /// </summary>
+        public string Query_OrderList_Overplus(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string projectNoStr, string codeFileNameStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginPlanDateStr != "")
+            {
+                sqlStr += string.Format(" and PlanDate between '{0}' and '{1}'", beginPlanDateStr, endPlanDateStr);
+            }
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and OrderHeadDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (reqDepStr != "")
+            {
+                sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
+            }
+            if (purCategoryStr != "")
+            {
+                sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
+            }
+            if (bussinessBaseNoStr != "")
+            {
+                sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
+            }
+            if (reqStateInt != 0)
+            {
+                sqlStr += string.Format(" and ReqState={0}", reqStateInt);
+            }
+            if (projectNoStr != "")
+            {
+                sqlStr += string.Format(" and ProjectNo='{0}'", projectNoStr);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or Prepared like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%' and Remark like '%{0}%')", commonStr);
+            }
+            sqlStr = string.Format("select * from V_PUR_OrderList_Overplus where {0} order by AutoId", sqlStr);
+            return sqlStr;
+        }
+
+        /// <summary>
+        /// 入库与采购查询的SQL
+        /// </summary>
+        /// <returns></returns>
+        public string Query_OrderListAndWarehouseWarrantList(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string projectNoStr, string codeFileNameStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and OrderHeadDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (reqDepStr != "")
+            {
+                sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
+            }
+            if (purCategoryStr != "")
+            {
+                sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
+            }
+            if (bussinessBaseNoStr != "")
+            {
+                sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
+            }
+            if (reqStateInt != 0)
+            {
+                sqlStr += string.Format(" and ReqState={0}", reqStateInt);
+            }
+            if (projectNoStr != "")
+            {
+                sqlStr += string.Format(" and ProjectNo='{0}'", projectNoStr);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or StnNo like '%{0}%' or Remark like '%{0}%')", commonStr);
+            }
+            sqlStr = string.Format("select * from V_PUR_OrderListAndWarehouseWarrantList where {0} order by AutoId", sqlStr);
+            return sqlStr;
         }
     }
 }

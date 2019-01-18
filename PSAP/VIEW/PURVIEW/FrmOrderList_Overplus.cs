@@ -13,29 +13,29 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmOrderListQuery : DockContent
+    public partial class FrmOrderList_Overplus : DockContent
     {
-        FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
 
-        public FrmOrderListQuery()
+        public FrmOrderList_Overplus()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// 窗体加载事件错误
+        /// 窗体加载事件
         /// </summary>
-        private void FrmOrderQuery_Load(object sender, EventArgs e)
+        private void FrmOrderList_Overplus_Load(object sender, EventArgs e)
         {
             try
             {
                 DateTime nowDate = BaseSQL.GetServerDateTime();
-                datePlanDateBegin.DateTime = nowDate.Date;
-                datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateOrderDateEnd.DateTime = nowDate.Date;
-                checkOrderDate.Checked = false;
+                datePlanDateBegin.DateTime = nowDate.Date;
+                datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
+                checkPlanDate.Checked = false;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
@@ -65,26 +65,26 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 选择订购日期
+        /// 选择计划到货日期
         /// </summary>
-        private void checkOrderDate_CheckedChanged(object sender, EventArgs e)
+        private void checkPlanDate_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkOrderDate.Checked)
+            if (checkPlanDate.Checked)
             {
-                dateOrderDateBegin.Enabled = true;
-                dateOrderDateEnd.Enabled = true;
+                datePlanDateBegin.Enabled = true;
+                datePlanDateEnd.Enabled = true;
             }
             else
             {
-                dateOrderDateBegin.Enabled = false;
-                dateOrderDateEnd.Enabled = false;
+                datePlanDateBegin.Enabled = false;
+                datePlanDateEnd.Enabled = false;
             }
         }
 
         /// <summary>
         /// 设定列表显示信息
         /// </summary>
-        private void gridViewPrReqHead_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        private void gridViewOrderList_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "ReqState")
             {
@@ -95,20 +95,9 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewPrReqHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewOrderList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void searchLookUpBussinessBaseNoView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -120,15 +109,16 @@ namespace PSAP.VIEW.BSVIEW
         private void btnQuery_Click(object sender, EventArgs e)
         {
             try
-            {
-                string planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
-                string planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
-                string orderDateBeginStr = "";
-                string orderDateEndStr = "";
-                if (checkOrderDate.Checked)
+            {                
+                string orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
+                string orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+
+                string planDateBeginStr = "";
+                string planDateEndStr = "";
+                if (checkPlanDate.Checked)
                 {
-                    orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+                    planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
+                    planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
@@ -140,10 +130,10 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.QueryOrderList_Head_SQL(planDateBeginStr, planDateEndStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
+                string querySqlStr = orderDAO.Query_OrderList_Overplus(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
-                gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);  
+                gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderList", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
             {
@@ -158,7 +148,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
+                FileHandler.SaveDevGridControlExportToExcel(gridViewOrderList);
             }
             catch (Exception ex)
             {
@@ -169,15 +159,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 双击查询明细
         /// </summary>
-        private void gridViewPrReqHead_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridViewOrderList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
                 if (e.Clicks == 2)
                 {
-                    string orderHeadNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]);
+                    string orderHeadNoStr = DataTypeConvert.GetString(gridViewOrderList.GetFocusedDataRow()["OrderHeadNo"]);
+                    int autoIdInt = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["AutoId"]);
                     FrmOrder_Drag.queryOrderHeadNo = orderHeadNoStr;
-                    FrmOrder_Drag.queryListAutoId = 0;
+                    FrmOrder_Drag.queryListAutoId = autoIdInt;
                     ViewHandler.ShowRightWindow("FrmOrder_Drag");
                 }
             }
@@ -186,6 +177,7 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
             }
         }
+
 
     }
 }

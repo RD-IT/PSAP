@@ -264,6 +264,14 @@
             this.labPrReqNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonDown = new DevExpress.XtraBars.BarButtonItem();
+            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprover.Properties)).BeginInit();
@@ -347,6 +355,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.textPrReqNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
             this.pnlRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
@@ -2609,6 +2619,7 @@
             this.searchLookUpProjectNoView.Name = "searchLookUpProjectNoView";
             this.searchLookUpProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpProjectNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewOrderHead_CustomDrawRowIndicator);
             // 
             // gridColProjectNo
             // 
@@ -2741,12 +2752,78 @@
             this.splitterControl1.TabIndex = 5;
             this.splitterControl1.TabStop = false;
             // 
+            // popupMenuList
+            // 
+            this.popupMenuList.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonUp),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonDown)});
+            this.popupMenuList.Manager = this.barManagerForm;
+            this.popupMenuList.Name = "popupMenuList";
+            // 
+            // barButtonUp
+            // 
+            this.barButtonUp.Caption = "上级-请购单";
+            this.barButtonUp.Id = 2;
+            this.barButtonUp.Name = "barButtonUp";
+            this.barButtonUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonUp_ItemClick);
+            // 
+            // barButtonDown
+            // 
+            this.barButtonDown.Caption = "下级-入库单";
+            this.barButtonDown.Id = 3;
+            this.barButtonDown.Name = "barButtonDown";
+            this.barButtonDown.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDown_ItemClick);
+            // 
+            // barManagerForm
+            // 
+            this.barManagerForm.DockControls.Add(this.barDockControlTop);
+            this.barManagerForm.DockControls.Add(this.barDockControlBottom);
+            this.barManagerForm.DockControls.Add(this.barDockControlLeft);
+            this.barManagerForm.DockControls.Add(this.barDockControlRight);
+            this.barManagerForm.Form = this;
+            this.barManagerForm.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonUp,
+            this.barButtonDown});
+            this.barManagerForm.MaxItemId = 4;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1416, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 601);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1416, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 601);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1416, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 601);
+            // 
             // FrmOrder_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1416, 601);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.dockPnlLeft);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Name = "FrmOrder_Drag";
             this.TabText = "采购订单";
             this.Text = "采购订单";
@@ -2838,7 +2915,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.textPrReqNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
             this.pnlRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -3078,5 +3158,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn colOverplus;
         private DevExpress.XtraGrid.Columns.GridColumn colRequirementDate;
         private DevExpress.XtraGrid.Columns.GridColumn colPrReqListRemark;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.PopupMenu popupMenuList;
+        private DevExpress.XtraBars.BarButtonItem barButtonUp;
+        private DevExpress.XtraBars.BarButtonItem barButtonDown;
+        private DevExpress.XtraBars.BarManager barManagerForm;
     }
 }

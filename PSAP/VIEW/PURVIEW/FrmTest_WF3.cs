@@ -28,6 +28,10 @@ namespace PSAP.VIEW.BSVIEW
         public FrmTest_WF3()
         {
             InitializeComponent();
+            //设定按字体来缩放控件
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            //设定字体大小为12px     
+            //this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
         }
 
         private void FrmTest_WF3_Shown(object sender, EventArgs e)
@@ -146,5 +150,30 @@ namespace PSAP.VIEW.BSVIEW
             dt2.Rows.Clear();
         }
 
+        private void barSubItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MessageBox.Show("I'm First!");
+        }
+
+        private void barSubItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MessageBox.Show("I'm Second!");
+        }
+
+        private void gridView2_RowClick(object sender, RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button==MouseButtons.Right)
+                {
+                    popupMenu1.ShowPopup(Control.MousePosition);
+                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

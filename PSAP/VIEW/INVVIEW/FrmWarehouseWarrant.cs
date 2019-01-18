@@ -54,7 +54,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpReqDep.ItemIndex = 0;
                 searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
-                lookUpRepertoryNo.Properties.DataSource = wwDAO.QueryRepertoryInfo(true);
+                lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
                 lookUpRepertoryNo.ItemIndex = 0;
                 lookUpWarehouseWarrantTypeNo.Properties.DataSource = wwDAO.QueryWarehouseWarrantType(true);
                 lookUpWarehouseWarrantTypeNo.ItemIndex = 0;
@@ -65,7 +65,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.ItemIndex = -1;
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpRepertoryNo.DataSource= wwDAO.QueryRepertoryInfo(false);
+                repLookUpRepertoryNo.DataSource= commonDAO.QueryRepertoryInfo(false);
                 repLookUpWWTypeNo.DataSource = wwDAO.QueryWarehouseWarrantType(false);
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
@@ -825,6 +825,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (DataTypeConvert.GetBoolean(dr["ListSelect"]))
                 {
                     gridViewWWList.AddNewRow();
+                    gridViewWWList.SetFocusedRowCellValue("WarehouseWarrant", gridViewWWHead.GetFocusedDataRow()["WarehouseWarrant"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
                     gridViewWWList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
                     gridViewWWList.SetFocusedRowCellValue("Qty", DataTypeConvert.GetDouble(dr["Overplus"]));

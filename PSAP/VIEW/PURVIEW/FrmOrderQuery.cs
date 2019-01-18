@@ -18,6 +18,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
+        /// <summary>
+        /// 请购单明细AutoId
+        /// </summary>
+        public static int prReqListAutoId = 0;
+
         public FrmOrderQuery()
         {
             InitializeComponent();
@@ -65,6 +70,39 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 窗体激活事件
+        /// </summary>
+        private void FrmOrderQuery_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (prReqListAutoId != 0)
+                {
+                    spinprReqListAutoId.Value = prReqListAutoId;
+                    prReqListAutoId = 0;
+                    checkprReqListAutoId.Checked = true;
+
+                    DateTime nowDate = BaseSQL.GetServerDateTime();
+                    dateOrderDateBegin.DateTime = nowDate.AddMonths(-6);
+                    dateOrderDateEnd.DateTime = nowDate.AddMonths(6);
+                    lookUpReqDep.ItemIndex = 0;
+                    lookUpPurCategory.ItemIndex = 0;
+                    searchLookUpBussinessBaseNo.Text = "全部";
+                    comboBoxReqState.SelectedIndex = 0;
+                    lookUpPrepared.ItemIndex = 0;
+                    checkPlanDate.Checked = false;
+                    textCommon.Text = "";
+
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 选择计划到货日期
         /// </summary>
         private void checkPlanDate_CheckedChanged(object sender, EventArgs e)
@@ -78,6 +116,21 @@ namespace PSAP.VIEW.BSVIEW
             {
                 datePlanDateBegin.Enabled = false;
                 datePlanDateEnd.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 选择请购单明细ID
+        /// </summary>
+        private void checkprReqListAutoId_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkprReqListAutoId.Checked)
+            {
+                spinprReqListAutoId.Enabled = true;
+            }
+            else
+            {
+                spinprReqListAutoId.Enabled = false;
             }
         }
 
@@ -117,7 +170,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (checkPlanDate.Checked)
                 {
                     planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    planDateEndStr = datePlanDateEnd.DateTime.ToString("yyyy-MM-dd");
+                    planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
@@ -126,9 +179,10 @@ namespace PSAP.VIEW.BSVIEW
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
+                int prReqListAutoIdInt = (checkprReqListAutoId.Checked && spinprReqListAutoId.Value > 0) ? DataTypeConvert.GetInt(spinprReqListAutoId.Value) : 0;
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.QueryOrderHead_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, empNameStr, -1, commonStr, false);
+                string querySqlStr = orderDAO.QueryOrderHead_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, empNameStr, -1, commonStr, prReqListAutoIdInt, false);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);
@@ -175,6 +229,6 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
-        
+
     }
 }

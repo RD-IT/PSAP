@@ -40,5 +40,36 @@ namespace PSAP.VIEW.BSVIEW
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = listBoxControl2.SelectedItem.ToString();
         }
 
+        /// <summary>
+        /// 小闪，滚木，雪球，滚筒，剑雨，火球，毒药，大闪，火箭
+        /// </summary>
+        /// <param name="codeFileNameStr"></param>
+        /// <param name="repertoryNoStr"></param>
+        /// <param name="projectNameStr"></param>
+        /// <param name="shelfNoStr"></param>
+        /// <returns></returns>
+        public string QueryWarehouseNowInfo_SQL(string codeFileNameStr, string repertoryNoStr, string projectNameStr, string shelfNoStr)
+        {
+            string sqlStr = " 1=1";
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (repertoryNoStr != "")
+            {
+                sqlStr += string.Format(" and RepertoryNo='{0}'", repertoryNoStr);
+            }
+            if (projectNameStr != "")
+            {
+                sqlStr += string.Format(" and ProjectName='{0}'", projectNameStr);
+            }
+            if (shelfNoStr != "")
+            {
+                sqlStr += string.Format(" and ShelfNo='{0}'", shelfNoStr);
+            }
+            sqlStr = string.Format("select * from V_INV_WarehouseNowInfo where {0} order by AutoId", sqlStr);
+            return sqlStr;
+        }
+
     }
 }

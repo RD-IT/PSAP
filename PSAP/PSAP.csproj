@@ -114,6 +114,7 @@
     <Compile Include="DAO\PURDAO\FrmPrReqDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmSettlementDAO.cs" />
+    <Compile Include="DAO\PURDAO\FrmWarehouseWarrantApplyDAO.cs" />
     <Compile Include="DS_PUR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -364,6 +365,18 @@
     <Compile Include="VIEW\PURVIEW\FrmOrderApproval.Designer.cs">
       <DependentUpon>FrmOrderApproval.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderListAndWarehouseWarrantList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderListAndWarehouseWarrantList.Designer.cs">
+      <DependentUpon>FrmOrderListAndWarehouseWarrantList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_Overplus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_Overplus.Designer.cs">
+      <DependentUpon>FrmOrderList_Overplus.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PURVIEW\FrmOrder_Drag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +442,18 @@
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmPrReqApply.Designer.cs">
       <DependentUpon>FrmPrReqApply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPrReqListAndOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPrReqListAndOrderList.Designer.cs">
+      <DependentUpon>FrmPrReqListAndOrderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPrReqList_Overplus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmPrReqList_Overplus.Designer.cs">
+      <DependentUpon>FrmPrReqList_Overplus.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmPrReqQuery.cs">
       <SubType>Form</SubType>
@@ -611,6 +636,12 @@
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderApproval.resx">
       <DependentUpon>FrmOrderApproval.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderListAndWarehouseWarrantList.resx">
+      <DependentUpon>FrmOrderListAndWarehouseWarrantList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_Overplus.resx">
+      <DependentUpon>FrmOrderList_Overplus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrder_Drag.resx">
       <DependentUpon>FrmOrder_Drag.cs</DependentUpon>
     </EmbeddedResource>
@@ -644,11 +675,26 @@
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqApply.resx">
       <DependentUpon>FrmPrReqApply.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqListAndOrderList.resx">
+      <DependentUpon>FrmPrReqListAndOrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqList_Overplus.resx">
+      <DependentUpon>FrmPrReqList_Overplus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPrReqQuery.resx">
       <DependentUpon>FrmPrReqQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmPurCategory.resx">
       <DependentUpon>FrmPurCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmSettlementApproval.resx">
+      <DependentUpon>FrmSettlementApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmSettlementQuery.resx">
+      <DependentUpon>FrmSettlementQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmSettlement_Drag.resx">
+      <DependentUpon>FrmSettlement_Drag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF.resx">
       <DependentUpon>FrmTest_WF.cs</DependentUpon>
