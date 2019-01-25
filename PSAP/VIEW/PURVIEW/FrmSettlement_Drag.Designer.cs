@@ -382,6 +382,15 @@
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
             this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dockPnlLeft.Name = "dockPnlLeft";
+            this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
+            this.dockPnlLeft.Options.AllowDockBottom = false;
+            this.dockPnlLeft.Options.AllowDockFill = false;
+            this.dockPnlLeft.Options.AllowDockRight = false;
+            this.dockPnlLeft.Options.AllowDockTop = false;
+            this.dockPnlLeft.Options.AllowFloating = false;
+            this.dockPnlLeft.Options.FloatOnDblClick = false;
+            this.dockPnlLeft.Options.ShowCloseButton = false;
+            this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
             this.dockPnlLeft.Size = new System.Drawing.Size(350, 581);
             this.dockPnlLeft.Text = "入库单";
@@ -1637,6 +1646,9 @@
             this.gridViewSettlementList.IndicatorWidth = 40;
             this.gridViewSettlementList.Name = "gridViewSettlementList";
             this.gridViewSettlementList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewSettlementList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewSettlementList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewSettlementList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewSettlementList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewSettlementList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewSettlementList.OptionsView.ColumnAutoWidth = false;
@@ -2003,6 +2015,9 @@
             this.gridViewSettlementHead.IndicatorWidth = 40;
             this.gridViewSettlementHead.Name = "gridViewSettlementHead";
             this.gridViewSettlementHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewSettlementHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewSettlementHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewSettlementHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewSettlementHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewSettlementHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewSettlementHead.OptionsView.ColumnAutoWidth = false;

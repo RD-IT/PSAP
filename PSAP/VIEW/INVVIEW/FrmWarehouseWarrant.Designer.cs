@@ -31,19 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxWarehouseState = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
             this.lookUpWarehouseWarrantTypeNo = new DevExpress.XtraEditors.LookUpEdit();
-            this.labWarehouseWarrantTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.lookUpRepertoryNo = new DevExpress.XtraEditors.LookUpEdit();
-            this.labRepertoryNo = new DevExpress.XtraEditors.LabelControl();
-            this.labApprover = new DevExpress.XtraEditors.LabelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpApprover = new DevExpress.XtraEditors.LookUpEdit();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
-            this.labCommon = new DevExpress.XtraEditors.LabelControl();
-            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPrepared = new DevExpress.XtraEditors.LookUpEdit();
             this.searchLookUpBussinessBaseNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpBussinessBaseNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -51,11 +44,18 @@
             this.gridColumnBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.dateWWDateEnd = new DevExpress.XtraEditors.DateEdit();
+            this.dateWWDateBegin = new DevExpress.XtraEditors.DateEdit();
+            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
+            this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
+            this.labWarehouseWarrantTypeNo = new DevExpress.XtraEditors.LabelControl();
+            this.labRepertoryNo = new DevExpress.XtraEditors.LabelControl();
+            this.labApprover = new DevExpress.XtraEditors.LabelControl();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
+            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
+            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.lab1 = new DevExpress.XtraEditors.LabelControl();
             this.labWWDate = new DevExpress.XtraEditors.LabelControl();
-            this.dateWWDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWWList = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_WWList = new System.Windows.Forms.BindingSource(this.components);
@@ -238,14 +238,6 @@
             this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
             this.lookUpReqDep.TabIndex = 5;
             // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(847, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 32;
-            this.labReqDep.Text = "入库部门：";
-            // 
             // comboBoxWarehouseState
             // 
             this.comboBoxWarehouseState.EnterMoveNextControl = true;
@@ -261,14 +253,6 @@
             "审批中"});
             this.comboBoxWarehouseState.Size = new System.Drawing.Size(100, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
-            // 
-            // labWarehouseState
-            // 
-            this.labWarehouseState.Location = new System.Drawing.Point(20, 47);
-            this.labWarehouseState.Name = "labWarehouseState";
-            this.labWarehouseState.Size = new System.Drawing.Size(60, 14);
-            this.labWarehouseState.TabIndex = 30;
-            this.labWarehouseState.Text = "单据状态：";
             // 
             // lookUpWarehouseWarrantTypeNo
             // 
@@ -287,14 +271,6 @@
             this.lookUpWarehouseWarrantTypeNo.Size = new System.Drawing.Size(100, 20);
             this.lookUpWarehouseWarrantTypeNo.TabIndex = 4;
             // 
-            // labWarehouseWarrantTypeNo
-            // 
-            this.labWarehouseWarrantTypeNo.Location = new System.Drawing.Point(665, 17);
-            this.labWarehouseWarrantTypeNo.Name = "labWarehouseWarrantTypeNo";
-            this.labWarehouseWarrantTypeNo.Size = new System.Drawing.Size(60, 14);
-            this.labWarehouseWarrantTypeNo.TabIndex = 28;
-            this.labWarehouseWarrantTypeNo.Text = "入库类别：";
-            // 
             // lookUpRepertoryNo
             // 
             this.lookUpRepertoryNo.EnterMoveNextControl = true;
@@ -312,22 +288,6 @@
             this.lookUpRepertoryNo.Properties.ValueMember = "RepertoryNo";
             this.lookUpRepertoryNo.Size = new System.Drawing.Size(100, 20);
             this.lookUpRepertoryNo.TabIndex = 3;
-            // 
-            // labRepertoryNo
-            // 
-            this.labRepertoryNo.Location = new System.Drawing.Point(484, 17);
-            this.labRepertoryNo.Name = "labRepertoryNo";
-            this.labRepertoryNo.Size = new System.Drawing.Size(60, 14);
-            this.labRepertoryNo.TabIndex = 26;
-            this.labRepertoryNo.Text = "入库仓库：";
-            // 
-            // labApprover
-            // 
-            this.labApprover.Location = new System.Drawing.Point(374, 47);
-            this.labApprover.Name = "labApprover";
-            this.labApprover.Size = new System.Drawing.Size(48, 14);
-            this.labApprover.TabIndex = 24;
-            this.labApprover.Text = "审批人：";
             // 
             // btnQuery
             // 
@@ -364,22 +324,6 @@
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 9;
-            // 
-            // labCommon
-            // 
-            this.labCommon.Location = new System.Drawing.Point(538, 47);
-            this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(60, 14);
-            this.labCommon.TabIndex = 22;
-            this.labCommon.Text = "通用查询：";
-            // 
-            // labPrepared
-            // 
-            this.labPrepared.Location = new System.Drawing.Point(202, 47);
-            this.labPrepared.Name = "labPrepared";
-            this.labPrepared.Size = new System.Drawing.Size(48, 14);
-            this.labPrepared.TabIndex = 20;
-            this.labPrepared.Text = "制单人：";
             // 
             // lookUpPrepared
             // 
@@ -455,14 +399,6 @@
             this.gridColumnAutoId.Caption = "gridColumnAutoId";
             this.gridColumnAutoId.Name = "gridColumnAutoId";
             // 
-            // labBussinessBaseNo
-            // 
-            this.labBussinessBaseNo.Location = new System.Drawing.Point(315, 17);
-            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
-            this.labBussinessBaseNo.Size = new System.Drawing.Size(48, 14);
-            this.labBussinessBaseNo.TabIndex = 18;
-            this.labBussinessBaseNo.Text = "供应商：";
-            // 
             // dateWWDateEnd
             // 
             this.dateWWDateEnd.EditValue = null;
@@ -481,22 +417,6 @@
             this.dateWWDateEnd.Size = new System.Drawing.Size(100, 20);
             this.dateWWDateEnd.TabIndex = 1;
             // 
-            // lab1
-            // 
-            this.lab1.Location = new System.Drawing.Point(192, 17);
-            this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(4, 14);
-            this.lab1.TabIndex = 6;
-            this.lab1.Text = "-";
-            // 
-            // labWWDate
-            // 
-            this.labWWDate.Location = new System.Drawing.Point(20, 17);
-            this.labWWDate.Name = "labWWDate";
-            this.labWWDate.Size = new System.Drawing.Size(60, 14);
-            this.labWWDate.TabIndex = 5;
-            this.labWWDate.Text = "入库日期：";
-            // 
             // dateWWDateBegin
             // 
             this.dateWWDateBegin.EditValue = null;
@@ -514,6 +434,86 @@
             this.dateWWDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateWWDateBegin.Size = new System.Drawing.Size(100, 20);
             this.dateWWDateBegin.TabIndex = 0;
+            // 
+            // labReqDep
+            // 
+            this.labReqDep.Location = new System.Drawing.Point(847, 17);
+            this.labReqDep.Name = "labReqDep";
+            this.labReqDep.Size = new System.Drawing.Size(60, 14);
+            this.labReqDep.TabIndex = 32;
+            this.labReqDep.Text = "入库部门：";
+            // 
+            // labWarehouseState
+            // 
+            this.labWarehouseState.Location = new System.Drawing.Point(20, 47);
+            this.labWarehouseState.Name = "labWarehouseState";
+            this.labWarehouseState.Size = new System.Drawing.Size(60, 14);
+            this.labWarehouseState.TabIndex = 30;
+            this.labWarehouseState.Text = "单据状态：";
+            // 
+            // labWarehouseWarrantTypeNo
+            // 
+            this.labWarehouseWarrantTypeNo.Location = new System.Drawing.Point(665, 17);
+            this.labWarehouseWarrantTypeNo.Name = "labWarehouseWarrantTypeNo";
+            this.labWarehouseWarrantTypeNo.Size = new System.Drawing.Size(60, 14);
+            this.labWarehouseWarrantTypeNo.TabIndex = 28;
+            this.labWarehouseWarrantTypeNo.Text = "入库类别：";
+            // 
+            // labRepertoryNo
+            // 
+            this.labRepertoryNo.Location = new System.Drawing.Point(484, 17);
+            this.labRepertoryNo.Name = "labRepertoryNo";
+            this.labRepertoryNo.Size = new System.Drawing.Size(60, 14);
+            this.labRepertoryNo.TabIndex = 26;
+            this.labRepertoryNo.Text = "入库仓库：";
+            // 
+            // labApprover
+            // 
+            this.labApprover.Location = new System.Drawing.Point(374, 47);
+            this.labApprover.Name = "labApprover";
+            this.labApprover.Size = new System.Drawing.Size(48, 14);
+            this.labApprover.TabIndex = 24;
+            this.labApprover.Text = "审批人：";
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(538, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 22;
+            this.labCommon.Text = "通用查询：";
+            // 
+            // labPrepared
+            // 
+            this.labPrepared.Location = new System.Drawing.Point(202, 47);
+            this.labPrepared.Name = "labPrepared";
+            this.labPrepared.Size = new System.Drawing.Size(48, 14);
+            this.labPrepared.TabIndex = 20;
+            this.labPrepared.Text = "制单人：";
+            // 
+            // labBussinessBaseNo
+            // 
+            this.labBussinessBaseNo.Location = new System.Drawing.Point(315, 17);
+            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
+            this.labBussinessBaseNo.Size = new System.Drawing.Size(48, 14);
+            this.labBussinessBaseNo.TabIndex = 18;
+            this.labBussinessBaseNo.Text = "供应商：";
+            // 
+            // lab1
+            // 
+            this.lab1.Location = new System.Drawing.Point(192, 17);
+            this.lab1.Name = "lab1";
+            this.lab1.Size = new System.Drawing.Size(4, 14);
+            this.lab1.TabIndex = 6;
+            this.lab1.Text = "-";
+            // 
+            // labWWDate
+            // 
+            this.labWWDate.Location = new System.Drawing.Point(20, 17);
+            this.labWWDate.Name = "labWWDate";
+            this.labWWDate.Size = new System.Drawing.Size(60, 14);
+            this.labWWDate.TabIndex = 5;
+            this.labWWDate.Text = "入库日期：";
             // 
             // pnlBottom
             // 
@@ -742,6 +742,9 @@
             this.gridViewWWList.GridControl = this.gridControlWWList;
             this.gridViewWWList.IndicatorWidth = 40;
             this.gridViewWWList.Name = "gridViewWWList";
+            this.gridViewWWList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewWWList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewWWList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewWWList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewWWList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewWWList.OptionsView.ColumnAutoWidth = false;
@@ -1046,6 +1049,9 @@
             this.gridViewWWHead.IndicatorWidth = 40;
             this.gridViewWWHead.Name = "gridViewWWHead";
             this.gridViewWWHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewWWHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewWWHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewWWHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewWWHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewWWHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewWWHead.OptionsView.ColumnAutoWidth = false;

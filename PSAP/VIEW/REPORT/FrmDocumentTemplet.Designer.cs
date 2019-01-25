@@ -153,7 +153,9 @@
             // 
             // treeColUpload
             // 
-            this.treeColUpload.Caption = " ";
+            this.treeColUpload.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeColUpload.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeColUpload.Caption = "操作";
             this.treeColUpload.ColumnEdit = this.repItemBtnEdtUpload;
             this.treeColUpload.FieldName = "Upload";
             this.treeColUpload.Name = "treeColUpload";

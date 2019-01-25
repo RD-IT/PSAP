@@ -104,7 +104,10 @@
     <Compile Include="DAO\BSDAO\FrmOrganizationStruDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
+    <Compile Include="DAO\INVDAO\FrmInventoryAdjustmentsDAO.cs" />
+    <Compile Include="DAO\INVDAO\FrmInventoryMoveDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmOrderApplyDAO.cs" />
+    <Compile Include="DAO\INVDAO\FrmWarehouseNowInfoDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseReceiptDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmApprovalDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmDocumentTempletDAO.cs" />
@@ -304,6 +307,36 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmWarehouseWarrantType.Designer.cs">
       <DependentUpon>FrmWarehouseWarrantType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryAdjustments_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryAdjustments_Drag.Designer.cs">
+      <DependentUpon>FrmInventoryAdjustments_Drag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryAdjustmentsQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryAdjustmentsQuery.Designer.cs">
+      <DependentUpon>FrmInventoryAdjustmentsQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryMove_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryMove_Drag.Designer.cs">
+      <DependentUpon>FrmInventoryMove_Drag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryMoveQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmInventoryMoveQuery.Designer.cs">
+      <DependentUpon>FrmInventoryMoveQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmWarehouseNowInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmWarehouseNowInfo.Designer.cs">
+      <DependentUpon>FrmWarehouseNowInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmWarehouseReceiptApproval.cs">
       <SubType>Form</SubType>
@@ -605,6 +638,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmWarehouseWarrantType.resx">
       <DependentUpon>FrmWarehouseWarrantType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmInventoryAdjustments_Drag.resx">
+      <DependentUpon>FrmInventoryAdjustments_Drag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmInventoryAdjustmentsQuery.resx">
+      <DependentUpon>FrmInventoryAdjustmentsQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmInventoryMove_Drag.resx">
+      <DependentUpon>FrmInventoryMove_Drag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmInventoryMoveQuery.resx">
+      <DependentUpon>FrmInventoryMoveQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseNowInfo.resx">
+      <DependentUpon>FrmWarehouseNowInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseReceiptApproval.resx">
       <DependentUpon>FrmWarehouseReceiptApproval.cs</DependentUpon>

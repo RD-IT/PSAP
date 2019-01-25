@@ -39,10 +39,10 @@
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.btnSetDefault = new DevExpress.XtraEditors.SimpleButton();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
-            this.labWarehouseWarrantTypeName = new DevExpress.XtraEditors.LabelControl();
-            this.labWarehouseWarrantTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.textWarehouseWarrantTypeName = new DevExpress.XtraEditors.TextEdit();
             this.textWarehouseWarrantTypeNo = new DevExpress.XtraEditors.TextEdit();
+            this.labWarehouseWarrantTypeName = new DevExpress.XtraEditors.LabelControl();
+            this.labWarehouseWarrantTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlWarehouseWarrantType = new DevExpress.XtraGrid.GridControl();
             this.gridViewWarehouseWarrantType = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -118,8 +118,7 @@
             // 
             // btnSetDefault
             // 
-            this.btnSetDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetDefault.Location = new System.Drawing.Point(700, 9);
+            this.btnSetDefault.Location = new System.Drawing.Point(496, 9);
             this.btnSetDefault.Name = "btnSetDefault";
             this.btnSetDefault.Size = new System.Drawing.Size(75, 23);
             this.btnSetDefault.TabIndex = 17;
@@ -139,22 +138,6 @@
             this.pnlEdit.Size = new System.Drawing.Size(784, 68);
             this.pnlEdit.TabIndex = 7;
             // 
-            // labWarehouseWarrantTypeName
-            // 
-            this.labWarehouseWarrantTypeName.Location = new System.Drawing.Point(284, 24);
-            this.labWarehouseWarrantTypeName.Name = "labWarehouseWarrantTypeName";
-            this.labWarehouseWarrantTypeName.Size = new System.Drawing.Size(72, 14);
-            this.labWarehouseWarrantTypeName.TabIndex = 15;
-            this.labWarehouseWarrantTypeName.Text = "入库类别名称";
-            // 
-            // labWarehouseWarrantTypeNo
-            // 
-            this.labWarehouseWarrantTypeNo.Location = new System.Drawing.Point(36, 24);
-            this.labWarehouseWarrantTypeNo.Name = "labWarehouseWarrantTypeNo";
-            this.labWarehouseWarrantTypeNo.Size = new System.Drawing.Size(72, 14);
-            this.labWarehouseWarrantTypeNo.TabIndex = 12;
-            this.labWarehouseWarrantTypeNo.Text = "入库类别编号";
-            // 
             // textWarehouseWarrantTypeName
             // 
             this.textWarehouseWarrantTypeName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseWarrantType, "WarehouseWarrantTypeName", true));
@@ -171,6 +154,22 @@
             this.textWarehouseWarrantTypeNo.Name = "textWarehouseWarrantTypeNo";
             this.textWarehouseWarrantTypeNo.Size = new System.Drawing.Size(120, 20);
             this.textWarehouseWarrantTypeNo.TabIndex = 0;
+            // 
+            // labWarehouseWarrantTypeName
+            // 
+            this.labWarehouseWarrantTypeName.Location = new System.Drawing.Point(284, 24);
+            this.labWarehouseWarrantTypeName.Name = "labWarehouseWarrantTypeName";
+            this.labWarehouseWarrantTypeName.Size = new System.Drawing.Size(72, 14);
+            this.labWarehouseWarrantTypeName.TabIndex = 15;
+            this.labWarehouseWarrantTypeName.Text = "入库类别名称";
+            // 
+            // labWarehouseWarrantTypeNo
+            // 
+            this.labWarehouseWarrantTypeNo.Location = new System.Drawing.Point(36, 24);
+            this.labWarehouseWarrantTypeNo.Name = "labWarehouseWarrantTypeNo";
+            this.labWarehouseWarrantTypeNo.Size = new System.Drawing.Size(72, 14);
+            this.labWarehouseWarrantTypeNo.TabIndex = 12;
+            this.labWarehouseWarrantTypeNo.Text = "入库类别编号";
             // 
             // pnlGrid
             // 

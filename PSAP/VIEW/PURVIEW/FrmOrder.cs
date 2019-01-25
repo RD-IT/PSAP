@@ -279,7 +279,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -566,7 +566,7 @@ namespace PSAP.VIEW.BSVIEW
                         btnQuery_Click(null, null);
                     else
                     {
-                        MessageBox.Show(string.Format("成功审批了{0}条记录。", successCountInt));
+                        MessageHandler.ShowMessageBox(string.Format("成功审批了{0}条记录。", successCountInt));
                     }
 
                 }
@@ -605,6 +605,10 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (!orderDAO.CancalOrderApprovalInfo_Multi(dataSet_Order.Tables[0]))
                     btnQuery_Click(null, null);
+                else
+                {
+                    MessageHandler.ShowMessageBox(string.Format("成功取消审批了{0}条记录。", count));
+                }
                 ClearHeadGridAllSelect();
             }
             catch (Exception ex)

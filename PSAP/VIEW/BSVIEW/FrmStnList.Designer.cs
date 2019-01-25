@@ -44,11 +44,11 @@
             this.gridColProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColRemark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.textRemark = new DevExpress.XtraEditors.TextEdit();
+            this.textStnNo = new DevExpress.XtraEditors.TextEdit();
             this.labRemark = new DevExpress.XtraEditors.LabelControl();
             this.labProjectNo = new DevExpress.XtraEditors.LabelControl();
             this.labStnNo = new DevExpress.XtraEditors.LabelControl();
-            this.textRemark = new DevExpress.XtraEditors.TextEdit();
-            this.textStnNo = new DevExpress.XtraEditors.TextEdit();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlStnList = new DevExpress.XtraGrid.GridControl();
             this.gridViewStnList = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -78,7 +78,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(584, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(784, 40);
             this.pnlToolBar.TabIndex = 1;
             // 
             // dSStnList
@@ -139,7 +139,7 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(584, 97);
+            this.pnlEdit.Size = new System.Drawing.Size(784, 97);
             this.pnlEdit.TabIndex = 5;
             // 
             // searchLookUpProjectNo
@@ -193,6 +193,23 @@
             this.gridColRemark.Visible = true;
             this.gridColRemark.VisibleIndex = 2;
             // 
+            // textRemark
+            // 
+            this.textRemark.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSStnList, "Remark", true));
+            this.textRemark.Location = new System.Drawing.Point(94, 55);
+            this.textRemark.Name = "textRemark";
+            this.textRemark.Size = new System.Drawing.Size(333, 20);
+            this.textRemark.TabIndex = 2;
+            // 
+            // textStnNo
+            // 
+            this.textStnNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSStnList, "StnNo", true));
+            this.textStnNo.EnterMoveNextControl = true;
+            this.textStnNo.Location = new System.Drawing.Point(94, 21);
+            this.textStnNo.Name = "textStnNo";
+            this.textStnNo.Size = new System.Drawing.Size(120, 20);
+            this.textStnNo.TabIndex = 0;
+            // 
             // labRemark
             // 
             this.labRemark.Location = new System.Drawing.Point(36, 58);
@@ -217,30 +234,13 @@
             this.labStnNo.TabIndex = 12;
             this.labStnNo.Text = "站号";
             // 
-            // textRemark
-            // 
-            this.textRemark.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSStnList, "Remark", true));
-            this.textRemark.Location = new System.Drawing.Point(94, 55);
-            this.textRemark.Name = "textRemark";
-            this.textRemark.Size = new System.Drawing.Size(333, 20);
-            this.textRemark.TabIndex = 2;
-            // 
-            // textStnNo
-            // 
-            this.textStnNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSStnList, "StnNo", true));
-            this.textStnNo.EnterMoveNextControl = true;
-            this.textStnNo.Location = new System.Drawing.Point(94, 21);
-            this.textStnNo.Name = "textStnNo";
-            this.textStnNo.Size = new System.Drawing.Size(120, 20);
-            this.textStnNo.TabIndex = 0;
-            // 
             // pnlGrid
             // 
             this.pnlGrid.Controls.Add(this.gridCrlStnList);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 137);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(584, 224);
+            this.pnlGrid.Size = new System.Drawing.Size(784, 424);
             this.pnlGrid.TabIndex = 6;
             // 
             // gridCrlStnList
@@ -250,7 +250,7 @@
             this.gridCrlStnList.Location = new System.Drawing.Point(2, 2);
             this.gridCrlStnList.MainView = this.gridViewStnList;
             this.gridCrlStnList.Name = "gridCrlStnList";
-            this.gridCrlStnList.Size = new System.Drawing.Size(580, 220);
+            this.gridCrlStnList.Size = new System.Drawing.Size(780, 420);
             this.gridCrlStnList.TabIndex = 0;
             this.gridCrlStnList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewStnList});
@@ -326,7 +326,7 @@
             // FrmStnList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.pnlToolBar);

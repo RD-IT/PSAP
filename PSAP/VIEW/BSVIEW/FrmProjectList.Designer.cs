@@ -50,10 +50,6 @@
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.btnStnList = new DevExpress.XtraEditors.SimpleButton();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
-            this.labRemark = new DevExpress.XtraEditors.LabelControl();
-            this.labProjectName = new DevExpress.XtraEditors.LabelControl();
-            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
-            this.labProjectNo = new DevExpress.XtraEditors.LabelControl();
             this.textRemark = new DevExpress.XtraEditors.TextEdit();
             this.textProjectName = new DevExpress.XtraEditors.TextEdit();
             this.searchLookUpBussinessBaseNo = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -63,6 +59,10 @@
             this.gridColumnBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.textProjectNo = new DevExpress.XtraEditors.TextEdit();
+            this.labRemark = new DevExpress.XtraEditors.LabelControl();
+            this.labProjectName = new DevExpress.XtraEditors.LabelControl();
+            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
+            this.labProjectNo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dSProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSProjectList)).BeginInit();
@@ -242,8 +242,7 @@
             // 
             // btnStnList
             // 
-            this.btnStnList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStnList.Location = new System.Drawing.Point(680, 9);
+            this.btnStnList.Location = new System.Drawing.Point(496, 9);
             this.btnStnList.Name = "btnStnList";
             this.btnStnList.Size = new System.Drawing.Size(75, 23);
             this.btnStnList.TabIndex = 16;
@@ -266,38 +265,6 @@
             this.pnlEdit.Name = "pnlEdit";
             this.pnlEdit.Size = new System.Drawing.Size(767, 97);
             this.pnlEdit.TabIndex = 4;
-            // 
-            // labRemark
-            // 
-            this.labRemark.Location = new System.Drawing.Point(36, 58);
-            this.labRemark.Name = "labRemark";
-            this.labRemark.Size = new System.Drawing.Size(24, 14);
-            this.labRemark.TabIndex = 15;
-            this.labRemark.Text = "备注";
-            // 
-            // labProjectName
-            // 
-            this.labProjectName.Location = new System.Drawing.Point(443, 24);
-            this.labProjectName.Name = "labProjectName";
-            this.labProjectName.Size = new System.Drawing.Size(48, 14);
-            this.labProjectName.TabIndex = 14;
-            this.labProjectName.Text = "项目名称";
-            // 
-            // labBussinessBaseNo
-            // 
-            this.labBussinessBaseNo.Location = new System.Drawing.Point(245, 24);
-            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
-            this.labBussinessBaseNo.Size = new System.Drawing.Size(24, 14);
-            this.labBussinessBaseNo.TabIndex = 13;
-            this.labBussinessBaseNo.Text = "客户";
-            // 
-            // labProjectNo
-            // 
-            this.labProjectNo.Location = new System.Drawing.Point(36, 24);
-            this.labProjectNo.Name = "labProjectNo";
-            this.labProjectNo.Size = new System.Drawing.Size(36, 14);
-            this.labProjectNo.TabIndex = 12;
-            this.labProjectNo.Text = "项目号";
             // 
             // textRemark
             // 
@@ -381,6 +348,38 @@
             this.textProjectNo.Name = "textProjectNo";
             this.textProjectNo.Size = new System.Drawing.Size(120, 20);
             this.textProjectNo.TabIndex = 0;
+            // 
+            // labRemark
+            // 
+            this.labRemark.Location = new System.Drawing.Point(36, 58);
+            this.labRemark.Name = "labRemark";
+            this.labRemark.Size = new System.Drawing.Size(24, 14);
+            this.labRemark.TabIndex = 15;
+            this.labRemark.Text = "备注";
+            // 
+            // labProjectName
+            // 
+            this.labProjectName.Location = new System.Drawing.Point(443, 24);
+            this.labProjectName.Name = "labProjectName";
+            this.labProjectName.Size = new System.Drawing.Size(48, 14);
+            this.labProjectName.TabIndex = 14;
+            this.labProjectName.Text = "项目名称";
+            // 
+            // labBussinessBaseNo
+            // 
+            this.labBussinessBaseNo.Location = new System.Drawing.Point(245, 24);
+            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
+            this.labBussinessBaseNo.Size = new System.Drawing.Size(24, 14);
+            this.labBussinessBaseNo.TabIndex = 13;
+            this.labBussinessBaseNo.Text = "客户";
+            // 
+            // labProjectNo
+            // 
+            this.labProjectNo.Location = new System.Drawing.Point(36, 24);
+            this.labProjectNo.Name = "labProjectNo";
+            this.labProjectNo.Size = new System.Drawing.Size(36, 14);
+            this.labProjectNo.TabIndex = 12;
+            this.labProjectNo.Text = "项目号";
             // 
             // FrmProjectList
             // 

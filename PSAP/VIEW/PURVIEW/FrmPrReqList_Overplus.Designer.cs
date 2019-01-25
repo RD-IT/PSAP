@@ -227,7 +227,7 @@
             this.searchLookUpCodeFileName.Properties.NullText = "";
             this.searchLookUpCodeFileName.Properties.ValueMember = "CodeFileName";
             this.searchLookUpCodeFileName.Properties.View = this.searchLookUpCodeFileNameView;
-            this.searchLookUpCodeFileName.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpCodeFileName.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpCodeFileName.TabIndex = 6;
             // 
             // searchLookUpCodeFileNameView
@@ -268,7 +268,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(703, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(757, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 9;
@@ -279,7 +279,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(447, 44);
+            this.textCommon.Location = new System.Drawing.Point(501, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 7;
@@ -334,7 +334,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(613, 43);
+            this.btnQuery.Location = new System.Drawing.Point(667, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 8;
@@ -387,7 +387,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(381, 47);
+            this.labCommon.Location = new System.Drawing.Point(435, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 12;

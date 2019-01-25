@@ -716,6 +716,31 @@ namespace PSAP.DAO.BSDAO
         }
 
         /// <summary>
+        /// 执行存储过程，返回执行是否成功，返回值为1则成功，其他值为失败
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="storedProcName">存储过程名称</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <param name="resultInt">执行存储过程的返回值</param>
+        /// <param name="errorText">错误描述</param>
+        /// <returns></returns>
+        public static bool RunProcedure(SqlCommand cmd, string storedProcName, IDataParameter[] parameters, out int resultInt, out string errorText)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = storedProcName;
+            cmd.Parameters.Add("@ReturnValue", SqlDbType.Int, 4).Direction = ParameterDirection.ReturnValue;
+            foreach (SqlParameter parameter in parameters)
+            {
+                cmd.Parameters.Add(parameter);
+            }
+            cmd.Parameters.Add("@ErrorText", SqlDbType.NVarChar,200).Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            errorText = DataTypeConvert.GetString(cmd.Parameters["@ErrorText"].Value);
+            resultInt = DataTypeConvert.GetInt(cmd.Parameters["@ReturnValue"].Value);
+            return resultInt == 1;
+        }
+
+        /// <summary>
         /// 创建 SqlCommand 对象实例(用来返回一个整数值) 
         /// </summary>
         /// <param name="storedProcName">存储过程名</param>

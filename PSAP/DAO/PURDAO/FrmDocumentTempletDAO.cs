@@ -19,7 +19,7 @@ namespace PSAP.DAO.PURDAO
         /// <returns></returns>
         public DataTable QueryDocTemplet()
         {
-            string sqlStr = "select AutoId, ParentId, ModuleName, TableName, DocFileName, DocPath, DocVersion from BS_DocumentTemplet";
+            string sqlStr = "select AutoId, ParentId, ModuleName, TableName, DocFileName, DocPath, DocVersion from BS_DocumentTemplet order by AutoId";
             return BaseSQL.GetTableBySql(sqlStr);
         }
 
@@ -58,7 +58,7 @@ namespace PSAP.DAO.PURDAO
             p2.Value = buffer;
             SqlParameter p3 = new SqlParameter("@tablename", SqlDbType.VarChar, 50);
             p3.Value = tableNameStr;
-            SqlParameter[] paraList = { p1, p2, p3};
+            SqlParameter[] paraList = { p1, p2, p3 };
             BaseSQL.GetSingle("Update BS_DocumentTemplet Set Size = @size, FileByte = @filebyte where TableName = @tablename", paraList);
 
             return true;
@@ -79,7 +79,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 更新单据模板的版本号
         /// </summary>
-        public bool UpdateDocTemplet_Version(string tableNameStr,string docVersionStr)
+        public bool UpdateDocTemplet_Version(string tableNameStr, string docVersionStr)
         {
             string sqlStr = string.Format("Update BS_DocumentTemplet set DocVersion='{1}' where TableName='{0}'", tableNameStr, docVersionStr);
             int resultInt = BaseSQL.ExecuteSql(sqlStr);

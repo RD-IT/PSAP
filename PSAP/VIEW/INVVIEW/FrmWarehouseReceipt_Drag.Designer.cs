@@ -397,6 +397,7 @@
             // 
             this.dockManagerLeft.AutoHideContainers.AddRange(new DevExpress.XtraBars.Docking.AutoHideContainer[] {
             this.hideContainerLeft});
+            this.dockManagerLeft.AutoHideSpeed = 5;
             this.dockManagerLeft.Form = this;
             this.dockManagerLeft.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
@@ -416,7 +417,7 @@
             this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.hideContainerLeft.Location = new System.Drawing.Point(0, 0);
             this.hideContainerLeft.Name = "hideContainerLeft";
-            this.hideContainerLeft.Size = new System.Drawing.Size(20, 545);
+            this.hideContainerLeft.Size = new System.Drawing.Size(22, 545);
             // 
             // dockPnlLeft
             // 
@@ -426,6 +427,15 @@
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
             this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dockPnlLeft.Name = "dockPnlLeft";
+            this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
+            this.dockPnlLeft.Options.AllowDockBottom = false;
+            this.dockPnlLeft.Options.AllowDockFill = false;
+            this.dockPnlLeft.Options.AllowDockRight = false;
+            this.dockPnlLeft.Options.AllowDockTop = false;
+            this.dockPnlLeft.Options.AllowFloating = false;
+            this.dockPnlLeft.Options.FloatOnDblClick = false;
+            this.dockPnlLeft.Options.ShowCloseButton = false;
+            this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
             this.dockPnlLeft.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.SavedIndex = 0;
@@ -447,9 +457,9 @@
             this.pnlRight.Controls.Add(this.pnlMiddle);
             this.pnlRight.Controls.Add(this.pnltop);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRight.Location = new System.Drawing.Point(20, 0);
+            this.pnlRight.Location = new System.Drawing.Point(22, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(1243, 545);
+            this.pnlRight.Size = new System.Drawing.Size(1241, 545);
             this.pnlRight.TabIndex = 2;
             // 
             // pnlBottom
@@ -459,7 +469,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(2, 354);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1239, 189);
+            this.pnlBottom.Size = new System.Drawing.Size(1237, 189);
             this.pnlBottom.TabIndex = 9;
             // 
             // btnListAdd
@@ -486,7 +496,7 @@
             this.repSearchShelfId,
             this.repComboBoxStnNo,
             this.repSearchProjectNo});
-            this.gridControlWRList.Size = new System.Drawing.Size(1235, 185);
+            this.gridControlWRList.Size = new System.Drawing.Size(1233, 185);
             this.gridControlWRList.TabIndex = 4;
             this.gridControlWRList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWRList});
@@ -509,6 +519,9 @@
             this.gridViewWRList.IndicatorWidth = 40;
             this.gridViewWRList.Name = "gridViewWRList";
             this.gridViewWRList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewWRList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewWRList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewWRList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewWRList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewWRList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewWRList.OptionsView.ColumnAutoWidth = false;
@@ -818,7 +831,7 @@
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitterControl1.Location = new System.Drawing.Point(2, 349);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1239, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1237, 5);
             this.splitterControl1.TabIndex = 8;
             this.splitterControl1.TabStop = false;
             // 
@@ -830,7 +843,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1239, 269);
+            this.pnlMiddle.Size = new System.Drawing.Size(1237, 269);
             this.pnlMiddle.TabIndex = 2;
             // 
             // checkAll
@@ -859,7 +872,7 @@
             this.repLookUpApprovalType,
             this.repLookUpReqDep,
             this.repLookUpManufactureNo});
-            this.gridControlWRHead.Size = new System.Drawing.Size(1235, 231);
+            this.gridControlWRHead.Size = new System.Drawing.Size(1233, 231);
             this.gridControlWRHead.TabIndex = 5;
             this.gridControlWRHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWRHead});
@@ -884,6 +897,9 @@
             this.gridViewWRHead.IndicatorWidth = 40;
             this.gridViewWRHead.Name = "gridViewWRHead";
             this.gridViewWRHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewWRHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewWRHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewWRHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewWRHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewWRHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewWRHead.OptionsView.ColumnAutoWidth = false;
@@ -916,7 +932,7 @@
             this.repCheckSelect.Name = "repCheckSelect";
             this.repCheckSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.repCheckSelect.ValueGrayed = false;
-            this.repCheckSelect.EditValueChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
+            this.repCheckSelect.CheckedChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
             // 
             // colWarehouseReceipt
             // 
@@ -1136,7 +1152,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1235, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1233, 34);
             this.pnlMiddleTop.TabIndex = 3;
             // 
             // btnPreview
@@ -1236,7 +1252,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(2, 2);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1239, 78);
+            this.pnltop.Size = new System.Drawing.Size(1237, 78);
             this.pnltop.TabIndex = 1;
             // 
             // labManufactureNo

@@ -438,7 +438,7 @@
             this.searchLookUpCodeFileName.Properties.NullText = "";
             this.searchLookUpCodeFileName.Properties.ValueMember = "CodeFileName";
             this.searchLookUpCodeFileName.Properties.View = this.searchLookUpCodeFileNameView;
-            this.searchLookUpCodeFileName.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpCodeFileName.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpCodeFileName.TabIndex = 10;
             // 
             // searchLookUpCodeFileNameView
@@ -472,7 +472,7 @@
             // searchLookUpProjectNo
             // 
             this.searchLookUpProjectNo.EnterMoveNextControl = true;
-            this.searchLookUpProjectNo.Location = new System.Drawing.Point(391, 44);
+            this.searchLookUpProjectNo.Location = new System.Drawing.Point(392, 44);
             this.searchLookUpProjectNo.Name = "searchLookUpProjectNo";
             this.searchLookUpProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -535,7 +535,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(969, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(1020, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 13;
@@ -623,7 +623,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(753, 44);
+            this.textCommon.Location = new System.Drawing.Point(804, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(120, 20);
             this.textCommon.TabIndex = 11;
@@ -698,7 +698,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(888, 43);
+            this.btnQuery.Location = new System.Drawing.Point(939, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 12;
@@ -751,7 +751,7 @@
             // 
             // labProjectNo
             // 
-            this.labProjectNo.Location = new System.Drawing.Point(337, 47);
+            this.labProjectNo.Location = new System.Drawing.Point(338, 47);
             this.labProjectNo.Name = "labProjectNo";
             this.labProjectNo.Size = new System.Drawing.Size(48, 14);
             this.labProjectNo.TabIndex = 33;
@@ -783,7 +783,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(687, 47);
+            this.labCommon.Location = new System.Drawing.Point(738, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 14;

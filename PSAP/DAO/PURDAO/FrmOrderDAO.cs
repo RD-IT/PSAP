@@ -1349,7 +1349,6 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 入库与采购查询的SQL
         /// </summary>
-        /// <returns></returns>
         public string Query_OrderListAndWarehouseWarrantList(string beginDateStr, string endDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string projectNoStr, string codeFileNameStr, string commonStr)
         {
             string sqlStr = " 1=1";
@@ -1388,5 +1387,7 @@ namespace PSAP.DAO.PURDAO
             sqlStr = string.Format("select * from V_PUR_OrderListAndWarehouseWarrantList where {0} order by AutoId", sqlStr);
             return sqlStr;
         }
+
+
     }
 }

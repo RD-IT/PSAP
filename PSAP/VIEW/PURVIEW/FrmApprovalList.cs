@@ -63,7 +63,8 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.SaveRowBefore += SaveRowBefore;
                     editForm.DeleteRowBefore += DeleteRowBefore;
                     editForm.DeleteAfterRefresh = true;
-                    editForm.btnSaveExcel.Visible = false;
+                    //editForm.btnSaveExcel.Visible = false;
+                    editForm.VisibleSearchContrl = false;
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();

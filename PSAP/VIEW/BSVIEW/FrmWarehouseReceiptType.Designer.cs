@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
-            this.labWarehouseReceiptTypeName = new DevExpress.XtraEditors.LabelControl();
-            this.labWarehouseReceiptTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.textWarehouseReceiptTypeName = new DevExpress.XtraEditors.TextEdit();
             this.bSWarehouseReceiptType = new System.Windows.Forms.BindingSource(this.components);
             this.dSWarehouseReceiptType = new System.Data.DataSet();
@@ -41,6 +39,8 @@
             this.dataColWarehouseReceiptTypeName = new System.Data.DataColumn();
             this.dataColIsDefault = new System.Data.DataColumn();
             this.textWarehouseReceiptTypeNo = new DevExpress.XtraEditors.TextEdit();
+            this.labWarehouseReceiptTypeName = new DevExpress.XtraEditors.LabelControl();
+            this.labWarehouseReceiptTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.btnSetDefault = new DevExpress.XtraEditors.SimpleButton();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
@@ -76,22 +76,6 @@
             this.pnlEdit.Name = "pnlEdit";
             this.pnlEdit.Size = new System.Drawing.Size(784, 68);
             this.pnlEdit.TabIndex = 9;
-            // 
-            // labWarehouseReceiptTypeName
-            // 
-            this.labWarehouseReceiptTypeName.Location = new System.Drawing.Point(291, 24);
-            this.labWarehouseReceiptTypeName.Name = "labWarehouseReceiptTypeName";
-            this.labWarehouseReceiptTypeName.Size = new System.Drawing.Size(72, 14);
-            this.labWarehouseReceiptTypeName.TabIndex = 15;
-            this.labWarehouseReceiptTypeName.Text = "出库类别名称";
-            // 
-            // labWarehouseReceiptTypeNo
-            // 
-            this.labWarehouseReceiptTypeNo.Location = new System.Drawing.Point(36, 24);
-            this.labWarehouseReceiptTypeNo.Name = "labWarehouseReceiptTypeNo";
-            this.labWarehouseReceiptTypeNo.Size = new System.Drawing.Size(72, 14);
-            this.labWarehouseReceiptTypeNo.TabIndex = 12;
-            this.labWarehouseReceiptTypeNo.Text = "出库类别编号";
             // 
             // textWarehouseReceiptTypeName
             // 
@@ -152,6 +136,22 @@
             this.textWarehouseReceiptTypeNo.Size = new System.Drawing.Size(120, 20);
             this.textWarehouseReceiptTypeNo.TabIndex = 0;
             // 
+            // labWarehouseReceiptTypeName
+            // 
+            this.labWarehouseReceiptTypeName.Location = new System.Drawing.Point(291, 24);
+            this.labWarehouseReceiptTypeName.Name = "labWarehouseReceiptTypeName";
+            this.labWarehouseReceiptTypeName.Size = new System.Drawing.Size(72, 14);
+            this.labWarehouseReceiptTypeName.TabIndex = 15;
+            this.labWarehouseReceiptTypeName.Text = "出库类别名称";
+            // 
+            // labWarehouseReceiptTypeNo
+            // 
+            this.labWarehouseReceiptTypeNo.Location = new System.Drawing.Point(36, 24);
+            this.labWarehouseReceiptTypeNo.Name = "labWarehouseReceiptTypeNo";
+            this.labWarehouseReceiptTypeNo.Size = new System.Drawing.Size(72, 14);
+            this.labWarehouseReceiptTypeNo.TabIndex = 12;
+            this.labWarehouseReceiptTypeNo.Text = "出库类别编号";
+            // 
             // pnlToolBar
             // 
             this.pnlToolBar.Controls.Add(this.btnSetDefault);
@@ -163,8 +163,7 @@
             // 
             // btnSetDefault
             // 
-            this.btnSetDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetDefault.Location = new System.Drawing.Point(700, 9);
+            this.btnSetDefault.Location = new System.Drawing.Point(496, 9);
             this.btnSetDefault.Name = "btnSetDefault";
             this.btnSetDefault.Size = new System.Drawing.Size(75, 23);
             this.btnSetDefault.TabIndex = 17;

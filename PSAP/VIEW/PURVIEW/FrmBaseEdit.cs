@@ -1,6 +1,8 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.XtraBars.Docking;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
@@ -61,6 +63,16 @@ namespace PSAP.VIEW.BSVIEW
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// 显示查询定位控件
+        /// </summary>
+        private bool visibleSearchControl = true;
+        public bool VisibleSearchContrl
+        {
+            get { return visibleSearchControl; }
+            set { visibleSearchControl = value; }
         }
 
         /// <summary>
@@ -211,6 +223,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             this.Text = TableCaption;
             btnRefresh_Click(null, null);
+            if(!visibleSearchControl)
+            {
+                labContent.Visible = false;
+                textContent.Visible = false;
+                btnPrevious.Visible = false;
+                btnNext.Visible = false;
+            }
         }
 
         /// <summary>
@@ -229,6 +248,7 @@ namespace PSAP.VIEW.BSVIEW
                 Set_EditZone_ControlReadOnly(false);
                 if (masterEditPanel != null)
                     masterEditPanel.SelectNextControl(null, true, true, true, true);
+                pnlButton.Focus();
             }
             catch (Exception ex)
             {
@@ -261,6 +281,7 @@ namespace PSAP.VIEW.BSVIEW
                                 }
                             }
                         }
+                        pnlButton.Focus();
                     }
                 }
                 catch (Exception ex)
@@ -273,7 +294,8 @@ namespace PSAP.VIEW.BSVIEW
             else//保存
             {
                 btnSave_Click();
-            }
+                pnlButton.Focus();
+            }            
         }
 
         /// <summary>
@@ -359,6 +381,7 @@ namespace PSAP.VIEW.BSVIEW
                     newState = false;
                     Set_Button_State(true);
                     Set_EditZone_ControlReadOnly(true);
+                    pnlButton.Focus();
                 }
             }
             catch (Exception ex)
@@ -388,6 +411,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 Set_Button_State(true);
                 Set_EditZone_ControlReadOnly(true);
+                pnlButton.Focus();
             }
             catch (Exception ex)
             {
@@ -406,6 +430,7 @@ namespace PSAP.VIEW.BSVIEW
                 BaseSQL.Query(Sql, masterDataSet.Tables[0]);
                 Set_Button_State(true);
                 Set_EditZone_ControlReadOnly(true);
+                pnlButton.Focus();
             }
             catch (Exception ex)
             {
@@ -421,6 +446,7 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 FileHandler.SaveDevGridControlExportToExcel(browseXtraGridView);
+                pnlButton.Focus();
             }
             catch (Exception ex)
             {
@@ -653,6 +679,8 @@ namespace PSAP.VIEW.BSVIEW
             btnDelete.Enabled = state;
             btnRefresh.Enabled = state;
             btnSaveExcel.Enabled = state;
+            btnPrevious.Enabled = state;
+            btnNext.Enabled = state;
             EditState = !state;
 
             if (this.ParentForm.Controls.ContainsKey("lblEditFlag"))
@@ -666,6 +694,104 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     ((Label)this.ParentForm.Controls["lblEditFlag"]).Text = "EDIT";
                 }
+            }
+        }
+
+        /// <summary>
+        /// 向上查找输入的信息
+        /// </summary>
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textContent.Text.Trim() == "")
+                    return;
+                int locationRowNo = browseXtraGridView.FocusedRowHandle;
+                int locationColumnNo = browseXtraGridView.FocusedColumn.AbsoluteIndex;
+
+                textContent.Focus();
+                browseXtraGridView.Focus();
+                for (int i = locationRowNo; i >= 0; i--)
+                {
+                    for (int j = locationColumnNo - 1; j >=0; j--)
+                    {
+                        if (!browseXtraGridView.Columns[j].Visible)
+                            continue;
+                        string cellValue = DataTypeConvert.GetString(browseXtraGridView.GetRowCellValue(i, browseXtraGridView.Columns[j]));
+                        if (cellValue.Contains(textContent.Text.Trim()))
+                        {
+                            browseXtraGridView.FocusedRowHandle = i;
+                            browseXtraGridView.FocusedColumn = browseXtraGridView.Columns[j];
+
+                            GridViewInfo vi = browseXtraGridView.GetViewInfo() as GridViewInfo;
+                            GridDataRowInfo rowInfo = vi.RowsInfo.GetInfoByHandle(i) as GridDataRowInfo;
+                            GridCellInfo cellInfo = rowInfo.Cells[0];
+                            if (cellInfo != null)
+                            {
+                                cellInfo.State = GridRowCellState.FocusedCell;
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    locationColumnNo = browseXtraGridView.Columns.Count;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--向上查找输入的信息错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 向下查找输入的信息
+        /// </summary>
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textContent.Text.Trim() == "")
+                    return;
+                int locationRowNo = browseXtraGridView.FocusedRowHandle;
+                int locationColumnNo = browseXtraGridView.FocusedColumn.AbsoluteIndex;
+
+                textContent.Focus();
+                browseXtraGridView.Focus();
+                for (int i = locationRowNo; i < browseXtraGridView.DataRowCount; i++)
+                {
+                    for (int j = locationColumnNo + 1; j < browseXtraGridView.Columns.Count; j++)
+                    {
+                        if (!browseXtraGridView.Columns[j].Visible)
+                            continue;
+                        string cellValue = DataTypeConvert.GetString(browseXtraGridView.GetRowCellValue(i, browseXtraGridView.Columns[j]));
+                        if (cellValue.Contains(textContent.Text.Trim()))
+                        {
+                            browseXtraGridView.FocusedRowHandle = i;
+                            browseXtraGridView.FocusedColumn = browseXtraGridView.Columns[j];
+
+                            GridViewInfo vi = browseXtraGridView.GetViewInfo() as GridViewInfo;
+                            GridDataRowInfo rowInfo = vi.RowsInfo.GetInfoByHandle(i) as GridDataRowInfo;
+                            GridCellInfo cellInfo = rowInfo.Cells[0];
+                            if (cellInfo != null)
+                            {
+                                cellInfo.State = GridRowCellState.FocusedCell;
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    locationColumnNo = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--向下查找输入的信息错误。", ex);
             }
         }
     }

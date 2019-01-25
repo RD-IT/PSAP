@@ -313,7 +313,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -602,7 +602,7 @@ namespace PSAP.VIEW.BSVIEW
                         btnQuery_Click(null, null);
                     else
                     {
-                        MessageBox.Show(string.Format("成功审批了{0}条记录。", successCountInt));
+                        MessageHandler.ShowMessageBox(string.Format("成功审批了{0}条记录。", successCountInt));
                     }
 
                 }
@@ -641,6 +641,10 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (!orderDAO.CancalOrderApprovalInfo_Multi(dataSet_Order.Tables[0]))
                     btnQuery_Click(null, null);
+                else
+                {
+                    MessageHandler.ShowMessageBox(string.Format("成功取消审批了{0}条记录。", count));
+                }
                 ClearHeadGridAllSelect();
             }
             catch (Exception ex)
@@ -1292,9 +1296,8 @@ namespace PSAP.VIEW.BSVIEW
             gridViewOrderHead.SetFocusedRowCellValue("StnNo", prReqHeadRow["StnNo"]);
 
             dataSet_Order.Tables[1].Clear();
-            for (int i = 0; i < prReqListTable.Rows.Count; i++)
+            foreach(DataRow dr in prReqListTable.Rows)
             {
-                DataRow dr = prReqListTable.Rows[i];
                 if (DataTypeConvert.GetBoolean(dr["ListSelect"]))
                 {
                     gridViewOrderList.AddNewRow();
@@ -1486,9 +1489,8 @@ namespace PSAP.VIEW.BSVIEW
                 gridViewOrderHead.SetFocusedRowCellValue("StnNo", headRow["StnNo"]);
 
                 dataSet_Order.Tables[1].Clear();
-                for (int i = 0; i < drs.Count; i++)
+                foreach (DataRow dr in drs)
                 {
-                    DataRow dr = drs[i];
                     gridViewOrderList.AddNewRow();
                     gridViewOrderList.SetFocusedRowCellValue("CodeFileName", dr["CodeFileName"]);
                     gridViewOrderList.SetFocusedRowCellValue("CodeName", dr["CodeName"]);
@@ -1513,10 +1515,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                 }
 
-                for (int i = 0; i < drs.Count; i++)
+                foreach (DataRow dr in drs)
                 {
-                    DataRow dr = drs[i];
-
                     if (dataSet_Order.Tables[1].Select(string.Format("PrListAutoId={0}", DataTypeConvert.GetString(dr["AutoId"]))).Length > 0)
                         continue;
                     gridViewOrderList.AddNewRow();

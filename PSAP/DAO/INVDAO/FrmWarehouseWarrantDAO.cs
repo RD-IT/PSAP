@@ -185,7 +185,6 @@ namespace PSAP.DAO.INVDAO
         /// </summary>
         /// <param name="wwHeadRow">入库单表头数据表</param>
         /// <param name="wwListTable">入库单明细数据表</param>
-        /// <returns></returns>
         public int SaveWarehouseWarrant(DataRow wwHeadRow, DataTable wwListTable)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -530,6 +529,19 @@ namespace PSAP.DAO.INVDAO
 
                                 //保存日志到日志表中
                                 string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", wwHeadTable.Rows[i], "WarehouseWarrant", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                                if (DataTypeConvert.GetInt(wwHeadTable.Rows[i]["WarehouseState"]) == 2)
+                                {
+                                    SqlCommand cmd_proc = new SqlCommand("", conn, trans);
+                                    string errorText = "";
+                                    if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, wwHeadNoStr,1,out errorText))
+                                    {
+                                        trans.Rollback();
+                                        MessageHandler.ShowMessageBox("入库单审核入库错误--" + errorText);
+                                        return false;
+                                    }
+                                }
+
                                 successCountInt++;
                             }
                         }
@@ -579,6 +591,12 @@ namespace PSAP.DAO.INVDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
+
+                        cmd.CommandText = string.Format("select WarehouseWarrant from INV_WarehouseWarrantHead where WarehouseState = 2 and WarehouseWarrant in ({0})", wwHeadNoListStr);
+                        DataTable approcalWWTable = new DataTable();
+                        SqlDataAdapter appradpt = new SqlDataAdapter(cmd);
+                        appradpt.Fill(approcalWWTable);
+
                         cmd.CommandText = string.Format("Delete from INV_WarehouseApprovalInfo where WarehouseWarrant in ({0})", wwHeadNoListStr);
                         cmd.ExecuteNonQuery();
                         cmd.CommandText = string.Format("Update INV_WarehouseWarrantHead set WarehouseState=1 where WarehouseWarrant in ({0})", wwHeadNoListStr);
@@ -598,6 +616,18 @@ namespace PSAP.DAO.INVDAO
                             }
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
+                        for (int i = 0; i < approcalWWTable.Rows.Count; i++)
+                        {
+                            SqlCommand cmd_proc = new SqlCommand("", conn, trans);
+                            string errorText = "";
+                            if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, DataTypeConvert.GetString(approcalWWTable.Rows[i]["WarehouseWarrant"]), 2, out errorText))
+                            {
+                                trans.Rollback();
+                                MessageHandler.ShowMessageBox("入库单取消审核出库错误--" + errorText);
+                                return false;
+                            }
                         }
 
                         trans.Commit();
@@ -829,5 +859,7 @@ namespace PSAP.DAO.INVDAO
         //    string sqlStr = string.Format("select SettlementNo from PUR_SettlementList where WarehouseWarrantListAutoId = {0}", autoIdInt);
         //    return BaseSQL.Query(sqlStr).Tables[0];
         //}
+
+        
     }
 }

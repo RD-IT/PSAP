@@ -132,7 +132,6 @@ namespace PSAP.DAO.INVDAO
         /// </summary>
         /// <param name="wrHeadRow">出库单表头数据表</param>
         /// <param name="wrListTable">出库单明细数据表</param>
-        /// <returns></returns>
         public int SaveWarehouseReceipt(DataRow wrHeadRow,DataTable wrListTable)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
@@ -388,7 +387,7 @@ namespace PSAP.DAO.INVDAO
                                 {
                                     cmd.CommandText = string.Format("Update INV_WarehouseReceiptHead set WarehouseState = 2 where WarehouseReceipt='{0}'", wrHeadNoStr);
                                     cmd.ExecuteNonQuery();
-                                    wrHeadTable.Rows[i]["ReqState"] = 2;
+                                    wrHeadTable.Rows[i]["WarehouseState"] = 2;
                                     continue;
                                 }
                                 int approvalCatInt = DataTypeConvert.GetInt(tmpTable.Rows[0]["ApprovalCat"]);
@@ -423,6 +422,19 @@ namespace PSAP.DAO.INVDAO
 
                                 //保存日志到日志表中
                                 string logStr = LogHandler.RecordLog_OperateRow(cmd, "出库单", wrHeadTable.Rows[i], "WarehouseReceipt", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                                if (DataTypeConvert.GetInt(wrHeadTable.Rows[i]["WarehouseState"]) == 2)
+                                {
+                                    SqlCommand cmd_proc = new SqlCommand("", conn, trans);
+                                    string errorText = "";
+                                    if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, wrHeadNoStr, 1, out errorText))
+                                    {
+                                        trans.Rollback();
+                                        MessageHandler.ShowMessageBox("出库单审核出库错误--" + errorText);
+                                        return false;
+                                    }
+                                }
+
                                 successCountInt++;
                             }
                         }
@@ -472,6 +484,12 @@ namespace PSAP.DAO.INVDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
+
+                        cmd.CommandText = string.Format("select WarehouseReceipt from INV_WarehouseReceiptHead where WarehouseState = 2 and WarehouseReceipt in ({0})", wrHeadNoListStr);
+                        DataTable approcalWRTable = new DataTable();
+                        SqlDataAdapter appradpt = new SqlDataAdapter(cmd);
+                        appradpt.Fill(approcalWRTable);
+
                         cmd.CommandText = string.Format("Delete from INV_WarehouseReceiptApprovalInfo where WarehouseReceipt in ({0})", wrHeadNoListStr);
                         cmd.ExecuteNonQuery();
                         cmd.CommandText = string.Format("Update INV_WarehouseReceiptHead set WarehouseState=1 where WarehouseReceipt in ({0})", wrHeadNoListStr);
@@ -491,6 +509,18 @@ namespace PSAP.DAO.INVDAO
                             //}
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "出库单", orderHeadRows[i], "WarehouseReceipt", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
+                        for (int i = 0; i < approcalWRTable.Rows.Count; i++)
+                        {
+                            SqlCommand cmd_proc = new SqlCommand("", conn, trans);
+                            string errorText = "";
+                            if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, DataTypeConvert.GetString(approcalWRTable.Rows[i]["WarehouseReceipt"]), 2, out errorText))
+                            {
+                                trans.Rollback();
+                                MessageHandler.ShowMessageBox("出库单取消审核入库错误--" + errorText);
+                                return false;
+                            }
                         }
 
                         trans.Commit();

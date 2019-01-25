@@ -403,7 +403,7 @@
             this.searchLookUpCodeFileName.Properties.NullText = "";
             this.searchLookUpCodeFileName.Properties.ValueMember = "CodeFileName";
             this.searchLookUpCodeFileName.Properties.View = this.searchLookUpCodeFileNameView;
-            this.searchLookUpCodeFileName.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpCodeFileName.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpCodeFileName.TabIndex = 37;
             // 
             // searchLookUpCodeFileNameView
@@ -503,7 +503,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(701, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(750, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 17;
@@ -570,7 +570,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(438, 44);
+            this.textCommon.Location = new System.Drawing.Point(487, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 7;
@@ -625,7 +625,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(611, 43);
+            this.btnQuery.Location = new System.Drawing.Point(660, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 8;
@@ -678,7 +678,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(372, 47);
+            this.labCommon.Location = new System.Drawing.Point(421, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 14;
@@ -1159,7 +1159,7 @@
             this.colWarehouseWarrant.Name = "colWarehouseWarrant";
             this.colWarehouseWarrant.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colWarehouseWarrant.Visible = true;
-            this.colWarehouseWarrant.VisibleIndex = 15;
+            this.colWarehouseWarrant.VisibleIndex = 14;
             this.colWarehouseWarrant.Width = 110;
             // 
             // colWarehouseWarrantDate
@@ -1172,7 +1172,7 @@
             this.colWarehouseWarrantDate.Name = "colWarehouseWarrantDate";
             this.colWarehouseWarrantDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colWarehouseWarrantDate.Visible = true;
-            this.colWarehouseWarrantDate.VisibleIndex = 16;
+            this.colWarehouseWarrantDate.VisibleIndex = 15;
             this.colWarehouseWarrantDate.Width = 85;
             // 
             // colWarehouseState
@@ -1183,7 +1183,7 @@
             this.colWarehouseState.Name = "colWarehouseState";
             this.colWarehouseState.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colWarehouseState.Visible = true;
-            this.colWarehouseState.VisibleIndex = 17;
+            this.colWarehouseState.VisibleIndex = 16;
             // 
             // colWWQty
             // 
@@ -1196,7 +1196,7 @@
             this.colWWQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WWQty", "{0:0.##}")});
             this.colWWQty.Visible = true;
-            this.colWWQty.VisibleIndex = 18;
+            this.colWWQty.VisibleIndex = 17;
             // 
             // colRepertoryNo
             // 

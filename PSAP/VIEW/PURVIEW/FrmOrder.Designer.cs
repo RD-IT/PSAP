@@ -946,6 +946,9 @@
             this.gridViewOrderHead.IndicatorWidth = 40;
             this.gridViewOrderHead.Name = "gridViewOrderHead";
             this.gridViewOrderHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewOrderHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewOrderHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewOrderHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewOrderHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewOrderHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewOrderHead.OptionsView.ColumnAutoWidth = false;
@@ -979,7 +982,7 @@
             this.repCheckSelect.Name = "repCheckSelect";
             this.repCheckSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.repCheckSelect.ValueGrayed = false;
-            this.repCheckSelect.EditValueChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
+            this.repCheckSelect.CheckedChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
             // 
             // colOrderHeadNo
             // 
@@ -1531,6 +1534,9 @@
             this.gridViewOrderList.IndicatorWidth = 40;
             this.gridViewOrderList.Name = "gridViewOrderList";
             this.gridViewOrderList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewOrderList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewOrderList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewOrderList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewOrderList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewOrderList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewOrderList.OptionsView.ColumnAutoWidth = false;

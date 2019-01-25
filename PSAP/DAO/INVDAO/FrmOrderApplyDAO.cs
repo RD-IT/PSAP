@@ -55,7 +55,7 @@ namespace PSAP.DAO.INVDAO
         /// <summary>
         /// 查询采购订单明细表
         /// </summary>
-        public void QueryOrderList(DataTable queryDataTable,string orderHeadNoStr)
+        public void QueryOrderList(DataTable queryDataTable, string orderHeadNoStr)
         {
             string sqlStr = "";
             if (orderHeadNoStr != "")

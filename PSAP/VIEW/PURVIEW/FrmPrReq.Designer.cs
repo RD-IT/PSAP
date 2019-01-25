@@ -139,7 +139,6 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
             this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
@@ -147,6 +146,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.pnlRight = new DevExpress.XtraEditors.PanelControl();
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprover.Properties)).BeginInit();
@@ -188,6 +189,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
+            this.pnlRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -210,9 +213,9 @@
             this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.labReqDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(0, 0);
+            this.pnltop.Location = new System.Drawing.Point(2, 2);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(989, 78);
+            this.pnltop.Size = new System.Drawing.Size(985, 78);
             this.pnltop.TabIndex = 0;
             // 
             // lookUpApprover
@@ -627,9 +630,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
+            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(989, 212);
+            this.pnlMiddle.Size = new System.Drawing.Size(985, 212);
             this.pnlMiddle.TabIndex = 1;
             // 
             // checkAll
@@ -658,7 +661,7 @@
             this.repComboBoxStnNo,
             this.repCheckSelect,
             this.repLookUpApprovalType});
-            this.gridControlPrReqHead.Size = new System.Drawing.Size(985, 174);
+            this.gridControlPrReqHead.Size = new System.Drawing.Size(981, 174);
             this.gridControlPrReqHead.TabIndex = 0;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqHead});
@@ -689,6 +692,9 @@
             this.gridViewPrReqHead.IndicatorWidth = 40;
             this.gridViewPrReqHead.Name = "gridViewPrReqHead";
             this.gridViewPrReqHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewPrReqHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewPrReqHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewPrReqHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewPrReqHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
@@ -722,7 +728,7 @@
             this.repCheckSelect.Name = "repCheckSelect";
             this.repCheckSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.repCheckSelect.ValueGrayed = false;
-            this.repCheckSelect.EditValueChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
+            this.repCheckSelect.CheckedChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
             // 
             // colPrReqNo
             // 
@@ -983,7 +989,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(981, 34);
             this.pnlMiddleTop.TabIndex = 1;
             // 
             // btnCancelClose
@@ -1082,9 +1088,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlPrReqList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 295);
+            this.pnlBottom.Location = new System.Drawing.Point(2, 297);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(989, 156);
+            this.pnlBottom.Size = new System.Drawing.Size(985, 152);
             this.pnlBottom.TabIndex = 2;
             // 
             // btnListAdd
@@ -1108,7 +1114,7 @@
             this.repSpinQty,
             this.repSearchCodeFileName,
             this.repbtnDelete});
-            this.gridControlPrReqList.Size = new System.Drawing.Size(985, 152);
+            this.gridControlPrReqList.Size = new System.Drawing.Size(981, 148);
             this.gridControlPrReqList.TabIndex = 1;
             this.gridControlPrReqList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqList});
@@ -1133,6 +1139,9 @@
             this.gridViewPrReqList.IndicatorWidth = 40;
             this.gridViewPrReqList.Name = "gridViewPrReqList";
             this.gridViewPrReqList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewPrReqList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewPrReqList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewPrReqList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewPrReqList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
@@ -1313,16 +1322,6 @@
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
             // 
-            // splitterControl1
-            // 
-            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(0, 290);
-            this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(989, 5);
-            this.splitterControl1.TabIndex = 3;
-            this.splitterControl1.TabStop = false;
-            // 
             // popupMenuList
             // 
             this.popupMenuList.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -1352,7 +1351,7 @@
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 295);
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Size = new System.Drawing.Size(989, 0);
             // 
             // barDockControlBottom
@@ -1366,28 +1365,47 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 295);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 156);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 451);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(989, 295);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 156);
+            this.barDockControlRight.Location = new System.Drawing.Point(989, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 451);
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.Controls.Add(this.pnlBottom);
+            this.pnlRight.Controls.Add(this.splitterControl1);
+            this.pnlRight.Controls.Add(this.pnlMiddle);
+            this.pnlRight.Controls.Add(this.pnltop);
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRight.Location = new System.Drawing.Point(0, 0);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(989, 451);
+            this.pnlRight.TabIndex = 8;
+            // 
+            // splitterControl1
+            // 
+            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitterControl1.Location = new System.Drawing.Point(2, 292);
+            this.splitterControl1.Name = "splitterControl1";
+            this.splitterControl1.Size = new System.Drawing.Size(985, 5);
+            this.splitterControl1.TabIndex = 4;
+            this.splitterControl1.TabStop = false;
             // 
             // FrmPrReq
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(989, 451);
+            this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Controls.Add(this.pnlBottom);
-            this.Controls.Add(this.splitterControl1);
-            this.Controls.Add(this.pnlMiddle);
-            this.Controls.Add(this.pnltop);
             this.Name = "FrmPrReq";
             this.TabText = "请购单";
             this.Text = "请购单";
@@ -1436,6 +1454,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
+            this.pnlRight.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1527,7 +1547,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repbtnDelete;
         private System.Data.DataColumn dataColCodeName;
         private DevExpress.XtraGrid.Columns.GridColumn colCodeName;
-        private DevExpress.XtraEditors.SplitterControl splitterControl1;
         private DevExpress.XtraEditors.TextEdit textCommon;
         private DevExpress.XtraEditors.LabelControl labCommon;
         private DevExpress.XtraEditors.SimpleButton btnClose;
@@ -1561,5 +1580,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.PanelControl pnlRight;
+        private DevExpress.XtraEditors.SplitterControl splitterControl1;
     }
 }

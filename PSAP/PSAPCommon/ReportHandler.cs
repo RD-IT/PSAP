@@ -217,7 +217,14 @@ namespace PSAP.PSAPCommon
             p7.Name = "公司商标";
             p7.Value = SystemInfo.CompImage;
             paramList.Add(p7);
-
+            Parameter p8 = new Parameter();
+            p8.Name = "打印时间";
+            p8.Value = BaseSQL.GetServerDateTime();
+            paramList.Add(p8);
+            Parameter p9 = new Parameter();
+            p9.Name = "打印人";
+            p9.Value = SystemInfo.user.EmpName;
+            paramList.Add(p9);
             return paramList;
         }
 

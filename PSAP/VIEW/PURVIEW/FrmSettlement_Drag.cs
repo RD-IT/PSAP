@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -34,6 +33,11 @@ namespace PSAP.VIEW.BSVIEW
         /// 查询的结账单号
         /// </summary>
         public static string querySettlementNo = "";
+
+        /// <summary>
+        /// 查询的明细AutoId
+        /// </summary>
+        public static int queryListAutoId = 0;
 
         /// <summary>
         /// 只有选择列改变行状态的时候
@@ -256,11 +260,11 @@ namespace PSAP.VIEW.BSVIEW
                         setDAO.QuerySettlementList(dataSet_Settlement.Tables[1], DataTypeConvert.GetString(gridViewSettlementHead.GetFocusedDataRow()["SettlementNo"]), false);
                         //if (queryListAutoId > 0)
                         //{
-                        //    for (int i = 0; i < gridViewOrderList.DataRowCount; i++)
+                        //    for (int i = 0; i < gridViewSettlementList.DataRowCount; i++)
                         //    {
-                        //        if (DataTypeConvert.GetInt(gridViewOrderList.GetDataRow(i)["AutoId"]) == queryListAutoId)
+                        //        if (DataTypeConvert.GetInt(gridViewSettlementList.GetDataRow(i)["AutoId"]) == queryListAutoId)
                         //        {
-                        //            gridViewOrderList.FocusedRowHandle = i;
+                        //            gridViewSettlementList.FocusedRowHandle = i;
                         //            queryListAutoId = 0;
                         //            break;
                         //        }
@@ -296,7 +300,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -533,7 +537,7 @@ namespace PSAP.VIEW.BSVIEW
                         btnQuery_Click(null, null);
                     else
                     {
-                        MessageBox.Show(string.Format("成功审批了{0}条记录。", successCountInt));
+                        MessageHandler.ShowMessageBox(string.Format("成功审批了{0}条记录。", successCountInt));
                     }
                 }
                 ClearHeadGridAllSelect();
@@ -568,6 +572,10 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (!setDAO.CancalSettlementApprovalInfo_Multi(dataSet_Settlement.Tables[0]))
                     btnQuery_Click(null, null);
+                else
+                {
+                    MessageHandler.ShowMessageBox(string.Format("成功取消审批了{0}条记录。", count));
+                }
                 ClearHeadGridAllSelect();
             }
             catch (Exception ex)
@@ -1095,9 +1103,8 @@ namespace PSAP.VIEW.BSVIEW
                 gridViewSettlementHead.SetFocusedRowCellValue("BussinessBaseNo", headRow["BussinessBaseNo"]);
 
                 dataSet_Settlement.Tables[1].Clear();
-                for (int i = 0; i < drs.Count; i++)
+                foreach (DataRow dr in drs)
                 {
-                    DataRow dr = drs[i];
                     gridViewSettlementList.AddNewRow();
                     gridViewSettlementList.SetFocusedRowCellValue("SettlementNo", gridViewSettlementHead.GetFocusedDataRow()["SettlementNo"]);
                     gridViewSettlementList.SetFocusedRowCellValue("WarehouseWarrantListAutoId", dr["AutoId"]);
@@ -1132,10 +1139,8 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
 
-                for (int i = 0; i < drs.Count; i++)
+                foreach (DataRow dr in drs)
                 {
-                    DataRow dr = drs[i];
-
                     if (dataSet_Settlement.Tables[1].Select(string.Format("WarehouseWarrantListAutoId={0}", DataTypeConvert.GetString(dr["AutoId"]))).Length > 0)
                         continue;
                     gridViewSettlementList.AddNewRow();

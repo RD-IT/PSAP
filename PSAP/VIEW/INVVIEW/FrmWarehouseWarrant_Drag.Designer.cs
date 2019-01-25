@@ -931,6 +931,9 @@
             this.gridViewWWList.GridControl = this.gridControlWWList;
             this.gridViewWWList.IndicatorWidth = 40;
             this.gridViewWWList.Name = "gridViewWWList";
+            this.gridViewWWList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewWWList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewWWList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewWWList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewWWList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewWWList.OptionsView.ColumnAutoWidth = false;
@@ -1268,6 +1271,9 @@
             this.gridViewWWHead.IndicatorWidth = 40;
             this.gridViewWWHead.Name = "gridViewWWHead";
             this.gridViewWWHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewWWHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewWWHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewWWHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewWWHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewWWHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewWWHead.OptionsView.ColumnAutoWidth = false;
@@ -2665,8 +2671,16 @@
             this.dockPnlLeft.ID = new System.Guid("0a466d4c-43a4-4cfb-93d2-1bf1c8102fb0");
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
             this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
-            this.dockPnlLeft.Margin = new System.Windows.Forms.Padding(4);
             this.dockPnlLeft.Name = "dockPnlLeft";
+            this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
+            this.dockPnlLeft.Options.AllowDockBottom = false;
+            this.dockPnlLeft.Options.AllowDockFill = false;
+            this.dockPnlLeft.Options.AllowDockRight = false;
+            this.dockPnlLeft.Options.AllowDockTop = false;
+            this.dockPnlLeft.Options.AllowFloating = false;
+            this.dockPnlLeft.Options.FloatOnDblClick = false;
+            this.dockPnlLeft.Options.ShowCloseButton = false;
+            this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
             this.dockPnlLeft.Size = new System.Drawing.Size(350, 528);
             this.dockPnlLeft.Text = "采购订单";

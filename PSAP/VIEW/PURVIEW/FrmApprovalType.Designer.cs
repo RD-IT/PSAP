@@ -40,12 +40,12 @@
             this.bSApprovalType = new System.Windows.Forms.BindingSource(this.components);
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.labApprovalCatDesc = new DevExpress.XtraEditors.LabelControl();
-            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
             this.radioApprovalCat = new DevExpress.XtraEditors.RadioGroup();
-            this.labTypeNoText = new DevExpress.XtraEditors.LabelControl();
-            this.labTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.textTypeNoText = new DevExpress.XtraEditors.TextEdit();
             this.textTypeNo = new DevExpress.XtraEditors.TextEdit();
+            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
+            this.labTypeNoText = new DevExpress.XtraEditors.LabelControl();
+            this.labTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.gridCrlApprovalType = new DevExpress.XtraGrid.GridControl();
             this.gridViewApprovalType = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,8 +80,7 @@
             // 
             // btnApprovalList
             // 
-            this.btnApprovalList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApprovalList.Location = new System.Drawing.Point(726, 9);
+            this.btnApprovalList.Location = new System.Drawing.Point(496, 9);
             this.btnApprovalList.Name = "btnApprovalList";
             this.btnApprovalList.Size = new System.Drawing.Size(75, 23);
             this.btnApprovalList.TabIndex = 0;
@@ -157,14 +156,6 @@
             this.labApprovalCatDesc.Text = "注：串行审批是指必须按照审批信息中的顺序，审批人进行逐一审批，全部审批人通过后订单修改审批状态；\r\n      并行审批是指无须按照审批信息中的顺序，审批人直接进" +
     "行审批，全部审批人通过后订单修改审批状态；\r\n\r\n";
             // 
-            // labApprovalCat
-            // 
-            this.labApprovalCat.Location = new System.Drawing.Point(446, 24);
-            this.labApprovalCat.Name = "labApprovalCat";
-            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalCat.TabIndex = 16;
-            this.labApprovalCat.Text = "审批方式";
-            // 
             // radioApprovalCat
             // 
             this.radioApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "ApprovalCat", true));
@@ -178,22 +169,6 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "并行审批")});
             this.radioApprovalCat.Size = new System.Drawing.Size(198, 22);
             this.radioApprovalCat.TabIndex = 2;
-            // 
-            // labTypeNoText
-            // 
-            this.labTypeNoText.Location = new System.Drawing.Point(240, 24);
-            this.labTypeNoText.Name = "labTypeNoText";
-            this.labTypeNoText.Size = new System.Drawing.Size(48, 14);
-            this.labTypeNoText.TabIndex = 15;
-            this.labTypeNoText.Text = "审批名称";
-            // 
-            // labTypeNo
-            // 
-            this.labTypeNo.Location = new System.Drawing.Point(36, 24);
-            this.labTypeNo.Name = "labTypeNo";
-            this.labTypeNo.Size = new System.Drawing.Size(48, 14);
-            this.labTypeNo.TabIndex = 12;
-            this.labTypeNo.Text = "类型编码";
             // 
             // textTypeNoText
             // 
@@ -212,6 +187,30 @@
             this.textTypeNo.Name = "textTypeNo";
             this.textTypeNo.Size = new System.Drawing.Size(120, 20);
             this.textTypeNo.TabIndex = 0;
+            // 
+            // labApprovalCat
+            // 
+            this.labApprovalCat.Location = new System.Drawing.Point(446, 24);
+            this.labApprovalCat.Name = "labApprovalCat";
+            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalCat.TabIndex = 16;
+            this.labApprovalCat.Text = "审批方式";
+            // 
+            // labTypeNoText
+            // 
+            this.labTypeNoText.Location = new System.Drawing.Point(240, 24);
+            this.labTypeNoText.Name = "labTypeNoText";
+            this.labTypeNoText.Size = new System.Drawing.Size(48, 14);
+            this.labTypeNoText.TabIndex = 15;
+            this.labTypeNoText.Text = "审批名称";
+            // 
+            // labTypeNo
+            // 
+            this.labTypeNo.Location = new System.Drawing.Point(36, 24);
+            this.labTypeNo.Name = "labTypeNo";
+            this.labTypeNo.Size = new System.Drawing.Size(48, 14);
+            this.labTypeNo.TabIndex = 12;
+            this.labTypeNo.Text = "类型编码";
             // 
             // gridCrlApprovalType
             // 

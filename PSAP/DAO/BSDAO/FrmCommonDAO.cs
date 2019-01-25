@@ -133,7 +133,8 @@ namespace PSAP.DAO.BSDAO
         /// <param name="sqlStr">要查询的SQL</param>
         public string QuerySqlTranTotalCountSql(string sqlStr)
         {
-            return string.Format("select Count(*) from ({0}) as tmpTable", sqlStr.Replace("order by AutoId", ""));
+            string orderbyStr = sqlStr.Substring(sqlStr.IndexOf("order by"));
+            return string.Format("select Count(*) from ({0}) as tmpTable", sqlStr.Replace(orderbyStr, ""));
         }
 
         /// <summary>

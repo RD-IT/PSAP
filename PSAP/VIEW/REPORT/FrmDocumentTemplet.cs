@@ -1,8 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.ViewInfo;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+﻿using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTreeList.Nodes;
-using PSAP.DAO.BSDAO;
 using PSAP.DAO.INVDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
@@ -10,9 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -86,6 +81,12 @@ namespace PSAP.VIEW.BSVIEW
                                 break;
                             case "INV_WarehouseReceiptHead"://材料出库单
                                 new FrmWarehouseReceiptDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_InventoryMoveHead"://库存移动单
+                                new FrmInventoryMoveDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_InventoryAdjustmentsHead"://库存调整单
+                                new FrmInventoryAdjustmentsDAO().PrintHandle("", 3);
                                 break;
                             default:
                                 return;

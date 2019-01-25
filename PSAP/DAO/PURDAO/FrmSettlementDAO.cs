@@ -106,7 +106,6 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         /// <param name="SettlementHeadRow">结账单表头数据表</param>
         /// <param name="SettlementListTable">结账单明细数据表</param>
-        /// <returns></returns>
         public int SaveSettlement(DataRow SettlementHeadRow, DataTable SettlementListTable)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
