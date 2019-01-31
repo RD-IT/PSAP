@@ -452,6 +452,14 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        /// <summary>
+        /// 得到服务器数据库的当前时间
+        /// </summary>
+        public static DateTime GetServerDateTime()
+        {
+            return Convert.ToDateTime(GetSingle("select getdate()"));
+        }
+
         #endregion
 
         #region 执行带参数的SQL语句
@@ -618,6 +626,9 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        /// <summary>
+        /// 使用DataAdapter方式，把DataTable的数据更新到数据库中
+        /// </summary>
         public static void UpdateDataTable(SqlDataAdapter dataAdapter, DataTable dataTable)
         {
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -626,11 +637,6 @@ namespace PSAP.DAO.BSDAO
             dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
             dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
             dataAdapter.Update(dataTable);
-        }
-
-        public static DateTime GetServerDateTime()
-        {
-            return Convert.ToDateTime(GetSingle("select getdate()"));
         }
 
         #endregion

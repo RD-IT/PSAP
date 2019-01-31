@@ -171,6 +171,7 @@
     <Compile Include="PSAPCommon\MessageHandler.cs" />
     <Compile Include="PSAPCommon\psapCommon.cs" />
     <Compile Include="PSAPCommon\ReportHandler.cs" />
+    <Compile Include="PSAPCommon\SocketHandler.cs" />
     <Compile Include="PSAPCommon\SystemHandler.cs" />
     <Compile Include="PSAPCommon\SystemInfo.cs" />
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />

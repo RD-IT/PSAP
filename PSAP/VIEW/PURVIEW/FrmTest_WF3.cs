@@ -147,6 +147,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            MessageHandler.ShowMessageBox("123");
             dt2.Rows.Clear();
         }
 
@@ -174,6 +175,18 @@ namespace PSAP.VIEW.BSVIEW
             {
 
             }
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            string moduleNoStr = "123";
+            string moduleNameStr = "测试模块";
+            if (!FrmCommonDAO.CheckModuleAuthority(moduleNoStr, moduleNameStr))
+            {
+                MessageHandler.ShowMessageBox("我没有["+ moduleNameStr + "]权限");
+            }
+            else
+                MessageHandler.ShowMessageBox("我有[" + moduleNameStr + "]权限");
         }
     }
 }

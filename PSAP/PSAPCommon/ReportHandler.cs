@@ -22,12 +22,11 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 处理报表打印
         /// </summary>
-        /// <param name="DefReport"></param>
-        /// <param name="repxFileName"></param>
-        /// <param name="outputdataset"></param>
-        /// <param name="paralist"></param>
+        /// <param name="tableNameStr">数据表名</param>
+        /// <param name="bindingDataSet">绑定的DataSet</param>
+        /// <param name="paraList">参数列表</param>
         /// <param name="handleType">处理类型：1 预览 2 打印 3 设计</param>
-        public static void XtraReport_Handle(XtraReport DefReport, string tableNameStr, DataSet outputdataset, List<Parameter> paralist, int handleType)
+        public static void XtraReport_Handle(string tableNameStr, DataSet bindingDataSet, List<Parameter> paraList, int handleType)
         {
             FrmDocumentTempletDAO docDAO = new FrmDocumentTempletDAO();
             DataTable docTempletTable = docDAO.QueryDocTemplet(tableNameStr);
@@ -70,10 +69,10 @@ namespace PSAP.PSAPCommon
             XtraReport report = new XtraReport();
             report.LoadLayout(path);
 
-            report.DataSource = outputdataset;
-            if (paralist != null)
+            report.DataSource = bindingDataSet;
+            if (paraList != null)
             {
-                foreach (Parameter para in paralist)
+                foreach (Parameter para in paraList)
                 {
                     try
                     {

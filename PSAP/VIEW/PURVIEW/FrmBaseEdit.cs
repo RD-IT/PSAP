@@ -246,9 +246,10 @@ namespace PSAP.VIEW.BSVIEW
                 newState = true;
                 Set_Button_State(false);
                 Set_EditZone_ControlReadOnly(false);
+                pnlButton.Focus();
                 if (masterEditPanel != null)
                     masterEditPanel.SelectNextControl(null, true, true, true, true);
-                pnlButton.Focus();
+                
             }
             catch (Exception ex)
             {
@@ -270,6 +271,7 @@ namespace PSAP.VIEW.BSVIEW
                         newState = false;
                         Set_Button_State(false);
                         Set_EditZone_ControlReadOnly(false);
+                        pnlButton.Focus();
                         if (masterEditPanel != null)
                         {
                             masterEditPanel.SelectNextControl(null, true, true, true, true);
@@ -281,7 +283,7 @@ namespace PSAP.VIEW.BSVIEW
                                 }
                             }
                         }
-                        pnlButton.Focus();
+                       
                     }
                 }
                 catch (Exception ex)

@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
-            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApprovalType = new DevExpress.XtraEditors.LookUpEdit();
             this.bsOrderHead = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_Order = new System.Data.DataSet();
@@ -73,10 +72,11 @@
             this.dataColOrderHeadNo = new System.Data.DataColumn();
             this.dataColApproverTime = new System.Data.DataColumn();
             this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
-            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
             this.textReqState = new DevExpress.XtraEditors.TextEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
             this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
+            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
+            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
             this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlOrderAppInfo = new DevExpress.XtraGrid.GridControl();
@@ -128,14 +128,6 @@
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(584, 89);
             this.pnlTop.TabIndex = 4;
-            // 
-            // labApprovalCat
-            // 
-            this.labApprovalCat.Location = new System.Drawing.Point(239, 56);
-            this.labApprovalCat.Name = "labApprovalCat";
-            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalCat.TabIndex = 7;
-            this.labApprovalCat.Text = "审批方式";
             // 
             // lookUpApprovalType
             // 
@@ -417,14 +409,6 @@
             this.textApprovalCat.TabIndex = 3;
             this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
             // 
-            // labApprovalType
-            // 
-            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
-            this.labApprovalType.Name = "labApprovalType";
-            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalType.TabIndex = 4;
-            this.labApprovalType.Text = "审批类型";
-            // 
             // textReqState
             // 
             this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsOrderHead, "ReqState", true));
@@ -436,14 +420,6 @@
             this.textReqState.TabIndex = 1;
             this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
             // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(239, 26);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(48, 14);
-            this.labReqState.TabIndex = 2;
-            this.labReqState.Text = "单据状态";
-            // 
             // textOrderHeadNo
             // 
             this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bsOrderHead, "OrderHeadNo", true));
@@ -452,6 +428,30 @@
             this.textOrderHeadNo.Properties.ReadOnly = true;
             this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
             this.textOrderHeadNo.TabIndex = 0;
+            // 
+            // labApprovalCat
+            // 
+            this.labApprovalCat.Location = new System.Drawing.Point(239, 56);
+            this.labApprovalCat.Name = "labApprovalCat";
+            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalCat.TabIndex = 7;
+            this.labApprovalCat.Text = "审批方式";
+            // 
+            // labApprovalType
+            // 
+            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
+            this.labApprovalType.Name = "labApprovalType";
+            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalType.TabIndex = 4;
+            this.labApprovalType.Text = "审批类型";
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(239, 26);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(48, 14);
+            this.labReqState.TabIndex = 2;
+            this.labReqState.Text = "单据状态";
             // 
             // labOrderHeadNo
             // 
@@ -635,6 +635,7 @@
             this.Controls.Add(this.pnlBottom);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "FrmOrderApproval";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

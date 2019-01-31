@@ -31,16 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpApprovalType = new DevExpress.XtraEditors.LookUpEdit();
-            this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
-            this.textReqState = new DevExpress.XtraEditors.TextEdit();
-            this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
-            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
-            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
-            this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
+            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_WR = new System.Data.DataSet();
             this.dataTableWRHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -70,7 +61,16 @@
             this.dataColLoginId = new System.Data.DataColumn();
             this.dataColumnWarehouseReceipt = new System.Data.DataColumn();
             this.dataColApproverTime = new System.Data.DataColumn();
-            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource(this.components);
+            this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
+            this.textReqState = new DevExpress.XtraEditors.TextEdit();
+            this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
+            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
+            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
             this.bsWRApprovalInfo = new System.Windows.Forms.BindingSource(this.components);
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlWRAppInfo = new DevExpress.XtraGrid.GridControl();
@@ -87,15 +87,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WRHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableReceiptApprovalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textApprovalCat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textReqState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOrderHeadNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableReceiptApprovalInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WRHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsWRApprovalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
@@ -138,100 +138,10 @@
             this.lookUpApprovalType.Size = new System.Drawing.Size(120, 20);
             this.lookUpApprovalType.TabIndex = 2;
             // 
-            // textApprovalCat
+            // bindingSource_WRHead
             // 
-            this.textApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_WRHead, "ApprovalCat", true));
-            this.textApprovalCat.Location = new System.Drawing.Point(312, 53);
-            this.textApprovalCat.Name = "textApprovalCat";
-            this.textApprovalCat.Properties.AllowFocused = false;
-            this.textApprovalCat.Properties.ReadOnly = true;
-            this.textApprovalCat.Size = new System.Drawing.Size(120, 20);
-            this.textApprovalCat.TabIndex = 3;
-            this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
-            // 
-            // textReqState
-            // 
-            this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_WRHead, "WarehouseState", true));
-            this.textReqState.Location = new System.Drawing.Point(312, 23);
-            this.textReqState.Name = "textReqState";
-            this.textReqState.Properties.AllowFocused = false;
-            this.textReqState.Properties.ReadOnly = true;
-            this.textReqState.Size = new System.Drawing.Size(120, 20);
-            this.textReqState.TabIndex = 1;
-            this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
-            // 
-            // textOrderHeadNo
-            // 
-            this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_WRHead, "WarehouseReceipt", true));
-            this.textOrderHeadNo.Location = new System.Drawing.Point(95, 23);
-            this.textOrderHeadNo.Name = "textOrderHeadNo";
-            this.textOrderHeadNo.Properties.ReadOnly = true;
-            this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
-            this.textOrderHeadNo.TabIndex = 0;
-            // 
-            // labApprovalCat
-            // 
-            this.labApprovalCat.Location = new System.Drawing.Point(239, 56);
-            this.labApprovalCat.Name = "labApprovalCat";
-            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalCat.TabIndex = 7;
-            this.labApprovalCat.Text = "审批方式";
-            // 
-            // labApprovalType
-            // 
-            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
-            this.labApprovalType.Name = "labApprovalType";
-            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalType.TabIndex = 4;
-            this.labApprovalType.Text = "审批类型";
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(239, 26);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(48, 14);
-            this.labReqState.TabIndex = 2;
-            this.labReqState.Text = "单据状态";
-            // 
-            // labOrderHeadNo
-            // 
-            this.labOrderHeadNo.Location = new System.Drawing.Point(28, 26);
-            this.labOrderHeadNo.Name = "labOrderHeadNo";
-            this.labOrderHeadNo.Size = new System.Drawing.Size(48, 14);
-            this.labOrderHeadNo.TabIndex = 0;
-            this.labOrderHeadNo.Text = "出库单号";
-            // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Controls.Add(this.btnCancel);
-            this.pnlBottom.Controls.Add(this.btnApproval);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(584, 40);
-            this.pnlBottom.TabIndex = 8;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(497, 8);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.TabStop = false;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnApproval
-            // 
-            this.btnApproval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApproval.Location = new System.Drawing.Point(416, 8);
-            this.btnApproval.Name = "btnApproval";
-            this.btnApproval.Size = new System.Drawing.Size(75, 23);
-            this.btnApproval.TabIndex = 1;
-            this.btnApproval.TabStop = false;
-            this.btnApproval.Text = "审批";
-            this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
+            this.bindingSource_WRHead.DataMember = "WRHead";
+            this.bindingSource_WRHead.DataSource = this.dataSet_WR;
             // 
             // dataSet_WR
             // 
@@ -414,10 +324,100 @@
             this.dataColApproverTime.ColumnName = "ApproverTime";
             this.dataColApproverTime.DataType = typeof(System.DateTime);
             // 
-            // bindingSource_WRHead
+            // textApprovalCat
             // 
-            this.bindingSource_WRHead.DataMember = "WRHead";
-            this.bindingSource_WRHead.DataSource = this.dataSet_WR;
+            this.textApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_WRHead, "ApprovalCat", true));
+            this.textApprovalCat.Location = new System.Drawing.Point(312, 53);
+            this.textApprovalCat.Name = "textApprovalCat";
+            this.textApprovalCat.Properties.AllowFocused = false;
+            this.textApprovalCat.Properties.ReadOnly = true;
+            this.textApprovalCat.Size = new System.Drawing.Size(120, 20);
+            this.textApprovalCat.TabIndex = 3;
+            this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
+            // 
+            // textReqState
+            // 
+            this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_WRHead, "WarehouseState", true));
+            this.textReqState.Location = new System.Drawing.Point(312, 23);
+            this.textReqState.Name = "textReqState";
+            this.textReqState.Properties.AllowFocused = false;
+            this.textReqState.Properties.ReadOnly = true;
+            this.textReqState.Size = new System.Drawing.Size(120, 20);
+            this.textReqState.TabIndex = 1;
+            this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
+            // 
+            // textOrderHeadNo
+            // 
+            this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_WRHead, "WarehouseReceipt", true));
+            this.textOrderHeadNo.Location = new System.Drawing.Point(95, 23);
+            this.textOrderHeadNo.Name = "textOrderHeadNo";
+            this.textOrderHeadNo.Properties.ReadOnly = true;
+            this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
+            this.textOrderHeadNo.TabIndex = 0;
+            // 
+            // labApprovalCat
+            // 
+            this.labApprovalCat.Location = new System.Drawing.Point(239, 56);
+            this.labApprovalCat.Name = "labApprovalCat";
+            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalCat.TabIndex = 7;
+            this.labApprovalCat.Text = "审批方式";
+            // 
+            // labApprovalType
+            // 
+            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
+            this.labApprovalType.Name = "labApprovalType";
+            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalType.TabIndex = 4;
+            this.labApprovalType.Text = "审批类型";
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(239, 26);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(48, 14);
+            this.labReqState.TabIndex = 2;
+            this.labReqState.Text = "单据状态";
+            // 
+            // labOrderHeadNo
+            // 
+            this.labOrderHeadNo.Location = new System.Drawing.Point(28, 26);
+            this.labOrderHeadNo.Name = "labOrderHeadNo";
+            this.labOrderHeadNo.Size = new System.Drawing.Size(48, 14);
+            this.labOrderHeadNo.TabIndex = 0;
+            this.labOrderHeadNo.Text = "出库单号";
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Controls.Add(this.btnCancel);
+            this.pnlBottom.Controls.Add(this.btnApproval);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(584, 40);
+            this.pnlBottom.TabIndex = 8;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(497, 8);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabStop = false;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnApproval
+            // 
+            this.btnApproval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApproval.Location = new System.Drawing.Point(416, 8);
+            this.btnApproval.Name = "btnApproval";
+            this.btnApproval.Size = new System.Drawing.Size(75, 23);
+            this.btnApproval.TabIndex = 1;
+            this.btnApproval.TabStop = false;
+            this.btnApproval.Text = "审批";
+            this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
             // 
             // bsWRApprovalInfo
             // 
@@ -560,6 +560,7 @@
             this.Controls.Add(this.pnlTop);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "FrmWarehouseReceiptApproval";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -570,15 +571,15 @@
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WRHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableReceiptApprovalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textApprovalCat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textReqState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOrderHeadNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableReceiptApprovalInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WRHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsWRApprovalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);

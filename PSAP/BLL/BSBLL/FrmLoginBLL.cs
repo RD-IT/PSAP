@@ -16,23 +16,24 @@ namespace PSAP.BLL.BSBLL
         /// </summary>
         /// <param name="strUserID"></param>
         /// <param name="strPassword"></param>
-        public static void CheckUser(string strUserID, string strPassword,ComboBox cboLanguage)
+        public static bool CheckUser(string strUserID, string strPassword,ComboBox cboLanguage)
         {
             try
             {
                 if (FrmLoginDAO.CheckUser(strUserID, strPassword, cboLanguage.SelectedValue.ToString()) != null)
                 {
-                    FrmLogin.ActiveForm.Close();
+                    return true;                    
                 }
                 else
                 {
                     MessageBox.Show(string.Format("用ID或密码错误！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
                 }
             }
             catch
             {
                 MessageBox.Show(string.Format("数据库连接错误，请检查服务器连接情况！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                return false;
             }
 
         }

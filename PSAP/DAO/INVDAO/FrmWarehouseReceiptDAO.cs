@@ -714,7 +714,7 @@ namespace PSAP.DAO.INVDAO
 
             List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
 
-            ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "INV_WarehouseReceiptHead", ds, paralist, handleTypeInt);
+            ReportHandler.XtraReport_Handle("INV_WarehouseReceiptHead", ds, paralist, handleTypeInt);
         }
     }
 }

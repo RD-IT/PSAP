@@ -175,7 +175,7 @@
             // 
             this.tsrMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsrLblCurrentStatus});
-            this.tsrMain.Location = new System.Drawing.Point(0, 529);
+            this.tsrMain.Location = new System.Drawing.Point(0, 539);
             this.tsrMain.Name = "tsrMain";
             this.tsrMain.Size = new System.Drawing.Size(1022, 22);
             this.tsrMain.TabIndex = 10;
@@ -196,7 +196,7 @@
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.ShowDocumentIcon = true;
-            this.dockPanel1.Size = new System.Drawing.Size(1022, 529);
+            this.dockPanel1.Size = new System.Drawing.Size(1022, 539);
             this.dockPanel1.TabIndex = 12;
             // 
             // toolStripContainer1
@@ -264,13 +264,14 @@
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1022, 551);
+            this.ClientSize = new System.Drawing.Size(1022, 561);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.tsrMain);
             this.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(5);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FrmMain";
             this.Text = "主窗口";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

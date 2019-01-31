@@ -1256,7 +1256,7 @@ namespace PSAP.DAO.PURDAO
 
             List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
 
-            ReportHandler.XtraReport_Handle(new DevExpress.XtraReports.UI.XtraReport(), "PUR_OrderHead", ds, paralist, handleTypeInt);
+            ReportHandler.XtraReport_Handle("PUR_OrderHead", ds, paralist, handleTypeInt);
         }
 
         /// <summary>

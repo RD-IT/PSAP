@@ -174,5 +174,30 @@ namespace PSAP.DAO.BSDAO
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
+
+        /// <summary>
+        /// 检查模块权限
+        /// </summary>
+        /// <param name="moduleNoStr">模块编号</param>
+        /// <param name="moduleNameStr">模块名称</param>
+        public static bool CheckModuleAuthority(string moduleNoStr, string moduleNameStr)
+        {
+            if (moduleNoStr == "")
+                return false;
+
+            string resultStr = new SocketHandler().SendServerAndReturnResult("Module|" + moduleNoStr);
+            string[] msgStringArray = resultStr.Split('|');
+            if (msgStringArray.Length > 0)
+            {
+                switch (msgStringArray[0])
+                {
+                    case "Module":
+                        if (msgStringArray[1] == "1")
+                            return true;
+                        break;
+                }
+            }
+            return false;
+        }
     }
 }

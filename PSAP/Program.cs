@@ -21,18 +21,20 @@ namespace PSAP.VIEW.BSVIEW
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
 
-            Application.Run(new FrmLogin());
-            //if (PSAPCommon.LoginInfo != null)
-            if(SystemInfo.user!=null)
+            FrmLogin frmLogin = new FrmLogin();
+            if (frmLogin.ShowDialog() == DialogResult.OK)
             {
-                new SystemHandler().InitializationSystemInfo();
+                //if (PSAPCommon.LoginInfo != null)
+                if (SystemInfo.user != null)
+                {
+                    FrmMain frmMain = new FrmMain();
+                    frmMain.WindowState = FormWindowState.Maximized;
+                    Application.Run(frmMain);
 
-                FrmMain frmMain = new FrmMain();
-                frmMain.WindowState = FormWindowState.Maximized;
-                Application.Run(frmMain);
+                    if(SocketHandler.IsCheckServer)
+                        new SocketHandler().DisconnectServer(SocketHandler.clientSocket);
+                }
             }
         }
-
-
     }
 }

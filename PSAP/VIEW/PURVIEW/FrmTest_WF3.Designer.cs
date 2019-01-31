@@ -53,6 +53,7 @@
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -163,6 +164,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.simpleButton2);
             this.panelControl3.Controls.Add(this.simpleButton1);
             resources.ApplyResources(this.panelControl3, "panelControl3");
             this.panelControl3.Name = "panelControl3";
@@ -264,6 +266,13 @@
             resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Name = "labelControl1";
             // 
+            // simpleButton2
+            // 
+            resources.ApplyResources(this.simpleButton2, "simpleButton2");
+            this.simpleButton2.Name = "simpleButton2";
+            this.barManager1.SetPopupContextMenu(this.simpleButton2, this.popupMenu1);
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // FrmTest_WF3
             // 
             resources.ApplyResources(this, "$this");
@@ -325,5 +334,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
     }
 }
