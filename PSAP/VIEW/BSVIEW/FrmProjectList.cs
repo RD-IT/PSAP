@@ -46,6 +46,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.OtherNoChangeControl = new List<Control>() { textProjectName };
                     editForm.BrowseXtraGridView = gridViewProjectList;
                     editForm.CheckControl += CheckControl;
+                    editForm.ButtonList.Add(btnStnList);
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();

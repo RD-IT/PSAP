@@ -133,7 +133,7 @@
             this.textShelfDescription.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSShelfInfo, "ShelfDescription", true));
             this.textShelfDescription.Location = new System.Drawing.Point(112, 55);
             this.textShelfDescription.Name = "textShelfDescription";
-            this.textShelfDescription.Size = new System.Drawing.Size(418, 20);
+            this.textShelfDescription.Size = new System.Drawing.Size(448, 20);
             this.textShelfDescription.TabIndex = 3;
             // 
             // textShelfLocation
@@ -142,7 +142,7 @@
             this.textShelfLocation.EnterMoveNextControl = true;
             this.textShelfLocation.Location = new System.Drawing.Point(380, 21);
             this.textShelfLocation.Name = "textShelfLocation";
-            this.textShelfLocation.Size = new System.Drawing.Size(150, 20);
+            this.textShelfLocation.Size = new System.Drawing.Size(180, 20);
             this.textShelfLocation.TabIndex = 2;
             // 
             // textShelfNo

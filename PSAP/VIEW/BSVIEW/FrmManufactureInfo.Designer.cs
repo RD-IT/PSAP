@@ -132,7 +132,7 @@
             // 
             // labManufactureType
             // 
-            this.labManufactureType.Location = new System.Drawing.Point(467, 24);
+            this.labManufactureType.Location = new System.Drawing.Point(537, 24);
             this.labManufactureType.Name = "labManufactureType";
             this.labManufactureType.Size = new System.Drawing.Size(48, 14);
             this.labManufactureType.TabIndex = 18;
@@ -141,7 +141,7 @@
             // radioManufactureType
             // 
             this.radioManufactureType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSManufactureInfo, "ManufactureType", true));
-            this.radioManufactureType.Location = new System.Drawing.Point(533, 20);
+            this.radioManufactureType.Location = new System.Drawing.Point(603, 20);
             this.radioManufactureType.Name = "radioManufactureType";
             this.radioManufactureType.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioManufactureType.Properties.Appearance.Options.UseBackColor = true;
@@ -154,7 +154,7 @@
             // 
             // labManufactureName
             // 
-            this.labManufactureName.Location = new System.Drawing.Point(249, 24);
+            this.labManufactureName.Location = new System.Drawing.Point(286, 24);
             this.labManufactureName.Name = "labManufactureName";
             this.labManufactureName.Size = new System.Drawing.Size(48, 14);
             this.labManufactureName.TabIndex = 15;
@@ -171,9 +171,9 @@
             // textManufactureName
             // 
             this.textManufactureName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSManufactureInfo, "ManufactureName", true));
-            this.textManufactureName.Location = new System.Drawing.Point(318, 21);
+            this.textManufactureName.Location = new System.Drawing.Point(355, 21);
             this.textManufactureName.Name = "textManufactureName";
-            this.textManufactureName.Size = new System.Drawing.Size(120, 20);
+            this.textManufactureName.Size = new System.Drawing.Size(160, 20);
             this.textManufactureName.TabIndex = 1;
             // 
             // textManufactureNo
@@ -182,7 +182,7 @@
             this.textManufactureNo.EnterMoveNextControl = true;
             this.textManufactureNo.Location = new System.Drawing.Point(104, 21);
             this.textManufactureNo.Name = "textManufactureNo";
-            this.textManufactureNo.Size = new System.Drawing.Size(120, 20);
+            this.textManufactureNo.Size = new System.Drawing.Size(160, 20);
             this.textManufactureNo.TabIndex = 0;
             // 
             // pnlGrid
@@ -241,7 +241,7 @@
             this.colManufactureNo.Name = "colManufactureNo";
             this.colManufactureNo.Visible = true;
             this.colManufactureNo.VisibleIndex = 0;
-            this.colManufactureNo.Width = 120;
+            this.colManufactureNo.Width = 160;
             // 
             // colManufactureName
             // 
@@ -251,7 +251,7 @@
             this.colManufactureName.Name = "colManufactureName";
             this.colManufactureName.Visible = true;
             this.colManufactureName.VisibleIndex = 1;
-            this.colManufactureName.Width = 120;
+            this.colManufactureName.Width = 160;
             // 
             // colManufactureType
             // 

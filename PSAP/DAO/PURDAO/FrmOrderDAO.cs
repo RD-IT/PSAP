@@ -1254,9 +1254,9 @@ namespace PSAP.DAO.PURDAO
             }
             ds.Tables.Add(listTable);
 
-            List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
-
-            ReportHandler.XtraReport_Handle("PUR_OrderHead", ds, paralist, handleTypeInt);
+            ReportHandler rptHandler = new ReportHandler();
+            List<DevExpress.XtraReports.Parameters.Parameter> paralist = rptHandler.GetSystemInfo_ParamList();
+            rptHandler.XtraReport_Handle("PUR_OrderHead", ds, paralist, handleTypeInt);
         }
 
         /// <summary>
@@ -1340,7 +1340,7 @@ namespace PSAP.DAO.PURDAO
             }
             if (commonStr != "")
             {
-                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or Prepared like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%' and Remark like '%{0}%')", commonStr);
+                sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or StnNo like '%{0}%')", commonStr);
             }
             sqlStr = string.Format("select * from V_PUR_OrderList_Overplus where {0} order by AutoId", sqlStr);
             return sqlStr;

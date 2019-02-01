@@ -62,6 +62,8 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.CheckControl += CheckControl;
                     editForm.SaveRowBefore += SaveRowBefore;
                     editForm.DeleteRowBefore += DeleteRowBefore;
+                    editForm.ButtonList.Add(btnUp);
+                    editForm.ButtonList.Add(btnDown);
                     editForm.DeleteAfterRefresh = true;
                     //editForm.btnSaveExcel.Visible = false;
                     editForm.VisibleSearchContrl = false;

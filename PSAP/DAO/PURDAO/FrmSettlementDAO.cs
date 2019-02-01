@@ -720,9 +720,9 @@ namespace PSAP.DAO.PURDAO
             }
             ds.Tables.Add(listTable);
 
-            List<DevExpress.XtraReports.Parameters.Parameter> paralist = ReportHandler.GetSystemInfo_ParamList();
-
-            ReportHandler.XtraReport_Handle("PUR_SettlementHead", ds, paralist, handleTypeInt);
+            ReportHandler rptHandler = new ReportHandler();
+            List<DevExpress.XtraReports.Parameters.Parameter> paralist = rptHandler.GetSystemInfo_ParamList();
+            rptHandler.XtraReport_Handle("PUR_SettlementHead", ds, paralist, handleTypeInt);
         }
 
     }

@@ -159,7 +159,7 @@
             // radioApprovalCat
             // 
             this.radioApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "ApprovalCat", true));
-            this.radioApprovalCat.Location = new System.Drawing.Point(512, 20);
+            this.radioApprovalCat.Location = new System.Drawing.Point(592, 20);
             this.radioApprovalCat.Name = "radioApprovalCat";
             this.radioApprovalCat.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioApprovalCat.Properties.Appearance.Options.UseBackColor = true;
@@ -174,9 +174,9 @@
             // 
             this.textTypeNoText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "TypeNoText", true));
             this.textTypeNoText.EnterMoveNextControl = true;
-            this.textTypeNoText.Location = new System.Drawing.Point(304, 21);
+            this.textTypeNoText.Location = new System.Drawing.Point(344, 21);
             this.textTypeNoText.Name = "textTypeNoText";
-            this.textTypeNoText.Size = new System.Drawing.Size(120, 20);
+            this.textTypeNoText.Size = new System.Drawing.Size(160, 20);
             this.textTypeNoText.TabIndex = 1;
             // 
             // textTypeNo
@@ -185,12 +185,12 @@
             this.textTypeNo.EnterMoveNextControl = true;
             this.textTypeNo.Location = new System.Drawing.Point(101, 21);
             this.textTypeNo.Name = "textTypeNo";
-            this.textTypeNo.Size = new System.Drawing.Size(120, 20);
+            this.textTypeNo.Size = new System.Drawing.Size(160, 20);
             this.textTypeNo.TabIndex = 0;
             // 
             // labApprovalCat
             // 
-            this.labApprovalCat.Location = new System.Drawing.Point(446, 24);
+            this.labApprovalCat.Location = new System.Drawing.Point(526, 24);
             this.labApprovalCat.Name = "labApprovalCat";
             this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
             this.labApprovalCat.TabIndex = 16;
@@ -198,7 +198,7 @@
             // 
             // labTypeNoText
             // 
-            this.labTypeNoText.Location = new System.Drawing.Point(240, 24);
+            this.labTypeNoText.Location = new System.Drawing.Point(280, 24);
             this.labTypeNoText.Name = "labTypeNoText";
             this.labTypeNoText.Size = new System.Drawing.Size(48, 14);
             this.labTypeNoText.TabIndex = 15;
@@ -257,7 +257,7 @@
             this.colTypeNo.Name = "colTypeNo";
             this.colTypeNo.Visible = true;
             this.colTypeNo.VisibleIndex = 0;
-            this.colTypeNo.Width = 120;
+            this.colTypeNo.Width = 160;
             // 
             // colTypeNoText
             // 
@@ -267,7 +267,7 @@
             this.colTypeNoText.Name = "colTypeNoText";
             this.colTypeNoText.Visible = true;
             this.colTypeNoText.VisibleIndex = 1;
-            this.colTypeNoText.Width = 120;
+            this.colTypeNoText.Width = 160;
             // 
             // colApprovalCat
             // 

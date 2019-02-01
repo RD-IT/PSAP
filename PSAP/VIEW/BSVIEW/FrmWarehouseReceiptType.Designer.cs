@@ -80,9 +80,9 @@
             // textWarehouseReceiptTypeName
             // 
             this.textWarehouseReceiptTypeName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseReceiptType, "WarehouseReceiptTypeName", true));
-            this.textWarehouseReceiptTypeName.Location = new System.Drawing.Point(389, 21);
+            this.textWarehouseReceiptTypeName.Location = new System.Drawing.Point(411, 21);
             this.textWarehouseReceiptTypeName.Name = "textWarehouseReceiptTypeName";
-            this.textWarehouseReceiptTypeName.Size = new System.Drawing.Size(120, 20);
+            this.textWarehouseReceiptTypeName.Size = new System.Drawing.Size(160, 20);
             this.textWarehouseReceiptTypeName.TabIndex = 1;
             // 
             // bSWarehouseReceiptType
@@ -133,12 +133,12 @@
             this.textWarehouseReceiptTypeNo.EnterMoveNextControl = true;
             this.textWarehouseReceiptTypeNo.Location = new System.Drawing.Point(131, 21);
             this.textWarehouseReceiptTypeNo.Name = "textWarehouseReceiptTypeNo";
-            this.textWarehouseReceiptTypeNo.Size = new System.Drawing.Size(120, 20);
+            this.textWarehouseReceiptTypeNo.Size = new System.Drawing.Size(160, 20);
             this.textWarehouseReceiptTypeNo.TabIndex = 0;
             // 
             // labWarehouseReceiptTypeName
             // 
-            this.labWarehouseReceiptTypeName.Location = new System.Drawing.Point(291, 24);
+            this.labWarehouseReceiptTypeName.Location = new System.Drawing.Point(312, 24);
             this.labWarehouseReceiptTypeName.Name = "labWarehouseReceiptTypeName";
             this.labWarehouseReceiptTypeName.Size = new System.Drawing.Size(72, 14);
             this.labWarehouseReceiptTypeName.TabIndex = 15;
@@ -226,7 +226,7 @@
             this.colWarehouseReceiptTypeNo.Name = "colWarehouseReceiptTypeNo";
             this.colWarehouseReceiptTypeNo.Visible = true;
             this.colWarehouseReceiptTypeNo.VisibleIndex = 0;
-            this.colWarehouseReceiptTypeNo.Width = 120;
+            this.colWarehouseReceiptTypeNo.Width = 160;
             // 
             // colWarehouseReceiptTypeName
             // 
@@ -236,7 +236,7 @@
             this.colWarehouseReceiptTypeName.Name = "colWarehouseReceiptTypeName";
             this.colWarehouseReceiptTypeName.Visible = true;
             this.colWarehouseReceiptTypeName.VisibleIndex = 1;
-            this.colWarehouseReceiptTypeName.Width = 120;
+            this.colWarehouseReceiptTypeName.Width = 160;
             // 
             // colIsDefault
             // 

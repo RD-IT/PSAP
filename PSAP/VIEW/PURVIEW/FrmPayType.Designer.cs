@@ -97,9 +97,9 @@
             // textPayTypeNoText
             // 
             this.textPayTypeNoText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSPayType, "PayTypeNoText", true));
-            this.textPayTypeNoText.Location = new System.Drawing.Point(305, 21);
+            this.textPayTypeNoText.Location = new System.Drawing.Point(346, 21);
             this.textPayTypeNoText.Name = "textPayTypeNoText";
-            this.textPayTypeNoText.Size = new System.Drawing.Size(120, 20);
+            this.textPayTypeNoText.Size = new System.Drawing.Size(160, 20);
             this.textPayTypeNoText.TabIndex = 1;
             // 
             // bSPayType
@@ -142,12 +142,12 @@
             this.textPayTypeNo.EnterMoveNextControl = true;
             this.textPayTypeNo.Location = new System.Drawing.Point(101, 21);
             this.textPayTypeNo.Name = "textPayTypeNo";
-            this.textPayTypeNo.Size = new System.Drawing.Size(120, 20);
+            this.textPayTypeNo.Size = new System.Drawing.Size(160, 20);
             this.textPayTypeNo.TabIndex = 0;
             // 
             // labPayTypeNoText
             // 
-            this.labPayTypeNoText.Location = new System.Drawing.Point(241, 24);
+            this.labPayTypeNoText.Location = new System.Drawing.Point(282, 24);
             this.labPayTypeNoText.Name = "labPayTypeNoText";
             this.labPayTypeNoText.Size = new System.Drawing.Size(48, 14);
             this.labPayTypeNoText.TabIndex = 15;
@@ -213,7 +213,7 @@
             this.colPayTypeNo.Name = "colPayTypeNo";
             this.colPayTypeNo.Visible = true;
             this.colPayTypeNo.VisibleIndex = 0;
-            this.colPayTypeNo.Width = 120;
+            this.colPayTypeNo.Width = 160;
             // 
             // colPayTypeNoText
             // 
@@ -223,7 +223,7 @@
             this.colPayTypeNoText.Name = "colPayTypeNoText";
             this.colPayTypeNoText.Visible = true;
             this.colPayTypeNoText.VisibleIndex = 1;
-            this.colPayTypeNoText.Width = 120;
+            this.colPayTypeNoText.Width = 160;
             // 
             // FrmPayType
             // 

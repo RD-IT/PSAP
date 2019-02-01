@@ -47,6 +47,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.BrowseXtraGridView = gridViewWarehouseWarrantType;
                     editForm.CheckControl += CheckControl;
                     editForm.SaveRowBefore += SaveRowBefore_Handle;
+                    editForm.ButtonList.Add(btnSetDefault);
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();

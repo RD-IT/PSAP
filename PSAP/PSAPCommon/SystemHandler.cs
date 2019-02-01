@@ -53,24 +53,25 @@ namespace PSAP.PSAPCommon
             string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
             string sectionStr = "System";
             SocketHandler.serverIP = new SystemHandler().GetIpAddress();
-            if (System.IO.File.Exists(iniPath))
+            FileHandler fileHandler = new FileHandler();
+
+            if (File.Exists(iniPath))
             {
-                string serverIpStr = FileHandler.IniReadValue(iniPath, sectionStr, "ServerIP");
-                int portInt = DataTypeConvert.GetInt(FileHandler.IniReadValue(iniPath, sectionStr, "ServerPort"));
+                string serverIpStr = fileHandler.IniReadValue(iniPath, sectionStr, "ServerIP");
+                int portInt = DataTypeConvert.GetInt(fileHandler.IniReadValue(iniPath, sectionStr, "ServerPort"));
                 if (serverIpStr != "")
                     SocketHandler.serverIP = serverIpStr;
                 else
-                    FileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SocketHandler.serverIP);
+                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SocketHandler.serverIP);
                 if (portInt > 0)
                     SocketHandler.serverPort = portInt;
                 else
-                    FileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SocketHandler.serverPort.ToString());
+                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SocketHandler.serverPort.ToString());
             }
             else
             {
-                SocketHandler.serverIP = new SystemHandler().GetIpAddress();
-                FileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SocketHandler.serverIP);
-                FileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SocketHandler.serverPort.ToString());
+                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SocketHandler.serverIP);
+                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SocketHandler.serverPort.ToString());
             }
 
             #endregion

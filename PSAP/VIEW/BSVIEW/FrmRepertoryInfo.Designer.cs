@@ -132,7 +132,7 @@
             // 
             // labRepertoryType
             // 
-            this.labRepertoryType.Location = new System.Drawing.Point(467, 24);
+            this.labRepertoryType.Location = new System.Drawing.Point(537, 24);
             this.labRepertoryType.Name = "labRepertoryType";
             this.labRepertoryType.Size = new System.Drawing.Size(48, 14);
             this.labRepertoryType.TabIndex = 18;
@@ -141,7 +141,7 @@
             // radioRepertoryType
             // 
             this.radioRepertoryType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSRepertoryInfo, "RepertoryType", true));
-            this.radioRepertoryType.Location = new System.Drawing.Point(533, 20);
+            this.radioRepertoryType.Location = new System.Drawing.Point(603, 20);
             this.radioRepertoryType.Name = "radioRepertoryType";
             this.radioRepertoryType.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioRepertoryType.Properties.Appearance.Options.UseBackColor = true;
@@ -154,7 +154,7 @@
             // 
             // labRepertoryName
             // 
-            this.labRepertoryName.Location = new System.Drawing.Point(249, 24);
+            this.labRepertoryName.Location = new System.Drawing.Point(286, 24);
             this.labRepertoryName.Name = "labRepertoryName";
             this.labRepertoryName.Size = new System.Drawing.Size(48, 14);
             this.labRepertoryName.TabIndex = 15;
@@ -171,9 +171,9 @@
             // textRepertoryName
             // 
             this.textRepertoryName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSRepertoryInfo, "RepertoryName", true));
-            this.textRepertoryName.Location = new System.Drawing.Point(318, 21);
+            this.textRepertoryName.Location = new System.Drawing.Point(355, 21);
             this.textRepertoryName.Name = "textRepertoryName";
-            this.textRepertoryName.Size = new System.Drawing.Size(120, 20);
+            this.textRepertoryName.Size = new System.Drawing.Size(160, 20);
             this.textRepertoryName.TabIndex = 1;
             // 
             // textRepertoryNo
@@ -182,7 +182,7 @@
             this.textRepertoryNo.EnterMoveNextControl = true;
             this.textRepertoryNo.Location = new System.Drawing.Point(104, 21);
             this.textRepertoryNo.Name = "textRepertoryNo";
-            this.textRepertoryNo.Size = new System.Drawing.Size(120, 20);
+            this.textRepertoryNo.Size = new System.Drawing.Size(160, 20);
             this.textRepertoryNo.TabIndex = 0;
             // 
             // pnlGrid
@@ -241,7 +241,7 @@
             this.colRepertoryNo.Name = "colRepertoryNo";
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 0;
-            this.colRepertoryNo.Width = 120;
+            this.colRepertoryNo.Width = 160;
             // 
             // colRepertoryName
             // 
@@ -251,7 +251,7 @@
             this.colRepertoryName.Name = "colRepertoryName";
             this.colRepertoryName.Visible = true;
             this.colRepertoryName.VisibleIndex = 1;
-            this.colRepertoryName.Width = 120;
+            this.colRepertoryName.Width = 160;
             // 
             // colRepertoryType
             // 

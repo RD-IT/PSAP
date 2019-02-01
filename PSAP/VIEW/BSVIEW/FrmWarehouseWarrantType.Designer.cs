@@ -141,9 +141,9 @@
             // textWarehouseWarrantTypeName
             // 
             this.textWarehouseWarrantTypeName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSWarehouseWarrantType, "WarehouseWarrantTypeName", true));
-            this.textWarehouseWarrantTypeName.Location = new System.Drawing.Point(384, 21);
+            this.textWarehouseWarrantTypeName.Location = new System.Drawing.Point(411, 21);
             this.textWarehouseWarrantTypeName.Name = "textWarehouseWarrantTypeName";
-            this.textWarehouseWarrantTypeName.Size = new System.Drawing.Size(120, 20);
+            this.textWarehouseWarrantTypeName.Size = new System.Drawing.Size(160, 20);
             this.textWarehouseWarrantTypeName.TabIndex = 1;
             // 
             // textWarehouseWarrantTypeNo
@@ -152,12 +152,12 @@
             this.textWarehouseWarrantTypeNo.EnterMoveNextControl = true;
             this.textWarehouseWarrantTypeNo.Location = new System.Drawing.Point(130, 21);
             this.textWarehouseWarrantTypeNo.Name = "textWarehouseWarrantTypeNo";
-            this.textWarehouseWarrantTypeNo.Size = new System.Drawing.Size(120, 20);
+            this.textWarehouseWarrantTypeNo.Size = new System.Drawing.Size(160, 20);
             this.textWarehouseWarrantTypeNo.TabIndex = 0;
             // 
             // labWarehouseWarrantTypeName
             // 
-            this.labWarehouseWarrantTypeName.Location = new System.Drawing.Point(284, 24);
+            this.labWarehouseWarrantTypeName.Location = new System.Drawing.Point(312, 24);
             this.labWarehouseWarrantTypeName.Name = "labWarehouseWarrantTypeName";
             this.labWarehouseWarrantTypeName.Size = new System.Drawing.Size(72, 14);
             this.labWarehouseWarrantTypeName.TabIndex = 15;
@@ -226,7 +226,7 @@
             this.colWarehouseWarrantTypeNo.Name = "colWarehouseWarrantTypeNo";
             this.colWarehouseWarrantTypeNo.Visible = true;
             this.colWarehouseWarrantTypeNo.VisibleIndex = 0;
-            this.colWarehouseWarrantTypeNo.Width = 120;
+            this.colWarehouseWarrantTypeNo.Width = 160;
             // 
             // colWarehouseWarrantTypeName
             // 
@@ -236,7 +236,7 @@
             this.colWarehouseWarrantTypeName.Name = "colWarehouseWarrantTypeName";
             this.colWarehouseWarrantTypeName.Visible = true;
             this.colWarehouseWarrantTypeName.VisibleIndex = 1;
-            this.colWarehouseWarrantTypeName.Width = 120;
+            this.colWarehouseWarrantTypeName.Width = 160;
             // 
             // colIsDefault
             // 

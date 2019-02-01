@@ -50,7 +50,7 @@ namespace PSAP.DAO.PURDAO
                 return false;
 
             long streamLength = 0;
-            Byte[] buffer = FileHandler.FileToByteArray(docPathStr, ref streamLength);
+            Byte[] buffer = new FileHandler().FileToByteArray(docPathStr, ref streamLength);
 
             SqlParameter p1 = new SqlParameter("@size", SqlDbType.Int);
             p1.Value = streamLength;

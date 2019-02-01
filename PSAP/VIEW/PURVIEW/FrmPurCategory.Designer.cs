@@ -37,10 +37,10 @@
             this.bSPurCategory = new System.Windows.Forms.BindingSource(this.components);
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
-            this.labPurCategoryText = new DevExpress.XtraEditors.LabelControl();
-            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
             this.textPurCategoryText = new DevExpress.XtraEditors.TextEdit();
             this.textPurCategory = new DevExpress.XtraEditors.TextEdit();
+            this.labPurCategoryText = new DevExpress.XtraEditors.LabelControl();
+            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlPurCategory = new DevExpress.XtraGrid.GridControl();
             this.gridViewPurCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -115,9 +115,26 @@
             this.pnlEdit.Size = new System.Drawing.Size(584, 68);
             this.pnlEdit.TabIndex = 6;
             // 
+            // textPurCategoryText
+            // 
+            this.textPurCategoryText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSPurCategory, "PurCategoryText", true));
+            this.textPurCategoryText.Location = new System.Drawing.Point(391, 21);
+            this.textPurCategoryText.Name = "textPurCategoryText";
+            this.textPurCategoryText.Size = new System.Drawing.Size(160, 20);
+            this.textPurCategoryText.TabIndex = 1;
+            // 
+            // textPurCategory
+            // 
+            this.textPurCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSPurCategory, "PurCategory", true));
+            this.textPurCategory.EnterMoveNextControl = true;
+            this.textPurCategory.Location = new System.Drawing.Point(123, 21);
+            this.textPurCategory.Name = "textPurCategory";
+            this.textPurCategory.Size = new System.Drawing.Size(160, 20);
+            this.textPurCategory.TabIndex = 0;
+            // 
             // labPurCategoryText
             // 
-            this.labPurCategoryText.Location = new System.Drawing.Point(266, 24);
+            this.labPurCategoryText.Location = new System.Drawing.Point(304, 24);
             this.labPurCategoryText.Name = "labPurCategoryText";
             this.labPurCategoryText.Size = new System.Drawing.Size(72, 14);
             this.labPurCategoryText.TabIndex = 15;
@@ -130,23 +147,6 @@
             this.labPurCategory.Size = new System.Drawing.Size(72, 14);
             this.labPurCategory.TabIndex = 12;
             this.labPurCategory.Text = "采购类型编号";
-            // 
-            // textPurCategoryText
-            // 
-            this.textPurCategoryText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSPurCategory, "PurCategoryText", true));
-            this.textPurCategoryText.Location = new System.Drawing.Point(353, 21);
-            this.textPurCategoryText.Name = "textPurCategoryText";
-            this.textPurCategoryText.Size = new System.Drawing.Size(120, 20);
-            this.textPurCategoryText.TabIndex = 1;
-            // 
-            // textPurCategory
-            // 
-            this.textPurCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSPurCategory, "PurCategory", true));
-            this.textPurCategory.EnterMoveNextControl = true;
-            this.textPurCategory.Location = new System.Drawing.Point(123, 21);
-            this.textPurCategory.Name = "textPurCategory";
-            this.textPurCategory.Size = new System.Drawing.Size(120, 20);
-            this.textPurCategory.TabIndex = 0;
             // 
             // pnlGrid
             // 
@@ -200,7 +200,7 @@
             this.colPurCategory.Name = "colPurCategory";
             this.colPurCategory.Visible = true;
             this.colPurCategory.VisibleIndex = 0;
-            this.colPurCategory.Width = 120;
+            this.colPurCategory.Width = 160;
             // 
             // colPurCategoryText
             // 
@@ -210,7 +210,7 @@
             this.colPurCategoryText.Name = "colPurCategoryText";
             this.colPurCategoryText.Visible = true;
             this.colPurCategoryText.VisibleIndex = 1;
-            this.colPurCategoryText.Width = 120;
+            this.colPurCategoryText.Width = 160;
             // 
             // FrmPurCategory
             // 

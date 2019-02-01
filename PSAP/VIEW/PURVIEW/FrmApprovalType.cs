@@ -42,6 +42,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.PrimaryKeyControl = textTypeNo;
                     editForm.BrowseXtraGridView = gridViewApprovalType;
                     editForm.CheckControl += CheckControl;
+                    editForm.ButtonList.Add(btnApprovalList);
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();

@@ -189,7 +189,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ProjectNo", "共计{0}条")});
             this.colProjectNo.Visible = true;
             this.colProjectNo.VisibleIndex = 0;
-            this.colProjectNo.Width = 120;
+            this.colProjectNo.Width = 160;
             // 
             // colBussinessBaseNo
             // 
@@ -209,7 +209,7 @@
             this.colBussinessBaseText.Name = "colBussinessBaseText";
             this.colBussinessBaseText.Visible = true;
             this.colBussinessBaseText.VisibleIndex = 2;
-            this.colBussinessBaseText.Width = 120;
+            this.colBussinessBaseText.Width = 160;
             // 
             // colProjectName
             // 
@@ -219,7 +219,7 @@
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 3;
-            this.colProjectName.Width = 120;
+            this.colProjectName.Width = 160;
             // 
             // colRemark
             // 
@@ -229,7 +229,7 @@
             this.colRemark.Name = "colRemark";
             this.colRemark.Visible = true;
             this.colRemark.VisibleIndex = 4;
-            this.colRemark.Width = 150;
+            this.colRemark.Width = 200;
             // 
             // pnlToolBar
             // 
@@ -271,23 +271,23 @@
             this.textRemark.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSProjectList, "Remark", true));
             this.textRemark.Location = new System.Drawing.Point(94, 55);
             this.textRemark.Name = "textRemark";
-            this.textRemark.Size = new System.Drawing.Size(540, 20);
+            this.textRemark.Size = new System.Drawing.Size(643, 20);
             this.textRemark.TabIndex = 3;
             // 
             // textProjectName
             // 
             this.textProjectName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSProjectList, "ProjectName", true));
             this.textProjectName.EnterMoveNextControl = true;
-            this.textProjectName.Location = new System.Drawing.Point(514, 21);
+            this.textProjectName.Location = new System.Drawing.Point(577, 21);
             this.textProjectName.Name = "textProjectName";
-            this.textProjectName.Size = new System.Drawing.Size(120, 20);
+            this.textProjectName.Size = new System.Drawing.Size(160, 20);
             this.textProjectName.TabIndex = 2;
             // 
             // searchLookUpBussinessBaseNo
             // 
             this.searchLookUpBussinessBaseNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSProjectList, "BussinessBaseNo", true));
             this.searchLookUpBussinessBaseNo.EnterMoveNextControl = true;
-            this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(292, 21);
+            this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(321, 21);
             this.searchLookUpBussinessBaseNo.Name = "searchLookUpBussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -295,7 +295,7 @@
             this.searchLookUpBussinessBaseNo.Properties.NullText = "";
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
-            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(120, 20);
+            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(160, 20);
             this.searchLookUpBussinessBaseNo.TabIndex = 1;
             // 
             // searchLookUpBussinessBaseNoView
@@ -346,7 +346,7 @@
             this.textProjectNo.EnterMoveNextControl = true;
             this.textProjectNo.Location = new System.Drawing.Point(94, 21);
             this.textProjectNo.Name = "textProjectNo";
-            this.textProjectNo.Size = new System.Drawing.Size(120, 20);
+            this.textProjectNo.Size = new System.Drawing.Size(160, 20);
             this.textProjectNo.TabIndex = 0;
             // 
             // labRemark
@@ -359,7 +359,7 @@
             // 
             // labProjectName
             // 
-            this.labProjectName.Location = new System.Drawing.Point(443, 24);
+            this.labProjectName.Location = new System.Drawing.Point(506, 24);
             this.labProjectName.Name = "labProjectName";
             this.labProjectName.Size = new System.Drawing.Size(48, 14);
             this.labProjectName.TabIndex = 14;
@@ -367,7 +367,7 @@
             // 
             // labBussinessBaseNo
             // 
-            this.labBussinessBaseNo.Location = new System.Drawing.Point(245, 24);
+            this.labBussinessBaseNo.Location = new System.Drawing.Point(274, 24);
             this.labBussinessBaseNo.Name = "labBussinessBaseNo";
             this.labBussinessBaseNo.Size = new System.Drawing.Size(24, 14);
             this.labBussinessBaseNo.TabIndex = 13;

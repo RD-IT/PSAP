@@ -187,6 +187,22 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 添加的按钮列表，以便更新按钮的状态
+        /// </summary>
+        private List<SimpleButton> buttonList = new List<SimpleButton>();
+        public List<SimpleButton> ButtonList
+        {
+            get
+            {
+                return buttonList;
+            }
+            set
+            {
+                buttonList = value;
+            }
+        }
+
         //定义委托和事件  保存之前检查编辑区控件填写问题
         public delegate bool Check_MasterEditPanel_Control();
         public event Check_MasterEditPanel_Control CheckControl;
@@ -209,6 +225,9 @@ namespace PSAP.VIEW.BSVIEW
 
         ControlHandler ctlHandler = new ControlHandler();
 
+        /// <summary>
+        /// 新增状态
+        /// </summary>
         bool newState = false;
 
         public FrmBaseEdit()
@@ -684,6 +703,14 @@ namespace PSAP.VIEW.BSVIEW
             btnPrevious.Enabled = state;
             btnNext.Enabled = state;
             EditState = !state;
+
+            if (buttonList.Count > 0)
+            {
+                for (int i = 0; i < buttonList.Count; i++)
+                {
+                    buttonList[i].Enabled = state;
+                }
+            }
 
             if (this.ParentForm.Controls.ContainsKey("lblEditFlag"))
             {
