@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.checkOverplus = new DevExpress.XtraEditors.CheckEdit();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,6 +106,7 @@
             this.colCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkOverplus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpProjectNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpProjectNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpCodeFileName.Properties)).BeginInit();
@@ -133,6 +135,7 @@
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.checkOverplus);
             this.pnltop.Controls.Add(this.searchLookUpProjectNo);
             this.pnltop.Controls.Add(this.labProjectNo);
             this.pnltop.Controls.Add(this.searchLookUpCodeFileName);
@@ -157,10 +160,22 @@
             this.pnltop.Size = new System.Drawing.Size(1489, 78);
             this.pnltop.TabIndex = 2;
             // 
+            // checkOverplus
+            // 
+            this.checkOverplus.EditValue = true;
+            this.checkOverplus.EnterMoveNextControl = true;
+            this.checkOverplus.Location = new System.Drawing.Point(910, 14);
+            this.checkOverplus.Name = "checkOverplus";
+            this.checkOverplus.Properties.Caption = "剩余数量大于0";
+            this.checkOverplus.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.checkOverplus.Properties.ValueGrayed = false;
+            this.checkOverplus.Size = new System.Drawing.Size(111, 19);
+            this.checkOverplus.TabIndex = 5;
+            // 
             // searchLookUpProjectNo
             // 
             this.searchLookUpProjectNo.EnterMoveNextControl = true;
-            this.searchLookUpProjectNo.Location = new System.Drawing.Point(733, 14);
+            this.searchLookUpProjectNo.Location = new System.Drawing.Point(773, 14);
             this.searchLookUpProjectNo.Name = "searchLookUpProjectNo";
             this.searchLookUpProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -168,7 +183,7 @@
             this.searchLookUpProjectNo.Properties.NullText = "";
             this.searchLookUpProjectNo.Properties.ValueMember = "ProjectNo";
             this.searchLookUpProjectNo.Properties.View = this.searchLookUpProjectNoView;
-            this.searchLookUpProjectNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpProjectNo.Size = new System.Drawing.Size(120, 20);
             this.searchLookUpProjectNo.TabIndex = 4;
             // 
             // searchLookUpProjectNoView
@@ -210,7 +225,7 @@
             // 
             // labProjectNo
             // 
-            this.labProjectNo.Location = new System.Drawing.Point(679, 17);
+            this.labProjectNo.Location = new System.Drawing.Point(719, 17);
             this.labProjectNo.Name = "labProjectNo";
             this.labProjectNo.Size = new System.Drawing.Size(48, 14);
             this.labProjectNo.TabIndex = 39;
@@ -219,7 +234,7 @@
             // searchLookUpCodeFileName
             // 
             this.searchLookUpCodeFileName.EnterMoveNextControl = true;
-            this.searchLookUpCodeFileName.Location = new System.Drawing.Point(268, 44);
+            this.searchLookUpCodeFileName.Location = new System.Drawing.Point(288, 44);
             this.searchLookUpCodeFileName.Name = "searchLookUpCodeFileName";
             this.searchLookUpCodeFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -228,7 +243,7 @@
             this.searchLookUpCodeFileName.Properties.ValueMember = "CodeFileName";
             this.searchLookUpCodeFileName.Properties.View = this.searchLookUpCodeFileNameView;
             this.searchLookUpCodeFileName.Size = new System.Drawing.Size(150, 20);
-            this.searchLookUpCodeFileName.TabIndex = 6;
+            this.searchLookUpCodeFileName.TabIndex = 7;
             // 
             // searchLookUpCodeFileNameView
             // 
@@ -244,7 +259,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "文件名称";
+            this.gridColumn1.Caption = "零件编号";
             this.gridColumn1.FieldName = "CodeFileName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -260,7 +275,7 @@
             // 
             // labCodeFileName
             // 
-            this.labCodeFileName.Location = new System.Drawing.Point(202, 47);
+            this.labCodeFileName.Location = new System.Drawing.Point(222, 47);
             this.labCodeFileName.Name = "labCodeFileName";
             this.labCodeFileName.Size = new System.Drawing.Size(60, 14);
             this.labCodeFileName.TabIndex = 37;
@@ -268,10 +283,10 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(757, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(777, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 9;
+            this.btnSaveExcel.TabIndex = 10;
             this.btnSaveExcel.TabStop = false;
             this.btnSaveExcel.Text = "存为Excel";
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
@@ -279,10 +294,10 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(501, 44);
+            this.textCommon.Location = new System.Drawing.Point(521, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 7;
+            this.textCommon.TabIndex = 8;
             // 
             // comboBoxReqState
             // 
@@ -297,13 +312,13 @@
             "审批",
             "关闭",
             "审批中"});
-            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
-            this.comboBoxReqState.TabIndex = 5;
+            this.comboBoxReqState.Size = new System.Drawing.Size(120, 20);
+            this.comboBoxReqState.TabIndex = 6;
             // 
             // lookUpPurCategory
             // 
             this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(562, 14);
+            this.lookUpPurCategory.Location = new System.Drawing.Point(582, 14);
             this.lookUpPurCategory.Name = "lookUpPurCategory";
             this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -313,7 +328,7 @@
             this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
             this.lookUpPurCategory.Properties.NullText = "";
             this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
-            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPurCategory.Size = new System.Drawing.Size(120, 20);
             this.lookUpPurCategory.TabIndex = 3;
             // 
             // lookUpReqDep
@@ -329,15 +344,15 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 2;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(667, 43);
+            this.btnQuery.Location = new System.Drawing.Point(687, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 8;
+            this.btnQuery.TabIndex = 9;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -387,7 +402,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(435, 47);
+            this.labCommon.Location = new System.Drawing.Point(455, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 12;
@@ -403,7 +418,7 @@
             // 
             // labPurCategory
             // 
-            this.labPurCategory.Location = new System.Drawing.Point(496, 17);
+            this.labPurCategory.Location = new System.Drawing.Point(516, 17);
             this.labPurCategory.Name = "labPurCategory";
             this.labPurCategory.Size = new System.Drawing.Size(60, 14);
             this.labPurCategory.TabIndex = 7;
@@ -554,7 +569,7 @@
             // 
             // dataColCodeFileName
             // 
-            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.Caption = "零件编号";
             this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // bindingSource_PrReqList
@@ -894,6 +909,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkOverplus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpProjectNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpProjectNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpCodeFileName.Properties)).EndInit();
@@ -998,5 +1014,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPrReqListRemark;
         private DevExpress.XtraGrid.Columns.GridColumn colCodeFileName;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpProjectNo;
+        private DevExpress.XtraEditors.CheckEdit checkOverplus;
     }
 }

@@ -360,7 +360,7 @@
             // 
             // dataColCodeFileName
             // 
-            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.Caption = "零件编号";
             this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataColQty
@@ -512,7 +512,7 @@
             // 
             // dataCodeFileName
             // 
-            this.dataCodeFileName.Caption = "文件名称";
+            this.dataCodeFileName.Caption = "零件编号";
             this.dataCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataCodeName
@@ -621,7 +621,7 @@
             this.colProjectName.OptionsColumn.AllowEdit = false;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 1;
-            this.colProjectName.Width = 80;
+            this.colProjectName.Width = 110;
             // 
             // colRepertoryNo
             // 
@@ -680,7 +680,7 @@
             // checkZero
             // 
             this.checkZero.EditValue = true;
-            this.checkZero.Location = new System.Drawing.Point(195, 8);
+            this.checkZero.Location = new System.Drawing.Point(213, 8);
             this.checkZero.Name = "checkZero";
             this.checkZero.Properties.Caption = "库存数大于0";
             this.checkZero.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
@@ -704,7 +704,7 @@
             this.lookUpRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpRepertoryNo.Properties.NullText = "";
             this.lookUpRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpRepertoryNo.TabIndex = 201;
             // 
             // searchLookUpCodeFileName
@@ -735,7 +735,7 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "文件名称";
+            this.gridColumn4.Caption = "零件编号";
             this.gridColumn4.FieldName = "CodeFileName";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
@@ -768,7 +768,7 @@
             this.searchLookUpProjectNo.Properties.NullText = "";
             this.searchLookUpProjectNo.Properties.ValueMember = "ProjectNo";
             this.searchLookUpProjectNo.Properties.View = this.searchLookUpProjectNoView;
-            this.searchLookUpProjectNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpProjectNo.Size = new System.Drawing.Size(120, 20);
             this.searchLookUpProjectNo.TabIndex = 202;
             // 
             // searchLookUpProjectNoView
@@ -857,6 +857,7 @@
             // 
             // btnListAdd
             // 
+            this.btnListAdd.Enabled = false;
             this.btnListAdd.Location = new System.Drawing.Point(2, 2);
             this.btnListAdd.Name = "btnListAdd";
             this.btnListAdd.Size = new System.Drawing.Size(40, 21);
@@ -983,7 +984,7 @@
             // 
             this.gridColumnCodeFileName.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumnCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnCodeFileName.Caption = "文件名称";
+            this.gridColumnCodeFileName.Caption = "零件编号";
             this.gridColumnCodeFileName.FieldName = "CodeFileName";
             this.gridColumnCodeFileName.Name = "gridColumnCodeFileName";
             this.gridColumnCodeFileName.Visible = true;
@@ -1313,7 +1314,7 @@
             this.colAdjustmentsProjectNo.OptionsColumn.AllowEdit = false;
             this.colAdjustmentsProjectNo.Visible = true;
             this.colAdjustmentsProjectNo.VisibleIndex = 4;
-            this.colAdjustmentsProjectNo.Width = 100;
+            this.colAdjustmentsProjectNo.Width = 110;
             // 
             // repSearchAdjustmentsProjectNo
             // 
@@ -1522,7 +1523,7 @@
             // searchAdjustmentsProjectNo
             // 
             this.searchAdjustmentsProjectNo.EnterMoveNextControl = true;
-            this.searchAdjustmentsProjectNo.Location = new System.Drawing.Point(582, 14);
+            this.searchAdjustmentsProjectNo.Location = new System.Drawing.Point(605, 14);
             this.searchAdjustmentsProjectNo.Margin = new System.Windows.Forms.Padding(4);
             this.searchAdjustmentsProjectNo.Name = "searchAdjustmentsProjectNo";
             this.searchAdjustmentsProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1531,7 +1532,7 @@
             this.searchAdjustmentsProjectNo.Properties.NullText = "";
             this.searchAdjustmentsProjectNo.Properties.ValueMember = "ProjectNo";
             this.searchAdjustmentsProjectNo.Properties.View = this.searchAdjustmentsProjectNoView;
-            this.searchAdjustmentsProjectNo.Size = new System.Drawing.Size(100, 20);
+            this.searchAdjustmentsProjectNo.Size = new System.Drawing.Size(120, 20);
             this.searchAdjustmentsProjectNo.TabIndex = 3;
             // 
             // searchAdjustmentsProjectNoView
@@ -1574,7 +1575,7 @@
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(743, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(787, 14);
             this.lookUpReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1585,7 +1586,7 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 4;
             // 
             // lookUpAdjustmentsRepertoryNo
@@ -1604,12 +1605,12 @@
             this.lookUpAdjustmentsRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpAdjustmentsRepertoryNo.Properties.NullText = "";
             this.lookUpAdjustmentsRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpAdjustmentsRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpAdjustmentsRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpAdjustmentsRepertoryNo.TabIndex = 2;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(435, 43);
+            this.btnQuery.Location = new System.Drawing.Point(456, 43);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
@@ -1620,7 +1621,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(260, 44);
+            this.textCommon.Location = new System.Drawing.Point(281, 44);
             this.textCommon.Margin = new System.Windows.Forms.Padding(4);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
@@ -1641,7 +1642,7 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 5;
             // 
             // dateIADateEnd
@@ -1693,7 +1694,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(699, 17);
+            this.labReqDep.Location = new System.Drawing.Point(743, 17);
             this.labReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(36, 14);
@@ -1702,7 +1703,7 @@
             // 
             // labAdjustmentsProjectNo
             // 
-            this.labAdjustmentsProjectNo.Location = new System.Drawing.Point(502, 17);
+            this.labAdjustmentsProjectNo.Location = new System.Drawing.Point(525, 17);
             this.labAdjustmentsProjectNo.Margin = new System.Windows.Forms.Padding(4);
             this.labAdjustmentsProjectNo.Name = "labAdjustmentsProjectNo";
             this.labAdjustmentsProjectNo.Size = new System.Drawing.Size(72, 14);
@@ -1720,7 +1721,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(192, 47);
+            this.labCommon.Location = new System.Drawing.Point(213, 47);
             this.labCommon.Margin = new System.Windows.Forms.Padding(4);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);

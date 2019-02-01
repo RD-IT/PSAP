@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.spinorderListAutoId = new DevExpress.XtraEditors.SpinEdit();
+            this.checkorderListAutoId = new DevExpress.XtraEditors.CheckEdit();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
             this.comboBoxWarehouseState = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -101,10 +103,10 @@
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
-            this.spinorderListAutoId = new DevExpress.XtraEditors.SpinEdit();
-            this.checkorderListAutoId = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkorderListAutoId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxWarehouseState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpWarehouseWarrantTypeNo.Properties)).BeginInit();
@@ -133,8 +135,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkorderListAutoId.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
@@ -164,12 +164,39 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1039, 78);
+            this.pnltop.Size = new System.Drawing.Size(1200, 78);
             this.pnltop.TabIndex = 1;
+            // 
+            // spinorderListAutoId
+            // 
+            this.spinorderListAutoId.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinorderListAutoId.Enabled = false;
+            this.spinorderListAutoId.EnterMoveNextControl = true;
+            this.spinorderListAutoId.Location = new System.Drawing.Point(749, 44);
+            this.spinorderListAutoId.Name = "spinorderListAutoId";
+            this.spinorderListAutoId.Properties.Mask.EditMask = "d";
+            this.spinorderListAutoId.Size = new System.Drawing.Size(80, 20);
+            this.spinorderListAutoId.TabIndex = 35;
+            this.spinorderListAutoId.TabStop = false;
+            // 
+            // checkorderListAutoId
+            // 
+            this.checkorderListAutoId.EnterMoveNextControl = true;
+            this.checkorderListAutoId.Location = new System.Drawing.Point(643, 44);
+            this.checkorderListAutoId.Name = "checkorderListAutoId";
+            this.checkorderListAutoId.Properties.Caption = "采购单明细ID";
+            this.checkorderListAutoId.Size = new System.Drawing.Size(100, 19);
+            this.checkorderListAutoId.TabIndex = 34;
+            this.checkorderListAutoId.TabStop = false;
+            this.checkorderListAutoId.CheckedChanged += new System.EventHandler(this.checkorderListAutoId_CheckedChanged);
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(885, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(938, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 33;
@@ -179,7 +206,7 @@
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(913, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(1003, 14);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -189,7 +216,7 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 5;
             // 
             // comboBoxWarehouseState
@@ -205,13 +232,13 @@
             "审批",
             "已结账",
             "审批中"});
-            this.comboBoxWarehouseState.Size = new System.Drawing.Size(100, 20);
+            this.comboBoxWarehouseState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
             // 
             // lookUpWarehouseWarrantTypeNo
             // 
             this.lookUpWarehouseWarrantTypeNo.EnterMoveNextControl = true;
-            this.lookUpWarehouseWarrantTypeNo.Location = new System.Drawing.Point(731, 14);
+            this.lookUpWarehouseWarrantTypeNo.Location = new System.Drawing.Point(801, 14);
             this.lookUpWarehouseWarrantTypeNo.Name = "lookUpWarehouseWarrantTypeNo";
             this.lookUpWarehouseWarrantTypeNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -222,13 +249,13 @@
             this.lookUpWarehouseWarrantTypeNo.Properties.DisplayMember = "WarehouseWarrantTypeName";
             this.lookUpWarehouseWarrantTypeNo.Properties.NullText = "";
             this.lookUpWarehouseWarrantTypeNo.Properties.ValueMember = "WarehouseWarrantTypeNo";
-            this.lookUpWarehouseWarrantTypeNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpWarehouseWarrantTypeNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpWarehouseWarrantTypeNo.TabIndex = 4;
             // 
             // lookUpRepertoryNo
             // 
             this.lookUpRepertoryNo.EnterMoveNextControl = true;
-            this.lookUpRepertoryNo.Location = new System.Drawing.Point(550, 14);
+            this.lookUpRepertoryNo.Location = new System.Drawing.Point(600, 14);
             this.lookUpRepertoryNo.Name = "lookUpRepertoryNo";
             this.lookUpRepertoryNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -240,12 +267,12 @@
             this.lookUpRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpRepertoryNo.Properties.NullText = "";
             this.lookUpRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpRepertoryNo.TabIndex = 3;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(793, 43);
+            this.btnQuery.Location = new System.Drawing.Point(846, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 10;
@@ -255,7 +282,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(438, 44);
+            this.textCommon.Location = new System.Drawing.Point(478, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 9;
@@ -263,7 +290,7 @@
             // lookUpPrepared
             // 
             this.lookUpPrepared.EnterMoveNextControl = true;
-            this.lookUpPrepared.Location = new System.Drawing.Point(256, 44);
+            this.lookUpPrepared.Location = new System.Drawing.Point(276, 44);
             this.lookUpPrepared.Name = "lookUpPrepared";
             this.lookUpPrepared.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -274,7 +301,7 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 7;
             // 
             // searchLookUpBussinessBaseNo
@@ -288,7 +315,7 @@
             this.searchLookUpBussinessBaseNo.Properties.NullText = "";
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
-            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpBussinessBaseNo.TabIndex = 2;
             // 
             // searchLookUpBussinessBaseNoView
@@ -371,7 +398,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(847, 17);
+            this.labReqDep.Location = new System.Drawing.Point(937, 17);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(60, 14);
             this.labReqDep.TabIndex = 32;
@@ -387,7 +414,7 @@
             // 
             // labWarehouseWarrantTypeNo
             // 
-            this.labWarehouseWarrantTypeNo.Location = new System.Drawing.Point(665, 17);
+            this.labWarehouseWarrantTypeNo.Location = new System.Drawing.Point(735, 17);
             this.labWarehouseWarrantTypeNo.Name = "labWarehouseWarrantTypeNo";
             this.labWarehouseWarrantTypeNo.Size = new System.Drawing.Size(60, 14);
             this.labWarehouseWarrantTypeNo.TabIndex = 28;
@@ -395,7 +422,7 @@
             // 
             // labRepertoryNo
             // 
-            this.labRepertoryNo.Location = new System.Drawing.Point(484, 17);
+            this.labRepertoryNo.Location = new System.Drawing.Point(534, 17);
             this.labRepertoryNo.Name = "labRepertoryNo";
             this.labRepertoryNo.Size = new System.Drawing.Size(60, 14);
             this.labRepertoryNo.TabIndex = 26;
@@ -403,7 +430,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(372, 47);
+            this.labCommon.Location = new System.Drawing.Point(414, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 22;
@@ -411,7 +438,7 @@
             // 
             // labPrepared
             // 
-            this.labPrepared.Location = new System.Drawing.Point(202, 47);
+            this.labPrepared.Location = new System.Drawing.Point(222, 47);
             this.labPrepared.Name = "labPrepared";
             this.labPrepared.Size = new System.Drawing.Size(48, 14);
             this.labPrepared.TabIndex = 20;
@@ -557,7 +584,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1039, 311);
+            this.pnlMiddle.Size = new System.Drawing.Size(1200, 311);
             this.pnlMiddle.TabIndex = 6;
             // 
             // gridControlWWHead
@@ -574,7 +601,7 @@
             this.repCheckSelect,
             this.repLookUpApprovalType,
             this.repLookUpReqDep});
-            this.gridControlWWHead.Size = new System.Drawing.Size(1035, 307);
+            this.gridControlWWHead.Size = new System.Drawing.Size(1196, 307);
             this.gridControlWWHead.TabIndex = 4;
             this.gridControlWWHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWWHead});
@@ -690,7 +717,7 @@
             this.colBussinessBaseNo.OptionsColumn.AllowFocus = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 2;
-            this.colBussinessBaseNo.Width = 100;
+            this.colBussinessBaseNo.Width = 130;
             // 
             // repSearchBussinessBaseNo
             // 
@@ -872,7 +899,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 389);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1039, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1200, 58);
             this.pnlBottom.TabIndex = 5;
             // 
             // gridBottomOrderHead
@@ -882,40 +909,13 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_WW;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1035, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1196, 54);
             this.gridBottomOrderHead.TabIndex = 0;
-            // 
-            // spinorderListAutoId
-            // 
-            this.spinorderListAutoId.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinorderListAutoId.Enabled = false;
-            this.spinorderListAutoId.EnterMoveNextControl = true;
-            this.spinorderListAutoId.Location = new System.Drawing.Point(709, 44);
-            this.spinorderListAutoId.Name = "spinorderListAutoId";
-            this.spinorderListAutoId.Properties.Mask.EditMask = "d";
-            this.spinorderListAutoId.Size = new System.Drawing.Size(66, 20);
-            this.spinorderListAutoId.TabIndex = 35;
-            this.spinorderListAutoId.TabStop = false;
-            // 
-            // checkorderListAutoId
-            // 
-            this.checkorderListAutoId.EnterMoveNextControl = true;
-            this.checkorderListAutoId.Location = new System.Drawing.Point(603, 44);
-            this.checkorderListAutoId.Name = "checkorderListAutoId";
-            this.checkorderListAutoId.Properties.Caption = "采购单明细ID";
-            this.checkorderListAutoId.Size = new System.Drawing.Size(100, 19);
-            this.checkorderListAutoId.TabIndex = 34;
-            this.checkorderListAutoId.TabStop = false;
-            this.checkorderListAutoId.CheckedChanged += new System.EventHandler(this.checkorderListAutoId_CheckedChanged);
             // 
             // FrmWarehouseWarrantQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1039, 447);
+            this.ClientSize = new System.Drawing.Size(1200, 447);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnltop);
@@ -927,6 +927,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkorderListAutoId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxWarehouseState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpWarehouseWarrantTypeNo.Properties)).EndInit();
@@ -955,8 +957,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkorderListAutoId.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

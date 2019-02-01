@@ -389,8 +389,8 @@
             this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.pnlToolBar);
             this.Name = "FrmProjectList";
-            this.TabText = "项目号";
-            this.Text = "项目号";
+            this.TabText = "项目信息";
+            this.Text = "项目信息";
             this.Load += new System.EventHandler(this.FrmProjectList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dSProjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableProjectList)).EndInit();

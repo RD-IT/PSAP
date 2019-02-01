@@ -264,12 +264,12 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1039, 78);
+            this.pnltop.Size = new System.Drawing.Size(1204, 78);
             this.pnltop.TabIndex = 2;
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(698, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(738, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 35;
@@ -278,7 +278,7 @@
             // 
             // labManufactureNo
             // 
-            this.labManufactureNo.Location = new System.Drawing.Point(866, 17);
+            this.labManufactureNo.Location = new System.Drawing.Point(926, 17);
             this.labManufactureNo.Name = "labManufactureNo";
             this.labManufactureNo.Size = new System.Drawing.Size(60, 14);
             this.labManufactureNo.TabIndex = 34;
@@ -287,7 +287,7 @@
             // lookUpManufactureNo
             // 
             this.lookUpManufactureNo.EnterMoveNextControl = true;
-            this.lookUpManufactureNo.Location = new System.Drawing.Point(932, 14);
+            this.lookUpManufactureNo.Location = new System.Drawing.Point(992, 14);
             this.lookUpManufactureNo.Name = "lookUpManufactureNo";
             this.lookUpManufactureNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -299,13 +299,13 @@
             this.lookUpManufactureNo.Properties.DisplayMember = "ManufactureName";
             this.lookUpManufactureNo.Properties.NullText = "";
             this.lookUpManufactureNo.Properties.ValueMember = "ManufactureNo";
-            this.lookUpManufactureNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpManufactureNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpManufactureNo.TabIndex = 5;
             // 
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(748, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(788, 14);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -315,7 +315,7 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 4;
             // 
             // comboBoxWarehouseState
@@ -331,13 +331,13 @@
             "审批",
             "已结账",
             "审批中"});
-            this.comboBoxWarehouseState.Size = new System.Drawing.Size(100, 20);
+            this.comboBoxWarehouseState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
             // 
             // lookUpWarehouseReceiptTypeNo
             // 
             this.lookUpWarehouseReceiptTypeNo.EnterMoveNextControl = true;
-            this.lookUpWarehouseReceiptTypeNo.Location = new System.Drawing.Point(566, 14);
+            this.lookUpWarehouseReceiptTypeNo.Location = new System.Drawing.Point(586, 14);
             this.lookUpWarehouseReceiptTypeNo.Name = "lookUpWarehouseReceiptTypeNo";
             this.lookUpWarehouseReceiptTypeNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -348,7 +348,7 @@
             this.lookUpWarehouseReceiptTypeNo.Properties.DisplayMember = "WarehouseReceiptTypeName";
             this.lookUpWarehouseReceiptTypeNo.Properties.NullText = "";
             this.lookUpWarehouseReceiptTypeNo.Properties.ValueMember = "WarehouseReceiptTypeNo";
-            this.lookUpWarehouseReceiptTypeNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpWarehouseReceiptTypeNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpWarehouseReceiptTypeNo.TabIndex = 3;
             // 
             // lookUpRepertoryNo
@@ -366,12 +366,12 @@
             this.lookUpRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpRepertoryNo.Properties.NullText = "";
             this.lookUpRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpRepertoryNo.TabIndex = 2;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(607, 43);
+            this.btnQuery.Location = new System.Drawing.Point(647, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 10;
@@ -381,7 +381,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(440, 44);
+            this.textCommon.Location = new System.Drawing.Point(480, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 9;
@@ -389,7 +389,7 @@
             // lookUpPrepared
             // 
             this.lookUpPrepared.EnterMoveNextControl = true;
-            this.lookUpPrepared.Location = new System.Drawing.Point(256, 44);
+            this.lookUpPrepared.Location = new System.Drawing.Point(276, 44);
             this.lookUpPrepared.Name = "lookUpPrepared";
             this.lookUpPrepared.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -400,7 +400,7 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 7;
             // 
             // dateWRDateEnd
@@ -449,7 +449,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(682, 17);
+            this.labReqDep.Location = new System.Drawing.Point(722, 17);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(60, 14);
             this.labReqDep.TabIndex = 32;
@@ -457,7 +457,7 @@
             // 
             // labWarehouseReceiptTypeNo
             // 
-            this.labWarehouseReceiptTypeNo.Location = new System.Drawing.Point(500, 17);
+            this.labWarehouseReceiptTypeNo.Location = new System.Drawing.Point(520, 17);
             this.labWarehouseReceiptTypeNo.Name = "labWarehouseReceiptTypeNo";
             this.labWarehouseReceiptTypeNo.Size = new System.Drawing.Size(60, 14);
             this.labWarehouseReceiptTypeNo.TabIndex = 28;
@@ -473,7 +473,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(374, 47);
+            this.labCommon.Location = new System.Drawing.Point(414, 47);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 22;
@@ -481,7 +481,7 @@
             // 
             // labPrepared
             // 
-            this.labPrepared.Location = new System.Drawing.Point(202, 47);
+            this.labPrepared.Location = new System.Drawing.Point(222, 47);
             this.labPrepared.Name = "labPrepared";
             this.labPrepared.Size = new System.Drawing.Size(48, 14);
             this.labPrepared.TabIndex = 20;
@@ -509,7 +509,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 389);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1039, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1204, 58);
             this.pnlBottom.TabIndex = 6;
             // 
             // gridBottomOrderHead
@@ -519,7 +519,7 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_WR;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1035, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1200, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
             // gridControlWRHead
@@ -536,7 +536,7 @@
             this.repLookUpApprovalType,
             this.repLookUpReqDep,
             this.repLookUpManufactureNo});
-            this.gridControlWRHead.Size = new System.Drawing.Size(1035, 307);
+            this.gridControlWRHead.Size = new System.Drawing.Size(1200, 307);
             this.gridControlWRHead.TabIndex = 7;
             this.gridControlWRHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWRHead});
@@ -793,13 +793,13 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1039, 311);
+            this.pnlMiddle.Size = new System.Drawing.Size(1204, 311);
             this.pnlMiddle.TabIndex = 8;
             // 
             // FrmWarehouseReceiptQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1039, 447);
+            this.ClientSize = new System.Drawing.Size(1204, 447);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnltop);

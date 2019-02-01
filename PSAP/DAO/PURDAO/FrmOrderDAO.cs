@@ -1183,7 +1183,7 @@ namespace PSAP.DAO.PURDAO
                         listTable.Columns[i].Caption = "物料编号";
                         break;
                     case "CodeFileName":
-                        listTable.Columns[i].Caption = "文件名称";
+                        listTable.Columns[i].Caption = "零件编号";
                         break;
                     case "CodeName":
                         listTable.Columns[i].Caption = "零件名称";
@@ -1303,7 +1303,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 查询采购入库表的SQL
         /// </summary>
-        public string Query_OrderList_Overplus(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string projectNoStr, string codeFileNameStr, string commonStr)
+        public string Query_OrderList_Overplus(string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string projectNoStr, string codeFileNameStr, bool overplusBool, string commonStr)
         {
             string sqlStr = " 1=1";
             if (beginPlanDateStr != "")
@@ -1337,6 +1337,10 @@ namespace PSAP.DAO.PURDAO
             if (codeFileNameStr != "")
             {
                 sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (overplusBool)
+            {
+                sqlStr += string.Format(" and IsNull(Overplus, 0)>0");
             }
             if (commonStr != "")
             {

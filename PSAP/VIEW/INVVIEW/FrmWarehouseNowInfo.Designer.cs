@@ -47,6 +47,7 @@
             this.dataColQty = new System.Data.DataColumn();
             this.bindingSource_WNowInfo = new System.Windows.Forms.BindingSource(this.components);
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.checkZero = new DevExpress.XtraEditors.CheckEdit();
             this.searchLookUpShelf = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpShelfView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,12 +92,12 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
-            this.checkZero = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_WNowInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableWNowInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WNowInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkZero.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpShelf.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpShelfView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpRepertoryNo.Properties)).BeginInit();
@@ -112,7 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpRepertoryNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkZero.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dataSet_WNowInfo
@@ -148,7 +148,7 @@
             // 
             // dataColCodeFileName
             // 
-            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.Caption = "零件编号";
             this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataColCodeNo
@@ -238,10 +238,20 @@
             this.pnltop.Size = new System.Drawing.Size(1334, 78);
             this.pnltop.TabIndex = 4;
             // 
+            // checkZero
+            // 
+            this.checkZero.Location = new System.Drawing.Point(258, 44);
+            this.checkZero.Name = "checkZero";
+            this.checkZero.Properties.Caption = "库存数大于0";
+            this.checkZero.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.checkZero.Properties.ValueGrayed = false;
+            this.checkZero.Size = new System.Drawing.Size(111, 19);
+            this.checkZero.TabIndex = 210;
+            // 
             // searchLookUpShelf
             // 
             this.searchLookUpShelf.EnterMoveNextControl = true;
-            this.searchLookUpShelf.Location = new System.Drawing.Point(633, 14);
+            this.searchLookUpShelf.Location = new System.Drawing.Point(675, 14);
             this.searchLookUpShelf.Name = "searchLookUpShelf";
             this.searchLookUpShelf.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -249,7 +259,7 @@
             this.searchLookUpShelf.Properties.NullText = "";
             this.searchLookUpShelf.Properties.ValueMember = "AutoId";
             this.searchLookUpShelf.Properties.View = this.searchLookUpShelfView;
-            this.searchLookUpShelf.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpShelf.Size = new System.Drawing.Size(120, 20);
             this.searchLookUpShelf.TabIndex = 3;
             // 
             // searchLookUpShelfView
@@ -298,7 +308,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(579, 17);
+            this.labelControl1.Location = new System.Drawing.Point(621, 17);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 43;
@@ -319,7 +329,7 @@
             this.lookUpRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpRepertoryNo.Properties.NullText = "";
             this.lookUpRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpRepertoryNo.TabIndex = 0;
             // 
             // labRepertoryNo
@@ -333,7 +343,7 @@
             // searchLookUpCodeFileName
             // 
             this.searchLookUpCodeFileName.EnterMoveNextControl = true;
-            this.searchLookUpCodeFileName.Location = new System.Drawing.Point(244, 14);
+            this.searchLookUpCodeFileName.Location = new System.Drawing.Point(264, 14);
             this.searchLookUpCodeFileName.Name = "searchLookUpCodeFileName";
             this.searchLookUpCodeFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -358,7 +368,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "文件名称";
+            this.gridColumn1.Caption = "零件编号";
             this.gridColumn1.FieldName = "CodeFileName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -375,7 +385,7 @@
             // searchLookUpProjectNo
             // 
             this.searchLookUpProjectNo.EnterMoveNextControl = true;
-            this.searchLookUpProjectNo.Location = new System.Drawing.Point(464, 14);
+            this.searchLookUpProjectNo.Location = new System.Drawing.Point(484, 14);
             this.searchLookUpProjectNo.Name = "searchLookUpProjectNo";
             this.searchLookUpProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -383,7 +393,7 @@
             this.searchLookUpProjectNo.Properties.NullText = "";
             this.searchLookUpProjectNo.Properties.ValueMember = "ProjectNo";
             this.searchLookUpProjectNo.Properties.View = this.searchLookUpProjectNoView;
-            this.searchLookUpProjectNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpProjectNo.Size = new System.Drawing.Size(120, 20);
             this.searchLookUpProjectNo.TabIndex = 2;
             // 
             // searchLookUpProjectNoView
@@ -425,7 +435,7 @@
             // 
             // labCodeFileName
             // 
-            this.labCodeFileName.Location = new System.Drawing.Point(178, 17);
+            this.labCodeFileName.Location = new System.Drawing.Point(198, 17);
             this.labCodeFileName.Name = "labCodeFileName";
             this.labCodeFileName.Size = new System.Drawing.Size(60, 14);
             this.labCodeFileName.TabIndex = 39;
@@ -433,7 +443,7 @@
             // 
             // labProjectNo
             // 
-            this.labProjectNo.Location = new System.Drawing.Point(410, 17);
+            this.labProjectNo.Location = new System.Drawing.Point(430, 17);
             this.labProjectNo.Name = "labProjectNo";
             this.labProjectNo.Size = new System.Drawing.Size(48, 14);
             this.labProjectNo.TabIndex = 38;
@@ -719,16 +729,6 @@
             this.pnlMiddle.Size = new System.Drawing.Size(1334, 425);
             this.pnlMiddle.TabIndex = 8;
             // 
-            // checkZero
-            // 
-            this.checkZero.Location = new System.Drawing.Point(258, 44);
-            this.checkZero.Name = "checkZero";
-            this.checkZero.Properties.Caption = "库存数大于0";
-            this.checkZero.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.checkZero.Properties.ValueGrayed = false;
-            this.checkZero.Size = new System.Drawing.Size(111, 19);
-            this.checkZero.TabIndex = 210;
-            // 
             // FrmWarehouseNowInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -746,6 +746,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkZero.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpShelf.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpShelfView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpRepertoryNo.Properties)).EndInit();
@@ -761,7 +762,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpRepertoryNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkZero.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

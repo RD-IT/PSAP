@@ -15,7 +15,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 是否检查服务端程序
         /// </summary>
-        public static bool IsCheckServer = true;
+        public static bool IsCheckServer = false;
 
         /// <summary>
         /// 服务器的IP地址

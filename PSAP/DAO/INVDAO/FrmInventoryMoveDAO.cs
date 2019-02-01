@@ -341,7 +341,7 @@ namespace PSAP.DAO.INVDAO
                         listTable.Columns[i].Caption = "物料编号";
                         break;
                     case "CodeFileName":
-                        listTable.Columns[i].Caption = "文件名称";
+                        listTable.Columns[i].Caption = "零件编号";
                         break;
                     case "CodeName":
                         listTable.Columns[i].Caption = "零件名称";

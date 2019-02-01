@@ -141,7 +141,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(527, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(548, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 8;
@@ -151,7 +151,7 @@
             // searchAdjustmentsProjectNo
             // 
             this.searchAdjustmentsProjectNo.EnterMoveNextControl = true;
-            this.searchAdjustmentsProjectNo.Location = new System.Drawing.Point(582, 14);
+            this.searchAdjustmentsProjectNo.Location = new System.Drawing.Point(605, 14);
             this.searchAdjustmentsProjectNo.Margin = new System.Windows.Forms.Padding(4);
             this.searchAdjustmentsProjectNo.Name = "searchAdjustmentsProjectNo";
             this.searchAdjustmentsProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -160,7 +160,7 @@
             this.searchAdjustmentsProjectNo.Properties.NullText = "";
             this.searchAdjustmentsProjectNo.Properties.ValueMember = "ProjectNo";
             this.searchAdjustmentsProjectNo.Properties.View = this.searchAdjustmentsProjectNoView;
-            this.searchAdjustmentsProjectNo.Size = new System.Drawing.Size(100, 20);
+            this.searchAdjustmentsProjectNo.Size = new System.Drawing.Size(120, 20);
             this.searchAdjustmentsProjectNo.TabIndex = 3;
             // 
             // searchAdjustmentsProjectNoView
@@ -203,7 +203,7 @@
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(743, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(787, 14);
             this.lookUpReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -214,7 +214,7 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 4;
             // 
             // lookUpAdjustmentsRepertoryNo
@@ -233,12 +233,12 @@
             this.lookUpAdjustmentsRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpAdjustmentsRepertoryNo.Properties.NullText = "";
             this.lookUpAdjustmentsRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpAdjustmentsRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpAdjustmentsRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpAdjustmentsRepertoryNo.TabIndex = 2;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(435, 43);
+            this.btnQuery.Location = new System.Drawing.Point(456, 43);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
@@ -249,7 +249,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(260, 44);
+            this.textCommon.Location = new System.Drawing.Point(281, 44);
             this.textCommon.Margin = new System.Windows.Forms.Padding(4);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
@@ -270,7 +270,7 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 5;
             // 
             // dateIADateEnd
@@ -322,7 +322,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(699, 17);
+            this.labReqDep.Location = new System.Drawing.Point(743, 17);
             this.labReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(36, 14);
@@ -331,7 +331,7 @@
             // 
             // labAdjustmentsProjectNo
             // 
-            this.labAdjustmentsProjectNo.Location = new System.Drawing.Point(502, 17);
+            this.labAdjustmentsProjectNo.Location = new System.Drawing.Point(525, 17);
             this.labAdjustmentsProjectNo.Margin = new System.Windows.Forms.Padding(4);
             this.labAdjustmentsProjectNo.Name = "labAdjustmentsProjectNo";
             this.labAdjustmentsProjectNo.Size = new System.Drawing.Size(72, 14);
@@ -349,7 +349,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(192, 47);
+            this.labCommon.Location = new System.Drawing.Point(213, 47);
             this.labCommon.Margin = new System.Windows.Forms.Padding(4);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);
@@ -604,7 +604,7 @@
             this.colAdjustmentsProjectNo.OptionsColumn.AllowEdit = false;
             this.colAdjustmentsProjectNo.Visible = true;
             this.colAdjustmentsProjectNo.VisibleIndex = 3;
-            this.colAdjustmentsProjectNo.Width = 100;
+            this.colAdjustmentsProjectNo.Width = 110;
             // 
             // repSearchAdjustmentsProjectNo
             // 
@@ -671,7 +671,7 @@
             this.colReqDep.OptionsColumn.AllowFocus = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 5;
-            this.colReqDep.Width = 80;
+            this.colReqDep.Width = 100;
             // 
             // repLookUpReqDep
             // 

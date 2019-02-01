@@ -1172,7 +1172,6 @@ namespace PSAP.VIEW.BSVIEW
 
         #endregion
 
-
         /// <summary>
         /// 清空已经拖拽的采购订单明细
         /// </summary>

@@ -189,7 +189,7 @@
             this.spinwwListAutoId.Location = new System.Drawing.Point(690, 44);
             this.spinwwListAutoId.Name = "spinwwListAutoId";
             this.spinwwListAutoId.Properties.Mask.EditMask = "d";
-            this.spinwwListAutoId.Size = new System.Drawing.Size(66, 20);
+            this.spinwwListAutoId.Size = new System.Drawing.Size(80, 20);
             this.spinwwListAutoId.TabIndex = 11;
             this.spinwwListAutoId.TabStop = false;
             // 
@@ -206,7 +206,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(871, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(881, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 13;
@@ -283,7 +283,7 @@
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(532, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(582, 14);
             this.lookUpReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -294,13 +294,13 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 5;
             // 
             // comboBoxWarehouseState
             // 
             this.comboBoxWarehouseState.EnterMoveNextControl = true;
-            this.comboBoxWarehouseState.Location = new System.Drawing.Point(717, 14);
+            this.comboBoxWarehouseState.Location = new System.Drawing.Point(787, 14);
             this.comboBoxWarehouseState.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxWarehouseState.Name = "comboBoxWarehouseState";
             this.comboBoxWarehouseState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -311,12 +311,12 @@
             "审批",
             "已结账",
             "审批中"});
-            this.comboBoxWarehouseState.Size = new System.Drawing.Size(100, 20);
+            this.comboBoxWarehouseState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(779, 43);
+            this.btnQuery.Location = new System.Drawing.Point(787, 43);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
@@ -336,7 +336,7 @@
             // lookUpPrepared
             // 
             this.lookUpPrepared.EnterMoveNextControl = true;
-            this.lookUpPrepared.Location = new System.Drawing.Point(890, 14);
+            this.lookUpPrepared.Location = new System.Drawing.Point(980, 14);
             this.lookUpPrepared.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpPrepared.Name = "lookUpPrepared";
             this.lookUpPrepared.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -348,7 +348,7 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 7;
             // 
             // searchLookUpBussinessBaseNo
@@ -363,7 +363,7 @@
             this.searchLookUpBussinessBaseNo.Properties.NullText = "";
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
-            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpBussinessBaseNo.TabIndex = 2;
             // 
             // searchLookUpBussinessBaseNoView
@@ -458,7 +458,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(488, 17);
+            this.labReqDep.Location = new System.Drawing.Point(538, 17);
             this.labReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(36, 14);
@@ -476,7 +476,7 @@
             // 
             // labPrepared
             // 
-            this.labPrepared.Location = new System.Drawing.Point(834, 17);
+            this.labPrepared.Location = new System.Drawing.Point(924, 17);
             this.labPrepared.Margin = new System.Windows.Forms.Padding(4);
             this.labPrepared.Name = "labPrepared";
             this.labPrepared.Size = new System.Drawing.Size(48, 14);
@@ -494,7 +494,7 @@
             // 
             // labWarehouseState
             // 
-            this.labWarehouseState.Location = new System.Drawing.Point(651, 17);
+            this.labWarehouseState.Location = new System.Drawing.Point(721, 17);
             this.labWarehouseState.Margin = new System.Windows.Forms.Padding(4);
             this.labWarehouseState.Name = "labWarehouseState";
             this.labWarehouseState.Size = new System.Drawing.Size(60, 14);
@@ -782,7 +782,7 @@
             this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 4;
-            this.colBussinessBaseNo.Width = 100;
+            this.colBussinessBaseNo.Width = 130;
             // 
             // repSearchBussinessBaseNo
             // 

@@ -128,7 +128,7 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(527, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(547, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 34;
@@ -138,7 +138,7 @@
             // lookUpOutRpertoryNo
             // 
             this.lookUpOutRpertoryNo.EnterMoveNextControl = true;
-            this.lookUpOutRpertoryNo.Location = new System.Drawing.Point(570, 14);
+            this.lookUpOutRpertoryNo.Location = new System.Drawing.Point(591, 14);
             this.lookUpOutRpertoryNo.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpOutRpertoryNo.Name = "lookUpOutRpertoryNo";
             this.lookUpOutRpertoryNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -151,13 +151,13 @@
             this.lookUpOutRpertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpOutRpertoryNo.Properties.NullText = "";
             this.lookUpOutRpertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpOutRpertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpOutRpertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpOutRpertoryNo.TabIndex = 33;
             // 
             // lookUpReqDep
             // 
             this.lookUpReqDep.EnterMoveNextControl = true;
-            this.lookUpReqDep.Location = new System.Drawing.Point(731, 14);
+            this.lookUpReqDep.Location = new System.Drawing.Point(772, 14);
             this.lookUpReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpReqDep.Name = "lookUpReqDep";
             this.lookUpReqDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -168,13 +168,13 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 4;
             // 
             // lookUpInRepertoryNo
             // 
             this.lookUpInRepertoryNo.EnterMoveNextControl = true;
-            this.lookUpInRepertoryNo.Location = new System.Drawing.Point(388, 14);
+            this.lookUpInRepertoryNo.Location = new System.Drawing.Point(387, 14);
             this.lookUpInRepertoryNo.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpInRepertoryNo.Name = "lookUpInRepertoryNo";
             this.lookUpInRepertoryNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -187,12 +187,12 @@
             this.lookUpInRepertoryNo.Properties.DisplayMember = "RepertoryName";
             this.lookUpInRepertoryNo.Properties.NullText = "";
             this.lookUpInRepertoryNo.Properties.ValueMember = "RepertoryNo";
-            this.lookUpInRepertoryNo.Size = new System.Drawing.Size(100, 20);
+            this.lookUpInRepertoryNo.Size = new System.Drawing.Size(120, 20);
             this.lookUpInRepertoryNo.TabIndex = 2;
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(435, 43);
+            this.btnQuery.Location = new System.Drawing.Point(455, 43);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
@@ -203,7 +203,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(260, 44);
+            this.textCommon.Location = new System.Drawing.Point(280, 44);
             this.textCommon.Margin = new System.Windows.Forms.Padding(4);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
@@ -224,7 +224,7 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 5;
             // 
             // dateIMDateEnd
@@ -276,7 +276,7 @@
             // 
             // labReqDep
             // 
-            this.labReqDep.Location = new System.Drawing.Point(687, 17);
+            this.labReqDep.Location = new System.Drawing.Point(728, 17);
             this.labReqDep.Margin = new System.Windows.Forms.Padding(4);
             this.labReqDep.Name = "labReqDep";
             this.labReqDep.Size = new System.Drawing.Size(36, 14);
@@ -285,7 +285,7 @@
             // 
             // labOutRepertoryNo
             // 
-            this.labOutRepertoryNo.Location = new System.Drawing.Point(502, 17);
+            this.labOutRepertoryNo.Location = new System.Drawing.Point(523, 17);
             this.labOutRepertoryNo.Margin = new System.Windows.Forms.Padding(4);
             this.labOutRepertoryNo.Name = "labOutRepertoryNo";
             this.labOutRepertoryNo.Size = new System.Drawing.Size(60, 14);
@@ -294,7 +294,7 @@
             // 
             // labInRepertoryNo
             // 
-            this.labInRepertoryNo.Location = new System.Drawing.Point(320, 17);
+            this.labInRepertoryNo.Location = new System.Drawing.Point(319, 17);
             this.labInRepertoryNo.Margin = new System.Windows.Forms.Padding(4);
             this.labInRepertoryNo.Name = "labInRepertoryNo";
             this.labInRepertoryNo.Size = new System.Drawing.Size(60, 14);
@@ -303,7 +303,7 @@
             // 
             // labCommon
             // 
-            this.labCommon.Location = new System.Drawing.Point(192, 47);
+            this.labCommon.Location = new System.Drawing.Point(212, 47);
             this.labCommon.Margin = new System.Windows.Forms.Padding(4);
             this.labCommon.Name = "labCommon";
             this.labCommon.Size = new System.Drawing.Size(60, 14);

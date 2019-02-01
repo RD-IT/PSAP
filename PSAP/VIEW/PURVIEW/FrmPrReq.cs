@@ -1126,9 +1126,6 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         #endregion
-
-
-
         
     }
 }
