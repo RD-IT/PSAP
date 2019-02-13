@@ -30,23 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
-            this.labApprover = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApprover = new DevExpress.XtraEditors.LookUpEdit();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
-            this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labApplicant = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApplicant = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.dateReqDateEnd = new DevExpress.XtraEditors.DateEdit();
             this.lab = new DevExpress.XtraEditors.LabelControl();
-            this.labReqDate = new DevExpress.XtraEditors.LabelControl();
             this.dateReqDateBegin = new DevExpress.XtraEditors.DateEdit();
+            this.labApprover = new DevExpress.XtraEditors.LabelControl();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
+            this.labApplicant = new DevExpress.XtraEditors.LabelControl();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
+            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
+            this.labReqDate = new DevExpress.XtraEditors.LabelControl();
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -139,6 +139,14 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
+            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
@@ -179,45 +187,41 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
+            this.pnlRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
             // 
-            this.pnltop.Controls.Add(this.labApprover);
             this.pnltop.Controls.Add(this.lookUpApprover);
             this.pnltop.Controls.Add(this.textCommon);
-            this.pnltop.Controls.Add(this.labCommon);
             this.pnltop.Controls.Add(this.comboBoxReqState);
-            this.pnltop.Controls.Add(this.labApplicant);
             this.pnltop.Controls.Add(this.lookUpApplicant);
-            this.pnltop.Controls.Add(this.labReqState);
             this.pnltop.Controls.Add(this.lookUpPurCategory);
-            this.pnltop.Controls.Add(this.labPurCategory);
             this.pnltop.Controls.Add(this.lookUpReqDep);
-            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.btnQuery);
             this.pnltop.Controls.Add(this.dateReqDateEnd);
             this.pnltop.Controls.Add(this.lab);
-            this.pnltop.Controls.Add(this.labReqDate);
             this.pnltop.Controls.Add(this.dateReqDateBegin);
+            this.pnltop.Controls.Add(this.labApprover);
+            this.pnltop.Controls.Add(this.labCommon);
+            this.pnltop.Controls.Add(this.labApplicant);
+            this.pnltop.Controls.Add(this.labReqState);
+            this.pnltop.Controls.Add(this.labPurCategory);
+            this.pnltop.Controls.Add(this.labReqDep);
+            this.pnltop.Controls.Add(this.labReqDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(0, 0);
+            this.pnltop.Location = new System.Drawing.Point(2, 2);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(989, 78);
+            this.pnltop.Size = new System.Drawing.Size(985, 78);
             this.pnltop.TabIndex = 0;
-            // 
-            // labApprover
-            // 
-            this.labApprover.Location = new System.Drawing.Point(190, 47);
-            this.labApprover.Name = "labApprover";
-            this.labApprover.Size = new System.Drawing.Size(48, 14);
-            this.labApprover.TabIndex = 24;
-            this.labApprover.Text = "审批人：";
             // 
             // lookUpApprover
             // 
             this.lookUpApprover.EnterMoveNextControl = true;
-            this.lookUpApprover.Location = new System.Drawing.Point(238, 44);
+            this.lookUpApprover.Location = new System.Drawing.Point(258, 44);
             this.lookUpApprover.Name = "lookUpApprover";
             this.lookUpApprover.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.lookUpApprover.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -229,30 +233,22 @@
             this.lookUpApprover.Properties.DisplayMember = "EmpName";
             this.lookUpApprover.Properties.NullText = "";
             this.lookUpApprover.Properties.ValueMember = "AutoId";
-            this.lookUpApprover.Size = new System.Drawing.Size(100, 20);
+            this.lookUpApprover.Size = new System.Drawing.Size(120, 20);
             this.lookUpApprover.TabIndex = 6;
             this.lookUpApprover.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lookUpApprover_KeyDown);
             // 
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(418, 44);
+            this.textCommon.Location = new System.Drawing.Point(458, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 7;
             // 
-            // labCommon
-            // 
-            this.labCommon.Location = new System.Drawing.Point(352, 47);
-            this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(60, 14);
-            this.labCommon.TabIndex = 14;
-            this.labCommon.Text = "通用查询：";
-            // 
             // comboBoxReqState
             // 
             this.comboBoxReqState.EnterMoveNextControl = true;
-            this.comboBoxReqState.Location = new System.Drawing.Point(746, 14);
+            this.comboBoxReqState.Location = new System.Drawing.Point(786, 14);
             this.comboBoxReqState.Name = "comboBoxReqState";
             this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -260,17 +256,10 @@
             "全部",
             "待审批",
             "审批",
-            "关闭"});
-            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
+            "关闭",
+            "审批中"});
+            this.comboBoxReqState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxReqState.TabIndex = 4;
-            // 
-            // labApplicant
-            // 
-            this.labApplicant.Location = new System.Drawing.Point(20, 47);
-            this.labApplicant.Name = "labApplicant";
-            this.labApplicant.Size = new System.Drawing.Size(48, 14);
-            this.labApplicant.TabIndex = 11;
-            this.labApplicant.Text = "申请人：";
             // 
             // lookUpApplicant
             // 
@@ -286,21 +275,13 @@
             this.lookUpApplicant.Properties.DisplayMember = "EmpName";
             this.lookUpApplicant.Properties.NullText = "";
             this.lookUpApplicant.Properties.ValueMember = "EmpName";
-            this.lookUpApplicant.Size = new System.Drawing.Size(100, 20);
+            this.lookUpApplicant.Size = new System.Drawing.Size(120, 20);
             this.lookUpApplicant.TabIndex = 5;
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(680, 17);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(60, 14);
-            this.labReqState.TabIndex = 9;
-            this.labReqState.Text = "单据状态：";
             // 
             // lookUpPurCategory
             // 
             this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(562, 14);
+            this.lookUpPurCategory.Location = new System.Drawing.Point(582, 14);
             this.lookUpPurCategory.Name = "lookUpPurCategory";
             this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -310,16 +291,8 @@
             this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
             this.lookUpPurCategory.Properties.NullText = "";
             this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
-            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPurCategory.Size = new System.Drawing.Size(120, 20);
             this.lookUpPurCategory.TabIndex = 3;
-            // 
-            // labPurCategory
-            // 
-            this.labPurCategory.Location = new System.Drawing.Point(496, 17);
-            this.labPurCategory.Name = "labPurCategory";
-            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
-            this.labPurCategory.TabIndex = 7;
-            this.labPurCategory.Text = "采购类型：";
             // 
             // lookUpReqDep
             // 
@@ -334,20 +307,12 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 2;
-            // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(315, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 5;
-            this.labReqDep.Text = "申请部门：";
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(584, 43);
+            this.btnQuery.Location = new System.Drawing.Point(624, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 8;
@@ -380,14 +345,6 @@
             this.lab.TabIndex = 2;
             this.lab.Text = "-";
             // 
-            // labReqDate
-            // 
-            this.labReqDate.Location = new System.Drawing.Point(20, 17);
-            this.labReqDate.Name = "labReqDate";
-            this.labReqDate.Size = new System.Drawing.Size(60, 14);
-            this.labReqDate.TabIndex = 1;
-            this.labReqDate.Text = "请购日期：";
-            // 
             // dateReqDateBegin
             // 
             this.dateReqDateBegin.EditValue = null;
@@ -405,6 +362,62 @@
             this.dateReqDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateReqDateBegin.Size = new System.Drawing.Size(100, 20);
             this.dateReqDateBegin.TabIndex = 0;
+            // 
+            // labApprover
+            // 
+            this.labApprover.Location = new System.Drawing.Point(210, 47);
+            this.labApprover.Name = "labApprover";
+            this.labApprover.Size = new System.Drawing.Size(48, 14);
+            this.labApprover.TabIndex = 24;
+            this.labApprover.Text = "审批人：";
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(392, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 14;
+            this.labCommon.Text = "通用查询：";
+            // 
+            // labApplicant
+            // 
+            this.labApplicant.Location = new System.Drawing.Point(20, 47);
+            this.labApplicant.Name = "labApplicant";
+            this.labApplicant.Size = new System.Drawing.Size(48, 14);
+            this.labApplicant.TabIndex = 11;
+            this.labApplicant.Text = "申请人：";
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(720, 17);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(60, 14);
+            this.labReqState.TabIndex = 9;
+            this.labReqState.Text = "单据状态：";
+            // 
+            // labPurCategory
+            // 
+            this.labPurCategory.Location = new System.Drawing.Point(516, 17);
+            this.labPurCategory.Name = "labPurCategory";
+            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
+            this.labPurCategory.TabIndex = 7;
+            this.labPurCategory.Text = "采购类型：";
+            // 
+            // labReqDep
+            // 
+            this.labReqDep.Location = new System.Drawing.Point(315, 17);
+            this.labReqDep.Name = "labReqDep";
+            this.labReqDep.Size = new System.Drawing.Size(60, 14);
+            this.labReqDep.TabIndex = 5;
+            this.labReqDep.Text = "申请部门：";
+            // 
+            // labReqDate
+            // 
+            this.labReqDate.Location = new System.Drawing.Point(20, 17);
+            this.labReqDate.Name = "labReqDate";
+            this.labReqDate.Size = new System.Drawing.Size(60, 14);
+            this.labReqDate.TabIndex = 1;
+            this.labReqDate.Text = "请购日期：";
             // 
             // dataSet_PrReq
             // 
@@ -586,7 +599,7 @@
             // 
             // dataColCodeFileName
             // 
-            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.Caption = "零件编号";
             this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataColQty
@@ -617,9 +630,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
+            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(989, 212);
+            this.pnlMiddle.Size = new System.Drawing.Size(985, 212);
             this.pnlMiddle.TabIndex = 1;
             // 
             // checkAll
@@ -648,7 +661,7 @@
             this.repComboBoxStnNo,
             this.repCheckSelect,
             this.repLookUpApprovalType});
-            this.gridControlPrReqHead.Size = new System.Drawing.Size(985, 174);
+            this.gridControlPrReqHead.Size = new System.Drawing.Size(981, 174);
             this.gridControlPrReqHead.TabIndex = 0;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqHead});
@@ -679,6 +692,9 @@
             this.gridViewPrReqHead.IndicatorWidth = 40;
             this.gridViewPrReqHead.Name = "gridViewPrReqHead";
             this.gridViewPrReqHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewPrReqHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewPrReqHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewPrReqHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewPrReqHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
@@ -712,7 +728,7 @@
             this.repCheckSelect.Name = "repCheckSelect";
             this.repCheckSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.repCheckSelect.ValueGrayed = false;
-            this.repCheckSelect.EditValueChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
+            this.repCheckSelect.CheckedChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
             // 
             // colPrReqNo
             // 
@@ -749,6 +765,7 @@
             this.colReqDate.FieldName = "ReqDate";
             this.colReqDate.Name = "colReqDate";
             this.colReqDate.OptionsColumn.AllowEdit = false;
+            this.colReqDate.OptionsColumn.AllowFocus = false;
             this.colReqDate.Visible = true;
             this.colReqDate.VisibleIndex = 3;
             this.colReqDate.Width = 90;
@@ -972,7 +989,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(981, 34);
             this.pnlMiddleTop.TabIndex = 1;
             // 
             // btnCancelClose
@@ -1071,9 +1088,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlPrReqList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 295);
+            this.pnlBottom.Location = new System.Drawing.Point(2, 297);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(989, 156);
+            this.pnlBottom.Size = new System.Drawing.Size(985, 152);
             this.pnlBottom.TabIndex = 2;
             // 
             // btnListAdd
@@ -1097,7 +1114,7 @@
             this.repSpinQty,
             this.repSearchCodeFileName,
             this.repbtnDelete});
-            this.gridControlPrReqList.Size = new System.Drawing.Size(985, 152);
+            this.gridControlPrReqList.Size = new System.Drawing.Size(981, 148);
             this.gridControlPrReqList.TabIndex = 1;
             this.gridControlPrReqList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqList});
@@ -1122,12 +1139,16 @@
             this.gridViewPrReqList.IndicatorWidth = 40;
             this.gridViewPrReqList.Name = "gridViewPrReqList";
             this.gridViewPrReqList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewPrReqList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewPrReqList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewPrReqList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewPrReqList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewPrReqList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
+            this.gridViewPrReqList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrReqList_RowClick);
             this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
             this.gridViewPrReqList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPrReqList_InitNewRow);
             this.gridViewPrReqList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqList_CellValueChanged);
@@ -1199,7 +1220,7 @@
             // 
             this.gridColumnCodeFileName.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumnCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnCodeFileName.Caption = "文件名称";
+            this.gridColumnCodeFileName.Caption = "零件编号";
             this.gridColumnCodeFileName.FieldName = "CodeFileName";
             this.gridColumnCodeFileName.Name = "gridColumnCodeFileName";
             this.gridColumnCodeFileName.Visible = true;
@@ -1301,27 +1322,93 @@
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
             // 
+            // popupMenuList
+            // 
+            this.popupMenuList.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonUp)});
+            this.popupMenuList.Manager = this.barManagerForm;
+            this.popupMenuList.Name = "popupMenuList";
+            // 
+            // barButtonUp
+            // 
+            this.barButtonUp.Caption = "下级-采购单";
+            this.barButtonUp.Id = 2;
+            this.barButtonUp.Name = "barButtonUp";
+            this.barButtonUp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonUp_ItemClick);
+            // 
+            // barManagerForm
+            // 
+            this.barManagerForm.DockControls.Add(this.barDockControlTop);
+            this.barManagerForm.DockControls.Add(this.barDockControlBottom);
+            this.barManagerForm.DockControls.Add(this.barDockControlLeft);
+            this.barManagerForm.DockControls.Add(this.barDockControlRight);
+            this.barManagerForm.Form = this;
+            this.barManagerForm.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonUp});
+            this.barManagerForm.MaxItemId = 4;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(989, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 451);
+            this.barDockControlBottom.Size = new System.Drawing.Size(989, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 451);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(989, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 451);
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.Controls.Add(this.pnlBottom);
+            this.pnlRight.Controls.Add(this.splitterControl1);
+            this.pnlRight.Controls.Add(this.pnlMiddle);
+            this.pnlRight.Controls.Add(this.pnltop);
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRight.Location = new System.Drawing.Point(0, 0);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(989, 451);
+            this.pnlRight.TabIndex = 8;
+            // 
             // splitterControl1
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(0, 290);
+            this.splitterControl1.Location = new System.Drawing.Point(2, 292);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(989, 5);
-            this.splitterControl1.TabIndex = 3;
+            this.splitterControl1.Size = new System.Drawing.Size(985, 5);
+            this.splitterControl1.TabIndex = 4;
             this.splitterControl1.TabStop = false;
             // 
             // FrmPrReq
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(989, 451);
-            this.Controls.Add(this.pnlBottom);
-            this.Controls.Add(this.splitterControl1);
-            this.Controls.Add(this.pnlMiddle);
-            this.Controls.Add(this.pnltop);
+            this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Name = "FrmPrReq";
-            this.TabText = "采购请购单";
-            this.Text = "采购请购单";
+            this.TabText = "请购单";
+            this.Text = "请购单";
             this.Activated += new System.EventHandler(this.FrmPrReq_Activated);
             this.Load += new System.EventHandler(this.FrmPrReq_Load);
             this.Shown += new System.EventHandler(this.FrmPrReq_Shown);
@@ -1365,7 +1452,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
+            this.pnlRight.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1455,7 +1547,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repbtnDelete;
         private System.Data.DataColumn dataColCodeName;
         private DevExpress.XtraGrid.Columns.GridColumn colCodeName;
-        private DevExpress.XtraEditors.SplitterControl splitterControl1;
         private DevExpress.XtraEditors.TextEdit textCommon;
         private DevExpress.XtraEditors.LabelControl labCommon;
         private DevExpress.XtraEditors.SimpleButton btnClose;
@@ -1482,5 +1573,14 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpApprovalType;
         private DevExpress.XtraEditors.LabelControl labApprover;
         private DevExpress.XtraEditors.LookUpEdit lookUpApprover;
+        private DevExpress.XtraBars.PopupMenu popupMenuList;
+        private DevExpress.XtraBars.BarButtonItem barButtonUp;
+        private DevExpress.XtraBars.BarManager barManagerForm;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.PanelControl pnlRight;
+        private DevExpress.XtraEditors.SplitterControl splitterControl1;
     }
 }

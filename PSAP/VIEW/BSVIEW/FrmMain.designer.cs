@@ -50,7 +50,6 @@
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -176,7 +175,7 @@
             // 
             this.tsrMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsrLblCurrentStatus});
-            this.tsrMain.Location = new System.Drawing.Point(0, 529);
+            this.tsrMain.Location = new System.Drawing.Point(0, 539);
             this.tsrMain.Name = "tsrMain";
             this.tsrMain.Size = new System.Drawing.Size(1022, 22);
             this.tsrMain.TabIndex = 10;
@@ -197,7 +196,7 @@
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.ShowDocumentIcon = true;
-            this.dockPanel1.Size = new System.Drawing.Size(1022, 529);
+            this.dockPanel1.Size = new System.Drawing.Size(1022, 539);
             this.dockPanel1.TabIndex = 12;
             // 
             // toolStripContainer1
@@ -222,7 +221,6 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
             this.toolStripLabel1,
             this.toolStripButton2,
             this.toolStripButton3});
@@ -231,15 +229,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1022, 25);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton1.Text = "功能导航";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripLabel1
             // 
@@ -275,13 +264,14 @@
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1022, 551);
+            this.ClientSize = new System.Drawing.Size(1022, 561);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.tsrMain);
             this.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(5);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FrmMain";
             this.Text = "主窗口";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -322,7 +312,6 @@
         private System.Windows.Forms.ToolStripMenuItem 用户权限ToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;

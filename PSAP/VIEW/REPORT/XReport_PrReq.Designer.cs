@@ -306,7 +306,7 @@
             // 
             // dataColCodeFileName
             // 
-            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.Caption = "零件编号";
             this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataColQty
@@ -389,7 +389,7 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(208.3333F, 34.79166F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "采购请购单";
+            this.xrLabel1.Text = "请购单";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // BottomMargin

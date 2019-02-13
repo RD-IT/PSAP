@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Base;
+using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -16,6 +17,7 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmPrReqApplyDAO applyDAO = new FrmPrReqApplyDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
 
         public FrmPrReqApply()
         {
@@ -29,22 +31,23 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateReqDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateReqDateEnd.DateTime = nowDate.Date;
                 checkReqDate.Checked = false;
 
-                lookUpReqDep.Properties.DataSource = prReqDAO.QueryDepartment(true);
+                lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
-                lookUpApplicant.Properties.DataSource = prReqDAO.QueryUserInfo(true);
+                lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpApplicant.ItemIndex = 0;
-                searchLookUpProjectNo.Properties.DataSource = prReqDAO.QueryProjectList(true);
+                searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
 
-                repLookUpReqDep.DataSource = prReqDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
-                repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
+                repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
             }
             catch (Exception ex)
             {
@@ -65,12 +68,12 @@ namespace PSAP.VIEW.BSVIEW
                 if (checkReqDate.Checked)
                 {
                     orderDateBeginStr = dateReqDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    orderDateEndStr = dateReqDateEnd.DateTime.ToString("yyyy-MM-dd");
+                    orderDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
-                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? lookUpReqDep.EditValue.ToString() : "";
-                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? lookUpPurCategory.EditValue.ToString() : "";
-                string empNameStr = lookUpApplicant.ItemIndex > 0 ? lookUpApplicant.EditValue.ToString() : "";
-                string projectNoStr = searchLookUpProjectNo.Text != "全部" ? searchLookUpProjectNo.EditValue.ToString() : "";
+                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
+                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
+                string empNameStr = lookUpApplicant.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpApplicant.EditValue) : "";
+                string projectNoStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
 
                 dataSet_PrReq.Tables[0].Clear();
@@ -110,7 +113,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void searchLookUpProjectNoView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.RowHandle >= 0 && e.Info.IsRowIndicator)
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
@@ -123,21 +126,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ReqState")
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -183,37 +172,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 ExceptionHandler.HandleException(this.Text + "--设定子表当前行选择事件错误。", ex);
             }
-        }
-
-        /// <summary>
-        /// 确认按钮事件
-        /// </summary>
-        private void BtnConfirm_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (gridViewPrReqHead.GetFocusedDataRow()==null)
-                {
-                    MessageHandler.ShowMessageBox("请选择要适用的一个请购单，请重新操作。");
-                    textPrReqNo.Focus();
-                    return;
-                }
-                int count = dataSet_PrReq.Tables[1].Select("ListSelect=1").Length;
-                if (count == 0)
-                {
-                    MessageHandler.ShowMessageBox("请选择要适用的请购单明细记录，请重新操作。");
-                    gridViewPrReqList.Focus();
-                    return;
-                }
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--确认按钮事件错误。", ex);
-            }
-        }
+        }        
 
         /// <summary>
         /// 全部选中
@@ -248,6 +207,59 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 确认按钮事件
+        /// </summary>
+        private void BtnConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridViewPrReqHead.GetFocusedDataRow() == null)
+                {
+                    MessageHandler.ShowMessageBox("请选择要适用的一个请购单，请重新操作。");
+                    textPrReqNo.Focus();
+                    return;
+                }
+                int count = dataSet_PrReq.Tables[1].Select("ListSelect=1").Length;
+                if (count == 0)
+                {
+                    MessageHandler.ShowMessageBox("请选择要适用的请购单明细记录，请重新操作。");
+                    gridViewPrReqList.Focus();
+                    return;
+                }
 
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--确认按钮事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 双击选中
+        /// </summary>
+        private void gridViewPrReqList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Clicks == 2)
+                {
+                    if (DataTypeConvert.GetBoolean(gridViewPrReqList.GetFocusedDataRow()["ListSelect"]))
+                    {
+                        gridViewPrReqList.GetFocusedDataRow()["ListSelect"] = false;
+                    }
+                    else
+                    {
+                        gridViewPrReqList.GetFocusedDataRow()["ListSelect"] = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--双击选中错误。", ex);
+            }
+        }
     }
 }

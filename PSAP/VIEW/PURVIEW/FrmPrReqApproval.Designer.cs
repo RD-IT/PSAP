@@ -1,6 +1,6 @@
 ﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class FrmApprovalPrReq
+    partial class FrmPrReqApproval
     {
         /// <summary>
         /// Required designer variable.
@@ -30,28 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
-            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApprovalType = new DevExpress.XtraEditors.LookUpEdit();
             this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
-            this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
-            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
-            this.textReqState = new DevExpress.XtraEditors.TextEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
-            this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
-            this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
-            this.TableOrderApprovalInfo = new System.Data.DataTable();
-            this.dataColAutoId = new System.Data.DataColumn();
-            this.dataColTypeNo = new System.Data.DataColumn();
-            this.dataColTypeNoText = new System.Data.DataColumn();
-            this.dataColAppSequence = new System.Data.DataColumn();
-            this.dataColApprover = new System.Data.DataColumn();
-            this.dataColEmpName = new System.Data.DataColumn();
-            this.dataColLoginId = new System.Data.DataColumn();
-            this.dataColOrderHeadNo = new System.Data.DataColumn();
-            this.dataColApproverTime = new System.Data.DataColumn();
-            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
-            this.gridCrlOrderAppInfo = new DevExpress.XtraGrid.GridControl();
-            this.bsOrderApprovalInfo = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColumn5 = new System.Data.DataColumn();
@@ -78,6 +58,26 @@
             this.dataColumn21 = new System.Data.DataColumn();
             this.dataColumn22 = new System.Data.DataColumn();
             this.dataColumnApprovalCat = new System.Data.DataColumn();
+            this.TableOrderApprovalInfo = new System.Data.DataTable();
+            this.dataColAutoId = new System.Data.DataColumn();
+            this.dataColTypeNo = new System.Data.DataColumn();
+            this.dataColTypeNoText = new System.Data.DataColumn();
+            this.dataColAppSequence = new System.Data.DataColumn();
+            this.dataColApprover = new System.Data.DataColumn();
+            this.dataColEmpName = new System.Data.DataColumn();
+            this.dataColLoginId = new System.Data.DataColumn();
+            this.dataColOrderHeadNo = new System.Data.DataColumn();
+            this.dataColApproverTime = new System.Data.DataColumn();
+            this.textApprovalCat = new DevExpress.XtraEditors.TextEdit();
+            this.textReqState = new DevExpress.XtraEditors.TextEdit();
+            this.textOrderHeadNo = new DevExpress.XtraEditors.TextEdit();
+            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
+            this.labApprovalType = new DevExpress.XtraEditors.LabelControl();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
+            this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.gridCrlOrderAppInfo = new DevExpress.XtraGrid.GridControl();
+            this.bsOrderApprovalInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewOrderAppInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -95,16 +95,16 @@
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableOrderApprovalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textApprovalCat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textReqState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOrderHeadNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableOrderApprovalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlOrderAppInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOrderApprovalInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderAppInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
@@ -112,27 +112,19 @@
             // 
             // pnlTop
             // 
-            this.pnlTop.Controls.Add(this.labApprovalCat);
             this.pnlTop.Controls.Add(this.lookUpApprovalType);
             this.pnlTop.Controls.Add(this.textApprovalCat);
-            this.pnlTop.Controls.Add(this.labApprovalType);
             this.pnlTop.Controls.Add(this.textReqState);
-            this.pnlTop.Controls.Add(this.labReqState);
             this.pnlTop.Controls.Add(this.textOrderHeadNo);
+            this.pnlTop.Controls.Add(this.labApprovalCat);
+            this.pnlTop.Controls.Add(this.labApprovalType);
+            this.pnlTop.Controls.Add(this.labReqState);
             this.pnlTop.Controls.Add(this.labOrderHeadNo);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(584, 89);
             this.pnlTop.TabIndex = 4;
-            // 
-            // labApprovalCat
-            // 
-            this.labApprovalCat.Location = new System.Drawing.Point(239, 56);
-            this.labApprovalCat.Name = "labApprovalCat";
-            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalCat.TabIndex = 7;
-            this.labApprovalCat.Text = "审批方式";
             // 
             // lookUpApprovalType
             // 
@@ -157,149 +149,6 @@
             // 
             this.bindingSource_OrderHead.DataMember = "PrReqHead";
             this.bindingSource_OrderHead.DataSource = this.dataSet_PrReq;
-            // 
-            // textApprovalCat
-            // 
-            this.textApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_OrderHead, "ApprovalCat", true));
-            this.textApprovalCat.Location = new System.Drawing.Point(312, 53);
-            this.textApprovalCat.Name = "textApprovalCat";
-            this.textApprovalCat.Properties.AllowFocused = false;
-            this.textApprovalCat.Properties.ReadOnly = true;
-            this.textApprovalCat.Size = new System.Drawing.Size(120, 20);
-            this.textApprovalCat.TabIndex = 3;
-            this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
-            // 
-            // labApprovalType
-            // 
-            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
-            this.labApprovalType.Name = "labApprovalType";
-            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalType.TabIndex = 4;
-            this.labApprovalType.Text = "审批类型";
-            // 
-            // textReqState
-            // 
-            this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_OrderHead, "ReqState", true));
-            this.textReqState.Location = new System.Drawing.Point(312, 23);
-            this.textReqState.Name = "textReqState";
-            this.textReqState.Properties.AllowFocused = false;
-            this.textReqState.Properties.ReadOnly = true;
-            this.textReqState.Size = new System.Drawing.Size(120, 20);
-            this.textReqState.TabIndex = 1;
-            this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(239, 26);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(48, 14);
-            this.labReqState.TabIndex = 2;
-            this.labReqState.Text = "单据状态";
-            // 
-            // textOrderHeadNo
-            // 
-            this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_OrderHead, "PrReqNo", true));
-            this.textOrderHeadNo.Location = new System.Drawing.Point(95, 23);
-            this.textOrderHeadNo.Name = "textOrderHeadNo";
-            this.textOrderHeadNo.Properties.ReadOnly = true;
-            this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
-            this.textOrderHeadNo.TabIndex = 0;
-            // 
-            // labOrderHeadNo
-            // 
-            this.labOrderHeadNo.Location = new System.Drawing.Point(28, 26);
-            this.labOrderHeadNo.Name = "labOrderHeadNo";
-            this.labOrderHeadNo.Size = new System.Drawing.Size(48, 14);
-            this.labOrderHeadNo.TabIndex = 0;
-            this.labOrderHeadNo.Text = "采购单号";
-            // 
-            // TableOrderApprovalInfo
-            // 
-            this.TableOrderApprovalInfo.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColAutoId,
-            this.dataColTypeNo,
-            this.dataColTypeNoText,
-            this.dataColAppSequence,
-            this.dataColApprover,
-            this.dataColEmpName,
-            this.dataColLoginId,
-            this.dataColOrderHeadNo,
-            this.dataColApproverTime});
-            this.TableOrderApprovalInfo.TableName = "OrderApprovalInfo";
-            // 
-            // dataColAutoId
-            // 
-            this.dataColAutoId.ColumnName = "AutoId";
-            this.dataColAutoId.DataType = typeof(int);
-            // 
-            // dataColTypeNo
-            // 
-            this.dataColTypeNo.Caption = "类型编码";
-            this.dataColTypeNo.ColumnName = "TypeNo";
-            // 
-            // dataColTypeNoText
-            // 
-            this.dataColTypeNoText.Caption = "审批名称";
-            this.dataColTypeNoText.ColumnName = "TypeNoText";
-            // 
-            // dataColAppSequence
-            // 
-            this.dataColAppSequence.Caption = "审批顺序";
-            this.dataColAppSequence.ColumnName = "AppSequence";
-            this.dataColAppSequence.DataType = typeof(int);
-            // 
-            // dataColApprover
-            // 
-            this.dataColApprover.Caption = "审批用户AutoId";
-            this.dataColApprover.ColumnName = "Approver";
-            this.dataColApprover.DataType = typeof(int);
-            // 
-            // dataColEmpName
-            // 
-            this.dataColEmpName.Caption = "员工名字";
-            this.dataColEmpName.ColumnName = "EmpName";
-            // 
-            // dataColLoginId
-            // 
-            this.dataColLoginId.Caption = "用户名";
-            this.dataColLoginId.ColumnName = "LoginId";
-            // 
-            // dataColOrderHeadNo
-            // 
-            this.dataColOrderHeadNo.Caption = "订购单号";
-            this.dataColOrderHeadNo.ColumnName = "OrderHeadNo";
-            // 
-            // dataColApproverTime
-            // 
-            this.dataColApproverTime.Caption = "审批时间";
-            this.dataColApproverTime.ColumnName = "ApproverTime";
-            this.dataColApproverTime.DataType = typeof(System.DateTime);
-            // 
-            // pnlMiddle
-            // 
-            this.pnlMiddle.Controls.Add(this.gridCrlOrderAppInfo);
-            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
-            this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
-            this.pnlMiddle.TabIndex = 5;
-            // 
-            // gridCrlOrderAppInfo
-            // 
-            this.gridCrlOrderAppInfo.DataSource = this.bsOrderApprovalInfo;
-            this.gridCrlOrderAppInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridCrlOrderAppInfo.Location = new System.Drawing.Point(2, 2);
-            this.gridCrlOrderAppInfo.MainView = this.gridViewOrderAppInfo;
-            this.gridCrlOrderAppInfo.Name = "gridCrlOrderAppInfo";
-            this.gridCrlOrderAppInfo.Size = new System.Drawing.Size(580, 228);
-            this.gridCrlOrderAppInfo.TabIndex = 9;
-            this.gridCrlOrderAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewOrderAppInfo});
-            // 
-            // bsOrderApprovalInfo
-            // 
-            this.bsOrderApprovalInfo.DataMember = "OrderApprovalInfo";
-            this.bsOrderApprovalInfo.DataSource = this.dataSet_PrReq;
             // 
             // dataSet_PrReq
             // 
@@ -465,6 +314,157 @@
             this.dataColumnApprovalCat.ColumnName = "ApprovalCat";
             this.dataColumnApprovalCat.DataType = typeof(int);
             // 
+            // TableOrderApprovalInfo
+            // 
+            this.TableOrderApprovalInfo.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColAutoId,
+            this.dataColTypeNo,
+            this.dataColTypeNoText,
+            this.dataColAppSequence,
+            this.dataColApprover,
+            this.dataColEmpName,
+            this.dataColLoginId,
+            this.dataColOrderHeadNo,
+            this.dataColApproverTime});
+            this.TableOrderApprovalInfo.TableName = "OrderApprovalInfo";
+            // 
+            // dataColAutoId
+            // 
+            this.dataColAutoId.ColumnName = "AutoId";
+            this.dataColAutoId.DataType = typeof(int);
+            // 
+            // dataColTypeNo
+            // 
+            this.dataColTypeNo.Caption = "类型编码";
+            this.dataColTypeNo.ColumnName = "TypeNo";
+            // 
+            // dataColTypeNoText
+            // 
+            this.dataColTypeNoText.Caption = "审批名称";
+            this.dataColTypeNoText.ColumnName = "TypeNoText";
+            // 
+            // dataColAppSequence
+            // 
+            this.dataColAppSequence.Caption = "审批顺序";
+            this.dataColAppSequence.ColumnName = "AppSequence";
+            this.dataColAppSequence.DataType = typeof(int);
+            // 
+            // dataColApprover
+            // 
+            this.dataColApprover.Caption = "审批用户AutoId";
+            this.dataColApprover.ColumnName = "Approver";
+            this.dataColApprover.DataType = typeof(int);
+            // 
+            // dataColEmpName
+            // 
+            this.dataColEmpName.Caption = "员工名字";
+            this.dataColEmpName.ColumnName = "EmpName";
+            // 
+            // dataColLoginId
+            // 
+            this.dataColLoginId.Caption = "用户名";
+            this.dataColLoginId.ColumnName = "LoginId";
+            // 
+            // dataColOrderHeadNo
+            // 
+            this.dataColOrderHeadNo.Caption = "订购单号";
+            this.dataColOrderHeadNo.ColumnName = "OrderHeadNo";
+            // 
+            // dataColApproverTime
+            // 
+            this.dataColApproverTime.Caption = "审批时间";
+            this.dataColApproverTime.ColumnName = "ApproverTime";
+            this.dataColApproverTime.DataType = typeof(System.DateTime);
+            // 
+            // textApprovalCat
+            // 
+            this.textApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_OrderHead, "ApprovalCat", true));
+            this.textApprovalCat.Location = new System.Drawing.Point(312, 53);
+            this.textApprovalCat.Name = "textApprovalCat";
+            this.textApprovalCat.Properties.AllowFocused = false;
+            this.textApprovalCat.Properties.ReadOnly = true;
+            this.textApprovalCat.Size = new System.Drawing.Size(120, 20);
+            this.textApprovalCat.TabIndex = 3;
+            this.textApprovalCat.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textApprovalCat_CustomDisplayText);
+            // 
+            // textReqState
+            // 
+            this.textReqState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_OrderHead, "ReqState", true));
+            this.textReqState.Location = new System.Drawing.Point(312, 23);
+            this.textReqState.Name = "textReqState";
+            this.textReqState.Properties.AllowFocused = false;
+            this.textReqState.Properties.ReadOnly = true;
+            this.textReqState.Size = new System.Drawing.Size(120, 20);
+            this.textReqState.TabIndex = 1;
+            this.textReqState.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.textReqState_CustomDisplayText);
+            // 
+            // textOrderHeadNo
+            // 
+            this.textOrderHeadNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_OrderHead, "PrReqNo", true));
+            this.textOrderHeadNo.Location = new System.Drawing.Point(95, 23);
+            this.textOrderHeadNo.Name = "textOrderHeadNo";
+            this.textOrderHeadNo.Properties.ReadOnly = true;
+            this.textOrderHeadNo.Size = new System.Drawing.Size(120, 20);
+            this.textOrderHeadNo.TabIndex = 0;
+            // 
+            // labApprovalCat
+            // 
+            this.labApprovalCat.Location = new System.Drawing.Point(239, 56);
+            this.labApprovalCat.Name = "labApprovalCat";
+            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalCat.TabIndex = 7;
+            this.labApprovalCat.Text = "审批方式";
+            // 
+            // labApprovalType
+            // 
+            this.labApprovalType.Location = new System.Drawing.Point(28, 56);
+            this.labApprovalType.Name = "labApprovalType";
+            this.labApprovalType.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalType.TabIndex = 4;
+            this.labApprovalType.Text = "审批类型";
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(239, 26);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(48, 14);
+            this.labReqState.TabIndex = 2;
+            this.labReqState.Text = "单据状态";
+            // 
+            // labOrderHeadNo
+            // 
+            this.labOrderHeadNo.Location = new System.Drawing.Point(28, 26);
+            this.labOrderHeadNo.Name = "labOrderHeadNo";
+            this.labOrderHeadNo.Size = new System.Drawing.Size(48, 14);
+            this.labOrderHeadNo.TabIndex = 0;
+            this.labOrderHeadNo.Text = "采购单号";
+            // 
+            // pnlMiddle
+            // 
+            this.pnlMiddle.Controls.Add(this.gridCrlOrderAppInfo);
+            this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
+            this.pnlMiddle.Name = "pnlMiddle";
+            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
+            this.pnlMiddle.TabIndex = 5;
+            // 
+            // gridCrlOrderAppInfo
+            // 
+            this.gridCrlOrderAppInfo.DataSource = this.bsOrderApprovalInfo;
+            this.gridCrlOrderAppInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridCrlOrderAppInfo.Location = new System.Drawing.Point(2, 2);
+            this.gridCrlOrderAppInfo.MainView = this.gridViewOrderAppInfo;
+            this.gridCrlOrderAppInfo.Name = "gridCrlOrderAppInfo";
+            this.gridCrlOrderAppInfo.Size = new System.Drawing.Size(580, 228);
+            this.gridCrlOrderAppInfo.TabIndex = 9;
+            this.gridCrlOrderAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewOrderAppInfo});
+            // 
+            // bsOrderApprovalInfo
+            // 
+            this.bsOrderApprovalInfo.DataMember = "OrderApprovalInfo";
+            this.bsOrderApprovalInfo.DataSource = this.dataSet_PrReq;
+            // 
             // gridViewOrderAppInfo
             // 
             this.gridViewOrderAppInfo.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -603,7 +603,7 @@
             this.btnApproval.Text = "审批";
             this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
             // 
-            // FrmApprovalPrReq
+            // FrmPrReqApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -613,7 +613,8 @@
             this.Controls.Add(this.pnlBottom);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmApprovalPrReq";
+            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.Name = "FrmPrReqApproval";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "审批信息";
@@ -624,16 +625,16 @@
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableOrderApprovalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textApprovalCat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textReqState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOrderHeadNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableOrderApprovalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlOrderAppInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOrderApprovalInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_PrReq)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTablePrReqHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderAppInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);

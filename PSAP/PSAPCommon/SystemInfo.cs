@@ -81,10 +81,15 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 各种登记单查询的列表每页显示行数
         /// </summary>
-        public static int OrderQueryGrid_PageRowCount = 50;
+        public static int OrderQueryGrid_PageRowCount = 100;
 
         /// <summary>
-        /// 订单明细里面的默认税率值
+        /// 各种登记单以下查询界面默认查询日期的时间段
+        /// </summary>
+        public static int OrderQueryDate_DefaultDays = 14;
+
+        /// <summary>
+        /// 采购订单里面的默认税率值
         /// </summary>
         public static double OrderList_DefaultTax = 0.16;
 
@@ -92,6 +97,36 @@ namespace PSAP.PSAPCommon
         /// 请购单适用转换为采购订单，明细的合计总数是否可以超过原请购单的数量 
         /// </summary>
         public static bool PrReqApplyBeyondCountIsSave = false;
+
+        /// <summary>
+        /// 采购订单适用转换为入库单，明细的合计总数是否可以超过原采购订单的数量 
+        /// </summary>
+        public static bool OrderApplyBeyondCountIsSave = false;
+
+        /// <summary>
+        /// 入库单适用转换为采购结账单，明细的合计总数是否可以超过原入库单的数量 
+        /// </summary>
+        public static bool WarehouseWarrantApplyBeyondCountIsSave = false;
+
+        /// <summary>
+        /// 入库单是否可以修改入库日期
+        /// </summary>
+        public static bool WarehouseWarrantIsAlterDate = false;
+
+        /// <summary>
+        /// 出库单是否可以修改出库日期
+        /// </summary>
+        public static bool WarehouseReceiptIsAlterDate = false;
+
+        /// <summary>
+        /// 采购国内结账里面的默认税率值
+        /// </summary>
+        public static double Settlement_DefaultTax = 0.16;
+
+        /// <summary>
+        /// 可拖拽的窗体左侧停靠栏的默认宽度
+        /// </summary>
+        public static int DragForm_LeftDock_Width = 400;
 
         #endregion
     }

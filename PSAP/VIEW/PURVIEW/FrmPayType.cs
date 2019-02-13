@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using PSAP.PSAPCommon;
+﻿using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,6 +41,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.PrimaryKeyControl = textPayTypeNo;
                     editForm.BrowseXtraGridView = gridViewPayType;
                     editForm.CheckControl += CheckControl;
+                    editForm.ButtonList.Add(btnPayTypeList);
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();

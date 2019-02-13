@@ -38,6 +38,33 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        public static string GetMaxCodeNo(string catgName)
+        {
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        string codeNoStr = GetMaxCodeNo(cmd, catgName);
+                        trans.Commit();
+                        return codeNoStr;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 从SW_MaxCodeNo表中根据类别取最大编号
         /// </summary>
@@ -425,6 +452,14 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        /// <summary>
+        /// 得到服务器数据库的当前时间
+        /// </summary>
+        public static DateTime GetServerDateTime()
+        {
+            return Convert.ToDateTime(GetSingle("select getdate()"));
+        }
+
         #endregion
 
         #region 执行带参数的SQL语句
@@ -591,6 +626,9 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        /// <summary>
+        /// 使用DataAdapter方式，把DataTable的数据更新到数据库中
+        /// </summary>
         public static void UpdateDataTable(SqlDataAdapter dataAdapter, DataTable dataTable)
         {
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -599,11 +637,6 @@ namespace PSAP.DAO.BSDAO
             dataAdapter.InsertCommand = commandBuilder.GetInsertCommand(true);
             dataAdapter.DeleteCommand = commandBuilder.GetDeleteCommand();
             dataAdapter.Update(dataTable);
-        }
-
-        public static DateTime GetServerDateTime()
-        {
-            return Convert.ToDateTime(GetSingle("select getdate()"));
         }
 
         #endregion
@@ -686,6 +719,31 @@ namespace PSAP.DAO.BSDAO
                 //Connection.Close();
                 return result;
             }
+        }
+
+        /// <summary>
+        /// 执行存储过程，返回执行是否成功，返回值为1则成功，其他值为失败
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="storedProcName">存储过程名称</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <param name="resultInt">执行存储过程的返回值</param>
+        /// <param name="errorText">错误描述</param>
+        /// <returns></returns>
+        public static bool RunProcedure(SqlCommand cmd, string storedProcName, IDataParameter[] parameters, out int resultInt, out string errorText)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = storedProcName;
+            cmd.Parameters.Add("@ReturnValue", SqlDbType.Int, 4).Direction = ParameterDirection.ReturnValue;
+            foreach (SqlParameter parameter in parameters)
+            {
+                cmd.Parameters.Add(parameter);
+            }
+            cmd.Parameters.Add("@ErrorText", SqlDbType.NVarChar,200).Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            errorText = DataTypeConvert.GetString(cmd.Parameters["@ErrorText"].Value);
+            resultInt = DataTypeConvert.GetInt(cmd.Parameters["@ReturnValue"].Value);
+            return resultInt == 1;
         }
 
         /// <summary>

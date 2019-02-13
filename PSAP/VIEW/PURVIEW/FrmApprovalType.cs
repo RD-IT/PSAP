@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Base;
+﻿using DevExpress.XtraGrid.Views.Base;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -43,6 +42,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.PrimaryKeyControl = textTypeNo;
                     editForm.BrowseXtraGridView = gridViewApprovalType;
                     editForm.CheckControl += CheckControl;
+                    editForm.ButtonList.Add(btnApprovalList);
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
@@ -99,18 +99,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ApprovalCat")
             {
-                switch (e.Value.ToString())
-                {
-                    case "0":
-                        e.DisplayText = "串行审批";
-                        break;
-                    case "1":
-                        e.DisplayText = "并行审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "多选一审核";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_ApprovalCat_Desc(e.Value.ToString());
             }
         }
 

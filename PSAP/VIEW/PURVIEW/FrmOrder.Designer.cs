@@ -30,11 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
-            this.labApprover = new DevExpress.XtraEditors.LabelControl();
             this.lookUpApprover = new DevExpress.XtraEditors.LookUpEdit();
             this.checkPlanDate = new DevExpress.XtraEditors.CheckEdit();
-            this.labPlanDate = new DevExpress.XtraEditors.LabelControl();
-            this.lab2 = new DevExpress.XtraEditors.LabelControl();
             this.datePlanDateEnd = new DevExpress.XtraEditors.DateEdit();
             this.datePlanDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.searchLookUpBussinessBaseNo = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -43,22 +40,25 @@
             this.gridColumnBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
-            this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPrepared = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.dateOrderDateEnd = new DevExpress.XtraEditors.DateEdit();
+            this.dateOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
+            this.labApprover = new DevExpress.XtraEditors.LabelControl();
+            this.labPlanDate = new DevExpress.XtraEditors.LabelControl();
+            this.lab2 = new DevExpress.XtraEditors.LabelControl();
+            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
+            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
+            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.lab1 = new DevExpress.XtraEditors.LabelControl();
             this.labOrderDate = new DevExpress.XtraEditors.LabelControl();
-            this.dateOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlOrderHead = new DevExpress.XtraGrid.GridControl();
@@ -239,48 +239,40 @@
             // 
             // pnltop
             // 
-            this.pnltop.Controls.Add(this.labApprover);
             this.pnltop.Controls.Add(this.lookUpApprover);
             this.pnltop.Controls.Add(this.checkPlanDate);
-            this.pnltop.Controls.Add(this.labPlanDate);
-            this.pnltop.Controls.Add(this.lab2);
             this.pnltop.Controls.Add(this.datePlanDateEnd);
             this.pnltop.Controls.Add(this.datePlanDateBegin);
             this.pnltop.Controls.Add(this.searchLookUpBussinessBaseNo);
-            this.pnltop.Controls.Add(this.labBussinessBaseNo);
             this.pnltop.Controls.Add(this.textCommon);
-            this.pnltop.Controls.Add(this.labCommon);
             this.pnltop.Controls.Add(this.comboBoxReqState);
-            this.pnltop.Controls.Add(this.labPrepared);
             this.pnltop.Controls.Add(this.lookUpPrepared);
-            this.pnltop.Controls.Add(this.labReqState);
             this.pnltop.Controls.Add(this.lookUpPurCategory);
-            this.pnltop.Controls.Add(this.labPurCategory);
             this.pnltop.Controls.Add(this.lookUpReqDep);
-            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.btnQuery);
             this.pnltop.Controls.Add(this.dateOrderDateEnd);
+            this.pnltop.Controls.Add(this.dateOrderDateBegin);
+            this.pnltop.Controls.Add(this.labApprover);
+            this.pnltop.Controls.Add(this.labPlanDate);
+            this.pnltop.Controls.Add(this.lab2);
+            this.pnltop.Controls.Add(this.labBussinessBaseNo);
+            this.pnltop.Controls.Add(this.labCommon);
+            this.pnltop.Controls.Add(this.labPrepared);
+            this.pnltop.Controls.Add(this.labReqState);
+            this.pnltop.Controls.Add(this.labPurCategory);
+            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.lab1);
             this.pnltop.Controls.Add(this.labOrderDate);
-            this.pnltop.Controls.Add(this.dateOrderDateBegin);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(1370, 78);
             this.pnltop.TabIndex = 1;
             // 
-            // labApprover
-            // 
-            this.labApprover.Location = new System.Drawing.Point(526, 47);
-            this.labApprover.Name = "labApprover";
-            this.labApprover.Size = new System.Drawing.Size(48, 14);
-            this.labApprover.TabIndex = 22;
-            this.labApprover.Text = "审批人：";
-            // 
             // lookUpApprover
             // 
             this.lookUpApprover.EnterMoveNextControl = true;
-            this.lookUpApprover.Location = new System.Drawing.Point(574, 44);
+            this.lookUpApprover.Location = new System.Drawing.Point(594, 44);
             this.lookUpApprover.Name = "lookUpApprover";
             this.lookUpApprover.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.lookUpApprover.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -292,7 +284,7 @@
             this.lookUpApprover.Properties.DisplayMember = "EmpName";
             this.lookUpApprover.Properties.NullText = "";
             this.lookUpApprover.Properties.ValueMember = "AutoId";
-            this.lookUpApprover.Size = new System.Drawing.Size(100, 20);
+            this.lookUpApprover.Size = new System.Drawing.Size(120, 20);
             this.lookUpApprover.TabIndex = 10;
             this.lookUpApprover.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lookUpApprover_KeyDown);
             // 
@@ -307,22 +299,6 @@
             this.checkPlanDate.TabIndex = 6;
             this.checkPlanDate.TabStop = false;
             this.checkPlanDate.CheckedChanged += new System.EventHandler(this.checkPlanDate_CheckedChanged);
-            // 
-            // labPlanDate
-            // 
-            this.labPlanDate.Location = new System.Drawing.Point(20, 47);
-            this.labPlanDate.Name = "labPlanDate";
-            this.labPlanDate.Size = new System.Drawing.Size(84, 14);
-            this.labPlanDate.TabIndex = 20;
-            this.labPlanDate.Text = "计划到货日期：";
-            // 
-            // lab2
-            // 
-            this.lab2.Location = new System.Drawing.Point(230, 47);
-            this.lab2.Name = "lab2";
-            this.lab2.Size = new System.Drawing.Size(4, 14);
-            this.lab2.TabIndex = 19;
-            this.lab2.Text = "-";
             // 
             // datePlanDateEnd
             // 
@@ -365,7 +341,7 @@
             // searchLookUpBussinessBaseNo
             // 
             this.searchLookUpBussinessBaseNo.EnterMoveNextControl = true;
-            this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(731, 14);
+            this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(771, 14);
             this.searchLookUpBussinessBaseNo.Name = "searchLookUpBussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -373,7 +349,7 @@
             this.searchLookUpBussinessBaseNo.Properties.NullText = "";
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
-            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpBussinessBaseNo.TabIndex = 4;
             // 
             // searchLookUpBussinessBaseNoView
@@ -419,34 +395,18 @@
             this.gridColumnAutoId.Caption = "gridColumnAutoId";
             this.gridColumnAutoId.Name = "gridColumnAutoId";
             // 
-            // labBussinessBaseNo
-            // 
-            this.labBussinessBaseNo.Location = new System.Drawing.Point(677, 17);
-            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
-            this.labBussinessBaseNo.Size = new System.Drawing.Size(48, 14);
-            this.labBussinessBaseNo.TabIndex = 16;
-            this.labBussinessBaseNo.Text = "往来方：";
-            // 
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(757, 44);
+            this.textCommon.Location = new System.Drawing.Point(797, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 11;
             // 
-            // labCommon
-            // 
-            this.labCommon.Location = new System.Drawing.Point(691, 47);
-            this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(60, 14);
-            this.labCommon.TabIndex = 14;
-            this.labCommon.Text = "通用查询：";
-            // 
             // comboBoxReqState
             // 
             this.comboBoxReqState.EnterMoveNextControl = true;
-            this.comboBoxReqState.Location = new System.Drawing.Point(913, 14);
+            this.comboBoxReqState.Location = new System.Drawing.Point(1003, 14);
             this.comboBoxReqState.Name = "comboBoxReqState";
             this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -456,16 +416,8 @@
             "审批",
             "关闭",
             "审批中"});
-            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
+            this.comboBoxReqState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxReqState.TabIndex = 5;
-            // 
-            // labPrepared
-            // 
-            this.labPrepared.Location = new System.Drawing.Point(358, 47);
-            this.labPrepared.Name = "labPrepared";
-            this.labPrepared.Size = new System.Drawing.Size(48, 14);
-            this.labPrepared.TabIndex = 11;
-            this.labPrepared.Text = "制单人：";
             // 
             // lookUpPrepared
             // 
@@ -481,21 +433,13 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 9;
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(847, 17);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(60, 14);
-            this.labReqState.TabIndex = 9;
-            this.labReqState.Text = "单据状态：";
             // 
             // lookUpPurCategory
             // 
             this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(562, 14);
+            this.lookUpPurCategory.Location = new System.Drawing.Point(582, 14);
             this.lookUpPurCategory.Name = "lookUpPurCategory";
             this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -505,16 +449,8 @@
             this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
             this.lookUpPurCategory.Properties.NullText = "";
             this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
-            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPurCategory.Size = new System.Drawing.Size(120, 20);
             this.lookUpPurCategory.TabIndex = 3;
-            // 
-            // labPurCategory
-            // 
-            this.labPurCategory.Location = new System.Drawing.Point(496, 17);
-            this.labPurCategory.Name = "labPurCategory";
-            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
-            this.labPurCategory.TabIndex = 7;
-            this.labPurCategory.Text = "采购类型：";
             // 
             // lookUpReqDep
             // 
@@ -529,20 +465,12 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 2;
-            // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(315, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 5;
-            this.labReqDep.Text = "申请部门：";
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(922, 43);
+            this.btnQuery.Location = new System.Drawing.Point(962, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 12;
@@ -567,22 +495,6 @@
             this.dateOrderDateEnd.Size = new System.Drawing.Size(100, 20);
             this.dateOrderDateEnd.TabIndex = 1;
             // 
-            // lab1
-            // 
-            this.lab1.Location = new System.Drawing.Point(192, 17);
-            this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(4, 14);
-            this.lab1.TabIndex = 2;
-            this.lab1.Text = "-";
-            // 
-            // labOrderDate
-            // 
-            this.labOrderDate.Location = new System.Drawing.Point(20, 17);
-            this.labOrderDate.Name = "labOrderDate";
-            this.labOrderDate.Size = new System.Drawing.Size(60, 14);
-            this.labOrderDate.TabIndex = 1;
-            this.labOrderDate.Text = "订购日期：";
-            // 
             // dateOrderDateBegin
             // 
             this.dateOrderDateBegin.EditValue = null;
@@ -600,6 +512,94 @@
             this.dateOrderDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateOrderDateBegin.Size = new System.Drawing.Size(100, 20);
             this.dateOrderDateBegin.TabIndex = 0;
+            // 
+            // labApprover
+            // 
+            this.labApprover.Location = new System.Drawing.Point(546, 47);
+            this.labApprover.Name = "labApprover";
+            this.labApprover.Size = new System.Drawing.Size(48, 14);
+            this.labApprover.TabIndex = 22;
+            this.labApprover.Text = "审批人：";
+            // 
+            // labPlanDate
+            // 
+            this.labPlanDate.Location = new System.Drawing.Point(20, 47);
+            this.labPlanDate.Name = "labPlanDate";
+            this.labPlanDate.Size = new System.Drawing.Size(84, 14);
+            this.labPlanDate.TabIndex = 20;
+            this.labPlanDate.Text = "计划到货日期：";
+            // 
+            // lab2
+            // 
+            this.lab2.Location = new System.Drawing.Point(230, 47);
+            this.lab2.Name = "lab2";
+            this.lab2.Size = new System.Drawing.Size(4, 14);
+            this.lab2.TabIndex = 19;
+            this.lab2.Text = "-";
+            // 
+            // labBussinessBaseNo
+            // 
+            this.labBussinessBaseNo.Location = new System.Drawing.Point(717, 17);
+            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
+            this.labBussinessBaseNo.Size = new System.Drawing.Size(48, 14);
+            this.labBussinessBaseNo.TabIndex = 16;
+            this.labBussinessBaseNo.Text = "往来方：";
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(731, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 14;
+            this.labCommon.Text = "通用查询：";
+            // 
+            // labPrepared
+            // 
+            this.labPrepared.Location = new System.Drawing.Point(358, 47);
+            this.labPrepared.Name = "labPrepared";
+            this.labPrepared.Size = new System.Drawing.Size(48, 14);
+            this.labPrepared.TabIndex = 11;
+            this.labPrepared.Text = "制单人：";
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(937, 17);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(60, 14);
+            this.labReqState.TabIndex = 9;
+            this.labReqState.Text = "单据状态：";
+            // 
+            // labPurCategory
+            // 
+            this.labPurCategory.Location = new System.Drawing.Point(516, 17);
+            this.labPurCategory.Name = "labPurCategory";
+            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
+            this.labPurCategory.TabIndex = 7;
+            this.labPurCategory.Text = "采购类型：";
+            // 
+            // labReqDep
+            // 
+            this.labReqDep.Location = new System.Drawing.Point(315, 17);
+            this.labReqDep.Name = "labReqDep";
+            this.labReqDep.Size = new System.Drawing.Size(60, 14);
+            this.labReqDep.TabIndex = 5;
+            this.labReqDep.Text = "申请部门：";
+            // 
+            // lab1
+            // 
+            this.lab1.Location = new System.Drawing.Point(192, 17);
+            this.lab1.Name = "lab1";
+            this.lab1.Size = new System.Drawing.Size(4, 14);
+            this.lab1.TabIndex = 2;
+            this.lab1.Text = "-";
+            // 
+            // labOrderDate
+            // 
+            this.labOrderDate.Location = new System.Drawing.Point(20, 17);
+            this.labOrderDate.Name = "labOrderDate";
+            this.labOrderDate.Size = new System.Drawing.Size(60, 14);
+            this.labOrderDate.TabIndex = 1;
+            this.labOrderDate.Text = "订购日期：";
             // 
             // pnlMiddle
             // 
@@ -857,7 +857,7 @@
             // 
             // dataColCodeFileName
             // 
-            this.dataColCodeFileName.Caption = "文件名称";
+            this.dataColCodeFileName.Caption = "零件编号";
             this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataColQty
@@ -946,6 +946,9 @@
             this.gridViewOrderHead.IndicatorWidth = 40;
             this.gridViewOrderHead.Name = "gridViewOrderHead";
             this.gridViewOrderHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewOrderHead.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewOrderHead.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewOrderHead.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewOrderHead.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewOrderHead.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewOrderHead.OptionsView.ColumnAutoWidth = false;
@@ -979,7 +982,7 @@
             this.repCheckSelect.Name = "repCheckSelect";
             this.repCheckSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.repCheckSelect.ValueGrayed = false;
-            this.repCheckSelect.EditValueChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
+            this.repCheckSelect.CheckedChanged += new System.EventHandler(this.repCheckSelect_EditValueChanged);
             // 
             // colOrderHeadNo
             // 
@@ -1016,6 +1019,7 @@
             this.colOrderHeadDate.FieldName = "OrderHeadDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
             this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
+            this.colOrderHeadDate.OptionsColumn.AllowFocus = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 3;
             this.colOrderHeadDate.Width = 90;
@@ -1055,7 +1059,7 @@
             this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 5;
-            this.colBussinessBaseNo.Width = 100;
+            this.colBussinessBaseNo.Width = 130;
             // 
             // repSearchBussinessBaseNo
             // 
@@ -1478,6 +1482,7 @@
             // 
             // btnListAdd
             // 
+            this.btnListAdd.Enabled = false;
             this.btnListAdd.Location = new System.Drawing.Point(2, 2);
             this.btnListAdd.Name = "btnListAdd";
             this.btnListAdd.Size = new System.Drawing.Size(40, 21);
@@ -1530,12 +1535,16 @@
             this.gridViewOrderList.IndicatorWidth = 40;
             this.gridViewOrderList.Name = "gridViewOrderList";
             this.gridViewOrderList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewOrderList.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewOrderList.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewOrderList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewOrderList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewOrderList.OptionsNavigation.EnterMoveNextColumn = true;
             this.gridViewOrderList.OptionsView.ColumnAutoWidth = false;
             this.gridViewOrderList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewOrderList.OptionsView.ShowFooter = true;
             this.gridViewOrderList.OptionsView.ShowGroupPanel = false;
+            this.gridViewOrderList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewOrderList_RowClick);
             this.gridViewOrderList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
             this.gridViewOrderList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPrReqList_InitNewRow);
             this.gridViewOrderList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqList_CellValueChanged);
@@ -1607,7 +1616,7 @@
             // 
             this.gridColumnCodeFileName.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumnCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnCodeFileName.Caption = "文件名称";
+            this.gridColumnCodeFileName.Caption = "零件编号";
             this.gridColumnCodeFileName.FieldName = "CodeFileName";
             this.gridColumnCodeFileName.Name = "gridColumnCodeFileName";
             this.gridColumnCodeFileName.Visible = true;

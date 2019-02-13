@@ -1,6 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Base;
-using PSAP.DAO.PURDAO;
+﻿using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -13,53 +11,53 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmApprovalPrReq : DockContent
+    public partial class FrmSettlementApproval : DockContent
     {
         /// <summary>
-        /// 请购单号
+        /// 结账单号
         /// </summary>
-        string prReqNoStr = "";
+        string settlementNoStr = "";
 
-        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
+        FrmSettlementDAO setDAO = new FrmSettlementDAO();
 
-        public FrmApprovalPrReq()
+        public FrmSettlementApproval()
         {
             InitializeComponent();
         }
 
-        public FrmApprovalPrReq(string prReqNo)
+        public FrmSettlementApproval(string settlementNo)
         {
             InitializeComponent();
-            this.prReqNoStr = prReqNo;
+            this.settlementNoStr = settlementNo;
         }
 
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmApprovalPrReq_Load(object sender, EventArgs e)
+        private void FrmSettlementApproval_Load(object sender, EventArgs e)
         {
             try
             {
-                lookUpApprovalType.Properties.DataSource = prReqDAO.QueryApprovalType(false);
+                lookUpApprovalType.Properties.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryApprovalType(false);
 
-                approvalDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr);
-                if (dataSet_PrReq.Tables[0].Rows.Count == 0)
+                approvalDAO.QuerySettlementHead(dataSet_Settlement.Tables[0], settlementNoStr);
+                if (dataSet_Settlement.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("查询请购订单信息错误，请重新操作。");
+                    MessageHandler.ShowMessageBox("查询采购结账单信息错误，请重新操作。");
                     return;
                 }
-                string typeNoStr = DataTypeConvert.GetString(dataSet_PrReq.Tables[0].Rows[0]["ApprovalType"]);
-                int approvalCatInt = DataTypeConvert.GetInt(dataSet_PrReq.Tables[0].Rows[0]["ApprovalCat"]);
-                approvalDAO.QueryPrReqApprovalInfo(dataSet_PrReq.Tables[1], prReqNoStr, typeNoStr);
+                string typeNoStr = DataTypeConvert.GetString(dataSet_Settlement.Tables[0].Rows[0]["ApprovalType"]);
+                int approvalCatInt = DataTypeConvert.GetInt(dataSet_Settlement.Tables[0].Rows[0]["ApprovalCat"]);
+                approvalDAO.QuerySettlementApprovalInfo(dataSet_Settlement.Tables[1], settlementNoStr, typeNoStr);
 
                 if (approvalCatInt == 0)
                 {
-                    for (int i = 0; i < dataSet_PrReq.Tables[1].Rows.Count; i++)
+                    for (int i = 0; i < dataSet_Settlement.Tables[1].Rows.Count; i++)
                     {
-                        if (DataTypeConvert.GetString(dataSet_PrReq.Tables[1].Rows[i]["prReqNo"]) == "")
+                        if (DataTypeConvert.GetString(dataSet_Settlement.Tables[1].Rows[i]["SettlementNo"]) == "")
                         {
-                            if (DataTypeConvert.GetInt(dataSet_PrReq.Tables[1].Rows[i]["Approver"]) != SystemInfo.user.AutoId)
+                            if (DataTypeConvert.GetInt(dataSet_Settlement.Tables[1].Rows[i]["Approver"]) != SystemInfo.user.AutoId)
                                 btnApproval.Enabled = false;
                             else
                                 btnApproval.Enabled = true;
@@ -69,7 +67,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else if (approvalCatInt == 1 || approvalCatInt == 2)
                 {
-                    if (dataSet_PrReq.Tables[1].Select(string.Format("IsNull(prReqNo,'')='' and Approver={0}", SystemInfo.user.AutoId)).Length == 0)
+                    if (dataSet_Settlement.Tables[1].Select(string.Format("IsNull(SettlementNo,'')='' and Approver={0}", SystemInfo.user.AutoId)).Length == 0)
                     {
                         btnApproval.Enabled = false;
                         return;
@@ -85,7 +83,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewOrderAppInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewSettleAppInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
@@ -100,21 +98,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_WarehouseState_Desc(e.Value.ToString());
             }
         }
 
@@ -125,18 +109,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                switch (e.Value.ToString())
-                {
-                    case "0":
-                        e.DisplayText = "串行审批";
-                        break;                        
-                    case "1":
-                        e.DisplayText = "并行审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "多选一审核";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_ApprovalCat_Desc(e.Value.ToString());
             }
         }
 
@@ -147,13 +120,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dataSet_PrReq.Tables[0].Rows[0]["Select"] = true;
+                dataSet_Settlement.Tables[0].Rows[0]["Select"] = true;
                 int successCountInt = 0;
-                if (!prReqDAO.PrReqApprovalInfo_Multi(dataSet_PrReq.Tables[0], ref successCountInt))
+                if (!setDAO.SettlementApprovalInfo_Multi(dataSet_Settlement.Tables[0], ref successCountInt))
                 {
 
                 }
-                if(successCountInt>0)
+                if (successCountInt > 0)
                 {
                     MessageHandler.ShowMessageBox("审批成功。");
                     this.DialogResult = DialogResult.OK;

@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Base;
+﻿using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -13,54 +12,54 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmApprovalOrder : DockContent
+    public partial class FrmPrReqApproval : DockContent
     {
         /// <summary>
-        /// 采购单号
+        /// 请购单号
         /// </summary>
-        string orderHeadNoStr ="";
+        string prReqNoStr = "";
 
-        FrmOrderDAO orderDAO = new FrmOrderDAO();
+        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
 
-        public FrmApprovalOrder()
+        public FrmPrReqApproval()
         {
             InitializeComponent();
         }
 
-        public FrmApprovalOrder(string orderHeadNo)
+        public FrmPrReqApproval(string prReqNo)
         {
             InitializeComponent();
-            this.orderHeadNoStr = orderHeadNo;
+            this.prReqNoStr = prReqNo;
         }
 
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmApprovalOrder_Load(object sender, EventArgs e)
+        private void FrmApprovalPrReq_Load(object sender, EventArgs e)
         {
             try
             {
-                lookUpApprovalType.Properties.DataSource = new FrmPrReqDAO().QueryApprovalType(false);
+                lookUpApprovalType.Properties.DataSource = new FrmCommonDAO().QueryApprovalType(false);
 
-                approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
-                if (dataSet_Order.Tables[0].Rows.Count == 0)
+                approvalDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr);
+                if (dataSet_PrReq.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("查询采购订单信息错误，请重新操作。");
+                    MessageHandler.ShowMessageBox("查询请购订单信息错误，请重新操作。");
                     return;
                 }
-                string typeNoStr = DataTypeConvert.GetString(dataSet_Order.Tables[0].Rows[0]["ApprovalType"]);
-                int approvalCatInt = DataTypeConvert.GetInt(dataSet_Order.Tables[0].Rows[0]["ApprovalCat"]);
-                approvalDAO.QueryOrderApprovalInfo(dataSet_Order.Tables[1], orderHeadNoStr, typeNoStr);
+                string typeNoStr = DataTypeConvert.GetString(dataSet_PrReq.Tables[0].Rows[0]["ApprovalType"]);
+                int approvalCatInt = DataTypeConvert.GetInt(dataSet_PrReq.Tables[0].Rows[0]["ApprovalCat"]);
+                approvalDAO.QueryPrReqApprovalInfo(dataSet_PrReq.Tables[1], prReqNoStr, typeNoStr);
 
                 if (approvalCatInt == 0)
                 {
-                    for (int i = 0; i < dataSet_Order.Tables[1].Rows.Count; i++)
+                    for (int i = 0; i < dataSet_PrReq.Tables[1].Rows.Count; i++)
                     {
-                        if (DataTypeConvert.GetString(dataSet_Order.Tables[1].Rows[i]["OrderHeadNo"]) == "")
+                        if (DataTypeConvert.GetString(dataSet_PrReq.Tables[1].Rows[i]["prReqNo"]) == "")
                         {
-                            if (DataTypeConvert.GetInt(dataSet_Order.Tables[1].Rows[i]["Approver"]) != SystemInfo.user.AutoId)
-                                btnApproval.Enabled = false;                                
+                            if (DataTypeConvert.GetInt(dataSet_PrReq.Tables[1].Rows[i]["Approver"]) != SystemInfo.user.AutoId)
+                                btnApproval.Enabled = false;
                             else
                                 btnApproval.Enabled = true;
                             return;
@@ -69,7 +68,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else if (approvalCatInt == 1 || approvalCatInt == 2)
                 {
-                    if (dataSet_Order.Tables[1].Select(string.Format("IsNull(OrderHeadNo,'')='' and Approver={0}", SystemInfo.user.AutoId)).Length == 0)
+                    if (dataSet_PrReq.Tables[1].Select(string.Format("IsNull(prReqNo,'')='' and Approver={0}", SystemInfo.user.AutoId)).Length == 0)
                     {
                         btnApproval.Enabled = false;
                         return;
@@ -100,21 +99,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -125,18 +110,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                switch (e.Value.ToString())
-                {
-                    case "0":
-                        e.DisplayText = "串行审批";
-                        break;                        
-                    case "1":
-                        e.DisplayText = "并行审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "多选一审核";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_ApprovalCat_Desc(e.Value.ToString());
             }
         }
 
@@ -147,9 +121,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                dataSet_Order.Tables[0].Rows[0]["Select"] = true;
+                dataSet_PrReq.Tables[0].Rows[0]["Select"] = true;
                 int successCountInt = 0;
-                if (!orderDAO.OrderApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt))
+                if (!prReqDAO.PrReqApprovalInfo_Multi(dataSet_PrReq.Tables[0], ref successCountInt))
                 {
 
                 }

@@ -7,13 +7,10 @@ using PSAP.DAO.PURDAO;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PSAP.PSAPCommon
 {
@@ -22,12 +19,11 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 处理报表打印
         /// </summary>
-        /// <param name="DefReport"></param>
-        /// <param name="repxFileName"></param>
-        /// <param name="outputdataset"></param>
-        /// <param name="paralist"></param>
+        /// <param name="tableNameStr">数据表名</param>
+        /// <param name="bindingDataSet">绑定的DataSet</param>
+        /// <param name="paraList">参数列表</param>
         /// <param name="handleType">处理类型：1 预览 2 打印 3 设计</param>
-        public static void XtraReport_Handle(XtraReport DefReport, string tableNameStr, DataSet outputdataset, List<Parameter> paralist, int handleType)
+        public void XtraReport_Handle(string tableNameStr, DataSet bindingDataSet, List<Parameter> paraList, int handleType)
         {
             FrmDocumentTempletDAO docDAO = new FrmDocumentTempletDAO();
             DataTable docTempletTable = docDAO.QueryDocTemplet(tableNameStr);
@@ -42,38 +38,39 @@ namespace PSAP.PSAPCommon
 
             string iniPath = "Report\\DocTemplet.ini";
             string sectionStr = "DocTemplet";
+            FileHandler fileHandler = new FileHandler();
             if (File.Exists(path))
             {
                 if (File.Exists(iniPath))
                 {
-                    string localVerStr = FileHandler.IniReadValue(iniPath, sectionStr, tableNameStr);
+                    string localVerStr = fileHandler.IniReadValue(iniPath, sectionStr, tableNameStr);
                     if (localVerStr != docVerStr && handleType != 3)
                     {
                         Byte[] fileByte = docDAO.QueryDocTemplet_FileByte(tableNameStr);
-                        FileHandler.ByteArrayToFile(fileByte, path);
-                        FileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
+                        fileHandler.ByteArrayToFile(fileByte, path);
+                        fileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
                     }
                 }
                 else
                 {
                     Byte[] fileByte = docDAO.QueryDocTemplet_FileByte(tableNameStr);
-                    FileHandler.ByteArrayToFile(fileByte, path);
-                    FileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
+                    fileHandler.ByteArrayToFile(fileByte, path);
+                    fileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
                 }
             }
             else
             {
                 Byte[] fileByte = docDAO.QueryDocTemplet_FileByte(tableNameStr);
-                FileHandler.ByteArrayToFile(fileByte, path);
-                FileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
+                fileHandler.ByteArrayToFile(fileByte, path);
+                fileHandler.IniWriteValue(iniPath, sectionStr, tableNameStr, docVerStr);
             }
             XtraReport report = new XtraReport();
             report.LoadLayout(path);
 
-            report.DataSource = outputdataset;
-            if (paralist != null)
+            report.DataSource = bindingDataSet;
+            if (paraList != null)
             {
-                foreach (Parameter para in paralist)
+                foreach (Parameter para in paraList)
                 {
                     try
                     {
@@ -155,18 +152,18 @@ namespace PSAP.PSAPCommon
             }
         }
 
-        public static void XtraReport_Preview(XtraReport report)
+        public void XtraReport_Preview(XtraReport report)
         {
             report.PrintingSystem.PageSettings.PrinterName = SystemInfo.DefaultPrinterName;
             report.ShowPreviewDialog();
         }
 
-        public static void XtraReport_Print(XtraReport report)
+        public void XtraReport_Print(XtraReport report)
         {
             report.Print(SystemInfo.DefaultPrinterName);
         }
 
-        public static void XtraReport_Designer(XtraReport report, string path)
+        public void XtraReport_Designer(XtraReport report, string path)
         {
             XRDesignFormEx designForm = new XRDesignFormEx();
             designForm.DesignPanel.SetCommandVisibility(new ReportCommand[]{
@@ -185,8 +182,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 得到包含系统信息的参数列表
         /// </summary>
-        /// <returns></returns>
-        public static List<Parameter> GetSystemInfo_ParamList()
+        public List<Parameter> GetSystemInfo_ParamList()
         {
             List<Parameter> paramList = new List<Parameter>();
             Parameter p1 = new Parameter();
@@ -217,7 +213,14 @@ namespace PSAP.PSAPCommon
             p7.Name = "公司商标";
             p7.Value = SystemInfo.CompImage;
             paramList.Add(p7);
-
+            Parameter p8 = new Parameter();
+            p8.Name = "打印时间";
+            p8.Value = BaseSQL.GetServerDateTime();
+            paramList.Add(p8);
+            Parameter p9 = new Parameter();
+            p9.Name = "打印人";
+            p9.Value = SystemInfo.user.EmpName;
+            paramList.Add(p9);
             return paramList;
         }
 

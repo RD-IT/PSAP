@@ -42,23 +42,44 @@ private void btnCancel_Click(object sender, EventArgs e)
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
-            EncryptMD5 en = new EncryptMD5(txtPassword.Text);//实例化EncryptMD5, 加密后值引用en.str2
-            if (txtUserID.Text == string.Empty )
+            try
             {
-                MessageBox.Show(string.Format("用户ID不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtUserID.Focus();
-            }
+                EncryptMD5 en = new EncryptMD5(txtPassword.Text);//实例化EncryptMD5, 加密后值引用en.str2
+                if (txtUserID.Text == string.Empty)
+                {
+                    MessageBox.Show(string.Format("用户ID不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtUserID.Focus();
+                }
 
-            if (txtPassword.Text == string.Empty)
+                if (txtPassword.Text == string.Empty)
+                {
+                    MessageBox.Show(string.Format("密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtPassword.Focus();
+                }
+
+                if (FrmLoginBLL.CheckUser(txtUserID.Text, en.str2, cboLanguage))// en.str2为加密后密码
+                {
+                    new SystemHandler().InitializationSystemInfo();
+
+                    if (SocketHandler.IsCheckServer)//启动服务端检测
+                    {
+                        SocketHandler socket = new SocketHandler();
+                        string messageStr = "";
+                        if (!socket.ConnectServer(ref messageStr))
+                        {
+                            MessageHandler.ShowMessageBox(messageStr);
+                            return;
+                        }
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show(string.Format("密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtPassword.Focus();
+                ExceptionHandler.HandleException(this.Text + "--用户登录错误。", ex);
             }
-
-            FrmLoginBLL.CheckUser(txtUserID.Text, en.str2,cboLanguage);// en.str2为加密后密码
-
-            
         }
 
         //private void txtUserID_KeyPress(object sender, KeyPressEventArgs e)
@@ -91,5 +112,6 @@ private void btnCancel_Click(object sender, EventArgs e)
                 MessageBox.Show(string.Format("数据库连接错误，请检查服务器连接情况！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
     }
 }

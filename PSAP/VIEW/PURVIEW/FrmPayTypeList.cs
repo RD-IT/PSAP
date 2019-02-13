@@ -1,11 +1,9 @@
-﻿using DevExpress.XtraEditors;
-using PSAP.DAO.PURDAO;
+﻿using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -41,7 +39,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                repItemLookUpPayType.DataSource = new DAO.PURDAO.FrmOrderDAO().QueryPayType(false);
+                repItemLookUpPayType.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryPayType(false);
 
                 btnRefresh_Click(null, null);
             }

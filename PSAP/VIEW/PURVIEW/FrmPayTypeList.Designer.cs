@@ -281,6 +281,7 @@
             this.Controls.Add(this.pnlToolBar);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "FrmPayTypeList";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -32,8 +32,6 @@
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.btnPayTypeList = new DevExpress.XtraEditors.SimpleButton();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
-            this.labPayTypeNoText = new DevExpress.XtraEditors.LabelControl();
-            this.labPayTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.textPayTypeNoText = new DevExpress.XtraEditors.TextEdit();
             this.bSPayType = new System.Windows.Forms.BindingSource(this.components);
             this.dSPayType = new System.Data.DataSet();
@@ -42,6 +40,8 @@
             this.dataColPayTypeNo = new System.Data.DataColumn();
             this.dataColPayTypeNoText = new System.Data.DataColumn();
             this.textPayTypeNo = new DevExpress.XtraEditors.TextEdit();
+            this.labPayTypeNoText = new DevExpress.XtraEditors.LabelControl();
+            this.labPayTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridCrlPayType = new DevExpress.XtraGrid.GridControl();
             this.gridViewPayType = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -74,8 +74,7 @@
             // 
             // btnPayTypeList
             // 
-            this.btnPayTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPayTypeList.Location = new System.Drawing.Point(498, 9);
+            this.btnPayTypeList.Location = new System.Drawing.Point(496, 9);
             this.btnPayTypeList.Name = "btnPayTypeList";
             this.btnPayTypeList.Size = new System.Drawing.Size(75, 23);
             this.btnPayTypeList.TabIndex = 1;
@@ -85,38 +84,22 @@
             // 
             // pnlEdit
             // 
-            this.pnlEdit.Controls.Add(this.labPayTypeNoText);
-            this.pnlEdit.Controls.Add(this.labPayTypeNo);
             this.pnlEdit.Controls.Add(this.textPayTypeNoText);
             this.pnlEdit.Controls.Add(this.textPayTypeNo);
+            this.pnlEdit.Controls.Add(this.labPayTypeNoText);
+            this.pnlEdit.Controls.Add(this.labPayTypeNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
             this.pnlEdit.Size = new System.Drawing.Size(584, 68);
             this.pnlEdit.TabIndex = 7;
             // 
-            // labPayTypeNoText
-            // 
-            this.labPayTypeNoText.Location = new System.Drawing.Point(241, 24);
-            this.labPayTypeNoText.Name = "labPayTypeNoText";
-            this.labPayTypeNoText.Size = new System.Drawing.Size(48, 14);
-            this.labPayTypeNoText.TabIndex = 15;
-            this.labPayTypeNoText.Text = "付款说明";
-            // 
-            // labPayTypeNo
-            // 
-            this.labPayTypeNo.Location = new System.Drawing.Point(36, 24);
-            this.labPayTypeNo.Name = "labPayTypeNo";
-            this.labPayTypeNo.Size = new System.Drawing.Size(48, 14);
-            this.labPayTypeNo.TabIndex = 12;
-            this.labPayTypeNo.Text = "付款类型";
-            // 
             // textPayTypeNoText
             // 
             this.textPayTypeNoText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSPayType, "PayTypeNoText", true));
-            this.textPayTypeNoText.Location = new System.Drawing.Point(305, 21);
+            this.textPayTypeNoText.Location = new System.Drawing.Point(346, 21);
             this.textPayTypeNoText.Name = "textPayTypeNoText";
-            this.textPayTypeNoText.Size = new System.Drawing.Size(120, 20);
+            this.textPayTypeNoText.Size = new System.Drawing.Size(160, 20);
             this.textPayTypeNoText.TabIndex = 1;
             // 
             // bSPayType
@@ -159,8 +142,24 @@
             this.textPayTypeNo.EnterMoveNextControl = true;
             this.textPayTypeNo.Location = new System.Drawing.Point(101, 21);
             this.textPayTypeNo.Name = "textPayTypeNo";
-            this.textPayTypeNo.Size = new System.Drawing.Size(120, 20);
+            this.textPayTypeNo.Size = new System.Drawing.Size(160, 20);
             this.textPayTypeNo.TabIndex = 0;
+            // 
+            // labPayTypeNoText
+            // 
+            this.labPayTypeNoText.Location = new System.Drawing.Point(282, 24);
+            this.labPayTypeNoText.Name = "labPayTypeNoText";
+            this.labPayTypeNoText.Size = new System.Drawing.Size(48, 14);
+            this.labPayTypeNoText.TabIndex = 15;
+            this.labPayTypeNoText.Text = "付款说明";
+            // 
+            // labPayTypeNo
+            // 
+            this.labPayTypeNo.Location = new System.Drawing.Point(36, 24);
+            this.labPayTypeNo.Name = "labPayTypeNo";
+            this.labPayTypeNo.Size = new System.Drawing.Size(48, 14);
+            this.labPayTypeNo.TabIndex = 12;
+            this.labPayTypeNo.Text = "付款类型";
             // 
             // pnlGrid
             // 
@@ -214,7 +213,7 @@
             this.colPayTypeNo.Name = "colPayTypeNo";
             this.colPayTypeNo.Visible = true;
             this.colPayTypeNo.VisibleIndex = 0;
-            this.colPayTypeNo.Width = 120;
+            this.colPayTypeNo.Width = 160;
             // 
             // colPayTypeNoText
             // 
@@ -224,7 +223,7 @@
             this.colPayTypeNoText.Name = "colPayTypeNoText";
             this.colPayTypeNoText.Visible = true;
             this.colPayTypeNoText.VisibleIndex = 1;
-            this.colPayTypeNoText.Width = 120;
+            this.colPayTypeNoText.Width = 160;
             // 
             // FrmPayType
             // 

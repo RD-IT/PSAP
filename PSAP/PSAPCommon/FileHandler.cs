@@ -24,7 +24,7 @@ namespace PSAP.PSAPCommon
         /// 把DataGridView内容保存到Excel中
         /// </summary>
         /// <param name="dgv">DataGridView控件</param>
-        public static void SaveDataGridViewExportToExcel(DataGridView dgv)
+        public void SaveDataGridViewExportToExcel(DataGridView dgv)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Excel files (*.xls)|*.xls";
@@ -112,7 +112,7 @@ namespace PSAP.PSAPCommon
         /// 把DataTable内容保存到Excel中
         /// </summary>
         /// <param name="tmpDataTable">数据表</param>
-        public static void SaveDataTableExportToExcel(DataTable tmpDataTable)
+        public void SaveDataTableExportToExcel(DataTable tmpDataTable)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Excel files (*.xls)|*.xls";
@@ -234,7 +234,7 @@ namespace PSAP.PSAPCommon
         /// 将图片文件转换为Byte数组
         /// </summary>
         /// <param name="filePathStr">图片文件路径</param>
-        public static byte[] ImageFileToByteArray(string filePathStr)
+        public byte[] ImageFileToByteArray(string filePathStr)
         {
             if (File.Exists(filePathStr))
             {
@@ -254,7 +254,7 @@ namespace PSAP.PSAPCommon
         /// 将Byte数组转换为Image类型变量
         /// </summary>
         /// <param name="bytes">数据流</param>
-        public static Image StreamToImage(byte[] bytes)
+        public Image StreamToImage(byte[] bytes)
         {
             MemoryStream ms = new MemoryStream(bytes);
             ms.Position = 0;
@@ -280,7 +280,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 将文件转换为Byte数组
         /// </summary>
-        public static Byte[] FileToByteArray(string filePathStr,ref long streamLength)
+        public Byte[] FileToByteArray(string filePathStr,ref long streamLength)
         {
             if (File.Exists(filePathStr))
             {
@@ -298,7 +298,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 将Byte数组保存为指定路径文件
         /// </summary>
-        public static void ByteArrayToFile(Byte[] bytes, string filePathStr)
+        public void ByteArrayToFile(Byte[] bytes, string filePathStr)
         {
             MemoryStream mStream = new MemoryStream(bytes);
             string file = string.Format(filePathStr,
@@ -315,7 +315,7 @@ namespace PSAP.PSAPCommon
         /// <param name="section">项目名称(如 [TypeName] )</param> 
         /// <param name="key">键</param> 
         /// <param name="value">值</param> 
-        public static void IniWriteValue(string iniPath, string section, string key, string value)
+        public void IniWriteValue(string iniPath, string section, string key, string value)
         {
             WritePrivateProfileString(section, key, value, iniPath);
         }
@@ -325,7 +325,7 @@ namespace PSAP.PSAPCommon
         /// </summary> 
         /// <param name="section">项目名称(如 [TypeName] )</param> 
         /// <param name="key">键</param> 
-        public static string IniReadValue(string iniPath, string section, string key)
+        public string IniReadValue(string iniPath, string section, string key)
         {
             StringBuilder temp = new StringBuilder(500);
             int i = GetPrivateProfileString(section, key, "", temp, 500, iniPath);

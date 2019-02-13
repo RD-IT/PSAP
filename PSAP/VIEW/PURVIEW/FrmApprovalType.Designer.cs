@@ -40,12 +40,12 @@
             this.bSApprovalType = new System.Windows.Forms.BindingSource(this.components);
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.labApprovalCatDesc = new DevExpress.XtraEditors.LabelControl();
-            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
             this.radioApprovalCat = new DevExpress.XtraEditors.RadioGroup();
-            this.labTypeNoText = new DevExpress.XtraEditors.LabelControl();
-            this.labTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.textTypeNoText = new DevExpress.XtraEditors.TextEdit();
             this.textTypeNo = new DevExpress.XtraEditors.TextEdit();
+            this.labApprovalCat = new DevExpress.XtraEditors.LabelControl();
+            this.labTypeNoText = new DevExpress.XtraEditors.LabelControl();
+            this.labTypeNo = new DevExpress.XtraEditors.LabelControl();
             this.gridCrlApprovalType = new DevExpress.XtraGrid.GridControl();
             this.gridViewApprovalType = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,8 +80,7 @@
             // 
             // btnApprovalList
             // 
-            this.btnApprovalList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApprovalList.Location = new System.Drawing.Point(726, 9);
+            this.btnApprovalList.Location = new System.Drawing.Point(496, 9);
             this.btnApprovalList.Name = "btnApprovalList";
             this.btnApprovalList.Size = new System.Drawing.Size(75, 23);
             this.btnApprovalList.TabIndex = 0;
@@ -134,12 +133,12 @@
             // pnlEdit
             // 
             this.pnlEdit.Controls.Add(this.labApprovalCatDesc);
-            this.pnlEdit.Controls.Add(this.labApprovalCat);
             this.pnlEdit.Controls.Add(this.radioApprovalCat);
-            this.pnlEdit.Controls.Add(this.labTypeNoText);
-            this.pnlEdit.Controls.Add(this.labTypeNo);
             this.pnlEdit.Controls.Add(this.textTypeNoText);
             this.pnlEdit.Controls.Add(this.textTypeNo);
+            this.pnlEdit.Controls.Add(this.labApprovalCat);
+            this.pnlEdit.Controls.Add(this.labTypeNoText);
+            this.pnlEdit.Controls.Add(this.labTypeNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
@@ -157,18 +156,10 @@
             this.labApprovalCatDesc.Text = "注：串行审批是指必须按照审批信息中的顺序，审批人进行逐一审批，全部审批人通过后订单修改审批状态；\r\n      并行审批是指无须按照审批信息中的顺序，审批人直接进" +
     "行审批，全部审批人通过后订单修改审批状态；\r\n\r\n";
             // 
-            // labApprovalCat
-            // 
-            this.labApprovalCat.Location = new System.Drawing.Point(446, 24);
-            this.labApprovalCat.Name = "labApprovalCat";
-            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
-            this.labApprovalCat.TabIndex = 16;
-            this.labApprovalCat.Text = "审批方式";
-            // 
             // radioApprovalCat
             // 
             this.radioApprovalCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "ApprovalCat", true));
-            this.radioApprovalCat.Location = new System.Drawing.Point(512, 20);
+            this.radioApprovalCat.Location = new System.Drawing.Point(592, 20);
             this.radioApprovalCat.Name = "radioApprovalCat";
             this.radioApprovalCat.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioApprovalCat.Properties.Appearance.Options.UseBackColor = true;
@@ -179,9 +170,35 @@
             this.radioApprovalCat.Size = new System.Drawing.Size(198, 22);
             this.radioApprovalCat.TabIndex = 2;
             // 
+            // textTypeNoText
+            // 
+            this.textTypeNoText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "TypeNoText", true));
+            this.textTypeNoText.EnterMoveNextControl = true;
+            this.textTypeNoText.Location = new System.Drawing.Point(344, 21);
+            this.textTypeNoText.Name = "textTypeNoText";
+            this.textTypeNoText.Size = new System.Drawing.Size(160, 20);
+            this.textTypeNoText.TabIndex = 1;
+            // 
+            // textTypeNo
+            // 
+            this.textTypeNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "TypeNo", true));
+            this.textTypeNo.EnterMoveNextControl = true;
+            this.textTypeNo.Location = new System.Drawing.Point(101, 21);
+            this.textTypeNo.Name = "textTypeNo";
+            this.textTypeNo.Size = new System.Drawing.Size(160, 20);
+            this.textTypeNo.TabIndex = 0;
+            // 
+            // labApprovalCat
+            // 
+            this.labApprovalCat.Location = new System.Drawing.Point(526, 24);
+            this.labApprovalCat.Name = "labApprovalCat";
+            this.labApprovalCat.Size = new System.Drawing.Size(48, 14);
+            this.labApprovalCat.TabIndex = 16;
+            this.labApprovalCat.Text = "审批方式";
+            // 
             // labTypeNoText
             // 
-            this.labTypeNoText.Location = new System.Drawing.Point(240, 24);
+            this.labTypeNoText.Location = new System.Drawing.Point(280, 24);
             this.labTypeNoText.Name = "labTypeNoText";
             this.labTypeNoText.Size = new System.Drawing.Size(48, 14);
             this.labTypeNoText.TabIndex = 15;
@@ -194,24 +211,6 @@
             this.labTypeNo.Size = new System.Drawing.Size(48, 14);
             this.labTypeNo.TabIndex = 12;
             this.labTypeNo.Text = "类型编码";
-            // 
-            // textTypeNoText
-            // 
-            this.textTypeNoText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "TypeNoText", true));
-            this.textTypeNoText.EnterMoveNextControl = true;
-            this.textTypeNoText.Location = new System.Drawing.Point(304, 21);
-            this.textTypeNoText.Name = "textTypeNoText";
-            this.textTypeNoText.Size = new System.Drawing.Size(120, 20);
-            this.textTypeNoText.TabIndex = 1;
-            // 
-            // textTypeNo
-            // 
-            this.textTypeNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSApprovalType, "TypeNo", true));
-            this.textTypeNo.EnterMoveNextControl = true;
-            this.textTypeNo.Location = new System.Drawing.Point(101, 21);
-            this.textTypeNo.Name = "textTypeNo";
-            this.textTypeNo.Size = new System.Drawing.Size(120, 20);
-            this.textTypeNo.TabIndex = 0;
             // 
             // gridCrlApprovalType
             // 
@@ -258,7 +257,7 @@
             this.colTypeNo.Name = "colTypeNo";
             this.colTypeNo.Visible = true;
             this.colTypeNo.VisibleIndex = 0;
-            this.colTypeNo.Width = 120;
+            this.colTypeNo.Width = 160;
             // 
             // colTypeNoText
             // 
@@ -268,7 +267,7 @@
             this.colTypeNoText.Name = "colTypeNoText";
             this.colTypeNoText.Visible = true;
             this.colTypeNoText.VisibleIndex = 1;
-            this.colTypeNoText.Width = 120;
+            this.colTypeNoText.Width = 160;
             // 
             // colApprovalCat
             // 

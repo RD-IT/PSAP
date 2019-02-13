@@ -40,5 +40,7 @@ namespace PSAP.VIEW.BSVIEW
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = listBoxControl2.SelectedItem.ToString();
         }
 
+        
+
     }
 }

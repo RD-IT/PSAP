@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+﻿using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -42,9 +42,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
-                repItemLookUpTypeNo.DataSource = prReqDAO.QueryApprovalType(false);
-                repItemLookUpApprover.DataSource = prReqDAO.QueryUserInfo(false);
+                FrmCommonDAO commonDAO = new FrmCommonDAO();
+                repItemLookUpTypeNo.DataSource = commonDAO.QueryApprovalType(false);
+                repItemLookUpApprover.DataSource = commonDAO.QueryUserInfo(false);
 
                 if (editForm == null)
                 {
@@ -62,8 +62,11 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.CheckControl += CheckControl;
                     editForm.SaveRowBefore += SaveRowBefore;
                     editForm.DeleteRowBefore += DeleteRowBefore;
+                    editForm.ButtonList.Add(btnUp);
+                    editForm.ButtonList.Add(btnDown);
                     editForm.DeleteAfterRefresh = true;
-                    editForm.btnSaveExcel.Visible = false;
+                    //editForm.btnSaveExcel.Visible = false;
+                    editForm.VisibleSearchContrl = false;
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Base;
+using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -15,6 +16,7 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmPrReqQuery : DockContent
     {
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
 
         public FrmPrReqQuery()
         {
@@ -22,24 +24,25 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 窗体加载事件错误
+        /// 窗体加载事件
         /// </summary>
         private void FrmPrReqQuery_Load(object sender, EventArgs e)
         {
             try
             {
-                lookUpReqDep.Properties.DataSource = prReqDAO.QueryDepartment(true);
+                lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
-                lookUpApplicant.Properties.DataSource = prReqDAO.QueryUserInfo(true);
+                lookUpApplicant.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpApplicant.EditValue = SystemInfo.user.EmpName;
-                repositoryItemLookUpEdit1.DataSource = prReqDAO.QueryDepartment(false);
-                repositoryItemLookUpEdit2.DataSource = prReqDAO.QueryPurCategory(false);
+                repositoryItemLookUpEdit1.DataSource = commonDAO.QueryDepartment(false);
+                repositoryItemLookUpEdit2.DataSource = commonDAO.QueryPurCategory(false);
 
-                dateReqDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateReqDateEnd.DateTime = DateTime.Now.Date;
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateReqDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateReqDateEnd.DateTime = nowDate.Date;
 
                 gridBottomPrReq.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 
@@ -58,21 +61,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Column.FieldName == "ReqState")
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -94,17 +83,17 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? lookUpReqDep.EditValue.ToString() : "";
-                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? lookUpPurCategory.EditValue.ToString() : "";
+                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
+                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
-                string empNameStr = lookUpApplicant.ItemIndex > 0 ? lookUpApplicant.EditValue.ToString() : "";
+                string empNameStr = lookUpApplicant.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpApplicant.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
                 dataSet_PrReq.Tables[0].Clear();
                 //prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, commonStr, false);
 
                 string querySqlStr = prReqDAO.QueryPrReqHead_SQL(dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, -1, commonStr, false);
 
-                string countSqlStr = prReqDAO.QuerySqlTranTotalCountSql(querySqlStr);
+                string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqHead", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
@@ -139,6 +128,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     string prReqNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]);
                     FrmPrReq.queryPrReqNo = prReqNoStr;
+                    FrmPrReq.queryListAutoId = 0;
                     ViewHandler.ShowRightWindow("FrmPrReq");
                 }
             }

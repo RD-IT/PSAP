@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using PSAP.DAO.PURDAO;
+﻿using PSAP.DAO.BSDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmProjectList : DockContent
     {
-        FrmOrderDAO orderDAO = new FrmOrderDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmBaseEdit editForm = null;
 
         public FrmProjectList()
@@ -29,7 +28,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                searchLookUpBussinessBaseNo.Properties.DataSource = orderDAO.QueryBussinessBaseInfo(false);
+                searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(false);
 
                 if (editForm == null)
                 {
@@ -44,8 +43,10 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterBindingSource = bSProjectList;
                     editForm.MasterEditPanel = pnlEdit;
                     editForm.PrimaryKeyControl = textProjectNo;
+                    editForm.OtherNoChangeControl = new List<Control>() { textProjectName };
                     editForm.BrowseXtraGridView = gridViewProjectList;
                     editForm.CheckControl += CheckControl;
+                    editForm.ButtonList.Add(btnStnList);
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
@@ -100,18 +101,28 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnStnList_Click(object sender, EventArgs e)
         {
-            //string projectNoStr = DataTypeConvert.GetString(gridViewProjectList.GetFocusedDataRow()["ProjectNo"]);
-            //FrmStnList.projectNoStr = projectNoStr;
-            //ViewHandler.ShowRightWindow("FrmStnList");
-            if (!editForm.EditState)
+            try
             {
-                DataRow dr = gridViewProjectList.GetFocusedDataRow();
-                FrmStnList stnList = new FrmStnList(DataTypeConvert.GetString(dr["ProjectNo"]),DataTypeConvert.GetString(dr["ProjectName"]));
-                stnList.ShowDialog();
+                //string projectNoStr = DataTypeConvert.GetString(gridViewProjectList.GetFocusedDataRow()["ProjectNo"]);
+                //FrmStnList.projectNoStr = projectNoStr;
+                //ViewHandler.ShowRightWindow("FrmStnList");
+                if (!editForm.EditState)
+                {
+                    DataRow dr = gridViewProjectList.GetFocusedDataRow();
+                    if (dr != null)
+                    {
+                        FrmStnList stnList = new FrmStnList(DataTypeConvert.GetString(dr["ProjectNo"]), DataTypeConvert.GetString(dr["ProjectName"]));
+                        stnList.ShowDialog();
+                    }
+                }
+                else
+                {
+                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                ExceptionHandler.HandleException(this.Text + "--设定站号信息事件错误。", ex);
             }
         }
     }

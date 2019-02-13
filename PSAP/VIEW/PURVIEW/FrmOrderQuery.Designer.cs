@@ -30,34 +30,36 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.spinprReqListAutoId = new DevExpress.XtraEditors.SpinEdit();
+            this.checkprReqListAutoId = new DevExpress.XtraEditors.CheckEdit();
             this.checkPlanDate = new DevExpress.XtraEditors.CheckEdit();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
-            this.labPlanDate = new DevExpress.XtraEditors.LabelControl();
             this.searchLookUpBussinessBaseNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpBussinessBaseNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnBussinessBaseNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.lab2 = new DevExpress.XtraEditors.LabelControl();
-            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.datePlanDateEnd = new DevExpress.XtraEditors.DateEdit();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
             this.datePlanDateBegin = new DevExpress.XtraEditors.DateEdit();
-            this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxReqState = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPrepared = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqState = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPurCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
-            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.dateOrderDateEnd = new DevExpress.XtraEditors.DateEdit();
+            this.dateOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
+            this.labPlanDate = new DevExpress.XtraEditors.LabelControl();
+            this.lab2 = new DevExpress.XtraEditors.LabelControl();
+            this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
+            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
+            this.labReqState = new DevExpress.XtraEditors.LabelControl();
+            this.labPurCategory = new DevExpress.XtraEditors.LabelControl();
+            this.labReqDep = new DevExpress.XtraEditors.LabelControl();
             this.lab = new DevExpress.XtraEditors.LabelControl();
             this.labOrderDate = new DevExpress.XtraEditors.LabelControl();
-            this.dateOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
@@ -126,6 +128,8 @@
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinprReqListAutoId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkprReqListAutoId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkPlanDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNoView)).BeginInit();
@@ -165,34 +169,63 @@
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.spinprReqListAutoId);
+            this.pnltop.Controls.Add(this.checkprReqListAutoId);
             this.pnltop.Controls.Add(this.checkPlanDate);
             this.pnltop.Controls.Add(this.btnSaveExcel);
-            this.pnltop.Controls.Add(this.labPlanDate);
             this.pnltop.Controls.Add(this.searchLookUpBussinessBaseNo);
-            this.pnltop.Controls.Add(this.lab2);
-            this.pnltop.Controls.Add(this.labBussinessBaseNo);
             this.pnltop.Controls.Add(this.datePlanDateEnd);
             this.pnltop.Controls.Add(this.textCommon);
             this.pnltop.Controls.Add(this.datePlanDateBegin);
-            this.pnltop.Controls.Add(this.labCommon);
             this.pnltop.Controls.Add(this.comboBoxReqState);
-            this.pnltop.Controls.Add(this.labPrepared);
             this.pnltop.Controls.Add(this.lookUpPrepared);
-            this.pnltop.Controls.Add(this.labReqState);
             this.pnltop.Controls.Add(this.lookUpPurCategory);
-            this.pnltop.Controls.Add(this.labPurCategory);
             this.pnltop.Controls.Add(this.lookUpReqDep);
-            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.btnQuery);
             this.pnltop.Controls.Add(this.dateOrderDateEnd);
+            this.pnltop.Controls.Add(this.dateOrderDateBegin);
+            this.pnltop.Controls.Add(this.labPlanDate);
+            this.pnltop.Controls.Add(this.lab2);
+            this.pnltop.Controls.Add(this.labBussinessBaseNo);
+            this.pnltop.Controls.Add(this.labCommon);
+            this.pnltop.Controls.Add(this.labPrepared);
+            this.pnltop.Controls.Add(this.labReqState);
+            this.pnltop.Controls.Add(this.labPurCategory);
+            this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.lab);
             this.pnltop.Controls.Add(this.labOrderDate);
-            this.pnltop.Controls.Add(this.dateOrderDateBegin);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(1154, 78);
             this.pnltop.TabIndex = 2;
+            // 
+            // spinprReqListAutoId
+            // 
+            this.spinprReqListAutoId.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinprReqListAutoId.Enabled = false;
+            this.spinprReqListAutoId.EnterMoveNextControl = true;
+            this.spinprReqListAutoId.Location = new System.Drawing.Point(857, 44);
+            this.spinprReqListAutoId.Name = "spinprReqListAutoId";
+            this.spinprReqListAutoId.Properties.Mask.EditMask = "d";
+            this.spinprReqListAutoId.Size = new System.Drawing.Size(80, 20);
+            this.spinprReqListAutoId.TabIndex = 27;
+            this.spinprReqListAutoId.TabStop = false;
+            // 
+            // checkprReqListAutoId
+            // 
+            this.checkprReqListAutoId.EnterMoveNextControl = true;
+            this.checkprReqListAutoId.Location = new System.Drawing.Point(751, 44);
+            this.checkprReqListAutoId.Name = "checkprReqListAutoId";
+            this.checkprReqListAutoId.Properties.Caption = "请购单明细ID";
+            this.checkprReqListAutoId.Size = new System.Drawing.Size(100, 19);
+            this.checkprReqListAutoId.TabIndex = 26;
+            this.checkprReqListAutoId.TabStop = false;
+            this.checkprReqListAutoId.CheckedChanged += new System.EventHandler(this.checkprReqListAutoId_CheckedChanged);
             // 
             // checkPlanDate
             // 
@@ -208,25 +241,17 @@
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(844, 43);
+            this.btnSaveExcel.Location = new System.Drawing.Point(1048, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 17;
             this.btnSaveExcel.Text = "存为Excel";
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
-            // labPlanDate
-            // 
-            this.labPlanDate.Location = new System.Drawing.Point(20, 47);
-            this.labPlanDate.Name = "labPlanDate";
-            this.labPlanDate.Size = new System.Drawing.Size(84, 14);
-            this.labPlanDate.TabIndex = 25;
-            this.labPlanDate.Text = "计划到货日期：";
-            // 
             // searchLookUpBussinessBaseNo
             // 
             this.searchLookUpBussinessBaseNo.EnterMoveNextControl = true;
-            this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(731, 14);
+            this.searchLookUpBussinessBaseNo.Location = new System.Drawing.Point(771, 14);
             this.searchLookUpBussinessBaseNo.Name = "searchLookUpBussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -234,7 +259,7 @@
             this.searchLookUpBussinessBaseNo.Properties.NullText = "";
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
-            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(100, 20);
+            this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
             this.searchLookUpBussinessBaseNo.TabIndex = 4;
             // 
             // searchLookUpBussinessBaseNoView
@@ -279,22 +304,6 @@
             this.gridColumnAutoId.Caption = "gridColumnAutoId";
             this.gridColumnAutoId.Name = "gridColumnAutoId";
             // 
-            // lab2
-            // 
-            this.lab2.Location = new System.Drawing.Point(230, 47);
-            this.lab2.Name = "lab2";
-            this.lab2.Size = new System.Drawing.Size(4, 14);
-            this.lab2.TabIndex = 24;
-            this.lab2.Text = "-";
-            // 
-            // labBussinessBaseNo
-            // 
-            this.labBussinessBaseNo.Location = new System.Drawing.Point(677, 17);
-            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
-            this.labBussinessBaseNo.Size = new System.Drawing.Size(48, 14);
-            this.labBussinessBaseNo.TabIndex = 16;
-            this.labBussinessBaseNo.Text = "往来方：";
-            // 
             // datePlanDateEnd
             // 
             this.datePlanDateEnd.EditValue = null;
@@ -317,7 +326,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(588, 44);
+            this.textCommon.Location = new System.Drawing.Point(594, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 7;
@@ -341,18 +350,10 @@
             this.datePlanDateBegin.Size = new System.Drawing.Size(100, 20);
             this.datePlanDateBegin.TabIndex = 22;
             // 
-            // labCommon
-            // 
-            this.labCommon.Location = new System.Drawing.Point(522, 47);
-            this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(60, 14);
-            this.labCommon.TabIndex = 14;
-            this.labCommon.Text = "通用查询：";
-            // 
             // comboBoxReqState
             // 
             this.comboBoxReqState.EnterMoveNextControl = true;
-            this.comboBoxReqState.Location = new System.Drawing.Point(913, 14);
+            this.comboBoxReqState.Location = new System.Drawing.Point(1003, 14);
             this.comboBoxReqState.Name = "comboBoxReqState";
             this.comboBoxReqState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -362,21 +363,13 @@
             "审批",
             "关闭",
             "审批中"});
-            this.comboBoxReqState.Size = new System.Drawing.Size(100, 20);
+            this.comboBoxReqState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxReqState.TabIndex = 5;
-            // 
-            // labPrepared
-            // 
-            this.labPrepared.Location = new System.Drawing.Point(358, 47);
-            this.labPrepared.Name = "labPrepared";
-            this.labPrepared.Size = new System.Drawing.Size(48, 14);
-            this.labPrepared.TabIndex = 11;
-            this.labPrepared.Text = "制单人：";
             // 
             // lookUpPrepared
             // 
             this.lookUpPrepared.EnterMoveNextControl = true;
-            this.lookUpPrepared.Location = new System.Drawing.Point(406, 44);
+            this.lookUpPrepared.Location = new System.Drawing.Point(398, 44);
             this.lookUpPrepared.Name = "lookUpPrepared";
             this.lookUpPrepared.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -387,21 +380,13 @@
             this.lookUpPrepared.Properties.DisplayMember = "EmpName";
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
-            this.lookUpPrepared.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
             this.lookUpPrepared.TabIndex = 6;
-            // 
-            // labReqState
-            // 
-            this.labReqState.Location = new System.Drawing.Point(847, 17);
-            this.labReqState.Name = "labReqState";
-            this.labReqState.Size = new System.Drawing.Size(60, 14);
-            this.labReqState.TabIndex = 9;
-            this.labReqState.Text = "单据状态：";
             // 
             // lookUpPurCategory
             // 
             this.lookUpPurCategory.EnterMoveNextControl = true;
-            this.lookUpPurCategory.Location = new System.Drawing.Point(562, 14);
+            this.lookUpPurCategory.Location = new System.Drawing.Point(582, 14);
             this.lookUpPurCategory.Name = "lookUpPurCategory";
             this.lookUpPurCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -411,16 +396,8 @@
             this.lookUpPurCategory.Properties.DisplayMember = "PurCategoryText";
             this.lookUpPurCategory.Properties.NullText = "";
             this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
-            this.lookUpPurCategory.Size = new System.Drawing.Size(100, 20);
+            this.lookUpPurCategory.Size = new System.Drawing.Size(120, 20);
             this.lookUpPurCategory.TabIndex = 3;
-            // 
-            // labPurCategory
-            // 
-            this.labPurCategory.Location = new System.Drawing.Point(496, 17);
-            this.labPurCategory.Name = "labPurCategory";
-            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
-            this.labPurCategory.TabIndex = 7;
-            this.labPurCategory.Text = "采购类型：";
             // 
             // lookUpReqDep
             // 
@@ -435,20 +412,12 @@
             this.lookUpReqDep.Properties.DisplayMember = "DepartmentName";
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
-            this.lookUpReqDep.Size = new System.Drawing.Size(100, 20);
+            this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
             this.lookUpReqDep.TabIndex = 2;
-            // 
-            // labReqDep
-            // 
-            this.labReqDep.Location = new System.Drawing.Point(315, 17);
-            this.labReqDep.Name = "labReqDep";
-            this.labReqDep.Size = new System.Drawing.Size(60, 14);
-            this.labReqDep.TabIndex = 5;
-            this.labReqDep.Text = "申请部门：";
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(754, 43);
+            this.btnQuery.Location = new System.Drawing.Point(956, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 8;
@@ -473,22 +442,6 @@
             this.dateOrderDateEnd.Size = new System.Drawing.Size(100, 20);
             this.dateOrderDateEnd.TabIndex = 1;
             // 
-            // lab
-            // 
-            this.lab.Location = new System.Drawing.Point(192, 17);
-            this.lab.Name = "lab";
-            this.lab.Size = new System.Drawing.Size(4, 14);
-            this.lab.TabIndex = 2;
-            this.lab.Text = "-";
-            // 
-            // labOrderDate
-            // 
-            this.labOrderDate.Location = new System.Drawing.Point(20, 17);
-            this.labOrderDate.Name = "labOrderDate";
-            this.labOrderDate.Size = new System.Drawing.Size(60, 14);
-            this.labOrderDate.TabIndex = 1;
-            this.labOrderDate.Text = "订购日期：";
-            // 
             // dateOrderDateBegin
             // 
             this.dateOrderDateBegin.EditValue = null;
@@ -506,6 +459,86 @@
             this.dateOrderDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateOrderDateBegin.Size = new System.Drawing.Size(100, 20);
             this.dateOrderDateBegin.TabIndex = 0;
+            // 
+            // labPlanDate
+            // 
+            this.labPlanDate.Location = new System.Drawing.Point(20, 47);
+            this.labPlanDate.Name = "labPlanDate";
+            this.labPlanDate.Size = new System.Drawing.Size(84, 14);
+            this.labPlanDate.TabIndex = 25;
+            this.labPlanDate.Text = "计划到货日期：";
+            // 
+            // lab2
+            // 
+            this.lab2.Location = new System.Drawing.Point(230, 47);
+            this.lab2.Name = "lab2";
+            this.lab2.Size = new System.Drawing.Size(4, 14);
+            this.lab2.TabIndex = 24;
+            this.lab2.Text = "-";
+            // 
+            // labBussinessBaseNo
+            // 
+            this.labBussinessBaseNo.Location = new System.Drawing.Point(717, 17);
+            this.labBussinessBaseNo.Name = "labBussinessBaseNo";
+            this.labBussinessBaseNo.Size = new System.Drawing.Size(48, 14);
+            this.labBussinessBaseNo.TabIndex = 16;
+            this.labBussinessBaseNo.Text = "往来方：";
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(528, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 14;
+            this.labCommon.Text = "通用查询：";
+            // 
+            // labPrepared
+            // 
+            this.labPrepared.Location = new System.Drawing.Point(350, 47);
+            this.labPrepared.Name = "labPrepared";
+            this.labPrepared.Size = new System.Drawing.Size(48, 14);
+            this.labPrepared.TabIndex = 11;
+            this.labPrepared.Text = "制单人：";
+            // 
+            // labReqState
+            // 
+            this.labReqState.Location = new System.Drawing.Point(937, 17);
+            this.labReqState.Name = "labReqState";
+            this.labReqState.Size = new System.Drawing.Size(60, 14);
+            this.labReqState.TabIndex = 9;
+            this.labReqState.Text = "单据状态：";
+            // 
+            // labPurCategory
+            // 
+            this.labPurCategory.Location = new System.Drawing.Point(516, 17);
+            this.labPurCategory.Name = "labPurCategory";
+            this.labPurCategory.Size = new System.Drawing.Size(60, 14);
+            this.labPurCategory.TabIndex = 7;
+            this.labPurCategory.Text = "采购类型：";
+            // 
+            // labReqDep
+            // 
+            this.labReqDep.Location = new System.Drawing.Point(315, 17);
+            this.labReqDep.Name = "labReqDep";
+            this.labReqDep.Size = new System.Drawing.Size(60, 14);
+            this.labReqDep.TabIndex = 5;
+            this.labReqDep.Text = "申请部门：";
+            // 
+            // lab
+            // 
+            this.lab.Location = new System.Drawing.Point(192, 17);
+            this.lab.Name = "lab";
+            this.lab.Size = new System.Drawing.Size(4, 14);
+            this.lab.TabIndex = 2;
+            this.lab.Text = "-";
+            // 
+            // labOrderDate
+            // 
+            this.labOrderDate.Location = new System.Drawing.Point(20, 17);
+            this.labOrderDate.Name = "labOrderDate";
+            this.labOrderDate.Size = new System.Drawing.Size(60, 14);
+            this.labOrderDate.TabIndex = 1;
+            this.labOrderDate.Text = "订购日期：";
             // 
             // pnlMiddle
             // 
@@ -822,7 +855,7 @@
             this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 4;
-            this.colBussinessBaseNo.Width = 100;
+            this.colBussinessBaseNo.Width = 130;
             // 
             // repSearchBussinessBaseNo
             // 
@@ -1123,10 +1156,13 @@
             this.Name = "FrmOrderQuery";
             this.TabText = "采购单查询-按订单";
             this.Text = "采购单查询-按订单";
+            this.Activated += new System.EventHandler(this.FrmOrderQuery_Activated);
             this.Load += new System.EventHandler(this.FrmOrderQuery_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinprReqListAutoId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkprReqListAutoId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkPlanDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNoView)).EndInit();
@@ -1263,5 +1299,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpApprovalType;
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpPayTypeNo;
+        private DevExpress.XtraEditors.SpinEdit spinprReqListAutoId;
+        private DevExpress.XtraEditors.CheckEdit checkprReqListAutoId;
     }
 }

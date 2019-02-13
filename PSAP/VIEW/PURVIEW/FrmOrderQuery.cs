@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Base;
+using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
@@ -14,8 +15,13 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmOrderQuery : DockContent
     {
-        FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
+        FrmCommonDAO commonDAO = new FrmCommonDAO();
+
+        /// <summary>
+        /// 请购单明细AutoId
+        /// </summary>
+        public static int prReqListAutoId = 0;
 
         public FrmOrderQuery()
         {
@@ -29,27 +35,28 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                lookUpReqDep.Properties.DataSource = prReqDAO.QueryDepartment(true);
+                lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
-                lookUpPurCategory.Properties.DataSource = prReqDAO.QueryPurCategory(true);
+                lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
                 lookUpPurCategory.ItemIndex = 0;
                 comboBoxReqState.SelectedIndex = 0;
-                lookUpPrepared.Properties.DataSource = prReqDAO.QueryUserInfo(true);
+                lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
-                searchLookUpBussinessBaseNo.Properties.DataSource = orderDAO.QueryBussinessBaseInfo(true);
+                searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
 
-                repLookUpReqDep.DataSource = prReqDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = prReqDAO.QueryPurCategory(false);
-                repSearchProjectNo.DataSource = prReqDAO.QueryProjectList(false);
-                repSearchBussinessBaseNo.DataSource = orderDAO.QueryBussinessBaseInfo(false);
-                repLookUpApprovalType.DataSource = prReqDAO.QueryApprovalType(false);
-                repLookUpPayTypeNo.DataSource = orderDAO.QueryPayType(false);
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
+                repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
+                repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
+                repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
+                repLookUpPayTypeNo.DataSource = commonDAO.QueryPayType(false);
 
-                dateOrderDateBegin.DateTime = DateTime.Now.Date.AddDays(-7);
-                dateOrderDateEnd.DateTime = DateTime.Now.Date;
-                datePlanDateBegin.DateTime = DateTime.Now.Date;
-                datePlanDateEnd.DateTime = DateTime.Now.Date.AddDays(7);
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateOrderDateEnd.DateTime = nowDate.Date;
+                datePlanDateBegin.DateTime = nowDate.Date;
+                datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 checkPlanDate.Checked = false;
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
@@ -59,6 +66,39 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 窗体激活事件
+        /// </summary>
+        private void FrmOrderQuery_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (prReqListAutoId != 0)
+                {
+                    spinprReqListAutoId.Value = prReqListAutoId;
+                    prReqListAutoId = 0;
+                    checkprReqListAutoId.Checked = true;
+
+                    DateTime nowDate = BaseSQL.GetServerDateTime();
+                    dateOrderDateBegin.DateTime = nowDate.AddMonths(-6);
+                    dateOrderDateEnd.DateTime = nowDate.AddMonths(6);
+                    lookUpReqDep.ItemIndex = 0;
+                    lookUpPurCategory.ItemIndex = 0;
+                    searchLookUpBussinessBaseNo.Text = "全部";
+                    comboBoxReqState.SelectedIndex = 0;
+                    lookUpPrepared.ItemIndex = 0;
+                    checkPlanDate.Checked = false;
+                    textCommon.Text = "";
+
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
             }
         }
 
@@ -80,27 +120,28 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 选择请购单明细ID
+        /// </summary>
+        private void checkprReqListAutoId_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkprReqListAutoId.Checked)
+            {
+                spinprReqListAutoId.Enabled = true;
+            }
+            else
+            {
+                spinprReqListAutoId.Enabled = false;
+            }
+        }
+
+        /// <summary>
         /// 设定列表显示信息
         /// </summary>
         private void gridViewPrReqHead_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "ReqState")
             {
-                switch (e.Value.ToString())
-                {
-                    case "1":
-                        e.DisplayText = "待审批";
-                        break;
-                    case "2":
-                        e.DisplayText = "审批";
-                        break;
-                    case "3":
-                        e.DisplayText = "关闭";
-                        break;
-                    case "4":
-                        e.DisplayText = "审批中";
-                        break;
-                }
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -129,20 +170,21 @@ namespace PSAP.VIEW.BSVIEW
                 if (checkPlanDate.Checked)
                 {
                     planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    planDateEndStr = datePlanDateEnd.DateTime.ToString("yyyy-MM-dd");
+                    planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
 
-                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? lookUpReqDep.EditValue.ToString() : "";
-                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? lookUpPurCategory.EditValue.ToString() : "";
-                string bussinessBaseNoStr = searchLookUpBussinessBaseNo.EditValue.ToString() != "全部" ? searchLookUpBussinessBaseNo.EditValue.ToString() : "";
+                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
+                string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
+                string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
-                string empNameStr = lookUpPrepared.ItemIndex > 0 ? lookUpPrepared.EditValue.ToString() : "";
+                string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
+                int prReqListAutoIdInt = (checkprReqListAutoId.Checked && spinprReqListAutoId.Value > 0) ? DataTypeConvert.GetInt(spinprReqListAutoId.Value) : 0;
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.QueryOrderHead_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, empNameStr, -1, commonStr, false);
+                string querySqlStr = orderDAO.QueryOrderHead_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, empNameStr, -1, commonStr, prReqListAutoIdInt, false);
 
-                string countSqlStr = prReqDAO.QuerySqlTranTotalCountSql(querySqlStr);
+                string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
@@ -176,8 +218,9 @@ namespace PSAP.VIEW.BSVIEW
                 if (e.Clicks == 2)
                 {
                     string orderHeadNoStr = DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["OrderHeadNo"]);
-                    FrmOrder.queryOrderHeadNo = orderHeadNoStr;
-                    ViewHandler.ShowRightWindow("FrmOrder");
+                    FrmOrder_Drag.queryOrderHeadNo = orderHeadNoStr;
+                    FrmOrder_Drag.queryListAutoId = 0;
+                    ViewHandler.ShowRightWindow("FrmOrder_Drag");
                 }
             }
             catch (Exception ex)
@@ -186,6 +229,6 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
-        
+
     }
 }
