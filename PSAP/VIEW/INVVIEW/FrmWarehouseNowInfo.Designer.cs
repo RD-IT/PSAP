@@ -240,9 +240,10 @@
             // 
             // checkZero
             // 
+            this.checkZero.EditValue = true;
             this.checkZero.Location = new System.Drawing.Point(258, 44);
             this.checkZero.Name = "checkZero";
-            this.checkZero.Properties.Caption = "库存数大于0";
+            this.checkZero.Properties.Caption = "库存数不等于0";
             this.checkZero.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.checkZero.Properties.ValueGrayed = false;
             this.checkZero.Size = new System.Drawing.Size(111, 19);

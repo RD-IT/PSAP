@@ -52,7 +52,7 @@
             this.dataColumn8 = new System.Data.DataColumn();
             this.dataColumn9 = new System.Data.DataColumn();
             this.dataColumn10 = new System.Data.DataColumn();
-            this.dataColumn12 = new System.Data.DataColumn();
+            this.dataColumReqDep = new System.Data.DataColumn();
             this.dataTableWWList = new System.Data.DataTable();
             this.dataColumn13 = new System.Data.DataColumn();
             this.dataColumn14 = new System.Data.DataColumn();
@@ -120,6 +120,7 @@
             this.colRemark1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlLeftTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnLeftType = new DevExpress.XtraEditors.CheckButton();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -131,8 +132,8 @@
             this.dateWWDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.textWarehouseWarrant = new DevExpress.XtraEditors.TextEdit();
             this.lab = new DevExpress.XtraEditors.LabelControl();
-            this.labReqDate = new DevExpress.XtraEditors.LabelControl();
-            this.labPrReqNo = new DevExpress.XtraEditors.LabelControl();
+            this.labWWDate = new DevExpress.XtraEditors.LabelControl();
+            this.labWarehouseWarrant = new DevExpress.XtraEditors.LabelControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.gridControlSettlementList = new DevExpress.XtraGrid.GridControl();
@@ -463,7 +464,7 @@
             this.dataColumn8,
             this.dataColumn9,
             this.dataColumn10,
-            this.dataColumn12});
+            this.dataColumReqDep});
             this.dataTableWWHead.TableName = "WWHead";
             // 
             // dataColumn1
@@ -539,10 +540,10 @@
             this.dataColumn10.ColumnName = "WarehouseState";
             this.dataColumn10.DataType = typeof(int);
             // 
-            // dataColumn12
+            // dataColumReqDep
             // 
-            this.dataColumn12.Caption = "入库部门";
-            this.dataColumn12.ColumnName = "ReqDep";
+            this.dataColumReqDep.Caption = "入库部门";
+            this.dataColumReqDep.ColumnName = "ReqDep";
             // 
             // dataTableWWList
             // 
@@ -1208,6 +1209,7 @@
             // 
             // pnlLeftTop
             // 
+            this.pnlLeftTop.Controls.Add(this.btnLeftType);
             this.pnlLeftTop.Controls.Add(this.searchLookUpProjectNo);
             this.pnlLeftTop.Controls.Add(this.labProjectNo);
             this.pnlLeftTop.Controls.Add(this.btnPrReqQuery);
@@ -1215,13 +1217,23 @@
             this.pnlLeftTop.Controls.Add(this.dateWWDateBegin);
             this.pnlLeftTop.Controls.Add(this.textWarehouseWarrant);
             this.pnlLeftTop.Controls.Add(this.lab);
-            this.pnlLeftTop.Controls.Add(this.labReqDate);
-            this.pnlLeftTop.Controls.Add(this.labPrReqNo);
+            this.pnlLeftTop.Controls.Add(this.labWWDate);
+            this.pnlLeftTop.Controls.Add(this.labWarehouseWarrant);
             this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftTop.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftTop.Name = "pnlLeftTop";
             this.pnlLeftTop.Size = new System.Drawing.Size(342, 93);
             this.pnlLeftTop.TabIndex = 0;
+            // 
+            // btnLeftType
+            // 
+            this.btnLeftType.Location = new System.Drawing.Point(262, 7);
+            this.btnLeftType.Name = "btnLeftType";
+            this.btnLeftType.Size = new System.Drawing.Size(75, 23);
+            this.btnLeftType.TabIndex = 215;
+            this.btnLeftType.Text = "采购订单";
+            this.btnLeftType.Visible = false;
+            this.btnLeftType.CheckedChanged += new System.EventHandler(this.btnLeftType_CheckedChanged);
             // 
             // searchLookUpProjectNo
             // 
@@ -1345,21 +1357,21 @@
             this.lab.TabIndex = 206;
             this.lab.Text = "-";
             // 
-            // labReqDate
+            // labWWDate
             // 
-            this.labReqDate.Location = new System.Drawing.Point(9, 40);
-            this.labReqDate.Name = "labReqDate";
-            this.labReqDate.Size = new System.Drawing.Size(60, 14);
-            this.labReqDate.TabIndex = 205;
-            this.labReqDate.Text = "入库日期：";
+            this.labWWDate.Location = new System.Drawing.Point(9, 40);
+            this.labWWDate.Name = "labWWDate";
+            this.labWWDate.Size = new System.Drawing.Size(60, 14);
+            this.labWWDate.TabIndex = 205;
+            this.labWWDate.Text = "入库日期：";
             // 
-            // labPrReqNo
+            // labWarehouseWarrant
             // 
-            this.labPrReqNo.Location = new System.Drawing.Point(9, 11);
-            this.labPrReqNo.Name = "labPrReqNo";
-            this.labPrReqNo.Size = new System.Drawing.Size(60, 14);
-            this.labPrReqNo.TabIndex = 204;
-            this.labPrReqNo.Text = "入库单号：";
+            this.labWarehouseWarrant.Location = new System.Drawing.Point(9, 11);
+            this.labWarehouseWarrant.Name = "labWarehouseWarrant";
+            this.labWarehouseWarrant.Size = new System.Drawing.Size(60, 14);
+            this.labWarehouseWarrant.TabIndex = 204;
+            this.labWarehouseWarrant.Text = "入库单号：";
             // 
             // pnlRight
             // 
@@ -3060,8 +3072,8 @@
         private DevExpress.XtraEditors.DateEdit dateWWDateBegin;
         private DevExpress.XtraEditors.TextEdit textWarehouseWarrant;
         private DevExpress.XtraEditors.LabelControl lab;
-        private DevExpress.XtraEditors.LabelControl labReqDate;
-        private DevExpress.XtraEditors.LabelControl labPrReqNo;
+        private DevExpress.XtraEditors.LabelControl labWWDate;
+        private DevExpress.XtraEditors.LabelControl labWarehouseWarrant;
         private DevExpress.XtraEditors.SimpleButton btnPrReqQuery;
         private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpProjectNo;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpProjectNoView;
@@ -3085,7 +3097,7 @@
         private System.Data.DataColumn dataColumn8;
         private System.Data.DataColumn dataColumn9;
         private System.Data.DataColumn dataColumn10;
-        private System.Data.DataColumn dataColumn12;
+        private System.Data.DataColumn dataColumReqDep;
         private System.Data.DataTable dataTableWWList;
         private System.Data.DataColumn dataColumn13;
         private System.Data.DataColumn dataColumn14;
@@ -3159,5 +3171,6 @@
         private DevExpress.XtraBars.PopupMenu popupMenuList;
         private DevExpress.XtraBars.BarManager barManagerForm;
         private DevExpress.XtraBars.BarButtonItem barButtonUp;
+        private DevExpress.XtraEditors.CheckButton btnLeftType;
     }
 }

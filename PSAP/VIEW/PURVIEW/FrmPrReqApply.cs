@@ -63,12 +63,21 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 string prReqNoStr = textPrReqNo.Text.Trim();
-                string orderDateBeginStr = "";
-                string orderDateEndStr = "";
+                string reqDateBeginStr = "";
+                string reqDateEndStr = "";
                 if (checkReqDate.Checked)
                 {
-                    orderDateBeginStr = dateReqDateBegin.DateTime.ToString("yyyy-MM-dd");
-                    orderDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+                    if (dateReqDateBegin.EditValue == null || dateReqDateEnd.EditValue == null)
+                    {
+                        MessageHandler.ShowMessageBox("请购日期不能为空，请设置后重新进行查询。");
+                        if (dateReqDateBegin.EditValue == null)
+                            dateReqDateBegin.Focus();
+                        else
+                            dateReqDateEnd.Focus();
+                        return;
+                    }
+                    reqDateBeginStr = dateReqDateBegin.DateTime.ToString("yyyy-MM-dd");
+                    reqDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
@@ -78,7 +87,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_PrReq.Tables[0].Clear();
                 dataSet_PrReq.Tables[1].Clear();
-                applyDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, empNameStr, projectNoStr, commonStr);
+                applyDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr, reqDateBeginStr, reqDateEndStr, reqDepStr, purCategoryStr, empNameStr, projectNoStr, commonStr);
             }
             catch (Exception ex)
             {

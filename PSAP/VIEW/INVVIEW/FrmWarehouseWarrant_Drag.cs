@@ -189,6 +189,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateWWDateBegin.EditValue == null || dateWWDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("入库日期不能为空，请设置后重新进行查询。");
+                    if (dateWWDateBegin.EditValue == null)
+                        dateWWDateBegin.Focus();
+                    else
+                        dateWWDateEnd.Focus();
+                    return;
+                }
                 string wwDateBeginStr = dateWWDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string wwDateEndStr = dateWWDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
@@ -992,6 +1001,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateOrderDateBegin.EditValue == null || dateOrderDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("订购日期不能为空，请设置后重新进行查询。");
+                    if (dateOrderDateBegin.EditValue == null)
+                        dateOrderDateBegin.Focus();
+                    else
+                        dateOrderDateEnd.Focus();
+                    return;
+                }
                 string orderHeadNoStr = textOrderHeadNo.Text.Trim();
                 string orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");

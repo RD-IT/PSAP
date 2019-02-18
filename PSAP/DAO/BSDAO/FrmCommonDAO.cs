@@ -27,6 +27,19 @@ namespace PSAP.DAO.BSDAO
         }
 
         /// <summary>
+        /// 查询部门信息全部表（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryDepartment_AllNode(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, DepartmentNo, DepartmentName from BS_Department order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '' as DepartmentNo, '全部' as DepartmentName union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
         /// 查询操作员信息
         /// </summary>
         public DataTable QueryUserInfo(bool addAllItem)
@@ -61,6 +74,84 @@ namespace PSAP.DAO.BSDAO
             if (addAllItem)
             {
                 sqlStr = "select 0 as AutoId, '全部' as CodeFileName, '全部' as CodeName union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询单位信息表
+        /// </summary>
+        public DataTable QueryUnitCatg(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, UnitNo, UnitName from BS_UnitCatg order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as UnitNo, '全部' as UnitName union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询材料信息表
+        /// </summary>
+        public DataTable QueryMaterialSelectLib(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, LibName, MaterialCategory, MaterialName from SW_MaterialSelectLib order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as LibName, '全部' as MaterialCategory, '全部' as MaterialName union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询品牌信息表
+        /// </summary>
+        public DataTable QueryBrandCatg(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, BrandNo, BrandName from SW_BrandCatg order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as BrandNo, '全部' as BrandName union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询零件分类表
+        /// </summary>
+        public DataTable QueryPartNoCatg(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, CatgName, CatgDescription from SW_PartNoCatg order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as CatgName, '全部' as CatgDescription union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询表面处理表
+        /// </summary>
+        public DataTable QueryFinishCatg(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, FinishCatg, FinishOrder from SW_FinishCatg order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as FinishCatg, 0 as FinishOrder union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询加工等级表
+        /// </summary>
+        public DataTable QueryLevelCatg(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, LevelCatg, CatgOrder from SW_LevelCatg order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as LevelCatg, 0 as CatgOrder union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }

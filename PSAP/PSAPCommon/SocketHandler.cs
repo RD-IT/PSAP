@@ -13,26 +13,6 @@ namespace PSAP.PSAPCommon
     class SocketHandler
     {
         /// <summary>
-        /// 是否检查服务端程序
-        /// </summary>
-        public static bool IsCheckServer = false;
-
-        /// <summary>
-        /// 服务器的IP地址
-        /// </summary>
-        public static string serverIP = "192.168.0.146";
-
-        /// <summary>
-        /// 服务器通信的端口号
-        /// </summary>
-        public static int serverPort = 9988;
-
-        /// <summary>
-        /// 服务器通信协议类型
-        /// </summary>
-        public static ProtocolType serverProtocolType = ProtocolType.Tcp;
-
-        /// <summary>
         /// 客户端的Socket
         /// </summary>
         public static Socket clientSocket;
@@ -59,11 +39,11 @@ namespace PSAP.PSAPCommon
         {
             mainThreadSynContext = SynchronizationContext.Current;
 
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, serverProtocolType);
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, SystemInfo.serverProtocolType);
             clientSocket = socket;
             try
             {
-                socket.Connect(serverIP, serverPort);
+                socket.Connect(SystemInfo.serverIP, SystemInfo.serverPort);
             }
             catch (Exception)
             {

@@ -88,6 +88,17 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateReqDateBegin.EditValue == null || dateReqDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("请购日期不能为空，请设置后重新进行查询。");
+                    if (dateReqDateBegin.EditValue == null)
+                        dateReqDateBegin.Focus();
+                    else
+                        dateReqDateEnd.Focus();
+                    return;
+                }
+                string reqDateBeginStr = dateReqDateBegin.DateTime.ToString("yyyy-MM-dd");
+                string reqDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
                 string projectNoStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
@@ -96,7 +107,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_PrReq.Tables[0].Clear();
 
-                string querySqlStr = prReqDAO.Query_PrReqListAndOrderList(dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, projectNoStr, reqStateInt, codeFileNameStr, commonStr);
+                string querySqlStr = prReqDAO.Query_PrReqListAndOrderList(reqDateBeginStr, reqDateEndStr, reqDepStr, purCategoryStr, projectNoStr, reqStateInt, codeFileNameStr, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqList", querySqlStr, countSqlStr, true);

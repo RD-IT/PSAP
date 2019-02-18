@@ -18,6 +18,12 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
         }
 
+        public FrmChangePassword(string loginID)
+        {
+            InitializeComponent();
+            txtUserID.Text = loginID;
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();

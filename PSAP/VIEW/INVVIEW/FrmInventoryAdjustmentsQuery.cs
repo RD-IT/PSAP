@@ -75,6 +75,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateIADateBegin.EditValue == null || dateIADateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("调整日期不能为空，请设置后重新进行查询。");
+                    if (dateIADateBegin.EditValue == null)
+                        dateIADateBegin.Focus();
+                    else
+                        dateIADateEnd.Focus();
+                    return;
+                }
                 string orderDateBeginStr = dateIADateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateIADateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 

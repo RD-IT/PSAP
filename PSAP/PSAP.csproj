@@ -96,6 +96,7 @@
     <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
+    <Compile Include="DAO\BSDAO\FrmBomManagementDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmBussinessCategoryDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmBussinessInfoDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmCommonDAO.cs" />
@@ -177,11 +178,35 @@
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
     <Compile Include="PSAPCommon\ViewHandler.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="VIEW\BSVIEW\FrmBomManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBomManagement.Designer.cs">
+      <DependentUpon>FrmBomManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDeliveryLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDeliveryLocation.Designer.cs">
+      <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SWVIEW\FrmBrandCatg.Designer.cs">
+      <DependentUpon>FrmBrandCatg.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmBussinessCategory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmBussinessCategory.Designer.cs">
       <DependentUpon>FrmBussinessCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBussinessCategory_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBussinessCategory_New.Designer.cs">
+      <DependentUpon>FrmBussinessCategory_New.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmBussinessInfo.cs">
       <SubType>Form</SubType>
@@ -206,6 +231,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmDepartment.Designer.cs">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDepartment_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmDepartment_New.Designer.cs">
+      <DependentUpon>FrmDepartment_New.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -279,6 +310,12 @@
     <Compile Include="VIEW\BSVIEW\FrmUnitCatg.Designer.cs">
       <DependentUpon>FrmUnitCatg.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmUnitCatg_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmUnitCatg_New.Designer.cs">
+      <DependentUpon>FrmUnitCatg_New.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +333,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmUserInfo_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmUserInfo_New.Designer.cs">
+      <DependentUpon>FrmUserInfo_New.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmWarehouseReceiptType.cs">
       <SubType>Form</SubType>
@@ -561,6 +604,12 @@
     <Compile Include="VIEW\REPORT\XReport_PrReq.Designer.cs">
       <DependentUpon>XReport_PrReq.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SWVIEW\FrmPartsCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SWVIEW\FrmPartsCode.Designer.cs">
+      <DependentUpon>FrmPartsCode.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -572,8 +621,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBomManagement.resx">
+      <DependentUpon>FrmBomManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmDeliveryLocation.resx">
+      <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
+      <DependentUpon>FrmBrandCatg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessCategory.resx">
       <DependentUpon>FrmBussinessCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessCategory_New.resx">
+      <DependentUpon>FrmBussinessCategory_New.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessInfo.resx">
       <DependentUpon>FrmBussinessInfo.cs</DependentUpon>
@@ -586,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmDepartment_New.resx">
+      <DependentUpon>FrmDepartment_New.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -624,6 +688,9 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUnitCatg.resx">
       <DependentUpon>FrmUnitCatg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmUnitCatg_New.resx">
+      <DependentUpon>FrmUnitCatg_New.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmUserInfo.resx">
       <DependentUpon>FrmUserInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -633,6 +700,9 @@
     <EmbeddedResource Include="VIEW\BSVIEW\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmUserInfo_New.resx">
+      <DependentUpon>FrmUserInfo_New.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmWarehouseReceiptType.resx">
       <DependentUpon>FrmWarehouseReceiptType.cs</DependentUpon>
@@ -768,6 +838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\REPORT\XReport_PrReq.resx">
       <DependentUpon>XReport_PrReq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SWVIEW\FrmPartsCode.resx">
+      <DependentUpon>FrmPartsCode.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="dsPSAP.xsc">

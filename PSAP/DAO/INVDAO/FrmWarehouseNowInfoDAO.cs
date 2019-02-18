@@ -16,7 +16,7 @@ namespace PSAP.DAO.INVDAO
         /// </summary>
         public void QueryWarehouseNowInfo(DataTable queryDataTable, string codeFileNameStr, string repertoryNoStr, string projectNameStr, bool isIncludeZeroBool)
         {
-            string sqlStr = " Qty>0";
+            string sqlStr = " Qty!=0";
             if(isIncludeZeroBool)
             {
                 sqlStr = " 1=1";
@@ -42,7 +42,7 @@ namespace PSAP.DAO.INVDAO
         /// </summary>
         public string QueryWarehouseNowInfo_SQL(string codeFileNameStr, string repertoryNoStr, string projectNameStr, string shelfNoStr, string commonStr, bool isIncludeZeroBool)
         {
-            string sqlStr = " Qty>0";
+            string sqlStr = " Qty!=0";
             if (isIncludeZeroBool)
             {
                 sqlStr = " 1=1";

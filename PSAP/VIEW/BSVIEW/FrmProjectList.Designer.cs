@@ -139,7 +139,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 137);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(767, 299);
+            this.pnlGrid.Size = new System.Drawing.Size(1124, 497);
             this.pnlGrid.TabIndex = 3;
             // 
             // gridCrlProjectList
@@ -149,7 +149,7 @@
             this.gridCrlProjectList.Location = new System.Drawing.Point(2, 2);
             this.gridCrlProjectList.MainView = this.gridViewProjectList;
             this.gridCrlProjectList.Name = "gridCrlProjectList";
-            this.gridCrlProjectList.Size = new System.Drawing.Size(763, 295);
+            this.gridCrlProjectList.Size = new System.Drawing.Size(1120, 493);
             this.gridCrlProjectList.TabIndex = 0;
             this.gridCrlProjectList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewProjectList});
@@ -237,7 +237,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(767, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(1124, 40);
             this.pnlToolBar.TabIndex = 0;
             // 
             // btnStnList
@@ -263,7 +263,7 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(767, 97);
+            this.pnlEdit.Size = new System.Drawing.Size(1124, 97);
             this.pnlEdit.TabIndex = 4;
             // 
             // textRemark
@@ -384,7 +384,7 @@
             // FrmProjectList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(767, 436);
+            this.ClientSize = new System.Drawing.Size(1124, 634);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.pnlToolBar);

@@ -160,6 +160,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateIMDateBegin.EditValue == null || dateIMDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("移动日期不能为空，请设置后重新进行查询。");
+                    if (dateIMDateBegin.EditValue == null)
+                        dateIMDateBegin.Focus();
+                    else
+                        dateIMDateEnd.Focus();
+                    return;
+                }
                 string orderDateBeginStr = dateIMDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateIMDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 

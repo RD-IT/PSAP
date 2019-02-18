@@ -40,8 +40,8 @@
             System.Windows.Forms.Label bussinessLicenseLabel;
             System.Windows.Forms.Label bankAccoutLabel;
             System.Windows.Forms.Label bankAddressLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBussinessInfo));
             System.Windows.Forms.Label label1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBussinessInfo));
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsControl = new System.Windows.Forms.ToolStrip();
@@ -70,6 +70,7 @@
             this.dataColumn13 = new System.Data.DataColumn();
             this.dataColumn14 = new System.Data.DataColumn();
             this.dataColumn15 = new System.Data.DataColumn();
+            this.dataColumn21 = new System.Data.DataColumn();
             this.dataTable3 = new System.Data.DataTable();
             this.dataColumn16 = new System.Data.DataColumn();
             this.dataColumn17 = new System.Data.DataColumn();
@@ -91,8 +92,9 @@
             this.tabBussinessInfo = new System.Windows.Forms.TabControl();
             this.tpBussinessDetailInfo = new System.Windows.Forms.TabPage();
             this.pnlEdit = new System.Windows.Forms.Panel();
-            this.txtWebSite = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.bsDetail = new System.Windows.Forms.BindingSource(this.components);
+            this.txtWebSite = new DevExpress.XtraEditors.TextEdit();
             this.txtE_mail = new DevExpress.XtraEditors.TextEdit();
             this.txtFaxNo = new DevExpress.XtraEditors.TextEdit();
             this.txtPhoneNo = new DevExpress.XtraEditors.TextEdit();
@@ -110,8 +112,6 @@
             this.bS_BussinessCategoryTableAdapter = new PSAP.dsPSAPTableAdapters.BS_BussinessCategoryTableAdapter();
             this.bS_CountryCodeManagementTableAdapter = new PSAP.dsPSAPTableAdapters.BS_CountryCodeManagementTableAdapter();
             this.bsBase = new System.Windows.Forms.BindingSource(this.components);
-            this.dataColumn21 = new System.Data.DataColumn();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             companyLRLabel = new System.Windows.Forms.Label();
             companyAddressLabel = new System.Windows.Forms.Label();
             zipCodeLabel = new System.Windows.Forms.Label();
@@ -145,8 +145,9 @@
             this.tabBussinessInfo.SuspendLayout();
             this.tpBussinessDetailInfo.SuspendLayout();
             this.pnlEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtE_mail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneNo.Properties)).BeginInit();
@@ -162,7 +163,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // companyLRLabel
@@ -263,6 +263,15 @@
             bankAddressLabel.Size = new System.Drawing.Size(41, 12);
             bankAddressLabel.TabIndex = 8;
             bankAddressLabel.Text = "开户行";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(3, 257);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(41, 12);
+            label1.TabIndex = 28;
+            label1.Text = "联系人";
             // 
             // splitContainer2
             // 
@@ -496,6 +505,11 @@
             this.dataColumn15.Caption = "国家";
             this.dataColumn15.ColumnName = "CountryCode";
             // 
+            // dataColumn21
+            // 
+            this.dataColumn21.Caption = "联系人";
+            this.dataColumn21.ColumnName = "Contact";
+            // 
             // dataTable3
             // 
             this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
@@ -688,19 +702,28 @@
             this.pnlEdit.TabIndex = 4;
             this.pnlEdit.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlEdit_Paint);
             // 
+            // textEdit1
+            // 
+            this.textEdit1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "Contact", true));
+            this.textEdit1.EnterMoveNextControl = true;
+            this.textEdit1.Location = new System.Drawing.Point(96, 253);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(150, 20);
+            this.textEdit1.TabIndex = 29;
+            // 
+            // bsDetail
+            // 
+            this.bsDetail.DataMember = "BussinessDetailInfo";
+            this.bsDetail.DataSource = this.dataSet1;
+            // 
             // txtWebSite
             // 
             this.txtWebSite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "WebSite", true));
             this.txtWebSite.EnterMoveNextControl = true;
             this.txtWebSite.Location = new System.Drawing.Point(96, 197);
             this.txtWebSite.Name = "txtWebSite";
-            this.txtWebSite.Size = new System.Drawing.Size(100, 20);
+            this.txtWebSite.Size = new System.Drawing.Size(150, 20);
             this.txtWebSite.TabIndex = 27;
-            // 
-            // bsDetail
-            // 
-            this.bsDetail.DataMember = "BussinessDetailInfo";
-            this.bsDetail.DataSource = this.dataSet1;
             // 
             // txtE_mail
             // 
@@ -708,7 +731,7 @@
             this.txtE_mail.EnterMoveNextControl = true;
             this.txtE_mail.Location = new System.Drawing.Point(96, 170);
             this.txtE_mail.Name = "txtE_mail";
-            this.txtE_mail.Size = new System.Drawing.Size(100, 20);
+            this.txtE_mail.Size = new System.Drawing.Size(150, 20);
             this.txtE_mail.TabIndex = 26;
             // 
             // txtFaxNo
@@ -717,7 +740,7 @@
             this.txtFaxNo.EnterMoveNextControl = true;
             this.txtFaxNo.Location = new System.Drawing.Point(96, 143);
             this.txtFaxNo.Name = "txtFaxNo";
-            this.txtFaxNo.Size = new System.Drawing.Size(100, 20);
+            this.txtFaxNo.Size = new System.Drawing.Size(150, 20);
             this.txtFaxNo.TabIndex = 25;
             // 
             // txtPhoneNo
@@ -726,7 +749,7 @@
             this.txtPhoneNo.EnterMoveNextControl = true;
             this.txtPhoneNo.Location = new System.Drawing.Point(96, 115);
             this.txtPhoneNo.Name = "txtPhoneNo";
-            this.txtPhoneNo.Size = new System.Drawing.Size(100, 20);
+            this.txtPhoneNo.Size = new System.Drawing.Size(150, 20);
             this.txtPhoneNo.TabIndex = 24;
             // 
             // txtZipCode
@@ -735,7 +758,7 @@
             this.txtZipCode.EnterMoveNextControl = true;
             this.txtZipCode.Location = new System.Drawing.Point(96, 89);
             this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(100, 20);
+            this.txtZipCode.Size = new System.Drawing.Size(150, 20);
             this.txtZipCode.TabIndex = 23;
             // 
             // txtCompanyAddress
@@ -744,7 +767,7 @@
             this.txtCompanyAddress.EnterMoveNextControl = true;
             this.txtCompanyAddress.Location = new System.Drawing.Point(96, 62);
             this.txtCompanyAddress.Name = "txtCompanyAddress";
-            this.txtCompanyAddress.Size = new System.Drawing.Size(100, 20);
+            this.txtCompanyAddress.Size = new System.Drawing.Size(150, 20);
             this.txtCompanyAddress.TabIndex = 22;
             // 
             // TxtCompanyLR
@@ -753,7 +776,7 @@
             this.TxtCompanyLR.EnterMoveNextControl = true;
             this.TxtCompanyLR.Location = new System.Drawing.Point(96, 36);
             this.TxtCompanyLR.Name = "TxtCompanyLR";
-            this.TxtCompanyLR.Size = new System.Drawing.Size(100, 20);
+            this.TxtCompanyLR.Size = new System.Drawing.Size(150, 20);
             this.TxtCompanyLR.TabIndex = 21;
             // 
             // lueCountryCode
@@ -772,7 +795,7 @@
             this.lueCountryCode.Properties.NullText = "";
             this.lueCountryCode.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.OnlyInPopup;
             this.lueCountryCode.Properties.ValueMember = "CountryCode";
-            this.lueCountryCode.Size = new System.Drawing.Size(100, 20);
+            this.lueCountryCode.Size = new System.Drawing.Size(150, 20);
             this.lueCountryCode.TabIndex = 20;
             // 
             // tpBussinessFinancialInfo
@@ -807,7 +830,7 @@
             this.txtBankAccout.EnterMoveNextControl = true;
             this.txtBankAccout.Location = new System.Drawing.Point(106, 64);
             this.txtBankAccout.Name = "txtBankAccout";
-            this.txtBankAccout.Size = new System.Drawing.Size(100, 20);
+            this.txtBankAccout.Size = new System.Drawing.Size(150, 20);
             this.txtBankAccout.TabIndex = 23;
             // 
             // bsFina
@@ -821,7 +844,7 @@
             this.txtBankAddress.EnterMoveNextControl = true;
             this.txtBankAddress.Location = new System.Drawing.Point(106, 94);
             this.txtBankAddress.Name = "txtBankAddress";
-            this.txtBankAddress.Size = new System.Drawing.Size(100, 20);
+            this.txtBankAddress.Size = new System.Drawing.Size(150, 20);
             this.txtBankAddress.TabIndex = 24;
             // 
             // txtBussinessLicense
@@ -830,7 +853,7 @@
             this.txtBussinessLicense.EnterMoveNextControl = true;
             this.txtBussinessLicense.Location = new System.Drawing.Point(106, 37);
             this.txtBussinessLicense.Name = "txtBussinessLicense";
-            this.txtBussinessLicense.Size = new System.Drawing.Size(100, 20);
+            this.txtBussinessLicense.Size = new System.Drawing.Size(150, 20);
             this.txtBussinessLicense.TabIndex = 22;
             // 
             // bsCountry
@@ -850,29 +873,6 @@
             // 
             this.bsBase.DataMember = "BussinessBaseInfo";
             this.bsBase.DataSource = this.dataSet1;
-            // 
-            // dataColumn21
-            // 
-            this.dataColumn21.Caption = "联系人";
-            this.dataColumn21.ColumnName = "Contact";
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetail, "Contact", true));
-            this.textEdit1.EnterMoveNextControl = true;
-            this.textEdit1.Location = new System.Drawing.Point(96, 253);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(100, 20);
-            this.textEdit1.TabIndex = 29;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(3, 257);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(41, 12);
-            label1.TabIndex = 28;
-            label1.Text = "联系人";
             // 
             // FrmBussinessInfo
             // 
@@ -910,8 +910,9 @@
             this.tpBussinessDetailInfo.PerformLayout();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWebSite.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtE_mail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneNo.Properties)).EndInit();
@@ -929,7 +930,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBussinessLicense.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

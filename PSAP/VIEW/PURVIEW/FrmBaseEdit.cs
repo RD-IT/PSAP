@@ -223,6 +223,10 @@ namespace PSAP.VIEW.BSVIEW
         public delegate bool DeleteRowAfter_Handle(DataRow dr, SqlCommand cmd);
         public event DeleteRowAfter_Handle DeleteRowAfter;
 
+        //定义委托和事件  查询数据之后执行的方法
+        public delegate void QueryDataAfter_Handle();
+        public event QueryDataAfter_Handle QueryDataAfter;
+
         ControlHandler ctlHandler = new ControlHandler();
 
         /// <summary>
@@ -254,7 +258,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 新增按钮事件
         /// </summary>
-        private void btnNew_Click(object sender, EventArgs e)
+        public void btnNew_Click(object sender, EventArgs e)
         {
             try
             {
@@ -279,7 +283,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 保存按钮事件
         /// </summary>
-        private void btnSave_Click(object sender, EventArgs e)
+        public void btnSave_Click(object sender, EventArgs e)
         {
             if (btnSave.Text != "保存")//修改
             {
@@ -391,7 +395,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 取消按钮事件
         /// </summary>
-        private void btnCancel_Click(object sender, EventArgs e)
+        public void btnCancel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -414,7 +418,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 删除按钮事件
         /// </summary>
-        private void btnDelete_Click(object sender, EventArgs e)
+        public void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
@@ -449,6 +453,8 @@ namespace PSAP.VIEW.BSVIEW
             {
                 masterDataSet.Tables[0].Clear();
                 BaseSQL.Query(Sql, masterDataSet.Tables[0]);
+                if (QueryDataAfter != null)
+                    QueryDataAfter();
                 Set_Button_State(true);
                 Set_EditZone_ControlReadOnly(true);
                 pnlButton.Focus();

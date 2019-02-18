@@ -48,30 +48,32 @@ namespace PSAP.PSAPCommon
                 SystemInfo.CompImage = img;
             }
 
-            #region 设置连接服务端的IP地址和端口号
-
+            FileHandler fileHandler = new FileHandler();
             string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
             string sectionStr = "System";
-            SocketHandler.serverIP = new SystemHandler().GetIpAddress();
-            FileHandler fileHandler = new FileHandler();
+            fileHandler.IniWriteValue(iniPath, sectionStr, "LastLoginID", SystemInfo.user.LoginID);            
+
+            #region 设置连接服务端的IP地址和端口号
+            
+            SystemInfo.serverIP = new SystemHandler().GetIpAddress();
 
             if (File.Exists(iniPath))
             {
                 string serverIpStr = fileHandler.IniReadValue(iniPath, sectionStr, "ServerIP");
                 int portInt = DataTypeConvert.GetInt(fileHandler.IniReadValue(iniPath, sectionStr, "ServerPort"));
                 if (serverIpStr != "")
-                    SocketHandler.serverIP = serverIpStr;
+                    SystemInfo.serverIP = serverIpStr;
                 else
-                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SocketHandler.serverIP);
+                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SystemInfo.serverIP);
                 if (portInt > 0)
-                    SocketHandler.serverPort = portInt;
+                    SystemInfo.serverPort = portInt;
                 else
-                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SocketHandler.serverPort.ToString());
+                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SystemInfo.serverPort.ToString());
             }
             else
             {
-                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SocketHandler.serverIP);
-                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SocketHandler.serverPort.ToString());
+                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SystemInfo.serverIP);
+                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SystemInfo.serverPort.ToString());
             }
 
             #endregion

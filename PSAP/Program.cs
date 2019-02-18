@@ -31,7 +31,7 @@ namespace PSAP.VIEW.BSVIEW
                     frmMain.WindowState = FormWindowState.Maximized;
                     Application.Run(frmMain);
 
-                    if(SocketHandler.IsCheckServer)
+                    if(SystemInfo.IsCheckServer)
                         new SocketHandler().DisconnectServer(SocketHandler.clientSocket);
                 }
             }

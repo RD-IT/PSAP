@@ -27,7 +27,7 @@ namespace PSAP.PSAPCommon
         {
             FrmDocumentTempletDAO docDAO = new FrmDocumentTempletDAO();
             DataTable docTempletTable = docDAO.QueryDocTemplet(tableNameStr);
-            if(docTempletTable.Rows.Count==0)
+            if (docTempletTable.Rows.Count == 0)
             {
                 MessageHandler.ShowMessageBox("未查询到当前单据模板的信息记录，操作错误。");
                 return;
@@ -152,17 +152,27 @@ namespace PSAP.PSAPCommon
             }
         }
 
+        /// <summary>
+        /// 预览报表
+        /// </summary>
         public void XtraReport_Preview(XtraReport report)
         {
             report.PrintingSystem.PageSettings.PrinterName = SystemInfo.DefaultPrinterName;
             report.ShowPreviewDialog();
         }
 
+        /// <summary>
+        /// 打印报表
+        /// </summary>
         public void XtraReport_Print(XtraReport report)
         {
             report.Print(SystemInfo.DefaultPrinterName);
         }
 
+        /// <summary>
+        /// 设计报表
+        /// </summary>
+        /// <param name="path">报表模板的路径</param>
         public void XtraReport_Designer(XtraReport report, string path)
         {
             XRDesignFormEx designForm = new XRDesignFormEx();

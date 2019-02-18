@@ -17,12 +17,12 @@ namespace PSAP
     {
         public FrmLogin()
         {
-                InitializeComponent();
-                txtUserID.Text = "ADMIN";//测试用
-                txtPassword.Text = "ADMIN";//测试用
-}
+            InitializeComponent();
+            //txtUserID.Text = "ADMIN";//测试用
+            //txtPassword.Text = "ADMIN";//测试用
+        }
 
-private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -49,19 +49,21 @@ private void btnCancel_Click(object sender, EventArgs e)
                 {
                     MessageBox.Show(string.Format("用户ID不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtUserID.Focus();
+                    return;
                 }
 
                 if (txtPassword.Text == string.Empty)
                 {
                     MessageBox.Show(string.Format("密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtPassword.Focus();
+                    return;
                 }
 
                 if (FrmLoginBLL.CheckUser(txtUserID.Text, en.str2, cboLanguage))// en.str2为加密后密码
                 {
                     new SystemHandler().InitializationSystemInfo();
 
-                    if (SocketHandler.IsCheckServer)//启动服务端检测
+                    if (SystemInfo.IsCheckServer)//启动服务端检测
                     {
                         SocketHandler socket = new SocketHandler();
                         string messageStr = "";
@@ -74,6 +76,10 @@ private void btnCancel_Click(object sender, EventArgs e)
 
                     this.DialogResult = DialogResult.OK;
                     this.Close();
+                }
+                else
+                {
+                    txtPassword.Focus();
                 }
             }
             catch (Exception ex)
@@ -94,8 +100,8 @@ private void btnCancel_Click(object sender, EventArgs e)
         //}
 
         private void btnChangePassword_Click(object sender, EventArgs e)
-        {
-            FrmChangePassword f = new FrmChangePassword();
+        {            
+            FrmChangePassword f = new FrmChangePassword(txtUserID.Text.Trim());
             f.ShowDialog();
             txtUserID.Focus();
 
@@ -106,6 +112,8 @@ private void btnCancel_Click(object sender, EventArgs e)
             try
             {
                 FrmLoginBLL.InitCboLanguage(cboLanguage);
+                string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+                txtUserID.Text = new FileHandler().IniReadValue(iniPath, "System", "LastLoginID");
             }
             catch
             {

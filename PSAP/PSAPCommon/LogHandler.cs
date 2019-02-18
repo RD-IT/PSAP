@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PSAP.DAO.BSDAO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -20,12 +21,13 @@ namespace PSAP.PSAPCommon
         }
 
         /// <summary>
-        /// 事务记录日志
+        /// 非事务直接记录日志
         /// </summary>
         /// <param name="logStr">日志内容</param>
         public static void RecordLog(string logStr)
         {
-
+            //string sqlStr = "insert into LogTable...";
+            //BaseSQL.ExecuteSql(sqlStr);
         }
 
         /// <summary>

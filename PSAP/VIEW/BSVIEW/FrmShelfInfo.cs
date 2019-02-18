@@ -13,7 +13,6 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmShelfInfo : DockContent
     {
-        FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmBaseEdit editForm = null;
 
         public FrmShelfInfo()
