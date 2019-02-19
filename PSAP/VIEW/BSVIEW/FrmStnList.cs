@@ -134,7 +134,7 @@ namespace PSAP.VIEW.BSVIEW
             //else
             //    editForm.Sql = string.Format("select BS_StnList.*, BS_ProjectList.ProjectName from BS_StnList left join BS_ProjectList on BS_StnList.ProjectNo=BS_ProjectList.ProjectNo where BS_StnList.ProjectNo='{0}' order by BS_StnList.AutoId", projectNoStr);
 
-            editForm.Sql = string.Format("select BS_StnList.*, BS_ProjectList.ProjectName from BS_StnList left join BS_ProjectList on BS_StnList.ProjectNo=BS_ProjectList.ProjectNo where BS_StnList.ProjectNo='{0}' order by BS_StnList.AutoId",projectNoStr);
+            editForm.Sql = string.Format("select BS_StnList.*, BS_ProjectList.ProjectName from BS_StnList left join BS_ProjectList on BS_StnList.ProjectNo=BS_ProjectList.ProjectNo where BS_StnList.ProjectNo='{0}' order by BS_StnList.AutoId", projectNoStr);
         }
 
         /// <summary>
@@ -175,5 +175,15 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 刷新当前的站号信息
+        /// </summary>
+        public void RefreshCurrentStnInfo(string pNoStr, string pNameStr)
+        {
+            projectNoStr = pNoStr;
+            this.Text = string.Format("项目【{0}】的站号信息", pNameStr);
+            SetEditFormSQL();
+            editForm.btnRefresh_Click(null, null);
+        }
     }
 }

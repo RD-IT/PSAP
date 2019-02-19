@@ -50,6 +50,33 @@ namespace PSAP.BLL.BSBLL
         }
 
         /// <summary>
+        /// 查询全部窗体名称
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable InitFormNameDataTable()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("FormName", Type.GetType("System.String"));            
+            DataRow newRow;
+            newRow = table.NewRow();
+            newRow["FormName"] = "";
+            table.Rows.Add(newRow);
+
+            Assembly a = Assembly.LoadFile(Application.ExecutablePath);//.net中的反射
+            Type[] types = a.GetTypes();
+            foreach (Type t in types)
+            {
+                if (t.BaseType.Name == "Form" || t.BaseType.Name == "DockContent")
+                {
+                    newRow = table.NewRow();
+                    newRow["FormName"] = t.Name;
+                    table.Rows.Add(newRow);
+                }
+            }
+            return table;
+        }
+
+        /// <summary>
         /// 遍历TreeView,并将设定的"个人"权限信息保存到数据库
         /// </summary>
         /// <param name="tvwTmp"></param>

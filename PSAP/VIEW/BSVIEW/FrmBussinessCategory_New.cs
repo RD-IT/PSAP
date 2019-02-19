@@ -34,7 +34,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TableName = "BS_BussinessCategory";
                     editForm.TableCaption = "商业往来类别";
                     editForm.Sql = "select * from BS_BussinessCategory order by AutoId";
-                    editForm.PrimaryKeyColumn = "AutoId";
+                    editForm.PrimaryKeyColumn = "BussinessCategory";
                     editForm.MasterDataSet = dSBussinessCategory;
                     editForm.MasterBindingSource = bSBussinessCategory;
                     editForm.MasterEditPanel = pnlEdit;

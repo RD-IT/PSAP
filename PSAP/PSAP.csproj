@@ -190,6 +190,18 @@
     <Compile Include="VIEW\BSVIEW\FrmDeliveryLocation.Designer.cs">
       <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRight_MenuManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRight_MenuManagement.Designer.cs">
+      <DependentUpon>FrmRight_MenuManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRight_Role.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRight_Role.Designer.cs">
+      <DependentUpon>FrmRight_Role.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -626,6 +638,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDeliveryLocation.resx">
       <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_MenuManagement.resx">
+      <DependentUpon>FrmRight_MenuManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_Role.resx">
+      <DependentUpon>FrmRight_Role.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>

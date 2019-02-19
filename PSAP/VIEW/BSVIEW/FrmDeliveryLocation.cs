@@ -34,7 +34,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TableName = "BS_DeliveryLocation";
                     editForm.TableCaption = "交货处";
                     editForm.Sql = "select * from BS_DeliveryLocation order by AutoId";
-                    editForm.PrimaryKeyColumn = "AutoId";
+                    editForm.PrimaryKeyColumn = "LocationNo";
                     editForm.MasterDataSet = dSDeliveryLocation;
                     editForm.MasterBindingSource = bSDeliveryLocation;
                     editForm.MasterEditPanel = pnlEdit;

@@ -229,21 +229,27 @@ namespace PSAP.VIEW.BSVIEW
         /// <param name="e"></param>
         private void notifyIconMain_MouseClick(object sender, MouseEventArgs e)
         {
-            if (this.WindowState != FormWindowState.Maximized)
+            //if (this.WindowState != FormWindowState.Maximized)
+            //{
+            //    this.WindowState = FormWindowState.Maximized;
+            //}
+            //else
+            //{
+            //    if (this.TopLevel == true)
+            //    {
+            //        this.WindowState = FormWindowState.Minimized;
+            //    }
+            //    else
+            //    {
+            //        this.WindowState = FormWindowState.Minimized;
+            //        this.WindowState = FormWindowState.Maximized;
+            //    }
+            //}
+
+            if (this.WindowState == FormWindowState.Minimized)
             {
+                this.Visible = true;
                 this.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                if (this.TopLevel == true)
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                }
-                else
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                    this.WindowState = FormWindowState.Maximized;
-                }
             }
         }
 
@@ -386,14 +392,16 @@ namespace PSAP.VIEW.BSVIEW
             if (WindowState == FormWindowState.Minimized)
             {
                 //隐藏任务栏区图标
-                this.ShowInTaskbar = false;
+                //this.ShowInTaskbar = false;
                 //图标显示在托盘区
                 notifyIconMain.Visible = true;
+                this.Visible = false;
             }
             else
             {
-                this.ShowInTaskbar = true;
+                //this.ShowInTaskbar = true;
                 notifyIconMain.Visible = false;
+                //this.Visible = true;
             }
         }
     }

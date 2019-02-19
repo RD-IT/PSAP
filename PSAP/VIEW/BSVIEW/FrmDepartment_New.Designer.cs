@@ -86,8 +86,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barBtnSame = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnDown = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -551,8 +549,6 @@
             this.barManagerForm.DockControls.Add(this.barDockControlRight);
             this.barManagerForm.Form = this;
             this.barManagerForm.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barSubItem1,
-            this.barSubItem2,
             this.barBtnSame,
             this.barBtnDown});
             this.barManagerForm.MaxItemId = 4;
@@ -584,18 +580,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1072, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 554);
-            // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "新增同级部门";
-            this.barSubItem1.Id = 0;
-            this.barSubItem1.Name = "barSubItem1";
-            // 
-            // barSubItem2
-            // 
-            this.barSubItem2.Caption = "新增下级部门";
-            this.barSubItem2.Id = 1;
-            this.barSubItem2.Name = "barSubItem2";
             // 
             // barBtnSame
             // 
@@ -720,8 +704,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.PopupMenu popupMenuList;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
-        private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem barBtnSame;
         private DevExpress.XtraBars.BarButtonItem barBtnDown;
     }

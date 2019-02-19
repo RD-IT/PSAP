@@ -15,6 +15,7 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmBaseEdit editForm = null;
+        FrmStnList stnList = null;
 
         public FrmProjectList()
         {
@@ -50,6 +51,16 @@ namespace PSAP.VIEW.BSVIEW
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
+
+                    stnList = new FrmStnList("", "");
+                    stnList.Show(this.dockPanelStn);
+                    stnList.Dock = DockStyle.Fill;
+                    stnList.TopLevel = false;
+                    stnList.FormBorderStyle = FormBorderStyle.None;
+
+                    this.dockPanelStn.Text = stnList.Text;
+                    this.dockPanelStn.TabText = stnList.Text;
+                    this.dockPanelStn.Controls.Add(stnList);
                 }
             }
             catch (Exception ex)
@@ -123,6 +134,35 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--设定站号信息事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 当前项目号聚焦的事件
+        /// </summary>
+        private void gridViewProjectList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            try
+            {
+                if (!editForm.EditState)
+                {
+                    DataRow dr = gridViewProjectList.GetFocusedDataRow();
+                    if (dr != null)
+                    {
+                        stnList.RefreshCurrentStnInfo(DataTypeConvert.GetString(dr["ProjectNo"]), DataTypeConvert.GetString(dr["ProjectName"]));
+                        this.dockPanelStn.Text = stnList.Text;
+                        this.dockPanelStn.TabText = stnList.Text;
+                        this.dockPanelStn.Controls.Add(stnList);
+                    }
+                }
+                else
+                {
+                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--当前项目号聚焦的事件错误。", ex);
             }
         }
     }
