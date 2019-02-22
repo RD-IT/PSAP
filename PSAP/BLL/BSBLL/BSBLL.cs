@@ -18,6 +18,7 @@ using PsapUserControlLibrary;
 using System.Reflection;
 using System.Collections;
 using PSAP.PSAPCommon;
+using DevExpress.XtraGrid;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -573,6 +574,14 @@ namespace PSAP.BLL.BSBLL
 
         #region 多语言系统功能%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+        /*
+      //form窗口多语言功能调用
+            if (SystemInfo.user.Lanuage != "Chinese")//sx190220add
+            {
+                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
+            }
+    */
+
         /// <summary>
         /// 遍历窗口及其中控件,并将结果加至数据库表中
         /// </summary>
@@ -649,6 +658,36 @@ namespace PSAP.BLL.BSBLL
                             }
                         }
 
+                        #region ########GridControl
+                        if (ctl is GridControl)
+                        {
+                            GridControl gc = (GridControl)ctl;
+                            foreach (object gv in gc.Views)
+                            {
+                                if (gv.GetType().Name == "GridView")
+                                {
+                                    DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                                if (gv.GetType().Name == "WinExplorerView")
+                                {
+                                    DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                            }
+                        }
+                        #endregion #########GridControl
+
                         if (ctl.Controls.Count > 0)
                         {
                             TraverseFormControls(DockContentFormN, ctl);
@@ -718,6 +757,38 @@ namespace PSAP.BLL.BSBLL
                             }
                         }
 
+                        #region ########GridControl
+                        if (ctl is GridControl)
+                        {
+                            GridControl gc = (GridControl)ctl;
+                            foreach (object gv in gc.Views)
+                            {
+                                if (gv.GetType().Name == "GridView")
+                                {
+                                    DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                                if (gv.GetType().Name == "WinExplorerView")
+                                {
+                                    DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                            }
+
+
+                        }
+                        #endregion #########GridControl
+
                         if (ctl.Controls.Count > 0)
                         {
                             TraverseFormControls(FormN, ctl);
@@ -786,6 +857,36 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        if (gv.GetType().Name == "GridView")
+                        {
+                            DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                        if (gv.GetType().Name == "WinExplorerView")
+                        {
+                            DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                    }
+                }
+                #endregion #########GridControl
+
 
                 if (n.Controls.Count > 0)
                 {
@@ -848,6 +949,35 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        if (gv.GetType().Name == "GridView")
+                        {
+                            DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                        if (gv.GetType().Name == "WinExplorerView")
+                        {
+                            DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                    }
+                }
+                #endregion #########GridControl
 
                 if (n.Controls.Count > 0)
                 {
@@ -946,6 +1076,23 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (ctl is GridControl)
+                {
+                    GridControl gc = (GridControl)ctl;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                            ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                        }
+                    }
+                }
+                #endregion #########GridControl
+
                 if (ctl.Controls.Count > 0)
                 {
                     SetFormControlsLanuages(DockContentFormN, ctl);
@@ -1041,6 +1188,23 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (ctl is GridControl)
+                {
+                    GridControl gc = (GridControl)ctl;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                            ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                        }
+                    }
+                }
+                #endregion #########GridControl
+
                 if (ctl.Controls.Count > 0)
                 {
                     SetFormControlsLanuages(FormN, ctl);
@@ -1130,6 +1294,26 @@ namespace PSAP.BLL.BSBLL
                         }
                     }
                 }
+
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        if (gv.GetType().Name == "GridView")
+                        {
+                            DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                var TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                    }
+                }
+                #endregion #########GridControl
 
                 if (n.Controls.Count > 0)
                 {
@@ -1221,6 +1405,24 @@ namespace PSAP.BLL.BSBLL
                         }
                     }
                 }
+
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                            ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                        }
+                    }
+                }
+
+                #endregion #########GridControl
 
                 if (n.Controls.Count > 0)
                 {

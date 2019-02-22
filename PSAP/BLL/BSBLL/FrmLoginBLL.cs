@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PSAP;
+using System.Configuration;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -64,6 +65,8 @@ namespace PSAP.BLL.BSBLL
             cbTmp.DataSource = FrmLoginDAO.GegLanguageCategory();
             cbTmp.DisplayMember = "LanguageText";
             cbTmp.ValueMember = "LanguageName";
+            //cbTmp.SelectedValue = PSAP.Properties.Settings.Default.LastLanguage;
+
         }
     }
 }

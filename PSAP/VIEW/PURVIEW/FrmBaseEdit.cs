@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using PSAP.BLL.BSBLL;
 using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
@@ -237,6 +238,12 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBaseEdit()
         {
             InitializeComponent();
+
+            if (SystemInfo.user.Lanuage != "Chinese")//sx190220add
+            {
+                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
+            }
+
         }
 
         /// <summary>

@@ -24,6 +24,12 @@ namespace PSAP.DAO.BSDAO
 
         #region 公用方法
 
+        /// <summary>
+        /// 获得最大ID
+        /// </summary>
+        /// <param name="FieldName"></param>
+        /// <param name="TableName"></param>
+        /// <returns></returns>
         public static int GetMaxID(string FieldName, string TableName)
         {
             string strsql = "select max(" + FieldName + ")+1 from " + TableName;
@@ -37,6 +43,29 @@ namespace PSAP.DAO.BSDAO
                 return int.Parse(obj.ToString());
             }
         }
+
+        /// <summary>
+        /// 获得最大ID(类别字段中的某一类)
+        /// </summary>
+        /// <param name="FieldName"></param>
+        /// <param name="TableName"></param>
+        /// <param name="categoryFieldName"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public static int GetMaxID(string FieldName, string TableName, string categoryFieldName, int category)
+        {
+            string strsql = "select max(" + FieldName + ")+1 from " + TableName + " where " + categoryFieldName + "=" + category + " ";
+            object obj = GetSingle(strsql);
+            if (obj == null)
+            {
+                return 1;
+            }
+            else
+            {
+                return int.Parse(obj.ToString());
+            }
+        }
+
 
         public static string GetMaxCodeNo(string catgName)
         {
@@ -208,6 +237,7 @@ namespace PSAP.DAO.BSDAO
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
         /// <param name="SQLStringList">多条SQL语句</param>  
+        //static  object nn;
         public static void ExecuteSqlTran(ArrayList SQLStringList)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -224,6 +254,7 @@ namespace PSAP.DAO.BSDAO
                         string strsql = SQLStringList[n].ToString();
                         if (strsql.Trim().Length > 1)
                         {
+                             //nn = n;
                             cmd.CommandText = strsql;
                             cmd.ExecuteNonQuery();
                         }

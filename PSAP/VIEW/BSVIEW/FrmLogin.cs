@@ -10,6 +10,7 @@ using PSAP.DAO.BSDAO;
 using PSAP.BLL.BSBLL;
 using PSAP.VIEW.BSVIEW;
 using PSAP.PSAPCommon;
+using System.Configuration;
 
 namespace PSAP
 {
@@ -74,6 +75,10 @@ namespace PSAP
                         }
                     }
 
+                    //Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    // cfa.AppSettings.Settings["last"].Value = "111";
+                    //            cfa.Save();
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -120,6 +125,5 @@ namespace PSAP
                 MessageBox.Show(string.Format("数据库连接错误，请检查服务器连接情况！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
     }
 }

@@ -42,5 +42,16 @@ namespace PSAP.Properties {
                 return ((string)(this["ThemeId"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=PSAP;Persist Security Info=True;User ID=sa;" +
+            "Password=sa123456")]
+        public string PSAPConnectionString111 {
+            get {
+                return ((string)(this["PSAPConnectionString111"]));
+            }
+        }
     }
 }

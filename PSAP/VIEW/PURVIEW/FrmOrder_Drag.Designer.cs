@@ -388,7 +388,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(2, 2);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1102, 78);
+            this.pnltop.Size = new System.Drawing.Size(1016, 78);
             this.pnltop.TabIndex = 1;
             // 
             // lookUpApprover
@@ -731,7 +731,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1102, 186);
+            this.pnlMiddle.Size = new System.Drawing.Size(1016, 186);
             this.pnlMiddle.TabIndex = 2;
             // 
             // checkAll
@@ -763,7 +763,7 @@
             this.repSpinTax,
             this.repLookUpApprovalType,
             this.repLookUpPayTypeNo});
-            this.gridControlOrderHead.Size = new System.Drawing.Size(1098, 148);
+            this.gridControlOrderHead.Size = new System.Drawing.Size(1012, 148);
             this.gridControlOrderHead.TabIndex = 3;
             this.gridControlOrderHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderHead});
@@ -1488,7 +1488,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1098, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1012, 34);
             this.pnlMiddleTop.TabIndex = 2;
             // 
             // btnPreview
@@ -1599,7 +1599,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(2, 271);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1102, 328);
+            this.pnlBottom.Size = new System.Drawing.Size(1016, 328);
             this.pnlBottom.TabIndex = 3;
             // 
             // btnListAdd
@@ -1626,7 +1626,7 @@
             this.repbtnDelete,
             this.repSpinUnit,
             this.repSpinTax1});
-            this.gridControlOrderList.Size = new System.Drawing.Size(1098, 324);
+            this.gridControlOrderList.Size = new System.Drawing.Size(1012, 324);
             this.gridControlOrderList.TabIndex = 2;
             this.gridControlOrderList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderList});
@@ -2755,7 +2755,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(350, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(1106, 601);
+            this.pnlRight.Size = new System.Drawing.Size(1020, 601);
             this.pnlRight.TabIndex = 6;
             // 
             // splitterControl1
@@ -2764,7 +2764,7 @@
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitterControl1.Location = new System.Drawing.Point(2, 266);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1102, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1016, 5);
             this.splitterControl1.TabIndex = 5;
             this.splitterControl1.TabStop = false;
             // 
@@ -2807,14 +2807,14 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1456, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1370, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 601);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1456, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1370, 0);
             // 
             // barDockControlLeft
             // 
@@ -2827,13 +2827,13 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1456, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1370, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 601);
             // 
             // FrmOrder_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1456, 601);
+            this.ClientSize = new System.Drawing.Size(1370, 601);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.dockPnlLeft);
             this.Controls.Add(this.barDockControlLeft);

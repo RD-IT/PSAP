@@ -94,6 +94,8 @@
     <Compile Include="BLL\BSBLL\FrmMainBLL.cs" />
     <Compile Include="BLL\BSBLL\FrmOrganizationStruBLL.cs" />
     <Compile Include="BLL\BSBLL\FrmRightBLL.cs" />
+    <Compile Include="BLL\SALEBLL\FrmAddRemarksBLL.cs" />
+    <Compile Include="BLL\SALEBLL\FrmProjectDocumentBLL.cs" />
     <Compile Include="DAO\BSDAO\BaseSQL.cs" />
     <Compile Include="DAO\BSDAO\BSCommon.cs" />
     <Compile Include="DAO\BSDAO\FrmBomManagementDAO.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="DAO\INVDAO\FrmWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmSettlementDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmWarehouseWarrantApplyDAO.cs" />
+    <Compile Include="DAO\SALEDAO\FrmAddRemarksDAO.cs" />
+    <Compile Include="DAO\SALEDAO\FrmProjectDocumentDAO.cs" />
     <Compile Include="DS_PUR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +172,8 @@
     <Compile Include="PSAPCommon\ExceptionHandler.cs" />
     <Compile Include="PSAPCommon\FileHandler.cs" />
     <Compile Include="PSAPCommon\FormAutoSize.cs" />
+    <Compile Include="PSAPCommon\FtpOperations.cs" />
+    <Compile Include="PSAPCommon\IconHelper.cs" />
     <Compile Include="PSAPCommon\LogHandler.cs" />
     <Compile Include="PSAPCommon\MessageHandler.cs" />
     <Compile Include="PSAPCommon\psapCommon.cs" />
@@ -201,6 +207,18 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmRight_Role.Designer.cs">
       <DependentUpon>FrmRight_Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmAddRemarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmAddRemarks.Designer.cs">
+      <DependentUpon>FrmAddRemarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.Designer.cs">
+      <DependentUpon>FrmProjectDocument.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
@@ -645,6 +663,12 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_Role.resx">
       <DependentUpon>FrmRight_Role.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SALEVIEW\FrmAddRemarks.resx">
+      <DependentUpon>FrmAddRemarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SALEVIEW\FrmProjectDocument.resx">
+      <DependentUpon>FrmProjectDocument.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>
     </EmbeddedResource>
@@ -897,6 +921,7 @@
     <Content Include="PSAPCommon\PsapUserControlLibrary.dll" />
     <Content Include="PSAPCommon\UtilityLibrary.dll" />
     <Content Include="PSAPCommon\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="Resources\229.png" />
     <None Include="Resources\543.png" />
     <None Include="Resources\345.png" />
     <None Include="Resources\742.png" />
