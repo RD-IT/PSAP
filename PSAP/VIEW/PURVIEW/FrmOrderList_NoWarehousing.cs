@@ -13,12 +13,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmOrderList_Overplus : DockContent
+    public partial class FrmOrderList_NoWarehousing : DockContent
     {
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
-        public FrmOrderList_Overplus()
+        public FrmOrderList_NoWarehousing()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmOrderList_Overplus_Load(object sender, EventArgs e)
+        private void FrmOrderList_NoWarehousing_Load(object sender, EventArgs e)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.Query_OrderList_Overplus_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, checkOverplus.Checked, commonStr);
+                string querySqlStr = orderDAO.Query_OrderList_NoWarehousing_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, checkOverplus.Checked, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderList", querySqlStr, countSqlStr, true);
@@ -195,7 +195,5 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
             }
         }
-
-
     }
 }

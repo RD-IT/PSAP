@@ -864,6 +864,55 @@ namespace PSAP.DAO.INVDAO
         //    return BaseSQL.Query(sqlStr).Tables[0];
         //}
 
-        
+        /// <summary>
+        /// 查询入库未结账表明细的SQL
+        /// </summary>
+        public string Query_WWList_NoSettlement_SQL(string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string projectNameStr, string codeFileNameStr, bool containPartSettlementBool, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and WarehouseWarrantDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (reqDepStr != "")
+            {
+                sqlStr += string.Format(" and ReqDep='{0}'", reqDepStr);
+            }
+            if (bussinessBaseNoStr != "")
+            {
+                sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
+            }
+            if (repertoryNoStr != "")
+            {
+                sqlStr += string.Format(" and RepertoryNo='{0}'", repertoryNoStr);
+            }
+            if (wwTypeNoStr != "")
+            {
+                sqlStr += string.Format(" and WarehouseWarrantTypeNo='{0}'", wwTypeNoStr);
+            }
+            if (warehouseStateInt != 0)
+            {
+                sqlStr += string.Format(" and WarehouseState={0}", warehouseStateInt);
+            }
+            if (projectNameStr != "")
+            {
+                sqlStr += string.Format(" and ProjectName='{0}'", projectNameStr);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (!containPartSettlementBool)
+            {
+                sqlStr += string.Format(" and IsNull(SettlementCount, 0)=0");
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (WarehouseWarrant like '%{0}%' or Remark like '%{0}%' or OrderHeadNo like '%{0}%')", commonStr);
+            }
+
+            sqlStr = string.Format("select * from V_INV_WarehouseWarrentList_NoSettleWWList where {0} order by AutoId", sqlStr);
+            return sqlStr;
+        }
     }
 }

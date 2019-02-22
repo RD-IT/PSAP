@@ -43,8 +43,7 @@ namespace PSAP
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
-            {
-                EncryptMD5 en = new EncryptMD5(txtPassword.Text);//实例化EncryptMD5, 加密后值引用en.str2
+            {                
                 if (txtUserID.Text == string.Empty)
                 {
                     MessageBox.Show(string.Format("用户ID不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -58,10 +57,10 @@ namespace PSAP
                     txtPassword.Focus();
                     return;
                 }
-
+                EncryptMD5 en = new EncryptMD5(txtPassword.Text);//实例化EncryptMD5, 加密后值引用en.str2
                 if (FrmLoginBLL.CheckUser(txtUserID.Text, en.str2, cboLanguage))// en.str2为加密后密码
                 {
-                    new SystemHandler().InitializationSystemInfo();
+                    new SystemHandler().InitializationSystemInfo(txtPassword.Text);
 
                     if (SystemInfo.IsCheckServer)//启动服务端检测
                     {
@@ -114,6 +113,12 @@ namespace PSAP
                 FrmLoginBLL.InitCboLanguage(cboLanguage);
                 string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
                 txtUserID.Text = new FileHandler().IniReadValue(iniPath, "System", "LastLoginID");
+                if (SystemInfo.LoginSavePwd)
+                {
+                    string pwdStr = new FileHandler().IniReadValue(iniPath, "System", "LastLoginPwd");
+                    if (pwdStr != "")
+                        txtPassword.Text = pwdStr;
+                }
             }
             catch
             {

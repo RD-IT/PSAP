@@ -38,7 +38,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 初始化系统信息
         /// </summary>
-        public void InitializationSystemInfo()
+        public void InitializationSystemInfo(string pwdStr)
         {
             SystemInfo.HostIpAddress = GetIpAddress();
             string SourFilePath = "Images\\CompanyLogo.jpg";
@@ -51,7 +51,11 @@ namespace PSAP.PSAPCommon
             FileHandler fileHandler = new FileHandler();
             string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
             string sectionStr = "System";
-            fileHandler.IniWriteValue(iniPath, sectionStr, "LastLoginID", SystemInfo.user.LoginID);            
+            fileHandler.IniWriteValue(iniPath, sectionStr, "LastLoginID", SystemInfo.user.LoginID);
+            if(SystemInfo.LoginSavePwd)
+            {
+                fileHandler.IniWriteValue(iniPath, sectionStr, "LastLoginPwd", pwdStr);
+            }        
 
             #region 设置连接服务端的IP地址和端口号
             

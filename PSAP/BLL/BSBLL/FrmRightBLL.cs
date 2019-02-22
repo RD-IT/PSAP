@@ -11,6 +11,10 @@ using WeifenLuo.WinFormsUI.Docking;
 using System.Collections;
 using PSAP.DAO.BSDAO;
 using DevExpress.XtraEditors;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+using PSAP.PSAPCommon;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -80,7 +84,7 @@ namespace PSAP.BLL.BSBLL
         /// 遍历TreeView,并将设定的"个人"权限信息保存到数据库
         /// </summary>
         /// <param name="tvwTmp"></param>
-        public static void SaevPersonalRightFromTree(TreeView tvwTmp, DataGridView dgvTmp)
+        public static void SavePersonalRightFromTree(TreeView tvwTmp, DataGridView dgvTmp)
         {
             FrmRightDAO.strSqlLlist.Clear();//将命令行变量清空
             //获取TreeView的所有根节点
@@ -89,6 +93,16 @@ namespace PSAP.BLL.BSBLL
                 SubNode(tn, dgvTmp);
             }
             FrmRightDAO.RunSqlStatement_SaveUserMenuButton((int)dgvTmp.CurrentRow.Cells[0].Value);
+        }
+        public static void SavePersonalRightFromTree(TreeList tvwTmp, GridView dgvTmp)
+        {
+            FrmRightDAO.strSqlLlist.Clear();//将命令行变量清空
+            //获取TreeView的所有根节点
+            foreach (TreeListNode tn in tvwTmp.Nodes)
+            {
+                SubNode(tn, dgvTmp);
+            }
+            FrmRightDAO.RunSqlStatement_SaveUserMenuButton(DataTypeConvert.GetInt(dgvTmp.GetFocusedDataRow()[0]));
         }
 
         public static void SubNode(TreeNode tn, DataGridView dgvTmp)
@@ -106,6 +120,26 @@ namespace PSAP.BLL.BSBLL
                     {
                         //将设定的用户“菜单”权限保存到数据库
                         FrmRightDAO.AddSqlStatement_SaveUserMenuButton((int)dgvTmp.CurrentRow.Cells[0].Value, FrmRightDAO.GetMenuButtonId(tnSub.Name, "menuItemFlag"));
+                    }
+                }
+                SubNode(tnSub, dgvTmp);
+            }
+        }
+        public static void SubNode(TreeListNode tn, GridView dgvTmp)
+        {
+            foreach (TreeListNode tnSub in tn.Nodes)
+            {
+                if (tnSub.Checked == true && !tnSub.Tag.ToString().Contains(":Role"))
+                {
+                    if (tnSub.Tag.ToString() == "button")
+                    {
+                        //将设定的用户“按钮”权限保存到数据库
+                        FrmRightDAO.AddSqlStatement_SaveUserMenuButton(DataTypeConvert.GetInt(dgvTmp.GetFocusedDataRow()[0]), FrmRightDAO.GetMenuButtonId(DataTypeConvert.GetString(tnSub.ParentNode["MenuName"]), DataTypeConvert.GetString(tnSub["MenuName"])));
+                    }
+                    else
+                    {
+                        //将设定的用户“菜单”权限保存到数据库
+                        FrmRightDAO.AddSqlStatement_SaveUserMenuButton(DataTypeConvert.GetInt(dgvTmp.GetFocusedDataRow()[0]), FrmRightDAO.GetMenuButtonId(DataTypeConvert.GetString(tnSub["MenuName"]), "menuItemFlag"));
                     }
                 }
                 SubNode(tnSub, dgvTmp);
@@ -132,6 +166,21 @@ namespace PSAP.BLL.BSBLL
                 GetMenu(node1, m1);
             }
         }
+        public static void TreeGetNodeForMns(TreeList treeV, MenuStrip menuS)
+        {
+            //遍历menuStrip中的一级菜单项
+            foreach (ToolStripDropDownItem m1 in menuS.Items)
+            {
+                //循环添加一级菜单
+                TreeListNode node1 = treeV.Nodes.Add(new object[] { m1.Name, m1.Text });
+                node1.Tag = "";
+                if (m1.Enabled == true)
+                {
+                    node1.Checked = true;
+                }
+                GetMenu(node1, m1);
+            }
+        }
         //生成子菜单
         private static void GetMenu(TreeNode node1, ToolStripDropDownItem m1)
         {
@@ -149,6 +198,30 @@ namespace PSAP.BLL.BSBLL
                             {
                                 node2.BackColor = System.Drawing.SystemColors.Control;
                                 node2.NodeFont = new Font("宋体", 9, FontStyle.Italic);//| FontStyle.Bold)
+                            }
+                        }
+                    }
+                    node2.Tag = m2.Tag;
+                    GetMenu(node2, m2);//递归
+                }
+            }
+        }
+        private static void GetMenu(TreeListNode node1, ToolStripDropDownItem m1)
+        {
+            foreach (ToolStripDropDownItem m2 in m1.DropDownItems)
+            {
+                if (m2 != null)
+                {
+                    TreeListNode node2 = node1.Nodes.Add(new object[] { m2.Name, m2.Text });
+                    if (m2.Enabled == true)
+                    {
+                        node2.Checked = true;
+                        if (!string.IsNullOrEmpty(m2.Tag.ToString()))
+                        {
+                            if (m2.Tag.ToString().Substring(m2.Tag.ToString().Length - 5, 5) == ":Role")//为“角色”权限时
+                            {
+                                //node2.BackColor = System.Drawing.SystemColors.Control;
+                                //node2.NodeFont = new Font("宋体", 9, FontStyle.Italic);//| FontStyle.Bold)
                             }
                         }
                     }
@@ -249,10 +322,38 @@ namespace PSAP.BLL.BSBLL
                 SubButtonsNode(tn, strUserNo);
             }
         }
+        public static void TreeAddButtonsNode(TreeList tvwTmp, string strUserNo)
+        {
+            //1.获取TreeView的所有根节点
+            foreach (TreeListNode tn in tvwTmp.Nodes)
+            {
+                SubButtonsNode(tn, strUserNo);
+            }
+        }
         //子过程
         public static void SubButtonsNode(TreeNode tn, string strUserNo)
         {
             foreach (TreeNode tnSub in tn.Nodes)
+            {
+                //if (tnSub.Checked == true && !tnSub.Tag.ToString().Contains(":Role"))
+                if (tnSub.Tag != null)
+                {
+                    if (tnSub.Nodes.Count == 0 && !string.IsNullOrEmpty(tnSub.Tag.ToString()))
+                    {
+                        string strTag = tnSub.Tag.ToString();
+                        if (strTag.Contains(":Role"))
+                        {
+                            strTag = strTag.Substring(0, strTag.Length - 5);
+                        }
+                        TraverseForm(strTag, tnSub, strUserNo);//将窗口控件加入树
+                    }
+                }
+                SubButtonsNode(tnSub, strUserNo);
+            }
+        }
+        public static void SubButtonsNode(TreeListNode tn, string strUserNo)
+        {
+            foreach (TreeListNode tnSub in tn.Nodes)
             {
                 //if (tnSub.Checked == true && !tnSub.Tag.ToString().Contains(":Role"))
                 if (tnSub.Tag != null)
@@ -317,6 +418,57 @@ namespace PSAP.BLL.BSBLL
                             {
                                 tn1.Tag = "button";//按钮节点
                                 VerifyButtonPersonalRight(strUserNo, tn.Name, tn1);
+
+                            }
+                        }
+                        TraverseFormControlsAddTree(DockContectFormN, ctl, tn, strUserNo);
+                    }
+                }
+            }
+        }
+        public static void TraverseForm(string strFormName, TreeListNode tn, string strUserNo)
+        {
+            //Form f = new Form();
+            DockContent DockContectFormN = new DockContent();
+            Assembly a = Assembly.LoadFile(Application.ExecutablePath);//.net中的反射
+            Type[] types = a.GetTypes();
+            foreach (Type t in types)
+            {
+                if (t.BaseType.Name == "DockContent" && t.Name == strFormName)//遍历找到指定“DockContent”窗口
+                {
+                    DockContectFormN = (DockContent)Activator.CreateInstance(t, true);
+                    foreach (Control ctl in DockContectFormN.Controls)//遍历
+                    {
+                        if (ctl is Button)
+                        {
+                            if (!strNotRightButton.Contains(ctl.Name))
+                            {
+                                tn.Nodes.Add(ctl.Name, ctl.Text);//增加按钮节点
+                            }
+                            foreach (TreeListNode tn1 in tn.Nodes)
+                            {
+                                tn1.Tag = "button";//按钮节点
+                                VerifyButtonPersonalRight(strUserNo, DataTypeConvert.GetString(tn["MenuName"]), tn1);
+
+                            }
+                        }
+                        if (ctl is ToolStrip)
+                        {
+                            ToolStrip tsTmp = (ToolStrip)ctl;
+                            for (int i = 0; i < tsTmp.Items.Count; i++)
+                            {
+                                if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                                {
+                                    if (!strNotRightButton.Contains(tsTmp.Items[i].Name))
+                                    {
+                                        tn.Nodes.Add(tsTmp.Items[i].Name, tsTmp.Items[i].Text);//增加按钮节点
+                                    }
+                                }
+                            }
+                            foreach (TreeListNode tn1 in tn.Nodes)
+                            {
+                                tn1.Tag = "button";//按钮节点
+                                VerifyButtonPersonalRight(strUserNo, DataTypeConvert.GetString(tn["MenuName"]), tn1);
 
                             }
                         }
@@ -390,6 +542,62 @@ namespace PSAP.BLL.BSBLL
                 }
             }
         }
+        public static void TraverseFormControlsAddTree(DockContent DockContentFormN, Control ctlTmp, TreeListNode tn, string strUserNo)
+        {
+            foreach (Control n in ctlTmp.Controls)
+            {
+                if (n is Button)
+                {
+                    if (!strNotRightButton.Contains(n.Name))
+                    {
+                        tn.Nodes.Add(n.Name, n.Text);//增加按钮节点
+                    }
+                    foreach (TreeListNode tn1 in tn.Nodes)
+                    {
+                        tn1.Tag = "button";//按钮节点
+                        VerifyButtonPersonalRight(strUserNo, DataTypeConvert.GetString(tn["MenuName"]), tn1);
+
+                    }
+                }
+                else if (n is SimpleButton)
+                {
+                    if (!strNotRightButton.Contains(n.Name))
+                    {
+                        tn.Nodes.Add(n.Name, n.Text);//增加按钮节点
+                    }
+                    foreach (TreeListNode tn1 in tn.Nodes)
+                    {
+                        tn1.Tag = "button";//按钮节点
+                        VerifyButtonPersonalRight(strUserNo, DataTypeConvert.GetString(tn["MenuName"]), tn1);
+
+                    }
+                }
+                else if (n is ToolStrip)
+                {
+                    ToolStrip tsTmp = (ToolStrip)n;
+                    for (int i = 0; i < tsTmp.Items.Count; i++)
+                    {
+                        if (tsTmp.Items[i].GetType().ToString() == "System.Windows.Forms.ToolStripButton")//判断是否为ToolStripButton
+                        {
+                            if (!strNotRightButton.Contains(tsTmp.Items[i].Name))
+                            {
+                                tn.Nodes.Add(tsTmp.Items[i].Name, tsTmp.Items[i].Text);//增加按钮节点
+                            }
+                        }
+                    }
+                    foreach (TreeListNode tn1 in tn.Nodes)
+                    {
+                        tn1.Tag = "button";//按钮节点
+                        VerifyButtonPersonalRight(strUserNo, DataTypeConvert.GetString(tn["MenuName"]), tn1);
+
+                    }
+                }
+                if (n.Controls.Count > 0)
+                {
+                    TraverseFormControlsAddTree(DockContentFormN, n, tn, strUserNo);
+                }
+            }
+        }
 
         /// <summary>
         /// 验证个人按钮权限
@@ -405,6 +613,20 @@ namespace PSAP.BLL.BSBLL
                 foreach (DataRow dr in dt.Rows)
                 {
                     if (tnTmp.Name == dr["buttonName"].ToString())
+                    {
+                        tnTmp.Checked = true;
+                    }
+                }
+            }
+        }
+        public static void VerifyButtonPersonalRight(string strUserNo, string strMenuName, TreeListNode tnTmp)
+        {
+            DataTable dt = FrmRightDAO.GetButtonPersonalRightData(strUserNo, strMenuName);
+            if (dt.Rows.Count != 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (DataTypeConvert.GetString(tnTmp["MenuName"]) == dr["buttonName"].ToString())
                     {
                         tnTmp.Checked = true;
                     }

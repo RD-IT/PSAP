@@ -153,6 +153,11 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public static ProtocolType serverProtocolType = ProtocolType.Tcp;
 
+        /// <summary>
+        /// 登陆保存密码
+        /// </summary>
+        public static bool LoginSavePwd = true;
+
         #endregion
 
     }

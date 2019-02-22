@@ -29,9 +29,11 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmRight_Role_Load(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 if (editForm == null)
                 {
+                    QueryMenuTreeList();
+
                     editForm = new FrmBaseEdit();
                     editForm.FormBorderStyle = FormBorderStyle.None;
                     editForm.TopLevel = false;
@@ -43,13 +45,16 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterBindingSource = bSRole;
                     editForm.MasterEditPanel = pnlEdit;
                     editForm.PrimaryKeyControl = textRoleNo;
+                    editForm.MasterEditPanelAddControl = new List<Control>() { treeListRole };
                     editForm.BrowseXtraGridView = gridViewRole;
+                    editForm.RowStateUnchangedIsSave = true;
                     editForm.CheckControl += CheckControl;
+                    editForm.QueryDataAfter += QueryDataAfter;
+                    editForm.CancelAfter += QueryDataAfter;
+                    editForm.SaveRowAfter += SaveRowAfter;
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
-
-                    QueryMenuTreeList();
                 }
             }
             catch (Exception ex)
@@ -80,6 +85,24 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 查询数据之后的回调方法
+        /// </summary>
+        public void QueryDataAfter()
+        {
+            SetRoleMenuTreeCheck();
+        }
+
+        /// <summary>
+        /// 保存之后执行的回调方法
+        /// </summary>
+        public bool SaveRowAfter(DataRow dr, SqlCommand cmd)
+        {
+            FrmRightDAO.SaveRoleMenu_TreeList(cmd, DataTypeConvert.GetString(dr["RoleNo"]), treeListRole);
+
+            return true;
+        }
+
+        /// <summary>
         /// 确定行号
         /// </summary>
         private void gridViewRole_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -93,30 +116,13 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 选中角色查看权限
         /// </summary>
-        private void gridViewRole_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        public void gridViewRole_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             try
             {
-                
-
                 if (gridViewRole.GetFocusedDataRow() != null)
                 {
-                    treeListRole.UncheckAll();
-                    foreach (TreeListNode node in treeListRole.Nodes)
-                    {
-                        node.Checked = true;
-                    }
-
-                    DataTable roleMenuTable = FrmRightDAO.QueryRoleMenu(DataTypeConvert.GetString(gridViewRole.GetFocusedDataRow()["RoleNo"]));
-                    int cont = treeListRole.GetAllCheckedNodes().Count;
-
-                    foreach (TreeListNode node in treeListRole.GetNodeList())
-                    {
-                        string menuNameStr = DataTypeConvert.GetString(node["MenuName"]);
-                        DataRow[] drs = roleMenuTable.Select(string.Format("MenuName = '{0}'", menuNameStr));
-                        if (drs.Length > 0)
-                            node.Checked = true;
-                    }
+                    SetRoleMenuTreeCheck();
                 }
             }
             catch (Exception ex)
@@ -128,10 +134,35 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 查询权限树的所有节点
         /// </summary>
-        private void QueryMenuTreeList()
+        public void QueryMenuTreeList()
         {
             treeListRole.DataSource = FrmRightDAO.QueryMenuTree();
             treeListRole.ExpandAll();
+        }
+
+        /// <summary>
+        /// 设定角色菜单树的选择状态
+        /// </summary>
+        private void SetRoleMenuTreeCheck()
+        {
+            treeListRole.UncheckAll();
+            foreach (TreeListNode node in treeListRole.Nodes)
+            {
+                node.Checked = true;
+            }
+            if (gridViewRole.GetFocusedDataRow() != null)
+            {
+                DataTable roleMenuTable = FrmRightDAO.QueryRoleMenu(DataTypeConvert.GetString(gridViewRole.GetFocusedDataRow()["RoleNo"]));
+                int cont = treeListRole.GetAllCheckedNodes().Count;
+
+                foreach (TreeListNode node in treeListRole.GetNodeList())
+                {
+                    string menuNameStr = DataTypeConvert.GetString(node["MenuName"]);
+                    DataRow[] drs = roleMenuTable.Select(string.Format("MenuName = '{0}'", menuNameStr));
+                    if (drs.Length > 0)
+                        node.Checked = true;
+                }
+            }
         }
 
         /// <summary>
@@ -185,7 +216,8 @@ namespace PSAP.VIEW.BSVIEW
                         break;
                     }
                 }
-                node.ParentNode.CheckState = b ? CheckState.Indeterminate : check;
+                //node.ParentNode.CheckState = b ? CheckState.Indeterminate : check;
+                node.ParentNode.CheckState = b ? CheckState.Checked : check;
                 SetCheckedParentNodes(node.ParentNode, check);
             }
         }

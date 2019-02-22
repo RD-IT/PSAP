@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -57,6 +58,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.BrowseXtraGridView = gridViewMenu;
                     editForm.CheckControl += CheckControl;
                     editForm.QueryDataAfter += QueryDataAfter;
+                    editForm.SaveRowBefore += SaveRowBefore;
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
@@ -98,6 +100,20 @@ namespace PSAP.VIEW.BSVIEW
         public void QueryDataAfter()
         {
             treeListMenu.ExpandAll();
+        }
+
+        /// <summary>
+        /// 保存行之前的回调方法
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public bool SaveRowBefore(DataRow dr, SqlCommand cmd)
+        {
+            if (dr.RowState == DataRowState.Added)
+                dr["MenuOrder"] = FrmRightDAO.GetMaxMenuOrder(cmd, DataTypeConvert.GetString(dr["ParentMenuName"]));
+
+            return true;
         }
 
         /// <summary>
