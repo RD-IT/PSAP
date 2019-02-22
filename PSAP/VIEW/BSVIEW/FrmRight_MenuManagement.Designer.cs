@@ -271,7 +271,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(255, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(845, 641);
+            this.pnlRight.Size = new System.Drawing.Size(1016, 641);
             this.pnlRight.TabIndex = 1;
             // 
             // pnlGrid
@@ -280,7 +280,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(2, 139);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(841, 500);
+            this.pnlGrid.Size = new System.Drawing.Size(1012, 500);
             this.pnlGrid.TabIndex = 10;
             // 
             // gridCrlMenu
@@ -290,7 +290,7 @@
             this.gridCrlMenu.Location = new System.Drawing.Point(2, 2);
             this.gridCrlMenu.MainView = this.gridViewMenu;
             this.gridCrlMenu.Name = "gridCrlMenu";
-            this.gridCrlMenu.Size = new System.Drawing.Size(837, 496);
+            this.gridCrlMenu.Size = new System.Drawing.Size(1008, 496);
             this.gridCrlMenu.TabIndex = 1;
             this.gridCrlMenu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewMenu});
@@ -352,7 +352,7 @@
             this.colFormName.Name = "colFormName";
             this.colFormName.Visible = true;
             this.colFormName.VisibleIndex = 2;
-            this.colFormName.Width = 200;
+            this.colFormName.Width = 240;
             // 
             // colFormText
             // 
@@ -400,7 +400,7 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(2, 42);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(841, 97);
+            this.pnlEdit.Size = new System.Drawing.Size(1012, 97);
             this.pnlEdit.TabIndex = 9;
             // 
             // labParentMenuName
@@ -433,7 +433,7 @@
             this.lookUpFormName.Properties.DropDownRows = 20;
             this.lookUpFormName.Properties.NullText = "";
             this.lookUpFormName.Properties.ValueMember = "FormName";
-            this.lookUpFormName.Size = new System.Drawing.Size(200, 20);
+            this.lookUpFormName.Size = new System.Drawing.Size(240, 20);
             this.lookUpFormName.TabIndex = 2;
             // 
             // textFormText
@@ -515,7 +515,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(841, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(1012, 40);
             this.pnlToolBar.TabIndex = 5;
             // 
             // splitterMiddle
@@ -546,14 +546,14 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1100, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1271, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 641);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1100, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1271, 0);
             // 
             // barDockControlLeft
             // 
@@ -566,7 +566,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1100, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1271, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 641);
             // 
             // barBtnSame
@@ -610,7 +610,7 @@
             // FrmRight_MenuManagement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1100, 641);
+            this.ClientSize = new System.Drawing.Size(1271, 641);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.splitterMiddle);
             this.Controls.Add(this.pnlLeft);

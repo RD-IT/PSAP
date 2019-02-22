@@ -87,7 +87,7 @@
             // 
             // dataColPayTypeNo
             // 
-            this.dataColPayTypeNo.Caption = "审批类型编码";
+            this.dataColPayTypeNo.Caption = "付款类型";
             this.dataColPayTypeNo.ColumnName = "PayTypeNo";
             // 
             // dataColPayPercentum

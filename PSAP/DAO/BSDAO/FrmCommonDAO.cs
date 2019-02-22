@@ -219,6 +219,19 @@ namespace PSAP.DAO.BSDAO
         }
 
         /// <summary>
+        /// 查询收款类型信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryCollectionType(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, CollectionTypeNo, CollectionTypeNoText from BS_CollectionType Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as CollectionTypeNo, '全部' as CollectionTypeNoText union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
         /// 统计要查询的SQL的数据的行数的SQL
         /// </summary>
         /// <param name="sqlStr">要查询的SQL</param>

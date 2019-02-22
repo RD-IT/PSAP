@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTreeList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,9 @@ namespace PSAP.PSAPCommon
                 case "DevExpress.XtraEditors.ListBoxControl":
                     ((ListBoxControl)ctl).Enabled = enabledState;
                     break;
-
+                case "DevExpress.XtraTreeList.TreeList":
+                    ((TreeList)ctl).Enabled = enabledState;
+                    break;
             }
         }
 
@@ -117,6 +120,9 @@ namespace PSAP.PSAPCommon
                     break;
                 case "DevExpress.XtraEditors.ListBoxControl":
                     ((ListBoxControl)ctl).Enabled = !readOnlyState;
+                    break;
+                case "DevExpress.XtraTreeList.TreeList":
+                    ((TreeList)ctl).Enabled = !readOnlyState;
                     break;
             }
         }

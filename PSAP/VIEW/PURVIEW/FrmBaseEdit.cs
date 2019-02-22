@@ -81,6 +81,12 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public bool DeleteAfterRefresh = false;
 
+
+        /// <summary>
+        /// 行未改变状态也保存
+        /// </summary>
+        public bool RowStateUnchangedIsSave = false;
+
         /// <summary>
         /// DataSet是主数据集
         /// </summary>
@@ -204,6 +210,22 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 编辑区Panel增加控件，状态随Panel里面的控件状态改变
+        /// </summary>
+        private List<Control> masterEditPanelAddControl = new List<Control>();
+        public List<Control> MasterEditPanelAddControl
+        {
+            get
+            {
+                return masterEditPanelAddControl;
+            }
+            set
+            {
+                masterEditPanelAddControl = value;
+            }
+        }
+
         //定义委托和事件  保存之前检查编辑区控件填写问题
         public delegate bool Check_MasterEditPanel_Control();
         public event Check_MasterEditPanel_Control CheckControl;
@@ -227,6 +249,10 @@ namespace PSAP.VIEW.BSVIEW
         //定义委托和事件  查询数据之后执行的方法
         public delegate void QueryDataAfter_Handle();
         public event QueryDataAfter_Handle QueryDataAfter;
+
+        //定义委托和事件  取消之后执行的方法
+        public delegate void CancelAfter_Handle();
+        public event CancelAfter_Handle CancelAfter;
 
         ControlHandler ctlHandler = new ControlHandler();
 
@@ -363,7 +389,7 @@ namespace PSAP.VIEW.BSVIEW
                     }
                 }
 
-                if (dr.RowState != DataRowState.Unchanged)
+                if (dr.RowState != DataRowState.Unchanged|| RowStateUnchangedIsSave)
                 {
                     if (DoSave(dr))
                     {
@@ -411,6 +437,8 @@ namespace PSAP.VIEW.BSVIEW
                     masterBindingSource.CancelEdit();
                     ((DataRowView)masterBindingSource.Current).Row.RejectChanges();
                     newState = false;
+                    if (CancelAfter != null)
+                        CancelAfter();
                     Set_Button_State(true);
                     Set_EditZone_ControlReadOnly(true);
                     pnlButton.Focus();
@@ -673,6 +701,11 @@ namespace PSAP.VIEW.BSVIEW
                     {
                         ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                     }
+
+                    foreach(Control ctl in masterEditPanelAddControl)
+                    {
+                        ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
+                    }
                 }
                 else
                 {
@@ -690,6 +723,11 @@ namespace PSAP.VIEW.BSVIEW
                             if (ctl != primaryKeyControl && (otherNoChangeControl ==null ||otherNoChangeControl.IndexOf(ctl) < 0))
                                 ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                         }
+                    }
+
+                    foreach (Control ctl in masterEditPanelAddControl)
+                    {
+                        ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                     }
                 }
             }

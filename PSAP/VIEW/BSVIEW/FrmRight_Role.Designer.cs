@@ -48,6 +48,7 @@
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoleNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
             this.pnlTreeList = new DevExpress.XtraEditors.PanelControl();
             this.treeListRole = new DevExpress.XtraTreeList.TreeList();
             this.colAutoId1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -167,6 +168,7 @@
             // pnlBottom
             // 
             this.pnlBottom.Controls.Add(this.pnlGrid);
+            this.pnlBottom.Controls.Add(this.splitterMiddle);
             this.pnlBottom.Controls.Add(this.pnlTreeList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(0, 108);
@@ -180,7 +182,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(2, 2);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(583, 458);
+            this.pnlGrid.Size = new System.Drawing.Size(578, 458);
             this.pnlGrid.TabIndex = 11;
             // 
             // gridCrlRole
@@ -190,7 +192,7 @@
             this.gridCrlRole.Location = new System.Drawing.Point(2, 2);
             this.gridCrlRole.MainView = this.gridViewRole;
             this.gridCrlRole.Name = "gridCrlRole";
-            this.gridCrlRole.Size = new System.Drawing.Size(579, 454);
+            this.gridCrlRole.Size = new System.Drawing.Size(574, 454);
             this.gridCrlRole.TabIndex = 0;
             this.gridCrlRole.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewRole});
@@ -241,6 +243,16 @@
             this.colRoleName.VisibleIndex = 1;
             this.colRoleName.Width = 150;
             // 
+            // splitterMiddle
+            // 
+            this.splitterMiddle.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.splitterMiddle.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitterMiddle.Location = new System.Drawing.Point(580, 2);
+            this.splitterMiddle.Name = "splitterMiddle";
+            this.splitterMiddle.Size = new System.Drawing.Size(5, 458);
+            this.splitterMiddle.TabIndex = 14;
+            this.splitterMiddle.TabStop = false;
+            // 
             // pnlTreeList
             // 
             this.pnlTreeList.Controls.Add(this.treeListRole);
@@ -262,6 +274,7 @@
             this.colParentMenuName1,
             this.colParentMenuText1});
             this.treeListRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeListRole.Enabled = false;
             this.treeListRole.KeyFieldName = "MenuName";
             this.treeListRole.Location = new System.Drawing.Point(2, 2);
             this.treeListRole.Name = "treeListRole";
@@ -394,5 +407,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colMenuName1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentMenuName1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentMenuText1;
+        private DevExpress.XtraEditors.SplitterControl splitterMiddle;
     }
 }

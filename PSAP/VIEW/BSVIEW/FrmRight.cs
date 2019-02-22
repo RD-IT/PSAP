@@ -279,7 +279,7 @@ namespace PSAP.VIEW.BSVIEW
                 FrmRightDAO.SaveRoleUser(cboRoleName.SelectedValue.ToString(), (int)dgvUserList.CurrentRow.Cells[0].Value);
                 FrmRightDAO.GiveRoleAllButtonRight();
             }
-            FrmRightBLL.SaevPersonalRightFromTree(tvwUserRight, dgvUserList);//遍历树保存权限
+            FrmRightBLL.SavePersonalRightFromTree(tvwUserRight, dgvUserList);//遍历树保存权限
 
             FrmMain.frmMain.tsrLblCurrentStatusText = "【用户权限】已成功保存";
         }
