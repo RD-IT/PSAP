@@ -186,12 +186,30 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateSettlementDateBegin.EditValue == null || dateSettlementDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("结账日期不能为空，请设置后重新进行查询。");
+                    if (dateSettlementDateBegin.EditValue == null)
+                        dateSettlementDateBegin.Focus();
+                    else
+                        dateSettlementDateEnd.Focus();
+                    return;
+                }
                 string orderDateBeginStr = dateSettlementDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateSettlementDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 string payDateBeginStr = "";
                 string payDateEndStr = "";
                 if (checkPayDate.Checked)
                 {
+                    if (datePayDateBegin.EditValue == null || datePayDateEnd.EditValue == null)
+                    {
+                        MessageHandler.ShowMessageBox("付款日期不能为空，请设置后重新进行查询。");
+                        if (datePayDateBegin.EditValue == null)
+                            datePayDateBegin.Focus();
+                        else
+                            datePayDateEnd.Focus();
+                        return;
+                    }
                     payDateBeginStr = datePayDateBegin.DateTime.ToString("yyyy-MM-dd");
                     payDateEndStr = datePayDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
@@ -944,6 +962,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateWWDateBegin.EditValue == null || dateWWDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("入库日期不能为空，请设置后重新进行查询。");
+                    if (dateWWDateBegin.EditValue == null)
+                        dateWWDateBegin.Focus();
+                    else
+                        dateWWDateEnd.Focus();
+                    return;
+                }
                 string wwHeadNoStr = textWarehouseWarrant.Text.Trim();
                 string wwDateBeginStr = dateWWDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string wwDateEndStr = dateWWDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
@@ -1086,7 +1113,7 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 拖拽采购订单转成入库单 
+        /// 拖拽采购订单转成入库单
         /// </summary>
         private void WWToSettle_DragOrder(object sender, List<DataRow> drs)
         {
@@ -1184,7 +1211,39 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        private void SetLeftOrder(bool isWarehouseWarrant)
+        {
+            if(isWarehouseWarrant)
+            {
+                btnLeftType.Text = "采购订单";
+                dockPnlLeft.Text = "入库单";
+                labWarehouseWarrant.Text = "入库单号";
+                labWWDate.Text = "入库日期";
+
+                gridColumn5.Caption = "入库单号";
+                colWarehouseWarrantDate.Caption = "入库日期";
+                gridColumn7.Caption = "入库部门";
+            }
+            else
+            {
+                btnLeftType.Text = "入库单";
+                dockPnlLeft.Text = "采购订单";
+                labWarehouseWarrant.Text = "采购单号";
+                labWWDate.Text = "订购日期";
+
+                gridColumn5.Caption = "采购单号";
+                colWarehouseWarrantDate.Caption = "订购日期";
+                gridColumn7.Caption = "申请部门";
+            }
+        }
+
+        private void btnLeftType_CheckedChanged(object sender, EventArgs e)
+        {
+            SetLeftOrder(!btnLeftType.Checked);
+        }
+
         #endregion
+
 
     }
 }

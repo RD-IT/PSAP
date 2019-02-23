@@ -100,7 +100,7 @@ namespace PSAP.VIEW.BSVIEW
                         rowCount = 0;
                         comboBoxPageNo.Properties.Items.Clear();
                         comboBoxPageNo.Text = "1";
-                        lMemo.Text = "共计0条记录，每页" + pageRowCount + "条";
+                        lMemo.Text = "共计0条记录，每页显示" + pageRowCount + "条";
                         return;
                     }
 
@@ -134,12 +134,12 @@ namespace PSAP.VIEW.BSVIEW
                             for (int no = 1; no <= pageCount; no++)
                                 comboBoxPageNo.Properties.Items.Add(no);
                         }
-                        lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页" + pageRowCount + "条，共" + pageCount.ToString() + "页";
+                        lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页显示" + pageRowCount + "条，共" + pageCount.ToString() + "页";
                         comboBoxPageNo.Text = curPage.ToString();
                     }
                     else
                     {
-                        lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页" + pageRowCount + "条，共" + pageCount.ToString() + "页";
+                        lMemo.Text = "共计" + rowCount.ToString() + "条记录，每页显示" + pageRowCount + "条，共" + pageCount.ToString() + "页";
                         comboBoxPageNo.Text = curPage.ToString();
                     }
 

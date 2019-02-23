@@ -94,7 +94,7 @@ namespace PSAP.PSAPCommon
         public static void SaveDevGridControlExportToExcel(GridView GV)
         {
             SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "Excel files (*.xls)|*.xls";
+            dlg.Filter = "Excel files (*.xlsx)|*.xlsx";
             dlg.FilterIndex = 0;
             dlg.RestoreDirectory = true;
             dlg.Title = "保存为Excel文件";
@@ -102,7 +102,28 @@ namespace PSAP.PSAPCommon
             {
                 string fileName = dlg.FileName;
                 //GV.ExportToExcelOld(Filename);
-                GV.ExportToXls(fileName);
+                GV.ExportToXlsx(fileName);
+
+                MessageHandler.ShowMessageBox("导出成功");
+            }
+        }
+
+        /// <summary>
+        /// 把TreeList内容保存到Excel中
+        /// </summary>
+        /// <param name="TL">TreeList控件</param>
+        public static void SaveTreeListControlExportToExcel(DevExpress.XtraTreeList.TreeList TL)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Excel files (*.xlsx)|*.xlsx";
+            dlg.FilterIndex = 0;
+            dlg.RestoreDirectory = true;
+            dlg.Title = "保存为Excel文件";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = dlg.FileName;
+                //GV.ExportToExcelOld(Filename);
+                TL.ExportToXlsx(fileName);
 
                 MessageHandler.ShowMessageBox("导出成功");
             }
@@ -115,7 +136,7 @@ namespace PSAP.PSAPCommon
         public void SaveDataTableExportToExcel(DataTable tmpDataTable)
         {
             SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "Excel files (*.xls)|*.xls";
+            dlg.Filter = "Excel files (*.xlsx)|*.xlsx";
             dlg.FilterIndex = 0;
             dlg.RestoreDirectory = true;
             //dlg.CreatePrompt = true;
@@ -178,7 +199,7 @@ namespace PSAP.PSAPCommon
         {
             if (dgv.Rows.Count < 1)
             {
-                MessageBox.Show("没有记录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageHandler.ShowMessageBox("没有记录！");
                 return;
             }
 

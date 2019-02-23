@@ -92,6 +92,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateWRDateBegin.EditValue == null || dateWRDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("出库日期不能为空，请设置后重新进行查询。");
+                    if (dateWRDateBegin.EditValue == null)
+                        dateWRDateBegin.Focus();
+                    else
+                        dateWRDateEnd.Focus();
+                    return;
+                }
                 string wrDateBeginStr = dateWRDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string wrDateEndStr = dateWRDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 

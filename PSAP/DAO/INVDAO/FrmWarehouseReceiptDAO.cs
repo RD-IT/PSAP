@@ -423,7 +423,7 @@ namespace PSAP.DAO.INVDAO
                                 //保存日志到日志表中
                                 string logStr = LogHandler.RecordLog_OperateRow(cmd, "出库单", wrHeadTable.Rows[i], "WarehouseReceipt", "审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                                if (DataTypeConvert.GetInt(wrHeadTable.Rows[i]["WarehouseState"]) == 2)
+                                if (DataTypeConvert.GetInt(wrHeadTable.Rows[i]["WarehouseState"]) == 2)//全部审核通过进行下一步操作
                                 {
                                     SqlCommand cmd_proc = new SqlCommand("", conn, trans);
                                     string errorText = "";

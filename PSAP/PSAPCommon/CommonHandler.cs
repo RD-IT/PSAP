@@ -13,23 +13,23 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public static string Get_OrderState_Desc(string reqStateStr)
         {
-            string StateDescStr = "";
+            string stateDescStr = "";
             switch (reqStateStr)
             {
                 case "1":
-                    StateDescStr = "待审批";
+                    stateDescStr = "待审批";
                     break;
                 case "2":
-                    StateDescStr = "审批";
+                    stateDescStr = "审批";
                     break;
                 case "3":
-                    StateDescStr = "关闭";
+                    stateDescStr = "关闭";
                     break;
                 case "4":
-                    StateDescStr = "审批中";
+                    stateDescStr = "审批中";
                     break;
             }
-            return StateDescStr;
+            return stateDescStr;
         }
 
         /// <summary>
@@ -37,23 +37,23 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public static string Get_WarehouseState_Desc(string wStateStr)
         {
-            string StateDescStr = "";
+            string stateDescStr = "";
             switch (wStateStr)
             {
                 case "1":
-                    StateDescStr = "待审批";
+                    stateDescStr = "待审批";
                     break;
                 case "2":
-                    StateDescStr = "审批";
+                    stateDescStr = "审批";
                     break;
                 case "3":
-                    StateDescStr = "已结账";
+                    stateDescStr = "已结账";
                     break;
                 case "4":
-                    StateDescStr = "审批中";
+                    stateDescStr = "审批中";
                     break;
             }
-            return StateDescStr;
+            return stateDescStr;
         }
 
         /// <summary>

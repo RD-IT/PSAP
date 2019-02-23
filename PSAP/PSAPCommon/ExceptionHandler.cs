@@ -19,8 +19,7 @@ namespace PSAP.PSAPCommon
         public static void HandleException(string exceptionText, Exception exception)
         {
             MessageHandler.ShowMessageBox(exceptionText+" 错误信息："+exception.Message);
-            ExceptionHandler exHandle = new ExceptionHandler();
-            exHandle.OutputLog(exceptionText, exception);
+            new ExceptionHandler().OutputLog(exceptionText, exception);
         }
 
         /// <summary>

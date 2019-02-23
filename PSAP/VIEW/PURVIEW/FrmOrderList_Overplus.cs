@@ -109,7 +109,16 @@ namespace PSAP.VIEW.BSVIEW
         private void btnQuery_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
+                if (dateOrderDateBegin.EditValue == null || dateOrderDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("订购日期不能为空，请设置后重新进行查询。");
+                    if (dateOrderDateBegin.EditValue == null)
+                        dateOrderDateBegin.Focus();
+                    else
+                        dateOrderDateEnd.Focus();
+                    return;
+                }
                 string orderDateBeginStr = dateOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
@@ -117,6 +126,15 @@ namespace PSAP.VIEW.BSVIEW
                 string planDateEndStr = "";
                 if (checkPlanDate.Checked)
                 {
+                    if (datePlanDateBegin.EditValue == null || datePlanDateEnd.EditValue == null)
+                    {
+                        MessageHandler.ShowMessageBox("计划到货日期不能为空，请设置后重新进行查询。");
+                        if (datePlanDateBegin.EditValue == null)
+                            datePlanDateBegin.Focus();
+                        else
+                            datePlanDateEnd.Focus();
+                        return;
+                    }
                     planDateBeginStr = datePlanDateBegin.DateTime.ToString("yyyy-MM-dd");
                     planDateEndStr = datePlanDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }
@@ -130,7 +148,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
                 dataSet_Order.Tables[0].Clear();
 
-                string querySqlStr = orderDAO.Query_OrderList_Overplus(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, checkOverplus.Checked, commonStr);
+                string querySqlStr = orderDAO.Query_OrderList_Overplus_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, checkOverplus.Checked, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderList", querySqlStr, countSqlStr, true);

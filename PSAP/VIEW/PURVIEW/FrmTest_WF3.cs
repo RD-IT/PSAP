@@ -171,7 +171,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
 
             }

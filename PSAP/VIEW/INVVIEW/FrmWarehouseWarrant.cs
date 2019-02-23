@@ -147,6 +147,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateWWDateBegin.EditValue == null || dateWWDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("入库日期不能为空，请设置后重新进行查询。");
+                    if (dateWWDateBegin.EditValue == null)
+                        dateWWDateBegin.Focus();
+                    else
+                        dateWWDateEnd.Focus();
+                    return;
+                }
                 string orderDateBeginStr = dateWWDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateWWDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 

@@ -159,12 +159,30 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateSettlementDateBegin.EditValue == null || dateSettlementDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("结账日期不能为空，请设置后重新进行查询。");
+                    if (dateSettlementDateBegin.EditValue == null)
+                        dateSettlementDateBegin.Focus();
+                    else
+                        dateSettlementDateEnd.Focus();
+                    return;
+                }
                 string orderDateBeginStr = dateSettlementDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string orderDateEndStr = dateSettlementDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 string payDateBeginStr = "";
                 string payDateEndStr = "";
                 if (checkPayDate.Checked)
                 {
+                    if (datePayDateBegin.EditValue == null || datePayDateEnd.EditValue == null)
+                    {
+                        MessageHandler.ShowMessageBox("付款日期不能为空，请设置后重新进行查询。");
+                        if (datePayDateBegin.EditValue == null)
+                            datePayDateBegin.Focus();
+                        else
+                            datePayDateEnd.Focus();
+                        return;
+                    }
                     payDateBeginStr = datePayDateBegin.DateTime.ToString("yyyy-MM-dd");
                     payDateEndStr = datePayDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 }

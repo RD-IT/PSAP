@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -129,5 +130,35 @@ namespace PSAP.PSAPCommon
         public static int DragForm_LeftDock_Width = 400;
 
         #endregion
+
+        #region Socket设置参数
+
+        /// <summary>
+        /// 是否检查服务端程序
+        /// </summary>
+        public static bool IsCheckServer = false;
+
+        /// <summary>
+        /// 服务器的IP地址
+        /// </summary>
+        public static string serverIP = "192.168.0.146";
+
+        /// <summary>
+        /// 服务器通信的端口号
+        /// </summary>
+        public static int serverPort = 9988;
+
+        /// <summary>
+        /// 服务器通信协议类型
+        /// </summary>
+        public static ProtocolType serverProtocolType = ProtocolType.Tcp;
+
+        /// <summary>
+        /// 登陆保存密码
+        /// </summary>
+        public static bool LoginSavePwd = true;
+
+        #endregion
+
     }
 }

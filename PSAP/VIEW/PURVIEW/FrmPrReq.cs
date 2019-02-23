@@ -157,6 +157,17 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (dateReqDateBegin.EditValue == null || dateReqDateEnd.EditValue == null)
+                {
+                    MessageHandler.ShowMessageBox("请购日期不能为空，请设置后重新进行查询。");
+                    if (dateReqDateBegin.EditValue == null)
+                        dateReqDateBegin.Focus();
+                    else
+                        dateReqDateEnd.Focus();
+                    return;
+                }
+                string reqDateBeginStr = dateReqDateBegin.DateTime.ToString("yyyy-MM-dd");
+                string reqDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
                 int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
@@ -170,7 +181,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_PrReq.Tables[0].Clear();
                 dataSet_PrReq.Tables[1].Clear();
                 headFocusedLineNo = 0;
-                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], dateReqDateBegin.DateTime.ToString("yyyy-MM-dd"), dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd"), reqDepStr, purCategoryStr, reqStateInt, empNameStr, approverInt, commonStr, false);
+                prReqDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], reqDateBeginStr, reqDateEndStr, reqDepStr, purCategoryStr, reqStateInt, empNameStr, approverInt, commonStr, false);
 
                 SetButtonAndColumnState(false);
                 checkAll.Checked = false;

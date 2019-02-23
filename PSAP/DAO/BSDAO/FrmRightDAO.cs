@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using PSAP.PSAPCommon;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+
 namespace PSAP.DAO.BSDAO
 {
     class FrmRightDAO
@@ -197,6 +201,176 @@ namespace PSAP.DAO.BSDAO
                         "from BS_MenuButton " +
                         "where '" + strMenuName + "'+'menuItemFlag' not in(select menuName + buttonName from BS_MenuButton)";
             BaseSQL.ExecuteSql(sql);
+        }
+
+        /// <summary>
+        /// 查询全部菜单名称和编号
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable QueryMenuList()
+        {
+            string sqlStr = "select '' as MenuName, '' as MenuText Union All select MenuName, MenuText from BS_Menu";
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询全部菜单表树结构
+        /// </summary>
+        public static DataTable QueryMenuTree()
+        {
+            string sqlStr = "select BS_Menu.*, menu.MenuText as ParentMenuText from BS_Menu left join BS_Menu as menu on BS_Menu.ParentMenuName = menu.MenuName order by BS_Menu.MenuOrder, BS_Menu.AutoId";
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询角色的菜单权限
+        /// </summary>
+        public static DataTable QueryRoleMenu(string roleNoStr)
+        {
+            string sqlStr = string.Format("select MenuName from BS_RoleMenu where RoleNo = '{0}' Order by AutoId", roleNoStr);
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 菜单下移
+        /// </summary>
+        public static void MenuUpMove(string menuNameStr, string parentMenuNameStr)
+        {
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("select * from BS_Menu where IsNull(ParentMenuName, '')='{0}' order by MenuOrder", parentMenuNameStr);
+                        SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
+                        DataTable menuTable = new DataTable();
+                        adapterHead.Fill(menuTable);
+
+                        for (int i = 0; i < menuTable.Rows.Count; i++)
+                        {
+                            menuTable.Rows[i]["MenuOrder"] = i;
+                        }
+                        DataRow[] drs = menuTable.Select(string.Format("MenuName = '{0}'", menuNameStr));
+                        if (drs.Length > 0)
+                        {
+                            int orderInt = DataTypeConvert.GetInt(drs[0]["MenuOrder"]);
+                            if (orderInt > 0)
+                            {
+                                menuTable.Select(string.Format("MenuOrder = {0}", orderInt - 1))[0]["MenuOrder"] = orderInt;
+                                drs[0]["MenuOrder"] = orderInt - 1;
+                            }
+                        }
+
+                        BaseSQL.UpdateDataTable(adapterHead, menuTable);
+
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 菜单下移
+        /// </summary>
+        public static void MenuDownMove(string menuNameStr, string parentMenuNameStr)
+        {
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        cmd.CommandText = string.Format("select * from BS_Menu where IsNull(ParentMenuName, '')='{0}' order by MenuOrder", parentMenuNameStr);
+                        SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
+                        DataTable menuTable = new DataTable();
+                        adapterHead.Fill(menuTable);
+
+                        for (int i = 0; i < menuTable.Rows.Count; i++)
+                        {
+                            menuTable.Rows[i]["MenuOrder"] = i;
+                        }
+                        DataRow[] drs = menuTable.Select(string.Format("MenuName = '{0}'", menuNameStr));
+                        if (drs.Length > 0)
+                        {
+                            int orderInt = DataTypeConvert.GetInt(drs[0]["MenuOrder"]);
+                            if (orderInt < menuTable.Rows.Count-1)
+                            {
+                                menuTable.Select(string.Format("MenuOrder = {0}", orderInt + 1))[0]["MenuOrder"] = orderInt;
+                                drs[0]["MenuOrder"] = orderInt + 1;
+                            }
+                        }
+
+                        BaseSQL.UpdateDataTable(adapterHead, menuTable);
+
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 得到当前节点的最大顺序号
+        /// </summary>
+        public static int GetMaxMenuOrder(SqlCommand cmd, string parentMenuNameStr)
+        {
+            cmd.CommandText = string.Format("select ISNULL(MAX(MenuOrder) ,-1) from BS_Menu where ParentMenuName = '{0}'", parentMenuNameStr);
+            return DataTypeConvert.GetInt(cmd.ExecuteScalar()) + 1;
+        }
+
+        /// <summary>
+        /// 保存角色的菜单权限
+        /// </summary>
+        public static bool SaveRoleMenu_TreeList(SqlCommand cmd, string roleNoStr, TreeList treeList)
+        {
+            cmd.CommandText = string.Format("Delete from BS_RoleMenu where RoleNo = '{0}'", roleNoStr);
+            cmd.ExecuteNonQuery();
+
+            foreach(TreeListNode node in treeList.Nodes)
+            {
+                SaveRoleMenu_Node(cmd, roleNoStr, node);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 保存角色的节点权限
+        /// </summary>
+        public static void SaveRoleMenu_Node(SqlCommand cmd, string roleNoStr, TreeListNode upNode)
+        {
+            foreach(TreeListNode downNode in upNode.Nodes)
+            {
+                if(downNode.CheckState==System.Windows.Forms.CheckState.Indeterminate || downNode.CheckState == System.Windows.Forms.CheckState.Checked)
+                {
+                    cmd.CommandText = string.Format("Insert into BS_RoleMenu(RoleNo, MenuName) values('{0}', '{1}')", roleNoStr, DataTypeConvert.GetString(downNode["MenuName"]));
+                    cmd.ExecuteNonQuery();
+
+                    SaveRoleMenu_Node(cmd, roleNoStr, downNode);
+                }
+            }
         }
     }
 }

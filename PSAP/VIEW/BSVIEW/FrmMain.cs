@@ -77,7 +77,7 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Text = "天津容大机电有限公司   [" + SystemInfo.user.DepartmentName + " - " + SystemInfo.user.EmpName + "]";
-
+            notifyIconMain.Text = "天津容大机电有限公司";
         }
 
 
@@ -227,23 +227,29 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        private void notifyIconMain_MouseClick(object sender, MouseEventArgs e)
         {
-            if (this.WindowState != FormWindowState.Maximized)
+            //if (this.WindowState != FormWindowState.Maximized)
+            //{
+            //    this.WindowState = FormWindowState.Maximized;
+            //}
+            //else
+            //{
+            //    if (this.TopLevel == true)
+            //    {
+            //        this.WindowState = FormWindowState.Minimized;
+            //    }
+            //    else
+            //    {
+            //        this.WindowState = FormWindowState.Minimized;
+            //        this.WindowState = FormWindowState.Maximized;
+            //    }
+            //}
+
+            if (this.WindowState == FormWindowState.Minimized)
             {
+                this.Visible = true;
                 this.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                if (this.TopLevel == true)
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                }
-                else
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                    this.WindowState = FormWindowState.Maximized;
-                }
             }
         }
 
@@ -376,6 +382,27 @@ namespace PSAP.VIEW.BSVIEW
         {
             get { return tsrLblCurrentStatus.Text; }
             set { tsrLblCurrentStatus.Text = value; }
+        }
+
+        /// <summary>
+        /// 主窗体改变大小的事件
+        /// </summary>
+        private void FrmMain_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                //隐藏任务栏区图标
+                //this.ShowInTaskbar = false;
+                //图标显示在托盘区
+                notifyIconMain.Visible = true;
+                this.Visible = false;
+            }
+            else
+            {
+                //this.ShowInTaskbar = true;
+                notifyIconMain.Visible = false;
+                //this.Visible = true;
+            }
         }
     }
 }

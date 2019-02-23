@@ -45,5 +45,6 @@ namespace PSAP.PSAPCommon
         {
             return XtraMessageBox.Show(messageText, "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
         }
+
     }
 }
