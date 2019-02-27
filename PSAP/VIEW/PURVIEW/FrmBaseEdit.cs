@@ -245,6 +245,10 @@ namespace PSAP.VIEW.BSVIEW
         public delegate bool DeleteRowAfter_Handle(DataRow dr, SqlCommand cmd);
         public event DeleteRowAfter_Handle DeleteRowAfter;
 
+        //定义委托和事件  新增之后执行的方法
+        public delegate void NewAfter_Handle();
+        public event NewAfter_Handle NewAfter;
+
         //定义委托和事件  查询数据之后执行的方法
         public delegate void QueryDataAfter_Handle();
         public event QueryDataAfter_Handle QueryDataAfter;
@@ -292,13 +296,15 @@ namespace PSAP.VIEW.BSVIEW
                 masterDataSet.Tables[0].Rows.Add(dr);
                 masterBindingSource.MoveLast();
 
+                if (NewAfter != null)
+                    NewAfter();
+
                 newState = true;
                 Set_Button_State(false);
                 Set_EditZone_ControlReadOnly(false);
                 pnlButton.Focus();
                 if (masterEditPanel != null)
-                    masterEditPanel.SelectNextControl(null, true, true, true, true);
-                
+                    masterEditPanel.SelectNextControl(null, true, true, true, true);                
             }
             catch (Exception ex)
             {
@@ -684,7 +690,7 @@ namespace PSAP.VIEW.BSVIEW
         /// 设定编辑器控件的ReadOnly状态
         /// </summary>
         /// <param name="readOnlyState">ReadOnly状态</param>
-        private void Set_EditZone_ControlReadOnly(bool readOnlyState)
+        public void Set_EditZone_ControlReadOnly(bool readOnlyState)
         {
             if (masterEditPanel != null)
             {
@@ -733,7 +739,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定按钮的状态
         /// </summary>
-        private void Set_Button_State(bool state)
+        public void Set_Button_State(bool state)
         {
             btnNew.Enabled = state;
             if (state)

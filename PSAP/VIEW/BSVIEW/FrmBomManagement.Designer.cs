@@ -30,22 +30,31 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLeft = new DevExpress.XtraEditors.PanelControl();
-            this.pnlRight = new DevExpress.XtraEditors.PanelControl();
-            this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
+            this.pnlLeftTree = new DevExpress.XtraEditors.PanelControl();
             this.treeListBom = new DevExpress.XtraTreeList.TreeList();
-            this.CAutoId1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.CMaterielNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
+            this.CCodeFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.CCodeName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.CQty = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.CParentCodeFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.CPCAutoId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.CReID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.CReParent = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.pnlLeftTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
+            this.textCodeFileName = new DevExpress.XtraEditors.TextEdit();
+            this.labCodeFileName = new DevExpress.XtraEditors.LabelControl();
+            this.pnlRight = new DevExpress.XtraEditors.PanelControl();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.gridControlBomMateriel = new DevExpress.XtraGrid.GridControl();
+            this.bSBomMateriel = new System.Windows.Forms.BindingSource(this.components);
             this.dSBom = new System.Data.DataSet();
             this.TableBomManagement = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColPartsCodeId = new System.Data.DataColumn();
             this.dataColMaterielNo = new System.Data.DataColumn();
             this.dataColMaterieStateId = new System.Data.DataColumn();
-            this.dataColMaterieStateText = new System.Data.DataColumn();
-            this.bSBomManagement = new System.Windows.Forms.BindingSource(this.components);
             this.dataColGetTime = new System.Data.DataColumn();
-            this.dataColCodeFileName = new System.Data.DataColumn();
             this.dataColCodeName = new System.Data.DataColumn();
             this.TableBomMateriel = new System.Data.DataTable();
             this.dataColuAutoId = new System.Data.DataColumn();
@@ -53,83 +62,219 @@
             this.dataColuLevelMaterielNo = new System.Data.DataColumn();
             this.dataColuQty = new System.Data.DataColumn();
             this.dataColuGetTime = new System.Data.DataColumn();
-            this.bSBomMateriel = new System.Windows.Forms.BindingSource(this.components);
+            this.dataColuLevelMaterielName = new System.Data.DataColumn();
+            this.gridViewBomMateriel = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaterielNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLevelMaterielNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repSearchCodeFileName = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repSearchCodeFileNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLevelMaterielName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repSpinQty = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colGetTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
-            this.labMaterieState = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpMaterieState = new DevExpress.XtraEditors.LookUpEdit();
-            this.textMaterielNo = new DevExpress.XtraEditors.TextEdit();
-            this.labMaterielNo = new DevExpress.XtraEditors.LabelControl();
-            this.labPartsCodeId = new DevExpress.XtraEditors.LabelControl();
+            this.labGetTime = new DevExpress.XtraEditors.LabelControl();
+            this.dateGetTime = new DevExpress.XtraEditors.DateEdit();
+            this.bSBomManagement = new System.Windows.Forms.BindingSource(this.components);
             this.searchPartsCodeId = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchLookUpPartsCodeIdView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.searchPartsCodeIdView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labMaterieState = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpMaterieState = new DevExpress.XtraEditors.LookUpEdit();
+            this.labPartsCodeId = new DevExpress.XtraEditors.LabelControl();
+            this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
+            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
-            this.gridControlBomMateriel = new DevExpress.XtraGrid.GridControl();
-            this.gridViewBomMateriel = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repSearchCodeFileName = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repSpinQty = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colGetTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLevelMaterielNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMaterielNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dataColuLevelMaterielName = new System.Data.DataColumn();
-            this.colLevelMaterielName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.CCodeFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.CCodeName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.CQty = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.CPartsCodeId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.CParentPartsCodeId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.CParentCodeFileName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.pnlBom = new DevExpress.XtraEditors.PanelControl();
+            this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).BeginInit();
             this.pnlLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTree)).BeginInit();
+            this.pnlLeftTree.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTop)).BeginInit();
+            this.pnlLeftTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
             this.pnlRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
-            this.pnlToolBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dSBom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableBomManagement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableBomMateriel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSBomMateriel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
-            this.pnlEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpMaterieState.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaterielNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpPartsCodeIdView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBomMateriel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSBomMateriel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSBom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableBomManagement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableBomMateriel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBomMateriel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
+            this.pnlEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpMaterieState.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
+            this.pnlToolBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).BeginInit();
+            this.pnlBom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeft
             // 
-            this.pnlLeft.Controls.Add(this.treeListBom);
+            this.pnlLeft.Controls.Add(this.pnlLeftTree);
+            this.pnlLeft.Controls.Add(this.pnlLeftTop);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Location = new System.Drawing.Point(2, 2);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(376, 625);
+            this.pnlLeft.Size = new System.Drawing.Size(500, 621);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // pnlLeftTree
+            // 
+            this.pnlLeftTree.Controls.Add(this.treeListBom);
+            this.pnlLeftTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLeftTree.Location = new System.Drawing.Point(2, 36);
+            this.pnlLeftTree.Name = "pnlLeftTree";
+            this.pnlLeftTree.Size = new System.Drawing.Size(496, 583);
+            this.pnlLeftTree.TabIndex = 3;
+            // 
+            // treeListBom
+            // 
+            this.treeListBom.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.CCodeFileName,
+            this.CCodeName,
+            this.CQty,
+            this.CParentCodeFileName,
+            this.CPCAutoId,
+            this.CReID,
+            this.CReParent});
+            this.treeListBom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeListBom.KeyFieldName = "ReID";
+            this.treeListBom.Location = new System.Drawing.Point(2, 2);
+            this.treeListBom.Name = "treeListBom";
+            this.treeListBom.OptionsBehavior.Editable = false;
+            this.treeListBom.OptionsBehavior.ReadOnly = true;
+            this.treeListBom.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.treeListBom.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
+            this.treeListBom.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.treeListBom.OptionsView.EnableAppearanceEvenRow = true;
+            this.treeListBom.OptionsView.EnableAppearanceOddRow = true;
+            this.treeListBom.OptionsView.ShowHorzLines = false;
+            this.treeListBom.OptionsView.ShowIndicator = false;
+            this.treeListBom.OptionsView.ShowVertLines = false;
+            this.treeListBom.ParentFieldName = "ReParent";
+            this.treeListBom.Size = new System.Drawing.Size(492, 579);
+            this.treeListBom.TabIndex = 1;
+            this.treeListBom.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListBom_FocusedNodeChanged);
+            // 
+            // CCodeFileName
+            // 
+            this.CCodeFileName.AppearanceHeader.Options.UseTextOptions = true;
+            this.CCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CCodeFileName.Caption = "零件编号";
+            this.CCodeFileName.FieldName = "CodeFileName";
+            this.CCodeFileName.Name = "CCodeFileName";
+            this.CCodeFileName.Visible = true;
+            this.CCodeFileName.VisibleIndex = 0;
+            this.CCodeFileName.Width = 260;
+            // 
+            // CCodeName
+            // 
+            this.CCodeName.AppearanceHeader.Options.UseTextOptions = true;
+            this.CCodeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CCodeName.Caption = "零件名称";
+            this.CCodeName.FieldName = "CodeName";
+            this.CCodeName.Name = "CCodeName";
+            this.CCodeName.Visible = true;
+            this.CCodeName.VisibleIndex = 1;
+            this.CCodeName.Width = 100;
+            // 
+            // CQty
+            // 
+            this.CQty.AppearanceHeader.Options.UseTextOptions = true;
+            this.CQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CQty.Caption = "数量";
+            this.CQty.FieldName = "Qty";
+            this.CQty.Name = "CQty";
+            this.CQty.Visible = true;
+            this.CQty.VisibleIndex = 2;
+            this.CQty.Width = 30;
+            // 
+            // CParentCodeFileName
+            // 
+            this.CParentCodeFileName.Caption = "ParentCodeFileName";
+            this.CParentCodeFileName.FieldName = "ParentCodeFileName";
+            this.CParentCodeFileName.Name = "CParentCodeFileName";
+            // 
+            // CPCAutoId
+            // 
+            this.CPCAutoId.Caption = "PCAutoId";
+            this.CPCAutoId.FieldName = "PCAutoId";
+            this.CPCAutoId.Name = "CPCAutoId";
+            // 
+            // CReID
+            // 
+            this.CReID.Caption = "ReID";
+            this.CReID.FieldName = "ReID";
+            this.CReID.Name = "CReID";
+            // 
+            // CReParent
+            // 
+            this.CReParent.Caption = "ReParent";
+            this.CReParent.FieldName = "ReParent";
+            this.CReParent.Name = "CReParent";
+            // 
+            // pnlLeftTop
+            // 
+            this.pnlLeftTop.Controls.Add(this.btnQuery);
+            this.pnlLeftTop.Controls.Add(this.textCodeFileName);
+            this.pnlLeftTop.Controls.Add(this.labCodeFileName);
+            this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLeftTop.Location = new System.Drawing.Point(2, 2);
+            this.pnlLeftTop.Name = "pnlLeftTop";
+            this.pnlLeftTop.Size = new System.Drawing.Size(496, 34);
+            this.pnlLeftTop.TabIndex = 2;
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.Location = new System.Drawing.Point(268, 6);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(75, 23);
+            this.btnQuery.TabIndex = 102;
+            this.btnQuery.Text = "查找";
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // textCodeFileName
+            // 
+            this.textCodeFileName.EnterMoveNextControl = true;
+            this.textCodeFileName.Location = new System.Drawing.Point(82, 7);
+            this.textCodeFileName.Name = "textCodeFileName";
+            this.textCodeFileName.Size = new System.Drawing.Size(180, 20);
+            this.textCodeFileName.TabIndex = 101;
+            this.textCodeFileName.EditValueChanged += new System.EventHandler(this.textCodeFileName_EditValueChanged);
+            // 
+            // labCodeFileName
+            // 
+            this.labCodeFileName.Location = new System.Drawing.Point(18, 10);
+            this.labCodeFileName.Name = "labCodeFileName";
+            this.labCodeFileName.Size = new System.Drawing.Size(48, 14);
+            this.labCodeFileName.TabIndex = 13;
+            this.labCodeFileName.Text = "零件编号";
             // 
             // pnlRight
             // 
@@ -137,76 +282,51 @@
             this.pnlRight.Controls.Add(this.pnlEdit);
             this.pnlRight.Controls.Add(this.pnlToolBar);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRight.Location = new System.Drawing.Point(381, 0);
+            this.pnlRight.Location = new System.Drawing.Point(507, 2);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(833, 625);
+            this.pnlRight.Size = new System.Drawing.Size(705, 621);
             this.pnlRight.TabIndex = 1;
             // 
-            // splitterMiddle
+            // pnlBottom
             // 
-            this.splitterMiddle.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
-            this.splitterMiddle.Location = new System.Drawing.Point(376, 0);
-            this.splitterMiddle.Name = "splitterMiddle";
-            this.splitterMiddle.Size = new System.Drawing.Size(5, 625);
-            this.splitterMiddle.TabIndex = 13;
-            this.splitterMiddle.TabStop = false;
+            this.pnlBottom.Controls.Add(this.btnListAdd);
+            this.pnlBottom.Controls.Add(this.gridControlBomMateriel);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBottom.Location = new System.Drawing.Point(2, 104);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(701, 515);
+            this.pnlBottom.TabIndex = 10;
             // 
-            // treeListBom
+            // btnListAdd
             // 
-            this.treeListBom.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.CAutoId1,
-            this.CMaterielNo,
-            this.CCodeFileName,
-            this.CCodeName,
-            this.CQty,
-            this.CPartsCodeId,
-            this.CParentPartsCodeId,
-            this.CParentCodeFileName});
-            this.treeListBom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeListBom.KeyFieldName = "PartsCodeId";
-            this.treeListBom.Location = new System.Drawing.Point(2, 2);
-            this.treeListBom.Name = "treeListBom";
-            this.treeListBom.OptionsBehavior.Editable = false;
-            this.treeListBom.OptionsBehavior.ReadOnly = true;
-            this.treeListBom.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeListBom.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
-            this.treeListBom.OptionsView.EnableAppearanceEvenRow = true;
-            this.treeListBom.OptionsView.EnableAppearanceOddRow = true;
-            this.treeListBom.OptionsView.ShowHorzLines = false;
-            this.treeListBom.OptionsView.ShowIndicator = false;
-            this.treeListBom.OptionsView.ShowVertLines = false;
-            this.treeListBom.ParentFieldName = "ParentPartsCodeId";
-            this.treeListBom.Size = new System.Drawing.Size(372, 621);
-            this.treeListBom.TabIndex = 1;
-            this.treeListBom.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListBom_FocusedNodeChanged);
+            this.btnListAdd.Enabled = false;
+            this.btnListAdd.Location = new System.Drawing.Point(2, 2);
+            this.btnListAdd.Name = "btnListAdd";
+            this.btnListAdd.Size = new System.Drawing.Size(40, 21);
+            this.btnListAdd.TabIndex = 5;
+            this.btnListAdd.Text = "+";
+            this.btnListAdd.Click += new System.EventHandler(this.btnListAdd_Click);
             // 
-            // CAutoId1
+            // gridControlBomMateriel
             // 
-            this.CAutoId1.FieldName = "AutoId";
-            this.CAutoId1.Name = "CAutoId1";
-            this.CAutoId1.Width = 20;
+            this.gridControlBomMateriel.DataSource = this.bSBomMateriel;
+            this.gridControlBomMateriel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlBomMateriel.Location = new System.Drawing.Point(2, 2);
+            this.gridControlBomMateriel.MainView = this.gridViewBomMateriel;
+            this.gridControlBomMateriel.Name = "gridControlBomMateriel";
+            this.gridControlBomMateriel.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repSpinQty,
+            this.repSearchCodeFileName,
+            this.repbtnDelete});
+            this.gridControlBomMateriel.Size = new System.Drawing.Size(697, 511);
+            this.gridControlBomMateriel.TabIndex = 2;
+            this.gridControlBomMateriel.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewBomMateriel});
             // 
-            // CMaterielNo
+            // bSBomMateriel
             // 
-            this.CMaterielNo.AppearanceHeader.Options.UseTextOptions = true;
-            this.CMaterielNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CMaterielNo.Caption = "Bom编号";
-            this.CMaterielNo.FieldName = "MaterielNo";
-            this.CMaterielNo.Name = "CMaterielNo";
-            this.CMaterielNo.Visible = true;
-            this.CMaterielNo.VisibleIndex = 0;
-            // 
-            // pnlToolBar
-            // 
-            this.pnlToolBar.Controls.Add(this.btnDelete);
-            this.pnlToolBar.Controls.Add(this.btnCancel);
-            this.pnlToolBar.Controls.Add(this.btnSave);
-            this.pnlToolBar.Controls.Add(this.btnNew);
-            this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
-            this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(829, 34);
-            this.pnlToolBar.TabIndex = 5;
+            this.bSBomMateriel.DataMember = "BomMateriel";
+            this.bSBomMateriel.DataSource = this.dSBom;
             // 
             // dSBom
             // 
@@ -222,11 +342,10 @@
             this.dataColPartsCodeId,
             this.dataColMaterielNo,
             this.dataColMaterieStateId,
-            this.dataColMaterieStateText,
             this.dataColGetTime,
-            this.dataColCodeFileName,
             this.dataColCodeName});
             this.TableBomManagement.TableName = "BomManagement";
+            this.TableBomManagement.TableNewRow += new System.Data.DataTableNewRowEventHandler(this.TableBomManagement_TableNewRow);
             // 
             // dataColAutoId
             // 
@@ -250,26 +369,11 @@
             this.dataColMaterieStateId.ColumnName = "MaterieStateId";
             this.dataColMaterieStateId.DataType = typeof(int);
             // 
-            // dataColMaterieStateText
-            // 
-            this.dataColMaterieStateText.Caption = "物料状态";
-            this.dataColMaterieStateText.ColumnName = "MaterieStateText";
-            // 
-            // bSBomManagement
-            // 
-            this.bSBomManagement.DataMember = "BomManagement";
-            this.bSBomManagement.DataSource = this.dSBom;
-            // 
             // dataColGetTime
             // 
             this.dataColGetTime.Caption = "登记时间";
             this.dataColGetTime.ColumnName = "GetTime";
             this.dataColGetTime.DataType = typeof(System.DateTime);
-            // 
-            // dataColCodeFileName
-            // 
-            this.dataColCodeFileName.Caption = "零件编号";
-            this.dataColCodeFileName.ColumnName = "CodeFileName";
             // 
             // dataColCodeName
             // 
@@ -286,6 +390,7 @@
             this.dataColuGetTime,
             this.dataColuLevelMaterielName});
             this.TableBomMateriel.TableName = "BomMateriel";
+            this.TableBomMateriel.TableNewRow += new System.Data.DataTableNewRowEventHandler(this.TableBomMateriel_TableNewRow);
             // 
             // dataColuAutoId
             // 
@@ -299,7 +404,7 @@
             // 
             // dataColuLevelMaterielNo
             // 
-            this.dataColuLevelMaterielNo.Caption = "子物料编号";
+            this.dataColuLevelMaterielNo.Caption = "子零件编号";
             this.dataColuLevelMaterielNo.ColumnName = "LevelMaterielNo";
             // 
             // dataColuQty
@@ -314,195 +419,10 @@
             this.dataColuGetTime.ColumnName = "GetTime";
             this.dataColuGetTime.DataType = typeof(System.DateTime);
             // 
-            // bSBomMateriel
+            // dataColuLevelMaterielName
             // 
-            this.bSBomMateriel.DataMember = "BomMateriel";
-            this.bSBomMateriel.DataSource = this.dSBom;
-            // 
-            // pnlEdit
-            // 
-            this.pnlEdit.Controls.Add(this.searchPartsCodeId);
-            this.pnlEdit.Controls.Add(this.labMaterieState);
-            this.pnlEdit.Controls.Add(this.lookUpMaterieState);
-            this.pnlEdit.Controls.Add(this.textMaterielNo);
-            this.pnlEdit.Controls.Add(this.labMaterielNo);
-            this.pnlEdit.Controls.Add(this.labPartsCodeId);
-            this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEdit.Location = new System.Drawing.Point(2, 36);
-            this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(829, 68);
-            this.pnlEdit.TabIndex = 9;
-            // 
-            // labMaterieState
-            // 
-            this.labMaterieState.Location = new System.Drawing.Point(565, 24);
-            this.labMaterieState.Name = "labMaterieState";
-            this.labMaterieState.Size = new System.Drawing.Size(48, 14);
-            this.labMaterieState.TabIndex = 19;
-            this.labMaterieState.Text = "物料状态";
-            // 
-            // lookUpMaterieState
-            // 
-            this.lookUpMaterieState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "MaterieStateId", true));
-            this.lookUpMaterieState.EnterMoveNextControl = true;
-            this.lookUpMaterieState.Location = new System.Drawing.Point(638, 21);
-            this.lookUpMaterieState.Name = "lookUpMaterieState";
-            this.lookUpMaterieState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpMaterieState.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterieStateId", "状态编号", 95, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterieStateText", "状态名称", 111, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpMaterieState.Properties.DisplayMember = "MaterieStateText";
-            this.lookUpMaterieState.Properties.NullText = "";
-            this.lookUpMaterieState.Properties.ValueMember = "MaterieStateId";
-            this.lookUpMaterieState.Size = new System.Drawing.Size(150, 20);
-            this.lookUpMaterieState.TabIndex = 2;
-            // 
-            // textMaterielNo
-            // 
-            this.textMaterielNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "MaterielNo", true));
-            this.textMaterielNo.EnterMoveNextControl = true;
-            this.textMaterielNo.Location = new System.Drawing.Point(366, 21);
-            this.textMaterielNo.Name = "textMaterielNo";
-            this.textMaterielNo.Size = new System.Drawing.Size(150, 20);
-            this.textMaterielNo.TabIndex = 1;
-            // 
-            // labMaterielNo
-            // 
-            this.labMaterielNo.Location = new System.Drawing.Point(297, 24);
-            this.labMaterielNo.Name = "labMaterielNo";
-            this.labMaterielNo.Size = new System.Drawing.Size(52, 14);
-            this.labMaterielNo.TabIndex = 14;
-            this.labMaterielNo.Text = "Bom 编码";
-            // 
-            // labPartsCodeId
-            // 
-            this.labPartsCodeId.Location = new System.Drawing.Point(36, 24);
-            this.labPartsCodeId.Name = "labPartsCodeId";
-            this.labPartsCodeId.Size = new System.Drawing.Size(48, 14);
-            this.labPartsCodeId.TabIndex = 12;
-            this.labPartsCodeId.Text = "零件名称";
-            // 
-            // searchPartsCodeId
-            // 
-            this.searchPartsCodeId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "PartsCodeId", true));
-            this.searchPartsCodeId.EnterMoveNextControl = true;
-            this.searchPartsCodeId.Location = new System.Drawing.Point(105, 21);
-            this.searchPartsCodeId.Name = "searchPartsCodeId";
-            this.searchPartsCodeId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchPartsCodeId.Properties.DisplayMember = "CodeName";
-            this.searchPartsCodeId.Properties.NullText = "";
-            this.searchPartsCodeId.Properties.ValueMember = "AutoId";
-            this.searchPartsCodeId.Properties.View = this.searchLookUpPartsCodeIdView;
-            this.searchPartsCodeId.Size = new System.Drawing.Size(150, 20);
-            this.searchPartsCodeId.TabIndex = 0;
-            // 
-            // searchLookUpPartsCodeIdView
-            // 
-            this.searchLookUpPartsCodeIdView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn3,
-            this.gridColumn2});
-            this.searchLookUpPartsCodeIdView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpPartsCodeIdView.IndicatorWidth = 60;
-            this.searchLookUpPartsCodeIdView.Name = "searchLookUpPartsCodeIdView";
-            this.searchLookUpPartsCodeIdView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpPartsCodeIdView.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "零件编号";
-            this.gridColumn1.FieldName = "CodeFileName";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "零件名称";
-            this.gridColumn3.FieldName = "CodeName";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "AutoId";
-            this.gridColumn2.FieldName = "AutoId";
-            this.gridColumn2.Name = "gridColumn2";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(248, 5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 17;
-            this.btnDelete.TabStop = false;
-            this.btnDelete.Text = "删除";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Enabled = false;
-            this.btnCancel.Location = new System.Drawing.Point(167, 5);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.TabStop = false;
-            this.btnCancel.Text = "取消";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(86, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.TabStop = false;
-            this.btnSave.Text = "修改";
-            // 
-            // btnNew
-            // 
-            this.btnNew.Location = new System.Drawing.Point(5, 5);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 23);
-            this.btnNew.TabIndex = 14;
-            this.btnNew.TabStop = false;
-            this.btnNew.Text = "新增";
-            // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Controls.Add(this.btnListAdd);
-            this.pnlBottom.Controls.Add(this.gridControlBomMateriel);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(2, 104);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(829, 519);
-            this.pnlBottom.TabIndex = 10;
-            // 
-            // btnListAdd
-            // 
-            this.btnListAdd.Enabled = false;
-            this.btnListAdd.Location = new System.Drawing.Point(2, 2);
-            this.btnListAdd.Name = "btnListAdd";
-            this.btnListAdd.Size = new System.Drawing.Size(40, 21);
-            this.btnListAdd.TabIndex = 5;
-            this.btnListAdd.Text = "+";
-            // 
-            // gridControlBomMateriel
-            // 
-            this.gridControlBomMateriel.DataSource = this.bSBomMateriel;
-            this.gridControlBomMateriel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlBomMateriel.Location = new System.Drawing.Point(2, 2);
-            this.gridControlBomMateriel.MainView = this.gridViewBomMateriel;
-            this.gridControlBomMateriel.Name = "gridControlBomMateriel";
-            this.gridControlBomMateriel.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repSpinQty,
-            this.repSearchCodeFileName,
-            this.repbtnDelete});
-            this.gridControlBomMateriel.Size = new System.Drawing.Size(825, 515);
-            this.gridControlBomMateriel.TabIndex = 2;
-            this.gridControlBomMateriel.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewBomMateriel});
+            this.dataColuLevelMaterielName.Caption = "子零件名称";
+            this.dataColuLevelMaterielName.ColumnName = "LevelMaterielName";
             // 
             // gridViewBomMateriel
             // 
@@ -518,6 +438,7 @@
             this.gridViewBomMateriel.IndicatorWidth = 40;
             this.gridViewBomMateriel.Name = "gridViewBomMateriel";
             this.gridViewBomMateriel.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewBomMateriel.OptionsBehavior.Editable = false;
             this.gridViewBomMateriel.OptionsMenu.EnableColumnMenu = false;
             this.gridViewBomMateriel.OptionsMenu.EnableFooterMenu = false;
             this.gridViewBomMateriel.OptionsMenu.EnableGroupPanelMenu = false;
@@ -528,11 +449,33 @@
             this.gridViewBomMateriel.OptionsView.ShowFooter = true;
             this.gridViewBomMateriel.OptionsView.ShowGroupPanel = false;
             this.gridViewBomMateriel.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBomMateriel_CustomDrawRowIndicator);
+            this.gridViewBomMateriel.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewBomMateriel_CellValueChanged);
+            this.gridViewBomMateriel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewBomMateriel_KeyDown);
             // 
             // gridColumn4
             // 
             this.gridColumn4.FieldName = "AutoId";
             this.gridColumn4.Name = "gridColumn4";
+            // 
+            // colMaterielNo
+            // 
+            this.colMaterielNo.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMaterielNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMaterielNo.FieldName = "MaterielNo";
+            this.colMaterielNo.Name = "colMaterielNo";
+            this.colMaterielNo.OptionsColumn.AllowEdit = false;
+            this.colMaterielNo.Width = 100;
+            // 
+            // colLevelMaterielNo
+            // 
+            this.colLevelMaterielNo.AppearanceHeader.Options.UseTextOptions = true;
+            this.colLevelMaterielNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colLevelMaterielNo.ColumnEdit = this.repSearchCodeFileName;
+            this.colLevelMaterielNo.FieldName = "LevelMaterielNo";
+            this.colLevelMaterielNo.Name = "colLevelMaterielNo";
+            this.colLevelMaterielNo.Visible = true;
+            this.colLevelMaterielNo.VisibleIndex = 0;
+            this.colLevelMaterielNo.Width = 120;
             // 
             // repSearchCodeFileName
             // 
@@ -543,20 +486,21 @@
             this.repSearchCodeFileName.Name = "repSearchCodeFileName";
             this.repSearchCodeFileName.NullText = "";
             this.repSearchCodeFileName.ValueMember = "CodeFileName";
-            this.repSearchCodeFileName.View = this.gridView1;
+            this.repSearchCodeFileName.View = this.repSearchCodeFileNameView;
             // 
-            // gridView1
+            // repSearchCodeFileNameView
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.repSearchCodeFileNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn5,
             this.gridColumnCodeFileName,
             this.gridColumnCodeName});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.IndicatorWidth = 60;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.repSearchCodeFileNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repSearchCodeFileNameView.IndicatorWidth = 60;
+            this.repSearchCodeFileNameView.Name = "repSearchCodeFileNameView";
+            this.repSearchCodeFileNameView.OptionsBehavior.Editable = false;
+            this.repSearchCodeFileNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repSearchCodeFileNameView.OptionsView.ShowGroupPanel = false;
+            this.repSearchCodeFileNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBomMateriel_CustomDrawRowIndicator);
             // 
             // gridColumn5
             // 
@@ -585,18 +529,30 @@
             this.gridColumnCodeName.VisibleIndex = 1;
             this.gridColumnCodeName.Width = 130;
             // 
+            // colLevelMaterielName
+            // 
+            this.colLevelMaterielName.AppearanceHeader.Options.UseTextOptions = true;
+            this.colLevelMaterielName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colLevelMaterielName.FieldName = "LevelMaterielName";
+            this.colLevelMaterielName.Name = "colLevelMaterielName";
+            this.colLevelMaterielName.OptionsColumn.AllowEdit = false;
+            this.colLevelMaterielName.OptionsColumn.AllowFocus = false;
+            this.colLevelMaterielName.Visible = true;
+            this.colLevelMaterielName.VisibleIndex = 1;
+            this.colLevelMaterielName.Width = 120;
+            // 
             // colQty
             // 
             this.colQty.AppearanceHeader.Options.UseTextOptions = true;
             this.colQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colQty.ColumnEdit = this.repSpinQty;
+            this.colQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colQty.FieldName = "Qty";
             this.colQty.Name = "colQty";
-            this.colQty.OptionsColumn.AllowEdit = false;
             this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 3;
+            this.colQty.VisibleIndex = 2;
             this.colQty.Width = 80;
             // 
             // repSpinQty
@@ -615,23 +571,6 @@
             0});
             this.repSpinQty.Name = "repSpinQty";
             // 
-            // colDelete
-            // 
-            this.colDelete.ColumnEdit = this.repbtnDelete;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-            this.colDelete.Visible = true;
-            this.colDelete.VisibleIndex = 5;
-            this.colDelete.Width = 27;
-            // 
-            // repbtnDelete
-            // 
-            this.repbtnDelete.AutoHeight = false;
-            this.repbtnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.repbtnDelete.Name = "repbtnDelete";
-            this.repbtnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // colGetTime
             // 
             this.colGetTime.AppearanceHeader.Options.UseTextOptions = true;
@@ -641,135 +580,288 @@
             this.colGetTime.FieldName = "GetTime";
             this.colGetTime.Name = "colGetTime";
             this.colGetTime.OptionsColumn.AllowEdit = false;
+            this.colGetTime.OptionsColumn.AllowFocus = false;
             this.colGetTime.Visible = true;
-            this.colGetTime.VisibleIndex = 4;
+            this.colGetTime.VisibleIndex = 3;
             this.colGetTime.Width = 130;
             // 
-            // colLevelMaterielNo
+            // colDelete
             // 
-            this.colLevelMaterielNo.AppearanceHeader.Options.UseTextOptions = true;
-            this.colLevelMaterielNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colLevelMaterielNo.ColumnEdit = this.repSearchCodeFileName;
-            this.colLevelMaterielNo.FieldName = "LevelMaterielNo";
-            this.colLevelMaterielNo.Name = "colLevelMaterielNo";
-            this.colLevelMaterielNo.OptionsColumn.AllowEdit = false;
-            this.colLevelMaterielNo.Visible = true;
-            this.colLevelMaterielNo.VisibleIndex = 1;
-            this.colLevelMaterielNo.Width = 120;
+            this.colDelete.ColumnEdit = this.repbtnDelete;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.OptionsColumn.TabStop = false;
+            this.colDelete.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            this.colDelete.Visible = true;
+            this.colDelete.VisibleIndex = 4;
+            this.colDelete.Width = 27;
             // 
-            // colMaterielNo
+            // repbtnDelete
             // 
-            this.colMaterielNo.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMaterielNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMaterielNo.FieldName = "MaterielNo";
-            this.colMaterielNo.Name = "colMaterielNo";
-            this.colMaterielNo.OptionsColumn.AllowEdit = false;
-            this.colMaterielNo.Visible = true;
-            this.colMaterielNo.VisibleIndex = 0;
-            this.colMaterielNo.Width = 100;
+            this.repbtnDelete.AutoHeight = false;
+            this.repbtnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.repbtnDelete.Name = "repbtnDelete";
+            this.repbtnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repbtnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repbtnDelete_ButtonClick);
             // 
-            // dataColuLevelMaterielName
+            // pnlEdit
             // 
-            this.dataColuLevelMaterielName.Caption = "子物料名称";
-            this.dataColuLevelMaterielName.ColumnName = "LevelMaterielName";
+            this.pnlEdit.Controls.Add(this.labGetTime);
+            this.pnlEdit.Controls.Add(this.dateGetTime);
+            this.pnlEdit.Controls.Add(this.searchPartsCodeId);
+            this.pnlEdit.Controls.Add(this.labMaterieState);
+            this.pnlEdit.Controls.Add(this.lookUpMaterieState);
+            this.pnlEdit.Controls.Add(this.labPartsCodeId);
+            this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEdit.Location = new System.Drawing.Point(2, 36);
+            this.pnlEdit.Name = "pnlEdit";
+            this.pnlEdit.Size = new System.Drawing.Size(701, 68);
+            this.pnlEdit.TabIndex = 9;
             // 
-            // colLevelMaterielName
+            // labGetTime
             // 
-            this.colLevelMaterielName.AppearanceHeader.Options.UseTextOptions = true;
-            this.colLevelMaterielName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colLevelMaterielName.FieldName = "LevelMaterielName";
-            this.colLevelMaterielName.Name = "colLevelMaterielName";
-            this.colLevelMaterielName.OptionsColumn.AllowEdit = false;
-            this.colLevelMaterielName.Visible = true;
-            this.colLevelMaterielName.VisibleIndex = 2;
-            this.colLevelMaterielName.Width = 120;
+            this.labGetTime.Location = new System.Drawing.Point(547, 24);
+            this.labGetTime.Name = "labGetTime";
+            this.labGetTime.Size = new System.Drawing.Size(48, 14);
+            this.labGetTime.TabIndex = 21;
+            this.labGetTime.Text = "登记时间";
             // 
-            // CCodeFileName
+            // dateGetTime
             // 
-            this.CCodeFileName.AppearanceHeader.Options.UseTextOptions = true;
-            this.CCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CCodeFileName.Caption = "零件编号";
-            this.CCodeFileName.FieldName = "CodeFileName";
-            this.CCodeFileName.Name = "CCodeFileName";
-            this.CCodeFileName.Visible = true;
-            this.CCodeFileName.VisibleIndex = 1;
+            this.dateGetTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "GetTime", true));
+            this.dateGetTime.EditValue = null;
+            this.dateGetTime.Location = new System.Drawing.Point(617, 21);
+            this.dateGetTime.Name = "dateGetTime";
+            this.dateGetTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateGetTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateGetTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateGetTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateGetTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateGetTime.Properties.Mask.EditMask = "G";
+            this.dateGetTime.Properties.ReadOnly = true;
+            this.dateGetTime.Size = new System.Drawing.Size(150, 20);
+            this.dateGetTime.TabIndex = 3;
+            this.dateGetTime.TabStop = false;
             // 
-            // CCodeName
+            // bSBomManagement
             // 
-            this.CCodeName.AppearanceHeader.Options.UseTextOptions = true;
-            this.CCodeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CCodeName.Caption = "零件名称";
-            this.CCodeName.FieldName = "CodeName";
-            this.CCodeName.Name = "CCodeName";
-            this.CCodeName.Visible = true;
-            this.CCodeName.VisibleIndex = 2;
+            this.bSBomManagement.DataMember = "BomManagement";
+            this.bSBomManagement.DataSource = this.dSBom;
             // 
-            // CQty
+            // searchPartsCodeId
             // 
-            this.CQty.AppearanceHeader.Options.UseTextOptions = true;
-            this.CQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CQty.Caption = "数量";
-            this.CQty.FieldName = "Qty";
-            this.CQty.Name = "CQty";
-            this.CQty.Visible = true;
-            this.CQty.VisibleIndex = 3;
+            this.searchPartsCodeId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "PartsCodeId", true));
+            this.searchPartsCodeId.EnterMoveNextControl = true;
+            this.searchPartsCodeId.Location = new System.Drawing.Point(105, 21);
+            this.searchPartsCodeId.Name = "searchPartsCodeId";
+            this.searchPartsCodeId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchPartsCodeId.Properties.DisplayMember = "CodeName";
+            this.searchPartsCodeId.Properties.NullText = "";
+            this.searchPartsCodeId.Properties.ValueMember = "AutoId";
+            this.searchPartsCodeId.Properties.View = this.searchPartsCodeIdView;
+            this.searchPartsCodeId.Size = new System.Drawing.Size(150, 20);
+            this.searchPartsCodeId.TabIndex = 0;
             // 
-            // CPartsCodeId
+            // searchPartsCodeIdView
             // 
-            this.CPartsCodeId.Caption = "PartsCodeId";
-            this.CPartsCodeId.FieldName = "PartsCodeId";
-            this.CPartsCodeId.Name = "CPartsCodeId";
+            this.searchPartsCodeIdView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn3,
+            this.gridColumn2});
+            this.searchPartsCodeIdView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchPartsCodeIdView.IndicatorWidth = 60;
+            this.searchPartsCodeIdView.Name = "searchPartsCodeIdView";
+            this.searchPartsCodeIdView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchPartsCodeIdView.OptionsView.ShowGroupPanel = false;
+            this.searchPartsCodeIdView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBomMateriel_CustomDrawRowIndicator);
             // 
-            // CParentPartsCodeId
+            // gridColumn1
             // 
-            this.CParentPartsCodeId.Caption = "ParentPartsCodeId";
-            this.CParentPartsCodeId.FieldName = "ParentPartsCodeId";
-            this.CParentPartsCodeId.Name = "CParentPartsCodeId";
+            this.gridColumn1.Caption = "零件编号";
+            this.gridColumn1.FieldName = "CodeFileName";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
             // 
-            // CParentCodeFileName
+            // gridColumn3
             // 
-            this.CParentCodeFileName.Caption = "ParentCodeFileName";
-            this.CParentCodeFileName.FieldName = "ParentCodeFileName";
-            this.CParentCodeFileName.Name = "CParentCodeFileName";
+            this.gridColumn3.Caption = "零件名称";
+            this.gridColumn3.FieldName = "CodeName";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "AutoId";
+            this.gridColumn2.FieldName = "AutoId";
+            this.gridColumn2.Name = "gridColumn2";
+            // 
+            // labMaterieState
+            // 
+            this.labMaterieState.Location = new System.Drawing.Point(287, 24);
+            this.labMaterieState.Name = "labMaterieState";
+            this.labMaterieState.Size = new System.Drawing.Size(48, 14);
+            this.labMaterieState.TabIndex = 19;
+            this.labMaterieState.Text = "物料状态";
+            // 
+            // lookUpMaterieState
+            // 
+            this.lookUpMaterieState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "MaterieStateId", true));
+            this.lookUpMaterieState.EnterMoveNextControl = true;
+            this.lookUpMaterieState.Location = new System.Drawing.Point(360, 21);
+            this.lookUpMaterieState.Name = "lookUpMaterieState";
+            this.lookUpMaterieState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpMaterieState.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterieStateId", "状态编号", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterieStateText", "状态名称", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpMaterieState.Properties.DisplayMember = "MaterieStateText";
+            this.lookUpMaterieState.Properties.NullText = "";
+            this.lookUpMaterieState.Properties.ValueMember = "MaterieStateId";
+            this.lookUpMaterieState.Size = new System.Drawing.Size(150, 20);
+            this.lookUpMaterieState.TabIndex = 1;
+            // 
+            // labPartsCodeId
+            // 
+            this.labPartsCodeId.Location = new System.Drawing.Point(36, 24);
+            this.labPartsCodeId.Name = "labPartsCodeId";
+            this.labPartsCodeId.Size = new System.Drawing.Size(48, 14);
+            this.labPartsCodeId.TabIndex = 12;
+            this.labPartsCodeId.Text = "零件名称";
+            // 
+            // pnlToolBar
+            // 
+            this.pnlToolBar.Controls.Add(this.btnRefresh);
+            this.pnlToolBar.Controls.Add(this.btnDelete);
+            this.pnlToolBar.Controls.Add(this.btnCancel);
+            this.pnlToolBar.Controls.Add(this.btnSave);
+            this.pnlToolBar.Controls.Add(this.btnNew);
+            this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
+            this.pnlToolBar.Name = "pnlToolBar";
+            this.pnlToolBar.Size = new System.Drawing.Size(701, 34);
+            this.pnlToolBar.TabIndex = 5;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(329, 5);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 18;
+            this.btnRefresh.TabStop = false;
+            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(248, 5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 17;
+            this.btnDelete.TabStop = false;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(167, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.TabStop = false;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(86, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.TabStop = false;
+            this.btnSave.Text = "修改";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(5, 5);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(75, 23);
+            this.btnNew.TabIndex = 14;
+            this.btnNew.TabStop = false;
+            this.btnNew.Text = "新增";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // pnlBom
+            // 
+            this.pnlBom.Controls.Add(this.pnlRight);
+            this.pnlBom.Controls.Add(this.splitterMiddle);
+            this.pnlBom.Controls.Add(this.pnlLeft);
+            this.pnlBom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBom.Location = new System.Drawing.Point(0, 0);
+            this.pnlBom.Name = "pnlBom";
+            this.pnlBom.Size = new System.Drawing.Size(1214, 625);
+            this.pnlBom.TabIndex = 14;
+            // 
+            // splitterMiddle
+            // 
+            this.splitterMiddle.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.splitterMiddle.Location = new System.Drawing.Point(502, 2);
+            this.splitterMiddle.Name = "splitterMiddle";
+            this.splitterMiddle.Size = new System.Drawing.Size(5, 621);
+            this.splitterMiddle.TabIndex = 14;
+            this.splitterMiddle.TabStop = false;
             // 
             // FrmBomManagement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1214, 625);
-            this.Controls.Add(this.pnlRight);
-            this.Controls.Add(this.splitterMiddle);
-            this.Controls.Add(this.pnlLeft);
+            this.Controls.Add(this.pnlBom);
             this.Name = "FrmBomManagement";
             this.TabText = "BOM登记";
             this.Text = "BOM登记";
+            this.Activated += new System.EventHandler(this.FrmBomManagement_Activated);
             this.Load += new System.EventHandler(this.FrmBomManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).EndInit();
             this.pnlLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTree)).EndInit();
+            this.pnlLeftTree.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTop)).EndInit();
+            this.pnlLeftTop.ResumeLayout(false);
+            this.pnlLeftTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeFileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
             this.pnlRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
-            this.pnlToolBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dSBom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableBomManagement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableBomMateriel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSBomMateriel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
-            this.pnlEdit.ResumeLayout(false);
-            this.pnlEdit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpMaterieState.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaterielNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpPartsCodeIdView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBomMateriel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSBomMateriel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSBom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableBomManagement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableBomMateriel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBomMateriel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSearchCodeFileNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
+            this.pnlEdit.ResumeLayout(false);
+            this.pnlEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpMaterieState.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
+            this.pnlToolBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).EndInit();
+            this.pnlBom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -778,10 +870,7 @@
 
         private DevExpress.XtraEditors.PanelControl pnlLeft;
         private DevExpress.XtraEditors.PanelControl pnlRight;
-        private DevExpress.XtraEditors.SplitterControl splitterMiddle;
         private DevExpress.XtraTreeList.TreeList treeListBom;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn CAutoId1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn CMaterielNo;
         private DevExpress.XtraEditors.PanelControl pnlToolBar;
         private System.Data.DataSet dSBom;
         private System.Data.DataTable TableBomManagement;
@@ -789,9 +878,7 @@
         private System.Data.DataColumn dataColPartsCodeId;
         private System.Data.DataColumn dataColMaterielNo;
         private System.Data.DataColumn dataColMaterieStateId;
-        private System.Data.DataColumn dataColMaterieStateText;
         private System.Data.DataColumn dataColGetTime;
-        private System.Data.DataColumn dataColCodeFileName;
         private System.Data.DataColumn dataColCodeName;
         private System.Data.DataTable TableBomMateriel;
         private System.Data.DataColumn dataColuAutoId;
@@ -804,11 +891,9 @@
         private DevExpress.XtraEditors.PanelControl pnlEdit;
         private DevExpress.XtraEditors.LabelControl labMaterieState;
         private DevExpress.XtraEditors.LookUpEdit lookUpMaterieState;
-        private DevExpress.XtraEditors.TextEdit textMaterielNo;
-        private DevExpress.XtraEditors.LabelControl labMaterielNo;
         private DevExpress.XtraEditors.LabelControl labPartsCodeId;
         private DevExpress.XtraEditors.SearchLookUpEdit searchPartsCodeId;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpPartsCodeIdView;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchPartsCodeIdView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
@@ -822,7 +907,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewBomMateriel;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchCodeFileName;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView repSearchCodeFileNameView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeFileName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCodeName;
@@ -838,8 +923,19 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn CCodeFileName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn CCodeName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn CQty;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn CPartsCodeId;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn CParentPartsCodeId;
         private DevExpress.XtraTreeList.Columns.TreeListColumn CParentCodeFileName;
+        private DevExpress.XtraEditors.PanelControl pnlBom;
+        private DevExpress.XtraEditors.SplitterControl splitterMiddle;
+        private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn CPCAutoId;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn CReID;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn CReParent;
+        private DevExpress.XtraEditors.PanelControl pnlLeftTree;
+        private DevExpress.XtraEditors.PanelControl pnlLeftTop;
+        private DevExpress.XtraEditors.SimpleButton btnQuery;
+        private DevExpress.XtraEditors.TextEdit textCodeFileName;
+        private DevExpress.XtraEditors.LabelControl labCodeFileName;
+        private DevExpress.XtraEditors.LabelControl labGetTime;
+        private DevExpress.XtraEditors.DateEdit dateGetTime;
     }
 }

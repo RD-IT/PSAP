@@ -34,7 +34,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TableName = "BS_UnitCatg";
                     editForm.TableCaption = "计量单位";
                     editForm.Sql = "select * from BS_UnitCatg order by AutoId";
-                    editForm.PrimaryKeyColumn = "AutoId";
+                    editForm.PrimaryKeyColumn = "UnitNo";
                     editForm.MasterDataSet = dSUnitCatg;
                     editForm.MasterBindingSource = bSUnitCatg;
                     editForm.MasterEditPanel = pnlEdit;

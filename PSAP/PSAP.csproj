@@ -185,6 +185,24 @@
     <Compile Include="VIEW\BSVIEW\FrmBomManagement.Designer.cs">
       <DependentUpon>FrmBomManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBomNegativeExpand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBomNegativeExpand.Designer.cs">
+      <DependentUpon>FrmBomNegativeExpand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBomPositiveExpand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBomPositiveExpand.Designer.cs">
+      <DependentUpon>FrmBomPositiveExpand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBussinessInfo_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBussinessInfo_New.Designer.cs">
+      <DependentUpon>FrmBussinessInfo_New.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmCollectionType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -672,6 +690,15 @@
     </Compile>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmBomManagement.resx">
       <DependentUpon>FrmBomManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBomNegativeExpand.resx">
+      <DependentUpon>FrmBomNegativeExpand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBomPositiveExpand.resx">
+      <DependentUpon>FrmBomPositiveExpand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBussinessInfo_New.resx">
+      <DependentUpon>FrmBussinessInfo_New.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmCollectionType.resx">
       <DependentUpon>FrmCollectionType.cs</DependentUpon>

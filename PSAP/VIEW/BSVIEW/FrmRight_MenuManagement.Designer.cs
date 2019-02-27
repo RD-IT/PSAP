@@ -214,6 +214,7 @@
             this.treeListMenu.ParentFieldName = "ParentMenuName";
             this.treeListMenu.Size = new System.Drawing.Size(246, 637);
             this.treeListMenu.TabIndex = 1;
+            this.treeListMenu.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.treeListMenu_BeforeFocusNode);
             this.treeListMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeListMenu_MouseDown);
             // 
             // colAutoId1
@@ -352,7 +353,7 @@
             this.colFormName.Name = "colFormName";
             this.colFormName.Visible = true;
             this.colFormName.VisibleIndex = 2;
-            this.colFormName.Width = 240;
+            this.colFormName.Width = 280;
             // 
             // colFormText
             // 
@@ -433,7 +434,7 @@
             this.lookUpFormName.Properties.DropDownRows = 20;
             this.lookUpFormName.Properties.NullText = "";
             this.lookUpFormName.Properties.ValueMember = "FormName";
-            this.lookUpFormName.Size = new System.Drawing.Size(240, 20);
+            this.lookUpFormName.Size = new System.Drawing.Size(280, 20);
             this.lookUpFormName.TabIndex = 2;
             // 
             // textFormText

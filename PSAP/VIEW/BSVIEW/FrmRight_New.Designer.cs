@@ -57,7 +57,7 @@
             // 
             this.PageUserMenuButton.Name = "PageUserMenuButton";
             this.PageUserMenuButton.Size = new System.Drawing.Size(1044, 533);
-            this.PageUserMenuButton.Text = "用户权限关联";
+            this.PageUserMenuButton.Text = "用户权限管理";
             // 
             // PageMenuManagement
             // 
