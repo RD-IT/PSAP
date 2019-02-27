@@ -153,14 +153,16 @@ namespace PSAP.VIEW.BSVIEW
 
         private void button7_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             BSBLL.TraverseFormControlToTable();
+            this.Cursor = Cursors.Arrow;
         }
 
         //test增加多语言控件
         private void button8_Click(object sender, EventArgs e)
         {
             Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
-            object obj = assembly.CreateInstance("PSAP.VIEW.BSVIEW.FrmPrReqApply"); //类的完全限定名（即包括命名空间）
+            object obj = assembly.CreateInstance("PSAP.VIEW.BSVIEW.frmprojectdocument"); //类的完全限定名（即包括命名空间）
             SetFormLanguages((DockContent)obj);
 
         }

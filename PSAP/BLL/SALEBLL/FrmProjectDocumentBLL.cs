@@ -16,8 +16,19 @@ using System.Windows.Forms;
 
 namespace PSAP.BLL.SALEBLL
 {
+
     class FrmProjectDocumentBLL
     {
+        /// <summary>
+        /// 用于多语言文本引用
+        /// </summary>
+        static FrmProjectDocument f = new FrmProjectDocument();
+
+        static FrmProjectDocumentBLL()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         //以一定格式显示文件的大小
         //Math.Round(num,2,MidpointRounding.AwayFromZero)，中国式的四舍五入，num保留2位小数
         public static string ShowFileSize(long fileSize)
@@ -91,7 +102,8 @@ namespace PSAP.BLL.SALEBLL
 
                 else//下载//////////////
                 {
-                    dialogResult = MessageBox.Show("确定要将选定文件添加到系统缓存？", "消息提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    //dialogResult = MessageBox.Show("确定要将选定文件添加到系统缓存？", "消息提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    dialogResult = MessageBox.Show(f.cms.Items[2].Text, "消息提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (dialogResult == DialogResult.Cancel)
                     {
                         return;
@@ -248,7 +260,7 @@ namespace PSAP.BLL.SALEBLL
             try
             {
                 Icon fileIcon;
-              //FtpOperations ftp = new FtpOperations(@"192.168.0.2", @"\RongDa Project Documents\img", "ftpAdministrator", "a");//建立FTP连接
+                //FtpOperations ftp = new FtpOperations(@"192.168.0.2", @"\RongDa Project Documents\img", "ftpAdministrator", "a");//建立FTP连接
                 FtpOperations ftp = new FtpOperations(@"192.168.0.2", @"\" + FrmProjectDocument.FtpRootDir + @"\img", "ftpAdministrator", "a");//建立FTP连接
                 fileIcon = IconHelper.GetIcon(fileInfo.FullName);
                 string fileExtension = (Path.GetExtension(fileInfo.Name));
@@ -466,7 +478,7 @@ namespace PSAP.BLL.SALEBLL
 
                 //将复制的文件夹数据同步到数据库
                 string projectPath = destSubDirInfo.FullName.Substring(FrmProjectDocument.diskLocal.Length + FrmProjectDocument.rootDir.Length) + @"\";
-                if (FrmProjectDocumentDAO.GetExistsProjectID(projectPath)==-1)//只有数据库中没有记录时才添加
+                if (FrmProjectDocumentDAO.GetExistsProjectID(projectPath) == -1)//只有数据库中没有记录时才添加
                 {
                     {
                         destProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);
@@ -590,7 +602,9 @@ namespace PSAP.BLL.SALEBLL
             if (lv.SelectedItems.Count > 0)
             {
                 DialogResult dialogResult;
-                dialogResult = MessageBox.Show("确定要删除选定项吗？", "删除确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                //dialogResult = MessageBox.Show("确定要删除选定项吗？", "删除确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.cms.Items["msgDeleteM"].Text, f.cms.Items["msgDeleteCaption"].Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;

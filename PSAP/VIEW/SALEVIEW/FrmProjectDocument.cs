@@ -106,11 +106,9 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             FrmProjectDocumentBLL.intiFtpDir();
             initIlRight();
-            //--------------------------------
             InitViewChecks();//初始化相关“查看”选项
             InitDisplay(1);//初始化管理器界面的显示
             tsbtnAdvancedQuery_Click(null, null);//初始化高级搜索选项卡
-
         }
 
         /// <summary>
@@ -121,11 +119,9 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             FrmProjectDocumentBLL.intiFtpDir();
             initIlRight();
-            //-----------------------------
             InitViewChecks();//初始化相关“查看”选项
             InitDisplay(projectID);//初始化管理器界面的显示
             tsbtnAdvancedQuery_Click(null, null);//初始化高级搜索选项卡
-
         }
 
         /// <summary>
@@ -2306,11 +2302,12 @@ namespace PSAP.VIEW.BSVIEW
             if (tableLayoutPanel1.RowStyles[0].Height < 100)
             {
                 tableLayoutPanel1.RowStyles[0].Height = tableLayoutPanel1.RowStyles[0].Height + 138;
-
+                tabPane1.Visible = true;
             }
             else
             {
                 tableLayoutPanel1.RowStyles[0].Height = tableLayoutPanel1.RowStyles[0].Height - 138;
+                tabPane1.Visible = false;
             }
             initTllQueryLocation();
         }

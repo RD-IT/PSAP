@@ -27,12 +27,11 @@ namespace PSAP.VIEW.BSVIEW
         public FrmRight_UserMenuButton()
         {
             InitializeComponent();
+            InitControl();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
-        /// <summary>
-        /// 窗体加载事件
-        /// </summary>
-        private void FrmRight_UserMenuButton_Load(object sender, EventArgs e)
+        private void InitControl()
         {
             try
             {
@@ -41,7 +40,6 @@ namespace PSAP.VIEW.BSVIEW
 
                 dtblTmp = BSCommon.getUserInfoList("", "", "", "");
                 gridControlUserList.DataSource = dtblTmp;
-                //dgvUserList.ColumnPanelRowHeight = 32;
                 dgvUserList.Columns[0].Width = 40;
                 dgvUserList.Columns[1].Width = 60;
                 dgvUserList.Columns[2].Width = 60;
@@ -73,6 +71,13 @@ namespace PSAP.VIEW.BSVIEW
             {
                 ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
             }
+        }
+
+        /// <summary>
+        /// 窗体加载事件
+        /// </summary>
+        private void FrmRight_UserMenuButton_Load(object sender, EventArgs e)
+        {
         }
 
         /// <summary>

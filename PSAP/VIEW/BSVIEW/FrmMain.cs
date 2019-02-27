@@ -44,6 +44,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 BSBLL.SetFormLanguages(this);//设置DockContent中的语种
             }
+
         }
 
         //用于dock
@@ -78,8 +79,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             this.Text = "天津容大机电有限公司   [" + SystemInfo.user.DepartmentName + " - " + SystemInfo.user.EmpName + "]";
             notifyIconMain.Text = "天津容大机电有限公司";
-        }
 
+        }
 
         //用于dock
         public DockContent ShowContent(string caption, Type formType)
@@ -158,8 +159,9 @@ namespace PSAP.VIEW.BSVIEW
                 frmMainTool.Show(this.dockPanel1, DockState.DockLeft);
             }
         }
-
+        public static DockContent dc1 = new DockContent();
         public Label editFlag;
+
         /// <summary>
         /// 打开指定窗口，如果已打开就激活窗口
         /// </summary>
@@ -171,7 +173,7 @@ namespace PSAP.VIEW.BSVIEW
                 IDockContent[] documents = dockPanel1.DocumentsToArray();
                 foreach (IDockContent content in documents)
                 {
-                    if (content.DockHandler.TabText.Equals(dc.DockHandler.TabText))
+                    if (content.DockHandler.Form.Name.Equals(dc.DockHandler.Form.Name))
                     {
                         content.DockHandler.Activate();
                         return;
@@ -184,18 +186,28 @@ namespace PSAP.VIEW.BSVIEW
                 editFlag.Text = "";
                 editFlag.Name = "lblEditFlag";
                 editFlag.Visible = false;
+                editFlag.SizeChanged += new System.EventHandler(this.editFlag_VisibleChanged);
+
                 dc.Controls.Add(editFlag);
                 dc.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_FormClosing);
-                //
 
                 dc.Show(this.dockPanel1);//用于从功能导航窗口调用此窗口
                 BSBLL.SetFormRight(dc);//设置窗口中按钮的权限
-                if (SystemInfo.user.Lanuage!="Chinese")
-                {
-                    BSBLL.SetFormLanguages(dc);//设置DockContent中的语种
-                }
+                dc1 = dc;
+                dc.Controls.Find("lblEditFlag", false).First().Width = 1;
             }
         }
+
+        /// <summary>
+        /// 调整用语言设定方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void editFlag_VisibleChanged(object sender, EventArgs e)
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(dc1);
+        }
+
         /// <summary>
         /// 退出DockContent时检查窗口状态
         /// </summary>
@@ -206,7 +218,7 @@ namespace PSAP.VIEW.BSVIEW
             if (((Label)((DockContent)sender).Controls["lblEditFlag"]).Text == "EDIT")
             {
                 ((DockContent)sender).Activate();
-                DialogResult result = MessageBox.Show("此界面有未保存信息，你确定要放弃修改吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information,MessageBoxDefaultButton.Button2);
+                DialogResult result = MessageBox.Show("此界面有未保存信息，你确定要放弃修改吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
                     e.Cancel = false;  //点击OK
@@ -375,9 +387,9 @@ namespace PSAP.VIEW.BSVIEW
         //}
         //#endregion
 
-            /// <summary>
-            /// 用于设定主状态栏Text属性
-            /// </summary>
+        /// <summary>
+        /// 用于设定主状态栏Text属性
+        /// </summary>
         public string tsrLblCurrentStatusText
         {
             get { return tsrLblCurrentStatus.Text; }

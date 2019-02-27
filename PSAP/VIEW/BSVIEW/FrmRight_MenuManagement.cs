@@ -33,6 +33,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmRight_MenuManagement()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>

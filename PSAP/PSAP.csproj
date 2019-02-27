@@ -227,6 +227,30 @@
     <Compile Include="VIEW\BSVIEW\FrmRight_Role.Designer.cs">
       <DependentUpon>FrmRight_Role.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.Designer.cs">
+      <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.Designer.cs">
+      <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmAddRemarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmAddRemarks.Designer.cs">
+      <DependentUpon>FrmAddRemarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.Designer.cs">
+      <DependentUpon>FrmProjectDocument.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -678,6 +702,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_Role.resx">
       <DependentUpon>FrmRight_Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
+      <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.resx">
+      <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SALEVIEW\FrmAddRemarks.resx">
+      <DependentUpon>FrmAddRemarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SALEVIEW\FrmProjectDocument.resx">
+      <DependentUpon>FrmProjectDocument.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>

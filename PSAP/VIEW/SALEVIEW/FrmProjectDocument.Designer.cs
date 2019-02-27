@@ -160,6 +160,10 @@
             this.btnAddRemarks = new DevExpress.XtraEditors.SimpleButton();
             this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.sAProjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.msgDeleteM = new System.Windows.Forms.ToolStripMenuItem();
+            this.msgDeleteCaption = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsAddTo = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -193,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sAProjectBindingSource)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -257,6 +262,7 @@
             this.tabPane1.Size = new System.Drawing.Size(998, 142);
             this.tabPane1.TabIndex = 4;
             this.tabPane1.Text = "tabPane1";
+            this.tabPane1.Visible = false;
             // 
             // tabNavigationPage1
             // 
@@ -1355,6 +1361,33 @@
             // 
             this.sAProjectBindingSource.DataMember = "SA_Project";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msgDeleteM,
+            this.msgDeleteCaption,
+            this.cmsAddTo});
+            this.cms.Name = "contextMenuStrip1";
+            this.cms.Size = new System.Drawing.Size(269, 92);
+            // 
+            // msgDeleteM
+            // 
+            this.msgDeleteM.Name = "msgDeleteM";
+            this.msgDeleteM.Size = new System.Drawing.Size(268, 22);
+            this.msgDeleteM.Text = "确定要删除选定项吗？";
+            // 
+            // msgDeleteCaption
+            // 
+            this.msgDeleteCaption.Name = "msgDeleteCaption";
+            this.msgDeleteCaption.Size = new System.Drawing.Size(268, 22);
+            this.msgDeleteCaption.Text = "删除确认";
+            // 
+            // cmsAddTo
+            // 
+            this.cmsAddTo.Name = "cmsAddTo";
+            this.cmsAddTo.Size = new System.Drawing.Size(268, 22);
+            this.cmsAddTo.Text = "确定要将选定文件添加到系统缓存？";
+            // 
             // FrmProjectDocument
             // 
             this.AllowDrop = true;
@@ -1414,6 +1447,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sAProjectBindingSource)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1552,5 +1586,9 @@
         private System.Windows.Forms.ImageList ilOther;
         private System.Windows.Forms.ToolStripMenuItem tsmiPasteToCache1;
         private System.Windows.Forms.ToolStripMenuItem tsmiPasteToCache;
+        private System.Windows.Forms.ToolStripMenuItem msgDeleteM;
+        private System.Windows.Forms.ToolStripMenuItem msgDeleteCaption;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem cmsAddTo;
     }
 }

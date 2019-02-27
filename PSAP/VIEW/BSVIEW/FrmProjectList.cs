@@ -1,4 +1,5 @@
-﻿using PSAP.DAO.BSDAO;
+﻿using PSAP.BLL.BSBLL;
+using PSAP.DAO.BSDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,12 @@ namespace PSAP.VIEW.BSVIEW
         public FrmProjectList()
         {
             InitializeComponent();
+
+            if (SystemInfo.user.Lanuage != "Chinese")//sx190222add
+            {
+                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
+            }
+
         }
 
         /// <summary>

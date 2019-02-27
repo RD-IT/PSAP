@@ -74,6 +74,9 @@ namespace PSAP
                         }
                     }
 
+                    string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+                    new FileHandler().IniWriteValue(iniPath, "System", "LastLanguage", cboLanguage.SelectedValue.ToString());
+
                     //Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                     // cfa.AppSettings.Settings["last"].Value = "111";
                     //            cfa.Save();
@@ -118,6 +121,7 @@ namespace PSAP
                 FrmLoginBLL.InitCboLanguage(cboLanguage);
                 string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
                 txtUserID.Text = new FileHandler().IniReadValue(iniPath, "System", "LastLoginID");
+                cboLanguage.SelectedValue = new FileHandler().IniReadValue(iniPath, "System", "LastLanguage");
                 if (SystemInfo.LoginSavePwd)
                 {
                     string pwdStr = new FileHandler().IniReadValue(iniPath, "System", "LastLoginPwd");
