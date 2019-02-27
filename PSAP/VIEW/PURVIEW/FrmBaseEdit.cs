@@ -3,7 +3,6 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using PSAP.BLL.BSBLL;
 using PSAP.DAO.BSDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
@@ -123,7 +122,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 主键绑定的控件
         /// </summary>
-        private Control primaryKeyControl = null;
+        private Control primaryKeyControl=null;
         public Control PrimaryKeyControl
         {
             get
@@ -246,6 +245,10 @@ namespace PSAP.VIEW.BSVIEW
         public delegate bool DeleteRowAfter_Handle(DataRow dr, SqlCommand cmd);
         public event DeleteRowAfter_Handle DeleteRowAfter;
 
+        //定义委托和事件  新增之后执行的方法
+        public delegate void NewAfter_Handle();
+        public event NewAfter_Handle NewAfter;
+
         //定义委托和事件  查询数据之后执行的方法
         public delegate void QueryDataAfter_Handle();
         public event QueryDataAfter_Handle QueryDataAfter;
@@ -264,7 +267,6 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBaseEdit()
         {
             InitializeComponent();
-            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -274,7 +276,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             this.Text = TableCaption;
             btnRefresh_Click(null, null);
-            if (!visibleSearchControl)
+            if(!visibleSearchControl)
             {
                 labContent.Visible = false;
                 textContent.Visible = false;
@@ -294,13 +296,15 @@ namespace PSAP.VIEW.BSVIEW
                 masterDataSet.Tables[0].Rows.Add(dr);
                 masterBindingSource.MoveLast();
 
+                if (NewAfter != null)
+                    NewAfter();
+
                 newState = true;
                 Set_Button_State(false);
                 Set_EditZone_ControlReadOnly(false);
                 pnlButton.Focus();
                 if (masterEditPanel != null)
-                    masterEditPanel.SelectNextControl(null, true, true, true, true);
-
+                    masterEditPanel.SelectNextControl(null, true, true, true, true);                
             }
             catch (Exception ex)
             {
@@ -313,8 +317,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public void btnSave_Click(object sender, EventArgs e)
         {
-            //if (btnSave.Text != "保存")//修改
-            if (btnSave.Tag.ToString() != "保存")//修改
+            if (btnSave.Text != "保存")//修改
             {
                 try
                 {
@@ -335,7 +338,7 @@ namespace PSAP.VIEW.BSVIEW
                                 }
                             }
                         }
-
+                       
                     }
                 }
                 catch (Exception ex)
@@ -349,7 +352,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 btnSave_Click();
                 pnlButton.Focus();
-            }
+            }            
         }
 
         /// <summary>
@@ -385,7 +388,7 @@ namespace PSAP.VIEW.BSVIEW
                     }
                 }
 
-                if (dr.RowState != DataRowState.Unchanged || RowStateUnchangedIsSave)
+                if (dr.RowState != DataRowState.Unchanged|| RowStateUnchangedIsSave)
                 {
                     if (DoSave(dr))
                     {
@@ -415,7 +418,7 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
-                if (masterEditPanel != null)
+                if(masterEditPanel!=null)
                     masterEditPanel.SelectNextControl(null, true, true, true, true);
                 return false;
             }
@@ -687,7 +690,7 @@ namespace PSAP.VIEW.BSVIEW
         /// 设定编辑器控件的ReadOnly状态
         /// </summary>
         /// <param name="readOnlyState">ReadOnly状态</param>
-        private void Set_EditZone_ControlReadOnly(bool readOnlyState)
+        public void Set_EditZone_ControlReadOnly(bool readOnlyState)
         {
             if (masterEditPanel != null)
             {
@@ -698,7 +701,7 @@ namespace PSAP.VIEW.BSVIEW
                         ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                     }
 
-                    foreach (Control ctl in masterEditPanelAddControl)
+                    foreach(Control ctl in masterEditPanelAddControl)
                     {
                         ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                     }
@@ -716,7 +719,7 @@ namespace PSAP.VIEW.BSVIEW
                         }
                         else
                         {
-                            if (ctl != primaryKeyControl && (otherNoChangeControl == null || otherNoChangeControl.IndexOf(ctl) < 0))
+                            if (ctl != primaryKeyControl && (otherNoChangeControl ==null ||otherNoChangeControl.IndexOf(ctl) < 0))
                                 ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                         }
                     }
@@ -736,19 +739,13 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定按钮的状态
         /// </summary>
-        private void Set_Button_State(bool state)
+        public void Set_Button_State(bool state)
         {
             btnNew.Enabled = state;
             if (state)
-            {
-                btnSave.Text =tsmiEdit.Text;
-                btnSave.Tag = "修改";
-            }
+                btnSave.Text = "修改";
             else
-            {
-                btnSave.Text = tsmiSave.Text;
-                btnSave.Tag = "保存";
-            }
+                btnSave.Text = "保存";
             btnCancel.Enabled = !state;
             btnDelete.Enabled = state;
             btnRefresh.Enabled = state;
@@ -795,7 +792,7 @@ namespace PSAP.VIEW.BSVIEW
                 browseXtraGridView.Focus();
                 for (int i = locationRowNo; i >= 0; i--)
                 {
-                    for (int j = locationColumnNo - 1; j >= 0; j--)
+                    for (int j = locationColumnNo - 1; j >=0; j--)
                     {
                         if (!browseXtraGridView.Columns[j].Visible)
                             continue;

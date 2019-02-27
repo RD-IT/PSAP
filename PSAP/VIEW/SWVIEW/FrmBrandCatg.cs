@@ -34,7 +34,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TableName = "SW_BrandCatg";
                     editForm.TableCaption = "品牌信息";
                     editForm.Sql = "select * from SW_BrandCatg order by AutoId";
-                    editForm.PrimaryKeyColumn = "AutoId";
+                    editForm.PrimaryKeyColumn = "BrandNo";
                     editForm.MasterDataSet = dSBrandCatg;
                     editForm.MasterBindingSource = bSBrandCatg;
                     editForm.MasterEditPanel = pnlEdit;
