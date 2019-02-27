@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBaseEdit));
             this.pnlButton = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
@@ -41,7 +40,7 @@
             this.btnPrevious = new DevExpress.XtraEditors.SimpleButton();
             this.labContent = new DevExpress.XtraEditors.LabelControl();
             this.textContent = new DevExpress.XtraEditors.TextEdit();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlButton)).BeginInit();

@@ -122,7 +122,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 主键绑定的控件
         /// </summary>
-        private Control primaryKeyControl=null;
+        private Control primaryKeyControl = null;
         public Control PrimaryKeyControl
         {
             get
@@ -267,6 +267,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBaseEdit()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -276,7 +277,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             this.Text = TableCaption;
             btnRefresh_Click(null, null);
-            if(!visibleSearchControl)
+            if (!visibleSearchControl)
             {
                 labContent.Visible = false;
                 textContent.Visible = false;
@@ -304,7 +305,7 @@ namespace PSAP.VIEW.BSVIEW
                 Set_EditZone_ControlReadOnly(false);
                 pnlButton.Focus();
                 if (masterEditPanel != null)
-                    masterEditPanel.SelectNextControl(null, true, true, true, true);                
+                    masterEditPanel.SelectNextControl(null, true, true, true, true);
             }
             catch (Exception ex)
             {
@@ -317,7 +318,8 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public void btnSave_Click(object sender, EventArgs e)
         {
-            if (btnSave.Text != "保存")//修改
+            //if (btnSave.Text != "保存")//修改
+            if (btnSave.Tag.ToString() != "保存")//修改
             {
                 try
                 {
@@ -338,7 +340,7 @@ namespace PSAP.VIEW.BSVIEW
                                 }
                             }
                         }
-                       
+
                     }
                 }
                 catch (Exception ex)
@@ -352,7 +354,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 btnSave_Click();
                 pnlButton.Focus();
-            }            
+            }
         }
 
         /// <summary>
@@ -388,7 +390,7 @@ namespace PSAP.VIEW.BSVIEW
                     }
                 }
 
-                if (dr.RowState != DataRowState.Unchanged|| RowStateUnchangedIsSave)
+                if (dr.RowState != DataRowState.Unchanged || RowStateUnchangedIsSave)
                 {
                     if (DoSave(dr))
                     {
@@ -418,7 +420,7 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
-                if(masterEditPanel!=null)
+                if (masterEditPanel != null)
                     masterEditPanel.SelectNextControl(null, true, true, true, true);
                 return false;
             }
@@ -701,7 +703,7 @@ namespace PSAP.VIEW.BSVIEW
                         ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                     }
 
-                    foreach(Control ctl in masterEditPanelAddControl)
+                    foreach (Control ctl in masterEditPanelAddControl)
                     {
                         ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                     }
@@ -719,7 +721,7 @@ namespace PSAP.VIEW.BSVIEW
                         }
                         else
                         {
-                            if (ctl != primaryKeyControl && (otherNoChangeControl ==null ||otherNoChangeControl.IndexOf(ctl) < 0))
+                            if (ctl != primaryKeyControl && (otherNoChangeControl == null || otherNoChangeControl.IndexOf(ctl) < 0))
                                 ctlHandler.Set_Control_ReadOnly(ctl, readOnlyState);
                         }
                     }
@@ -743,9 +745,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             btnNew.Enabled = state;
             if (state)
-                btnSave.Text = "修改";
+            {
+                btnSave.Text =tsmiEdit.Text;
+                btnSave.Tag = "修改";
+            }
             else
-                btnSave.Text = "保存";
+            {
+                btnSave.Text = tsmiSave.Text;
+                btnSave.Tag = "保存";
+            }
             btnCancel.Enabled = !state;
             btnDelete.Enabled = state;
             btnRefresh.Enabled = state;
@@ -792,7 +800,7 @@ namespace PSAP.VIEW.BSVIEW
                 browseXtraGridView.Focus();
                 for (int i = locationRowNo; i >= 0; i--)
                 {
-                    for (int j = locationColumnNo - 1; j >=0; j--)
+                    for (int j = locationColumnNo - 1; j >= 0; j--)
                     {
                         if (!browseXtraGridView.Columns[j].Visible)
                             continue;

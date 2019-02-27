@@ -92,7 +92,7 @@ namespace PSAP.BLL.BSBLL
         /// <param name="CurrentDockContent"></param>
         public static void SetFormRight(DockContent CurrentDockContent)
         {
-            SetDockContentStyle(CurrentDockContent);//调用窗口样式设定方法
+            //SetDockContentStyle(CurrentDockContent);//调用窗口样式设定方法
             Control.ControlCollection CurrentControls = CurrentDockContent.Controls;
             SetFormButtonRight(CurrentControls, CurrentDockContent.Name);
         }
@@ -105,7 +105,7 @@ namespace PSAP.BLL.BSBLL
         {
             foreach (Control n in CurrentControls)
             {
-                SetFormControlStyle(n);//调用窗口控件样式设定方法
+                //SetFormControlStyle(n);//调用窗口控件样式设定方法
 
                 if (n is Button)
                 {
