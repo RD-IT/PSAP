@@ -226,6 +226,9 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 输入回车跳转下一个控件
+        /// </summary>
         private void checkBussinessIsUse_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -235,6 +238,9 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 输入回车跳转下一个控件
+        /// </summary>
         private void lookUpCountryCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
