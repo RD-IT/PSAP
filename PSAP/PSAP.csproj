@@ -124,11 +124,6 @@
     <Compile Include="DAO\PURDAO\FrmWarehouseWarrantApplyDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmAddRemarksDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmProjectDocumentDAO.cs" />
-    <Compile Include="DS_PUR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DS_PUR.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ENTITY\BSENTITY\bomManagement.cs" />
     <Compile Include="ENTITY\BSENTITY\BomMateriel.cs" />
     <Compile Include="ENTITY\BSENTITY\BomMaterieState.cs" />
@@ -647,24 +642,6 @@
     <Compile Include="VIEW\PURVIEW\FrmSettlement_Drag.Designer.cs">
       <DependentUpon>FrmSettlement_Drag.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\PURVIEW\FrmTest_WF.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VIEW\PURVIEW\FrmTest_WF.Designer.cs">
-      <DependentUpon>FrmTest_WF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VIEW\PURVIEW\FrmTest_WF2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VIEW\PURVIEW\FrmTest_WF2.Designer.cs">
-      <DependentUpon>FrmTest_WF2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VIEW\PURVIEW\FrmTest_WF3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VIEW\PURVIEW\FrmTest_WF3.Designer.cs">
-      <DependentUpon>FrmTest_WF3.cs</DependentUpon>
-    </Compile>
     <Compile Include="VIEW\PURVIEW\GridBottom.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -682,12 +659,6 @@
     </Compile>
     <Compile Include="VIEW\REPORT\FrmPrintPreview.Designer.cs">
       <DependentUpon>FrmPrintPreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VIEW\REPORT\XReport_PrReq.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="VIEW\REPORT\XReport_PrReq.Designer.cs">
-      <DependentUpon>XReport_PrReq.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SWVIEW\FrmPartsCode.cs">
       <SubType>Form</SubType>
@@ -939,15 +910,6 @@
     <EmbeddedResource Include="VIEW\PURVIEW\FrmSettlement_Drag.resx">
       <DependentUpon>FrmSettlement_Drag.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF.resx">
-      <DependentUpon>FrmTest_WF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF2.resx">
-      <DependentUpon>FrmTest_WF2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF3.resx">
-      <DependentUpon>FrmTest_WF3.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\GridBottom.resx">
       <DependentUpon>GridBottom.cs</DependentUpon>
     </EmbeddedResource>
@@ -959,9 +921,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\REPORT\Report111.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\REPORT\XReport_PrReq.resx">
-      <DependentUpon>XReport_PrReq.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmPartsCode.resx">
       <DependentUpon>FrmPartsCode.cs</DependentUpon>
@@ -977,17 +936,6 @@
     </None>
     <None Include="dsPSAP.xss">
       <DependentUpon>dsPSAP.xsd</DependentUpon>
-    </None>
-    <None Include="DS_PUR.xsc">
-      <DependentUpon>DS_PUR.xsd</DependentUpon>
-    </None>
-    <None Include="DS_PUR.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DS_PUR.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DS_PUR.xss">
-      <DependentUpon>DS_PUR.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
