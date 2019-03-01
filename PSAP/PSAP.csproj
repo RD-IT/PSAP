@@ -251,6 +251,12 @@
     <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.Designer.cs">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.Designer.cs">
+      <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -732,6 +738,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.resx">
+      <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.resx">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>

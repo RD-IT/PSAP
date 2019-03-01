@@ -126,5 +126,20 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--设定树的过来条件错误。", ex);
             }
         }
+
+        /// <summary>
+        /// 查询结果存为Excel
+        /// </summary>
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileHandler.SaveTreeListControlExportToExcel(treeListBom);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+            }
+        }
     }
 }
