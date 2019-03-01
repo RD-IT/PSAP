@@ -52,6 +52,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).BeginInit();
             this.pnlBom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTree)).BeginInit();
@@ -246,6 +247,7 @@
             // 
             // pnlTop
             // 
+            this.pnlTop.Controls.Add(this.btnSaveExcel);
             this.pnlTop.Controls.Add(this.btnQuery);
             this.pnlTop.Controls.Add(this.labPartsCodeId);
             this.pnlTop.Controls.Add(this.searchCodeFileName);
@@ -321,6 +323,15 @@
             this.gridColumn2.FieldName = "AutoId";
             this.gridColumn2.Name = "gridColumn2";
             // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.Location = new System.Drawing.Point(408, 22);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveExcel.TabIndex = 104;
+            this.btnSaveExcel.Text = "存为Excel";
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            // 
             // FrmBomNegativeExpand
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -370,5 +381,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
     }
 }
