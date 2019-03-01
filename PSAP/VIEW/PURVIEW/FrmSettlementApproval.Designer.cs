@@ -86,6 +86,11 @@
             this.colLoginId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOrderHeadNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApproverTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCccgjz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCtjz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSpcg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSpan = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
@@ -103,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlSettleAppInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSettlementApprovalInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSettleAppInfo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -407,7 +413,7 @@
             this.pnlBottom.Controls.Add(this.btnCancel);
             this.pnlBottom.Controls.Add(this.btnApproval);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 322);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(584, 40);
             this.pnlBottom.TabIndex = 8;
@@ -440,7 +446,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
+            this.pnlMiddle.Size = new System.Drawing.Size(584, 233);
             this.pnlMiddle.TabIndex = 9;
             // 
             // gridCrlSettleAppInfo
@@ -450,7 +456,7 @@
             this.gridCrlSettleAppInfo.Location = new System.Drawing.Point(2, 2);
             this.gridCrlSettleAppInfo.MainView = this.gridViewSettleAppInfo;
             this.gridCrlSettleAppInfo.Name = "gridCrlSettleAppInfo";
-            this.gridCrlSettleAppInfo.Size = new System.Drawing.Size(580, 228);
+            this.gridCrlSettleAppInfo.Size = new System.Drawing.Size(580, 229);
             this.gridCrlSettleAppInfo.TabIndex = 10;
             this.gridCrlSettleAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSettleAppInfo});
@@ -566,10 +572,44 @@
             this.colApproverTime.VisibleIndex = 5;
             this.colApproverTime.Width = 135;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCccgjz,
+            this.tsmiCtjz,
+            this.tsmiSpcg,
+            this.tsmiSpan});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(293, 114);
+            // 
+            // tsmiCccgjz
+            // 
+            this.tsmiCccgjz.Name = "tsmiCccgjz";
+            this.tsmiCccgjz.Size = new System.Drawing.Size(292, 22);
+            this.tsmiCccgjz.Text = "查询采购结账单信息错误，请重新操作。";
+            // 
+            // tsmiCtjz
+            // 
+            this.tsmiCtjz.Name = "tsmiCtjz";
+            this.tsmiCtjz.Size = new System.Drawing.Size(292, 22);
+            this.tsmiCtjz.Text = "窗体加载事件错误。";
+            // 
+            // tsmiSpcg
+            // 
+            this.tsmiSpcg.Name = "tsmiSpcg";
+            this.tsmiSpcg.Size = new System.Drawing.Size(292, 22);
+            this.tsmiSpcg.Text = "审批成功。";
+            // 
+            // tsmiSpan
+            // 
+            this.tsmiSpan.Name = "tsmiSpan";
+            this.tsmiSpan.Size = new System.Drawing.Size(292, 22);
+            this.tsmiSpan.Text = "审批按钮事件错误。";
+            // 
             // FrmSettlementApproval
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnlTop);
@@ -600,6 +640,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlSettleAppInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSettlementApprovalInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSettleAppInfo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -663,5 +704,10 @@
         private System.Windows.Forms.BindingSource bindingSource_SettlementHead;
         private System.Windows.Forms.BindingSource bsSettlementApprovalInfo;
         private System.Data.DataColumn dataColumn1;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCccgjz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCtjz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSpcg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSpan;
     }
 }

@@ -12,6 +12,12 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmOrderDAO
     {
+        static PSAP.VIEW.BSVIEW.FrmOrder f = new VIEW.BSVIEW.FrmOrder();
+        public FrmOrderDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 查询采购单表头表
         /// </summary>
@@ -27,7 +33,7 @@ namespace PSAP.DAO.PURDAO
         /// <param name="nullTable">是否查询空表</param>
         public void QueryOrderHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string beginPlanDateStr, string endPlanDateStr, string reqDepStr, string purCategoryStr, string bussinessBaseNoStr, int reqStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, approverInt, commonStr,0, nullTable), queryDataTable);
+            BaseSQL.Query(QueryOrderHead_SQL(beginDateStr, endDateStr, beginPlanDateStr, endPlanDateStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, preparedStr, approverInt, commonStr, 0, nullTable), queryDataTable);
         }
         /// <summary>
         /// 查询采购单表头表的SQL
@@ -67,7 +73,7 @@ namespace PSAP.DAO.PURDAO
             {
                 sqlStr += string.Format(" and (OrderHeadNo like '%{0}%' or ProjectNo like '%{0}%' or StnNo like '%{0}%' or PrReqRemark like '%{0}%' or PUR_OrderHead.ApprovalType like '%{0}%' or PayTypeNo like '%{0}%')", commonStr);
             }
-            if(prReqListAutoIdInt>0)
+            if (prReqListAutoIdInt > 0)
             {
                 sqlStr += string.Format(" and OrderHeadNo in (Select OrderHeadNo from PUR_OrderList where PrListAutoId = {0})", prReqListAutoIdInt);
             }
@@ -454,7 +460,7 @@ namespace PSAP.DAO.PURDAO
             orderHeadRow["Approver"] = "";
             orderHeadRow["ApproverIp"] = "";
             orderHeadRow["ApproverTime"] = "";
-            orderHeadRow["ReqState"] = 1;            
+            orderHeadRow["ReqState"] = 1;
 
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -470,8 +476,9 @@ namespace PSAP.DAO.PURDAO
                         {
                             trans.Rollback();
                             orderHeadRow.Table.RejectChanges();
-                            MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
-                            return false;
+                            //MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
+                            MessageHandler.ShowMessageBox(f.tsmiCgddyj.Text);
+                                                        return false;
                         }
 
                         cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where OrderHeadNo='{0}'", DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]), 1, "", "", "");
@@ -540,8 +547,9 @@ namespace PSAP.DAO.PURDAO
                             {
                                 trans.Rollback();
                                 orderHeadTable.RejectChanges();
-                                MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
-                                return false;
+                                //MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
+                                MessageHandler.ShowMessageBox(f.tsmiCgddyj.Text);
+                                                                return false;
                             }
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
@@ -714,7 +722,7 @@ namespace PSAP.DAO.PURDAO
                                 int noAppListCount = DataTypeConvert.GetInt(cmd.ExecuteScalar());
                                 cmd.CommandText = string.Format("select Count(*) from PUR_ApprovalList where TypeNo='{0}'", approvalTypeStr);
                                 int appListCount = DataTypeConvert.GetInt(cmd.ExecuteScalar());
-                                switch(approvalCatInt)
+                                switch (approvalCatInt)
                                 {
                                     case 0:
                                     case 1:
@@ -731,7 +739,7 @@ namespace PSAP.DAO.PURDAO
                                         else
                                             dr["ReqState"] = 1;
                                         break;
-                                }                               
+                                }
 
                                 cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Closed='{2}', ClosedIp='{3}', ClosedTime=null where OrderHeadNo = '{0}'", DataTypeConvert.GetString(dr["OrderHeadNo"]), DataTypeConvert.GetInt(dr["ReqState"]), "", "");
                                 cmd.ExecuteNonQuery();
@@ -774,8 +782,9 @@ namespace PSAP.DAO.PURDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
-                            orderHeadTable.RejectChanges();
+                            //MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgdd.Text+"[{0}]"+f.tsmiWsp.Text+f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                                                        orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
                             return false;
@@ -784,8 +793,9 @@ namespace PSAP.DAO.PURDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
-                            orderHeadTable.RejectChanges();
+                            //MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgdd.Text+"[{0}]"+f.tsmiYjsp.Text+f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                                                        orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
                             return false;
@@ -794,8 +804,9 @@ namespace PSAP.DAO.PURDAO
                     case 3:
                         if (checkClosed)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
-                            orderHeadTable.RejectChanges();
+                            //MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgdd.Text+"[{0}]"+f.tsmiYjgb.Text+f.tsmiBkycz, DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                                                        orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
                             return false;
@@ -804,8 +815,9 @@ namespace PSAP.DAO.PURDAO
                     case 4:
                         if (checkApproverBetween)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
-                            orderHeadTable.RejectChanges();
+                            //MessageHandler.ShowMessageBox(string.Format("采购订单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgdd.Text+"[{0}]"+f.tsmiYjspz.Text+f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["OrderHeadNo"])));
+                                                        orderHeadTable.RejectChanges();
                             if (orderListTable != null)
                                 orderListTable.RejectChanges();
                             return false;
@@ -853,7 +865,7 @@ namespace PSAP.DAO.PURDAO
         /// <summary>
         /// 审批选中的多条采购订单
         /// </summary>
-        public bool OrderApprovalInfo_Multi(DataTable orderHeadTable,ref int successCountInt)
+        public bool OrderApprovalInfo_Multi(DataTable orderHeadTable, ref int successCountInt)
         {
             string orderHeadNoListStr = "";
             for (int i = 0; i < orderHeadTable.Rows.Count; i++)
@@ -891,8 +903,9 @@ namespace PSAP.DAO.PURDAO
                                 if (tmpTable.Rows.Count == 0)
                                 {
                                     trans.Rollback();
-                                    MessageHandler.ShowMessageBox("未查询到要操作的采购订单，请刷新后再进行操作。");
-                                    return false;
+                                    //MessageHandler.ShowMessageBox("未查询到要操作的采购订单，请刷新后再进行操作。");
+                                    MessageHandler.ShowMessageBox(f.tsmiWcxdyc.Text);
+                                                                        return false;
                                 }
 
                                 //审核检查订单明细数量是否超过请购明细数量
@@ -1013,8 +1026,9 @@ namespace PSAP.DAO.PURDAO
                             {
                                 trans.Rollback();
                                 orderHeadTable.RejectChanges();
-                                MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
-                                return false;
+                                //MessageHandler.ShowMessageBox("采购订单已经有适用的入库单记录，不可以操作。");
+                                MessageHandler.ShowMessageBox(f.tsmiCgddyj.Text);
+                                                                return false;
                             }
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
@@ -1284,8 +1298,9 @@ namespace PSAP.DAO.PURDAO
                 double prReqQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
                 if (qtySum + otherOrderQtySum > prReqQtySum)
                 {
-                    MessageHandler.ShowMessageBox(string.Format("采购订单中明细[{0}]的数量[{1}]超过请购单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherOrderQtySum, prReqQtySum));
-                    return false;
+                    //MessageHandler.ShowMessageBox(string.Format("采购订单中明细[{0}]的数量[{1}]超过请购单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherOrderQtySum, prReqQtySum));
+                    MessageHandler.ShowMessageBox(string.Format(f.tsmiCgddzm.Text+"[{0}]"+f.tsmiDsl.Text+"[{1}]"+f.tsmiCgqgdd.Text+"[{2}]，"+f.tsmiBkybc.Text, codeFileNameStr, qtySum + otherOrderQtySum, prReqQtySum));
+                                        return false;
                 }
             }
             return true;

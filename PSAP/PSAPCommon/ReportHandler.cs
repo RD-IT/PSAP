@@ -16,6 +16,11 @@ namespace PSAP.PSAPCommon
 {
     public class ReportHandler
     {
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public ReportHandler()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
         /// <summary>
         /// 处理报表打印
         /// </summary>
@@ -29,7 +34,9 @@ namespace PSAP.PSAPCommon
             DataTable docTempletTable = docDAO.QueryDocTemplet(tableNameStr);
             if (docTempletTable.Rows.Count == 0)
             {
-                MessageHandler.ShowMessageBox("未查询到当前单据模板的信息记录，操作错误。");
+                //MessageHandler.ShowMessageBox("未查询到当前单据模板的信息记录，操作错误。");
+                MessageHandler.ShowMessageBox(f.tsmiWcxddq.Text);
+
                 return;
             }
 
@@ -196,39 +203,48 @@ namespace PSAP.PSAPCommon
         {
             List<Parameter> paramList = new List<Parameter>();
             Parameter p1 = new Parameter();
-            p1.Name = "公司名称";
-            p1.Value = SystemInfo.CompanyName;            
+            //p1.Name = "公司名称";
+            p1.Name = f.tsmiGsmc.Text;
+            p1.Value = SystemInfo.CompanyName;
             paramList.Add(p1);
             Parameter p2 = new Parameter();
-            p2.Name = "公司地址";
-            p2.Value = SystemInfo.CompAddress;            
+            //p2.Name = "公司地址";
+            p2.Name = f.tsmiGsdz.Text;
+            p2.Value = SystemInfo.CompAddress;
             paramList.Add(p2);
             Parameter p3 = new Parameter();
-            p3.Name = "公司邮编";
-            p3.Value = SystemInfo.CompZipCode;            
+            //p3.Name = "公司邮编";
+            p3.Name = f.tsmiGsyb.Text;
+            p3.Value = SystemInfo.CompZipCode;
             paramList.Add(p3);
             Parameter p4 = new Parameter();
-            p4.Name = "公司电话";
-            p4.Value = SystemInfo.CompTel;            
+            //p4.Name = "公司电话";
+            p4.Name = f.tsmiGsdh.Text;
+            p4.Value = SystemInfo.CompTel;
             paramList.Add(p4);
             Parameter p5 = new Parameter();
-            p5.Name = "公司传真";
-            p5.Value = SystemInfo.CompFax;            
+            //p5.Name = "公司传真";
+            p5.Name = f.tsmiGscz.Text;
+            p5.Value = SystemInfo.CompFax;
             paramList.Add(p5);
             Parameter p6 = new Parameter();
-            p6.Name = "公司网址";
-            p6.Value = SystemInfo.CompWebSite;           
+            //p6.Name = "公司网址";
+            p6.Name = f.tsmiGswz.Text;
+            p6.Value = SystemInfo.CompWebSite;
             paramList.Add(p6);
             Parameter p7 = new Parameter();
-            p7.Name = "公司商标";
+            //p7.Name = "公司商标";
+            p7.Name = f.tsmiGssb.Text;
             p7.Value = SystemInfo.CompImage;
             paramList.Add(p7);
             Parameter p8 = new Parameter();
-            p8.Name = "打印时间";
+            //p8.Name = "打印时间";
+            p8.Name = f.tsmiDysj.Text;
             p8.Value = BaseSQL.GetServerDateTime();
             paramList.Add(p8);
             Parameter p9 = new Parameter();
-            p9.Name = "打印人";
+            //p9.Name = "打印人";
+            p9.Name = f.tsmiDyr.Text;
             p9.Value = SystemInfo.user.EmpName;
             paramList.Add(p9);
             return paramList;

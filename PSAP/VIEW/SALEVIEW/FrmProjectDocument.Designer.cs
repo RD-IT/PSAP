@@ -158,12 +158,44 @@
             this.colRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.btnAddRemarks = new DevExpress.XtraEditors.SimpleButton();
-            this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.sAProjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.msgDeleteM = new System.Windows.Forms.ToolStripMenuItem();
             this.msgDeleteCaption = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsAddTo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYcgscs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiKsss = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQxzydk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWjmbbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDqljxy = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWzlxwj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiGxm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXjwjj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmidqdn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWffzmb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQxzycm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWjj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYcgtjd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYcgjr = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYcgjc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMcbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDwjhwj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQxzytjbz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBzxxbn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQdysc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWqxtjdk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWqxjr = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiwqxjc = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiNxjbjd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNqxbjd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJtbzmy = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYcgjfz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmidqljxytmwjj = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -198,6 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sAProjectBindingSource)).BeginInit();
             this.cms.SuspendLayout();
+            this.cms1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -1187,16 +1220,14 @@
             // tabProjectDoc
             // 
             this.tabProjectDoc.Controls.Add(this.tabBaseInfo);
-            this.tabProjectDoc.Controls.Add(this.tabNavigationPage2);
             this.tabProjectDoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabProjectDoc.Location = new System.Drawing.Point(2, 2);
             this.tabProjectDoc.Margin = new System.Windows.Forms.Padding(2);
             this.tabProjectDoc.Name = "tabProjectDoc";
             this.tabProjectDoc.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
-            this.tabBaseInfo,
-            this.tabNavigationPage2});
+            this.tabBaseInfo});
             this.tabProjectDoc.RegularSize = new System.Drawing.Size(998, 159);
-            this.tabProjectDoc.SelectedPage = this.tabNavigationPage2;
+            this.tabProjectDoc.SelectedPage = this.tabBaseInfo;
             this.tabProjectDoc.SelectedPageIndex = 0;
             this.tabProjectDoc.Size = new System.Drawing.Size(998, 159);
             this.tabProjectDoc.TabIndex = 13;
@@ -1350,13 +1381,6 @@
             this.btnAddRemarks.Text = "添加说明";
             this.btnAddRemarks.Click += new System.EventHandler(this.btnAddRemarks_Click);
             // 
-            // tabNavigationPage2
-            // 
-            this.tabNavigationPage2.Caption = "tabNavigationPage2";
-            this.tabNavigationPage2.Margin = new System.Windows.Forms.Padding(2);
-            this.tabNavigationPage2.Name = "tabNavigationPage2";
-            this.tabNavigationPage2.Size = new System.Drawing.Size(980, 113);
-            // 
             // sAProjectBindingSource
             // 
             this.sAProjectBindingSource.DataMember = "SA_Project";
@@ -1366,27 +1390,257 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msgDeleteM,
             this.msgDeleteCaption,
-            this.cmsAddTo});
+            this.cmsAddTo,
+            this.tsmiYcgscs,
+            this.tsmiKsss,
+            this.tsmiTs,
+            this.tsmiQxzydk,
+            this.tsmiWjmbbh,
+            this.tsmiCw,
+            this.tsmiDqljxy,
+            this.tsmiWj,
+            this.tsmiWzlxwj,
+            this.tsmiGxm,
+            this.tsmiXjwjj,
+            this.tsmidqdn,
+            this.tsmiWffzmb,
+            this.tsmiQxzycm,
+            this.tsmiWjj,
+            this.tsmiYcgtjd,
+            this.tsmiYcgjr,
+            this.tsmiYcgjc,
+            this.tsmiBb,
+            this.tsmiMcbh,
+            this.tsmiDwjhwj,
+            this.tsmiQxzytjbz,
+            this.tsmiBzxxbn,
+            this.tsmiQdysc,
+            this.tsmiWqxtjdk,
+            this.tsmiWqxjr,
+            this.tsmiwqxjc});
             this.cms.Name = "contextMenuStrip1";
-            this.cms.Size = new System.Drawing.Size(269, 92);
+            this.cms.Size = new System.Drawing.Size(557, 686);
             // 
             // msgDeleteM
             // 
             this.msgDeleteM.Name = "msgDeleteM";
-            this.msgDeleteM.Size = new System.Drawing.Size(268, 22);
+            this.msgDeleteM.Size = new System.Drawing.Size(556, 22);
             this.msgDeleteM.Text = "确定要删除选定项吗？";
             // 
             // msgDeleteCaption
             // 
             this.msgDeleteCaption.Name = "msgDeleteCaption";
-            this.msgDeleteCaption.Size = new System.Drawing.Size(268, 22);
+            this.msgDeleteCaption.Size = new System.Drawing.Size(556, 22);
             this.msgDeleteCaption.Text = "删除确认";
             // 
             // cmsAddTo
             // 
             this.cmsAddTo.Name = "cmsAddTo";
-            this.cmsAddTo.Size = new System.Drawing.Size(268, 22);
+            this.cmsAddTo.Size = new System.Drawing.Size(556, 22);
             this.cmsAddTo.Text = "确定要将选定文件添加到系统缓存？";
+            // 
+            // tsmiYcgscs
+            // 
+            this.tsmiYcgscs.Name = "tsmiYcgscs";
+            this.tsmiYcgscs.Size = new System.Drawing.Size(556, 22);
+            this.tsmiYcgscs.Text = "已成功删除所选项目";
+            // 
+            // tsmiKsss
+            // 
+            this.tsmiKsss.Name = "tsmiKsss";
+            this.tsmiKsss.Size = new System.Drawing.Size(556, 22);
+            this.tsmiKsss.Text = "快速搜索";
+            // 
+            // tsmiTs
+            // 
+            this.tsmiTs.Name = "tsmiTs";
+            this.tsmiTs.Size = new System.Drawing.Size(556, 22);
+            this.tsmiTs.Text = "提示";
+            // 
+            // tsmiQxzydk
+            // 
+            this.tsmiQxzydk.Name = "tsmiQxzydk";
+            this.tsmiQxzydk.Size = new System.Drawing.Size(556, 22);
+            this.tsmiQxzydk.Text = "请先选择要打开的文件或文件夹!";
+            // 
+            // tsmiWjmbbh
+            // 
+            this.tsmiWjmbbh.Name = "tsmiWjmbbh";
+            this.tsmiWjmbbh.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWjmbbh.Text = "文件名不能包含下列任何字符";
+            // 
+            // tsmiCw
+            // 
+            this.tsmiCw.Name = "tsmiCw";
+            this.tsmiCw.Size = new System.Drawing.Size(556, 22);
+            this.tsmiCw.Text = "错误";
+            // 
+            // tsmiDqljxy
+            // 
+            this.tsmiDqljxy.Name = "tsmiDqljxy";
+            this.tsmiDqljxy.Size = new System.Drawing.Size(556, 22);
+            this.tsmiDqljxy.Text = "当前路径下有同名的文件";
+            // 
+            // tsmiWj
+            // 
+            this.tsmiWj.Name = "tsmiWj";
+            this.tsmiWj.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWj.Text = "文件";
+            // 
+            // tsmiWzlxwj
+            // 
+            this.tsmiWzlxwj.Name = "tsmiWzlxwj";
+            this.tsmiWzlxwj.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWzlxwj.Text = "未知类型文件";
+            // 
+            // tsmiGxm
+            // 
+            this.tsmiGxm.Name = "tsmiGxm";
+            this.tsmiGxm.Size = new System.Drawing.Size(556, 22);
+            this.tsmiGxm.Text = "个项目";
+            // 
+            // tsmiXjwjj
+            // 
+            this.tsmiXjwjj.Name = "tsmiXjwjj";
+            this.tsmiXjwjj.Size = new System.Drawing.Size(556, 22);
+            this.tsmiXjwjj.Text = "新建文件夹";
+            // 
+            // tsmidqdn
+            // 
+            this.tsmidqdn.Name = "tsmidqdn";
+            this.tsmidqdn.Size = new System.Drawing.Size(556, 22);
+            this.tsmidqdn.Text = "当前电脑已经有用户进行了【检入】操作，其他用户无权打开！如需查看请使用其它电脑！";
+            // 
+            // tsmiWffzmb
+            // 
+            this.tsmiWffzmb.Name = "tsmiWffzmb";
+            this.tsmiWffzmb.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWffzmb.Text = "无法复制！目标文件夹是源文件夹的子目录！";
+            // 
+            // tsmiQxzycm
+            // 
+            this.tsmiQxzycm.Name = "tsmiQxzycm";
+            this.tsmiQxzycm.Size = new System.Drawing.Size(556, 22);
+            this.tsmiQxzycm.Text = "请选择要重命名的文件或文件夹！";
+            // 
+            // tsmiWjj
+            // 
+            this.tsmiWjj.Name = "tsmiWjj";
+            this.tsmiWjj.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWjj.Text = "文件夹";
+            // 
+            // tsmiYcgtjd
+            // 
+            this.tsmiYcgtjd.Name = "tsmiYcgtjd";
+            this.tsmiYcgtjd.Size = new System.Drawing.Size(556, 22);
+            this.tsmiYcgtjd.Text = "已成功添加到库";
+            // 
+            // tsmiYcgjr
+            // 
+            this.tsmiYcgjr.Name = "tsmiYcgjr";
+            this.tsmiYcgjr.Size = new System.Drawing.Size(556, 22);
+            this.tsmiYcgjr.Text = "已成功检入";
+            // 
+            // tsmiYcgjc
+            // 
+            this.tsmiYcgjc.Name = "tsmiYcgjc";
+            this.tsmiYcgjc.Size = new System.Drawing.Size(556, 22);
+            this.tsmiYcgjc.Text = "已成功检出";
+            // 
+            // tsmiBb
+            // 
+            this.tsmiBb.Name = "tsmiBb";
+            this.tsmiBb.Size = new System.Drawing.Size(556, 22);
+            this.tsmiBb.Text = "版本";
+            // 
+            // tsmiMcbh
+            // 
+            this.tsmiMcbh.Name = "tsmiMcbh";
+            this.tsmiMcbh.Size = new System.Drawing.Size(556, 22);
+            this.tsmiMcbh.Text = "名称包含";
+            // 
+            // tsmiDwjhwj
+            // 
+            this.tsmiDwjhwj.Name = "tsmiDwjhwj";
+            this.tsmiDwjhwj.Size = new System.Drawing.Size(556, 22);
+            this.tsmiDwjhwj.Text = "的文件和文件夹";
+            // 
+            // tsmiQxzytjbz
+            // 
+            this.tsmiQxzytjbz.Name = "tsmiQxzytjbz";
+            this.tsmiQxzytjbz.Size = new System.Drawing.Size(556, 22);
+            this.tsmiQxzytjbz.Text = "请先选择要添加备注的文件或文件夹！";
+            // 
+            // tsmiBzxxbn
+            // 
+            this.tsmiBzxxbn.Name = "tsmiBzxxbn";
+            this.tsmiBzxxbn.Size = new System.Drawing.Size(556, 22);
+            this.tsmiBzxxbn.Text = "【备注信息】不能为空，如不需要备注信息请进行【删除】操作！";
+            // 
+            // tsmiQdysc
+            // 
+            this.tsmiQdysc.Name = "tsmiQdysc";
+            this.tsmiQdysc.Size = new System.Drawing.Size(556, 22);
+            this.tsmiQdysc.Text = "确定要删除吗?";
+            // 
+            // tsmiWqxtjdk
+            // 
+            this.tsmiWqxtjdk.Name = "tsmiWqxtjdk";
+            this.tsmiWqxtjdk.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWqxtjdk.Text = "无权限或不需要进行【添加到库】操作！";
+            // 
+            // tsmiWqxjr
+            // 
+            this.tsmiWqxjr.Name = "tsmiWqxjr";
+            this.tsmiWqxjr.Size = new System.Drawing.Size(556, 22);
+            this.tsmiWqxjr.Text = "无权限或不需要进行【检入】操作！";
+            // 
+            // tsmiwqxjc
+            // 
+            this.tsmiwqxjc.Name = "tsmiwqxjc";
+            this.tsmiwqxjc.Size = new System.Drawing.Size(556, 22);
+            this.tsmiwqxjc.Text = "无权限或不需要进行【检出】操作！";
+            // 
+            // cms1
+            // 
+            this.cms1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNxjbjd,
+            this.tsmiNqxbjd,
+            this.tsmiJtbzmy,
+            this.tsmiYcgjfz,
+            this.tsmidqljxytmwjj});
+            this.cms1.Name = "cms1";
+            this.cms1.Size = new System.Drawing.Size(293, 114);
+            // 
+            // tsmiNxjbjd
+            // 
+            this.tsmiNxjbjd.Name = "tsmiNxjbjd";
+            this.tsmiNxjbjd.Size = new System.Drawing.Size(292, 22);
+            this.tsmiNxjbjd.Text = "无权限或不能进行【新建报价单】操作！";
+            // 
+            // tsmiNqxbjd
+            // 
+            this.tsmiNqxbjd.Name = "tsmiNqxbjd";
+            this.tsmiNqxbjd.Size = new System.Drawing.Size(292, 22);
+            this.tsmiNqxbjd.Text = "无权限或不能进行【取消报价单】操作！";
+            // 
+            // tsmiJtbzmy
+            // 
+            this.tsmiJtbzmy.Name = "tsmiJtbzmy";
+            this.tsmiJtbzmy.Size = new System.Drawing.Size(292, 22);
+            this.tsmiJtbzmy.Text = "剪贴板中没有可以粘贴到缓存的文件！";
+            // 
+            // tsmiYcgjfz
+            // 
+            this.tsmiYcgjfz.Name = "tsmiYcgjfz";
+            this.tsmiYcgjfz.Size = new System.Drawing.Size(292, 22);
+            this.tsmiYcgjfz.Text = "已成功将复制的文件加工本地缓存";
+            // 
+            // tsmidqljxytmwjj
+            // 
+            this.tsmidqljxytmwjj.Name = "tsmidqljxytmwjj";
+            this.tsmidqljxytmwjj.Size = new System.Drawing.Size(292, 22);
+            this.tsmidqljxytmwjj.Text = "当前路径下有同名的文件夹！";
             // 
             // FrmProjectDocument
             // 
@@ -1448,6 +1702,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sAProjectBindingSource)).EndInit();
             this.cms.ResumeLayout(false);
+            this.cms1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1530,7 +1785,6 @@
         private System.Windows.Forms.ImageList ilRight;
         private DevExpress.XtraBars.Navigation.TabPane tabProjectDoc;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabBaseInfo;
-        private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage2;
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
         private System.Windows.Forms.ToolStripButton tsbSetHide;
@@ -1590,5 +1844,38 @@
         private System.Windows.Forms.ToolStripMenuItem msgDeleteCaption;
         internal System.Windows.Forms.ContextMenuStrip cms;
         private System.Windows.Forms.ToolStripMenuItem cmsAddTo;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYcgscs;
+        private System.Windows.Forms.ToolStripMenuItem tsmiKsss;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTs;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzydk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWjmbbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDqljxy;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWzlxwj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiGxm;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXjwjj;
+        private System.Windows.Forms.ToolStripMenuItem tsmidqdn;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWffzmb;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzycm;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWjj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYcgtjd;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYcgjr;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYcgjc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBb;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMcbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDwjhwj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzytjbz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBzxxbn;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQdysc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWqxtjdk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWqxjr;
+        private System.Windows.Forms.ToolStripMenuItem tsmiwqxjc;
+        private System.Windows.Forms.ContextMenuStrip cms1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNxjbjd;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNqxbjd;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJtbzmy;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYcgjfz;
+        private System.Windows.Forms.ToolStripMenuItem tsmidqljxytmwjj;
     }
 }

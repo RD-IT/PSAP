@@ -30,7 +30,10 @@ namespace PSAP.PSAPCommon
             ftpUserID = FtpUserID;
             ftpPassword = FtpPassword;
             ftpURI = "ftp://" + ftpServerIP + "/" + ftpRemotePath + "/";
+            PSAP.BLL.BSBLL.BSBLL.language(f);//刷新窗口语言
         }
+
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         /// <summary>
         /// 上传
@@ -142,7 +145,7 @@ namespace PSAP.PSAPCommon
             catch (Exception ex)
             {
                 //Insert_Standard_ErrorLog.Insert("FtpWeb", "Delete Error --> " + ex.Message + "  文件名:" + fileName);
-                MessageBox.Show("Delete Error --> " + ex.Message + "  文件名:" + fileName);
+                MessageBox.Show("Delete Error --> " + ex.Message + "  "+f.tsmiWjm.Text + fileName);
             }
         }
 
@@ -175,7 +178,7 @@ namespace PSAP.PSAPCommon
             catch (Exception ex)
             {
                 //Insert_Standard_ErrorLog.Insert("FtpWeb", "Delete Error --> " + ex.Message + "  文件名:" + folderName);
-                MessageBox.Show("Delete Error --> " + ex.Message + "  文件名:" + folderName);
+                MessageBox.Show("Delete Error --> " + ex.Message + "  "+ f.tsmiWjm.Text + folderName);
             }
         }
 
@@ -356,7 +359,7 @@ namespace PSAP.PSAPCommon
         public bool FileExist(string RemoteFileName)
         {
             string[] fileList = GetFileList("*.*");
-            if(fileList==null)//me
+            if (fileList == null)//me
             {
                 return false;
             }
@@ -489,7 +492,7 @@ namespace PSAP.PSAPCommon
         /// 删除目录
         /// </summary>
         /// <param name="ftpServerIP">FTP 主机地址</param>
-        /// <param name="folderToDelete">FTP 用户名</param>
+        /// <param name="folderToDelete">待删除文件夹</param>
         /// <param name="ftpUserID">FTP 用户名</param>
         /// <param name="ftpPassword">FTP 密码</param>
         public static void DeleteDirectory(string ftpServerIP, string folderToDelete, string ftpUserID, string ftpPassword)
@@ -534,12 +537,14 @@ namespace PSAP.PSAPCommon
                 }
                 else
                 {
-                    throw new Exception("FTP 及路径不能为空！");
+                    //throw new Exception("FTP地址及文件夹不能为空！");
+                    throw new Exception(f.tsmiFtpdzj.Text);
+
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("删除订单时发生错误，错误信息为：" + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
     }

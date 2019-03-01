@@ -20,6 +20,13 @@ namespace PSAP.PSAPCommon
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
+        public PSAP.VIEW.BSVIEW.FrmLanguageText f = null;
+        public FileHandler()
+        {
+            f = new PSAP.VIEW.BSVIEW.FrmLanguageText();
+            PSAP.BLL.BSBLL.BSBLL.language(f);//刷新窗口语言
+        }
+
         /// <summary>
         /// 把DataGridView内容保存到Excel中
         /// </summary>
@@ -31,7 +38,9 @@ namespace PSAP.PSAPCommon
             dlg.FilterIndex = 0;
             dlg.RestoreDirectory = true;
             //dlg.CreatePrompt = true;
-            dlg.Title = "保存为Excel文件";
+            //dlg.Title = "保存为Excel文件";
+            dlg.Title = f.tsmiBcwexc.Text;
+
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -77,7 +86,9 @@ namespace PSAP.PSAPCommon
                         sw.WriteLine(columnValue);
                     }
 
-                    MessageHandler.ShowMessageBox("导出成功");
+                    //MessageHandler.ShowMessageBox("导出成功");
+                    MessageHandler.ShowMessageBox(f.tsmiDccg.Text);
+
                 }
                 finally
                 {
@@ -97,14 +108,18 @@ namespace PSAP.PSAPCommon
             dlg.Filter = "Excel files (*.xlsx)|*.xlsx";
             dlg.FilterIndex = 0;
             dlg.RestoreDirectory = true;
-            dlg.Title = "保存为Excel文件";
+            //dlg.Title = "保存为Excel文件";
+            dlg.Title = new FileHandler().f.tsmiBcwexc.Text;
+
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 string fileName = dlg.FileName;
                 //GV.ExportToExcelOld(Filename);
                 GV.ExportToXlsx(fileName);
 
-                MessageHandler.ShowMessageBox("导出成功");
+                //MessageHandler.ShowMessageBox("导出成功");
+                MessageHandler.ShowMessageBox(new FileHandler().f.tsmiDccg.Text);
+
             }
         }
 
@@ -118,14 +133,18 @@ namespace PSAP.PSAPCommon
             dlg.Filter = "Excel files (*.xlsx)|*.xlsx";
             dlg.FilterIndex = 0;
             dlg.RestoreDirectory = true;
-            dlg.Title = "保存为Excel文件";
+            //dlg.Title = "保存为Excel文件";
+            dlg.Title = new FileHandler().f.tsmiBcwexc.Text;
+
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 string fileName = dlg.FileName;
                 //GV.ExportToExcelOld(Filename);
                 TL.ExportToXlsx(fileName);
 
-                MessageHandler.ShowMessageBox("导出成功");
+                //MessageHandler.ShowMessageBox("导出成功");
+                MessageHandler.ShowMessageBox(new FileHandler().f.tsmiDccg.Text);
+
             }
         }
 
@@ -140,7 +159,9 @@ namespace PSAP.PSAPCommon
             dlg.FilterIndex = 0;
             dlg.RestoreDirectory = true;
             //dlg.CreatePrompt = true;
-            dlg.Title = "保存为Excel文件";
+            //dlg.Title = "保存为Excel文件";
+            dlg.Title = f.tsmiBcwexc.Text;
+
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -180,7 +201,9 @@ namespace PSAP.PSAPCommon
                         sw.WriteLine(columnValue);
                     }
 
-                    MessageHandler.ShowMessageBox("导出成功");
+                    //MessageHandler.ShowMessageBox("导出成功");
+                    MessageHandler.ShowMessageBox(f.tsmiDccg.Text);
+
                 }
                 finally
                 {
@@ -199,12 +222,14 @@ namespace PSAP.PSAPCommon
         {
             if (dgv.Rows.Count < 1)
             {
-                MessageHandler.ShowMessageBox("没有记录！");
+                //MessageHandler.ShowMessageBox("没有记录！");
+                MessageHandler.ShowMessageBox(new FileHandler().f.tsmiMyjl.Text);
                 return;
             }
 
             SaveFileDialog sfDialog = new SaveFileDialog();
-            sfDialog.Filter = "CSV文件(*.csv)|*.csv|文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            //sfDialog.Filter = "CSV文件(*.csv)|*.csv|文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            sfDialog.Filter = new FileHandler().f.tsmiCsvwj.Text;
             sfDialog.FilterIndex = 0;
             sfDialog.FileName = fileName;
             if (sfDialog.ShowDialog() == DialogResult.OK)
@@ -247,7 +272,9 @@ namespace PSAP.PSAPCommon
                     sw.Flush();
                 }
                 sw.Close();
-                MessageHandler.ShowMessageBox(string.Format("导出成功!数据已成功导出至\n{0}\n文件中!", strFileName));
+                //MessageHandler.ShowMessageBox(string.Format("导出成功!数据已成功导出至\n{0}\n文件中!", strFileName));
+                MessageHandler.ShowMessageBox(string.Format(new FileHandler().f.tsmiDccgsj.Text + "\n{0}\n" + new FileHandler().f.tsmiWjz.Text, strFileName));
+
             }
         }
 
@@ -301,7 +328,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 将文件转换为Byte数组
         /// </summary>
-        public Byte[] FileToByteArray(string filePathStr,ref long streamLength)
+        public Byte[] FileToByteArray(string filePathStr, ref long streamLength)
         {
             if (File.Exists(filePathStr))
             {

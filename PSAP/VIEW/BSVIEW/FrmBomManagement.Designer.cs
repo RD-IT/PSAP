@@ -98,6 +98,9 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiDqxzdl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBomdjx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).BeginInit();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTree)).BeginInit();
@@ -132,6 +135,7 @@
             this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).BeginInit();
             this.pnlBom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -816,6 +820,26 @@
             this.splitterMiddle.TabIndex = 14;
             this.splitterMiddle.TabStop = false;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDqxzdl,
+            this.tsmiBomdjx});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(452, 48);
+            // 
+            // tsmiDqxzdl
+            // 
+            this.tsmiDqxzdl.Name = "tsmiDqxzdl";
+            this.tsmiDqxzdl.Size = new System.Drawing.Size(451, 22);
+            this.tsmiDqxzdl.Text = "当前选择的零件名称已经存在Bom信息，不能重复设定，请重新输入。";
+            // 
+            // tsmiBomdjx
+            // 
+            this.tsmiBomdjx.Name = "tsmiBomdjx";
+            this.tsmiBomdjx.Size = new System.Drawing.Size(451, 22);
+            this.tsmiBomdjx.Text = "Bom登记信息";
+            // 
             // FrmBomManagement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -862,6 +886,7 @@
             this.pnlToolBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).EndInit();
             this.pnlBom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -937,5 +962,8 @@
         private DevExpress.XtraEditors.LabelControl labCodeFileName;
         private DevExpress.XtraEditors.LabelControl labGetTime;
         private DevExpress.XtraEditors.DateEdit dateGetTime;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDqxzdl;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiBomdjx;
     }
 }

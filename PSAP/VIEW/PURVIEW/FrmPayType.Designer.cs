@@ -48,6 +48,8 @@
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPayTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPayTypeNoText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiFkbfbd = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
@@ -61,6 +63,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlPayType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPayType)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlToolBar
@@ -225,6 +228,19 @@
             this.colPayTypeNoText.VisibleIndex = 1;
             this.colPayTypeNoText.Width = 160;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFkbfbd});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(362, 48);
+            // 
+            // tsmiFkbfbd
+            // 
+            this.tsmiFkbfbd.Name = "tsmiFkbfbd";
+            this.tsmiFkbfbd.Size = new System.Drawing.Size(361, 22);
+            this.tsmiFkbfbd.Text = "付款百分比的合计必须是100，请刷新后再重新操作。";
+            // 
             // FrmPayType
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -250,6 +266,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlPayType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPayType)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -275,5 +292,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNoText;
         private DevExpress.XtraEditors.SimpleButton btnPayTypeList;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiFkbfbd;
     }
 }

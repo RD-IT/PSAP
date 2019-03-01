@@ -12,6 +12,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         [STAThread]
         static void Main()
+
         {
             Application.EnableVisualStyles();
             ConfigurationManager.RefreshSection("PSAP.Properties.Settings.PSAPConnectionString");//重新加载新的配置文件  

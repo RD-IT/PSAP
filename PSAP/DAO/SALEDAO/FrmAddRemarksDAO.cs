@@ -15,6 +15,12 @@ namespace PSAP.DAO.SALEDAO
     {
         public static ArrayList sqlLlist = new ArrayList();//存储SQL语句
 
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public FrmAddRemarksDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 增加保存【项目备注】SQL语句
         /// </summary>
@@ -55,7 +61,9 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
 
@@ -77,7 +85,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message,f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

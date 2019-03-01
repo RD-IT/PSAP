@@ -22,6 +22,8 @@ namespace PSAP.VIEW.BSVIEW
         public FrmPrReqApply()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
+
         }
 
         /// <summary>
@@ -51,7 +53,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCt.Text, ex);
             }
         }
 
@@ -69,7 +72,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (dateReqDateBegin.EditValue == null || dateReqDateEnd.EditValue == null)
                     {
-                        MessageHandler.ShowMessageBox("请购日期不能为空，请设置后重新进行查询。");
+                        MessageHandler.ShowMessageBox(tsmiQgrq.Text);// ("请购日期不能为空，请设置后重新进行查询。");
                         if (dateReqDateBegin.EditValue == null)
                             dateReqDateBegin.Focus();
                         else
@@ -91,7 +94,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxan.Text, ex);
             }
         }
 
@@ -151,15 +155,16 @@ namespace PSAP.VIEW.BSVIEW
                     if (DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]) != "")
                     {
                         dataSet_PrReq.Tables[1].Clear();
-                        applyDAO.QueryPrReqList(dataSet_PrReq.Tables[1], DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]));                        
+                        applyDAO.QueryPrReqList(dataSet_PrReq.Tables[1], DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]));
                     }
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--主表聚焦行改变事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--主表聚焦行改变事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiZbjjh.Text, ex);
             }
-        }        
+        }
 
         /// <summary>
         /// 设定子表当前行选择事件
@@ -179,9 +184,10 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定子表当前行选择事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定子表当前行选择事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSdzbdqh.Text, ex);
             }
-        }        
+        }
 
         /// <summary>
         /// 全部选中
@@ -189,11 +195,11 @@ namespace PSAP.VIEW.BSVIEW
         private void checkAll_CheckedChanged(object sender, EventArgs e)
         {
             bool value = false;
-            if(checkAll.Checked)
+            if (checkAll.Checked)
             {
                 value = true;
             }
-            foreach(DataRow dr in dataSet_PrReq.Tables[1].Rows)
+            foreach (DataRow dr in dataSet_PrReq.Tables[1].Rows)
             {
                 dr["ListSelect"] = value;
             }
@@ -225,14 +231,14 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (gridViewPrReqHead.GetFocusedDataRow() == null)
                 {
-                    MessageHandler.ShowMessageBox("请选择要适用的一个请购单，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiQxzysydyg.Text);// ("请选择要适用的一个请购单，请重新操作。");
                     textPrReqNo.Focus();
                     return;
                 }
                 int count = dataSet_PrReq.Tables[1].Select("ListSelect=1").Length;
                 if (count == 0)
                 {
-                    MessageHandler.ShowMessageBox("请选择要适用的请购单明细记录，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiQxzysydqg.Text);// ("请选择要适用的请购单明细记录，请重新操作。");
                     gridViewPrReqList.Focus();
                     return;
                 }
@@ -242,7 +248,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--确认按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--确认按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiQransj.Text, ex);
             }
         }
 
@@ -267,7 +274,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击选中错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击选中错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSjxzcw.Text, ex);
             }
         }
     }

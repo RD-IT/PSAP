@@ -13,6 +13,11 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmDocumentTempletDAO
     {
+               static PSAP.VIEW.BSVIEW.FrmDocumentTemplet f = new VIEW.BSVIEW.FrmDocumentTemplet();
+     public FrmDocumentTempletDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
         /// <summary>
         /// 查询单据模板表
         /// </summary>
@@ -41,8 +46,9 @@ namespace PSAP.DAO.PURDAO
             DataTable docTempletTable = BaseSQL.GetTableBySql(sqlStr);
             if (docTempletTable.Rows.Count != 1)
             {
-                MessageHandler.ShowMessageBox("未查询到当前表的模板记录，操作错误。");
-                return false;
+                //MessageHandler.ShowMessageBox("未查询到当前表的模板记录，操作错误。");
+                MessageHandler.ShowMessageBox(f.tsmiWcxddq.Text);
+                                return false;
             }
             string docPathStr = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocPath"]) + DataTypeConvert.GetString(docTempletTable.Rows[0]["DocFileName"]);
 
@@ -72,8 +78,9 @@ namespace PSAP.DAO.PURDAO
             string sqlStr = string.Format("select TableName, FileByte from BS_DocumentTemplet where TableName = '{0}'", tableNameStr);
             DataTable docTable = BaseSQL.GetTableBySql(sqlStr);
             if (docTable.Rows.Count == 0)
-                throw new Exception("查询模板文件异常。");
-            return (byte[])docTable.Rows[0]["FileByte"];
+                //throw new Exception("查询模板文件异常。");
+                throw new Exception(f.tsmiCxmbwj.Text);
+                            return (byte[])docTable.Rows[0]["FileByte"];
         }
 
         /// <summary>

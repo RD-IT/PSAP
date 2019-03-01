@@ -21,6 +21,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmPrReqQuery()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -50,7 +51,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCt.Text, ex);
             }
         }
 
@@ -85,7 +87,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dateReqDateBegin.EditValue == null || dateReqDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("请购日期不能为空，请设置后重新进行查询。");
+                    MessageHandler.ShowMessageBox(tsmiQgrq.Text);// ("请购日期不能为空，请设置后重新进行查询。");
                     if (dateReqDateBegin.EditValue == null)
                         dateReqDateBegin.Focus();
                     else
@@ -109,7 +111,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxan.Text, ex);
             }
         }
 
@@ -124,7 +127,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgc.Text, ex);
             }
         }
 
@@ -145,7 +149,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSjcx.Text, ex);
             }
         }
     }

@@ -140,6 +140,16 @@
             this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCt = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQgrq = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxan = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiZbjjh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSdzbdqh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQxzysydyg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQxzysydqg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQransj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSjxzcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpProjectNo.Properties)).BeginInit();
@@ -183,6 +193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPurCategory)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -1289,6 +1300,75 @@
             this.colApprover.VisibleIndex = 9;
             this.colApprover.Width = 70;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCt,
+            this.tsmiQgrq,
+            this.tsmiCxan,
+            this.tsmiZbjjh,
+            this.tsmiSdzbdqh,
+            this.tsmiQxzysydyg,
+            this.tsmiQxzysydqg,
+            this.tsmiQransj,
+            this.tsmiSjxzcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(329, 224);
+            // 
+            // tsmiCt
+            // 
+            this.tsmiCt.Name = "tsmiCt";
+            this.tsmiCt.Size = new System.Drawing.Size(328, 22);
+            this.tsmiCt.Text = "窗体加载事件错误。";
+            // 
+            // tsmiQgrq
+            // 
+            this.tsmiQgrq.Name = "tsmiQgrq";
+            this.tsmiQgrq.Size = new System.Drawing.Size(328, 22);
+            this.tsmiQgrq.Text = "请购日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiCxan
+            // 
+            this.tsmiCxan.Name = "tsmiCxan";
+            this.tsmiCxan.Size = new System.Drawing.Size(328, 22);
+            this.tsmiCxan.Text = "查询按钮事件错误。";
+            // 
+            // tsmiZbjjh
+            // 
+            this.tsmiZbjjh.Name = "tsmiZbjjh";
+            this.tsmiZbjjh.Size = new System.Drawing.Size(328, 22);
+            this.tsmiZbjjh.Text = "主表聚焦行改变事件错误。";
+            // 
+            // tsmiSdzbdqh
+            // 
+            this.tsmiSdzbdqh.Name = "tsmiSdzbdqh";
+            this.tsmiSdzbdqh.Size = new System.Drawing.Size(328, 22);
+            this.tsmiSdzbdqh.Text = "设定子表当前行选择事件错误。";
+            // 
+            // tsmiQxzysydyg
+            // 
+            this.tsmiQxzysydyg.Name = "tsmiQxzysydyg";
+            this.tsmiQxzysydyg.Size = new System.Drawing.Size(328, 22);
+            this.tsmiQxzysydyg.Text = "请选择要适用的一个请购单，请重新操作。";
+            // 
+            // tsmiQxzysydqg
+            // 
+            this.tsmiQxzysydqg.Name = "tsmiQxzysydqg";
+            this.tsmiQxzysydqg.Size = new System.Drawing.Size(328, 22);
+            this.tsmiQxzysydqg.Text = "请选择要适用的请购单明细记录，请重新操作。";
+            // 
+            // tsmiQransj
+            // 
+            this.tsmiQransj.Name = "tsmiQransj";
+            this.tsmiQransj.Size = new System.Drawing.Size(328, 22);
+            this.tsmiQransj.Text = "确认按钮事件错误。";
+            // 
+            // tsmiSjxzcw
+            // 
+            this.tsmiSjxzcw.Name = "tsmiSjxzcw";
+            this.tsmiSjxzcw.Size = new System.Drawing.Size(328, 22);
+            this.tsmiSjxzcw.Text = "双击选中错误。";
+            // 
             // FrmPrReqApply
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1348,6 +1428,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchProjectNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repComboBoxStnNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPurCategory)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1465,5 +1546,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColProjectName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColRemark;
         public DevExpress.XtraGrid.Views.Grid.GridView gridViewPrReqHead;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCt;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQgrq;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxan;
+        private System.Windows.Forms.ToolStripMenuItem tsmiZbjjh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSdzbdqh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzysydyg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzysydqg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQransj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSjxzcw;
     }
 }

@@ -12,6 +12,12 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmPayTypeDAO
     {
+        static PSAP.VIEW.BSVIEW.FrmPayType f = new VIEW.BSVIEW.FrmPayType();
+        public FrmPayTypeDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 查询付款类型信息
         /// </summary>
@@ -51,7 +57,8 @@ namespace PSAP.DAO.PURDAO
                         if (sumInt != 100)
                         {
                             trans.Rollback();
-                            MessageHandler.ShowMessageBox("付款百分比的合计必须是100，请刷新后再重新操作。");
+                            //MessageHandler.ShowMessageBox("付款百分比的合计必须是100，请刷新后再重新操作。");
+                            MessageHandler.ShowMessageBox(f.tsmiFkbfbd.Text);
                             return false;
                         }
 

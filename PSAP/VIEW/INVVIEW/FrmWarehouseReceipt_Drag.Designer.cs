@@ -152,6 +152,18 @@
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
             this.labWRDate = new DevExpress.XtraEditors.LabelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiQb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiZc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWsp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBkycz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYjsp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYjjz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYjspz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWcxdyc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkshcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkdqxs = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableWRList)).BeginInit();
@@ -202,6 +214,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateWRDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateWRDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateWRDateBegin.Properties)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet_WR
@@ -1510,6 +1523,89 @@
             this.labWRDate.TabIndex = 5;
             this.labWRDate.Text = "出库日期：";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiQb,
+            this.tsmiZc,
+            this.tsmiCkd,
+            this.tsmiWsp,
+            this.tsmiBkycz,
+            this.tsmiYjsp,
+            this.tsmiYjjz,
+            this.tsmiYjspz,
+            this.tsmiWcxdyc,
+            this.tsmiCkshcw,
+            this.tsmiCkdqxs});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(341, 268);
+            // 
+            // tsmiQb
+            // 
+            this.tsmiQb.Name = "tsmiQb";
+            this.tsmiQb.Size = new System.Drawing.Size(340, 22);
+            this.tsmiQb.Text = "全部";
+            // 
+            // tsmiZc
+            // 
+            this.tsmiZc.Name = "tsmiZc";
+            this.tsmiZc.Size = new System.Drawing.Size(340, 22);
+            this.tsmiZc.Text = "正常";
+            // 
+            // tsmiCkd
+            // 
+            this.tsmiCkd.Name = "tsmiCkd";
+            this.tsmiCkd.Size = new System.Drawing.Size(340, 22);
+            this.tsmiCkd.Text = "出库单";
+            // 
+            // tsmiWsp
+            // 
+            this.tsmiWsp.Name = "tsmiWsp";
+            this.tsmiWsp.Size = new System.Drawing.Size(340, 22);
+            this.tsmiWsp.Text = "未审批";
+            // 
+            // tsmiBkycz
+            // 
+            this.tsmiBkycz.Name = "tsmiBkycz";
+            this.tsmiBkycz.Size = new System.Drawing.Size(340, 22);
+            this.tsmiBkycz.Text = "不可以操作。";
+            // 
+            // tsmiYjsp
+            // 
+            this.tsmiYjsp.Name = "tsmiYjsp";
+            this.tsmiYjsp.Size = new System.Drawing.Size(340, 22);
+            this.tsmiYjsp.Text = "已经审批";
+            // 
+            // tsmiYjjz
+            // 
+            this.tsmiYjjz.Name = "tsmiYjjz";
+            this.tsmiYjjz.Size = new System.Drawing.Size(340, 22);
+            this.tsmiYjjz.Text = "已经结账";
+            // 
+            // tsmiYjspz
+            // 
+            this.tsmiYjspz.Name = "tsmiYjspz";
+            this.tsmiYjspz.Size = new System.Drawing.Size(340, 22);
+            this.tsmiYjspz.Text = "已经审批中";
+            // 
+            // tsmiWcxdyc
+            // 
+            this.tsmiWcxdyc.Name = "tsmiWcxdyc";
+            this.tsmiWcxdyc.Size = new System.Drawing.Size(340, 22);
+            this.tsmiWcxdyc.Text = "未查询到要操作的出库单，请刷新后再进行操作。";
+            // 
+            // tsmiCkshcw
+            // 
+            this.tsmiCkshcw.Name = "tsmiCkshcw";
+            this.tsmiCkshcw.Size = new System.Drawing.Size(340, 22);
+            this.tsmiCkshcw.Text = "出库单审核出库错误";
+            // 
+            // tsmiCkdqxs
+            // 
+            this.tsmiCkdqxs.Name = "tsmiCkdqxs";
+            this.tsmiCkdqxs.Size = new System.Drawing.Size(340, 22);
+            this.tsmiCkdqxs.Text = "出库单取消审核入库错误";
+            // 
             // FrmWarehouseReceipt_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1573,6 +1669,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateWRDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateWRDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateWRDateBegin.Properties)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1701,5 +1798,17 @@
         private DevExpress.XtraEditors.LabelControl labManufactureNo;
         private DevExpress.XtraEditors.LookUpEdit lookUpManufactureNo;
         private DevExpress.XtraGrid.Columns.GridColumn colProjectNo;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiQb;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiZc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkd;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWsp;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiBkycz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiYjsp;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiYjjz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiYjspz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWcxdyc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkshcw;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkdqxs;
     }
 }

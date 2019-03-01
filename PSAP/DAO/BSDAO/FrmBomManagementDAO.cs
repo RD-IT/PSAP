@@ -11,6 +11,12 @@ namespace PSAP.DAO.BSDAO
 {
     class FrmBomManagementDAO
     {
+        static PSAP.VIEW.BSVIEW.FrmBomManagement f = new VIEW.BSVIEW.FrmBomManagement();
+        public FrmBomManagementDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 查询BOM物料状态表
         /// </summary>
@@ -88,9 +94,11 @@ namespace PSAP.DAO.BSDAO
                         if (bomHeadRow.RowState == DataRowState.Added)//新增
                         {
                             cmd.CommandText = string.Format("select COUNT(*) from BS_BomManagement where MaterielNo = '{0}'", DataTypeConvert.GetString(bomHeadRow["MaterielNo"]));
-                            if(DataTypeConvert.GetInt(cmd.ExecuteScalar())>0)
+                            if (DataTypeConvert.GetInt(cmd.ExecuteScalar()) > 0)
                             {
-                                MessageHandler.ShowMessageBox("当前选择的零件名称已经存在Bom信息，不能重复设定，请重新输入。");
+                                //MessageHandler.ShowMessageBox("当前选择的零件名称已经存在Bom信息，不能重复设定，请重新输入。");
+                                MessageHandler.ShowMessageBox(f.tsmiDqxzdl.Text);
+
                                 trans.Rollback();
                                 return 0;
                             }
@@ -117,7 +125,8 @@ namespace PSAP.DAO.BSDAO
                         }
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_DataRow(cmd, "Bom登记信息", bomHeadRow, "MaterielNo");
+                        //string logStr = LogHandler.RecordLog_DataRow(cmd, "Bom登记信息", bomHeadRow, "MaterielNo");
+                        string logStr = LogHandler.RecordLog_DataRow(cmd, f.tsmiBomdjx.Text, bomHeadRow, "MaterielNo");
 
                         cmd.CommandText = "select * from BS_BomManagement where 1=2";
                         SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
@@ -166,8 +175,9 @@ namespace PSAP.DAO.BSDAO
                         string materielNoStr = DataTypeConvert.GetString(bomHeadRow["MaterielNo"]);
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_DeleteRow(cmd, "Bom登记信息", bomHeadRow, "MaterielNo");
-
+                        //string logStr = LogHandler.RecordLog_DeleteRow(cmd, "Bom登记信息", bomHeadRow, "MaterielNo");
+                        string logStr = LogHandler.RecordLog_DeleteRow(cmd, f.tsmiBomdjx.Text, bomHeadRow, "MaterielNo");
+                        
                         cmd.CommandText = string.Format("Delete from BS_BomMateriel where MaterielNo in ('{0}')", materielNoStr);
                         cmd.ExecuteNonQuery();
                         cmd.CommandText = string.Format("Delete from BS_BomManagement where MaterielNo in ('{0}')", materielNoStr);

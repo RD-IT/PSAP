@@ -25,12 +25,14 @@ namespace PSAP.VIEW.BSVIEW
         public FrmPrReqApproval()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmPrReqApproval(string prReqNo)
         {
             InitializeComponent();
             this.prReqNoStr = prReqNo;
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace PSAP.VIEW.BSVIEW
                 approvalDAO.QueryPrReqHead(dataSet_PrReq.Tables[0], prReqNoStr);
                 if (dataSet_PrReq.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("查询请购订单信息错误，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiCxqgd.Text);// ("查询请购订单信息错误，请重新操作。");
                     return;
                 }
                 string typeNoStr = DataTypeConvert.GetString(dataSet_PrReq.Tables[0].Rows[0]["ApprovalType"]);
@@ -77,7 +79,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjz.Text, ex);
             }
         }
 
@@ -127,16 +130,17 @@ namespace PSAP.VIEW.BSVIEW
                 {
 
                 }
-                if(successCountInt>0)
+                if (successCountInt > 0)
                 {
-                    MessageHandler.ShowMessageBox("审批成功。");
+                    MessageHandler.ShowMessageBox(tsmiSpcg.Text);// ("审批成功。");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSpcg.Text, ex);
             }
         }
 
