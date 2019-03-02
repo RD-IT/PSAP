@@ -104,6 +104,13 @@
             this.colRequirementDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqListRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodeFileName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCt = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQgrq = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxan = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxjgc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSjcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSzgrid = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkOverplus.Properties)).BeginInit();
@@ -131,6 +138,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpProjectNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPurCategory)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -157,7 +165,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1489, 78);
+            this.pnltop.Size = new System.Drawing.Size(1370, 78);
             this.pnltop.TabIndex = 2;
             // 
             // checkOverplus
@@ -583,7 +591,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 620);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1489, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1370, 58);
             this.pnlBottom.TabIndex = 4;
             // 
             // gridBottomPrReq
@@ -593,7 +601,7 @@
             this.gridBottomPrReq.MasterDataSet = this.dataSet_PrReq;
             this.gridBottomPrReq.Name = "gridBottomPrReq";
             this.gridBottomPrReq.pageRowCount = 5;
-            this.gridBottomPrReq.Size = new System.Drawing.Size(1485, 54);
+            this.gridBottomPrReq.Size = new System.Drawing.Size(1366, 54);
             this.gridBottomPrReq.TabIndex = 0;
             // 
             // pnlMiddle
@@ -602,7 +610,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1489, 542);
+            this.pnlMiddle.Size = new System.Drawing.Size(1370, 542);
             this.pnlMiddle.TabIndex = 5;
             // 
             // gridControlPrReqList
@@ -616,7 +624,7 @@
             this.repLookUpReqDep,
             this.repLookUpPurCategory,
             this.repLookUpProjectNo});
-            this.gridControlPrReqList.Size = new System.Drawing.Size(1485, 538);
+            this.gridControlPrReqList.Size = new System.Drawing.Size(1366, 538);
             this.gridControlPrReqList.TabIndex = 1;
             this.gridControlPrReqList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqList});
@@ -895,10 +903,58 @@
             this.colCodeFileName.VisibleIndex = 3;
             this.colCodeFileName.Width = 110;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCt,
+            this.tsmiQgrq,
+            this.tsmiCxan,
+            this.tsmiCxjgc,
+            this.tsmiSjcx,
+            this.tsmiSzgrid});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 158);
+            // 
+            // tsmiCt
+            // 
+            this.tsmiCt.Name = "tsmiCt";
+            this.tsmiCt.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCt.Text = "窗体加载事件错误。";
+            // 
+            // tsmiQgrq
+            // 
+            this.tsmiQgrq.Name = "tsmiQgrq";
+            this.tsmiQgrq.Size = new System.Drawing.Size(316, 22);
+            this.tsmiQgrq.Text = "请购日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiCxan
+            // 
+            this.tsmiCxan.Name = "tsmiCxan";
+            this.tsmiCxan.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCxan.Text = "查询按钮事件错误。";
+            // 
+            // tsmiCxjgc
+            // 
+            this.tsmiCxjgc.Name = "tsmiCxjgc";
+            this.tsmiCxjgc.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCxjgc.Text = "查询结果存为Excel错误。";
+            // 
+            // tsmiSjcx
+            // 
+            this.tsmiSjcx.Name = "tsmiSjcx";
+            this.tsmiSjcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiSjcx.Text = "双击查询明细错误。";
+            // 
+            // tsmiSzgrid
+            // 
+            this.tsmiSzgrid.Name = "tsmiSzgrid";
+            this.tsmiSzgrid.Size = new System.Drawing.Size(316, 22);
+            this.tsmiSzgrid.Text = "设置Grid单元格合并错误。";
+            // 
             // FrmPrReqList_Overplus
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1489, 678);
+            this.ClientSize = new System.Drawing.Size(1370, 678);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnltop);
@@ -934,6 +990,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpProjectNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPurCategory)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1015,5 +1072,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCodeFileName;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpProjectNo;
         private DevExpress.XtraEditors.CheckEdit checkOverplus;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCt;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQgrq;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxan;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxjgc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSjcx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSzgrid;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PSAP.VIEW.BSVIEW;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,12 @@ namespace PSAP.PSAPCommon
 {
     public class CommonHandler
     {
+        static FrmLanguageText f = new FrmLanguageText();
+        public CommonHandler()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);//刷新窗口语言
+        }
+
         /// <summary>
         /// 根据订单状态编号得到订单状态描述
         /// </summary>
@@ -17,16 +24,20 @@ namespace PSAP.PSAPCommon
             switch (reqStateStr)
             {
                 case "1":
-                    stateDescStr = "待审批";
+                    //stateDescStr = "待审批";
+                    stateDescStr = f.tsmiDsp.Text;
                     break;
                 case "2":
-                    stateDescStr = "审批";
+                    //stateDescStr = "审批";
+                    stateDescStr = f.tsmiSp.Text;
                     break;
                 case "3":
-                    stateDescStr = "关闭";
+                    //stateDescStr = "关闭";
+                    stateDescStr = f.tsmiGb.Text;
                     break;
                 case "4":
-                    stateDescStr = "审批中";
+                    //stateDescStr = "审批中";
+                    stateDescStr = f.tsmiSpz.Text;
                     break;
             }
             return stateDescStr;
@@ -41,16 +52,20 @@ namespace PSAP.PSAPCommon
             switch (wStateStr)
             {
                 case "1":
-                    stateDescStr = "待审批";
+                    //stateDescStr = "待审批";
+                    stateDescStr = f.tsmiDsp.Text;
                     break;
                 case "2":
-                    stateDescStr = "审批";
+                    //stateDescStr = "审批";
+                    stateDescStr = f.tsmiSp.Text;
                     break;
                 case "3":
-                    stateDescStr = "已结账";
+                    //stateDescStr = "已结账";
+                    stateDescStr = f.tsmiYjz.Text;
                     break;
                 case "4":
-                    stateDescStr = "审批中";
+                    //stateDescStr = "审批中";
+                    stateDescStr = f.tsmiSpz.Text;
                     break;
             }
             return stateDescStr;
@@ -65,13 +80,16 @@ namespace PSAP.PSAPCommon
             switch (approvalCatStr)
             {
                 case "0":
-                    approvalCatDescStr = "串行审批";
+                    //approvalCatDescStr = "串行审批";
+                    approvalCatDescStr = f.tsmiCxsp.Text;
                     break;
                 case "1":
-                    approvalCatDescStr = "并行审批";
+                    //approvalCatDescStr = "并行审批";
+                    approvalCatDescStr = f.tsmiBxsp.Text;
                     break;
                 case "2":
-                    approvalCatDescStr = "多选一审核";
+                    //approvalCatDescStr = "多选一审核";
+                    approvalCatDescStr = f.tsmiDxysh.Text;
                     break;
             }
             return approvalCatDescStr;
@@ -86,10 +104,12 @@ namespace PSAP.PSAPCommon
             switch (repertoryTypeStr)
             {
                 case "1":
-                    repertoryTypeDescStr = "正常";
+                    //repertoryTypeDescStr = "正常";
+                    repertoryTypeDescStr = f.tsmiZc.Text;
                     break;
                 case "2":
-                    repertoryTypeDescStr = "虚拟";
+                    //repertoryTypeDescStr = "虚拟";
+                    repertoryTypeDescStr = f.tsmiXn.Text;
                     break;
             }
             return repertoryTypeDescStr;
@@ -104,11 +124,13 @@ namespace PSAP.PSAPCommon
             switch (manufactureTypeStr)
             {
                 case "1":
-                    manufactureTypeDescStr = "正常";
-                    break;
+                    //manufactureTypeDescStr = "正常";
+                    manufactureTypeDescStr = f.tsmiZc.Text;
+                                        break;
                 case "2":
-                    manufactureTypeDescStr = "虚拟";
-                    break;
+                    //manufactureTypeDescStr = "虚拟";
+                    manufactureTypeDescStr = f.tsmiXn.Text;
+                                        break;
             }
             return manufactureTypeDescStr;
         }

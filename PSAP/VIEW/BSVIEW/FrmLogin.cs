@@ -10,6 +10,7 @@ using PSAP.DAO.BSDAO;
 using PSAP.BLL.BSBLL;
 using PSAP.VIEW.BSVIEW;
 using PSAP.PSAPCommon;
+using System.Configuration;
 
 namespace PSAP
 {
@@ -73,6 +74,13 @@ namespace PSAP
                         }
                     }
 
+                    string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+                    new FileHandler().IniWriteValue(iniPath, "System", "LastLanguage", cboLanguage.SelectedValue.ToString());
+
+                    //Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    // cfa.AppSettings.Settings["last"].Value = "111";
+                    //            cfa.Save();
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -111,20 +119,29 @@ namespace PSAP
             try
             {
                 FrmLoginBLL.InitCboLanguage(cboLanguage);
-                string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
-                txtUserID.Text = new FileHandler().IniReadValue(iniPath, "System", "LastLoginID");
+                 PSAP.BLL.BSBLL.BSBLL.language(this);
+               string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+                //txtUserID.Text = new FileHandler().IniReadValue(iniPath, "System", "LastLoginID");
+                txtUserID.Text = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLoginID");
+
+                //cboLanguage.SelectedValue = new FileHandler().IniReadValue(iniPath, "System", "LastLanguage");
+                cboLanguage.SelectedValue = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLanguage");
+
                 if (SystemInfo.LoginSavePwd)
                 {
-                    string pwdStr = new FileHandler().IniReadValue(iniPath, "System", "LastLoginPwd");
+                    //string pwdStr = new FileHandler().IniReadValue(iniPath, "System", "LastLoginPwd");
+                    string pwdStr = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLoginPwd");
+
                     if (pwdStr != "")
                         txtPassword.Text = pwdStr;
                 }
             }
-            catch
+            catch (Exception f)
             {
-                MessageBox.Show(string.Format("数据库连接错误，请检查服务器连接情况！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.Message, "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
     }
 }

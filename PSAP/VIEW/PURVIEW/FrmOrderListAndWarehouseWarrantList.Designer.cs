@@ -389,7 +389,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1924, 78);
+            this.pnltop.Size = new System.Drawing.Size(1370, 78);
             this.pnltop.TabIndex = 3;
             // 
             // searchLookUpCodeFileName
@@ -730,7 +730,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 512);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1924, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1370, 58);
             this.pnlBottom.TabIndex = 5;
             // 
             // gridBottomOrderHead
@@ -740,7 +740,7 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_Order;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1920, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1366, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
             // pnlMiddle
@@ -749,7 +749,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1924, 434);
+            this.pnlMiddle.Size = new System.Drawing.Size(1370, 434);
             this.pnlMiddle.TabIndex = 6;
             // 
             // gridControlOrderList
@@ -766,7 +766,7 @@
             this.repSearchBussinessBaseNo,
             this.repLookUpRepertoryNo,
             this.repSearchShelfId});
-            this.gridControlOrderList.Size = new System.Drawing.Size(1920, 430);
+            this.gridControlOrderList.Size = new System.Drawing.Size(1366, 430);
             this.gridControlOrderList.TabIndex = 4;
             this.gridControlOrderList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderList});
@@ -1253,7 +1253,7 @@
             // FrmOrderListAndWarehouseWarrantList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1924, 570);
+            this.ClientSize = new System.Drawing.Size(1370, 570);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnltop);

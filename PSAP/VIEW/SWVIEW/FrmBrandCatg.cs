@@ -17,6 +17,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBrandCatg()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TableName = "SW_BrandCatg";
                     editForm.TableCaption = "品牌信息";
                     editForm.Sql = "select * from SW_BrandCatg order by AutoId";
-                    editForm.PrimaryKeyColumn = "AutoId";
+                    editForm.PrimaryKeyColumn = "BrandNo";
                     editForm.MasterDataSet = dSBrandCatg;
                     editForm.MasterBindingSource = bSBrandCatg;
                     editForm.MasterEditPanel = pnlEdit;
@@ -48,7 +49,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjz.Text, ex);
             }
         }
 
@@ -59,13 +61,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textBrandNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("品牌编号不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("品牌编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiPpbh.Text);
                 textBrandNo.Focus();
                 return false;
             }
             if (textBrandName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("品牌名称不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("品牌名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiPpmc.Text);
                 textBrandName.Focus();
                 return false;
             }

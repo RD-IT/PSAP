@@ -12,6 +12,12 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmSettlementDAO
     {
+        static PSAP.VIEW.BSVIEW.FrmSettlement_Drag f = new VIEW.BSVIEW.FrmSettlement_Drag();
+        public FrmSettlementDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 查询采购结账单表头表
         /// </summary>
@@ -194,7 +200,8 @@ namespace PSAP.DAO.PURDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            //MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgjzd.Text + "[{0}]" + f.tsmiWsp.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
                             SettlementHeadTable.RejectChanges();
                             if (SettlementListTable != null)
                                 SettlementListTable.RejectChanges();
@@ -204,7 +211,9 @@ namespace PSAP.DAO.PURDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            //MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgjzd.Text + "[{0}]" + f.tsmiYjsp.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+
                             SettlementHeadTable.RejectChanges();
                             if (SettlementListTable != null)
                                 SettlementListTable.RejectChanges();
@@ -214,7 +223,8 @@ namespace PSAP.DAO.PURDAO
                     case 3:
                         if (checkSettle)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            //MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgjzd.Text + "[{0}]" + f.tsmiYjjz.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
                             SettlementHeadTable.RejectChanges();
                             if (SettlementListTable != null)
                                 SettlementListTable.RejectChanges();
@@ -224,7 +234,8 @@ namespace PSAP.DAO.PURDAO
                     case 4:
                         if (checkApproverBetween)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            //MessageHandler.ShowMessageBox(string.Format("采购结账单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiCgjzd.Text + "[{0}]" + f.tsmiYjspz.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["SettlementNo"])));
                             SettlementHeadTable.RejectChanges();
                             if (SettlementListTable != null)
                                 SettlementListTable.RejectChanges();
@@ -260,7 +271,8 @@ namespace PSAP.DAO.PURDAO
                 double wwQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
                 if (qtySum + otherSettlementQtySum > wwQtySum)
                 {
-                    MessageHandler.ShowMessageBox(string.Format("采购结账单中明细[{0}]的数量[{1}]超过入库单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherSettlementQtySum, wwQtySum));
+                    //MessageHandler.ShowMessageBox(string.Format("采购结账单中明细[{0}]的数量[{1}]超过入库单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherSettlementQtySum, wwQtySum));
+                    MessageHandler.ShowMessageBox(string.Format(f.tsmiCgjzdz.Text + "[{0}]" + f.tsmiDsl.Text + "[{1}]" + f.tsmiCgrkdd.Text + "[{2}]" + f.tsmiBkybc.Text, codeFileNameStr, qtySum + otherSettlementQtySum, wwQtySum));
                     return false;
                 }
             }
@@ -390,7 +402,8 @@ namespace PSAP.DAO.PURDAO
                                 if (tmpTable.Rows.Count == 0)
                                 {
                                     trans.Rollback();
-                                    MessageHandler.ShowMessageBox("未查询到要操作的采购结账单，请刷新后再进行操作。");
+                                    //MessageHandler.ShowMessageBox("未查询到要操作的采购结账单，请刷新后再进行操作。");
+                                    MessageHandler.ShowMessageBox(f.tsmiWcxdyc.Text);
                                     return false;
                                 }
 
@@ -707,7 +720,7 @@ namespace PSAP.DAO.PURDAO
                         break;
                     case "SumAmount":
                         listTable.Columns[i].Caption = "价税合计";
-                        break;                    
+                        break;
                     case "Remark":
                         listTable.Columns[i].Caption = "备注";
                         break;

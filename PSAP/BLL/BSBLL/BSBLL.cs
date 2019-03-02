@@ -18,6 +18,7 @@ using PsapUserControlLibrary;
 using System.Reflection;
 using System.Collections;
 using PSAP.PSAPCommon;
+using DevExpress.XtraGrid;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -91,7 +92,7 @@ namespace PSAP.BLL.BSBLL
         /// <param name="CurrentDockContent"></param>
         public static void SetFormRight(DockContent CurrentDockContent)
         {
-            SetDockContentStyle(CurrentDockContent);//调用窗口样式设定方法
+            //SetDockContentStyle(CurrentDockContent);//调用窗口样式设定方法
             Control.ControlCollection CurrentControls = CurrentDockContent.Controls;
             SetFormButtonRight(CurrentControls, CurrentDockContent.Name);
         }
@@ -104,7 +105,7 @@ namespace PSAP.BLL.BSBLL
         {
             foreach (Control n in CurrentControls)
             {
-                SetFormControlStyle(n);//调用窗口控件样式设定方法
+                //SetFormControlStyle(n);//调用窗口控件样式设定方法
 
                 if (n is Button)
                 {
@@ -574,6 +575,172 @@ namespace PSAP.BLL.BSBLL
         #region 多语言系统功能%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
         /// <summary>
+        /// 窗口多语言处理
+        /// </summary>
+        /// <param name="FormOrDockContent"></param>
+        public static void language(DockContent FormOrDockContent)
+        {
+            //form窗口多语言功能调用(放在初始化中)
+            if (SystemInfo.user.Lanuage != "Chinese")
+            {
+                BSBLL.SetFormLanguages(FormOrDockContent);//设置DockContent中的语种
+            }
+        }
+
+        /// <summary>
+        /// form窗口多语言功能调用(放在初始化中)
+        /// </summary>
+        /// <param name="FormOrDockContent"></param>
+        public static void language(Form FormOrDockContent)
+        {
+            string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+            string lastLanguage = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLanguage");
+            //if (SystemInfo.user.Lanuage != "Chinese")
+            if (lastLanguage != "Chinese")
+            {
+                BSBLL.SetFormLanguages(FormOrDockContent);//设置DockContent中的语种
+            }
+        }
+
+        /// <summary>
+        /// 反射获得窗口所有控件
+        /// </summary>
+        /// <param name="FormOrDockContent"></param>
+        public static void GetALLControls(Control FormOrDockContent)
+        {
+            //反射
+            System.Reflection.FieldInfo[] fieldInfo = FormOrDockContent.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            for (int i = 0; i < fieldInfo.Length; i++)
+            {
+                switch (fieldInfo[i].FieldType.Name)
+                {
+                    case "ContextMenuStrip":
+
+                        ContextMenuStrip contextMenuStrip = (ContextMenuStrip)fieldInfo[i].GetValue(FormOrDockContent);
+                        ContextMenuStripAddLanguage(contextMenuStrip, FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name);
+                        break;
+
+                    case "ListView":
+
+                        ListView lv = (ListView)fieldInfo[i].GetValue(FormOrDockContent);
+                        if (!string.IsNullOrEmpty(lv.Name))
+                        {
+                            ListViewAddLanguage(lv, FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name);
+                        }
+                        break;
+
+                    case "LookUpEdit":
+
+                        DevExpress.XtraEditors.LookUpEdit lue = (DevExpress.XtraEditors.LookUpEdit)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraEditors.Controls.LookUpColumnInfo column in lue.Properties.Columns)
+                        {
+                            BSCommon.TraverseControlTextAdd(FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, column.FieldName, column.Caption, "Caption");
+                        }
+                        break;
+
+                    case "SearchLookUpEdit":
+
+                        DevExpress.XtraEditors.SearchLookUpEdit slu = (DevExpress.XtraEditors.SearchLookUpEdit)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraGrid.Columns.GridColumn column in slu.Properties.View.Columns)
+                        {
+                            BSCommon.TraverseControlTextAdd(FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, column.FieldName, column.Caption, "Caption");
+                        }
+                        break;
+
+                    case "ComboBoxEdit":
+
+                        DevExpress.XtraEditors.ComboBoxEdit cbe = (DevExpress.XtraEditors.ComboBoxEdit)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (string item in cbe.Properties.Items)
+                        {
+                            // MessageBox.Show (item);
+                            BSCommon.TraverseControlTextAdd(FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, item, item, "");
+                        }
+                        break;
+
+                    case "TreeList":
+
+                        DevExpress.XtraTreeList.TreeList tl = (DevExpress.XtraTreeList.TreeList)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraTreeList.Columns.TreeListColumn column in tl.Columns)
+                        {
+                            BSCommon.TraverseControlTextAdd(FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, column.Name, column.Caption, "Caption");
+                        }
+                        break;
+
+                    case "PopupMenu":
+
+                        DevExpress.XtraBars.PopupMenu pm = (DevExpress.XtraBars.PopupMenu)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraBars.BarItem item in pm.Manager.Items)
+                        {
+                            BSCommon.TraverseControlTextAdd(FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, item.Name, item.Caption, "Caption");
+                        }
+                        break;
+
+                }
+            }
+        }
+
+        #region 获得上下文菜单控件文本
+        /// <summary>
+        /// 将上下文菜单控件文本加入语言库
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <param name="FormnName"></param>
+        /// <param name="typeName"></param>
+        public static void ContextMenuStripAddLanguage(ContextMenuStrip cms, string FormnName, string typeName)
+        {
+            //遍历menuStrip中的一级菜单项
+            foreach (ToolStripItem m1 in cms.Items)
+            {
+                BSCommon.TraverseControlTextAdd(FormnName, typeName, m1.Name, m1.Text, "Text");
+
+                if (m1 is ToolStripDropDownItem)
+                {
+                    ToolStripDropDownItem m2 = (ToolStripDropDownItem)m1;
+                    GetMenuContext(m2, FormnName, typeName);
+                }
+            }
+        }
+
+        //遍历子菜单（上下文菜单）
+        private static void GetMenuContext(ToolStripDropDownItem m1, string FormnName, string typeName)
+        {
+            foreach (object m2 in m1.DropDownItems)
+            {
+                if (m2 != null)
+                {
+                    if (m2 is ToolStripItem)
+                    {
+                        ToolStripItem m2_o = (ToolStripItem)m2;
+                        //循环添加一级菜单
+                        BSCommon.TraverseControlTextAdd(FormnName, typeName, m2_o.Name, m2_o.Text, "Text");
+                    }
+
+                    if (m2 is ToolStripDropDownItem)
+                    {
+                        ToolStripDropDownItem m2_o1 = (ToolStripDropDownItem)m2;
+                        GetMenuContext(m2_o1, FormnName, typeName);//递归
+                    }
+                }
+            }
+        }
+        #endregion 获得上下文菜单控件文本
+
+        /// <summary>
+        /// 将ListView控件文本加入语言库
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <param name="FormnName"></param>
+        /// <param name="typeName"></param>
+        public static void ListViewAddLanguage(ListView lv, string FormnName, string typeName)
+        {
+            foreach (ColumnHeader column in lv.Columns)
+            {
+                BSCommon.TraverseControlTextAdd(FormnName, typeName, lv.Name + column.Index.ToString(), column.Text, "Text");
+            }
+        }
+
+
+        /// <summary>
         /// 遍历窗口及其中控件,并将结果加至数据库表中
         /// </summary>
         public static void TraverseFormControlToTable()
@@ -585,12 +752,13 @@ namespace PSAP.BLL.BSBLL
             Type[] types = a.GetTypes();
             DataTable dt = new DataTable();
             BSCommon.TraverseControlTextStart();
+
             foreach (Type t in types)
             {
-
                 if (t.BaseType.Name == "DockContent")
                 {
                     DockContentFormN = (DockContent)Activator.CreateInstance(t, true);
+                    GetALLControls(DockContentFormN);//获得个别控件
                     if (DockContentFormN.Text != null && DockContentFormN.Text != string.Empty)
                     {
                         //1.1
@@ -649,6 +817,61 @@ namespace PSAP.BLL.BSBLL
                             }
                         }
 
+                        #region ########GridControl
+                        if (ctl is GridControl)
+                        {
+                            GridControl gc = (GridControl)ctl;
+                            foreach (object gv in gc.Views)
+                            {
+                                if (gv.GetType().Name == "GridView")
+                                {
+                                    DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+                                //此部分暂时不扩展，不知有没有用上
+                                if (gv.GetType().Name == "WinExplorerView")
+                                {
+                                    DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                            }
+                        }
+                        #endregion #########GridControl
+
+                        #region ####MenuStrip
+                        if (ctl is MenuStrip)
+                        {
+                            MenuStrip ms = (MenuStrip)ctl;
+                            MenuStripAddLanguage(ms, FormN.Name, ctl.GetType().Name);
+                        }
+                        #endregion ####MenuStrip
+
+
+                        #region ####ContextMenuStrip
+                        if (ctl is ContextMenuStrip)
+                        {
+                            MessageBox.Show("");
+                            ContextMenuStrip cms = (ContextMenuStrip)ctl;
+                            foreach (object item in cms.Items)
+                            {
+                                //if (item.GetType().Name == "GridView")
+                                {
+                                    ToolStripMenuItem item_o = (ToolStripMenuItem)item;
+                                    BSCommon.TraverseControlTextAdd(DockContentFormN.Name, cms.GetType().Name, item_o.Name, item_o.Text, "Text");
+                                }
+                            }
+                        }
+                        #endregion ####ContextMenuStrip
+
                         if (ctl.Controls.Count > 0)
                         {
                             TraverseFormControls(DockContentFormN, ctl);
@@ -656,11 +879,12 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+
                 //****************************Form
                 if (t.BaseType.Name == "Form")
                 {
                     FormN = (Form)Activator.CreateInstance(t, true);
-
+                    GetALLControls(FormN);//获得个别控件
                     if (FormN.Text != null && DockContentFormN.Text != string.Empty)
                     {
                         //2.1
@@ -717,6 +941,62 @@ namespace PSAP.BLL.BSBLL
                                 }
                             }
                         }
+
+                        #region ########GridControl
+                        if (ctl is GridControl)
+                        {
+                            GridControl gc = (GridControl)ctl;
+                            foreach (object gv in gc.Views)
+                            {
+                                if (gv.GetType().Name == "GridView")
+                                {
+                                    DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                                if (gv.GetType().Name == "WinExplorerView")
+                                {
+                                    DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                                    foreach (object column in gvo.Columns)
+                                    {
+                                        DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                        BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                                    }
+                                }
+
+                            }
+                        }
+                        #endregion #########GridControl
+
+                        #region ####MenuStrip
+                        if (ctl is MenuStrip)
+                        {
+                            MenuStrip ms = (MenuStrip)ctl;
+                            MenuStripAddLanguage(ms, FormN.Name, ctl.GetType().Name);
+                        }
+                        #endregion ####MenuStrip
+
+                        #region ####ContextMenuStrip
+                        if (ctl is ContextMenuStrip)
+                        {
+                            MessageBox.Show("");
+                            ContextMenuStrip cms = (ContextMenuStrip)ctl;
+                            foreach (object item in cms.Items)
+                            {
+                                //if (item.GetType().Name == "GridView")
+                                {
+                                    ToolStripMenuItem item_o = (ToolStripMenuItem)item;
+                                    BSCommon.TraverseControlTextAdd(DockContentFormN.Name, cms.GetType().Name, item_o.Name, item_o.Text, "Text");
+                                }
+                            }
+                        }
+                        #endregion ####ContextMenuStrip
+
+
 
                         if (ctl.Controls.Count > 0)
                         {
@@ -786,6 +1066,72 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        if (gv.GetType().Name == "GridView")
+                        {
+                            DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                        if (gv.GetType().Name == "WinExplorerView")
+                        {
+                            DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(DockContentFormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                    }
+                }
+                #endregion #########GridControl
+
+                #region ####MenuStrip
+                if (n is MenuStrip)
+                {
+                    MenuStrip ms = (MenuStrip)n;
+                    MenuStripAddLanguage(ms, DockContentFormN.Name, n.GetType().Name);
+                }
+                #endregion ####MenuStrip
+
+                #region ####ContextMenuStrip
+                if (n is ContextMenuStrip)//nnnn
+                {
+                    MessageBox.Show("");
+                    ContextMenuStrip cms = (ContextMenuStrip)n;
+                    foreach (object item in cms.Items)
+                    {
+                        //if (item.GetType().Name == "GridView")
+                        {
+                            ToolStripMenuItem item_o = (ToolStripMenuItem)item;
+                            BSCommon.TraverseControlTextAdd(DockContentFormN.Name, cms.GetType().Name, item_o.Name, item_o.Text, "Text");
+                        }
+                    }
+                }
+                #endregion ####ContextMenuStrip
+
+                //*****************
+                //if (n is ListView)
+                //{
+                //    ListView lv = (ListView)n;
+                //    if (lv != null)
+                //    {
+                //        ListViewAddLanguage(lv, DockContentFormN.Name,n.GetType().Name);
+                //    }
+                //}
+                //*****************
+
+
 
                 if (n.Controls.Count > 0)
                 {
@@ -793,6 +1139,7 @@ namespace PSAP.BLL.BSBLL
                 }
             }
         }
+
         //Form---------------------------------------------
         public static void TraverseFormControls(Form FormN, Control ctlTmp)
         {
@@ -848,6 +1195,62 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        if (gv.GetType().Name == "GridView")
+                        {
+                            DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                        if (gv.GetType().Name == "WinExplorerView")
+                        {
+                            DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView gvo = (DevExpress.XtraGrid.Views.WinExplorer.WinExplorerView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                BSCommon.TraverseControlTextAdd(FormN.Name, gv.GetType().Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption, "Caption");
+                            }
+                        }
+
+                    }
+                }
+                #endregion #########GridControl
+
+                #region ####MenuStrip
+                if (n is MenuStrip)
+                {
+                    MenuStrip ms = (MenuStrip)n;
+                    MenuStripAddLanguage(ms, FormN.Name, n.GetType().Name);
+                }
+                #endregion ####MenuStrip
+
+                #region ####ContextMenuStrip
+
+                if (n is ContextMenuStrip)
+                {
+                    MessageBox.Show("");
+                    ContextMenuStrip cms = (ContextMenuStrip)n;
+                    foreach (object item in cms.Items)
+                    {
+                        //if (item.GetType().Name == "GridView")
+                        {
+                            ToolStripMenuItem item_o = (ToolStripMenuItem)item;
+                            BSCommon.TraverseControlTextAdd(FormN.Name, cms.GetType().Name, item_o.Name, item_o.Text, "Text");
+                        }
+                    }
+                }
+                #endregion ####ContextMenuStrip
+
+
 
                 if (n.Controls.Count > 0)
                 {
@@ -855,6 +1258,49 @@ namespace PSAP.BLL.BSBLL
                 }
             }
         }
+
+        //***********************************************************************
+        /// <summary>
+        /// 遍历菜单控件中的文本
+        /// </summary>
+        /// <param name="menuS"></param>
+        /// <param name="FormnName"></param>
+        /// <param name="typeName"></param>
+        public static void MenuStripAddLanguage(MenuStrip menuS, string FormnName, string typeName)
+        {
+            //遍历menuStrip中的一级菜单项
+            foreach (ToolStripDropDownItem m1 in menuS.Items)
+            {
+                //循环添加一级菜单
+                BSCommon.TraverseControlTextAdd(FormnName, typeName, m1.Name, m1.Text, "Text");
+
+                GetMenu(m1, FormnName, typeName);
+            }
+        }
+
+        //遍历子菜单
+        private static void GetMenu(ToolStripDropDownItem m1, string FormnName, string typeName)
+        {
+            foreach (object m2 in m1.DropDownItems)
+            {
+                if (m2 != null)
+                {
+                    if (m2 is ToolStripMenuItem)
+                    {
+                        ToolStripDropDownItem m2_o = (ToolStripDropDownItem)m2;
+                        //循环添加一级菜单
+                        BSCommon.TraverseControlTextAdd(FormnName, typeName, m2_o.Name, m2_o.Text, "Text");
+                    }
+
+                    if (m2 is ToolStripDropDownItem)
+                    {
+                        ToolStripDropDownItem m2_o1 = (ToolStripDropDownItem)m2;
+                        GetMenu(m2_o1, FormnName, typeName);//递归
+                    }
+                }
+            }
+        }
+        //***********************************************************************
         //*************************************************************************
         //语种设置*****************************************************************
         //*************************************************************************
@@ -946,11 +1392,44 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (ctl is GridControl)
+                {
+                    GridControl gc = (GridControl)ctl;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                    }
+                }
+                #endregion #########GridControl
+
+                #region ####MenuStrip
+                if (ctl is MenuStrip)
+                {
+                    MenuStrip ms = (MenuStrip)ctl;
+                    SetMenuStripAddLanguage(ms, DockContentFormN.Name, dt);
+                }
+                #endregion ####MenuStrip
+
+
+
                 if (ctl.Controls.Count > 0)
                 {
                     SetFormControlsLanuages(DockContentFormN, ctl);
                 }
             }
+
+            SetALLControls(DockContentFormN, dt);//???????????
+
         }
 
 
@@ -966,7 +1445,6 @@ namespace PSAP.BLL.BSBLL
             {
                 FormN.Text = TextValue.ToList().First().Field<string>("LanguageText");
             }
-
             foreach (Control ctl in FormN.Controls)//遍历所有“DockContent”窗口
             {
                 if (ctl.Text != null && ctl.Text != string.Empty && ctl.Text != '0'.ToString() && ctl.Name != string.Empty)
@@ -1041,11 +1519,44 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (ctl is GridControl)
+                {
+                    GridControl gc = (GridControl)ctl;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                    }
+                }
+                #endregion #########GridControl
+
+                #region ####MenuStrip
+                if (ctl is MenuStrip)
+                {
+                    MenuStrip ms = (MenuStrip)ctl;
+                    SetMenuStripAddLanguage(ms, FormN.Name, dt);
+                }
+                #endregion ####MenuStrip
+
+
+
                 if (ctl.Controls.Count > 0)
                 {
                     SetFormControlsLanuages(FormN, ctl);
                 }
             }
+
+            SetALLControls(FormN, dt);//???????????
+
         }
 
 
@@ -1130,6 +1641,38 @@ namespace PSAP.BLL.BSBLL
                         }
                     }
                 }
+
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        if (gv.GetType().Name == "GridView")
+                        {
+                            DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                            foreach (object column in gvo.Columns)
+                            {
+                                var TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                    ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+                            }
+                        }
+                    }
+                }
+                #endregion #########GridControl
+
+                #region ####MenuStrip
+                if (n is MenuStrip)
+                {
+                    MenuStrip ms = (MenuStrip)n;
+                    SetMenuStripAddLanguage(ms, DockContentFormN.Name, dt);
+                }
+                #endregion ####MenuStrip
+
 
                 if (n.Controls.Count > 0)
                 {
@@ -1222,6 +1765,36 @@ namespace PSAP.BLL.BSBLL
                     }
                 }
 
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo = (DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                                ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                    }
+                }
+                #endregion #########GridControl
+
+                #region ####MenuStrip
+                if (n is MenuStrip)
+                {
+                    MenuStrip ms = (MenuStrip)n;
+                    SetMenuStripAddLanguage(ms, FormN.Name, dt);
+                }
+                #endregion ####MenuStrip
+
+
+
                 if (n.Controls.Count > 0)
                 {
                     SetFormControlsLanuages(FormN, n);
@@ -1229,17 +1802,229 @@ namespace PSAP.BLL.BSBLL
             }
         }
 
-        ///// <summary>
-        ///// 设置窗口语种
-        ///// </summary>
-        ///// <param name="dc"></param>
-        //public static void SetFormsLanuage(DockContent dc)
-        //{
-        //    //DockContent语种
 
-        //}
+
+        //***********************************************************************
+        /// <summary>
+        /// 设置菜单控件中的文本
+        /// </summary>
+        /// <param name="menuS"></param>
+        /// <param name="FormnName"></param>
+        /// <param name="typeName"></param>
+        public static void SetMenuStripAddLanguage(MenuStrip menuS, string FormnName, DataTable dt)
+        {
+            //遍历menuStrip中的一级菜单项
+            foreach (ToolStripDropDownItem m1 in menuS.Items)
+            {
+                //循环添加一级菜单
+                ToolStripDropDownItem m1_o = (ToolStripDropDownItem)m1;
+                var TextValue = BSCommon.LocationControlsText(dt, m1_o.Name, "Text");
+                if (TextValue.ToList().Count > 0)
+                {
+                    m1.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                }
+
+                SetMenu(m1, FormnName, dt);
+            }
+        }
+
+        //遍历子菜单
+        private static void SetMenu(ToolStripDropDownItem m1, string FormnName, DataTable dt)
+        {
+            foreach (object m2 in m1.DropDownItems)
+            {
+                if (m2 != null)
+                {
+                    if (m2 is ToolStripMenuItem)
+                    {
+                        ToolStripDropDownItem m2_o = (ToolStripDropDownItem)m2;
+                        var TextValue = BSCommon.LocationControlsText(dt, m2_o.Name, "Text");
+                        if (TextValue.ToList().Count > 0)
+                        {
+                            m2_o.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                        }
+                    }
+
+                    if (m2 is ToolStripDropDownItem)
+                    {
+                        ToolStripDropDownItem m2_o1 = (ToolStripDropDownItem)m2;
+                        var TextValue = BSCommon.LocationControlsText(dt, m2_o1.Name, "Text");
+                        if (TextValue.ToList().Count > 0)
+                        {
+                            m2_o1.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                        }
+                        SetMenu(m2_o1, FormnName, dt);//递归
+                    }
+                }
+            }
+        }
+        //***********************************************************************
+
+
+        /// <summary>
+        /// 设置上下文菜单控件文本
+        /// </summary>
+        /// <param name="cms"></param>
+        /// <param name="FormnName"></param>
+        /// <param name="typeName"></param>
+        public static void SetContextMenuStripAddLanguage(ContextMenuStrip cms, string FormnName, string typeName, DataTable dt)
+        {
+            //遍历menuStrip中的一级菜单项
+            foreach (ToolStripItem m1 in cms.Items)
+            {
+                ToolStripItem m1_o = (ToolStripItem)m1;
+                var TextValue = BSCommon.LocationControlsText(dt, m1_o.Name, "Text");
+                if (TextValue.ToList().Count > 0)
+                {
+                    m1_o.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                }
+
+
+                if (m1 is ToolStripDropDownItem)
+                {
+                    ToolStripDropDownItem m2 = (ToolStripDropDownItem)m1;
+                    SetMenuContext(m2, FormnName, typeName, dt);
+                }
+            }
+        }
+
+        //设置子菜单（上下文菜单）
+        private static void SetMenuContext(ToolStripDropDownItem m1, string FormnName, string typeName, DataTable dt)
+        {
+            foreach (object m2 in m1.DropDownItems)
+            {
+                if (m2 != null)
+                {
+                    if (m2 is ToolStripMenuItem)
+                    {
+                        ToolStripDropDownItem m2_o = (ToolStripDropDownItem)m2;
+                        var TextValue = BSCommon.LocationControlsText(dt, m2_o.Name, "Text");
+                        if (TextValue.ToList().Count > 0)
+                        {
+                            m2_o.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                        }
+                    }
+
+                    if (m2 is ToolStripDropDownItem)
+                    {
+                        ToolStripDropDownItem m2_o1 = (ToolStripDropDownItem)m2;
+                        SetMenuContext(m2_o1, FormnName, typeName, dt);//递归
+                    }
+                }
+            }
+        }
+
+
+        //}}}}}}}}}}}}}}}}}}}}}}}}
+        /// <summary>
+        /// 反射设定窗口所有控件
+        /// </summary>
+        /// <param name="FormOrDockContent"></param>
+        public static void SetALLControls(Control FormOrDockContent, DataTable dt)
+        {
+            //反射
+            System.Reflection.FieldInfo[] fieldInfo = FormOrDockContent.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            for (int i = 0; i < fieldInfo.Length; i++)
+            {
+                switch (fieldInfo[i].FieldType.Name)
+                {
+                    case "ContextMenuStrip":
+                        ContextMenuStrip contextMenuStrip = (ContextMenuStrip)fieldInfo[i].GetValue(FormOrDockContent);
+                        SetContextMenuStripAddLanguage(contextMenuStrip, FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, dt);
+                        break;
+                    case "ListView":
+                        ListView lv = (ListView)fieldInfo[i].GetValue(FormOrDockContent);
+                        SetListViewLanguage(lv, FormOrDockContent.GetType().Name, fieldInfo[i].FieldType.Name, dt);
+                        break;
+
+                    case "LookUpEdit":
+
+                        DevExpress.XtraEditors.LookUpEdit lue = (DevExpress.XtraEditors.LookUpEdit)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraEditors.Controls.LookUpColumnInfo column in lue.Properties.Columns)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, column.FieldName, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                column.Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                        break;
+
+                    case "SearchLookUpEdit":
+                        DevExpress.XtraEditors.SearchLookUpEdit slu = (DevExpress.XtraEditors.SearchLookUpEdit)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraGrid.Columns.GridColumn column in slu.Properties.View.Columns)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, column.FieldName, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                column.Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                        break;
+
+                    case "ComboBoxEdit":
+                        DevExpress.XtraEditors.ComboBoxEdit cbe = (DevExpress.XtraEditors.ComboBoxEdit)fieldInfo[i].GetValue(FormOrDockContent);
+                        for (int j = 0; j < cbe.Properties.Items.Count; j++)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, cbe.Properties.Items[j].ToString(), "");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                cbe.Properties.Items.RemoveAt(j);
+                                cbe.Properties.Items.Insert(j, TextValue.ToList().First().Field<string>("LanguageText"));
+                            }
+                        }
+                        break;
+
+                    case "TreeList":
+                        DevExpress.XtraTreeList.TreeList tl = (DevExpress.XtraTreeList.TreeList)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraTreeList.Columns.TreeListColumn column in tl.Columns)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, column.Name, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                column.Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                        break;
+
+                    case "PopupMenu":
+
+                        DevExpress.XtraBars.PopupMenu pm = (DevExpress.XtraBars.PopupMenu)fieldInfo[i].GetValue(FormOrDockContent);
+                        foreach (DevExpress.XtraBars.BarItem item in pm.Manager.Items)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, item.Name, "Caption");
+                            if (TextValue.ToList().Count > 0)
+                            {
+                                item.Caption = TextValue.ToList().First().Field<string>("LanguageText");
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        //}}}}}}}}}}}}}}}}}}}}}
+
+        /// <summary>
+        /// 设定ListView多语言文本
+        /// </summary>
+        /// <param name="lv"></param>
+        /// <param name="FormnName"></param>
+        /// <param name="typeName"></param>
+        public static void SetListViewLanguage(ListView lv, string FormnName, string typeName, DataTable dt)
+        {
+            foreach (ColumnHeader column in lv.Columns)
+            {
+                var TextValue = BSCommon.LocationControlsText(dt, lv.Name + column.Index.ToString(), "Text");
+                if (TextValue.ToList().Count > 0)
+                {
+                    column.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                }
+            }
+        }
 
         #endregion
 
     }
 }
+
+

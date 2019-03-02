@@ -40,9 +40,13 @@
             this.btnPrevious = new DevExpress.XtraEditors.SimpleButton();
             this.labContent = new DevExpress.XtraEditors.LabelControl();
             this.textContent = new DevExpress.XtraEditors.TextEdit();
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlButton)).BeginInit();
             this.pnlButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textContent.Properties)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButton
@@ -166,6 +170,26 @@
             this.textContent.Size = new System.Drawing.Size(120, 20);
             this.textContent.TabIndex = 200;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSave,
+            this.tsmiEdit});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(153, 70);
+            // 
+            // tsmiSave
+            // 
+            this.tsmiSave.Name = "tsmiSave";
+            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSave.Text = "保存";
+            // 
+            // tsmiEdit
+            // 
+            this.tsmiEdit.Name = "tsmiEdit";
+            this.tsmiEdit.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEdit.Text = "编辑";
+            // 
             // FrmBaseEdit
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -179,6 +203,7 @@
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textContent.Properties)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -196,5 +221,8 @@
         private DevExpress.XtraEditors.TextEdit textContent;
         private DevExpress.XtraEditors.SimpleButton btnPrevious;
         private DevExpress.XtraEditors.SimpleButton btnNext;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSave;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiEdit;
     }
 }

@@ -12,6 +12,11 @@ namespace PSAP.DAO.INVDAO
 {
     class FrmInventoryMoveDAO
     {
+                   static PSAP.VIEW.BSVIEW.FrmInventoryMove_Drag f = new VIEW.BSVIEW.FrmInventoryMove_Drag();
+ public FrmInventoryMoveDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
         /// <summary>
         /// 查询库存移动单表头表
         /// </summary>
@@ -193,8 +198,9 @@ namespace PSAP.DAO.INVDAO
                 double qtySum = DataTypeConvert.GetDouble(imListTable.Compute("Sum(Qty)", sqlStr));
                 if (qtySum > nowQty)
                 {
-                    MessageHandler.ShowMessageBox(string.Format("库存移动单中明细[{0}]的数量[{1}]超过当前的库存数量[{2}]，不可以保存。", codeFileNameStr, qtySum, nowQty));
-                    return false;
+                    //MessageHandler.ShowMessageBox(string.Format("库存移动单中明细[{0}]的数量[{1}]超过当前的库存数量[{2}]，不可以保存。", codeFileNameStr, qtySum, nowQty));
+                    MessageHandler.ShowMessageBox(string.Format(f.tsmiKcyddz.Text+"[{0}]"+f.tsmiDsl.Text+"[{1}]"+f.tsmiCgdqdk.Text+"[{2}]，"+f.tsmiBkybc.Text, codeFileNameStr, qtySum, nowQty));
+                                        return false;
                 }
             }
             return true;

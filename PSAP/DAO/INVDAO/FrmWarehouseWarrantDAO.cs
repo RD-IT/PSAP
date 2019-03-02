@@ -12,6 +12,12 @@ namespace PSAP.DAO.INVDAO
 {
     public class FrmWarehouseWarrantDAO
     {
+        static PSAP.VIEW.BSVIEW.FrmWarehouseWarrant_Drag f = new VIEW.BSVIEW.FrmWarehouseWarrant_Drag();
+        public FrmWarehouseWarrantDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 得到仓库类别默认的个数
         /// </summary>
@@ -45,7 +51,9 @@ namespace PSAP.DAO.INVDAO
             string sqlStr = "select AutoId, WarehouseWarrantTypeNo, WarehouseWarrantTypeName, IsDefault from BS_WarehouseWarrantType Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as WarehouseWarrantTypeNo, '全部' as WarehouseWarrantTypeName, 0 as IsDefault union " + sqlStr;
+                //sqlStr = "select 0 as AutoId, '全部' as WarehouseWarrantTypeNo, '全部' as WarehouseWarrantTypeName, 0 as IsDefault union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb.Text + "' as WarehouseWarrantTypeNo, '" + f.tsmiQb.Text + "' as WarehouseWarrantTypeName, 0 as IsDefault union " + sqlStr;
+
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -101,7 +109,7 @@ namespace PSAP.DAO.INVDAO
         /// <param name="nullTable">是否查询空表</param>
         public void QueryWarehouseWarrantHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string bussinessBaseNoStr, string repertoryNoStr, string wwTypeNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QueryWarehouseWarrantHead_SQL(beginDateStr, endDateStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, preparedStr, approverInt, commonStr,0, nullTable), queryDataTable);
+            BaseSQL.Query(QueryWarehouseWarrantHead_SQL(beginDateStr, endDateStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, preparedStr, approverInt, commonStr, 0, nullTable), queryDataTable);
         }
 
         /// <summary>
@@ -274,7 +282,8 @@ namespace PSAP.DAO.INVDAO
                     case 1:
                         if (checkNoApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("入库单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            //MessageHandler.ShowMessageBox(string.Format("入库单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiRkd.Text + "[{0}]" + f.tsmiWsp.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
                             wwHeadTable.RejectChanges();
                             if (wwListTable != null)
                                 wwListTable.RejectChanges();
@@ -284,7 +293,8 @@ namespace PSAP.DAO.INVDAO
                     case 2:
                         if (checkApprover)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("入库单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            //MessageHandler.ShowMessageBox(string.Format("入库单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiRkd.Text + "[{0}]" + f.tsmiYjsp.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
                             wwHeadTable.RejectChanges();
                             if (wwListTable != null)
                                 wwListTable.RejectChanges();
@@ -294,7 +304,8 @@ namespace PSAP.DAO.INVDAO
                     case 3:
                         if (checkSettle)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("入库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            //MessageHandler.ShowMessageBox(string.Format("入库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiRkd.Text + "[{0}]" + f.tsmiYjjz.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
                             wwHeadTable.RejectChanges();
                             if (wwListTable != null)
                                 wwListTable.RejectChanges();
@@ -304,7 +315,9 @@ namespace PSAP.DAO.INVDAO
                     case 4:
                         if (checkApproverBetween)
                         {
-                            MessageHandler.ShowMessageBox(string.Format("入库单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            //MessageHandler.ShowMessageBox(string.Format("入库单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiRkd.Text + "[{0}]" + f.tsmiYjspz.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["WarehouseWarrant"])));
+
                             wwHeadTable.RejectChanges();
                             if (wwListTable != null)
                                 wwListTable.RejectChanges();
@@ -340,7 +353,9 @@ namespace PSAP.DAO.INVDAO
                 double orderQtySum = DataTypeConvert.GetDouble(cmd.ExecuteScalar());
                 if (qtySum + otherWWQtySum > orderQtySum)
                 {
-                    MessageHandler.ShowMessageBox(string.Format("入库单中明细[{0}]的数量[{1}]超过采购订单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherWWQtySum, orderQtySum));
+                    //MessageHandler.ShowMessageBox(string.Format("入库单中明细[{0}]的数量[{1}]超过采购订单的数量[{2}]，不可以保存。", codeFileNameStr, qtySum + otherWWQtySum, orderQtySum));
+                    MessageHandler.ShowMessageBox(string.Format(f.tsmiRkdzmx.Text + "[{0}]" + f.tsmiDsl.Text + "[{1}]" + f.tsmiCgcgdd.Text + "[{2}]" + f.tsmiBkybc.Text, codeFileNameStr, qtySum + otherWWQtySum, orderQtySum));
+
                     return false;
                 }
             }
@@ -470,7 +485,8 @@ namespace PSAP.DAO.INVDAO
                                 if (tmpTable.Rows.Count == 0)
                                 {
                                     trans.Rollback();
-                                    MessageHandler.ShowMessageBox("未查询到要操作的入库单，请刷新后再进行操作。");
+                                    //MessageHandler.ShowMessageBox("未查询到要操作的入库单，请刷新后再进行操作。");
+                                    MessageHandler.ShowMessageBox(f.tsmiWccdyc.Text);
                                     return false;
                                 }
 
@@ -541,7 +557,8 @@ namespace PSAP.DAO.INVDAO
                                     if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, wwHeadNoStr, 1, out errorText))
                                     {
                                         trans.Rollback();
-                                        MessageHandler.ShowMessageBox("入库单审核入库错误--" + errorText);
+                                        //MessageHandler.ShowMessageBox("入库单审核入库错误--" + errorText);
+                                        MessageHandler.ShowMessageBox(f.tsmiRkdshr.Text + "--" + errorText);
                                         return false;
                                     }
                                 }
@@ -615,7 +632,9 @@ namespace PSAP.DAO.INVDAO
                             {
                                 trans.Rollback();
                                 wwHeadTable.RejectChanges();
-                                MessageHandler.ShowMessageBox("入库单已经有适用的采购结账单记录，不可以操作。");
+                                //MessageHandler.ShowMessageBox("入库单已经有适用的采购结账单记录，不可以操作。");
+                                MessageHandler.ShowMessageBox(f.tsmiRkdyjy.Text);
+
                                 return false;
                             }
 
@@ -629,7 +648,8 @@ namespace PSAP.DAO.INVDAO
                             if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, DataTypeConvert.GetString(approcalWWTable.Rows[i]["WarehouseWarrant"]), 2, out errorText))
                             {
                                 trans.Rollback();
-                                MessageHandler.ShowMessageBox("入库单取消审核出库错误--" + errorText);
+                                //MessageHandler.ShowMessageBox("入库单取消审核出库错误--" + errorText);
+                                MessageHandler.ShowMessageBox(f.tsmiRkdqxs.Text + "--" + errorText);
                                 return false;
                             }
                         }
@@ -739,7 +759,7 @@ namespace PSAP.DAO.INVDAO
                         break;
                     case "DepartmentName":
                         headTable.Columns[i].Caption = "部门名称";
-                        break;                    
+                        break;
                 }
 
                 #endregion

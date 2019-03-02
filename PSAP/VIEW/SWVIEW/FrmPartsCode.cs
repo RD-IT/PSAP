@@ -19,6 +19,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmPartsCode()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -57,7 +58,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjzsj.Text, ex);
             }
         }
 
@@ -68,49 +70,59 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textCodeFileName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("零件编号不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("零件编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiLjbh.Text);
                 textCodeFileName.Focus();
                 return false;
             }
             if (textCodeNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("物料编号不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("物料编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiWlbh.Text);
                 textCodeNo.Focus();
                 return false;
             }
             if (textCodeName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("零件名称不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("零件名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiLjmc.Text);
+
                 textCodeName.Focus();
                 return false;
             }
             if (lookUpCatgName.ItemIndex < 0)
             {
-                MessageHandler.ShowMessageBox("零件分类不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("零件分类不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiLjfl.Text);
                 lookUpCatgName.Focus();
                 return false;
             }
             if (textFilePath.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("文件路径不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("文件路径不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiWjlj.Text);
                 textFilePath.Focus();
                 return false;
             }
             if (textCodeSpec.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("规格型号不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("规格型号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiGgxh.Text);
+
                 textCodeSpec.Focus();
                 return false;
             }
             if (textMaterialVersion.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("物料版本不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("物料版本不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiWlbb.Text);
                 textMaterialVersion.Focus();
                 return false;
             }
             if (lookUpUnit.ItemIndex < 0)
             {
-                MessageHandler.ShowMessageBox("单位不能为空，请重新操作。");
+                //MessageHandler.ShowMessageBox("单位不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiDw.Text);
                 lookUpUnit.Focus();
                 return false;
             }
@@ -148,7 +160,7 @@ namespace PSAP.VIEW.BSVIEW
             e.Row["IsPrecious"] = false;
             e.Row["IsPreprocessing"] = false;
             e.Row["GetTime"] = BaseSQL.GetServerDateTime();
-            
+
         }
 
         /// <summary>

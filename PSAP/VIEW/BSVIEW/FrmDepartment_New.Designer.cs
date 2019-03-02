@@ -80,7 +80,6 @@
             this.colBfree51 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentDepartmentName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
-            this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
             this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -89,6 +88,8 @@
             this.barBtnSame = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnDown = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.pnlDepartment = new DevExpress.XtraEditors.PanelControl();
+            this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dSDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSDepartment)).BeginInit();
@@ -109,6 +110,8 @@
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlDepartment)).BeginInit();
+            this.pnlDepartment.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSDepartment
@@ -202,7 +205,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(813, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(809, 40);
             this.pnlToolBar.TabIndex = 4;
             // 
             // pnlEdit
@@ -216,7 +219,7 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(2, 42);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(813, 68);
+            this.pnlEdit.Size = new System.Drawing.Size(809, 68);
             this.pnlEdit.TabIndex = 8;
             // 
             // labelControl1
@@ -284,7 +287,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(2, 110);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(813, 442);
+            this.pnlGrid.Size = new System.Drawing.Size(809, 438);
             this.pnlGrid.TabIndex = 9;
             // 
             // gridCrlDepartment
@@ -294,7 +297,7 @@
             this.gridCrlDepartment.Location = new System.Drawing.Point(2, 2);
             this.gridCrlDepartment.MainView = this.gridViewDepartment;
             this.gridCrlDepartment.Name = "gridCrlDepartment";
-            this.gridCrlDepartment.Size = new System.Drawing.Size(809, 438);
+            this.gridCrlDepartment.Size = new System.Drawing.Size(805, 434);
             this.gridCrlDepartment.TabIndex = 1;
             this.gridCrlDepartment.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDepartment});
@@ -418,9 +421,9 @@
             // 
             this.pnlLeft.Controls.Add(this.treeListDept);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Location = new System.Drawing.Point(2, 2);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(250, 554);
+            this.pnlLeft.Size = new System.Drawing.Size(250, 550);
             this.pnlLeft.TabIndex = 10;
             // 
             // treeListDept
@@ -452,8 +455,9 @@
             this.treeListDept.OptionsView.ShowIndicator = false;
             this.treeListDept.OptionsView.ShowVertLines = false;
             this.treeListDept.ParentFieldName = "ParentDepartmentNo";
-            this.treeListDept.Size = new System.Drawing.Size(246, 550);
+            this.treeListDept.Size = new System.Drawing.Size(246, 546);
             this.treeListDept.TabIndex = 0;
+            this.treeListDept.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.treeListDept_BeforeFocusNode);
             this.treeListDept.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeListDept_MouseDown);
             // 
             // colAutoId1
@@ -527,19 +531,10 @@
             this.pnlRight.Controls.Add(this.pnlEdit);
             this.pnlRight.Controls.Add(this.pnlToolBar);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRight.Location = new System.Drawing.Point(255, 0);
+            this.pnlRight.Location = new System.Drawing.Point(257, 2);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(817, 554);
+            this.pnlRight.Size = new System.Drawing.Size(813, 550);
             this.pnlRight.TabIndex = 11;
-            // 
-            // splitterMiddle
-            // 
-            this.splitterMiddle.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
-            this.splitterMiddle.Location = new System.Drawing.Point(250, 0);
-            this.splitterMiddle.Name = "splitterMiddle";
-            this.splitterMiddle.Size = new System.Drawing.Size(5, 554);
-            this.splitterMiddle.TabIndex = 12;
-            this.splitterMiddle.TabStop = false;
             // 
             // barManagerForm
             // 
@@ -603,13 +598,31 @@
             this.popupMenuList.Manager = this.barManagerForm;
             this.popupMenuList.Name = "popupMenuList";
             // 
+            // pnlDepartment
+            // 
+            this.pnlDepartment.Controls.Add(this.pnlRight);
+            this.pnlDepartment.Controls.Add(this.splitterMiddle);
+            this.pnlDepartment.Controls.Add(this.pnlLeft);
+            this.pnlDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDepartment.Location = new System.Drawing.Point(0, 0);
+            this.pnlDepartment.Name = "pnlDepartment";
+            this.pnlDepartment.Size = new System.Drawing.Size(1072, 554);
+            this.pnlDepartment.TabIndex = 17;
+            // 
+            // splitterMiddle
+            // 
+            this.splitterMiddle.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.splitterMiddle.Location = new System.Drawing.Point(252, 2);
+            this.splitterMiddle.Name = "splitterMiddle";
+            this.splitterMiddle.Size = new System.Drawing.Size(5, 550);
+            this.splitterMiddle.TabIndex = 13;
+            this.splitterMiddle.TabStop = false;
+            // 
             // FrmDepartment_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1072, 554);
-            this.Controls.Add(this.pnlRight);
-            this.Controls.Add(this.splitterMiddle);
-            this.Controls.Add(this.pnlLeft);
+            this.Controls.Add(this.pnlDepartment);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -639,6 +652,8 @@
             this.pnlRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlDepartment)).EndInit();
+            this.pnlDepartment.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,7 +702,6 @@
         private DevExpress.XtraEditors.PanelControl pnlLeft;
         private DevExpress.XtraEditors.PanelControl pnlRight;
         private DevExpress.XtraTreeList.TreeList treeListDept;
-        private DevExpress.XtraEditors.SplitterControl splitterMiddle;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colAutoId1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDepartmentName1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colFounder1;
@@ -706,5 +720,7 @@
         private DevExpress.XtraBars.PopupMenu popupMenuList;
         private DevExpress.XtraBars.BarButtonItem barBtnSame;
         private DevExpress.XtraBars.BarButtonItem barBtnDown;
+        private DevExpress.XtraEditors.PanelControl pnlDepartment;
+        private DevExpress.XtraEditors.SplitterControl splitterMiddle;
     }
 }

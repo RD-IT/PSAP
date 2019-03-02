@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using DevExpress.XtraGrid;
+using Microsoft.Reporting.WinForms;
 using PSAP.BLL.BSBLL;
 using PSAP.DAO.BSDAO;
 using System;
@@ -10,6 +11,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -151,7 +153,254 @@ namespace PSAP.VIEW.BSVIEW
 
         private void button7_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             BSBLL.TraverseFormControlToTable();
+            this.Cursor = Cursors.Arrow;
         }
+
+        //test增加多语言控件
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
+            object obj = assembly.CreateInstance("PSAP.VIEW.BSVIEW.frmprojectdocument"); //类的完全限定名（即包括命名空间）
+            SetFormLanguages((DockContent)obj);
+
+        }
+        /// <summary>
+        /// 设置窗口语种DockContent(主方法)
+        /// </summary>
+        public static void SetFormLanguages(DockContent DockContentFormN)
+        {
+            DataTable dt = new DataTable();
+            dt = BSCommon.GetFormLanuageData(DockContentFormN.Name);
+
+            var TextValue = BSCommon.LocationControlsText(dt, DockContentFormN.Name, "TabText");
+            if (TextValue.ToList().Count > 0)
+            {
+                DockContentFormN.TabText = TextValue.ToList().First().Field<string>("LanguageText");
+            }
+
+            foreach (Control ctl in DockContentFormN.Controls)//遍历所有“DockContent”窗口控件
+            {
+
+                if (ctl.Text != null && ctl.Text != string.Empty && ctl.Text != '0'.ToString() && ctl.Name != string.Empty)
+                {
+                    TextValue = BSCommon.LocationControlsText(dt, ctl.Name, "Text");
+                    if (TextValue.ToList().Count > 0)
+                    {
+                        ctl.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                    }
+                    //1.2
+                    //BSCommon.TraverseControlTextAdd(DockContentFormN.Name, ctl.GetType().Name, ctl.Name, ctl.Text, "Text");
+                }
+
+                if (ctl is DataGridView)
+                {
+                    DataGridView dg = (DataGridView)ctl;
+                    foreach (object ch in dg.Columns)
+                    {
+                        {
+                            if (ch.GetType().Name == "DataGridViewTextBoxColumn")
+                            {
+                                TextValue = BSCommon.LocationControlsText(dt, ((DataGridViewTextBoxColumn)ch).Name, "HeaderText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    ((DataGridViewTextBoxColumn)ch).HeaderText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+                                //3.1.1
+
+                            }
+                            if (ch.GetType().Name == "DataGridViewComboBoxColumn")
+                            {
+                                TextValue = BSCommon.LocationControlsText(dt, ((DataGridViewComboBoxColumn)ch).Name, "HeaderText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    ((DataGridViewComboBoxColumn)ch).HeaderText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+
+                                //3.1.2
+                            }
+                        }
+                    }
+                }
+
+                if (ctl is ToolStrip)
+                {
+                    ToolStrip tsTmp = (ToolStrip)ctl;
+                    for (int i = 0; i < tsTmp.Items.Count; i++)
+                    {
+                        if (tsTmp.Items[i].GetType().Name == "ToolStripButton")//判断是否为ToolStripButton
+                        {
+                            if (tsTmp.Items[i].Text != string.Empty)
+                            {
+                                TextValue = BSCommon.LocationControlsText(dt, tsTmp.Items[i].Name, "Text");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    tsTmp.Items[i].Text = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+
+                                TextValue = BSCommon.LocationControlsText(dt, tsTmp.Items[i].Name, "ToolTipText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    tsTmp.Items[i].ToolTipText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+
+                                //1.3
+                                //BSCommon.TraverseControlTextAdd(DockContentFormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text, "Text");
+                                //BSCommon.TraverseControlTextAdd(DockContentFormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].ToolTipText, "ToolTipText");
+                            }
+                        }
+                    }
+                }
+
+                //gridView
+                if (ctl is GridControl)
+                {
+                    MessageBox.Show("dfdf");
+                    /*
+                    DataGridView dg = (DataGridView)ctl;
+                    foreach (object ch in dg.Columns)
+                    {
+                        {
+                            if (ch.GetType().Name == "DataGridViewTextBoxColumn")
+                            {
+                                TextValue = BSCommon.LocationControlsText(dt, ((DataGridViewTextBoxColumn)ch).Name, "HeaderText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    ((DataGridViewTextBoxColumn)ch).HeaderText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+                            }
+                            if (ch.GetType().Name == "DataGridViewComboBoxColumn")
+                            {
+                                TextValue = BSCommon.LocationControlsText(dt, ((DataGridViewComboBoxColumn)ch).Name, "HeaderText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    ((DataGridViewComboBoxColumn)ch).HeaderText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+                            }
+                        }
+                    }
+                    */
+                }
+                //gridview
+
+                if (ctl.Controls.Count > 0)
+                {
+                    SetFormControlsLanuages(DockContentFormN, ctl);
+                }
+
+                DockContentFormN.Show();
+            }
+        }
+
+        //-----------------------
+        /// <summary>
+        /// 设置窗口（DockContent）语种（子方法）
+        /// </summary>
+        /// <param name="DockContentFormN"></param>
+        /// <param name="ctlTmp"></param>
+        public static void SetFormControlsLanuages(DockContent DockContentFormN, Control ctlTmp)
+        {
+            DataTable dt = new DataTable();
+            dt = BSCommon.GetFormLanuageData(DockContentFormN.Name);
+
+            foreach (Control n in ctlTmp.Controls)
+            {
+                if (n.Text != null && n.Text != string.Empty && n.Text != '0'.ToString() && n.Name != string.Empty)
+                {
+                    var TextValue = BSCommon.LocationControlsText(dt, n.Name, "Text");
+                    if (TextValue.ToList().Count > 0)
+                    {
+                        n.Text = TextValue.ToList().First().Field<string>("LanguageText");
+                    }
+                    //3.1
+
+                }
+
+                if (n is DataGridView)
+                {
+                    DataGridView dg = (DataGridView)n;
+                    foreach (object ch in dg.Columns)
+                    {
+                        {
+                            if (ch.GetType().Name == "DataGridViewTextBoxColumn")
+                            {
+                                var TextValue = BSCommon.LocationControlsText(dt, ((DataGridViewTextBoxColumn)ch).Name, "HeaderText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    ((DataGridViewTextBoxColumn)ch).HeaderText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+                                //3.1.1
+
+                            }
+                            if (ch.GetType().Name == "DataGridViewComboBoxColumn")
+                            {
+                                var TextValue = BSCommon.LocationControlsText(dt, ((DataGridViewComboBoxColumn)ch).Name, "HeaderText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    ((DataGridViewComboBoxColumn)ch).HeaderText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+
+                                //3.1.2
+                            }
+                        }
+                    }
+                }
+
+                if (n is ToolStrip)
+                {
+                    ToolStrip tsTmp = (ToolStrip)n;
+                    for (int i = 0; i < tsTmp.Items.Count; i++)
+                    {
+                        if (tsTmp.Items[i].GetType().Name == "ToolStripButton")//判断是否为ToolStripButton
+                        {
+                            if (tsTmp.Items[i].Text != string.Empty)
+                            {
+                                var TextValue = BSCommon.LocationControlsText(dt, tsTmp.Items[i].Name, "Text");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    tsTmp.Items[i].Text = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+
+                                TextValue = BSCommon.LocationControlsText(dt, tsTmp.Items[i].Name, "ToolTipText");
+                                if (TextValue.ToList().Count > 0)
+                                {
+                                    tsTmp.Items[i].ToolTipText = TextValue.ToList().First().Field<string>("LanguageText");
+                                }
+                                //3.3
+                                //BSCommon.TraverseControlTextAdd(DockContentFormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].Text, "Text");
+                                //BSCommon.TraverseControlTextAdd(DockContentFormN.Name, tsTmp.Items[i].GetType().Name, tsTmp.Items[i].Name, tsTmp.Items[i].ToolTipText, "ToolTipText");
+                            }
+                        }
+                    }
+                }
+
+                #region ########GridControl
+                if (n is GridControl)
+                {
+                    GridControl gc = (GridControl)n;
+                    foreach (object gv in gc.Views)
+                    {
+                        DevExpress.XtraGrid.Views.Grid.GridView gvo=(DevExpress.XtraGrid.Views.Grid.GridView)gv;
+                        foreach (object column in gvo.Columns)
+                        {
+                            var TextValue = BSCommon.LocationControlsText(dt, ((DevExpress.XtraGrid.Columns.GridColumn)column).Name, "Caption");
+                            DevExpress.XtraGrid.Columns.GridColumn column_o = (DevExpress.XtraGrid.Columns.GridColumn)column;
+                            MessageBox.Show( column_o.GetTextCaption());
+                            ((DevExpress.XtraGrid.Columns.GridColumn)column).Caption = TextValue.ToList().First().Field<string>("LanguageText"); 
+                        }
+                    }
+                }
+
+                #endregion #########GridControl
+
+                if (n.Controls.Count > 0)
+                {
+                    SetFormControlsLanuages(DockContentFormN, n);
+                }
+            }
+        }
+
+
     }
 }

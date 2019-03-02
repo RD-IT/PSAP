@@ -20,11 +20,12 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 入库单明细的AutoId
         /// </summary>
-        public static int wwListAutoId = 0;        
+        public static int wwListAutoId = 0;
 
         public FrmSettlementQuery()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -62,7 +63,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjz.Text, ex);
             }
         }
 
@@ -94,7 +96,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjh.Text, ex);
             }
         }
 
@@ -161,7 +164,8 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dateSettlementDateBegin.EditValue == null || dateSettlementDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("结账日期不能为空，请设置后重新进行查询。");
+                    //MessageHandler.ShowMessageBox("结账日期不能为空，请设置后重新进行查询。");
+                    MessageHandler.ShowMessageBox(tsmiJzrqbnwk.Text);
                     if (dateSettlementDateBegin.EditValue == null)
                         dateSettlementDateBegin.Focus();
                     else
@@ -176,7 +180,8 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (datePayDateBegin.EditValue == null || datePayDateEnd.EditValue == null)
                     {
-                        MessageHandler.ShowMessageBox("付款日期不能为空，请设置后重新进行查询。");
+                        //MessageHandler.ShowMessageBox("付款日期不能为空，请设置后重新进行查询。");
+                        MessageHandler.ShowMessageBox(tsmiFkrqbnwk.Text);
                         if (datePayDateBegin.EditValue == null)
                             datePayDateBegin.Focus();
                         else
@@ -203,7 +208,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxan.Text, ex);
             }
         }
 
@@ -218,7 +224,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgcw.Text, ex);
             }
         }
 
@@ -239,10 +246,11 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSjcx.Text, ex);
             }
         }
 
-        
+
     }
 }

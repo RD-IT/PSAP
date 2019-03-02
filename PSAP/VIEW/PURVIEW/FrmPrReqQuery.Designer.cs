@@ -89,6 +89,12 @@
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomPrReq = new PSAP.VIEW.BSVIEW.GridBottom();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCt = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQgrq = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxan = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxjgc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSjcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
@@ -111,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -702,6 +709,47 @@
             this.gridBottomPrReq.Size = new System.Drawing.Size(1128, 54);
             this.gridBottomPrReq.TabIndex = 0;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCt,
+            this.tsmiQgrq,
+            this.tsmiCxan,
+            this.tsmiCxjgc,
+            this.tsmiSjcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 136);
+            // 
+            // tsmiCt
+            // 
+            this.tsmiCt.Name = "tsmiCt";
+            this.tsmiCt.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCt.Text = "窗体加载事件错误。";
+            // 
+            // tsmiQgrq
+            // 
+            this.tsmiQgrq.Name = "tsmiQgrq";
+            this.tsmiQgrq.Size = new System.Drawing.Size(316, 22);
+            this.tsmiQgrq.Text = "请购日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiCxan
+            // 
+            this.tsmiCxan.Name = "tsmiCxan";
+            this.tsmiCxan.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCxan.Text = "查询按钮事件错误。";
+            // 
+            // tsmiCxjgc
+            // 
+            this.tsmiCxjgc.Name = "tsmiCxjgc";
+            this.tsmiCxjgc.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCxjgc.Text = "查询结果存为Excel错误。";
+            // 
+            // tsmiSjcx
+            // 
+            this.tsmiSjcx.Name = "tsmiSjcx";
+            this.tsmiSjcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiSjcx.Text = "双击查询明细错误。";
+            // 
             // FrmPrReqQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -736,6 +784,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -802,5 +851,11 @@
         private System.Data.DataColumn dataColClosedIp;
         private System.Data.DataColumn dataColClosedTime;
         private DevExpress.XtraGrid.Columns.GridColumn colClosed;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCt;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQgrq;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxan;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxjgc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSjcx;
     }
 }

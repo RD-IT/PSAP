@@ -28,6 +28,7 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             tvwUserRight.CheckBoxes = true;
             tvwRoleRight.CheckBoxes = true;
+
         }
 
         private void tvwUserRight_AfterCheck(object sender, TreeViewEventArgs e)

@@ -21,6 +21,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmRight_Role()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>

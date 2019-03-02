@@ -15,6 +15,12 @@ namespace PSAP.DAO.BSDAO
         public static ArrayList strSqlLlist = new ArrayList();//存储SQL语句
         public static ArrayList strTablesName = new ArrayList();//存储返回表名
 
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public FrmBussinessInfoDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 初始化数据集（暂时不用）
         /// </summary>
@@ -45,7 +51,7 @@ namespace PSAP.DAO.BSDAO
         /// 删除相关数据
         /// </summary>
         /// <param name="strBussinessBaseNo"></param>
-        public static bool DeleteBussinessCorrelationData(string strBussinessBaseNo,DataSet dataSet1)
+        public static bool DeleteBussinessCorrelationData(string strBussinessBaseNo, DataSet dataSet1)
         {
             strSqlLlist.Clear();
             string strSql = @"delete from BS_BussinessDetailInfo where BussinessBaseNo like '" + strBussinessBaseNo + "'";
@@ -56,7 +62,7 @@ namespace PSAP.DAO.BSDAO
 
             strSql = @"delete from BS_BussinessBaseInfo where BussinessBaseNo like '" + strBussinessBaseNo + "'";
             strSqlLlist.Add(strSql);
-            return ExecuteSqlTranBI(strSqlLlist,dataSet1);
+            return ExecuteSqlTranBI(strSqlLlist, dataSet1);
         }
 
         /// <summary>
@@ -173,7 +179,7 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         /// <param name="dataSet1">要填充的数据集</param>
         /// <param name="gdvBussinessBaseInfo">主表gridControl</param>
-        public static void GetChildTableData(DataSet dataSet1,DevExpress.XtraGrid.Views.Grid.GridView gdvBussinessBaseInfo)
+        public static void GetChildTableData(DataSet dataSet1, DevExpress.XtraGrid.Views.Grid.GridView gdvBussinessBaseInfo)
         {
             dataSet1.Tables[1].Clear();
             string strSql = "select * from BS_BussinessDetailInfo where BussinessBaseNo like '" + gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString() + "'";
@@ -193,6 +199,83 @@ namespace PSAP.DAO.BSDAO
             return DAO.BSDAO.BaseSQL.Exists("select * from BS_BussinessBaseInfo where BussinessBaseNo like '" + gdvBussinessBaseInfo.GetFocusedDataRow()["BussinessBaseNo"].ToString() + "'");
         }
 
+        /// <summary>
+        /// 查询往来方类别全部表（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryBussinessCategory(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, BussinessCategory, BussinessCategoryText from BS_BussinessCategory order by AutoId";
+            if (addAllItem)
+            {
+                //sqlStr = "select 0 as AutoId, '' as BussinessCategory, '全部' as BussinessCategoryText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '' as BussinessCategory,'" + f.tsmiQb.Text + "' as BussinessCategoryText union " + sqlStr;
 
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询国家编码全部表（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryCountryCode(bool addAllItem)
+        {
+            string sqlStr = "select CountryCode, CountryName from BS_CountryCodeManagement order by CountryCode";
+            if (addAllItem)
+            {
+                //sqlStr = "select '全部' as CountryCode, '全部' as CountryName union " + sqlStr;
+                sqlStr = "select '" + f.tsmiQb.Text + "' as CountryCode, '" + f.tsmiQb.Text + "' as CountryName union " + sqlStr;
+
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询往来方详细信息
+        /// </summary>
+        public void QueryBussinessDetailInfo(DataTable queryDataTable, string bussinessBaseNoStr)
+        {
+            string sqlStr = string.Format("select * from BS_BussinessDetailInfo where BussinessBaseNo = '{0}'", bussinessBaseNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询往来方金融信息
+        /// </summary>
+        public void QueryBussinessFinancialInfo(DataTable queryDataTable, string bussinessBaseNoStr)
+        {
+            string sqlStr = string.Format("select * from BS_BussinessFinancialInfo where BussinessBaseNo = '{0}'", bussinessBaseNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 更新往来方其他信息
+        /// </summary>
+        public void Update_BussinessOtherInfo(SqlCommand cmd, DataTable detailInfoTable, DataTable FinancialInfoTable)
+        {
+            DataRowState drs = detailInfoTable.Rows[0].RowState;
+
+            cmd.CommandText = "select * from BS_BussinessDetailInfo where 1=2";
+            SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
+            DataTable tmpHeadTable = new DataTable();
+            adapterHead.Fill(tmpHeadTable);
+            BaseSQL.UpdateDataTable(adapterHead, detailInfoTable);
+
+            cmd.CommandText = "select * from BS_BussinessFinancialInfo where 1=2";
+            SqlDataAdapter adapterList = new SqlDataAdapter(cmd);
+            DataTable tmpListTable = new DataTable();
+            adapterList.Fill(tmpListTable);
+            BaseSQL.UpdateDataTable(adapterList, FinancialInfoTable);
+        }
+
+        /// <summary>
+        /// 删除往来方其他信息
+        /// </summary>
+        public void Delete_BussinessOtherInfo(SqlCommand cmd, string bussinessBaseNoStr)
+        {
+            cmd.CommandText = string.Format("delete from BS_BussinessDetailInfo where BussinessBaseNo = '{0}'", bussinessBaseNoStr);
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = string.Format("delete from BS_BussinessFinancialInfo where BussinessBaseNo = '{0}'", bussinessBaseNoStr);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

@@ -32,6 +32,12 @@ namespace PSAP.PSAPCommon
         /// </summary>
         private SynchronizationContext mainThreadSynContext;
 
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public SocketHandler()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 连接服务端
         /// </summary>
@@ -47,7 +53,8 @@ namespace PSAP.PSAPCommon
             }
             catch (Exception)
             {
-                outMessage = "连接服务端失败，请检查服务端程序是否启动。";
+                //outMessage = "连接服务端失败，请检查服务端程序是否启动。";
+                outMessage = f.tsmiLjfwds.Text;
                 return false;
             }
 
@@ -60,7 +67,8 @@ namespace PSAP.PSAPCommon
 
             if (msgStringArray[1] == "1")
             {
-                outMessage = "登陆服务程序的客户端已满，无法登陆，请稍后再进行登陆。";
+                //outMessage = "登陆服务程序的客户端已满，无法登陆，请稍后再进行登陆。";
+                outMessage = f.tsmiDlfwcx.Text;
                 return false;
             }
             else
@@ -102,13 +110,17 @@ namespace PSAP.PSAPCommon
                 catch (Exception)
                 { //异常退出时  
                     StopConnetct(proxSocket);
-                    ShowMessageExitApplication("客户端程序与服务端程序断开连接");
+                    //ShowMessageExitApplication("客户端程序与服务端程序断开连接");
+                    ShowMessageExitApplication(f.tsmiKhdcxy.Text);
+
                     return;
                 }
                 if (readLen <= 0)
                 { //客户端正常退出  
                     StopConnetct(proxSocket);
-                    ShowMessageExitApplication("客户端程序与服务端程序断开连接");                    
+                    //ShowMessageExitApplication("客户端程序与服务端程序断开连接");
+                    ShowMessageExitApplication(f.tsmiKhdcxy.Text);
+
                     return;
                 }
                 string msgStr = Encoding.Default.GetString(data, 0, readLen);
@@ -156,7 +168,9 @@ namespace PSAP.PSAPCommon
                         break;
                     case "Close":
                         StopConnetct(proxSocket);
-                        ShowMessageExitApplication("服务端程序退出或者强制关闭当前客户端程序");                        
+                        //ShowMessageExitApplication("服务端程序退出或者强制关闭当前客户端程序");
+                        ShowMessageExitApplication(f.tsmiFwdcxt.Text);
+
                         break;
                     default:
                         tmpReceiveDataStr = messageStr;
@@ -173,7 +187,9 @@ namespace PSAP.PSAPCommon
         {
             if (clientSocket == null)
             {
-                throw new Exception("客户端Socket初始化失败，无法通信。");
+                //throw new Exception("客户端Socket初始化失败，无法通信。");
+                throw new Exception(f.tsmiKhdsoc.Text);
+
             }
             if (clientSocket.Connected)
             {
@@ -195,7 +211,7 @@ namespace PSAP.PSAPCommon
                     Thread.Sleep(200);
                 else
                     return tmpReceiveDataStr;
-            }            
+            }
         }
 
         /// <summary>
@@ -203,7 +219,7 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public void ShowMessageExitApplication(string messageStr)
         {
-            if(!exitApplicationState)
+            if (!exitApplicationState)
             {
                 exitApplicationState = true;
                 int exitSecondInt = 30;
@@ -216,14 +232,15 @@ namespace PSAP.PSAPCommon
                         case 20:
                         case 10:
                         case 5:
-                            string msg = string.Format("{0}，系统将于{1}秒后关闭程序。", messageStr, i);
+                            //string msg = string.Format("{0}，系统将于{1}秒后关闭程序。", messageStr, i);
+                            string msg = string.Format("{0}，" + f.tsmiXtjy.Text + "{1}" + f.tsmiMhgbcx.Text, messageStr, i);
                             mainThreadSynContext.Post(new SendOrPostCallback(AlertMessageBox), msg);
                             break;
                     }
                     Thread.Sleep(1000);
                 }
                 Application.Exit();
-            }            
+            }
         }
 
 
@@ -232,7 +249,9 @@ namespace PSAP.PSAPCommon
         /// </summary>
         private void AlertMessageBox(object msg)//由于是主线程的同步对象Post调用，这个是在主线程中执行的
         {
-            new AlertControl().Show(null, "消息提示", DataTypeConvert.GetString(msg));
+            //new AlertControl().Show(null, "消息提示", DataTypeConvert.GetString(msg));
+            new AlertControl().Show(null, f.tsmiXxts.Text, DataTypeConvert.GetString(msg));
+
         }
     }
 }

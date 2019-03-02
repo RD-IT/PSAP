@@ -194,5 +194,26 @@ namespace PSAP.VIEW.BSVIEW
                 parentDepartmentNameStr = "";
             }
         }
+
+        /// <summary>
+        /// 选择节点之前设定控件状态
+        /// </summary>
+        private void treeListDept_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e)
+        {
+            try
+            {
+                if (bSDepartment.Current != null)
+                {
+                    DataRow dr = ((DataRowView)bSDepartment.Current).Row;
+                    dr.RejectChanges();
+                    editForm.Set_Button_State(true);
+                    editForm.Set_EditZone_ControlReadOnly(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--选择节点之前设定控件状态错误。", ex);
+            }
+        }
     }
 }

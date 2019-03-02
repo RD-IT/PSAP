@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -42,12 +43,30 @@
             this.treeColUpload = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repItemBtnEdtUpload = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiWcxddq = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxmbwj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCtjzsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMbsjwsf = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMbqrsc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiScdjmb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSdsddyg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSdsdxsbj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQrgxmk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDdymbd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDbbhgxcg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDbbhgxsb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDyggb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJjdlbg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJjdhbg = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListDocTemp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repTextDocVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemBtnEdtUpload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // repositoryItemTextEdit1
@@ -183,6 +202,124 @@
             this.pnlTop.Size = new System.Drawing.Size(987, 441);
             this.pnlTop.TabIndex = 1;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiWcxddq,
+            this.tsmiCxmbwj,
+            this.tsmiCtjzsjcw,
+            this.tsmiMbsjwsf,
+            this.tsmiMbqrsc,
+            this.tsmiScdjmb,
+            this.tsmiSdsddyg,
+            this.tsmiSdsdxsbj,
+            this.tsmiQrgxmk,
+            this.tsmiDdymbd,
+            this.tsmiMk,
+            this.tsmiDbbhgxcg,
+            this.tsmiDbbhgxsb,
+            this.tsmiDyggb,
+            this.tsmiJjdlbg,
+            this.tsmiJjdhbg});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(521, 378);
+            // 
+            // tsmiWcxddq
+            // 
+            this.tsmiWcxddq.Name = "tsmiWcxddq";
+            this.tsmiWcxddq.Size = new System.Drawing.Size(520, 22);
+            this.tsmiWcxddq.Text = "未查询到当前表的模板记录，操作错误。";
+            // 
+            // tsmiCxmbwj
+            // 
+            this.tsmiCxmbwj.Name = "tsmiCxmbwj";
+            this.tsmiCxmbwj.Size = new System.Drawing.Size(520, 22);
+            this.tsmiCxmbwj.Text = "查询模板文件异常。";
+            // 
+            // tsmiCtjzsjcw
+            // 
+            this.tsmiCtjzsjcw.Name = "tsmiCtjzsjcw";
+            this.tsmiCtjzsjcw.Size = new System.Drawing.Size(520, 22);
+            this.tsmiCtjzsjcw.Text = "窗体加载事件错误。";
+            // 
+            // tsmiMbsjwsf
+            // 
+            this.tsmiMbsjwsf.Name = "tsmiMbsjwsf";
+            this.tsmiMbsjwsf.Size = new System.Drawing.Size(520, 22);
+            this.tsmiMbsjwsf.Text = "模板设计完是否要上传更新服务器的版本吗?";
+            // 
+            // tsmiMbqrsc
+            // 
+            this.tsmiMbqrsc.Name = "tsmiMbqrsc";
+            this.tsmiMbqrsc.Size = new System.Drawing.Size(520, 22);
+            this.tsmiMbqrsc.Text = "模板确认上传更新服务器的版本吗?";
+            // 
+            // tsmiScdjmb
+            // 
+            this.tsmiScdjmb.Name = "tsmiScdjmb";
+            this.tsmiScdjmb.Size = new System.Drawing.Size(520, 22);
+            this.tsmiScdjmb.Text = "上传单据模板事件错误。";
+            // 
+            // tsmiSdsddyg
+            // 
+            this.tsmiSdsddyg.Name = "tsmiSdsddyg";
+            this.tsmiSdsddyg.Size = new System.Drawing.Size(520, 22);
+            this.tsmiSdsddyg.Text = "设定树的单元格显示事件错误。";
+            // 
+            // tsmiSdsdxsbj
+            // 
+            this.tsmiSdsdxsbj.Name = "tsmiSdsdxsbj";
+            this.tsmiSdsdxsbj.Size = new System.Drawing.Size(520, 22);
+            this.tsmiSdsdxsbj.Text = "设定树的显示编辑事件错误。";
+            // 
+            // tsmiQrgxmk
+            // 
+            this.tsmiQrgxmk.Name = "tsmiQrgxmk";
+            this.tsmiQrgxmk.Size = new System.Drawing.Size(520, 22);
+            this.tsmiQrgxmk.Text = "确认更新模块";
+            // 
+            // tsmiDdymbd
+            // 
+            this.tsmiDdymbd.Name = "tsmiDdymbd";
+            this.tsmiDdymbd.Size = new System.Drawing.Size(520, 22);
+            this.tsmiDdymbd.Text = "的打印模板的版本号吗？（更新版本号后，所有站点将会重新下载最新的打印模板）";
+            // 
+            // tsmiMk
+            // 
+            this.tsmiMk.Name = "tsmiMk";
+            this.tsmiMk.Size = new System.Drawing.Size(520, 22);
+            this.tsmiMk.Text = "模块";
+            // 
+            // tsmiDbbhgxcg
+            // 
+            this.tsmiDbbhgxcg.Name = "tsmiDbbhgxcg";
+            this.tsmiDbbhgxcg.Size = new System.Drawing.Size(520, 22);
+            this.tsmiDbbhgxcg.Text = "的版本号更新成功。";
+            // 
+            // tsmiDbbhgxsb
+            // 
+            this.tsmiDbbhgxsb.Name = "tsmiDbbhgxsb";
+            this.tsmiDbbhgxsb.Size = new System.Drawing.Size(520, 22);
+            this.tsmiDbbhgxsb.Text = "的版本号更新失败。";
+            // 
+            // tsmiDyggb
+            // 
+            this.tsmiDyggb.Name = "tsmiDyggb";
+            this.tsmiDyggb.Size = new System.Drawing.Size(520, 22);
+            this.tsmiDyggb.Text = "单元格改变更新数据库事件错误。";
+            // 
+            // tsmiJjdlbg
+            // 
+            this.tsmiJjdlbg.Name = "tsmiJjdlbg";
+            this.tsmiJjdlbg.Size = new System.Drawing.Size(520, 22);
+            this.tsmiJjdlbg.Text = "聚焦的列变更事件错误。";
+            // 
+            // tsmiJjdhbg
+            // 
+            this.tsmiJjdhbg.Name = "tsmiJjdhbg";
+            this.tsmiJjdhbg.Size = new System.Drawing.Size(520, 22);
+            this.tsmiJjdhbg.Text = "聚焦的行变更事件错误。";
+            // 
             // FrmDocumentTemplet
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -198,6 +335,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repItemBtnEdtUpload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -215,5 +353,22 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeColDocVersion;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repTextDocVersion;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWcxddq;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCxmbwj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCtjzsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMbsjwsf;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMbqrsc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiScdjmb;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSdsddyg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSdsdxsbj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQrgxmk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDdymbd;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDbbhgxcg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDbbhgxsb;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDyggb;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJjdlbg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJjdhbg;
     }
 }

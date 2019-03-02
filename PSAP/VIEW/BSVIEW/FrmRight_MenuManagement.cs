@@ -33,6 +33,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmRight_MenuManagement()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -253,6 +254,27 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--菜单下移事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 选择节点之前设定控件状态
+        /// </summary>
+        private void treeListMenu_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e)
+        {
+            try
+            {
+                if (bSMenu.Current != null)
+                {
+                    DataRow dr = ((DataRowView)bSMenu.Current).Row;
+                    dr.RejectChanges();
+                    editForm.Set_Button_State(true);
+                    editForm.Set_EditZone_ControlReadOnly(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--选择节点之前设定控件状态错误。", ex);
             }
         }
     }
