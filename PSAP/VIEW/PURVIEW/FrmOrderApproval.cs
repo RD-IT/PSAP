@@ -1,4 +1,5 @@
-﻿using PSAP.DAO.PURDAO;
+﻿using PSAP.DAO.INVDAO;
+using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,6 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         string orderHeadNoStr ="";
 
-        FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
 
         public FrmOrderApproval()
@@ -40,13 +40,34 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 lookUpApprovalType.Properties.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryApprovalType(false);
-
-                approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
-                if (dataSet_Order.Tables[0].Rows.Count == 0)
+                switch(orderHeadNoStr.Substring(0,2))
                 {
-                    MessageHandler.ShowMessageBox("查询采购订单信息错误，请重新操作。");
-                    return;
+                    case "PO":
+                        approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        if (dataSet_Order.Tables[0].Rows.Count == 0)
+                        {
+                            MessageHandler.ShowMessageBox("查询采购订单信息错误，请重新操作。");
+                            return;
+                        }
+                        break;
+                    case "SW":
+                        approvalDAO.QuerySpecialWarehouseWarrantHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        if (dataSet_Order.Tables[0].Rows.Count == 0)
+                        {
+                            MessageHandler.ShowMessageBox("查询预算外入库单错误，请重新操作。");
+                            return;
+                        }
+                        break;
+                    case "SR":
+                        approvalDAO.QuerySpecialWarehouseReceiptHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        if (dataSet_Order.Tables[0].Rows.Count == 0)
+                        {
+                            MessageHandler.ShowMessageBox("查询预算外出库单错误，请重新操作。");
+                            return;
+                        }
+                        break;
                 }
+                
                 string typeNoStr = DataTypeConvert.GetString(dataSet_Order.Tables[0].Rows[0]["ApprovalType"]);
                 int approvalCatInt = DataTypeConvert.GetInt(dataSet_Order.Tables[0].Rows[0]["ApprovalCat"]);
                 approvalDAO.QueryOrderApprovalInfo(dataSet_Order.Tables[1], orderHeadNoStr, typeNoStr);
@@ -122,9 +143,17 @@ namespace PSAP.VIEW.BSVIEW
             {
                 dataSet_Order.Tables[0].Rows[0]["Select"] = true;
                 int successCountInt = 0;
-                if (!orderDAO.OrderApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt))
+                switch (orderHeadNoStr.Substring(0, 2))
                 {
-
+                    case "PO":
+                        new FrmOrderDAO().OrderApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "SW":
+                        new FrmSpecialWarehouseWarrantDAO().SWWApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "SR":
+                        new FrmSpecialWarehouseReceiptDAO().SWRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
                 }
                 if(successCountInt>0)
                 {

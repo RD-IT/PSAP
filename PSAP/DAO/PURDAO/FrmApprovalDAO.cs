@@ -204,7 +204,7 @@ namespace PSAP.DAO.PURDAO
         {
             string sqlStr = string.Format("select PUR_OrderHead.*, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat from PUR_OrderHead left join PUR_ApprovalType on PUR_OrderHead.ApprovalType=PUR_ApprovalType.TypeNo where OrderHeadNo='{0}'", orderHeadNoStr);
             BaseSQL.Query(sqlStr, queryDataTable);
-        }
+        }        
 
         /// <summary>
         /// 查询订单审批信息记录
@@ -284,6 +284,24 @@ namespace PSAP.DAO.PURDAO
         public void QuerySettlementApprovalInfo(DataTable queryDataTable, string settlementNoStr, string typeNoStr)
         {
             string sqlStr = string.Format("select list.*, type.TypeNoText, BS_UserInfo.EmpName, BS_UserInfo.LoginId, info.SettlementNo , info.ApproverTime from PUR_ApprovalList as list left join PUR_ApprovalType as type on list.TypeNo = type.TypeNo left join BS_UserInfo on list.Approver = BS_UserInfo.AutoId left join PUR_SettlementApprovalInfo as info on list.Approver = info.Approver and info.SettlementNo = '{1}' where list.TypeNo = '{0}' order by AppSequence", typeNoStr, settlementNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询预算外入库单信息
+        /// </summary>
+        public void QuerySpecialWarehouseWarrantHead(DataTable queryDataTable, string specialWarehouseWarrantStr)
+        {
+            string sqlStr = string.Format("select Head.AutoId, Head.SpecialWarehouseWarrant as OrderHeadNo, Head.SpecialWarehouseWarrantDate as OrderHeadDate, Head.ReqDep, Head.WarehouseState as ReqState, Head.ApprovalType, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat, Head.SpecialWarehouseWarrant, Head.WarehouseState from INV_SpecialWarehouseWarrantHead as Head left join PUR_ApprovalType on Head.ApprovalType = PUR_ApprovalType.TypeNo where SpecialWarehouseWarrant = '{0}'", specialWarehouseWarrantStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询预算外出库单信息
+        /// </summary>
+        public void QuerySpecialWarehouseReceiptHead(DataTable queryDataTable, string specialWarehouseReceiptStr)
+        {
+            string sqlStr = string.Format("select Head.AutoId, Head.SpecialWarehouseReceipt as OrderHeadNo, Head.SpecialWarehouseReceiptDate as OrderHeadDate, Head.ReqDep, Head.WarehouseState as ReqState, Head.ApprovalType, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat, Head.SpecialWarehouseReceipt, Head.WarehouseState from INV_SpecialWarehouseReceiptHead as Head left join PUR_ApprovalType on Head.ApprovalType = PUR_ApprovalType.TypeNo where SpecialWarehouseReceipt = '{0}'", specialWarehouseReceiptStr);
             BaseSQL.Query(sqlStr, queryDataTable);
         }
     }

@@ -37,29 +37,9 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColOrderHeadDate = new System.Data.DataColumn();
-            this.dataColPurCategory = new System.Data.DataColumn();
-            this.dataColBussinessBaseNo = new System.Data.DataColumn();
-            this.dataColTax = new System.Data.DataColumn();
             this.dataColReqDep = new System.Data.DataColumn();
-            this.dataColPrepared = new System.Data.DataColumn();
-            this.dataColPreparedIp = new System.Data.DataColumn();
-            this.dataColProjectNo = new System.Data.DataColumn();
-            this.dataColStnNo = new System.Data.DataColumn();
-            this.dataColPlanDate = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColApproverIp = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
-            this.dataColModifier = new System.Data.DataColumn();
-            this.dataColModifierIp = new System.Data.DataColumn();
-            this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColReqState = new System.Data.DataColumn();
-            this.dataColPrReqRemark = new System.Data.DataColumn();
-            this.dataColClosed = new System.Data.DataColumn();
-            this.dataColClosedIp = new System.Data.DataColumn();
-            this.dataColClosedTime = new System.Data.DataColumn();
-            this.dataColSelect = new System.Data.DataColumn();
             this.dataColApprovalType = new System.Data.DataColumn();
-            this.dataColPayTypeNo = new System.Data.DataColumn();
             this.dataColApprovalCat = new System.Data.DataColumn();
             this.TableOrderApprovalInfo = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -94,6 +74,7 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
+            this.dataColSelect = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
@@ -166,30 +147,11 @@
             this.dataColumn1,
             this.dataColumn2,
             this.dataColOrderHeadDate,
-            this.dataColPurCategory,
-            this.dataColBussinessBaseNo,
-            this.dataColTax,
             this.dataColReqDep,
-            this.dataColPrepared,
-            this.dataColPreparedIp,
-            this.dataColProjectNo,
-            this.dataColStnNo,
-            this.dataColPlanDate,
-            this.dataColumn3,
-            this.dataColApproverIp,
-            this.dataColumn4,
-            this.dataColModifier,
-            this.dataColModifierIp,
-            this.dataColModifierTime,
             this.dataColReqState,
-            this.dataColPrReqRemark,
-            this.dataColClosed,
-            this.dataColClosedIp,
-            this.dataColClosedTime,
-            this.dataColSelect,
             this.dataColApprovalType,
-            this.dataColPayTypeNo,
-            this.dataColApprovalCat});
+            this.dataColApprovalCat,
+            this.dataColSelect});
             this.TableOrderHead.TableName = "OrderHead";
             // 
             // dataColumn1
@@ -208,84 +170,10 @@
             this.dataColOrderHeadDate.ColumnName = "OrderHeadDate";
             this.dataColOrderHeadDate.DataType = typeof(System.DateTime);
             // 
-            // dataColPurCategory
-            // 
-            this.dataColPurCategory.Caption = "采购类型";
-            this.dataColPurCategory.ColumnName = "PurCategory";
-            // 
-            // dataColBussinessBaseNo
-            // 
-            this.dataColBussinessBaseNo.Caption = "往来方";
-            this.dataColBussinessBaseNo.ColumnName = "BussinessBaseNo";
-            // 
-            // dataColTax
-            // 
-            this.dataColTax.Caption = "税率";
-            this.dataColTax.ColumnName = "Tax";
-            this.dataColTax.DataType = typeof(double);
-            // 
             // dataColReqDep
             // 
             this.dataColReqDep.Caption = "申请部门";
             this.dataColReqDep.ColumnName = "ReqDep";
-            // 
-            // dataColPrepared
-            // 
-            this.dataColPrepared.Caption = "制单人";
-            this.dataColPrepared.ColumnName = "Prepared";
-            // 
-            // dataColPreparedIp
-            // 
-            this.dataColPreparedIp.Caption = "制单人IP";
-            this.dataColPreparedIp.ColumnName = "PreparedIp";
-            // 
-            // dataColProjectNo
-            // 
-            this.dataColProjectNo.Caption = "项目号";
-            this.dataColProjectNo.ColumnName = "ProjectNo";
-            // 
-            // dataColStnNo
-            // 
-            this.dataColStnNo.Caption = "站号";
-            this.dataColStnNo.ColumnName = "StnNo";
-            // 
-            // dataColPlanDate
-            // 
-            this.dataColPlanDate.Caption = "计划到货日期";
-            this.dataColPlanDate.ColumnName = "PlanDate";
-            this.dataColPlanDate.DataType = typeof(System.DateTime);
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.Caption = "审批人";
-            this.dataColumn3.ColumnName = "Approver";
-            // 
-            // dataColApproverIp
-            // 
-            this.dataColApproverIp.Caption = "审批人IP";
-            this.dataColApproverIp.ColumnName = "ApproverIp";
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.Caption = "审批时间";
-            this.dataColumn4.ColumnName = "ApproverTime";
-            this.dataColumn4.DataType = typeof(System.DateTime);
-            // 
-            // dataColModifier
-            // 
-            this.dataColModifier.Caption = "修改人";
-            this.dataColModifier.ColumnName = "Modifier";
-            // 
-            // dataColModifierIp
-            // 
-            this.dataColModifierIp.Caption = "修改人IP";
-            this.dataColModifierIp.ColumnName = "ModifierIp";
-            // 
-            // dataColModifierTime
-            // 
-            this.dataColModifierTime.Caption = "修改时间";
-            this.dataColModifierTime.ColumnName = "ModifierTime";
-            this.dataColModifierTime.DataType = typeof(System.DateTime);
             // 
             // dataColReqState
             // 
@@ -293,42 +181,10 @@
             this.dataColReqState.ColumnName = "ReqState";
             this.dataColReqState.DataType = typeof(int);
             // 
-            // dataColPrReqRemark
-            // 
-            this.dataColPrReqRemark.Caption = "备注";
-            this.dataColPrReqRemark.ColumnName = "PrReqRemark";
-            // 
-            // dataColClosed
-            // 
-            this.dataColClosed.Caption = "关闭人";
-            this.dataColClosed.ColumnName = "Closed";
-            // 
-            // dataColClosedIp
-            // 
-            this.dataColClosedIp.Caption = "关闭人IP";
-            this.dataColClosedIp.ColumnName = "ClosedIp";
-            // 
-            // dataColClosedTime
-            // 
-            this.dataColClosedTime.Caption = "关闭时间";
-            this.dataColClosedTime.ColumnName = "ClosedTime";
-            this.dataColClosedTime.DataType = typeof(System.DateTime);
-            // 
-            // dataColSelect
-            // 
-            this.dataColSelect.Caption = "";
-            this.dataColSelect.ColumnName = "Select";
-            this.dataColSelect.DataType = typeof(bool);
-            // 
             // dataColApprovalType
             // 
             this.dataColApprovalType.Caption = "审批类型";
             this.dataColApprovalType.ColumnName = "ApprovalType";
-            // 
-            // dataColPayTypeNo
-            // 
-            this.dataColPayTypeNo.Caption = "付款类型";
-            this.dataColPayTypeNo.ColumnName = "PayTypeNo";
             // 
             // dataColApprovalCat
             // 
@@ -625,6 +481,11 @@
             this.btnApproval.Text = "审批";
             this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
             // 
+            // dataColSelect
+            // 
+            this.dataColSelect.ColumnName = "Select";
+            this.dataColSelect.DataType = typeof(bool);
+            // 
             // FrmOrderApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -704,32 +565,13 @@
         private System.Data.DataColumn dataColumn1;
         private System.Data.DataColumn dataColumn2;
         private System.Data.DataColumn dataColOrderHeadDate;
-        private System.Data.DataColumn dataColPurCategory;
-        private System.Data.DataColumn dataColBussinessBaseNo;
-        private System.Data.DataColumn dataColTax;
         private System.Data.DataColumn dataColReqDep;
-        private System.Data.DataColumn dataColPrepared;
-        private System.Data.DataColumn dataColPreparedIp;
-        private System.Data.DataColumn dataColProjectNo;
-        private System.Data.DataColumn dataColStnNo;
-        private System.Data.DataColumn dataColPlanDate;
-        private System.Data.DataColumn dataColumn3;
-        private System.Data.DataColumn dataColApproverIp;
-        private System.Data.DataColumn dataColumn4;
-        private System.Data.DataColumn dataColModifier;
-        private System.Data.DataColumn dataColModifierIp;
-        private System.Data.DataColumn dataColModifierTime;
         private System.Data.DataColumn dataColReqState;
-        private System.Data.DataColumn dataColPrReqRemark;
-        private System.Data.DataColumn dataColClosed;
-        private System.Data.DataColumn dataColClosedIp;
-        private System.Data.DataColumn dataColClosedTime;
-        private System.Data.DataColumn dataColSelect;
         private System.Data.DataColumn dataColApprovalType;
-        private System.Data.DataColumn dataColPayTypeNo;
         private System.Windows.Forms.BindingSource bsOrderHead;
         private DevExpress.XtraEditors.LabelControl labApprovalCat;
         private DevExpress.XtraEditors.LookUpEdit lookUpApprovalType;
         private System.Data.DataColumn dataColApprovalCat;
+        private System.Data.DataColumn dataColSelect;
     }
 }

@@ -101,6 +101,7 @@ namespace PSAP.VIEW.BSVIEW
         public void QueryDataAfter()
         {
             treeListMenu.ExpandAll();
+            lookUpParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
         }
 
         /// <summary>
@@ -228,13 +229,19 @@ namespace PSAP.VIEW.BSVIEW
                     string parentMenuNameStr = DataTypeConvert.GetString(treeListMenu.FocusedNode["ParentMenuName"]);
                     FrmRightDAO.MenuUpMove(menuNameStr, parentMenuNameStr);
                     editForm.btnRefresh_Click(null, null);
+
+                    foreach(TreeListNode downNode in treeListMenu.Nodes)
+                    {
+                        if (FocusedHistoryNode(downNode, menuNameStr, parentMenuNameStr))
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--菜单上移事件错误。", ex);
             }
-        }
+        }        
 
         /// <summary>
         /// 菜单下移事件
@@ -249,6 +256,12 @@ namespace PSAP.VIEW.BSVIEW
                     string parentMenuNameStr = DataTypeConvert.GetString(treeListMenu.FocusedNode["ParentMenuName"]);
                     FrmRightDAO.MenuDownMove(menuNameStr, parentMenuNameStr);
                     editForm.btnRefresh_Click(null, null);
+
+                    foreach (TreeListNode downNode in treeListMenu.Nodes)
+                    {
+                        if (FocusedHistoryNode(downNode, menuNameStr, parentMenuNameStr))
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -264,18 +277,58 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                //if (bSMenu.Current != null)
+                //{
+                //    DataRow dr = ((DataRowView)bSMenu.Current).Row;
+                //    dr.RejectChanges();
+                //    editForm.Set_Button_State(true);
+                //    editForm.Set_EditZone_ControlReadOnly(true);
+                //}
+
                 if (bSMenu.Current != null)
                 {
-                    DataRow dr = ((DataRowView)bSMenu.Current).Row;
-                    dr.RejectChanges();
-                    editForm.Set_Button_State(true);
-                    editForm.Set_EditZone_ControlReadOnly(true);
+                    if (((DataRowView)bSMenu.Current).IsEdit)
+                    {
+                        int oldId = e.OldNode == null ? 0 : DataTypeConvert.GetInt(e.OldNode["AutoId"]);
+                        DataRow dr = ((DataRowView)bSMenu.Current).Row;
+                        if (dr.RowState == DataRowState.Added && oldId != 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            dr.RejectChanges();
+                            editForm.Set_Button_State(true);
+                            editForm.Set_EditZone_ControlReadOnly(true);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--选择节点之前设定控件状态错误。", ex);
             }
+        }
+
+        /// <summary>
+        /// 聚焦之前的历史节点
+        /// </summary>
+        private bool FocusedHistoryNode(TreeListNode upNode, string menuNameStr, string parentMenuNameStr)
+        {
+            foreach (TreeListNode downNode in upNode.Nodes)
+            {
+                string mnStr = DataTypeConvert.GetString(downNode["MenuName"]);
+                string pmnStr = DataTypeConvert.GetString(downNode["ParentMenuName"]);
+                if (menuNameStr == mnStr && parentMenuNameStr == pmnStr)
+                {
+                    treeListMenu.FocusedNode = downNode;
+                    return true;
+                }
+                else
+                    FocusedHistoryNode(downNode, menuNameStr, parentMenuNameStr);
+            }
+
+            return false;
         }
     }
 }

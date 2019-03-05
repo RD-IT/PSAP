@@ -111,6 +111,8 @@
     <Compile Include="DAO\INVDAO\FrmInventoryAdjustmentsDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmInventoryMoveDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmOrderApplyDAO.cs" />
+    <Compile Include="DAO\INVDAO\FrmSpecialWarehouseReceiptDAO.cs" />
+    <Compile Include="DAO\INVDAO\FrmSpecialWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseNowInfoDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseReceiptDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmApprovalDAO.cs" />
@@ -245,6 +247,36 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.Designer.cs">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmReturnedGoodsReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmReturnedGoodsReport.Designer.cs">
+      <DependentUpon>FrmReturnedGoodsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseReceipt.Designer.cs">
+      <DependentUpon>FrmSpecialWarehouseReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseReceiptQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseReceiptQuery.Designer.cs">
+      <DependentUpon>FrmSpecialWarehouseReceiptQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrant.Designer.cs">
+      <DependentUpon>FrmSpecialWarehouseWarrant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrantQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrantQuery.Designer.cs">
+      <DependentUpon>FrmSpecialWarehouseWarrantQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.cs">
       <SubType>Form</SubType>
@@ -709,6 +741,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseReceipt.resx">
+      <DependentUpon>FrmSpecialWarehouseReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrant.resx">
+      <DependentUpon>FrmSpecialWarehouseWarrant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.resx">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
