@@ -33,57 +33,34 @@ namespace PSAP.PSAPCommon
             }
         }
 
-        public static Label LblInfo = new Label();//信息标签
-        /// <summary>
-        /// 判断目标文本框是否为空
-        /// </summary>
-        /// <param name="TargetControl">目标控件</param>
-        /// <param name="TargetContainer">目标容器</param>
-        public static void InputVerifyNotNull(TextBox TargetControl, Panel TargetContainer)
-        {
-            if (string.IsNullOrEmpty(TargetControl.Text))
-            {
-                LblInfo.AutoSize = true;
-                LblInfo.Text = "必填！";
-                LblInfo.TextAlign = ContentAlignment.BottomCenter;
-                LblInfo.BackColor = Color.Yellow;
-                LblInfo.Location = new Point(TargetControl.Left + TargetControl.Width + 2, TargetControl.Top);
-                LblInfo.Font = new Font(LblInfo.Font.Name, 14.25f);
-                TargetContainer.Controls.Add(LblInfo);
-                LblInfo.Visible = true;
-                //TargetControl.Focus();//锁定控件
-            }
-            else
-            {
-                LblInfo.Visible = false;
-
-            }
-        }
-
-        //public static void InputVerifyNotNull( Panel TargetContainer,params TextBox[] TargetControls)
+        //public static Label LblInfo = new Label();//信息标签
+        ///// <summary>
+        ///// 判断目标文本框是否为空
+        ///// </summary>
+        ///// <param name="TargetControl">目标控件</param>
+        ///// <param name="TargetContainer">目标容器</param>
+        //public static void InputVerifyNotNull(TextBox TargetControl, Panel TargetContainer)
         //{
-        //    foreach (TextBox TargetControl in TargetControls)
+        //    if (string.IsNullOrEmpty(TargetControl.Text))
         //    {
-        //        if (string.IsNullOrEmpty(TargetControl.Text))
-        //        {
-        //            LblInfo.AutoSize = true;
-        //            LblInfo.Text = "不能为空！";
-        //            LblInfo.BackColor = Color.Yellow;
-        //            LblInfo.Location = new Point(TargetControl.Left + TargetControl.Width + 10, TargetControl.Top);
-        //            LblInfo.Font = new Font(LblInfo.Font.Name, 14.25f);
-        //            TargetContainer.Controls.Add(LblInfo);
-        //            LblInfo.Visible = true;
-        //            TargetControl.Focus();
-        //        }
-        //        else
-        //        {
-        //            LblInfo.Visible = false;
+        //        LblInfo.AutoSize = true;
+        //        LblInfo.Text = "必填！";
+        //        LblInfo.TextAlign = ContentAlignment.BottomCenter;
+        //        LblInfo.BackColor = Color.Yellow;
+        //        LblInfo.Location = new Point(TargetControl.Left + TargetControl.Width + 2, TargetControl.Top);
+        //        LblInfo.Font = new Font(LblInfo.Font.Name, 14.25f);
+        //        TargetContainer.Controls.Add(LblInfo);
+        //        LblInfo.Visible = true;
+        //        //TargetControl.Focus();//锁定控件
+        //    }
+        //    else
+        //    {
+        //        LblInfo.Visible = false;
 
-        //        }
         //    }
         //}
 
-        
+
         /// <summary>
         /// 生成默认的文名，格式：“前缀字符串”+“当前日期的数字编码”
         /// </summary>
@@ -109,12 +86,12 @@ namespace PSAP.PSAPCommon
                     tvtbTmp.SelectedNode = tn;
                     return;
                 }
-                SubNode(tn,tvtbTmp,strTreeNodeName);
+                SubNode(tn, tvtbTmp, strTreeNodeName);
             }
         }
 
         //子过程
-        public static void SubNode(TreeNode tn,TreeViewToolBoxEx tvtbTmp,string strTreeNodeName)
+        public static void SubNode(TreeNode tn, TreeViewToolBoxEx tvtbTmp, string strTreeNodeName)
         {
             foreach (TreeNode tnSub in tn.Nodes)
             {
@@ -123,7 +100,7 @@ namespace PSAP.PSAPCommon
                     tvtbTmp.SelectedNode = tnSub;
                     return;
                 }
-                SubNode(tnSub,tvtbTmp,strTreeNodeName);
+                SubNode(tnSub, tvtbTmp, strTreeNodeName);
             }
         }
 

@@ -12,6 +12,12 @@ namespace PSAP.DAO.BSDAO
 {
     public class FrmCommonDAO
     {
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public FrmCommonDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 查询部门信息（增加一个全部选项）
         /// </summary>
@@ -21,7 +27,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, DepartmentNo, DepartmentName from BS_Department where DepartmentNo not in (select IsNull(ParentDepartmentNo,'') from BS_Department) order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '' as DepartmentNo, '全部' as DepartmentName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '' as DepartmentNo, '" + f.tsmiQb + "' as DepartmentName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -34,7 +40,9 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, DepartmentNo, DepartmentName from BS_Department order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '' as DepartmentNo, '全部' as DepartmentName union " + sqlStr;
+                //sqlStr = "select 0 as AutoId, '' as DepartmentNo, '全部' as DepartmentName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '' as DepartmentNo, '" + f.tsmiQb + "' as DepartmentName union " + sqlStr;
+
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -47,7 +55,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, LoginId, EmpName from BS_UserInfo order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as LoginId, '全部' as EmpName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as LoginId, '" + f.tsmiQb + "' as EmpName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -60,7 +68,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, PurCategory, PurCategoryText from PUR_PurCategory order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '' as PurCategory, '全部' as PurCategoryText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '' as PurCategory, '" + f.tsmiQb + "' as PurCategoryText union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -73,7 +81,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, CodeFileName, CodeName from SW_PartsCode order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as CodeFileName, '全部' as CodeName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as CodeFileName, '" + f.tsmiQb + "' as CodeName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -86,7 +94,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, UnitNo, UnitName from BS_UnitCatg order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as UnitNo, '全部' as UnitName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as UnitNo, '" + f.tsmiQb + "' as UnitName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -99,7 +107,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, LibName, MaterialCategory, MaterialName from SW_MaterialSelectLib order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as LibName, '全部' as MaterialCategory, '全部' as MaterialName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as LibName, '" + f.tsmiQb + "' as MaterialCategory, '" + f.tsmiQb + "' as MaterialName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -112,7 +120,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, BrandNo, BrandName from SW_BrandCatg order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as BrandNo, '全部' as BrandName union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as BrandNo, '" + f.tsmiQb + "' as BrandName union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -125,7 +133,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, CatgName, CatgDescription from SW_PartNoCatg order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as CatgName, '全部' as CatgDescription union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as CatgName, '" + f.tsmiQb + "' as CatgDescription union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -138,7 +146,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, FinishCatg, FinishOrder from SW_FinishCatg order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as FinishCatg, 0 as FinishOrder union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as FinishCatg, 0 as FinishOrder union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -151,7 +159,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, LevelCatg, CatgOrder from SW_LevelCatg order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as LevelCatg, 0 as CatgOrder union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as LevelCatg, 0 as CatgOrder union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -164,7 +172,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, ProjectNo, ProjectName, Remark from BS_ProjectList order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as ProjectNo, '全部' as ProjectName, '全部' as Remark union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as ProjectNo, '" + f.tsmiQb + "' as ProjectName, '" + f.tsmiQb + "' as Remark union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -187,7 +195,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, TypeNo, TypeNoText, ApprovalCat, ApprovalText from V_PUR_ApprovalType Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as TypeNo, '全部' as TypeNoText, 0 as ApprovalCat, '' as ApprovalText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as TypeNo, '" + f.tsmiQb + "' as TypeNoText, 0 as ApprovalCat, '' as ApprovalText union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -200,7 +208,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select Info.AutoId, Info.BussinessBaseNo, Info.BussinessBaseText, Cate.BussinessCategoryText from BS_BussinessBaseInfo as Info left join BS_BussinessCategory as Cate on Info.BussinessCategory=Cate.BussinessCategory where BussinessIsUse=1 Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as BussinessBaseNo, '全部' as BussinessBaseText, '全部' as BussinessCategoryText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as BussinessBaseNo, '" + f.tsmiQb + "' as BussinessBaseText, '" + f.tsmiQb + "' as BussinessCategoryText union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -213,7 +221,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, PayTypeNo, PayTypeNoText from PUR_PayType Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as PayTypeNo, '全部' as PayTypeNoText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as PayTypeNo, '" + f.tsmiQb + "' as PayTypeNoText union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -226,7 +234,7 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, CollectionTypeNo, CollectionTypeNoText from BS_CollectionType Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as CollectionTypeNo, '全部' as CollectionTypeNoText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as CollectionTypeNo, '" + f.tsmiQb + "' as CollectionTypeNoText union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -261,7 +269,9 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, RepertoryNo, RepertoryName, RepertoryType, RepertoryTypeText from V_BS_RepertoryInfo Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as RepertoryNo, '全部' as RepertoryName, 1 as RepertoryType, '正常' as RepertoryTypeText union " + sqlStr;
+                //sqlStr = "select 0 as AutoId, '全部' as RepertoryNo, '全部' as RepertoryName, 1 as RepertoryType, '正常' as RepertoryTypeText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as RepertoryNo, '" + f.tsmiQb + "' as RepertoryName, 1 as RepertoryType, '"+f.tsmiZc.Text+"' as RepertoryTypeText union " + sqlStr;
+
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -274,7 +284,9 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, ShelfNo, ShelfLocation from BS_ShelfInfo Order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '全部' as ShelfNo, '全部' as ShelfLocation union " + sqlStr;
+                //sqlStr = "select 0 as AutoId, '全部' as ShelfNo, '全部' as ShelfLocation union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as ShelfNo, '" + f.tsmiQb + "' as ShelfLocation union " + sqlStr;
+
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }

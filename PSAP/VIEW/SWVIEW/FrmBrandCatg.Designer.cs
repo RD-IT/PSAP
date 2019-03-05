@@ -51,6 +51,10 @@
             this.colBrandNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBrandName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBrandDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCtjz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPpbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPpmc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSBrandCatg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableBrandCatg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSBrandCatg)).BeginInit();
@@ -64,6 +68,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlBrandCatg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBrandCatg)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSBrandCatg
@@ -255,6 +260,33 @@
             this.colBrandDescription.VisibleIndex = 2;
             this.colBrandDescription.Width = 180;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCtjz,
+            this.tsmiPpbh,
+            this.tsmiPpmc});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 92);
+            // 
+            // tsmiCtjz
+            // 
+            this.tsmiCtjz.Name = "tsmiCtjz";
+            this.tsmiCtjz.Size = new System.Drawing.Size(256, 22);
+            this.tsmiCtjz.Text = "窗体加载事件错误。";
+            // 
+            // tsmiPpbh
+            // 
+            this.tsmiPpbh.Name = "tsmiPpbh";
+            this.tsmiPpbh.Size = new System.Drawing.Size(256, 22);
+            this.tsmiPpbh.Text = "品牌编号不能为空，请重新操作。";
+            // 
+            // tsmiPpmc
+            // 
+            this.tsmiPpmc.Name = "tsmiPpmc";
+            this.tsmiPpmc.Size = new System.Drawing.Size(256, 22);
+            this.tsmiPpmc.Text = "品牌名称不能为空，请重新操作。";
+            // 
             // FrmBrandCatg
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -280,6 +312,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlBrandCatg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBrandCatg)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -308,5 +341,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colBrandNo;
         private DevExpress.XtraGrid.Columns.GridColumn colBrandName;
         private DevExpress.XtraGrid.Columns.GridColumn colBrandDescription;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCtjz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPpbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPpmc;
     }
 }

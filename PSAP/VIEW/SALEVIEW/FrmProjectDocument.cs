@@ -109,6 +109,7 @@ namespace PSAP.VIEW.BSVIEW
             InitViewChecks();//初始化相关“查看”选项
             InitDisplay(1);//初始化管理器界面的显示
             tsbtnAdvancedQuery_Click(null, null);//初始化高级搜索选项卡
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -122,6 +123,7 @@ namespace PSAP.VIEW.BSVIEW
             InitViewChecks();//初始化相关“查看”选项
             InitDisplay(projectID);//初始化管理器界面的显示
             tsbtnAdvancedQuery_Click(null, null);//初始化高级搜索选项卡
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -233,7 +235,8 @@ namespace PSAP.VIEW.BSVIEW
             FrmProjectDocumentBLL.DeleteVirtual(lvwFiles);
             //刷新文件列表
             tsmiRefresh_Click(null, null);
-            tsslblFilesNum.Text = "已成功删除所选项目";
+            //tsslblFilesNum.Text = "已成功删除所选项目";
+            tsslblFilesNum.Text = tsmiYcgscs.Text;
             this.Cursor = Cursors.Arrow;
         }
 
@@ -440,7 +443,8 @@ namespace PSAP.VIEW.BSVIEW
 
         private void tscboSearch_Leave(object sender, EventArgs e)
         {
-            tsTxtQuery.Text = "快速搜索";
+            //tsTxtQuery.Text = "快速搜索";
+            tsTxtQuery.Text = tsmiKsss.Text;
         }
 
         private void tscboSearch_KeyDown(object sender, KeyEventArgs e)
@@ -483,7 +487,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             else
             {
-                MessageBox.Show("请先选择要打开的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要打开的文件或文件夹。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(tsmiQxzydk.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -506,7 +511,7 @@ namespace PSAP.VIEW.BSVIEW
             //extensionName = Path.GetExtension(e.Label);
             string oldPath = @rootPathLocal + (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path) + lvwFiles.SelectedItems[0].SubItems[0].Text.Trim();
             string newName = e.Label;
-            newName =!string.IsNullOrEmpty( newName) ? newName.Trim():null;
+            newName = !string.IsNullOrEmpty(newName) ? newName.Trim() : null;
             ListViewItem selectedItem = lvwFiles.SelectedItems[0];  //选中项
             int documentID, projectID;
             //如果名称为空
@@ -517,7 +522,7 @@ namespace PSAP.VIEW.BSVIEW
             }
 
             //标签没有改动
-            if (string.IsNullOrEmpty( newName))
+            if (string.IsNullOrEmpty(newName))
             {
                 e.CancelEdit = true;//显示时，恢复原来的标签
                 return;
@@ -531,7 +536,8 @@ namespace PSAP.VIEW.BSVIEW
             //文件名不合法
             else if (!IsValidFileName(newName))
             {
-                MessageBox.Show("文件名不能包含下列任何字符:\r\n" + "\t\\/:*?\"<>|", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("文件名不能包含下列任何字符:\r\n" + "\t\\/:*?\"<>|", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(tsmiWjmbbh.Text + ":\r\n" + "\t\\/:*?\"<>|", tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.CancelEdit = true;  //显示时，恢复原来的标签
             }
             else
@@ -542,7 +548,8 @@ namespace PSAP.VIEW.BSVIEW
                     //如果当前路径下有同名的文件
                     if (File.Exists(Path.Combine(curFilePath, newName)))
                     {
-                        MessageBox.Show("当前路径下有同名的文件！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //MessageBox.Show("当前路径下有同名的文件！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(tsmiDqljxy.Text, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         //显示时，恢复原来的标签
                         e.CancelEdit = true;
                     }
@@ -564,7 +571,8 @@ namespace PSAP.VIEW.BSVIEW
                     //如果当前路径下有同名的文件夹
                     if (Directory.Exists(Path.Combine(curFilePath, newName)))
                     {
-                        MessageBox.Show("当前路径下有同名的文件夹！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //MessageBox.Show("当前路径下有同名的文件夹！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(tsmidqljxytmwjj.Text, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         //显示时，恢复原来的标签
                         e.CancelEdit = true;
@@ -775,7 +783,7 @@ namespace PSAP.VIEW.BSVIEW
                 else
                 {
                     DirectoryInfo directoryInfo = new DirectoryInfo(node.Tag.ToString());
-                    //if (curFilePath == "")//国；；l
+                    //if (curFilePath == "")//
                     //{
                     //    return;
                     //}
@@ -798,7 +806,7 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -945,7 +953,7 @@ namespace PSAP.VIEW.BSVIEW
             }
 
             //更新状态栏
-            tsslblFilesNum.Text = lvwFiles.Items.Count + " 个项目";
+            tsslblFilesNum.Text = lvwFiles.Items.Count + " " + tsmiGxm.Text;//"个项目"
             //结束数据更新
             lvwFiles.EndUpdate();
             RefreshBackAdvanceButtonEnable();
@@ -1026,7 +1034,7 @@ namespace PSAP.VIEW.BSVIEW
                         item = lvwFiles.Items.Add(dr["name"].ToString(), "folder_p");//名称
                     }
 
-                    item.Tag = dr["ChildProjectID"].ToString();//190211
+                    item.Tag = dr["ChildProjectID"].ToString();
                     item.SubItems.Add("");//修改日期
                     item.SubItems.Add("文件夹");//类型
                     item.SubItems.Add("");//大小
@@ -1057,7 +1065,7 @@ namespace PSAP.VIEW.BSVIEW
                         continue;
                     }
 
-                    ListViewItem item = lvwFiles.Items.Add(dr["FileName"].ToString());//名称
+                    ListViewItem item = lvwFiles.Items.Add(dr["FileName"].ToString());
 
                     if (!string.IsNullOrEmpty(Path.GetExtension(dr["FileName"].ToString())))
                     {
@@ -1103,7 +1111,7 @@ namespace PSAP.VIEW.BSVIEW
             }
 
             //更新状态栏
-            tsslblFilesNum.Text = lvwFiles.Items.Count + " 个项目";
+            tsslblFilesNum.Text = lvwFiles.Items.Count + " " + tsmiGxm.Text;//个项目
             //结束数据更新
             lvwFiles.EndUpdate();
             RefreshBackAdvanceButtonEnable();
@@ -1138,7 +1146,8 @@ namespace PSAP.VIEW.BSVIEW
             {
                 int num = 1;
                 string path = @rootPathLocal + (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path);
-                path = Path.Combine(path, "新建文件夹");
+                //path = Path.Combine(path, "新建文件夹");
+                path = Path.Combine(path, tsmiXjwjj.Text);
                 string newFolderPath = path;
 
                 while (Directory.Exists(newFolderPath))
@@ -1147,7 +1156,8 @@ namespace PSAP.VIEW.BSVIEW
                     num++;
                 }
                 Directory.CreateDirectory(newFolderPath);
-                string newFolderName = "新建文件夹" + (num == 1 ? "" : "(" + (num - 1) + ")");
+                //string newFolderName = "新建文件夹" + (num == 1 ? "" : "(" + (num - 1) + ")");
+                string newFolderName = tsmiXjwjj.Text + (num == 1 ? "" : "(" + (num - 1) + ")");
                 string nPath = (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path) + newFolderName + @"\";
                 //向相关数据库加入数据
                 FrmProjectDocumentDAO.CreateFolderToSever(newFolderName, nPath, curPathNode.iProjectID);
@@ -1155,7 +1165,7 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -1184,7 +1194,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1218,7 +1228,8 @@ namespace PSAP.VIEW.BSVIEW
                         if (Convert.ToInt32(lvwFiles.SelectedItems[0].SubItems[5].Text) != 90 &&
                             lvwFiles.SelectedItems[0].SubItems[6].Text == "pc-songxi")//change
                         {
-                            MessageBox.Show("当前电脑已经有用户进行了【检入】操作，其他用户无权打开！如需查看请使用其它电脑！", "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show("当前电脑已经有用户进行了【检入】操作，其他用户无权打开！如需查看请使用其它电脑！", "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(tsmidqdn.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
 
@@ -1246,7 +1257,7 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1417,7 +1428,8 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dirInfo.FullName == sourceDirInfo.FullName)
                 {
-                    MessageBox.Show("无法复制！目标文件夹是源文件夹的子目录！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("无法复制！目标文件夹是源文件夹的子目录！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(tsmiWffzmb.Text, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -1480,7 +1492,7 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1494,7 +1506,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             else
             {
-                MessageBox.Show("请选择要重命名的文件或文件夹！", "提示", MessageBoxButtons.OK);
+                //MessageBox.Show("请选择要重命名的文件或文件夹！", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(tsmiQxzycm.Text, tsmiTs.Text, MessageBoxButtons.OK);
             }
         }
 
@@ -1565,7 +1578,7 @@ namespace PSAP.VIEW.BSVIEW
                             {
                                 AddSearchResultItemIntoList(fileInfo.FullName, true);
                                 //更新状态栏
-                                tsslblFilesNum.Text = lvwFiles.Items.Count + " 个项目";
+                                tsslblFilesNum.Text = lvwFiles.Items.Count + " " + tsmiGxm.Text;//个项目
                             }
                         }
                         catch (Exception e)
@@ -1590,7 +1603,7 @@ namespace PSAP.VIEW.BSVIEW
                                 AddSearchResultItemIntoList(dirInfo.FullName, false);
 
                                 //更新状态栏
-                                tsslblFilesNum.Text = lvwFiles.Items.Count + " 个项目";
+                                tsslblFilesNum.Text = lvwFiles.Items.Count + " " + tsmiGxm.Text;//个项目
                             }
                             else
                             {
@@ -1644,7 +1657,7 @@ namespace PSAP.VIEW.BSVIEW
                                 AddSearchResultItemIntoList(fileInfo.FullName, true);
 
                                 //更新状态栏
-                                tsslblFilesNum.Text = lvwFiles.Items.Count + " 个项目";
+                                tsslblFilesNum.Text = lvwFiles.Items.Count + " " + tsmiGxm.Text;//个项目
                             }
                         }
                         catch (Exception e)
@@ -1666,7 +1679,7 @@ namespace PSAP.VIEW.BSVIEW
                                 AddSearchResultItemIntoList(dirInfo.FullName, false);
 
                                 //更新状态栏
-                                tsslblFilesNum.Text = lvwFiles.Items.Count + " 个项目";
+                                tsslblFilesNum.Text = lvwFiles.Items.Count + " " + tsmiGxm.Text;//个项目
                             }
                             else
                             {
@@ -1723,7 +1736,7 @@ namespace PSAP.VIEW.BSVIEW
                 item.Tag = fileInfo.FullName;
 
                 item.SubItems.Add(fileInfo.LastWriteTimeUtc.ToString());
-                item.SubItems.Add(fileInfo.Extension + "文件");
+                item.SubItems.Add(fileInfo.Extension + " " + tsmiWj.Text);//文件
                 item.SubItems.Add(FrmProjectDocumentBLL.ShowFileSize(fileInfo.Length).Split('(')[0]);
             }
             //是文件夹
@@ -1746,7 +1759,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 item.Tag = dirInfo.FullName;
                 item.SubItems.Add(dirInfo.LastWriteTimeUtc.ToString());
-                item.SubItems.Add("文件夹");
+                item.SubItems.Add(tsmiWjj.Text);//文件夹
                 item.SubItems.Add("");
             }
         }
@@ -1847,7 +1860,7 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1864,7 +1877,7 @@ namespace PSAP.VIEW.BSVIEW
             //ShowFilesList(curPathNode.iProjectID, false, curPathNode.Path);
             //刷新文件列表
             tsmiRefresh_Click(null, null);
-            tsslblFilesNum.Text = "已成功添加到库";
+            tsslblFilesNum.Text = tsmiYcgtjd.Text; //"已成功添加到库";
             this.Cursor = Cursors.Arrow;
 
         }
@@ -1880,7 +1893,7 @@ namespace PSAP.VIEW.BSVIEW
             FrmProjectDocumentBLL.CheckIn(lvwFiles);
             //刷新文件列表
             tsmiRefresh_Click(null, null);
-            tsslblFilesNum.Text = "已成功检入";
+            tsslblFilesNum.Text = tsmiYcgjr.Text;//"已成功检入";
             this.Cursor = Cursors.Arrow;
         }
 
@@ -1895,7 +1908,7 @@ namespace PSAP.VIEW.BSVIEW
             FrmProjectDocumentBLL.CheckOut(lvwFiles);
             //刷新文件列表
             tsmiRefresh_Click(null, null);
-            tsslblFilesNum.Text = "已成功检出";
+            tsslblFilesNum.Text = tsmiYcgjc.Text; //"已成功检出";
             this.Cursor = Cursors.Arrow;
         }
 
@@ -1978,7 +1991,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             else
             {
-                MessageBox.Show("请先选择要打开的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要打开的文件或文件夹！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(tsmiQxzydk.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         /// <summary>
@@ -1991,8 +2005,8 @@ namespace PSAP.VIEW.BSVIEW
             tsmiVersion1.DropDownItems.Clear();
             for (int i = 1; i <= lastVersion; i++)
             {
-                tsmiVersion.DropDownItems.Add("版本" + i.ToString(), null, VersionMenu);
-                tsmiVersion1.DropDownItems.Add("版本" + i.ToString(), null, VersionMenu);
+                tsmiVersion.DropDownItems.Add(tsmiBb.Text + i.ToString(), null, VersionMenu);//版本
+                tsmiVersion1.DropDownItems.Add(tsmiBb.Text + i.ToString(), null, VersionMenu);//版本
             }
         }
 
@@ -2040,7 +2054,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             advancedQuery = false;
             this.Cursor = Cursors.WaitCursor;
-            ShowQueryFilesList(tsTxtQuery.Text.Trim(), "名称包含'" + tsTxtQuery.Text.Trim() + "'的文件和文件夹", true, curPathNode.iProjectID);
+            //ShowQueryFilesList(tsTxtQuery.Text.Trim(), "名称包含'" + tsTxtQuery.Text.Trim() + "'的文件和文件夹", true, curPathNode.iProjectID);
+            ShowQueryFilesList(tsTxtQuery.Text.Trim(), tsmiMcbh.Text + "'" + tsTxtQuery.Text.Trim() + "'" + tsmiDwjhwj.Text, true, curPathNode.iProjectID);
             tscboAddress.Text = curPathNode.Path;
             this.Cursor = Cursors.Arrow;
         }
@@ -2097,7 +2112,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             else
             {
-                MessageBox.Show("请先选择要添加备注的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要添加备注的文件或文件夹！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(tsmiQxzytjbz.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             lvwFiles.Focus();
@@ -2121,10 +2137,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (string.IsNullOrEmpty(gvRemarks.GetFocusedDataRow()["Remarks"].ToString()))
             {
-                MessageBox.Show("【备注信息】不能为空，如不需要备注信息请进行【删除】操作！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("【备注信息】不能为空，如不需要备注信息请进行【删除】操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(tsmiBzxxbn.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             Validate();
             bsRemarksInfo.EndEdit();
             FrmProjectDocumentDAO.SaveRemarksInfo(dataSet1);
@@ -2135,8 +2151,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (gvRemarks.GetFocusedDataRow() != null)//当前是否有数据
             {
-                if (MessageBox.Show("确实要删除吗?", "确认", MessageBoxButtons.YesNo,
-                                            MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(tsmiQdysc.Text, tsmiTs.Text, MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Question) == DialogResult.Yes)//确定要删除吗
                 {
                     //删除相关数据
                     if (FrmProjectDocumentDAO.DeleteRemarksInfoData(Convert.ToInt32(gvRemarks.GetRowCellValue
@@ -2190,7 +2206,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        MessageBox.Show("无权限或不需要进行【添加到库】操作！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("无权限或不需要进行【添加到库】操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(tsmiWqxtjdk.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -2205,7 +2222,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        MessageBox.Show("无权限或不需要进行【检入】操作！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("无权限或不需要进行【检入】操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(tsmiWqxjr.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -2220,7 +2238,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        MessageBox.Show("无权限或不需要进行【检出】操作！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("无权限或不需要进行【检出】操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(tsmiwqxjc.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -2235,7 +2254,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        MessageBox.Show("无权限或不需要进行【检出】操作！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("无权限或不能进行【新建报价单】操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(tsmiNxjbjd.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -2250,7 +2270,8 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else
                     {
-                        MessageBox.Show("无权限或不需要进行【取消报价单】操作！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("无权限或不能进行【取消报价单】操作！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(tsmiNqxbjd.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -2287,7 +2308,8 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    MessageBox.Show("剪贴板中没有可以粘贴到缓存的文件！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("剪贴板中没有可以粘贴到缓存的文件！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(tsmiJtbzmy.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -2353,7 +2375,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             advancedQuery = true;
             this.Cursor = Cursors.WaitCursor;
-            ShowQueryFilesList(txtQuery.Text.Trim(), "名称包含'" + txtQuery.Text.Trim() + "'的文件和文件夹", true, Convert.ToInt32(string.IsNullOrEmpty(tllQueryLocation.EditValue.ToString()) ? "1" : tllQueryLocation.EditValue));
+            //ShowQueryFilesList(txtQuery.Text.Trim(), "名称包含'" + txtQuery.Text.Trim() + "'的文件和文件夹", true, Convert.ToInt32(string.IsNullOrEmpty(tllQueryLocation.EditValue.ToString()) ? "1" : tllQueryLocation.EditValue));
+            ShowQueryFilesList(txtQuery.Text.Trim(), tsmiMcbh.Text + "'" + txtQuery.Text.Trim() + "'" + tsmiDwjhwj.Text, true, Convert.ToInt32(string.IsNullOrEmpty(tllQueryLocation.EditValue.ToString()) ? "1" : tllQueryLocation.EditValue));
             tscboAddress.Text = curPathNode.Path;
             this.Cursor = Cursors.Arrow;
 
@@ -2388,7 +2411,7 @@ namespace PSAP.VIEW.BSVIEW
             PasteToCache();
             //刷新文件列表
             tsmiRefresh_Click(null, null);
-            tsslblFilesNum.Text = "已成功将复制的文件加工本地缓存";
+            tsslblFilesNum.Text = tsmiYcgjfz.Text; //"已成功将复制的文件加工本地缓存";
             this.Cursor = Cursors.Arrow;
         }
     }

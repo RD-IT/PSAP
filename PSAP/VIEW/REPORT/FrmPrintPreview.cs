@@ -14,7 +14,7 @@ namespace PSAP.VIEW.BSVIEW  //REPORT
     public partial class FrmPrintPreview : Form //DockContent
     {
 
-        public FrmPrintPreview(string path,string[] dsName,object[] ds)
+        public FrmPrintPreview(string path, string[] dsName, object[] ds)
         {
             InitializeComponent();
             LoadRDLC(path, dsName, ds);
@@ -36,7 +36,8 @@ namespace PSAP.VIEW.BSVIEW  //REPORT
             //设置打印布局模式,显示物理页面大小
             reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             reportViewer1.LocalReport.ReportPath = path;
-            for (int i=0; i < dsName.GetLength(0); i++) {
+            for (int i = 0; i < dsName.GetLength(0); i++)
+            {
                 reportViewer1.LocalReport.DataSources.Add(new ReportDataSource(dsName[i], ds[i]));//要和设计报表时指定的名称一致
             }
             reportViewer1.LocalReport.Refresh();

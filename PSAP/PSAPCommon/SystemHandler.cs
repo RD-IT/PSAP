@@ -12,6 +12,12 @@ namespace PSAP.PSAPCommon
 {
     class SystemHandler
     {
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public SystemHandler()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 获取本机名
         /// </summary>
@@ -32,7 +38,9 @@ namespace PSAP.PSAPCommon
                 if (ipa.AddressFamily == AddressFamily.InterNetwork)
                     return ipa.ToString();
             }
-            throw new Exception("获取本机的IP地址异常。");
+            //throw new Exception("获取本机的IP地址异常。");
+            throw new Exception(f.tsmiHqbjdi.Text);
+
         }
 
         /// <summary>
@@ -52,13 +60,13 @@ namespace PSAP.PSAPCommon
             string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
             string sectionStr = "System";
             fileHandler.IniWriteValue(iniPath, sectionStr, "LastLoginID", SystemInfo.user.LoginID);
-            if(SystemInfo.LoginSavePwd)
+            if (SystemInfo.LoginSavePwd)
             {
                 fileHandler.IniWriteValue(iniPath, sectionStr, "LastLoginPwd", pwdStr);
-            }        
+            }
 
             #region 设置连接服务端的IP地址和端口号
-            
+
             SystemInfo.serverIP = new SystemHandler().GetIpAddress();
 
             if (File.Exists(iniPath))

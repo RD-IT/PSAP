@@ -11,6 +11,13 @@ namespace PSAP.PSAPCommon
 {
     public class LogHandler
     {
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+
+        public LogHandler()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);//刷新窗口语言
+        }
+
         /// <summary>
         /// 事务记录日志
         /// </summary>
@@ -57,9 +64,15 @@ namespace PSAP.PSAPCommon
                         }
                         string tmpValue = DataTypeConvert.GetString(dr[j]);
                         if (tmpValue != "")
-                            partLogStr += string.Format("{0}的值为[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
+                        {
+                            //partLogStr += string.Format("{0}的值为[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
+                            partLogStr += string.Format("{0}" + f.tsmiDzw.Text + "[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
+                        }
+
                     }
-                    typeStr = "新增";
+                    //typeStr = "新增";
+                    typeStr = f.tsmiXz.Text;
+
                 }
                 else if (dr.RowState == DataRowState.Modified)
                 {
@@ -75,9 +88,15 @@ namespace PSAP.PSAPCommon
                         string oldValue = DataTypeConvert.GetString(dr[j, DataRowVersion.Original]);
                         string newValue = DataTypeConvert.GetString(dr[j, DataRowVersion.Current]);
                         if (oldValue != newValue)
-                            partLogStr += string.Format("{0}的值由[{1}]变为[{2}]，", dataTable_NoHandle.Columns[j].Caption, oldValue, newValue);
+                        {
+                            //partLogStr += string.Format("{0}的值由[{1}]变为[{2}]，", dataTable_NoHandle.Columns[j].Caption, oldValue, newValue);
+                            partLogStr += string.Format("{0}" + f.tsmiDzy.Text + "[{1}]" + f.tsmiBw.Text + "[{2}]，", dataTable_NoHandle.Columns[j].Caption, oldValue, newValue);
+
+                        }
                     }
-                    typeStr = "修改";
+                    //typeStr = "修改";
+                    typeStr = f.tsmiXg.Text;
+
                 }
                 else if (dr.RowState == DataRowState.Deleted)
                 {
@@ -92,13 +111,21 @@ namespace PSAP.PSAPCommon
 
                         string tmpValue = DataTypeConvert.GetString(dr[j, DataRowVersion.Original]);
                         if (tmpValue != "")
-                            partLogStr += string.Format("{0}的原值为[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
+                        {
+                            //partLogStr += string.Format("{0}的原值为[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
+                            partLogStr += string.Format("{0}" + f.tsmiDyzw.Text + "[{1}]，", dataTable_NoHandle.Columns[j].Caption, tmpValue);
+
+                        }
                     }
-                    typeStr = "删除";
+                    //typeStr = "删除";
+                    typeStr = f.tsmiSc.Text;
+
                 }
             }
 
-            string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+            //string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+            string logStr = string.Format(f.tsmiD.Text + "[{0}]" + f.tsmiBjx.Text + "[{1}]" + f.tsmiCz.Text + "：" + f.tsmiZj.Text + "[{2}]" + f.tsmiDzw.Text + "[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+
             //MessageHandler.ShowMessageBox(logStr);
             RecordLog(cmd, logStr);
             return logStr;
@@ -131,9 +158,15 @@ namespace PSAP.PSAPCommon
                     }
                     string tmpValue = DataTypeConvert.GetString(Row_NoHandle[j]);
                     if (tmpValue != "")
-                        partLogStr += string.Format("{0}的值为[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+                    {
+                        //partLogStr += string.Format("{0}的值为[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+                        partLogStr += string.Format("{0}" + f.tsmiDzw.Text + "[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+
+                    }
                 }
-                typeStr = "新增";
+                //typeStr = "新增";
+                typeStr = f.tsmiXz.Text;
+
             }
             else if (Row_NoHandle.RowState == DataRowState.Modified)
             {
@@ -149,9 +182,15 @@ namespace PSAP.PSAPCommon
                     string oldValue = DataTypeConvert.GetString(Row_NoHandle[j, DataRowVersion.Original]);
                     string newValue = DataTypeConvert.GetString(Row_NoHandle[j, DataRowVersion.Current]);
                     if (oldValue != newValue)
-                        partLogStr += string.Format("{0}的值由[{1}]变为[{2}]，", Row_NoHandle.Table.Columns[j].Caption, oldValue, newValue);
+                    {
+                        //partLogStr += string.Format("{0}的值由[{1}]变为[{2}]，", Row_NoHandle.Table.Columns[j].Caption, oldValue, newValue);
+                        partLogStr += string.Format("{0}" + f.tsmiDzy.Text + "[{1}]" + f.tsmiBw.Text + "[{2}]，", Row_NoHandle.Table.Columns[j].Caption, oldValue, newValue);
+
+                    }
                 }
-                typeStr = "修改";
+                //typeStr = "修改";
+                typeStr = f.tsmiXg.Text;
+
             }
             else if (Row_NoHandle.RowState == DataRowState.Deleted)
             {
@@ -166,11 +205,17 @@ namespace PSAP.PSAPCommon
 
                     string tmpValue = DataTypeConvert.GetString(Row_NoHandle[j, DataRowVersion.Original]);
                     if (tmpValue != "")
-                        partLogStr += string.Format("{0}的原值为[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+                    {
+                        //partLogStr += string.Format("{0}的原值为[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+                        partLogStr += string.Format("{0}" + f.tsmiDyzw.Text + "[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+
+                    }
                 }
                 typeStr = "删除";
             }
-            string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+            //string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+            string logStr = string.Format(f.tsmiD.Text + "[{0}]" + f.tsmiBjx.Text + "[{1}]" + f.tsmiCz.Text + "：" + f.tsmiZj.Text + "[{2}]" + f.tsmiDzw.Text + "[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+
             //MessageHandler.ShowMessageBox(logStr);
             RecordLog(cmd, logStr);
             return logStr;
@@ -185,7 +230,8 @@ namespace PSAP.PSAPCommon
         public static string RecordLog_DeleteRow(SqlCommand cmd, string tableCaption, DataRow Row_NoHandle, string primaryKeyColumn)
         {
             string partLogStr = "";
-            string typeStr = "删除";
+            //string typeStr = "删除";
+            string typeStr = f.tsmiSc.Text;
             string pkCaption = "";
             string pkValue = "";
             for (int j = 0; j < Row_NoHandle.Table.Columns.Count; j++)
@@ -199,9 +245,14 @@ namespace PSAP.PSAPCommon
 
                 string tmpValue = DataTypeConvert.GetString(Row_NoHandle[j, DataRowVersion.Original]);
                 if (tmpValue != "")
-                    partLogStr += string.Format("{0}的原值为[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+                {
+                    //partLogStr += string.Format("{0}的原值为[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+                    partLogStr += string.Format("{0}" + f.tsmiDyzw.Text + "[{1}]，", Row_NoHandle.Table.Columns[j].Caption, tmpValue);
+
+                }
             }
-            string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+            //string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
+            string logStr = string.Format(f.tsmiD.Text + "[{0}]" + f.tsmiBjx.Text + "[{1}]" + f.tsmiCz.Text + "：" + f.tsmiZj.Text + "[{2}]" + f.tsmiDzw.Text + "[{3}]，{4}", tableCaption, typeStr, pkCaption, pkValue, partLogStr);
             RecordLog(cmd, logStr);
             return logStr;
         }
@@ -219,7 +270,8 @@ namespace PSAP.PSAPCommon
         {
             string pkCaption = Row_NoHandle.Table.Columns[primaryKeyColumn].Caption;
             string pkValue = DataTypeConvert.GetString(Row_NoHandle[primaryKeyColumn]);
-            string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，操作员为[{4}]，操作时间为[{5}]", tableCaption, OpType, pkCaption, pkValue, OpUser, OpTime);
+            //string logStr = string.Format("对[{0}]表进行[{1}]操作：主键[{2}]的值为[{3}]，操作员为[{4}]，操作时间为[{5}]", tableCaption, OpType, pkCaption, pkValue, OpUser, OpTime);
+            string logStr = string.Format(f.tsmiD.Text + "[{0}]" + f.tsmiBjx.Text + "[{1}]" + f.tsmiCz.Text + "：" + f.tsmiZj.Text + "[{2}]" + f.tsmiDzw.Text + "[{3}]，" + f.tsmiCzyw.Text + "[{4}]，" + f.tsmiCzsjw.Text + "[{5}]", tableCaption, OpType, pkCaption, pkValue, OpUser, OpTime);
             RecordLog(cmd, logStr);
             return logStr;
         }

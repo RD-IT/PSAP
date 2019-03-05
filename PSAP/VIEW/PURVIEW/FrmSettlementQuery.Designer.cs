@@ -108,6 +108,14 @@
             this.colInvoiceNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCtjz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCtjh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJzrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFkrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxan = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxjgcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSjcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinwwListAutoId.Properties)).BeginInit();
@@ -143,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -988,6 +997,61 @@
             this.pnlMiddle.Size = new System.Drawing.Size(1144, 471);
             this.pnlMiddle.TabIndex = 8;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCtjz,
+            this.tsmiCtjh,
+            this.tsmiJzrqbnwk,
+            this.tsmiFkrqbnwk,
+            this.tsmiCxan,
+            this.tsmiCxjgcw,
+            this.tsmiSjcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 180);
+            // 
+            // tsmiCtjz
+            // 
+            this.tsmiCtjz.Name = "tsmiCtjz";
+            this.tsmiCtjz.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCtjz.Text = "窗体加载事件错误。";
+            // 
+            // tsmiCtjh
+            // 
+            this.tsmiCtjh.Name = "tsmiCtjh";
+            this.tsmiCtjh.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCtjh.Text = "窗体激活事件错误";
+            // 
+            // tsmiJzrqbnwk
+            // 
+            this.tsmiJzrqbnwk.Name = "tsmiJzrqbnwk";
+            this.tsmiJzrqbnwk.Size = new System.Drawing.Size(316, 22);
+            this.tsmiJzrqbnwk.Text = "结账日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiFkrqbnwk
+            // 
+            this.tsmiFkrqbnwk.Name = "tsmiFkrqbnwk";
+            this.tsmiFkrqbnwk.Size = new System.Drawing.Size(316, 22);
+            this.tsmiFkrqbnwk.Text = "付款日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiCxan
+            // 
+            this.tsmiCxan.Name = "tsmiCxan";
+            this.tsmiCxan.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCxan.Text = "-查询按钮事件错误。";
+            // 
+            // tsmiCxjgcw
+            // 
+            this.tsmiCxjgcw.Name = "tsmiCxjgcw";
+            this.tsmiCxjgcw.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCxjgcw.Text = "查询结果存为Excel错误。";
+            // 
+            // tsmiSjcx
+            // 
+            this.tsmiSjcx.Name = "tsmiSjcx";
+            this.tsmiSjcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiSjcx.Text = "双击查询明细错误。";
+            // 
             // FrmSettlementQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1036,6 +1100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1121,5 +1186,13 @@
         private DevExpress.XtraEditors.PanelControl pnlMiddle;
         private DevExpress.XtraEditors.CheckEdit checkwwListAutoId;
         private DevExpress.XtraEditors.SpinEdit spinwwListAutoId;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCtjz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCtjh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJzrqbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFkrqbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxan;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxjgcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSjcx;
     }
 }

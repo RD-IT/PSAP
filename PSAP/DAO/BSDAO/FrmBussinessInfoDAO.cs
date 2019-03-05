@@ -15,6 +15,12 @@ namespace PSAP.DAO.BSDAO
         public static ArrayList strSqlLlist = new ArrayList();//存储SQL语句
         public static ArrayList strTablesName = new ArrayList();//存储返回表名
 
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public FrmBussinessInfoDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
         /// <summary>
         /// 初始化数据集（暂时不用）
         /// </summary>
@@ -45,7 +51,7 @@ namespace PSAP.DAO.BSDAO
         /// 删除相关数据
         /// </summary>
         /// <param name="strBussinessBaseNo"></param>
-        public static bool DeleteBussinessCorrelationData(string strBussinessBaseNo,DataSet dataSet1)
+        public static bool DeleteBussinessCorrelationData(string strBussinessBaseNo, DataSet dataSet1)
         {
             strSqlLlist.Clear();
             string strSql = @"delete from BS_BussinessDetailInfo where BussinessBaseNo like '" + strBussinessBaseNo + "'";
@@ -56,7 +62,7 @@ namespace PSAP.DAO.BSDAO
 
             strSql = @"delete from BS_BussinessBaseInfo where BussinessBaseNo like '" + strBussinessBaseNo + "'";
             strSqlLlist.Add(strSql);
-            return ExecuteSqlTranBI(strSqlLlist,dataSet1);
+            return ExecuteSqlTranBI(strSqlLlist, dataSet1);
         }
 
         /// <summary>
@@ -173,7 +179,7 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         /// <param name="dataSet1">要填充的数据集</param>
         /// <param name="gdvBussinessBaseInfo">主表gridControl</param>
-        public static void GetChildTableData(DataSet dataSet1,DevExpress.XtraGrid.Views.Grid.GridView gdvBussinessBaseInfo)
+        public static void GetChildTableData(DataSet dataSet1, DevExpress.XtraGrid.Views.Grid.GridView gdvBussinessBaseInfo)
         {
             dataSet1.Tables[1].Clear();
             string strSql = "select * from BS_BussinessDetailInfo where BussinessBaseNo like '" + gdvBussinessBaseInfo.GetRowCellValue(gdvBussinessBaseInfo.GetSelectedRows()[0], "BussinessBaseNo").ToString() + "'";
@@ -201,7 +207,9 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select AutoId, BussinessCategory, BussinessCategoryText from BS_BussinessCategory order by AutoId";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '' as BussinessCategory, '全部' as BussinessCategoryText union " + sqlStr;
+                //sqlStr = "select 0 as AutoId, '' as BussinessCategory, '全部' as BussinessCategoryText union " + sqlStr;
+                sqlStr = "select 0 as AutoId, '' as BussinessCategory,'" + f.tsmiQb.Text + "' as BussinessCategoryText union " + sqlStr;
+
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -214,7 +222,9 @@ namespace PSAP.DAO.BSDAO
             string sqlStr = "select CountryCode, CountryName from BS_CountryCodeManagement order by CountryCode";
             if (addAllItem)
             {
-                sqlStr = "select '全部' as CountryCode, '全部' as CountryName union " + sqlStr;
+                //sqlStr = "select '全部' as CountryCode, '全部' as CountryName union " + sqlStr;
+                sqlStr = "select '" + f.tsmiQb.Text + "' as CountryCode, '" + f.tsmiQb.Text + "' as CountryName union " + sqlStr;
+
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -240,7 +250,7 @@ namespace PSAP.DAO.BSDAO
         /// <summary>
         /// 更新往来方其他信息
         /// </summary>
-        public void Update_BussinessOtherInfo(SqlCommand cmd, DataTable detailInfoTable,DataTable FinancialInfoTable)
+        public void Update_BussinessOtherInfo(SqlCommand cmd, DataTable detailInfoTable, DataTable FinancialInfoTable)
         {
             DataRowState drs = detailInfoTable.Rows[0].RowState;
 

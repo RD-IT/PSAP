@@ -574,6 +574,10 @@ namespace PSAP.BLL.BSBLL
 
         #region 多语言系统功能%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+        /// <summary>
+        /// 窗口多语言处理
+        /// </summary>
+        /// <param name="FormOrDockContent"></param>
         public static void language(DockContent FormOrDockContent)
         {
             //form窗口多语言功能调用(放在初始化中)
@@ -583,10 +587,16 @@ namespace PSAP.BLL.BSBLL
             }
         }
 
+        /// <summary>
+        /// form窗口多语言功能调用(放在初始化中)
+        /// </summary>
+        /// <param name="FormOrDockContent"></param>
         public static void language(Form FormOrDockContent)
         {
-            //form窗口多语言功能调用(放在初始化中)
-            if (SystemInfo.user.Lanuage != "Chinese")
+            string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+            string lastLanguage = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLanguage");
+            //if (SystemInfo.user.Lanuage != "Chinese")
+            if (lastLanguage != "Chinese")
             {
                 BSBLL.SetFormLanguages(FormOrDockContent);//设置DockContent中的语种
             }

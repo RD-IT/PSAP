@@ -124,6 +124,16 @@
             this.colBfree1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBfree2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBfree3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCtjzsj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLjbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWlbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLjmc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLjfl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWjlj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiGgxh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWlbb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSPartsCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablePartsCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSPartsCode)).BeginInit();
@@ -154,6 +164,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlPartsCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPartsCode)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSPartsCode
@@ -328,7 +339,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(1875, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(1370, 40);
             this.pnlToolBar.TabIndex = 3;
             // 
             // pnlEdit
@@ -370,7 +381,7 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(1875, 209);
+            this.pnlEdit.Size = new System.Drawing.Size(1370, 209);
             this.pnlEdit.TabIndex = 7;
             // 
             // labUnit
@@ -775,7 +786,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 249);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(1875, 416);
+            this.pnlGrid.Size = new System.Drawing.Size(1370, 416);
             this.pnlGrid.TabIndex = 8;
             // 
             // gridCrlPartsCode
@@ -785,7 +796,7 @@
             this.gridCrlPartsCode.Location = new System.Drawing.Point(2, 2);
             this.gridCrlPartsCode.MainView = this.gridViewPartsCode;
             this.gridCrlPartsCode.Name = "gridCrlPartsCode";
-            this.gridCrlPartsCode.Size = new System.Drawing.Size(1871, 412);
+            this.gridCrlPartsCode.Size = new System.Drawing.Size(1366, 412);
             this.gridCrlPartsCode.TabIndex = 0;
             this.gridCrlPartsCode.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPartsCode});
@@ -1046,10 +1057,79 @@
             this.colBfree3.FieldName = "Bfree3";
             this.colBfree3.Name = "colBfree3";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCtjzsj,
+            this.tsmiLjbh,
+            this.tsmiWlbh,
+            this.tsmiLjmc,
+            this.tsmiLjfl,
+            this.tsmiWjlj,
+            this.tsmiGgxh,
+            this.tsmiWlbb,
+            this.tsmiDw});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(257, 224);
+            // 
+            // tsmiCtjzsj
+            // 
+            this.tsmiCtjzsj.Name = "tsmiCtjzsj";
+            this.tsmiCtjzsj.Size = new System.Drawing.Size(256, 22);
+            this.tsmiCtjzsj.Text = "窗体加载事件错误。";
+            // 
+            // tsmiLjbh
+            // 
+            this.tsmiLjbh.Name = "tsmiLjbh";
+            this.tsmiLjbh.Size = new System.Drawing.Size(256, 22);
+            this.tsmiLjbh.Text = "零件编号不能为空，请重新操作。";
+            // 
+            // tsmiWlbh
+            // 
+            this.tsmiWlbh.Name = "tsmiWlbh";
+            this.tsmiWlbh.Size = new System.Drawing.Size(256, 22);
+            this.tsmiWlbh.Text = "物料编号不能为空，请重新操作。";
+            // 
+            // tsmiLjmc
+            // 
+            this.tsmiLjmc.Name = "tsmiLjmc";
+            this.tsmiLjmc.Size = new System.Drawing.Size(256, 22);
+            this.tsmiLjmc.Text = "零件名称不能为空，请重新操作。";
+            // 
+            // tsmiLjfl
+            // 
+            this.tsmiLjfl.Name = "tsmiLjfl";
+            this.tsmiLjfl.Size = new System.Drawing.Size(256, 22);
+            this.tsmiLjfl.Text = "零件分类不能为空，请重新操作。";
+            // 
+            // tsmiWjlj
+            // 
+            this.tsmiWjlj.Name = "tsmiWjlj";
+            this.tsmiWjlj.Size = new System.Drawing.Size(256, 22);
+            this.tsmiWjlj.Text = "文件路径不能为空，请重新操作。";
+            // 
+            // tsmiGgxh
+            // 
+            this.tsmiGgxh.Name = "tsmiGgxh";
+            this.tsmiGgxh.Size = new System.Drawing.Size(256, 22);
+            this.tsmiGgxh.Text = "规格型号不能为空，请重新操作。";
+            // 
+            // tsmiWlbb
+            // 
+            this.tsmiWlbb.Name = "tsmiWlbb";
+            this.tsmiWlbb.Size = new System.Drawing.Size(256, 22);
+            this.tsmiWlbb.Text = "物料版本不能为空，请重新操作。";
+            // 
+            // tsmiDw
+            // 
+            this.tsmiDw.Name = "tsmiDw";
+            this.tsmiDw.Size = new System.Drawing.Size(256, 22);
+            this.tsmiDw.Text = "单位不能为空，请重新操作。";
+            // 
             // FrmPartsCode
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1875, 665);
+            this.ClientSize = new System.Drawing.Size(1370, 665);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.pnlToolBar);
@@ -1088,6 +1168,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlPartsCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPartsCode)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1189,5 +1270,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn colBfree1;
         private DevExpress.XtraGrid.Columns.GridColumn colBfree2;
         private DevExpress.XtraGrid.Columns.GridColumn colBfree3;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCtjzsj;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiLjbh;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWlbh;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiLjmc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiLjfl;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWjlj;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiGgxh;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWlbb;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDw;
     }
 }

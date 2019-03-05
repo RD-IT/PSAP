@@ -11,6 +11,7 @@ namespace PSAP.PSAPCommon
 {
     class ExceptionHandler
     {
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
         /// <summary>
         /// 处理异常方法
         /// </summary>
@@ -18,14 +19,18 @@ namespace PSAP.PSAPCommon
         /// <param name="exception">异常实例</param>
         public static void HandleException(string exceptionText, Exception exception)
         {
-            MessageHandler.ShowMessageBox(exceptionText+" 错误信息："+exception.Message);
-            new ExceptionHandler().OutputLog(exceptionText, exception);
+            //MessageHandler.ShowMessageBox(exceptionText + " 错误信息：" + exception.Message);
+            MessageHandler.ShowMessageBox(exceptionText + f.tsmiCwxx.Text + exception.Message);
+                        new ExceptionHandler().OutputLog(exceptionText, exception);
         }
 
         /// <summary>
         /// 构造方法
         /// </summary>
-        public ExceptionHandler() { }
+        public ExceptionHandler()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);//刷新窗口语言
+        }
 
         /// <summary>
         /// 捕获的异常记录本地日志
@@ -55,8 +60,9 @@ namespace PSAP.PSAPCommon
             }
             catch (Exception ex)
             {
-                MessageHandler.ShowMessageBox("记录异常日志失败-[" + ex.Message + "][" + exceptionText + "][" + exception.Message + "]");
-            }
+                //MessageHandler.ShowMessageBox("记录异常日志失败-[" + ex.Message + "][" + exceptionText + "][" + exception.Message + "]");
+                MessageHandler.ShowMessageBox(f.tsmiJlycrz.Text + ex.Message + "][" + exceptionText + "][" + exception.Message + "]");
+                            }
         }
 
         /// <summary>

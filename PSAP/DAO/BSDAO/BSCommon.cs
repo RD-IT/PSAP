@@ -143,8 +143,10 @@ namespace PSAP.DAO.BSDAO
         /// <returns></returns>
         public static DataTable GetFormLanuageData(string strFormName)
         {
+            string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+            string language = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLanguage");
             string sql =
-                "select AutoId,FormName,ControlsCategory,ControlsName,ControlsProperties," + SystemInfo.user.Lanuage + " as LanguageText " +
+                "select AutoId,FormName,ControlsCategory,ControlsName,ControlsProperties," + language + " as LanguageText " +
                 "from BS_LanguageSetting " +
                 "where FormName like '" + strFormName + "'";
             DataTable dt = BaseSQL.GetTableBySql(sql);

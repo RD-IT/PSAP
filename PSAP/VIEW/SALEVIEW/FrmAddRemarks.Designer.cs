@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtRemarks = new DevExpress.XtraEditors.MemoEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiBznr = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTs = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtRemarks
@@ -60,6 +65,26 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiBznr,
+            this.tsmiTs});
+            this.cms.Name = "cms1";
+            this.cms.Size = new System.Drawing.Size(185, 70);
+            // 
+            // tsmiBznr
+            // 
+            this.tsmiBznr.Name = "tsmiBznr";
+            this.tsmiBznr.Size = new System.Drawing.Size(184, 22);
+            this.tsmiBznr.Text = "备注内容不能为空！";
+            // 
+            // tsmiTs
+            // 
+            this.tsmiTs.Name = "tsmiTs";
+            this.tsmiTs.Size = new System.Drawing.Size(184, 22);
+            this.tsmiTs.Text = "提示";
+            // 
             // FrmAddRemarks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -73,6 +98,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "添加备注信息";
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -82,5 +108,8 @@
         private DevExpress.XtraEditors.MemoEdit txtRemarks;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBznr;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTs;
     }
 }

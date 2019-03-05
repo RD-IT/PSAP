@@ -47,6 +47,10 @@
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCt = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCglxbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCglxmc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSPurCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablePurCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSPurCategory)).BeginInit();
@@ -59,6 +63,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlPurCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPurCategory)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSPurCategory
@@ -212,6 +217,33 @@
             this.colPurCategoryText.VisibleIndex = 1;
             this.colPurCategoryText.Width = 160;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCt,
+            this.tsmiCglxbh,
+            this.tsmiCglxmc});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 92);
+            // 
+            // tsmiCt
+            // 
+            this.tsmiCt.Name = "tsmiCt";
+            this.tsmiCt.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCt.Text = "窗体加载事件错误。";
+            // 
+            // tsmiCglxbh
+            // 
+            this.tsmiCglxbh.Name = "tsmiCglxbh";
+            this.tsmiCglxbh.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCglxbh.Text = "采购类型编号不能为空，请重新操作。";
+            // 
+            // tsmiCglxmc
+            // 
+            this.tsmiCglxmc.Name = "tsmiCglxmc";
+            this.tsmiCglxmc.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCglxmc.Text = "采购类型名称不能为空，请重新操作。";
+            // 
             // FrmPurCategory
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -236,6 +268,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlPurCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPurCategory)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -260,5 +293,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn colPurCategory;
         private DevExpress.XtraGrid.Columns.GridColumn colPurCategoryText;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCt;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCglxbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCglxmc;
     }
 }

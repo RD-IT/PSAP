@@ -17,6 +17,11 @@ namespace PSAP.DAO.SALEDAO
     class FrmProjectDocumentDAO
     {
         public static ArrayList sqlLlist = new ArrayList();//存储SQL语句
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        public FrmProjectDocumentDAO()
+        {
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
 
         /// <summary>
         /// 获取项目子文件夹列表
@@ -38,7 +43,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -60,7 +65,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -91,7 +96,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -116,7 +121,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -138,7 +143,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -163,7 +168,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -187,7 +192,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -217,7 +222,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return -1;
             }
 
@@ -281,7 +286,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -303,7 +308,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
 
@@ -334,7 +339,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -361,7 +366,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -379,7 +384,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -404,7 +409,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -429,7 +434,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -448,7 +453,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -555,7 +560,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -582,7 +587,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -607,7 +612,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -632,7 +637,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -658,7 +663,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -688,7 +693,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -713,7 +718,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -738,7 +743,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -764,7 +769,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -795,7 +800,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -826,7 +831,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -886,7 +891,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
         }
@@ -909,7 +914,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -939,7 +944,7 @@ namespace PSAP.DAO.SALEDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return -1;
             }
         }

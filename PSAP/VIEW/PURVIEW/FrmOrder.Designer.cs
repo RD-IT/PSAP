@@ -183,6 +183,19 @@
             this.colPrReqNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrListAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCgddyj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCgdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWsp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBkycz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYjsp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYjgb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYjspz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWcxdyc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCgddzm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDsl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCgqgdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBkybc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprover.Properties)).BeginInit();
@@ -235,6 +248,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinTax1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -1849,6 +1863,96 @@
             this.splitterControl1.TabIndex = 4;
             this.splitterControl1.TabStop = false;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCgddyj,
+            this.tsmiCgdd,
+            this.tsmiWsp,
+            this.tsmiBkycz,
+            this.tsmiYjsp,
+            this.tsmiYjgb,
+            this.tsmiYjspz,
+            this.tsmiWcxdyc,
+            this.tsmiCgddzm,
+            this.tsmiDsl,
+            this.tsmiCgqgdd,
+            this.tsmiBkybc});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(353, 290);
+            // 
+            // tsmiCgddyj
+            // 
+            this.tsmiCgddyj.Name = "tsmiCgddyj";
+            this.tsmiCgddyj.Size = new System.Drawing.Size(352, 22);
+            this.tsmiCgddyj.Text = "采购订单已经有适用的入库单记录，不可以操作。";
+            // 
+            // tsmiCgdd
+            // 
+            this.tsmiCgdd.Name = "tsmiCgdd";
+            this.tsmiCgdd.Size = new System.Drawing.Size(352, 22);
+            this.tsmiCgdd.Text = "采购订单";
+            // 
+            // tsmiWsp
+            // 
+            this.tsmiWsp.Name = "tsmiWsp";
+            this.tsmiWsp.Size = new System.Drawing.Size(352, 22);
+            this.tsmiWsp.Text = "未审批";
+            // 
+            // tsmiBkycz
+            // 
+            this.tsmiBkycz.Name = "tsmiBkycz";
+            this.tsmiBkycz.Size = new System.Drawing.Size(352, 22);
+            this.tsmiBkycz.Text = "，不可以操作。";
+            // 
+            // tsmiYjsp
+            // 
+            this.tsmiYjsp.Name = "tsmiYjsp";
+            this.tsmiYjsp.Size = new System.Drawing.Size(352, 22);
+            this.tsmiYjsp.Text = "已经审批";
+            // 
+            // tsmiYjgb
+            // 
+            this.tsmiYjgb.Name = "tsmiYjgb";
+            this.tsmiYjgb.Size = new System.Drawing.Size(352, 22);
+            this.tsmiYjgb.Text = "已经关闭";
+            // 
+            // tsmiYjspz
+            // 
+            this.tsmiYjspz.Name = "tsmiYjspz";
+            this.tsmiYjspz.Size = new System.Drawing.Size(352, 22);
+            this.tsmiYjspz.Text = "已经审批中";
+            // 
+            // tsmiWcxdyc
+            // 
+            this.tsmiWcxdyc.Name = "tsmiWcxdyc";
+            this.tsmiWcxdyc.Size = new System.Drawing.Size(352, 22);
+            this.tsmiWcxdyc.Text = "未查询到要操作的采购订单，请刷新后再进行操作。";
+            // 
+            // tsmiCgddzm
+            // 
+            this.tsmiCgddzm.Name = "tsmiCgddzm";
+            this.tsmiCgddzm.Size = new System.Drawing.Size(352, 22);
+            this.tsmiCgddzm.Text = "采购订单中明细";
+            // 
+            // tsmiDsl
+            // 
+            this.tsmiDsl.Name = "tsmiDsl";
+            this.tsmiDsl.Size = new System.Drawing.Size(352, 22);
+            this.tsmiDsl.Text = "的数量";
+            // 
+            // tsmiCgqgdd
+            // 
+            this.tsmiCgqgdd.Name = "tsmiCgqgdd";
+            this.tsmiCgqgdd.Size = new System.Drawing.Size(352, 22);
+            this.tsmiCgqgdd.Text = "超过请购单的数量";
+            // 
+            // tsmiBkybc
+            // 
+            this.tsmiBkybc.Name = "tsmiBkybc";
+            this.tsmiBkybc.Size = new System.Drawing.Size(352, 22);
+            this.tsmiBkybc.Text = "不可以保存。";
+            // 
             // FrmOrder
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1916,6 +2020,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinTax1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2076,5 +2181,18 @@
         private DevExpress.XtraEditors.SimpleButton btnListAdd;
         private System.Data.DataColumn dataColPrListAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn colPrListAutoId;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCgddyj;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCgdd;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWsp;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiBkycz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiYjsp;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiYjgb;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiYjspz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiWcxdyc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCgddzm;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDsl;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCgqgdd;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiBkybc;
     }
 }

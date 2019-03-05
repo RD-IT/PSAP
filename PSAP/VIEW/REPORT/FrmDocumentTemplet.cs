@@ -44,7 +44,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -91,7 +92,8 @@ namespace PSAP.VIEW.BSVIEW
                             default:
                                 return;
                         }
-                        if (MessageHandler.ShowMessageBox_YesNo("模板设计完是否要上传更新服务器的版本吗?") == DialogResult.Yes)
+                        //if (MessageHandler.ShowMessageBox_YesNo("模板设计完是否要上传更新服务器的版本吗?") == DialogResult.Yes)
+                        if (MessageHandler.ShowMessageBox_YesNo(tsmiMbsjwsf.Text) == DialogResult.Yes)
                         {
                             //if (MessageHandler.ShowMessageBox_YesNo("模板确认上传更新服务器的版本吗?") == DialogResult.Yes)
                             {
@@ -103,7 +105,8 @@ namespace PSAP.VIEW.BSVIEW
                         }
                         break;
                     case "上传":
-                        if (MessageHandler.ShowMessageBox_YesNo("模板确认上传更新服务器的版本吗?") == DialogResult.Yes)
+                        //if (MessageHandler.ShowMessageBox_YesNo("模板确认上传更新服务器的版本吗?") == DialogResult.Yes)
+                        if (MessageHandler.ShowMessageBox_YesNo(tsmiMbqrsc.Text) == DialogResult.Yes)
                         {
                             if (docDAO.UpdateDocTemplet_File(tableNameStr))
                             {
@@ -122,7 +125,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--上传单据模板事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--上传单据模板事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiScdjmb.Text, ex);
             }
         }
 
@@ -158,7 +162,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定树的单元格显示事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定树的单元格显示事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSdsddyg.Text, ex);
             }
         }
 
@@ -180,7 +185,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定树的显示编辑事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定树的显示编辑事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSdsdxsbj.Text, ex);
             }
         }
 
@@ -197,15 +203,18 @@ namespace PSAP.VIEW.BSVIEW
                     if (oldDocVersionValue != docVersionStr)
                     {
                         string moduleNameStr = DataTypeConvert.GetString(e.Node["ModuleName"]);
-                        if (MessageHandler.ShowMessageBox_YesNo(string.Format("确认更新模块【{0}】的打印模板的版本号吗？（更新版本号后，所有站点将会重新下载最新的打印模板）", moduleNameStr)) == DialogResult.Yes)
+                        //if (MessageHandler.ShowMessageBox_YesNo(string.Format("确认更新模块【{0}】的打印模板的版本号吗？（更新版本号后，所有站点将会重新下载最新的打印模板）", moduleNameStr)) == DialogResult.Yes)
+                        if (MessageHandler.ShowMessageBox_YesNo(string.Format(tsmiQrgxmk.Text + "【{0}】" + tsmiDdymbd.Text, moduleNameStr)) == DialogResult.Yes)
                         {
                             string tableNameStr = DataTypeConvert.GetString(e.Node["TableName"]).Trim();
                             if (docDAO.UpdateDocTemplet_Version(tableNameStr, docVersionStr))
                             {
-                                MessageHandler.ShowMessageBox(string.Format("模块【{0}】的版本号更新成功。", moduleNameStr));
+                                //MessageHandler.ShowMessageBox(string.Format("模块【{0}】的版本号更新成功。", moduleNameStr));
+                                MessageHandler.ShowMessageBox(string.Format(tsmiMk.Text + "【{0}】" + tsmiDbbhgxcg.Text, moduleNameStr));
                             }
                             else
-                                MessageHandler.ShowMessageBox(string.Format("模块【{0}】的版本号更新失败。", moduleNameStr));
+                                //MessageHandler.ShowMessageBox(string.Format("模块【{0}】的版本号更新失败。", moduleNameStr));
+                                MessageHandler.ShowMessageBox(string.Format(tsmiMk.Text + "【{0}】" + tsmiDbbhgxsb.Text, moduleNameStr));
                             QueryDocTemplet();
                             SetEditState(false);
                             treeListDocTemp.FocusedNode = e.Node;
@@ -221,7 +230,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--单元格改变更新数据库事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--单元格改变更新数据库事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiDyggb.Text, ex);
             }
         }
 
@@ -242,7 +252,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--聚焦的列变更事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--聚焦的列变更事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiJjdlbg.Text, ex);
             }
         }
 
@@ -263,7 +274,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--聚焦的行变更事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--聚焦的行变更事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiJjdhbg.Text, ex);
             }
         }
 
@@ -281,7 +293,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void SetEditState(bool editState)
         {
-            if(editState)
+            if (editState)
             {
                 treeColDocVersion.OptionsColumn.AllowEdit = editState;
                 treeColDocVersion.AppearanceHeader.ForeColor = Color.Red;

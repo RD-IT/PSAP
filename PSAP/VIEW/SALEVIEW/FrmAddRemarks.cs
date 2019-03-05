@@ -18,12 +18,14 @@ namespace PSAP.VIEW.BSVIEW
         public FrmAddRemarks()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmAddRemarks(ListView lv0)
         {
             InitializeComponent();
             lv = lv0;
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace PSAP.VIEW.BSVIEW
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            
+
         }
 
         /// <summary>
@@ -46,7 +48,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (string.IsNullOrEmpty(txtRemarks.Text.Trim()))
             {
-                MessageBox.Show("备注内容不能为空！", "消息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("备注内容不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(tsmiBznr.Text, tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

@@ -17,6 +17,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmPurCategory()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -48,7 +49,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+tsmiCt.Text , ex);
             }
         }
 
@@ -59,13 +61,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textPurCategory.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("采购类型编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCglxbh.Text );// ("采购类型编号不能为空，请重新操作。");
                 textPurCategory.Focus();
                 return false;
             }
             if (textPurCategoryText.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("采购类型名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCglxmc.Text );// ("采购类型名称不能为空，请重新操作。");
                 textPurCategoryText.Focus();
                 return false;
             }

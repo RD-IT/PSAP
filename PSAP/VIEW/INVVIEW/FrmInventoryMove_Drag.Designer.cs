@@ -183,6 +183,11 @@
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labIMDate = new DevExpress.XtraEditors.LabelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiKcyddz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDsl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCgdqdk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBkybc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_IM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMList)).BeginInit();
@@ -242,6 +247,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet_IM
@@ -877,7 +883,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(350, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(1054, 681);
+            this.pnlRight.Size = new System.Drawing.Size(1020, 681);
             this.pnlRight.TabIndex = 2;
             // 
             // pnlBottom
@@ -887,7 +893,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(2, 271);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1050, 408);
+            this.pnlBottom.Size = new System.Drawing.Size(1016, 408);
             this.pnlBottom.TabIndex = 7;
             // 
             // btnListAdd
@@ -914,7 +920,7 @@
             this.repbtnDelete,
             this.repSearchOutProjectNo,
             this.repSearchOutShelfNo});
-            this.gridControlIMList.Size = new System.Drawing.Size(1046, 404);
+            this.gridControlIMList.Size = new System.Drawing.Size(1012, 404);
             this.gridControlIMList.TabIndex = 2;
             this.gridControlIMList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIMList});
@@ -1287,7 +1293,7 @@
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitterControl1.Location = new System.Drawing.Point(2, 266);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1050, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1016, 5);
             this.splitterControl1.TabIndex = 6;
             this.splitterControl1.TabStop = false;
             // 
@@ -1299,7 +1305,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1050, 186);
+            this.pnlMiddle.Size = new System.Drawing.Size(1016, 186);
             this.pnlMiddle.TabIndex = 3;
             // 
             // checkAll
@@ -1325,7 +1331,7 @@
             this.repLookUpReqDep,
             this.repCheckSelect,
             this.repLookUpInRepertoryNo});
-            this.gridControlIMHead.Size = new System.Drawing.Size(1046, 148);
+            this.gridControlIMHead.Size = new System.Drawing.Size(1012, 148);
             this.gridControlIMHead.TabIndex = 3;
             this.gridControlIMHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIMHead});
@@ -1521,7 +1527,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1046, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1012, 34);
             this.pnlMiddleTop.TabIndex = 2;
             // 
             // btnPreview
@@ -1596,7 +1602,7 @@
             this.pnltop.Location = new System.Drawing.Point(2, 2);
             this.pnltop.Margin = new System.Windows.Forms.Padding(4);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1050, 78);
+            this.pnltop.Size = new System.Drawing.Size(1016, 78);
             this.pnltop.TabIndex = 1;
             // 
             // lookUpOutRpertoryNo
@@ -1792,10 +1798,44 @@
             this.labIMDate.TabIndex = 5;
             this.labIMDate.Text = "移动日期：";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiKcyddz,
+            this.tsmiDsl,
+            this.tsmiCgdqdk,
+            this.tsmiBkybc});
+            this.cms.Name = "cmsCommonHandler";
+            this.cms.Size = new System.Drawing.Size(185, 114);
+            // 
+            // tsmiKcyddz
+            // 
+            this.tsmiKcyddz.Name = "tsmiKcyddz";
+            this.tsmiKcyddz.Size = new System.Drawing.Size(184, 22);
+            this.tsmiKcyddz.Text = "库存移动单中明细";
+            // 
+            // tsmiDsl
+            // 
+            this.tsmiDsl.Name = "tsmiDsl";
+            this.tsmiDsl.Size = new System.Drawing.Size(184, 22);
+            this.tsmiDsl.Text = "的数量";
+            // 
+            // tsmiCgdqdk
+            // 
+            this.tsmiCgdqdk.Name = "tsmiCgdqdk";
+            this.tsmiCgdqdk.Size = new System.Drawing.Size(184, 22);
+            this.tsmiCgdqdk.Text = "超过当前的库存数量";
+            // 
+            // tsmiBkybc
+            // 
+            this.tsmiBkybc.Name = "tsmiBkybc";
+            this.tsmiBkybc.Size = new System.Drawing.Size(184, 22);
+            this.tsmiBkybc.Text = "不可以保存。";
+            // 
             // FrmInventoryMove_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1404, 681);
+            this.ClientSize = new System.Drawing.Size(1370, 681);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.dockPnlLeft);
             this.Name = "FrmInventoryMove_Drag";
@@ -1865,6 +1905,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2024,5 +2065,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn colModifier;
         private DevExpress.XtraEditors.CheckEdit checkZero;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiKcyddz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDsl;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCgdqdk;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiBkybc;
     }
 }
