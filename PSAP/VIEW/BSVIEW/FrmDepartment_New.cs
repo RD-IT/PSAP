@@ -203,7 +203,7 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 if (bSDepartment.Current != null)
-                {
+                { 
                     if (((DataRowView)bSDepartment.Current).IsEdit)
                     {
                         int oldId = e.OldNode == null ? 0 : DataTypeConvert.GetInt(e.OldNode["AutoId"]);

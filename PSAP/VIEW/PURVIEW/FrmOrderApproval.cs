@@ -42,7 +42,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprovalType.Properties.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryApprovalType(false);
                 switch(orderHeadNoStr.Substring(0,2))
                 {
-                    case "PO":
+                    case "PO": 
                         approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
                         if (dataSet_Order.Tables[0].Rows.Count == 0)
                         {
