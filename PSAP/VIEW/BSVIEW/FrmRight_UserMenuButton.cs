@@ -20,6 +20,7 @@ namespace PSAP.VIEW.BSVIEW
 
         public static MenuStrip mnsRight = new MenuStrip();//权限管理用户主菜单
         public static MenuStrip mnsMainMenu = new MenuStrip();//主菜单管理
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         DataTable dtblTmp = new DataTable();
         DataTable dtblTmp1 = new DataTable();
@@ -29,6 +30,8 @@ namespace PSAP.VIEW.BSVIEW
             InitializeComponent();
             InitControl();
             PSAP.BLL.BSBLL.BSBLL.language(this);
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+
         }
 
         private void InitControl()
@@ -69,7 +72,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -92,7 +96,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询用户权限信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询用户权限信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxyhqxxxcw.Text, ex);
             }
         }
 
@@ -121,7 +126,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询用户的权限事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询用户的权限事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxyhdqxsjcw.Text, ex);
             }
         }
 
@@ -137,7 +143,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--根据选择节点状态更新树其他节点状态错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--根据选择节点状态更新树其他节点状态错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiGjxzjdztgxsqtjd.Text, ex);
             }
         }
 
@@ -191,7 +198,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (!string.IsNullOrEmpty(DataTypeConvert.GetString(cboRoleName.EditValue)))
                 {
-                    dgvUserList.SetFocusedRowCellValue(dgvUserList.Columns[4],cboRoleName.Text);
+                    dgvUserList.SetFocusedRowCellValue(dgvUserList.Columns[4], cboRoleName.Text);
                     dgvUserList.SetFocusedRowCellValue(dgvUserList.Columns[5], cboRoleName.EditValue);
                     FrmRightDAO.SaveRoleUser(cboRoleName.EditValue.ToString(), DataTypeConvert.GetInt(dgvUserList.GetFocusedDataRow()[0]));
                     FrmRightDAO.GiveRoleAllButtonRight();
@@ -199,11 +206,12 @@ namespace PSAP.VIEW.BSVIEW
                 FrmRightBLL.SavePersonalRightFromTree(tvwUserRight, dgvUserList);//遍历树保存权限
 
                 //FrmMain.frmMain.tsrLblCurrentStatusText = "【用户权限】已成功保存";
-                MessageHandler.ShowMessageBox("【用户权限】已成功保存。");
+                MessageHandler.ShowMessageBox(tsmiYhqxycgbc.Text);// ("【用户权限】已成功保存。");
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询用户权限信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询用户权限信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxyhqxxxcw.Text, ex);
             }
         }
 

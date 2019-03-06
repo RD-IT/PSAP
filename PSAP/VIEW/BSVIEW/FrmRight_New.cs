@@ -17,6 +17,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmRight_New()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         FrmRight_UserMenuButton userForm;
@@ -78,7 +79,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--选择当前查看的用户权限页错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--选择当前查看的用户权限页错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiXz.Text, ex);
             }
         }
     }

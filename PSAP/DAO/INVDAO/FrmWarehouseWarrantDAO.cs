@@ -12,7 +12,7 @@ namespace PSAP.DAO.INVDAO
 {
     public class FrmWarehouseWarrantDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmWarehouseWarrant_Drag f = new VIEW.BSVIEW.FrmWarehouseWarrant_Drag();
+        static PSAP.VIEW.BSVIEW.FrmLanguageINVDAO f = new VIEW.BSVIEW.FrmLanguageINVDAO();
         public FrmWarehouseWarrantDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

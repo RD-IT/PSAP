@@ -138,6 +138,8 @@
             this.colShelfId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repSearchShelfId = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmidgribnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOrderList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderList)).BeginInit();
@@ -172,6 +174,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpRepertoryNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchShelfId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet_Order
@@ -1250,6 +1253,19 @@
             this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmidgribnwk});
+            this.cms.Name = "contextMenuStrip1";
+            this.cms.Size = new System.Drawing.Size(317, 48);
+            // 
+            // tsmidgribnwk
+            // 
+            this.tsmidgribnwk.Name = "tsmidgribnwk";
+            this.tsmidgribnwk.Size = new System.Drawing.Size(316, 22);
+            this.tsmidgribnwk.Text = "订购日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmOrderListAndWarehouseWarrantList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1296,6 +1312,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpRepertoryNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchShelfId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1411,5 +1428,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpRepertoryNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchShelfId;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmidgribnwk;
     }
 }

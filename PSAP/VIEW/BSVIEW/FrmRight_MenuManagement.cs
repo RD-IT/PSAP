@@ -81,13 +81,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textMenuText.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("菜单名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCdmcbnwk.Text );// ("菜单名称不能为空，请重新操作。");
                 textMenuText.Focus();
                 return false;
             }
             if(DataTypeConvert.GetString(gridViewMenu.GetFocusedDataRow()["MenuName"])== DataTypeConvert.GetString(gridViewMenu.GetFocusedDataRow()["ParentMenuName"]))
             {
-                MessageHandler.ShowMessageBox("上级菜单不能和当前菜单相同，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiSjcdbnh.Text );// ("上级菜单不能和当前菜单相同，请重新操作。");
                 lookUpParentMenuName.Focus();
                 return false;
             }

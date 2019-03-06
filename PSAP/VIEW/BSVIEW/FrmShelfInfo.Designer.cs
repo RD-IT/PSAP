@@ -51,6 +51,9 @@
             this.colShelfNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShelfLocation = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShelfDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiHjbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHjwzbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSShelfInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableShelfInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSShelfInfo)).BeginInit();
@@ -64,6 +67,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlShelfInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewShelfInfo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSShelfInfo
@@ -254,6 +258,26 @@
             this.colShelfDescription.VisibleIndex = 2;
             this.colShelfDescription.Width = 240;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiHjbhbnwk,
+            this.tsmiHjwzbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
+            // 
+            // tsmiHjbhbnwk
+            // 
+            this.tsmiHjbhbnwk.Name = "tsmiHjbhbnwk";
+            this.tsmiHjbhbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiHjbhbnwk.Text = "货架编号不能为空，请重新操作。";
+            // 
+            // tsmiHjwzbnwk
+            // 
+            this.tsmiHjwzbnwk.Name = "tsmiHjwzbnwk";
+            this.tsmiHjwzbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiHjwzbnwk.Text = "货架位置不能为空，请重新操作。";
+            // 
             // FrmShelfInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -279,6 +303,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlShelfInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewShelfInfo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -307,5 +332,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colShelfNo;
         private DevExpress.XtraGrid.Columns.GridColumn colShelfLocation;
         private DevExpress.XtraGrid.Columns.GridColumn colShelfDescription;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHjbhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHjwzbnwk;
     }
 }

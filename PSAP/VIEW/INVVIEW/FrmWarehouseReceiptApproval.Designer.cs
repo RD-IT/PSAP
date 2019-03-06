@@ -84,6 +84,8 @@
             this.colLoginId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOrderHeadNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApproverTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCxckdxxcwqcxcz = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
@@ -101,6 +103,7 @@
             this.pnlMiddle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWRAppInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewWRAppInfo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -392,7 +395,7 @@
             this.pnlBottom.Controls.Add(this.btnCancel);
             this.pnlBottom.Controls.Add(this.btnApproval);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 322);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(584, 40);
             this.pnlBottom.TabIndex = 8;
@@ -430,7 +433,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
+            this.pnlMiddle.Size = new System.Drawing.Size(584, 233);
             this.pnlMiddle.TabIndex = 9;
             // 
             // gridCrlWRAppInfo
@@ -440,7 +443,7 @@
             this.gridCrlWRAppInfo.Location = new System.Drawing.Point(2, 2);
             this.gridCrlWRAppInfo.MainView = this.gridViewWRAppInfo;
             this.gridCrlWRAppInfo.Name = "gridCrlWRAppInfo";
-            this.gridCrlWRAppInfo.Size = new System.Drawing.Size(580, 228);
+            this.gridCrlWRAppInfo.Size = new System.Drawing.Size(580, 229);
             this.gridCrlWRAppInfo.TabIndex = 10;
             this.gridCrlWRAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWRAppInfo});
@@ -551,10 +554,23 @@
             this.colApproverTime.VisibleIndex = 5;
             this.colApproverTime.Width = 135;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCxckdxxcwqcxcz});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(269, 48);
+            // 
+            // tsmiCxckdxxcwqcxcz
+            // 
+            this.tsmiCxckdxxcwqcxcz.Name = "tsmiCxckdxxcwqcxcz";
+            this.tsmiCxckdxxcwqcxcz.Size = new System.Drawing.Size(268, 22);
+            this.tsmiCxckdxxcwqcxcz.Text = "查询出库单信息错误，请重新操作。";
+            // 
             // FrmWarehouseReceiptApproval
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnlTop);
@@ -585,6 +601,7 @@
             this.pnlMiddle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWRAppInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewWRAppInfo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -646,5 +663,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colOrderHeadNo;
         private DevExpress.XtraGrid.Columns.GridColumn colApproverTime;
         private System.Data.DataColumn dataColApprovalCat;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxckdxxcwqcxcz;
     }
 }

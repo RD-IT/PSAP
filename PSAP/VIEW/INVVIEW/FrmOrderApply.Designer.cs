@@ -171,6 +171,9 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.BtnConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiQxzysydygcgd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQxzysydcgddmxjl = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).BeginInit();
@@ -218,6 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPayTypeNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -1641,6 +1645,26 @@
             this.BtnConfirm.Text = "确定";
             this.BtnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiQxzysydygcgd,
+            this.tsmiQxzysydcgddmxjl});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(341, 70);
+            // 
+            // tsmiQxzysydygcgd
+            // 
+            this.tsmiQxzysydygcgd.Name = "tsmiQxzysydygcgd";
+            this.tsmiQxzysydygcgd.Size = new System.Drawing.Size(340, 22);
+            this.tsmiQxzysydygcgd.Text = "请选择要适用的一个采购单，请重新操作。";
+            // 
+            // tsmiQxzysydcgddmxjl
+            // 
+            this.tsmiQxzysydcgddmxjl.Name = "tsmiQxzysydcgddmxjl";
+            this.tsmiQxzysydcgddmxjl.Size = new System.Drawing.Size(340, 22);
+            this.tsmiQxzysydcgddmxjl.Text = "请选择要适用的采购订单明细记录，请重新操作。";
+            // 
             // FrmOrderApply
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1704,6 +1728,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpPayTypeNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1852,5 +1877,8 @@
         public System.Data.DataSet dataSet_Order;
         public DevExpress.XtraGrid.Views.Grid.GridView gridViewOrderHead;
         private System.Data.DataColumn dataColProjectName;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzysydygcgd;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQxzysydcgddmxjl;
     }
 }

@@ -18,10 +18,13 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmOrderDAO orderDAO = new FrmOrderDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmOrderListAndWarehouseWarrantList()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -60,7 +63,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCtjzsjcw.Text , ex);
             }
         }
 
@@ -101,7 +105,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dateOrderDateBegin.EditValue == null || dateOrderDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("订购日期不能为空，请设置后重新进行查询。");
+                    MessageHandler.ShowMessageBox(tsmidgribnwk.Text);// ("订购日期不能为空，请设置后重新进行查询。");
                     if (dateOrderDateBegin.EditValue == null)
                         dateOrderDateBegin.Focus();
                     else
@@ -127,7 +131,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCxansjcw.Text , ex);
             }
         }
 
@@ -142,7 +147,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCxjgcwexcelcw.Text , ex);
             }
         }
 
@@ -164,7 +170,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiSjcxmxcw.Text , ex);
             }
         }
 
@@ -202,7 +209,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiSzgriddyghbcw.Text , ex);
             }
         }
     }

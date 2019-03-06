@@ -12,7 +12,7 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmPayTypeDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmPayType f = new VIEW.BSVIEW.FrmPayType();
+        static PSAP.VIEW.BSVIEW.FrmLanguagePURDAO f = new VIEW.BSVIEW.FrmLanguagePURDAO();
         public FrmPayTypeDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

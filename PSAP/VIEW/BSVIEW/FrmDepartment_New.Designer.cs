@@ -90,6 +90,11 @@
             this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
             this.pnlDepartment = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiBmbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBmmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXztj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXzxj = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSDepartment)).BeginInit();
@@ -112,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlDepartment)).BeginInit();
             this.pnlDepartment.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSDepartment
@@ -618,6 +624,40 @@
             this.splitterMiddle.TabIndex = 13;
             this.splitterMiddle.TabStop = false;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiBmbhbnwk,
+            this.tsmiBmmcbnwk,
+            this.tsmiXztj,
+            this.tsmiXzxj});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 114);
+            // 
+            // tsmiBmbhbnwk
+            // 
+            this.tsmiBmbhbnwk.Name = "tsmiBmbhbnwk";
+            this.tsmiBmbhbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiBmbhbnwk.Text = "部门编号不能为空，请重新操作。";
+            // 
+            // tsmiBmmcbnwk
+            // 
+            this.tsmiBmmcbnwk.Name = "tsmiBmmcbnwk";
+            this.tsmiBmmcbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiBmmcbnwk.Text = "部门名称不能为空，请重新操作。";
+            // 
+            // tsmiXztj
+            // 
+            this.tsmiXztj.Name = "tsmiXztj";
+            this.tsmiXztj.Size = new System.Drawing.Size(256, 22);
+            this.tsmiXztj.Text = "新增同级部门错误。";
+            // 
+            // tsmiXzxj
+            // 
+            this.tsmiXzxj.Name = "tsmiXzxj";
+            this.tsmiXzxj.Size = new System.Drawing.Size(256, 22);
+            this.tsmiXzxj.Text = "新增下级部门错误。";
+            // 
             // FrmDepartment_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -654,6 +694,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlDepartment)).EndInit();
             this.pnlDepartment.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -722,5 +763,10 @@
         private DevExpress.XtraBars.BarButtonItem barBtnDown;
         private DevExpress.XtraEditors.PanelControl pnlDepartment;
         private DevExpress.XtraEditors.SplitterControl splitterMiddle;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBmbhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBmmcbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXztj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXzxj;
     }
 }

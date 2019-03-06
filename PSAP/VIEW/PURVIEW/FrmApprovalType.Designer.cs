@@ -53,6 +53,10 @@
             this.colTypeNoText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprovalCat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSplxbxxz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSplxmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSplxbmbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dSApprovalType)).BeginInit();
@@ -67,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewApprovalType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).BeginInit();
             this.pnlGrid.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlToolBar
@@ -288,6 +293,33 @@
             this.pnlGrid.Size = new System.Drawing.Size(811, 200);
             this.pnlGrid.TabIndex = 9;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSplxbmbnwk,
+            this.tsmiSplxmcbnwk,
+            this.tsmiSplxbxxz});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 92);
+            // 
+            // tsmiSplxbxxz
+            // 
+            this.tsmiSplxbxxz.Name = "tsmiSplxbxxz";
+            this.tsmiSplxbxxz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSplxbxxz.Text = "审批类型必须选择，请重新操作。";
+            // 
+            // tsmiSplxmcbnwk
+            // 
+            this.tsmiSplxmcbnwk.Name = "tsmiSplxmcbnwk";
+            this.tsmiSplxmcbnwk.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSplxmcbnwk.Text = "审批类型名称不能为空，请重新操作。";
+            // 
+            // tsmiSplxbmbnwk
+            // 
+            this.tsmiSplxbmbnwk.Name = "tsmiSplxbmbnwk";
+            this.tsmiSplxbmbnwk.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSplxbmbnwk.Text = "审批类型编码不能为空，请重新操作。";
+            // 
             // FrmApprovalType
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -314,6 +346,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewApprovalType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).EndInit();
             this.pnlGrid.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -344,5 +377,9 @@
         private DevExpress.XtraEditors.SimpleButton btnApprovalList;
         private DevExpress.XtraEditors.PanelControl pnlGrid;
         private DevExpress.XtraEditors.LabelControl labApprovalCatDesc;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplxbmbnwk;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplxmcbnwk;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplxbxxz;
     }
 }

@@ -51,6 +51,10 @@
             this.colPayPercentum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repItemSpinPayPercentum = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colPayPercentumText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiFklx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDxx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFkbfbd = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSPayTypeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablePayTypeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSPayTypeList)).BeginInit();
@@ -62,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPayTypeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpPayType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemSpinPayPercentum)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSPayTypeList
@@ -170,7 +175,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 40);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(584, 321);
+            this.pnlGrid.Size = new System.Drawing.Size(584, 322);
             this.pnlGrid.TabIndex = 11;
             // 
             // gridCrlPayTypeList
@@ -183,7 +188,7 @@
             this.gridCrlPayTypeList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repItemLookUpPayType,
             this.repItemSpinPayPercentum});
-            this.gridCrlPayTypeList.Size = new System.Drawing.Size(580, 317);
+            this.gridCrlPayTypeList.Size = new System.Drawing.Size(580, 318);
             this.gridCrlPayTypeList.TabIndex = 8;
             this.gridCrlPayTypeList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPayTypeList});
@@ -273,10 +278,37 @@
             this.colPayPercentumText.VisibleIndex = 2;
             this.colPayPercentumText.Width = 150;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFklx,
+            this.tsmiDxx,
+            this.tsmiFkbfbd});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(314, 92);
+            // 
+            // tsmiFklx
+            // 
+            this.tsmiFklx.Name = "tsmiFklx";
+            this.tsmiFklx.Size = new System.Drawing.Size(313, 22);
+            this.tsmiFklx.Text = "付款类型";
+            // 
+            // tsmiDxx
+            // 
+            this.tsmiDxx.Name = "tsmiDxx";
+            this.tsmiDxx.Size = new System.Drawing.Size(313, 22);
+            this.tsmiDxx.Text = "的信息";
+            // 
+            // tsmiFkbfbd
+            // 
+            this.tsmiFkbfbd.Name = "tsmiFkbfbd";
+            this.tsmiFkbfbd.Size = new System.Drawing.Size(313, 22);
+            this.tsmiFkbfbd.Text = "付款百分比的合计必须是100，请重新操作。";
+            // 
             // FrmPayTypeList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlToolBar);
             this.MaximizeBox = false;
@@ -299,6 +331,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPayTypeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpPayType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemSpinPayPercentum)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -327,5 +360,9 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnNew;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repItemSpinPayPercentum;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFklx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDxx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFkbfbd;
     }
 }

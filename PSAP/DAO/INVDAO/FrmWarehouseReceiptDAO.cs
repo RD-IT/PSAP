@@ -12,7 +12,7 @@ namespace PSAP.DAO.INVDAO
 {
     class FrmWarehouseReceiptDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmWarehouseReceipt_Drag f = new VIEW.BSVIEW.FrmWarehouseReceipt_Drag();
+        static PSAP.VIEW.BSVIEW.FrmLanguageINVDAO f = new VIEW.BSVIEW.FrmLanguageINVDAO();
         public FrmWarehouseReceiptDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

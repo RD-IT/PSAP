@@ -50,6 +50,11 @@
             this.colWarehouseWarrantTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWarehouseWarrantTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDefault = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSdmrrklbcg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRklb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRklbbhbnwkqcxcz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRklbmcbnwkqcxcz = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSWarehouseWarrantType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableWarehouseWarrantType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSWarehouseWarrantType)).BeginInit();
@@ -63,6 +68,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWarehouseWarrantType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewWarehouseWarrantType)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSWarehouseWarrantType
@@ -248,6 +254,40 @@
             this.colIsDefault.VisibleIndex = 2;
             this.colIsDefault.Width = 100;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSdmrrklbcg,
+            this.tsmiRklb,
+            this.tsmiRklbbhbnwkqcxcz,
+            this.tsmiRklbmcbnwkqcxcz});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 114);
+            // 
+            // tsmiSdmrrklbcg
+            // 
+            this.tsmiSdmrrklbcg.Name = "tsmiSdmrrklbcg";
+            this.tsmiSdmrrklbcg.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSdmrrklbcg.Text = "设定默认入库类别成功。";
+            // 
+            // tsmiRklb
+            // 
+            this.tsmiRklb.Name = "tsmiRklb";
+            this.tsmiRklb.Size = new System.Drawing.Size(280, 22);
+            this.tsmiRklb.Text = "入库类别";
+            // 
+            // tsmiRklbbhbnwkqcxcz
+            // 
+            this.tsmiRklbbhbnwkqcxcz.Name = "tsmiRklbbhbnwkqcxcz";
+            this.tsmiRklbbhbnwkqcxcz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiRklbbhbnwkqcxcz.Text = "入库类别编号不能为空，请重新操作。";
+            // 
+            // tsmiRklbmcbnwkqcxcz
+            // 
+            this.tsmiRklbmcbnwkqcxcz.Name = "tsmiRklbmcbnwkqcxcz";
+            this.tsmiRklbmcbnwkqcxcz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiRklbmcbnwkqcxcz.Text = "入库类别名称不能为空，请重新操作。";
+            // 
             // FrmWarehouseWarrantType
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -273,6 +313,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWarehouseWarrantType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewWarehouseWarrantType)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -300,5 +341,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colWarehouseWarrantTypeName;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDefault;
         private DevExpress.XtraEditors.SimpleButton btnSetDefault;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSdmrrklbcg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRklb;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRklbbhbnwkqcxcz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRklbmcbnwkqcxcz;
     }
 }

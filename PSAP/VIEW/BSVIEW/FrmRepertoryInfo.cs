@@ -15,10 +15,13 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmRepertoryInfo : DockContent
     {
         FrmBaseEdit editForm = null;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmRepertoryInfo()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -50,7 +53,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -61,13 +65,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textRepertoryNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("仓库编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCkbhbnwk.Text);// ("仓库编号不能为空，请重新操作。");
                 textRepertoryNo.Focus();
                 return false;
             }
             if (textRepertoryName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("仓库名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCkmcbnwk.Text);// ("仓库名称不能为空，请重新操作。");
                 textRepertoryName.Focus();
                 return false;
             }

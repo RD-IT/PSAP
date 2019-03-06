@@ -18,10 +18,14 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmBaseEdit editForm = null;
         FrmWarehouseWarrantDAO wwDAO = new FrmWarehouseWarrantDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmWarehouseReceiptType()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
+
         }
 
         /// <summary>
@@ -55,7 +59,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -66,13 +71,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textWarehouseReceiptTypeNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("出库类别编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCklbbhbnwkqcxcz.Text);// ("出库类别编号不能为空，请重新操作。");
                 textWarehouseReceiptTypeNo.Focus();
                 return false;
             }
             if (textWarehouseReceiptTypeName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("出库类别名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCklbmcbnwkqcxcz.Text);// ("出库类别名称不能为空，请重新操作。");
                 textWarehouseReceiptTypeName.Focus();
                 return false;
             }
@@ -124,19 +129,20 @@ namespace PSAP.VIEW.BSVIEW
                     {
                         if (wwDAO.Update_WarehouseType_Default(DataTypeConvert.GetString(dr["WarehouseReceiptTypeNo"]), "BS_WarehouseReceiptType", "WarehouseReceiptTypeNo", "出库类别"))
                         {
-                            MessageHandler.ShowMessageBox("设定默认出库类别成功。");
+                            MessageHandler.ShowMessageBox(tsmiSdmrcklbcg.Text);// ("设定默认出库类别成功。");
                             editForm.btnRefresh_Click(null, null);
                         }
                     }
                 }
                 else
                 {
-                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                    MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定默认类型事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定默认类型事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdmrlxsjcw.Text, ex);
             }
         }
     }

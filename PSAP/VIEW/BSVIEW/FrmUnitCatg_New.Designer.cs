@@ -51,6 +51,9 @@
             this.colUnitNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiDwbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDwmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSUnitCatg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableUnitCatg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSUnitCatg)).BeginInit();
@@ -64,6 +67,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlUnitCatg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUnitCatg)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSUnitCatg
@@ -255,6 +259,26 @@
             this.colUnitDescription.VisibleIndex = 2;
             this.colUnitDescription.Width = 180;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDwbhbnwk,
+            this.tsmiDwmcbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
+            // 
+            // tsmiDwbhbnwk
+            // 
+            this.tsmiDwbhbnwk.Name = "tsmiDwbhbnwk";
+            this.tsmiDwbhbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiDwbhbnwk.Text = "单位编号不能为空，请重新操作。";
+            // 
+            // tsmiDwmcbnwk
+            // 
+            this.tsmiDwmcbnwk.Name = "tsmiDwmcbnwk";
+            this.tsmiDwmcbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiDwmcbnwk.Text = "单位名称不能为空，请重新操作。";
+            // 
             // FrmUnitCatg_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -280,6 +304,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlUnitCatg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUnitCatg)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -308,5 +333,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colUnitDescription;
         private DevExpress.XtraEditors.TextEdit textUnitDescription;
         private DevExpress.XtraEditors.LabelControl labUnitDescription;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDwbhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDwmcbnwk;
     }
 }

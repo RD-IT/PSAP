@@ -50,6 +50,10 @@
             this.colWarehouseReceiptTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWarehouseReceiptTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsDefault = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSdmrcklbcg = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCklbbhbnwkqcxcz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCklbmcbnwkqcxcz = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseReceiptTypeName.Properties)).BeginInit();
@@ -63,6 +67,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWarehouseReceiptType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewWarehouseReceiptType)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEdit
@@ -248,6 +253,33 @@
             this.colIsDefault.VisibleIndex = 2;
             this.colIsDefault.Width = 100;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSdmrcklbcg,
+            this.tsmiCklbbhbnwkqcxcz,
+            this.tsmiCklbmcbnwkqcxcz});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 92);
+            // 
+            // tsmiSdmrcklbcg
+            // 
+            this.tsmiSdmrcklbcg.Name = "tsmiSdmrcklbcg";
+            this.tsmiSdmrcklbcg.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSdmrcklbcg.Text = "设定默认出库类别成功。";
+            // 
+            // tsmiCklbbhbnwkqcxcz
+            // 
+            this.tsmiCklbbhbnwkqcxcz.Name = "tsmiCklbbhbnwkqcxcz";
+            this.tsmiCklbbhbnwkqcxcz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCklbbhbnwkqcxcz.Text = "出库类别编号不能为空，请重新操作。";
+            // 
+            // tsmiCklbmcbnwkqcxcz
+            // 
+            this.tsmiCklbmcbnwkqcxcz.Name = "tsmiCklbmcbnwkqcxcz";
+            this.tsmiCklbmcbnwkqcxcz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCklbmcbnwkqcxcz.Text = "出库类别名称不能为空，请重新操作。";
+            // 
             // FrmWarehouseReceiptType
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -273,6 +305,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlWarehouseReceiptType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewWarehouseReceiptType)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -300,5 +333,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colWarehouseReceiptTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colWarehouseReceiptTypeName;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDefault;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSdmrcklbcg;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCklbbhbnwkqcxcz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCklbmcbnwkqcxcz;
     }
 }

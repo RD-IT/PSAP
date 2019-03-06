@@ -57,6 +57,11 @@
             this.colProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStnNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRemark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiXm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDzhxx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiZhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXmhbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSStnList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableStnList)).BeginInit();
@@ -71,6 +76,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlStnList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStnList)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlToolBar
@@ -240,7 +246,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 137);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(784, 424);
+            this.pnlGrid.Size = new System.Drawing.Size(784, 425);
             this.pnlGrid.TabIndex = 6;
             // 
             // gridCrlStnList
@@ -250,7 +256,7 @@
             this.gridCrlStnList.Location = new System.Drawing.Point(2, 2);
             this.gridCrlStnList.MainView = this.gridViewStnList;
             this.gridCrlStnList.Name = "gridCrlStnList";
-            this.gridCrlStnList.Size = new System.Drawing.Size(780, 420);
+            this.gridCrlStnList.Size = new System.Drawing.Size(780, 421);
             this.gridCrlStnList.TabIndex = 0;
             this.gridCrlStnList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewStnList});
@@ -323,10 +329,44 @@
             this.colRemark.VisibleIndex = 3;
             this.colRemark.Width = 200;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiXm,
+            this.tsmiDzhxx,
+            this.tsmiZhbnwk,
+            this.tsmiXmhbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(245, 114);
+            // 
+            // tsmiXm
+            // 
+            this.tsmiXm.Name = "tsmiXm";
+            this.tsmiXm.Size = new System.Drawing.Size(244, 22);
+            this.tsmiXm.Text = "项目";
+            // 
+            // tsmiDzhxx
+            // 
+            this.tsmiDzhxx.Name = "tsmiDzhxx";
+            this.tsmiDzhxx.Size = new System.Drawing.Size(244, 22);
+            this.tsmiDzhxx.Text = "的站号信息";
+            // 
+            // tsmiZhbnwk
+            // 
+            this.tsmiZhbnwk.Name = "tsmiZhbnwk";
+            this.tsmiZhbnwk.Size = new System.Drawing.Size(244, 22);
+            this.tsmiZhbnwk.Text = "站号不能为空，请重新操作。";
+            // 
+            // tsmiXmhbnwk
+            // 
+            this.tsmiXmhbnwk.Name = "tsmiXmhbnwk";
+            this.tsmiXmhbnwk.Size = new System.Drawing.Size(244, 22);
+            this.tsmiXmhbnwk.Text = "项目号不能为空，请重新操作。";
+            // 
             // FrmStnList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.pnlToolBar);
@@ -355,6 +395,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlStnList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStnList)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -389,5 +430,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColProjectNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColProjectName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColRemark;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXm;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDzhxx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiZhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXmhbnwk;
     }
 }

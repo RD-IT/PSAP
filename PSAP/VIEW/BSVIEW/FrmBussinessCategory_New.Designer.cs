@@ -47,6 +47,9 @@
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBussinessCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSywllbbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSywllbmc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSBussinessCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableBussinessCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSBussinessCategory)).BeginInit();
@@ -59,6 +62,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlBussinessCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBussinessCategory)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSBussinessCategory
@@ -214,6 +218,26 @@
             this.colBussinessCategoryText.VisibleIndex = 1;
             this.colBussinessCategoryText.Width = 180;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSywllbbh,
+            this.tsmiSywllbmc});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(305, 70);
+            // 
+            // tsmiSywllbbh
+            // 
+            this.tsmiSywllbbh.Name = "tsmiSywllbbh";
+            this.tsmiSywllbbh.Size = new System.Drawing.Size(304, 22);
+            this.tsmiSywllbbh.Text = "商业往来类别编号不能为空，请重新操作。";
+            // 
+            // tsmiSywllbmc
+            // 
+            this.tsmiSywllbmc.Name = "tsmiSywllbmc";
+            this.tsmiSywllbmc.Size = new System.Drawing.Size(304, 22);
+            this.tsmiSywllbmc.Text = "商业往来类别名称不能为空，请重新操作。";
+            // 
             // FrmBussinessCategory_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -238,6 +262,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlBussinessCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBussinessCategory)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -262,5 +287,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn colBussinessCategory;
         private DevExpress.XtraGrid.Columns.GridColumn colBussinessCategoryText;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSywllbbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSywllbmc;
     }
 }

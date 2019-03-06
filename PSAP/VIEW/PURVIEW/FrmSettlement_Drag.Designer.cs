@@ -291,6 +291,7 @@
             this.tsmiDqcgjzd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiZbjjhg = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTjl = new System.Windows.Forms.ToolStripMenuItem();
             this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiWlfbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkbm = new System.Windows.Forms.ToolStripMenuItem();
@@ -331,7 +332,6 @@
             this.tsmiSxtzrk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzcgjz = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiTjl = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerLeft)).BeginInit();
             this.dockPnlLeft.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -446,7 +446,7 @@
             this.dockPnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.ID = new System.Guid("d81639c1-8c02-4585-88a1-522441f412f6");
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
-            this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.dockPnlLeft.Location = new System.Drawing.Point(0, 24);
             this.dockPnlLeft.Name = "dockPnlLeft";
             this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
             this.dockPnlLeft.Options.AllowDockBottom = false;
@@ -458,7 +458,7 @@
             this.dockPnlLeft.Options.ShowCloseButton = false;
             this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 581);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 557);
             this.dockPnlLeft.Text = "入库单";
             // 
             // dockPanel1_Container
@@ -469,7 +469,7 @@
             this.dockPanel1_Container.Controls.Add(this.pnlLeftTop);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 554);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 530);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // pnlLeftBottom
@@ -478,7 +478,7 @@
             this.pnlLeftBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftBottom.Location = new System.Drawing.Point(0, 332);
             this.pnlLeftBottom.Name = "pnlLeftBottom";
-            this.pnlLeftBottom.Size = new System.Drawing.Size(342, 222);
+            this.pnlLeftBottom.Size = new System.Drawing.Size(342, 198);
             this.pnlLeftBottom.TabIndex = 3;
             // 
             // gridControlWWList
@@ -495,7 +495,7 @@
             this.repSpinWWQty,
             this.repositoryItemSearchLookUpEdit2,
             this.repSearchShelfId});
-            this.gridControlWWList.Size = new System.Drawing.Size(338, 218);
+            this.gridControlWWList.Size = new System.Drawing.Size(338, 194);
             this.gridControlWWList.TabIndex = 4;
             this.gridControlWWList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWWList});
@@ -2911,7 +2911,7 @@
             this.tsmiBc,
             this.tsmiTjl});
             this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(365, 466);
+            this.cms.Size = new System.Drawing.Size(365, 488);
             // 
             // tsmiCgjzd
             // 
@@ -3032,6 +3032,12 @@
             this.tsmiBc.Name = "tsmiBc";
             this.tsmiBc.Size = new System.Drawing.Size(364, 22);
             this.tsmiBc.Text = "保存";
+            // 
+            // tsmiTjl
+            // 
+            this.tsmiTjl.Name = "tsmiTjl";
+            this.tsmiTjl.Size = new System.Drawing.Size(364, 22);
+            this.tsmiTjl.Text = "条记录。";
             // 
             // cms1
             // 
@@ -3200,7 +3206,7 @@
             this.tsmiSxtzrk,
             this.tsmiYzcgjz});
             this.cms2.Name = "cmsCommonHandler";
-            this.cms2.Size = new System.Drawing.Size(329, 400);
+            this.cms2.Size = new System.Drawing.Size(329, 378);
             // 
             // tsmiZbsd
             // 
@@ -3308,12 +3314,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // tsmiTjl
-            // 
-            this.tsmiTjl.Name = "tsmiTjl";
-            this.tsmiTjl.Size = new System.Drawing.Size(364, 22);
-            this.tsmiTjl.Text = "条记录。";
             // 
             // FrmSettlement_Drag
             // 

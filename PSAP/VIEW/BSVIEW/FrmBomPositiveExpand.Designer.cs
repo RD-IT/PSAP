@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.pnlTree = new DevExpress.XtraEditors.PanelControl();
             this.treeListBom = new DevExpress.XtraTreeList.TreeList();
@@ -45,6 +46,7 @@
             this.CCatgName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.CFilePath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.labPartsCodeId = new DevExpress.XtraEditors.LabelControl();
             this.searchCodeFileName = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -52,7 +54,11 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCtjzsj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiZxcxlj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSjckbom = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxjgcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).BeginInit();
             this.pnlBom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTree)).BeginInit();
@@ -62,6 +68,7 @@
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBom
@@ -255,6 +262,15 @@
             this.pnlTop.Size = new System.Drawing.Size(1015, 68);
             this.pnlTop.TabIndex = 0;
             // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.Location = new System.Drawing.Point(408, 22);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveExcel.TabIndex = 105;
+            this.btnSaveExcel.Text = "存为Excel";
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            // 
             // btnQuery
             // 
             this.btnQuery.Location = new System.Drawing.Point(310, 22);
@@ -321,14 +337,39 @@
             this.gridColumn2.FieldName = "AutoId";
             this.gridColumn2.Name = "gridColumn2";
             // 
-            // btnSaveExcel
+            // cms
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(408, 22);
-            this.btnSaveExcel.Name = "btnSaveExcel";
-            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 105;
-            this.btnSaveExcel.Text = "存为Excel";
-            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCtjzsj,
+            this.tsmiZxcxlj,
+            this.tsmiSjckbom,
+            this.tsmiCxjgcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(248, 114);
+            // 
+            // tsmiCtjzsj
+            // 
+            this.tsmiCtjzsj.Name = "tsmiCtjzsj";
+            this.tsmiCtjzsj.Size = new System.Drawing.Size(247, 22);
+            this.tsmiCtjzsj.Text = "窗体加载事件错误。";
+            // 
+            // tsmiZxcxlj
+            // 
+            this.tsmiZxcxlj.Name = "tsmiZxcxlj";
+            this.tsmiZxcxlj.Size = new System.Drawing.Size(247, 22);
+            this.tsmiZxcxlj.Text = "正向查询零件的Bom信息错误。";
+            // 
+            // tsmiSjckbom
+            // 
+            this.tsmiSjckbom.Name = "tsmiSjckbom";
+            this.tsmiSjckbom.Size = new System.Drawing.Size(247, 22);
+            this.tsmiSjckbom.Text = "双击查看Bom信息错误。";
+            // 
+            // tsmiCxjgcw
+            // 
+            this.tsmiCxjgcw.Name = "tsmiCxjgcw";
+            this.tsmiCxjgcw.Size = new System.Drawing.Size(247, 22);
+            this.tsmiCxjgcw.Text = "查询结果存为Excel错误。";
             // 
             // FrmBomPositiveExpand
             // 
@@ -349,6 +390,7 @@
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -380,5 +422,10 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn CCatgName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn CFilePath;
         private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCtjzsj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiZxcxlj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSjckbom;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxjgcw;
     }
 }

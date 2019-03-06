@@ -59,6 +59,10 @@
             this.colMenuName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentMenuName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentMenuText1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiJsbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJsmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXzjsckqxcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSRole)).BeginInit();
@@ -76,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlTreeList)).BeginInit();
             this.pnlTreeList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListRole)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSRole
@@ -343,6 +348,33 @@
             this.colParentMenuText1.FieldName = "ParentMenuText";
             this.colParentMenuText1.Name = "colParentMenuText1";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiJsbhbnwk,
+            this.tsmiJsmcbnwk,
+            this.tsmiXzjsckqxcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 92);
+            // 
+            // tsmiJsbhbnwk
+            // 
+            this.tsmiJsbhbnwk.Name = "tsmiJsbhbnwk";
+            this.tsmiJsbhbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiJsbhbnwk.Text = "角色编号不能为空，请重新操作。";
+            // 
+            // tsmiJsmcbnwk
+            // 
+            this.tsmiJsmcbnwk.Name = "tsmiJsmcbnwk";
+            this.tsmiJsmcbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiJsmcbnwk.Text = "角色名称不能为空，请重新操作。";
+            // 
+            // tsmiXzjsckqxcw
+            // 
+            this.tsmiXzjsckqxcw.Name = "tsmiXzjsckqxcw";
+            this.tsmiXzjsckqxcw.Size = new System.Drawing.Size(256, 22);
+            this.tsmiXzjsckqxcw.Text = "选中角色查看权限错误。";
+            // 
             // FrmRight_Role
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -372,6 +404,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlTreeList)).EndInit();
             this.pnlTreeList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListRole)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -408,5 +441,9 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentMenuName1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentMenuText1;
         private DevExpress.XtraEditors.SplitterControl splitterMiddle;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJsbhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJsmcbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXzjsckqxcw;
     }
 }

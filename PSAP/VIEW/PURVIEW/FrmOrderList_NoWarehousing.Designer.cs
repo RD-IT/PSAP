@@ -142,6 +142,9 @@
             this.colOverplus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPayTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiJhdhribnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDgrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOrderList)).BeginInit();
@@ -179,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // bindingSource_OrderList
@@ -1321,6 +1325,26 @@
             this.colPrice.VisibleIndex = 8;
             this.colPrice.Width = 85;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiJhdhribnwk,
+            this.tsmiDgrqbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(341, 70);
+            // 
+            // tsmiJhdhribnwk
+            // 
+            this.tsmiJhdhribnwk.Name = "tsmiJhdhribnwk";
+            this.tsmiJhdhribnwk.Size = new System.Drawing.Size(340, 22);
+            this.tsmiJhdhribnwk.Text = "计划到货日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiDgrqbnwk
+            // 
+            this.tsmiDgrqbnwk.Name = "tsmiDgrqbnwk";
+            this.tsmiDgrqbnwk.Size = new System.Drawing.Size(340, 22);
+            this.tsmiDgrqbnwk.Text = "订购日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmOrderList_NoWarehousing
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1370,6 +1394,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1489,5 +1514,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colOverplus;
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJhdhribnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDgrqbnwk;
     }
 }

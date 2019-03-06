@@ -11,7 +11,7 @@ namespace PSAP.DAO.BSDAO
 {
     class FrmBomManagementDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmBomManagement f = new VIEW.BSVIEW.FrmBomManagement();
+        static PSAP.VIEW.BSVIEW.FrmLanguageBSDAO f = new VIEW.BSVIEW.FrmLanguageBSDAO();
         public FrmBomManagementDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

@@ -16,14 +16,17 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 采购单号
         /// </summary>
-        string orderHeadNoStr ="";
+        string orderHeadNoStr = "";
 
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmOrderApproval()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmOrderApproval(string orderHeadNo)
@@ -44,7 +47,7 @@ namespace PSAP.VIEW.BSVIEW
                 approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
                 if (dataSet_Order.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("查询采购订单信息错误，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiCxcgddxxcw.Text);// ("查询采购订单信息错误，请重新操作。");
                     return;
                 }
                 string typeNoStr = DataTypeConvert.GetString(dataSet_Order.Tables[0].Rows[0]["ApprovalType"]);
@@ -58,7 +61,7 @@ namespace PSAP.VIEW.BSVIEW
                         if (DataTypeConvert.GetString(dataSet_Order.Tables[1].Rows[i]["OrderHeadNo"]) == "")
                         {
                             if (DataTypeConvert.GetInt(dataSet_Order.Tables[1].Rows[i]["Approver"]) != SystemInfo.user.AutoId)
-                                btnApproval.Enabled = false;                                
+                                btnApproval.Enabled = false;
                             else
                                 btnApproval.Enabled = true;
                             return;
@@ -76,7 +79,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -98,7 +102,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());                
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -126,16 +130,17 @@ namespace PSAP.VIEW.BSVIEW
                 {
 
                 }
-                if(successCountInt>0)
+                if (successCountInt > 0)
                 {
-                    MessageHandler.ShowMessageBox("审批成功。");
+                    MessageHandler.ShowMessageBox(f.tsmiSpcg.Text);// ("审批成功。");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSpansj.Text, ex);
             }
         }
 

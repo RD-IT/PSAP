@@ -183,11 +183,47 @@
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labIMDate = new DevExpress.XtraEditors.LabelControl();
+            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDqrkdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkckbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRklbbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSplxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSlbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHjbhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQgsyansjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkdmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxmxdsyjcgdcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxmxdxyjcgjzdcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDgrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxcgddsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJjcxcgddmxsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSxtzcgddsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYzrkdzrxxtdxmhjxdj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYzrkdzrxxtdgysjxdj = new System.Windows.Forms.ToolStripMenuItem();
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiKcyddz = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDsl = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCgdqdk = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBkybc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDqckdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkckbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCklbbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkdmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYzkcyddbxxz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYdrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDqkcyddyjxghh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSqbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkxmhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkhjhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkxmhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkhjhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkdckxmhhjhhrk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSxtddqkcsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_IM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMList)).BeginInit();
@@ -247,6 +283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties)).BeginInit();
+            this.cms1.SuspendLayout();
             this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -473,7 +510,7 @@
             this.dockPnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.ID = new System.Guid("b4bf55cd-2af8-430c-bdda-dcc8c365bf19");
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
-            this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.dockPnlLeft.Location = new System.Drawing.Point(0, 24);
             this.dockPnlLeft.Name = "dockPnlLeft";
             this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
             this.dockPnlLeft.Options.AllowDockBottom = false;
@@ -485,7 +522,7 @@
             this.dockPnlLeft.Options.ShowCloseButton = false;
             this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 681);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 657);
             this.dockPnlLeft.Text = "当前库存";
             // 
             // dockPanel1_Container
@@ -494,7 +531,7 @@
             this.dockPanel1_Container.Controls.Add(this.pnlLeftTop);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 654);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 630);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // pnlLeftMiddle
@@ -503,7 +540,7 @@
             this.pnlLeftMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftMiddle.Location = new System.Drawing.Point(0, 93);
             this.pnlLeftMiddle.Name = "pnlLeftMiddle";
-            this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 561);
+            this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 537);
             this.pnlLeftMiddle.TabIndex = 2;
             // 
             // gridControlWNowInfo
@@ -516,7 +553,7 @@
             this.gridControlWNowInfo.Name = "gridControlWNowInfo";
             this.gridControlWNowInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repLookUpRepertoryNo});
-            this.gridControlWNowInfo.Size = new System.Drawing.Size(338, 557);
+            this.gridControlWNowInfo.Size = new System.Drawing.Size(338, 533);
             this.gridControlWNowInfo.TabIndex = 4;
             this.gridControlWNowInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWNowInfo});
@@ -1798,39 +1835,288 @@
             this.labIMDate.TabIndex = 5;
             this.labIMDate.Text = "移动日期：";
             // 
+            // cms1
+            // 
+            this.cms1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRkrqbnwkcx,
+            this.tsmiDqrkdyjxghh,
+            this.tsmiRkbmbnwkbc,
+            this.tsmiRkckbnwkbc,
+            this.tsmiRklbbnwkbc,
+            this.tsmiSplxbnwkbc,
+            this.tsmiRkmxbnwkbc,
+            this.tsmiSlbnwkbc,
+            this.tsmiHjbhbnwkbc,
+            this.tsmiQgsyansjcw,
+            this.tsmiRkdmxbnwkbc,
+            this.tsmiCxmxdsyjcgdcw,
+            this.tsmiCxmxdxyjcgjzdcw,
+            this.tsmiDgrqbnwkcx,
+            this.tsmiCxcgddsjcw,
+            this.tsmiJjcxcgddmxsjcw,
+            this.tsmiSxtzcgddsjcw,
+            this.tsmiYzrkdzrxxtdxmhjxdj,
+            this.tsmiYzrkdzrxxtdgysjxdj});
+            this.cms1.Name = "cms";
+            this.cms1.Size = new System.Drawing.Size(365, 422);
+            // 
+            // tsmiRkrqbnwkcx
+            // 
+            this.tsmiRkrqbnwkcx.Name = "tsmiRkrqbnwkcx";
+            this.tsmiRkrqbnwkcx.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkrqbnwkcx.Text = "入库日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiDqrkdyjxghh
+            // 
+            this.tsmiDqrkdyjxghh.Name = "tsmiDqrkdyjxghh";
+            this.tsmiDqrkdyjxghh.Size = new System.Drawing.Size(364, 22);
+            this.tsmiDqrkdyjxghh.Text = "当前入库单已经修改，请保存后再进行换行。";
+            // 
+            // tsmiRkbmbnwkbc
+            // 
+            this.tsmiRkbmbnwkbc.Name = "tsmiRkbmbnwkbc";
+            this.tsmiRkbmbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkbmbnwkbc.Text = "入库部门不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRkckbnwkbc
+            // 
+            this.tsmiRkckbnwkbc.Name = "tsmiRkckbnwkbc";
+            this.tsmiRkckbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkckbnwkbc.Text = "入库仓库不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRklbbnwkbc
+            // 
+            this.tsmiRklbbnwkbc.Name = "tsmiRklbbnwkbc";
+            this.tsmiRklbbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRklbbnwkbc.Text = "入库类别不能为空，请填写后再进行保存。";
+            // 
+            // tsmiSplxbnwkbc
+            // 
+            this.tsmiSplxbnwkbc.Name = "tsmiSplxbnwkbc";
+            this.tsmiSplxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSplxbnwkbc.Text = "审批类型不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRkmxbnwkbc
+            // 
+            this.tsmiRkmxbnwkbc.Name = "tsmiRkmxbnwkbc";
+            this.tsmiRkmxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkmxbnwkbc.Text = "入库单明细不能为空，请重新订单适用后再进行保存。";
+            // 
+            // tsmiSlbnwkbc
+            // 
+            this.tsmiSlbnwkbc.Name = "tsmiSlbnwkbc";
+            this.tsmiSlbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSlbnwkbc.Text = "数量不能为空，请填写后再进行保存。";
+            // 
+            // tsmiHjbhbnwkbc
+            // 
+            this.tsmiHjbhbnwkbc.Name = "tsmiHjbhbnwkbc";
+            this.tsmiHjbhbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiHjbhbnwkbc.Text = "货架编号不能为空，请填写后再进行保存。";
+            // 
+            // tsmiQgsyansjcw
+            // 
+            this.tsmiQgsyansjcw.Name = "tsmiQgsyansjcw";
+            this.tsmiQgsyansjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiQgsyansjcw.Text = "请购适用按钮事件错误。";
+            // 
+            // tsmiRkdmxbnwkbc
+            // 
+            this.tsmiRkdmxbnwkbc.Name = "tsmiRkdmxbnwkbc";
+            this.tsmiRkdmxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkdmxbnwkbc.Text = "入库单明细不能为空，请重新订单适用后再进行保存。";
+            // 
+            // tsmiCxmxdsyjcgdcw
+            // 
+            this.tsmiCxmxdsyjcgdcw.Name = "tsmiCxmxdsyjcgdcw";
+            this.tsmiCxmxdsyjcgdcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiCxmxdsyjcgdcw.Text = "查询明细的上一级采购单错误。";
+            // 
+            // tsmiCxmxdxyjcgjzdcw
+            // 
+            this.tsmiCxmxdxyjcgjzdcw.Name = "tsmiCxmxdxyjcgjzdcw";
+            this.tsmiCxmxdxyjcgjzdcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiCxmxdxyjcgjzdcw.Text = "查询明细的下一级采购结账单错误。";
+            // 
+            // tsmiDgrqbnwkcx
+            // 
+            this.tsmiDgrqbnwkcx.Name = "tsmiDgrqbnwkcx";
+            this.tsmiDgrqbnwkcx.Size = new System.Drawing.Size(364, 22);
+            this.tsmiDgrqbnwkcx.Text = "订购日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiCxcgddsjcw
+            // 
+            this.tsmiCxcgddsjcw.Name = "tsmiCxcgddsjcw";
+            this.tsmiCxcgddsjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiCxcgddsjcw.Text = "查询采购订单事件错误。";
+            // 
+            // tsmiJjcxcgddmxsjcw
+            // 
+            this.tsmiJjcxcgddmxsjcw.Name = "tsmiJjcxcgddmxsjcw";
+            this.tsmiJjcxcgddmxsjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiJjcxcgddmxsjcw.Text = "聚焦查询采购订单明细事件错误。";
+            // 
+            // tsmiSxtzcgddsjcw
+            // 
+            this.tsmiSxtzcgddsjcw.Name = "tsmiSxtzcgddsjcw";
+            this.tsmiSxtzcgddsjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSxtzcgddsjcw.Text = "实现拖拽采购订单事件错误。";
+            // 
+            // tsmiYzrkdzrxxtdxmhjxdj
+            // 
+            this.tsmiYzrkdzrxxtdxmhjxdj.Name = "tsmiYzrkdzrxxtdxmhjxdj";
+            this.tsmiYzrkdzrxxtdxmhjxdj.Size = new System.Drawing.Size(364, 22);
+            this.tsmiYzrkdzrxxtdxmhjxdj.Text = "\"一张入库单只允许相同的项目号进行登记。";
+            // 
+            // tsmiYzrkdzrxxtdgysjxdj
+            // 
+            this.tsmiYzrkdzrxxtdgysjxdj.Name = "tsmiYzrkdzrxxtdgysjxdj";
+            this.tsmiYzrkdzrxxtdgysjxdj.Size = new System.Drawing.Size(364, 22);
+            this.tsmiYzrkdzrxxtdgysjxdj.Text = "一张入库单只允许相同的供应商进行登记。";
+            // 
             // cms
             // 
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiKcyddz,
-            this.tsmiDsl,
-            this.tsmiCgdqdk,
-            this.tsmiBkybc});
-            this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(185, 114);
+            this.tsmiCkrqbnwkcx,
+            this.tsmiDqckdyjxghh,
+            this.tsmiCkbmbnwkbc,
+            this.tsmiCkckbnwkbc,
+            this.tsmiCklbbnwkbc,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.tsmiCkdmxbnwkbc,
+            this.tsmiYzkcyddbxxz,
+            this.tsmiYdrqbnwkcx,
+            this.tsmiDqkcyddyjxghh,
+            this.tsmiSqbmbnwkbc,
+            this.tsmiCkxmhbnwkbc,
+            this.tsmiCkhjhbnwkbc,
+            this.tsmiRkxmhbnwkbc,
+            this.tsmiRkhjhbnwkbc,
+            this.tsmiCkdckxmhhjhhrk,
+            this.tsmiSxtddqkcsjcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(533, 444);
             // 
-            // tsmiKcyddz
+            // tsmiCkrqbnwkcx
             // 
-            this.tsmiKcyddz.Name = "tsmiKcyddz";
-            this.tsmiKcyddz.Size = new System.Drawing.Size(184, 22);
-            this.tsmiKcyddz.Text = "库存移动单中明细";
+            this.tsmiCkrqbnwkcx.Name = "tsmiCkrqbnwkcx";
+            this.tsmiCkrqbnwkcx.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkrqbnwkcx.Text = "出库日期不能为空，请设置后重新进行查询。";
             // 
-            // tsmiDsl
+            // tsmiDqckdyjxghh
             // 
-            this.tsmiDsl.Name = "tsmiDsl";
-            this.tsmiDsl.Size = new System.Drawing.Size(184, 22);
-            this.tsmiDsl.Text = "的数量";
+            this.tsmiDqckdyjxghh.Name = "tsmiDqckdyjxghh";
+            this.tsmiDqckdyjxghh.Size = new System.Drawing.Size(532, 22);
+            this.tsmiDqckdyjxghh.Text = "当前出库单已经修改，请保存后再进行换行。";
             // 
-            // tsmiCgdqdk
+            // tsmiCkbmbnwkbc
             // 
-            this.tsmiCgdqdk.Name = "tsmiCgdqdk";
-            this.tsmiCgdqdk.Size = new System.Drawing.Size(184, 22);
-            this.tsmiCgdqdk.Text = "超过当前的库存数量";
+            this.tsmiCkbmbnwkbc.Name = "tsmiCkbmbnwkbc";
+            this.tsmiCkbmbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkbmbnwkbc.Text = "出库部门不能为空，请填写后再进行保存。";
             // 
-            // tsmiBkybc
+            // tsmiCkckbnwkbc
             // 
-            this.tsmiBkybc.Name = "tsmiBkybc";
-            this.tsmiBkybc.Size = new System.Drawing.Size(184, 22);
-            this.tsmiBkybc.Text = "不可以保存。";
+            this.tsmiCkckbnwkbc.Name = "tsmiCkckbnwkbc";
+            this.tsmiCkckbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkckbnwkbc.Text = "出库仓库不能为空，请填写后再进行保存。";
+            // 
+            // tsmiCklbbnwkbc
+            // 
+            this.tsmiCklbbnwkbc.Name = "tsmiCklbbnwkbc";
+            this.tsmiCklbbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCklbbnwkbc.Text = "出库类别不能为空，请填写后再进行保存。";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(532, 22);
+            this.toolStripMenuItem1.Text = "审批类型不能为空，请填写后再进行保存。";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(532, 22);
+            this.toolStripMenuItem2.Text = "数量不能为空，请填写后再进行保存。";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(532, 22);
+            this.toolStripMenuItem3.Text = "货架编号不能为空，请填写后再进行保存。";
+            // 
+            // tsmiCkdmxbnwkbc
+            // 
+            this.tsmiCkdmxbnwkbc.Name = "tsmiCkdmxbnwkbc";
+            this.tsmiCkdmxbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkdmxbnwkbc.Text = "出库单明细不能为空，请填写后再进行保存。";
+            // 
+            // tsmiYzkcyddbxxz
+            // 
+            this.tsmiYzkcyddbxxz.Name = "tsmiYzkcyddbxxz";
+            this.tsmiYzkcyddbxxz.Size = new System.Drawing.Size(532, 22);
+            this.tsmiYzkcyddbxxz.Text = "一张库存移动单必须选择相同的仓库进行登记，请重新操作。";
+            // 
+            // tsmiYdrqbnwkcx
+            // 
+            this.tsmiYdrqbnwkcx.Name = "tsmiYdrqbnwkcx";
+            this.tsmiYdrqbnwkcx.Size = new System.Drawing.Size(532, 22);
+            this.tsmiYdrqbnwkcx.Text = "移动日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiDqkcyddyjxghh
+            // 
+            this.tsmiDqkcyddyjxghh.Name = "tsmiDqkcyddyjxghh";
+            this.tsmiDqkcyddyjxghh.Size = new System.Drawing.Size(532, 22);
+            this.tsmiDqkcyddyjxghh.Text = "当前库存移动单已经修改，请保存后再进行换行。";
+            // 
+            // tsmiSqbmbnwkbc
+            // 
+            this.tsmiSqbmbnwkbc.Name = "tsmiSqbmbnwkbc";
+            this.tsmiSqbmbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiSqbmbnwkbc.Text = "申请部门不能为空，请填写后再进行保存。";
+            // 
+            // tsmiCkxmhbnwkbc
+            // 
+            this.tsmiCkxmhbnwkbc.Name = "tsmiCkxmhbnwkbc";
+            this.tsmiCkxmhbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkxmhbnwkbc.Text = "出库项目号不能为空，请填写后再进行保存。";
+            // 
+            // tsmiCkhjhbnwkbc
+            // 
+            this.tsmiCkhjhbnwkbc.Name = "tsmiCkhjhbnwkbc";
+            this.tsmiCkhjhbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkhjhbnwkbc.Text = "出库货架号不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRkxmhbnwkbc
+            // 
+            this.tsmiRkxmhbnwkbc.Name = "tsmiRkxmhbnwkbc";
+            this.tsmiRkxmhbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiRkxmhbnwkbc.Text = "入库项目号不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRkhjhbnwkbc
+            // 
+            this.tsmiRkhjhbnwkbc.Name = "tsmiRkhjhbnwkbc";
+            this.tsmiRkhjhbnwkbc.Size = new System.Drawing.Size(532, 22);
+            this.tsmiRkhjhbnwkbc.Text = "入库货架号不能为空，请填写后再进行保存。";
+            // 
+            // tsmiCkdckxmhhjhhrk
+            // 
+            this.tsmiCkdckxmhhjhhrk.Name = "tsmiCkdckxmhhjhhrk";
+            this.tsmiCkdckxmhhjhhrk.Size = new System.Drawing.Size(532, 22);
+            this.tsmiCkdckxmhhjhhrk.Text = "出库的仓库项目号货架号和入库的仓库项目号货架号完全相同，请填写后再进行保存。";
+            // 
+            // tsmiSxtddqkcsjcw
+            // 
+            this.tsmiSxtddqkcsjcw.Name = "tsmiSxtddqkcsjcw";
+            this.tsmiSxtddqkcsjcw.Size = new System.Drawing.Size(532, 22);
+            this.tsmiSxtddqkcsjcw.Text = "实现拖拽当前库存事件错误。";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // FrmInventoryMove_Drag
             // 
@@ -1905,6 +2191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIMDateBegin.Properties)).EndInit();
+            this.cms1.ResumeLayout(false);
             this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -2065,10 +2352,46 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn colModifier;
         private DevExpress.XtraEditors.CheckEdit checkZero;
+        internal System.Windows.Forms.ContextMenuStrip cms1;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkrqbnwkcx;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDqrkdyjxghh;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkbmbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkckbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRklbbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplxbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkmxbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSlbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiHjbhbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiQgsyansjcw;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkdmxbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCxmxdsyjcgdcw;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCxmxdxyjcgjzdcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDgrqbnwkcx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxcgddsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJjcxcgddmxsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSxtzcgddsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYzrkdzrxxtdxmhjxdj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYzrkdzrxxtdgysjxdj;
         internal System.Windows.Forms.ContextMenuStrip cms;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiKcyddz;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiDsl;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiCgdqdk;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiBkybc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkrqbnwkcx;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDqckdyjxghh;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkbmbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkckbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCklbbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCkdmxbnwkbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYzkcyddbxxz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYdrqbnwkcx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDqkcyddyjxghh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSqbmbnwkbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkxmhbnwkbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkhjhbnwkbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRkxmhbnwkbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRkhjhbnwkbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkdckxmhhjhhrk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSxtddqkcsjcw;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

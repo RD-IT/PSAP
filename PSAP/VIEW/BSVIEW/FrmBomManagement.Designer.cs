@@ -99,8 +99,9 @@
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiDqxzdl = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBomdjx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJjcxdqxzbomxx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLjmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLjmccxxxcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).BeginInit();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTree)).BeginInit();
@@ -823,22 +824,29 @@
             // cms
             // 
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiDqxzdl,
-            this.tsmiBomdjx});
-            this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(452, 48);
+            this.tsmiJjcxdqxzbomxx,
+            this.tsmiLjmcbnwk,
+            this.tsmiLjmccxxxcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(329, 92);
             // 
-            // tsmiDqxzdl
+            // tsmiJjcxdqxzbomxx
             // 
-            this.tsmiDqxzdl.Name = "tsmiDqxzdl";
-            this.tsmiDqxzdl.Size = new System.Drawing.Size(451, 22);
-            this.tsmiDqxzdl.Text = "当前选择的零件名称已经存在Bom信息，不能重复设定，请重新输入。";
+            this.tsmiJjcxdqxzbomxx.Name = "tsmiJjcxdqxzbomxx";
+            this.tsmiJjcxdqxzbomxx.Size = new System.Drawing.Size(328, 22);
+            this.tsmiJjcxdqxzbomxx.Text = "聚焦查询当前选中Bom信息错误。";
             // 
-            // tsmiBomdjx
+            // tsmiLjmcbnwk
             // 
-            this.tsmiBomdjx.Name = "tsmiBomdjx";
-            this.tsmiBomdjx.Size = new System.Drawing.Size(451, 22);
-            this.tsmiBomdjx.Text = "Bom登记信息";
+            this.tsmiLjmcbnwk.Name = "tsmiLjmcbnwk";
+            this.tsmiLjmcbnwk.Size = new System.Drawing.Size(328, 22);
+            this.tsmiLjmcbnwk.Text = "零件名称不能为空，请填写后再进行保存。";
+            // 
+            // tsmiLjmccxxxcw
+            // 
+            this.tsmiLjmccxxxcw.Name = "tsmiLjmccxxxcw";
+            this.tsmiLjmccxxxcw.Size = new System.Drawing.Size(328, 22);
+            this.tsmiLjmccxxxcw.Text = "零件名称查询信息错误，请填写后再进行保存。";
             // 
             // FrmBomManagement
             // 
@@ -962,8 +970,9 @@
         private DevExpress.XtraEditors.LabelControl labCodeFileName;
         private DevExpress.XtraEditors.LabelControl labGetTime;
         private DevExpress.XtraEditors.DateEdit dateGetTime;
-        internal System.Windows.Forms.ContextMenuStrip cms;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiDqxzdl;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiBomdjx;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJjcxdqxzbomxx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiLjmcbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiLjmccxxxcw;
     }
 }

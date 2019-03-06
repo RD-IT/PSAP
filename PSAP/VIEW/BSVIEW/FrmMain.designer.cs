@@ -50,9 +50,13 @@
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.notifyIconMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCjmywbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTs = new System.Windows.Forms.ToolStripMenuItem();
             this.cMenuStripDocking.SuspendLayout();
             this.tsrMain.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // 基本信息ToolStripMenuItem
@@ -216,6 +220,27 @@
             this.notifyIconMain.Text = "notifyIconMain";
             this.notifyIconMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconMain_MouseClick);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCjmywbc,
+            this.tsmiTs});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 70);
+            // 
+            // tsmiCjmywbc
+            // 
+            this.tsmiCjmywbc.Name = "tsmiCjmywbc";
+            this.tsmiCjmywbc.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCjmywbc.Text = "此界面有未保存信息，你确定要放弃修改吗？";
+            this.tsmiCjmywbc.Click += new System.EventHandler(this.tsmiGcbh_Click);
+            // 
+            // tsmiTs
+            // 
+            this.tsmiTs.Name = "tsmiTs";
+            this.tsmiTs.Size = new System.Drawing.Size(316, 22);
+            this.tsmiTs.Text = "提示";
+            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -237,6 +262,7 @@
             this.tsrMain.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,5 +290,8 @@
         private System.Windows.Forms.ToolStripMenuItem 用户权限ToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.NotifyIcon notifyIconMain;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCjmywbc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTs;
     }
 }

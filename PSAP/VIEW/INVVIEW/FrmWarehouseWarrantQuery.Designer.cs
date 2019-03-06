@@ -103,6 +103,8 @@
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinorderListAutoId.Properties)).BeginInit();
@@ -135,6 +137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -912,6 +915,19 @@
             this.gridBottomOrderHead.Size = new System.Drawing.Size(1196, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRkrqbnwkcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 48);
+            // 
+            // tsmiRkrqbnwkcx
+            // 
+            this.tsmiRkrqbnwkcx.Name = "tsmiRkrqbnwkcx";
+            this.tsmiRkrqbnwkcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiRkrqbnwkcx.Text = "入库日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmWarehouseWarrantQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -957,6 +973,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1037,5 +1054,7 @@
         private GridBottom gridBottomOrderHead;
         private DevExpress.XtraEditors.SpinEdit spinorderListAutoId;
         private DevExpress.XtraEditors.CheckEdit checkorderListAutoId;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkrqbnwkcx;
     }
 }

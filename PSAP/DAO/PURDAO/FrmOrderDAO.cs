@@ -12,7 +12,7 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmOrderDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmOrder f = new VIEW.BSVIEW.FrmOrder();
+        static PSAP.VIEW.BSVIEW.FrmLanguagePURDAO f = new VIEW.BSVIEW.FrmLanguagePURDAO();
         public FrmOrderDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

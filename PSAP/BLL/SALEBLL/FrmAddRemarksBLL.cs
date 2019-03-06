@@ -65,7 +65,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

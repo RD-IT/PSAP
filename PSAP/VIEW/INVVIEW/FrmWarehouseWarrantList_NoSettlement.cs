@@ -18,10 +18,13 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmWarehouseWarrantDAO wwDAO = new FrmWarehouseWarrantDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmWarehouseWarrantList_NoSettlement()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -61,7 +64,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -96,7 +100,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dateWWDateBegin.EditValue == null || dateWWDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("入库日期不能为空，请设置后重新进行查询。");
+                    MessageHandler.ShowMessageBox(tsmiRkrqbnwkcx.Text);// ("入库日期不能为空，请设置后重新进行查询。");
                     if (dateWWDateBegin.EditValue == null)
                         dateWWDateBegin.Focus();
                     else
@@ -117,7 +121,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
 
                 dataSet_WW.Tables[0].Rows.Clear();
-                string querySqlStr = wwDAO.Query_WWList_NoSettlement_SQL(orderDateBeginStr, orderDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt ,projectNameStr,codeFileNameStr, checkOverplus.Checked, commonStr);
+                string querySqlStr = wwDAO.Query_WWList_NoSettlement_SQL(orderDateBeginStr, orderDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, projectNameStr, codeFileNameStr, checkOverplus.Checked, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
@@ -125,7 +129,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCxansjcw.Text, ex);
             }
         }
 
@@ -140,7 +145,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCxjgcwexcelcw.Text, ex);
             }
         }
 
@@ -162,7 +168,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSjcxmxcw.Text, ex);
             }
         }
     }

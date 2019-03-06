@@ -223,6 +223,12 @@
     <Compile Include="VIEW\BSVIEW\FrmDeliveryLocation.Designer.cs">
       <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmLanguageBSDAO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmLanguageBSDAO.Designer.cs">
+      <DependentUpon>FrmLanguageBSDAO.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmLanguageText.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,11 +259,23 @@
     <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.Designer.cs">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmLanguageINVDAO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmLanguageINVDAO.Designer.cs">
+      <DependentUpon>FrmLanguageINVDAO.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.Designer.cs">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmLanguagePURDAO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmLanguagePURDAO.Designer.cs">
+      <DependentUpon>FrmLanguagePURDAO.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.cs">
       <SubType>Form</SubType>
@@ -705,6 +723,9 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDeliveryLocation.resx">
       <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmLanguageBSDAO.resx">
+      <DependentUpon>FrmLanguageBSDAO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmLanguageText.resx">
       <DependentUpon>FrmLanguageText.cs</DependentUpon>
     </EmbeddedResource>
@@ -720,8 +741,14 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmLanguageINVDAO.resx">
+      <DependentUpon>FrmLanguageINVDAO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.resx">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmLanguagePURDAO.resx">
+      <DependentUpon>FrmLanguagePURDAO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.resx">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>

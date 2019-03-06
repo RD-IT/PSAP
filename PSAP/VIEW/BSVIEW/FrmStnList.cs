@@ -20,17 +20,23 @@ namespace PSAP.VIEW.BSVIEW
         /// 本地存放的项目号
         /// </summary>
         public string projectNoStr = "";
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmStnList()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
-        public FrmStnList(string pNoStr,string pNameStr)
+        public FrmStnList(string pNoStr, string pNameStr)
         {
             InitializeComponent();
             projectNoStr = pNoStr;
-            this.Text = string.Format("项目【{0}】的站号信息", pNameStr);
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
+            //this.Text = string.Format("项目【{0}】的站号信息", pNameStr);
+            this.Text = string.Format(tsmiXm.Text + "【{0}】" + tsmiDzhxx.Text, pNameStr);
         }
 
         /// <summary>
@@ -65,7 +71,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -76,13 +83,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textStnNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("站号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiZhbnwk.Text);// ("站号不能为空，请重新操作。");
                 textStnNo.Focus();
                 return false;
             }
             if (searchLookUpProjectNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("项目号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiXmhbnwk.Text);// ("项目号不能为空，请重新操作。");
                 searchLookUpProjectNo.Focus();
                 return false;
             }
@@ -152,7 +159,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定GridView的默认值错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定GridView的默认值错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdgridviewdmrzcw.Text, ex);
             }
         }
 
@@ -171,7 +179,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定Table的默认值错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定Table的默认值错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdtabledmrzcw.Text, ex);
             }
         }
 
@@ -181,7 +190,8 @@ namespace PSAP.VIEW.BSVIEW
         public void RefreshCurrentStnInfo(string pNoStr, string pNameStr)
         {
             projectNoStr = pNoStr;
-            this.Text = string.Format("项目【{0}】的站号信息", pNameStr);
+            //this.Text = string.Format("项目【{0}】的站号信息", pNameStr);
+            this.Text = string.Format(tsmiXm.Text + "【{0}】" + tsmiDzhxx.Text, pNameStr);
             SetEditFormSQL();
             editForm.btnRefresh_Click(null, null);
         }

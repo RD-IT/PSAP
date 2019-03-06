@@ -86,6 +86,9 @@
             this.barBtnMoveUp = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnMoveDown = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCdmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSjcdbnh = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.bSMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableMenu)).BeginInit();
@@ -108,6 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSMenu
@@ -608,6 +612,26 @@
             this.popupMenuList.Manager = this.barManagerForm;
             this.popupMenuList.Name = "popupMenuList";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCdmcbnwk,
+            this.tsmiSjcdbnh});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 70);
+            // 
+            // tsmiCdmcbnwk
+            // 
+            this.tsmiCdmcbnwk.Name = "tsmiCdmcbnwk";
+            this.tsmiCdmcbnwk.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCdmcbnwk.Text = "菜单名称不能为空，请重新操作。";
+            // 
+            // tsmiSjcdbnh
+            // 
+            this.tsmiSjcdbnh.Name = "tsmiSjcdbnh";
+            this.tsmiSjcdbnh.Size = new System.Drawing.Size(316, 22);
+            this.tsmiSjcdbnh.Text = "上级菜单不能和当前菜单相同，请重新操作。";
+            // 
             // FrmRight_MenuManagement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -646,6 +670,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,5 +735,8 @@
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCdmcbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSjcdbnh;
     }
 }

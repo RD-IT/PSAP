@@ -21,10 +21,13 @@ namespace PSAP.VIEW.BSVIEW
 
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
         FrmWarehouseReceiptDAO wrDAO = new FrmWarehouseReceiptDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmWarehouseReceiptApproval()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmWarehouseReceiptApproval(string wrHeadNo)
@@ -45,7 +48,7 @@ namespace PSAP.VIEW.BSVIEW
                 approvalDAO.QueryWarehouseReceiptHead(dataSet_WR.Tables[0], wrHeadNoStr);
                 if (dataSet_WR.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("查询出库单信息错误，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiCxckdxxcwqcxcz.Text);// ("查询出库单信息错误，请重新操作。");
                     return;
                 }
                 string typeNoStr = DataTypeConvert.GetString(dataSet_WR.Tables[0].Rows[0]["ApprovalType"]);
@@ -77,7 +80,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -129,14 +133,15 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 if (successCountInt > 0)
                 {
-                    MessageHandler.ShowMessageBox("审批成功。");
+                    MessageHandler.ShowMessageBox(f.tsmiSpcg.Text);// ("审批成功。");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSpansj.Text, ex);
             }
         }
 

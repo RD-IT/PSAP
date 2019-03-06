@@ -12,7 +12,7 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmPrReqDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmPrReq f = new VIEW.BSVIEW.FrmPrReq();
+        PSAP.VIEW.BSVIEW.FrmLanguagePURDAO f = new VIEW.BSVIEW.FrmLanguagePURDAO();
         public FrmPrReqDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);
@@ -433,7 +433,7 @@ namespace PSAP.DAO.PURDAO
         public bool CancelApprovePrReq(DataRow prReqHeadRow)
         {
             if (!CheckReqState(prReqHeadRow.Table, null, string.Format("'{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"])), true, false, true, false))
-                return false;            
+                return false;
 
             prReqHeadRow["Approver"] = "";
             prReqHeadRow["ApproverIp"] = "";
@@ -456,7 +456,7 @@ namespace PSAP.DAO.PURDAO
                             prReqHeadRow.Table.RejectChanges();
                             //MessageHandler.ShowMessageBox("请购单已经有适用的采购订单记录，不可以操作。");
                             MessageHandler.ShowMessageBox(f.tsmiQgdyjy.Text);
-                                                        return false;
+                            return false;
                         }
 
                         cmd.CommandText = string.Format("Update PUR_PrReqHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime='{4}' where PrReqNo='{0}'", DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]), 1, "", "", "");
@@ -527,7 +527,7 @@ namespace PSAP.DAO.PURDAO
                                 prReqHeadTable.RejectChanges();
                                 //MessageHandler.ShowMessageBox("请购单已经有适用的采购订单记录，不可以操作。");
                                 MessageHandler.ShowMessageBox(f.tsmiQgdyjy.Text);
-                                                                return false;
+                                return false;
                             }
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
@@ -734,8 +734,8 @@ namespace PSAP.DAO.PURDAO
                         if (checkNoApprover)
                         {
                             //MessageHandler.ShowMessageBox(string.Format("请购单[{0}]未审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text+"[{0}]"+f.tsmiWsp.Text+f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                                                        prReqHeadTable.RejectChanges();
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text + "[{0}]" + f.tsmiWsp.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
                             return false;
@@ -745,8 +745,8 @@ namespace PSAP.DAO.PURDAO
                         if (checkApprover)
                         {
                             //MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text+"[{0}]"+f.tsmiYjsp.Text+f.tsmiBkycz, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                                                        prReqHeadTable.RejectChanges();
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text + "[{0}]" + f.tsmiYjsp.Text + f.tsmiBkycz, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
                             return false;
@@ -756,8 +756,8 @@ namespace PSAP.DAO.PURDAO
                         if (checkClosed)
                         {
                             //MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经关闭，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text+"[{0}]"+f.tsmiYjgb+f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                                                        prReqHeadTable.RejectChanges();
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text + "[{0}]" + f.tsmiYjgb + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
                             return false;
@@ -767,8 +767,8 @@ namespace PSAP.DAO.PURDAO
                         if (checkApproverBetween)
                         {
                             //MessageHandler.ShowMessageBox(string.Format("请购单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text+"[{0}]"+f.tsmiYjspz.Text+f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
-                                                        prReqHeadTable.RejectChanges();
+                            MessageHandler.ShowMessageBox(string.Format(f.tsmiQgd.Text + "[{0}]" + f.tsmiYjspz.Text + f.tsmiBkycz.Text, DataTypeConvert.GetString(tmpTable.Rows[i]["PrReqNo"])));
+                            prReqHeadTable.RejectChanges();
                             if (prReqListTable != null)
                                 prReqListTable.RejectChanges();
                             return false;
@@ -862,7 +862,7 @@ namespace PSAP.DAO.PURDAO
                                     trans.Rollback();
                                     //MessageHandler.ShowMessageBox("未查询到要操作的请购单，请刷新后再进行操作。");
                                     MessageHandler.ShowMessageBox(f.tsmiWcxdyc.Text);
-                                                                        return false;
+                                    return false;
                                 }
 
                                 string approvalTypeStr = DataTypeConvert.GetString(tmpTable.Rows[0]["ApprovalType"]);
@@ -974,7 +974,7 @@ namespace PSAP.DAO.PURDAO
                                 prReqHeadTable.RejectChanges();
                                 //MessageHandler.ShowMessageBox("请购单已经有适用的采购订单记录，不可以操作。");
                                 MessageHandler.ShowMessageBox(f.tsmiQgdyjy.Text);
-                                                                return false;
+                                return false;
                             }
 
                             string logStr = LogHandler.RecordLog_OperateRow(cmd, "请购单", prReqHeadRows[i], "PrReqNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
@@ -1003,7 +1003,7 @@ namespace PSAP.DAO.PURDAO
         /// </summary>
         /// <param name="prReqNoStr">请购单号</param>
         /// <param name="handleTypeInt">打印处理类型：1 预览 2 打印 3 设计</param>
-        public void PrintHandle(string prReqNoStr,int handleTypeInt)
+        public void PrintHandle(string prReqNoStr, int handleTypeInt)
         {
             DataSet ds = new DataSet();
             DataTable headTable = BaseSQL.GetTableBySql(string.Format("select * from V_Prn_PUR_PrReqHead where PrReqNo = '{0}' order by AutoId", prReqNoStr));
@@ -1190,7 +1190,7 @@ namespace PSAP.DAO.PURDAO
             {
                 sqlStr += string.Format(" and PurCategory='{0}'", purCategoryStr);
             }
-            if(projectNoStr !="")
+            if (projectNoStr != "")
             {
                 sqlStr += string.Format(" and ProjectNo='{0}'", projectNoStr);
             }
@@ -1202,7 +1202,7 @@ namespace PSAP.DAO.PURDAO
             {
                 sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
             }
-            if(overplusBool)
+            if (overplusBool)
             {
                 sqlStr += string.Format(" and IsNull(Overplus, 0)>0");
             }

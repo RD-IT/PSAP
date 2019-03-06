@@ -71,6 +71,9 @@
             this.colBfree3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBfree4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBfree5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiDlmbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYgxmbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSUserInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableUserInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSUserInfo)).BeginInit();
@@ -85,6 +88,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlUserInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUserInfo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSUserInfo
@@ -426,6 +430,26 @@
             this.colBfree5.FieldName = "Bfree5";
             this.colBfree5.Name = "colBfree5";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDlmbnwk,
+            this.tsmiYgxmbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
+            // 
+            // tsmiDlmbnwk
+            // 
+            this.tsmiDlmbnwk.Name = "tsmiDlmbnwk";
+            this.tsmiDlmbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiDlmbnwk.Text = "登陆名不能为空，请重新操作。";
+            // 
+            // tsmiYgxmbnwk
+            // 
+            this.tsmiYgxmbnwk.Name = "tsmiYgxmbnwk";
+            this.tsmiYgxmbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiYgxmbnwk.Text = "员工姓名不能为空，请重新操作。";
+            // 
             // FrmUserInfo_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -452,6 +476,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlUserInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewUserInfo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -500,5 +525,8 @@
         private DevExpress.XtraEditors.LookUpEdit lookUpDept;
         private System.Data.DataColumn dataColDepartmentName;
         private DevExpress.XtraGrid.Columns.GridColumn colDepartmentName;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDlmbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYgxmbnwk;
     }
 }

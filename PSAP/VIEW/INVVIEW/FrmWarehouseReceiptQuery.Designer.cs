@@ -92,6 +92,8 @@
             this.repLookUpManufactureNo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WRHead)).BeginInit();
@@ -120,6 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet_WR
@@ -796,6 +799,19 @@
             this.pnlMiddle.Size = new System.Drawing.Size(1204, 311);
             this.pnlMiddle.TabIndex = 8;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCkrqbnwkcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 48);
+            // 
+            // tsmiCkrqbnwkcx
+            // 
+            this.tsmiCkrqbnwkcx.Name = "tsmiCkrqbnwkcx";
+            this.tsmiCkrqbnwkcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCkrqbnwkcx.Text = "出库日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmWarehouseReceiptQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -836,6 +852,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -905,5 +922,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpManufactureNo;
         private DevExpress.XtraEditors.PanelControl pnlMiddle;
         private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkrqbnwkcx;
     }
 }

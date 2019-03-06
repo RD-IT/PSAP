@@ -126,6 +126,9 @@
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiDgrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJhdhrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinprReqListAutoId.Properties)).BeginInit();
@@ -165,6 +168,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -1146,6 +1150,26 @@
             this.gridBottomOrderHead.Size = new System.Drawing.Size(1150, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDgrqbnwk,
+            this.tsmiJhdhrqbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(341, 70);
+            // 
+            // tsmiDgrqbnwk
+            // 
+            this.tsmiDgrqbnwk.Name = "tsmiDgrqbnwk";
+            this.tsmiDgrqbnwk.Size = new System.Drawing.Size(340, 22);
+            this.tsmiDgrqbnwk.Text = "订购日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiJhdhrqbnwk
+            // 
+            this.tsmiJhdhrqbnwk.Name = "tsmiJhdhrqbnwk";
+            this.tsmiJhdhrqbnwk.Size = new System.Drawing.Size(340, 22);
+            this.tsmiJhdhrqbnwk.Text = "计划到货日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmOrderQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1198,6 +1222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1301,5 +1326,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpPayTypeNo;
         private DevExpress.XtraEditors.SpinEdit spinprReqListAutoId;
         private DevExpress.XtraEditors.CheckEdit checkprReqListAutoId;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDgrqbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJhdhrqbnwk;
     }
 }

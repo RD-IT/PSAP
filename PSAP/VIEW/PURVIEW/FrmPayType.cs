@@ -13,10 +13,13 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmPayType : DockContent
     {
         FrmBaseEdit editForm = null;
-
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
+        
         public FrmPayType()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -49,7 +52,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCtjzsjcw.Text , ex);
             }
         }
 
@@ -60,13 +64,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textPayTypeNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("付款类型不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiFklxbnwk.Text );// ("付款类型不能为空，请重新操作。");
                 textPayTypeNo.Focus();
                 return false;
             }
             if (textPayTypeNoText.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("付款说明不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiFksmbnwk.Text );// ("付款说明不能为空，请重新操作。");
                 textPayTypeNoText.Focus();
                 return false;
             }
@@ -98,7 +102,7 @@ namespace PSAP.VIEW.BSVIEW
             }
             else
             {
-                MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
             }
         }
     }

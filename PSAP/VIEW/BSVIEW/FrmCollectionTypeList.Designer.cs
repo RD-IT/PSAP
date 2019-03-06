@@ -51,6 +51,10 @@
             this.colCollectionPercentum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repItemSpinPayPercentum = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colCollectionPercentumText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSklx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDxx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSkbfbdhj = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSCollectionTypeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableCollectionTypeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSCollectionTypeList)).BeginInit();
@@ -62,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCollectionTypeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpCollectionType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemSpinPayPercentum)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSCollectionTypeList
@@ -170,7 +175,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 40);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(584, 321);
+            this.pnlGrid.Size = new System.Drawing.Size(584, 322);
             this.pnlGrid.TabIndex = 12;
             // 
             // gridCrlCollectionTypeList
@@ -183,7 +188,7 @@
             this.gridCrlCollectionTypeList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repItemLookUpCollectionType,
             this.repItemSpinPayPercentum});
-            this.gridCrlCollectionTypeList.Size = new System.Drawing.Size(580, 317);
+            this.gridCrlCollectionTypeList.Size = new System.Drawing.Size(580, 318);
             this.gridCrlCollectionTypeList.TabIndex = 8;
             this.gridCrlCollectionTypeList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewCollectionTypeList});
@@ -273,10 +278,37 @@
             this.colCollectionPercentumText.VisibleIndex = 2;
             this.colCollectionPercentumText.Width = 150;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSklx,
+            this.tsmiDxx,
+            this.tsmiSkbfbdhj});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(314, 92);
+            // 
+            // tsmiSklx
+            // 
+            this.tsmiSklx.Name = "tsmiSklx";
+            this.tsmiSklx.Size = new System.Drawing.Size(313, 22);
+            this.tsmiSklx.Text = "收款类型";
+            // 
+            // tsmiDxx
+            // 
+            this.tsmiDxx.Name = "tsmiDxx";
+            this.tsmiDxx.Size = new System.Drawing.Size(313, 22);
+            this.tsmiDxx.Text = "的信息";
+            // 
+            // tsmiSkbfbdhj
+            // 
+            this.tsmiSkbfbdhj.Name = "tsmiSkbfbdhj";
+            this.tsmiSkbfbdhj.Size = new System.Drawing.Size(313, 22);
+            this.tsmiSkbfbdhj.Text = "收款百分比的合计必须是100，请重新操作。";
+            // 
             // FrmCollectionTypeList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlToolBar);
             this.MaximizeBox = false;
@@ -299,6 +331,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCollectionTypeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpCollectionType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemSpinPayPercentum)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -327,5 +360,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCollectionPercentum;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repItemSpinPayPercentum;
         private DevExpress.XtraGrid.Columns.GridColumn colCollectionPercentumText;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSklx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDxx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSkbfbdhj;
     }
 }

@@ -12,7 +12,7 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmSettlementDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmSettlement_Drag f = new VIEW.BSVIEW.FrmSettlement_Drag();
+        static PSAP.VIEW.BSVIEW.FrmLanguagePURDAO f = new VIEW.BSVIEW.FrmLanguagePURDAO();
         public FrmSettlementDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

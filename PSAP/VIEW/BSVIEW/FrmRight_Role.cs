@@ -17,11 +17,13 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmRight_Role : DockContent
     {
         FrmBaseEdit editForm = null;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmRight_Role()
         {
             InitializeComponent();
             PSAP.BLL.BSBLL.BSBLL.language(this);
+            PSAP.BLL.BSBLL.BSBLL.language(f);
         }
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmRight_Role_Load(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (editForm == null)
                 {
                     QueryMenuTreeList();
@@ -60,7 +62,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -71,13 +74,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textRoleNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("角色编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiJsbhbnwk.Text);// ("角色编号不能为空，请重新操作。");
                 textRoleNo.Focus();
                 return false;
             }
             if (textRoleName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("角色名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiJsmcbnwk.Text);// ("角色名称不能为空，请重新操作。");
                 textRoleName.Focus();
                 return false;
             }
@@ -128,7 +131,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--选中角色查看权限错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--选中角色查看权限错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiXzjsckqxcw.Text, ex);
             }
         }
 
@@ -178,7 +182,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--根据选择节点状态更新树其他节点状态错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--根据选择节点状态更新树其他节点状态错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiGjxzjdztgxsqtjd.Text, ex);
             }
         }
 

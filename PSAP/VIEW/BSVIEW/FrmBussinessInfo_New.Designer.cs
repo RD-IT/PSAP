@@ -110,6 +110,12 @@
             this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiWlfbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWlfmc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWlffl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSzwlfjbxxmrzcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSzwlfxxxxmrzcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSBussiness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableBussinessBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableBussinessDetailInfo)).BeginInit();
@@ -154,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBussinessBaseNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSBussiness
@@ -829,6 +836,47 @@
             this.splitterMiddle.TabIndex = 15;
             this.splitterMiddle.TabStop = false;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiWlfbh,
+            this.tsmiWlfmc,
+            this.tsmiWlffl,
+            this.tsmiSzwlfjbxxmrzcw,
+            this.tsmiSzwlfxxxxmrzcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(269, 136);
+            // 
+            // tsmiWlfbh
+            // 
+            this.tsmiWlfbh.Name = "tsmiWlfbh";
+            this.tsmiWlfbh.Size = new System.Drawing.Size(268, 22);
+            this.tsmiWlfbh.Text = "往来方编号不能为空，请重新操作。";
+            // 
+            // tsmiWlfmc
+            // 
+            this.tsmiWlfmc.Name = "tsmiWlfmc";
+            this.tsmiWlfmc.Size = new System.Drawing.Size(268, 22);
+            this.tsmiWlfmc.Text = "往来方名称不能为空，请重新操作。";
+            // 
+            // tsmiWlffl
+            // 
+            this.tsmiWlffl.Name = "tsmiWlffl";
+            this.tsmiWlffl.Size = new System.Drawing.Size(268, 22);
+            this.tsmiWlffl.Text = "往来方分类不能为空，请重新操作。";
+            // 
+            // tsmiSzwlfjbxxmrzcw
+            // 
+            this.tsmiSzwlfjbxxmrzcw.Name = "tsmiSzwlfjbxxmrzcw";
+            this.tsmiSzwlfjbxxmrzcw.Size = new System.Drawing.Size(268, 22);
+            this.tsmiSzwlfjbxxmrzcw.Text = "设置往来方基本信息默认值错误。";
+            // 
+            // tsmiSzwlfxxxxmrzcw
+            // 
+            this.tsmiSzwlfxxxxmrzcw.Name = "tsmiSzwlfxxxxmrzcw";
+            this.tsmiSzwlfxxxxmrzcw.Size = new System.Drawing.Size(268, 22);
+            this.tsmiSzwlfxxxxmrzcw.Text = "设置往来方详细信息默认值错误。";
+            // 
             // FrmBussinessInfo_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -886,6 +934,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBussinessBaseNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -973,5 +1022,11 @@
         private DevExpress.XtraEditors.PanelControl pnlBottom;
         private DevExpress.XtraEditors.SplitterControl splitterMiddle;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWlfbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWlfmc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWlffl;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSzwlfjbxxmrzcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSzwlfxxxxmrzcw;
     }
 }

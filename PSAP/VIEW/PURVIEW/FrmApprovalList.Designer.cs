@@ -48,6 +48,14 @@
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repItemLookUpApprover = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAppSequence = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiSplx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDxxsz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSplxbxxz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSprbnwkqcxcz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBnszxmdsprqcxcz = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSyspxxsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXyspxxsjcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).BeginInit();
@@ -59,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewApprovalList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpTypeNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpApprover)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlToolBar
@@ -97,7 +106,7 @@
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrid.Location = new System.Drawing.Point(0, 40);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(664, 321);
+            this.pnlGrid.Size = new System.Drawing.Size(664, 322);
             this.pnlGrid.TabIndex = 10;
             // 
             // gridCrlApprovalList
@@ -110,7 +119,7 @@
             this.gridCrlApprovalList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repItemLookUpTypeNo,
             this.repItemLookUpApprover});
-            this.gridCrlApprovalList.Size = new System.Drawing.Size(660, 317);
+            this.gridCrlApprovalList.Size = new System.Drawing.Size(660, 318);
             this.gridCrlApprovalList.TabIndex = 8;
             this.gridCrlApprovalList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewApprovalList});
@@ -243,10 +252,65 @@
             this.colAppSequence.VisibleIndex = 2;
             this.colAppSequence.Width = 80;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSplx,
+            this.tsmiDxxsz,
+            this.tsmiSplxbxxz,
+            this.tsmiSprbnwkqcxcz,
+            this.tsmiBnszxmdsprqcxcz,
+            this.tsmiSyspxxsjcw,
+            this.tsmiXyspxxsjcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 180);
+            // 
+            // tsmiSplx
+            // 
+            this.tsmiSplx.Name = "tsmiSplx";
+            this.tsmiSplx.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSplx.Text = "审批类型";
+            // 
+            // tsmiDxxsz
+            // 
+            this.tsmiDxxsz.Name = "tsmiDxxsz";
+            this.tsmiDxxsz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiDxxsz.Text = "的信息设置";
+            // 
+            // tsmiSplxbxxz
+            // 
+            this.tsmiSplxbxxz.Name = "tsmiSplxbxxz";
+            this.tsmiSplxbxxz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSplxbxxz.Text = "审批类型必须选择，请重新操作。";
+            // 
+            // tsmiSprbnwkqcxcz
+            // 
+            this.tsmiSprbnwkqcxcz.Name = "tsmiSprbnwkqcxcz";
+            this.tsmiSprbnwkqcxcz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSprbnwkqcxcz.Text = "审批人不能为空，请重新操作。";
+            // 
+            // tsmiBnszxmdsprqcxcz
+            // 
+            this.tsmiBnszxmdsprqcxcz.Name = "tsmiBnszxmdsprqcxcz";
+            this.tsmiBnszxmdsprqcxcz.Size = new System.Drawing.Size(280, 22);
+            this.tsmiBnszxmdsprqcxcz.Text = "不能设置相同的审批人，请重新操作。";
+            // 
+            // tsmiSyspxxsjcw
+            // 
+            this.tsmiSyspxxsjcw.Name = "tsmiSyspxxsjcw";
+            this.tsmiSyspxxsjcw.Size = new System.Drawing.Size(280, 22);
+            this.tsmiSyspxxsjcw.Text = "上移审批信息事件错误。";
+            // 
+            // tsmiXyspxxsjcw
+            // 
+            this.tsmiXyspxxsjcw.Name = "tsmiXyspxxsjcw";
+            this.tsmiXyspxxsjcw.Size = new System.Drawing.Size(280, 22);
+            this.tsmiXyspxxsjcw.Text = "下移审批信息事件错误。";
+            // 
             // FrmApprovalList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(664, 361);
+            this.ClientSize = new System.Drawing.Size(664, 362);
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlToolBar);
             this.MaximizeBox = false;
@@ -269,6 +333,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewApprovalList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpTypeNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemLookUpApprover)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -294,5 +359,13 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repItemLookUpApprover;
         private DevExpress.XtraEditors.SimpleButton btnUp;
         private DevExpress.XtraEditors.SimpleButton btnDown;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplx;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDxxsz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplxbxxz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSprbnwkqcxcz;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBnszxmdsprqcxcz;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSyspxxsjcw;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiXyspxxsjcw;
     }
 }

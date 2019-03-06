@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TabControlUserPower = new DevExpress.XtraTab.XtraTabControl();
             this.PageUserMenuButton = new DevExpress.XtraTab.XtraTabPage();
             this.PageMenuManagement = new DevExpress.XtraTab.XtraTabPage();
             this.PageRole = new DevExpress.XtraTab.XtraTabPage();
             this.pnlUser = new DevExpress.XtraEditors.PanelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiXz = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TabControlUserPower)).BeginInit();
             this.TabControlUserPower.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).BeginInit();
             this.pnlUser.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlUserPower
@@ -80,6 +84,19 @@
             this.pnlUser.Size = new System.Drawing.Size(1054, 566);
             this.pnlUser.TabIndex = 1;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiXz});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 48);
+            // 
+            // tsmiXz
+            // 
+            this.tsmiXz.Name = "tsmiXz";
+            this.tsmiXz.Size = new System.Drawing.Size(256, 22);
+            this.tsmiXz.Text = "选择当前查看的用户权限页错误。";
+            // 
             // FrmRight_New
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -93,6 +110,7 @@
             this.TabControlUserPower.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).EndInit();
             this.pnlUser.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -104,5 +122,7 @@
         private DevExpress.XtraTab.XtraTabPage PageMenuManagement;
         private DevExpress.XtraTab.XtraTabPage PageRole;
         private DevExpress.XtraEditors.PanelControl pnlUser;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXz;
     }
 }

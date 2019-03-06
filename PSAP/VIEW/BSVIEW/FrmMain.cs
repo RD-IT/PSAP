@@ -219,7 +219,8 @@ namespace PSAP.VIEW.BSVIEW
             if (((Label)((DockContent)sender).Controls["lblEditFlag"]).Text == "EDIT")
             {
                 ((DockContent)sender).Activate();
-                DialogResult result = MessageBox.Show("此界面有未保存信息，你确定要放弃修改吗！", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                //DialogResult result = MessageBox.Show("此界面有未保存信息，你确定要放弃修改吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                DialogResult result = MessageBox.Show(tsmiCjmywbc.Text, tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
                     e.Cancel = false;  //点击OK
@@ -416,6 +417,11 @@ namespace PSAP.VIEW.BSVIEW
                 notifyIconMain.Visible = false;
                 //this.Visible = true;
             }
+        }
+
+        private void tsmiGcbh_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

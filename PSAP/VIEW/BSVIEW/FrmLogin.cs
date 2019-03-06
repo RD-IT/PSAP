@@ -21,6 +21,7 @@ namespace PSAP
             InitializeComponent();
             //txtUserID.Text = "ADMIN";//测试用
             //txtPassword.Text = "ADMIN";//测试用
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -44,17 +45,19 @@ namespace PSAP
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (txtUserID.Text == string.Empty)
                 {
-                    MessageBox.Show(string.Format("用户ID不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(string.Format("用户ID不能为空。"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format(tsmiYhidbnwk.Text), tsmiYhdl.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtUserID.Focus();
                     return;
                 }
 
                 if (txtPassword.Text == string.Empty)
                 {
-                    MessageBox.Show(string.Format("密码不能为空！"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(string.Format("密码不能为空。"), "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format(tsmiMmbnwk.Text), tsmiYhdl.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtPassword.Focus();
                     return;
                 }
@@ -91,23 +94,13 @@ namespace PSAP
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--用户登录错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--用户登录错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiYhdlcw.Text, ex);
             }
         }
 
-        //private void txtUserID_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-
-        //}
-
-        //private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    psapCommon.EnterDoTab(e);//按回车键时将焦点调到下一个控件
-        //}
-
         private void btnChangePassword_Click(object sender, EventArgs e)
-        {            
+        {
             FrmChangePassword f = new FrmChangePassword(txtUserID.Text.Trim());
             f.ShowDialog();
             txtUserID.Focus();
@@ -119,8 +112,8 @@ namespace PSAP
             try
             {
                 FrmLoginBLL.InitCboLanguage(cboLanguage);
-                 PSAP.BLL.BSBLL.BSBLL.language(this);
-               string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
+                PSAP.BLL.BSBLL.BSBLL.language(this);
+                string iniPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.TrimEnd('\\') + "\\Config.ini";
                 //txtUserID.Text = new FileHandler().IniReadValue(iniPath, "System", "LastLoginID");
                 txtUserID.Text = new GetLangusgeSet().IniReadValue1(iniPath, "System", "LastLoginID");
 
@@ -138,7 +131,8 @@ namespace PSAP
             }
             catch (Exception f)
             {
-                MessageBox.Show(f.Message, "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(f.Message, "用户登录", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.Message, tsmiYhdl.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

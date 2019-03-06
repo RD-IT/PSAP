@@ -51,6 +51,9 @@
             this.colManufactureNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colManufactureName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colManufactureType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiGcbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiGcmc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSManufactureInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableManufactureInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSManufactureInfo)).BeginInit();
@@ -64,6 +67,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlManufactureInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewManufactureInfo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSManufactureInfo
@@ -263,6 +267,26 @@
             this.colManufactureType.VisibleIndex = 2;
             this.colManufactureType.Width = 120;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiGcbh,
+            this.tsmiGcmc});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
+            // 
+            // tsmiGcbh
+            // 
+            this.tsmiGcbh.Name = "tsmiGcbh";
+            this.tsmiGcbh.Size = new System.Drawing.Size(256, 22);
+            this.tsmiGcbh.Text = "工程编号不能为空，请重新操作。";
+            // 
+            // tsmiGcmc
+            // 
+            this.tsmiGcmc.Name = "tsmiGcmc";
+            this.tsmiGcmc.Size = new System.Drawing.Size(256, 22);
+            this.tsmiGcmc.Text = "工程名称不能为空，请重新操作。";
+            // 
             // FrmManufactureInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -288,6 +312,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlManufactureInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewManufactureInfo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -316,5 +341,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colManufactureNo;
         private DevExpress.XtraGrid.Columns.GridColumn colManufactureName;
         private DevExpress.XtraGrid.Columns.GridColumn colManufactureType;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiGcbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiGcmc;
     }
 }

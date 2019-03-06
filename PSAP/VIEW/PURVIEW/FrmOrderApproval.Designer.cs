@@ -94,6 +94,8 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCxcgddxxcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
@@ -111,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderAppInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -467,7 +470,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
+            this.pnlMiddle.Size = new System.Drawing.Size(584, 233);
             this.pnlMiddle.TabIndex = 5;
             // 
             // gridCrlOrderAppInfo
@@ -477,7 +480,7 @@
             this.gridCrlOrderAppInfo.Location = new System.Drawing.Point(2, 2);
             this.gridCrlOrderAppInfo.MainView = this.gridViewOrderAppInfo;
             this.gridCrlOrderAppInfo.Name = "gridCrlOrderAppInfo";
-            this.gridCrlOrderAppInfo.Size = new System.Drawing.Size(580, 228);
+            this.gridCrlOrderAppInfo.Size = new System.Drawing.Size(580, 229);
             this.gridCrlOrderAppInfo.TabIndex = 9;
             this.gridCrlOrderAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderAppInfo});
@@ -598,7 +601,7 @@
             this.pnlBottom.Controls.Add(this.btnCancel);
             this.pnlBottom.Controls.Add(this.btnApproval);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 322);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(584, 40);
             this.pnlBottom.TabIndex = 6;
@@ -625,11 +628,24 @@
             this.btnApproval.Text = "审批";
             this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCxcgddxxcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 48);
+            // 
+            // tsmiCxcgddxxcw
+            // 
+            this.tsmiCxcgddxxcw.Name = "tsmiCxcgddxxcw";
+            this.tsmiCxcgddxxcw.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCxcgddxxcw.Text = "查询采购订单信息错误，请重新操作。";
+            // 
             // FrmOrderApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.pnlBottom);
@@ -660,6 +676,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderAppInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -731,5 +748,7 @@
         private DevExpress.XtraEditors.LabelControl labApprovalCat;
         private DevExpress.XtraEditors.LookUpEdit lookUpApprovalType;
         private System.Data.DataColumn dataColApprovalCat;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxcgddxxcw;
     }
 }

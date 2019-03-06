@@ -20,6 +20,7 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmBaseEdit : DockContent
     {
+
         /// <summary>
         /// form的主数据表名
         /// </summary>
@@ -263,12 +264,15 @@ namespace PSAP.VIEW.BSVIEW
         /// 新增状态
         /// </summary>
         bool newState = false;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmBaseEdit()
         {
             InitializeComponent();
             PSAP.BLL.BSBLL.BSBLL.language(this);
+            PSAP.BLL.BSBLL.BSBLL.language(f);
         }
+
 
         /// <summary>
         /// 加载窗体
@@ -309,7 +313,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--新增按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--新增按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiXzansj.Text, ex);
             }
         }
 
@@ -345,7 +350,8 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.HandleException(this.Text + "--修改按钮事件错误。", ex);
+                    //ExceptionHandler.HandleException(this.Text + "--修改按钮事件错误。", ex);
+                    ExceptionHandler.HandleException(this.Text + "--" + f.tsmiXgansjcw.Text, ex);
                     if (masterEditPanel != null)
                         masterEditPanel.SelectNextControl(null, true, true, true, true);
                 }
@@ -372,7 +378,8 @@ namespace PSAP.VIEW.BSVIEW
                     string sqlStr = string.Format("select count(*) from {0} where {1}='{2}'", TableName, PrimaryKeyColumn, dr[PrimaryKeyColumn].ToString());
                     if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
                     {
-                        MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
+                        //MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
+                        MessageHandler.ShowMessageBox(string.Format(f.tsmiZjl.Text + "[{0}]" + f.tsmiBkysrcfdxxqcxsr.Text, masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
                         if (masterEditPanel != null)
                             masterEditPanel.SelectNextControl(null, true, true, true, true);
                         return false;
@@ -383,7 +390,8 @@ namespace PSAP.VIEW.BSVIEW
                     string sqlStr = string.Format("select count(*) from {0} where {1}='{2}' and {1}!='{3}'", TableName, PrimaryKeyColumn, dr[PrimaryKeyColumn, DataRowVersion.Current].ToString(), dr[PrimaryKeyColumn, DataRowVersion.Original].ToString());
                     if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
                     {
-                        MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
+                        //MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
+                        MessageHandler.ShowMessageBox(string.Format(f.tsmiZjl.Text + "[{0}]" + f.tsmiBkysrcfdxxqcxsr.Text, masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
                         if (masterEditPanel != null)
                             masterEditPanel.SelectNextControl(null, true, true, true, true);
                         return false;
@@ -419,7 +427,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiBcansj.Text, ex);
                 if (masterEditPanel != null)
                     masterEditPanel.SelectNextControl(null, true, true, true, true);
                 return false;
@@ -447,7 +456,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--取消按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--取消按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiQxansj.Text, ex);
             }
         }
 
@@ -458,7 +468,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的记录吗？") != DialogResult.Yes)
+                //if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的记录吗？") != DialogResult.Yes)
+                if (MessageHandler.ShowMessageBox_YesNo(f.tsmiQdyscxddjlm.Text) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -476,7 +487,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--删除按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--删除按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiScansj.Text, ex);
             }
         }
 
@@ -497,7 +509,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--刷新按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--刷新按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSxansjcw.Text, ex);
             }
         }
 
@@ -513,7 +526,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCwexcelcw.Text, ex);
             }
         }
 
@@ -531,7 +545,8 @@ namespace PSAP.VIEW.BSVIEW
                     {
                         if (dr.RowState != DataRowState.Unchanged)
                         {
-                            if (MessageHandler.ShowMessageBox_YesNo("确认是否保存当前行信息？") == DialogResult.Yes)
+                            //if (MessageHandler.ShowMessageBox_YesNo("确认是否保存当前行信息？") == DialogResult.Yes)
+                            if (MessageHandler.ShowMessageBox_YesNo(f.tsmiQrsfbcdqhxx.Text) == DialogResult.Yes)
                             {
                                 if (!btnSave_Click())
                                     e.Allow = false;
@@ -553,7 +568,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--刷新按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--刷新按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSxansjcw.Text, ex);
             }
         }
 
@@ -746,7 +762,7 @@ namespace PSAP.VIEW.BSVIEW
             btnNew.Enabled = state;
             if (state)
             {
-                btnSave.Text =tsmiEdit.Text;
+                btnSave.Text = tsmiEdit.Text;
                 btnSave.Tag = "修改";
             }
             else
@@ -829,7 +845,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--向上查找输入的信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--向上查找输入的信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiXsczsrdxxcw.Text, ex);
             }
         }
 
@@ -878,7 +895,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--向下查找输入的信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--向下查找输入的信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiXxczsrdxxcw.Text, ex);
             }
         }
     }

@@ -17,16 +17,13 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmBaseEdit editForm = null;
         FrmStnList stnList = null;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmProjectList()
         {
             InitializeComponent();
-
-            if (SystemInfo.user.Lanuage != "Chinese")//sx190222add
-            {
-                BSBLL.SetFormLanguages(this);//设置DockContent中的语种
-            }
-
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -72,7 +69,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -83,19 +81,19 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textProjectNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("项目号编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiXmbh.Text);// ("项目号编号不能为空，请重新操作。");
                 textProjectNo.Focus();
                 return false;
             }
             if (searchLookUpBussinessBaseNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("客户不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiKhbnwk.Text);// ("客户不能为空，请重新操作。");
                 searchLookUpBussinessBaseNo.Focus();
                 return false;
             }
             if (textProjectName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("项目名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiXmmcbnwk.Text);// ("项目名称不能为空，请重新操作。");
                 textProjectName.Focus();
                 return false;
             }
@@ -135,12 +133,13 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                    MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定站号信息事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定站号信息事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdzhxxsjcw.Text, ex);
             }
         }
 
@@ -164,12 +163,13 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                    MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--当前项目号聚焦的事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--当前项目号聚焦的事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiDqxmhjjdsjcw.Text, ex);
             }
         }
     }
