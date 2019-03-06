@@ -41,6 +41,7 @@
             this.dataColReqState = new System.Data.DataColumn();
             this.dataColApprovalType = new System.Data.DataColumn();
             this.dataColApprovalCat = new System.Data.DataColumn();
+            this.dataColSelect = new System.Data.DataColumn();
             this.TableOrderApprovalInfo = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColTypeNo = new System.Data.DataColumn();
@@ -74,7 +75,6 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
-            this.dataColSelect = new System.Data.DataColumn();
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCxcgddxxcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
@@ -194,6 +194,11 @@
             this.dataColApprovalCat.Caption = "审批方式";
             this.dataColApprovalCat.ColumnName = "ApprovalCat";
             this.dataColApprovalCat.DataType = typeof(int);
+            // 
+            // dataColSelect
+            // 
+            this.dataColSelect.ColumnName = "Select";
+            this.dataColSelect.DataType = typeof(bool);
             // 
             // TableOrderApprovalInfo
             // 
@@ -496,11 +501,6 @@
             this.tsmiCxcgddxxcw.Name = "tsmiCxcgddxxcw";
             this.tsmiCxcgddxxcw.Size = new System.Drawing.Size(280, 22);
             this.tsmiCxcgddxxcw.Text = "查询采购订单信息错误，请重新操作。";
-            // 
-            // dataColSelect
-            // 
-            this.dataColSelect.ColumnName = "Select";
-            this.dataColSelect.DataType = typeof(bool);
             // 
             // FrmOrderApproval
             // 
