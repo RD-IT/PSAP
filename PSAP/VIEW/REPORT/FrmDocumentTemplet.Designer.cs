@@ -96,6 +96,7 @@
             null,
             null}, -1);
             this.treeListDocTemp.EndUnboundLoad();
+            this.treeListDocTemp.OptionsView.EnableAppearanceOddRow = true;
             this.treeListDocTemp.ParentFieldName = "ParentId";
             this.treeListDocTemp.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repItemBtnEdtUpload,
@@ -222,7 +223,7 @@
             this.tsmiJjdlbg,
             this.tsmiJjdhbg});
             this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(521, 378);
+            this.cms.Size = new System.Drawing.Size(521, 356);
             // 
             // tsmiWcxddq
             // 

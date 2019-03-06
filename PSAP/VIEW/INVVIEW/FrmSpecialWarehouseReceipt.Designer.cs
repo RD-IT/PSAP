@@ -361,6 +361,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -376,9 +377,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlSWRList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(2, 324);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 322);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1260, 355);
+            this.pnlBottom.Size = new System.Drawing.Size(1264, 359);
             this.pnlBottom.TabIndex = 10;
             // 
             // btnListAdd
@@ -406,7 +407,7 @@
             this.repSearchShelfId,
             this.repComboBoxStnNo,
             this.repSearchProjectNo});
-            this.gridControlSWRList.Size = new System.Drawing.Size(1256, 351);
+            this.gridControlSWRList.Size = new System.Drawing.Size(1260, 355);
             this.gridControlSWRList.TabIndex = 29;
             this.gridControlSWRList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSWRList});
@@ -739,10 +740,10 @@
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(2, 319);
+            this.splitterControl1.Location = new System.Drawing.Point(0, 317);
             this.splitterControl1.Margin = new System.Windows.Forms.Padding(4);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1260, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1264, 5);
             this.splitterControl1.TabIndex = 9;
             this.splitterControl1.TabStop = false;
             // 
@@ -752,9 +753,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlSWRHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1260, 239);
+            this.pnlMiddle.Size = new System.Drawing.Size(1264, 239);
             this.pnlMiddle.TabIndex = 3;
             // 
             // checkAll
@@ -784,7 +785,7 @@
             this.repCheckSelect,
             this.repLookUpApprovalType,
             this.repLookUpReqDep});
-            this.gridControlSWRHead.Size = new System.Drawing.Size(1256, 201);
+            this.gridControlSWRHead.Size = new System.Drawing.Size(1260, 201);
             this.gridControlSWRHead.TabIndex = 6;
             this.gridControlSWRHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSWRHead});
@@ -1012,7 +1013,7 @@
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1256, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1260, 34);
             this.pnlMiddleTop.TabIndex = 1;
             // 
             // btnNew
@@ -1112,10 +1113,10 @@
             this.pnltop.Controls.Add(this.labWarehouseState);
             this.pnltop.Controls.Add(this.labSWRDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(2, 2);
+            this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Margin = new System.Windows.Forms.Padding(4);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1260, 78);
+            this.pnltop.Size = new System.Drawing.Size(1264, 78);
             this.pnltop.TabIndex = 2;
             // 
             // lookUpReqDep
@@ -1133,7 +1134,7 @@
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
             this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
-            this.lookUpReqDep.TabIndex = 5;
+            this.lookUpReqDep.TabIndex = 3;
             // 
             // comboBoxWarehouseState
             // 
@@ -1147,10 +1148,10 @@
             "全部",
             "待审批",
             "审批",
-            "已结账",
             "审批中"});
+            this.comboBoxWarehouseState.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxWarehouseState.Size = new System.Drawing.Size(120, 20);
-            this.comboBoxWarehouseState.TabIndex = 6;
+            this.comboBoxWarehouseState.TabIndex = 4;
             // 
             // lookUpRepertoryNo
             // 
@@ -1169,7 +1170,7 @@
             this.lookUpRepertoryNo.Properties.NullText = "";
             this.lookUpRepertoryNo.Properties.ValueMember = "RepertoryNo";
             this.lookUpRepertoryNo.Size = new System.Drawing.Size(120, 20);
-            this.lookUpRepertoryNo.TabIndex = 3;
+            this.lookUpRepertoryNo.TabIndex = 2;
             // 
             // btnQuery
             // 
@@ -1177,7 +1178,7 @@
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 10;
+            this.btnQuery.TabIndex = 8;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -1198,7 +1199,7 @@
             this.lookUpApprover.Properties.NullText = "";
             this.lookUpApprover.Properties.ValueMember = "AutoId";
             this.lookUpApprover.Size = new System.Drawing.Size(100, 20);
-            this.lookUpApprover.TabIndex = 8;
+            this.lookUpApprover.TabIndex = 6;
             this.lookUpApprover.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lookUpApprover_KeyDown);
             // 
             // textCommon
@@ -1208,7 +1209,7 @@
             this.textCommon.Margin = new System.Windows.Forms.Padding(4);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 9;
+            this.textCommon.TabIndex = 7;
             // 
             // lookUpPrepared
             // 
@@ -1226,7 +1227,7 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
-            this.lookUpPrepared.TabIndex = 7;
+            this.lookUpPrepared.TabIndex = 5;
             // 
             // dateSWRDateEnd
             // 

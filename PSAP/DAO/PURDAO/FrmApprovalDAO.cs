@@ -304,5 +304,14 @@ namespace PSAP.DAO.PURDAO
             string sqlStr = string.Format("select Head.AutoId, Head.SpecialWarehouseReceipt as OrderHeadNo, Head.SpecialWarehouseReceiptDate as OrderHeadDate, Head.ReqDep, Head.WarehouseState as ReqState, Head.ApprovalType, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat, Head.SpecialWarehouseReceipt, Head.WarehouseState from INV_SpecialWarehouseReceiptHead as Head left join PUR_ApprovalType on Head.ApprovalType = PUR_ApprovalType.TypeNo where SpecialWarehouseReceipt = '{0}'", specialWarehouseReceiptStr);
             BaseSQL.Query(sqlStr, queryDataTable);
         }
+
+        /// <summary>
+        /// 查询退货单信息
+        /// </summary>
+        public void QueryReturnedGoodsReportHead(DataTable queryDataTable, string returnedGoodsReportNoStr)
+        {
+            string sqlStr = string.Format("select Head.AutoId, Head.ReturnedGoodsReportNo as OrderHeadNo, Head.ReturnedGoodsReportDate as OrderHeadDate, Head.ReqDep, Head.WarehouseState as ReqState, Head.ApprovalType, PUR_ApprovalType.TypeNoText, PUR_ApprovalType.ApprovalCat, Head.ReturnedGoodsReportNo, Head.WarehouseState from INV_ReturnedGoodsReportHead as Head left join PUR_ApprovalType on Head.ApprovalType = PUR_ApprovalType.TypeNo where ReturnedGoodsReportNo = '{0}'", returnedGoodsReportNoStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
     }
 }

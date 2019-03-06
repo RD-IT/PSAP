@@ -42,32 +42,38 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprovalType.Properties.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryApprovalType(false);
                 switch(orderHeadNoStr.Substring(0,2))
                 {
-                    case "PO": 
+                    case "PR"://请购单
+
+                        break;
+                    case "PO"://采购订单
                         approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
-                        if (dataSet_Order.Tables[0].Rows.Count == 0)
-                        {
-                            MessageHandler.ShowMessageBox("查询采购订单信息错误，请重新操作。");
-                            return;
-                        }
                         break;
-                    case "SW":
+                    case "WW"://入库单
+
+                        break;
+                    case "WR"://材料出库单
+
+                        break;
+                    case "PS"://采购结账单
+
+                        break;
+                    case "SW"://预算外入库单
                         approvalDAO.QuerySpecialWarehouseWarrantHead(dataSet_Order.Tables[0], orderHeadNoStr);
-                        if (dataSet_Order.Tables[0].Rows.Count == 0)
-                        {
-                            MessageHandler.ShowMessageBox("查询预算外入库单错误，请重新操作。");
-                            return;
-                        }
                         break;
-                    case "SR":
+                    case "SR"://预算外出库单
                         approvalDAO.QuerySpecialWarehouseReceiptHead(dataSet_Order.Tables[0], orderHeadNoStr);
-                        if (dataSet_Order.Tables[0].Rows.Count == 0)
-                        {
-                            MessageHandler.ShowMessageBox("查询预算外出库单错误，请重新操作。");
-                            return;
-                        }
+                        break;
+                    case "RG"://退货单
+                        approvalDAO.QueryReturnedGoodsReportHead(dataSet_Order.Tables[0], orderHeadNoStr);
                         break;
                 }
-                
+                if (dataSet_Order.Tables[0].Rows.Count == 0)
+                {
+                    MessageHandler.ShowMessageBox("查询单据信息错误，请重新操作。");
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                }
+
                 string typeNoStr = DataTypeConvert.GetString(dataSet_Order.Tables[0].Rows[0]["ApprovalType"]);
                 int approvalCatInt = DataTypeConvert.GetInt(dataSet_Order.Tables[0].Rows[0]["ApprovalCat"]);
                 approvalDAO.QueryOrderApprovalInfo(dataSet_Order.Tables[1], orderHeadNoStr, typeNoStr);
@@ -145,17 +151,32 @@ namespace PSAP.VIEW.BSVIEW
                 int successCountInt = 0;
                 switch (orderHeadNoStr.Substring(0, 2))
                 {
-                    case "PO":
+                    case "PR"://请购单
+                        new FrmPrReqDAO().PrReqApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "PO"://采购订单
                         new FrmOrderDAO().OrderApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
                         break;
-                    case "SW":
+                    case "WW"://入库单
+                        new FrmWarehouseWarrantDAO().WWApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "WR"://材料出库单
+                        new FrmWarehouseReceiptDAO().WRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "PS"://采购结账单
+                        new FrmSettlementDAO().SettlementApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "SW"://预算外入库单
                         new FrmSpecialWarehouseWarrantDAO().SWWApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
                         break;
-                    case "SR":
+                    case "SR"://预算外出库单
                         new FrmSpecialWarehouseReceiptDAO().SWRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
                         break;
+                    case "RG"://退货单
+                        new FrmReturnedGoodsReportDAO().RGRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
                 }
-                if(successCountInt>0)
+                if (successCountInt > 0)
                 {
                     MessageHandler.ShowMessageBox("审批成功。");
                     this.DialogResult = DialogResult.OK;

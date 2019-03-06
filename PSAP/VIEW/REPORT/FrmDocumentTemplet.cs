@@ -89,6 +89,15 @@ namespace PSAP.VIEW.BSVIEW
                             case "INV_InventoryAdjustmentsHead"://库存调整单
                                 new FrmInventoryAdjustmentsDAO().PrintHandle("", 3);
                                 break;
+                            case "INV_SpecialWarehouseWarrantHead"://预算外入库单
+                                new FrmSpecialWarehouseWarrantDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_SpecialWarehouseReceiptHead"://预算外出库单
+                                new FrmSpecialWarehouseReceiptDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_ReturnedGoodsReportHead"://退货单
+                                new FrmReturnedGoodsReportDAO().PrintHandle("", 3);
+                                break;
                             default:
                                 return;
                         }

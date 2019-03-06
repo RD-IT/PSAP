@@ -37,10 +37,10 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         bool onlySelectColChangeRowState = false;
 
-        /// <summary>
-        /// 拖动区域的信息
-        /// </summary>
-        GridHitInfo GriddownHitInfo = null;
+        ///// <summary>
+        ///// 拖动区域的信息
+        ///// </summary>
+        //GridHitInfo GriddownHitInfo = null;
 
         #endregion
 

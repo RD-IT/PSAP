@@ -38,10 +38,10 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         bool onlySelectColChangeRowState = false;
 
-        /// <summary>
-        /// 拖动区域的信息
-        /// </summary>
-        GridHitInfo GriddownHitInfo = null;
+        ///// <summary>
+        ///// 拖动区域的信息
+        ///// </summary>
+        //GridHitInfo GriddownHitInfo = null;
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (textCommon.Text == "")
                 {
-                    swwDAO.QuerySpecialWarehouseWarrantHeadHead(dataSet_SWW.Tables[0], "", "", "", "", 0, "", -1, "", true);
+                    swwDAO.QuerySpecialWarehouseWarrantHead(dataSet_SWW.Tables[0], "", "", "", "", 0, "", -1, "", true);
                     swwDAO.QuerySpecialWarehouseWarrantList(dataSet_SWW.Tables[1], "", true);
                 }
             }
@@ -117,7 +117,7 @@ namespace PSAP.VIEW.BSVIEW
 
                     dataSet_SWW.Tables[0].Clear();
                     headFocusedLineNo = 0;
-                    swwDAO.QuerySpecialWarehouseWarrantHeadHead(dataSet_SWW.Tables[0], "", "", "", "", 0, "", -1, textCommon.Text, false);
+                    swwDAO.QuerySpecialWarehouseWarrantHead(dataSet_SWW.Tables[0], "", "", "", "", 0, "", -1, textCommon.Text, false);
                     SetButtonAndColumnState(false);
 
                     if (dataSet_SWW.Tables[0].Rows.Count > 0)
@@ -145,6 +145,8 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         #endregion
+
+        #region 右侧预算外入库单模块的相关事件和方法
 
         /// <summary>
         /// 删除选项
@@ -179,7 +181,7 @@ namespace PSAP.VIEW.BSVIEW
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";                
                 string repertoryNoStr = lookUpRepertoryNo.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpRepertoryNo.EditValue) : "";
 
-                int warehouseStateInt = comboBoxWarehouseState.SelectedIndex > 0 ? comboBoxWarehouseState.SelectedIndex : 0;
+                int warehouseStateInt = CommonHandler.Get_WarehouseState_No(comboBoxWarehouseState.Text);
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 int approverInt = -1;
                 if (lookUpApprover.ItemIndex == 0)
@@ -191,7 +193,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_SWW.Tables[0].Rows.Clear();
                 dataSet_SWW.Tables[1].Rows.Clear();
                 headFocusedLineNo = 0;
-                swwDAO.QuerySpecialWarehouseWarrantHeadHead(dataSet_SWW.Tables[0], swwDateBeginStr, swwDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, approverInt, commonStr, false);
+                swwDAO.QuerySpecialWarehouseWarrantHead(dataSet_SWW.Tables[0], swwDateBeginStr, swwDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, approverInt, commonStr, false);
 
                 SetButtonAndColumnState(false);
                 checkAll.Checked = false;
@@ -609,11 +611,21 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 打印预览按钮事件
+        /// 预览按钮事件
         /// </summary>
         private void btnPreview_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string swwHeadNoStr = "";
+                if (gridViewSWWHead.GetFocusedDataRow() != null)
+                    swwHeadNoStr = DataTypeConvert.GetString(gridViewSWWHead.GetFocusedDataRow()["SpecialWarehouseWarrant"]);
+                swwDAO.PrintHandle(swwHeadNoStr, 1);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--预览按钮事件错误。", ex);
+            }
         }
 
         /// <summary>
@@ -936,9 +948,9 @@ namespace PSAP.VIEW.BSVIEW
                 case 2:
                     MessageHandler.ShowMessageBox(string.Format("预算外入库单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewSWWHead.GetFocusedDataRow()["SpecialWarehouseWarrant"])));
                     return false;
-                case 3:
-                    MessageHandler.ShowMessageBox(string.Format("预算外入库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWWHead.GetFocusedDataRow()["SpecialWarehouseWarrant"])));
-                    return false;
+                //case 3:
+                //    MessageHandler.ShowMessageBox(string.Format("预算外入库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWWHead.GetFocusedDataRow()["SpecialWarehouseWarrant"])));
+                //    return false;
                 case 4:
                     MessageHandler.ShowMessageBox(string.Format("预算外入库单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewSWWHead.GetFocusedDataRow()["SpecialWarehouseWarrant"])));
                     return false;
@@ -974,14 +986,14 @@ namespace PSAP.VIEW.BSVIEW
                                 return false;
                             }
                             break;
-                        case 3:
-                            if (checkSettle)
-                            {
-                                MessageHandler.ShowMessageBox(string.Format("预算外入库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWWHead.GetDataRow(i)["SpecialWarehouseWarrant"])));
-                                gridViewSWWHead.FocusedRowHandle = i;
-                                return false;
-                            }
-                            break;
+                        //case 3:
+                        //    if (checkSettle)
+                        //    {
+                        //        MessageHandler.ShowMessageBox(string.Format("预算外入库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWWHead.GetDataRow(i)["SpecialWarehouseWarrant"])));
+                        //        gridViewSWWHead.FocusedRowHandle = i;
+                        //        return false;
+                        //    }
+                        //    break;
                         case 4:
                             if (checkApproverBetween)
                             {
@@ -1045,5 +1057,7 @@ namespace PSAP.VIEW.BSVIEW
             dataSet_SWW.Tables[0].AcceptChanges();
             onlySelectColChangeRowState = false;
         }
+
+        #endregion
     }
 }

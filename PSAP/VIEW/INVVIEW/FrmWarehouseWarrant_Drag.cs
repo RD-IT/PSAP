@@ -368,6 +368,12 @@ namespace PSAP.VIEW.BSVIEW
                 else
                 {
                     DataRow headRow = gridViewWWHead.GetFocusedDataRow();
+                    if (DataTypeConvert.GetString(headRow["BussinessBaseNo"]) == "")
+                    {
+                        MessageHandler.ShowMessageBox("供应商不能为空，请填写后再进行保存。");
+                        FocusedHeadView("BussinessBaseNo");
+                        return;
+                    }
                     if (DataTypeConvert.GetString(headRow["ReqDep"]) == "")
                     {
                         MessageHandler.ShowMessageBox("入库部门不能为空，请填写后再进行保存。");
