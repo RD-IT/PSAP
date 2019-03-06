@@ -209,11 +209,22 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 if (bSDepartment.Current != null)
-                {
-                    DataRow dr = ((DataRowView)bSDepartment.Current).Row;
-                    dr.RejectChanges();
-                    editForm.Set_Button_State(true);
-                    editForm.Set_EditZone_ControlReadOnly(true);
+                { 
+                    if (((DataRowView)bSDepartment.Current).IsEdit)
+                    {
+                        int oldId = e.OldNode == null ? 0 : DataTypeConvert.GetInt(e.OldNode["AutoId"]);
+                        DataRow dr = ((DataRowView)bSDepartment.Current).Row;
+                        if (dr.RowState == DataRowState.Added && oldId != 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            dr.RejectChanges();
+                            editForm.Set_Button_State(true);
+                            editForm.Set_EditZone_ControlReadOnly(true);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
