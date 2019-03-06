@@ -38,10 +38,10 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         bool onlySelectColChangeRowState = false;
 
-        /// <summary>
-        /// 拖动区域的信息
-        /// </summary>
-        GridHitInfo GriddownHitInfo = null;
+        ///// <summary>
+        ///// 拖动区域的信息
+        ///// </summary>
+        //GridHitInfo GriddownHitInfo = null;
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (textCommon.Text == "")
                 {
-                    swrDAO.QuerySpecialWarehouseReceiptHeadHead(dataSet_SWR.Tables[0], "", "", "", "", 0, "", -1, "", true);
+                    swrDAO.QuerySpecialWarehouseReceiptHead(dataSet_SWR.Tables[0], "", "", "", "", 0, "", -1, "", true);
                     swrDAO.QuerySpecialWarehouseReceiptList(dataSet_SWR.Tables[1], "", true);
                 }
             }
@@ -117,7 +117,7 @@ namespace PSAP.VIEW.BSVIEW
 
                     dataSet_SWR.Tables[0].Clear();
                     headFocusedLineNo = 0;
-                    swrDAO.QuerySpecialWarehouseReceiptHeadHead(dataSet_SWR.Tables[0], "", "", "", "", 0, "", -1, textCommon.Text, false);
+                    swrDAO.QuerySpecialWarehouseReceiptHead(dataSet_SWR.Tables[0], "", "", "", "", 0, "", -1, textCommon.Text, false);
                     SetButtonAndColumnState(false);
 
                     if (dataSet_SWR.Tables[0].Rows.Count > 0)
@@ -145,6 +145,8 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         #endregion
+
+        #region 右侧预算外出库单模块的相关事件和方法
 
         /// <summary>
         /// 删除选项
@@ -179,7 +181,7 @@ namespace PSAP.VIEW.BSVIEW
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string repertoryNoStr = lookUpRepertoryNo.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpRepertoryNo.EditValue) : "";
 
-                int warehouseStateInt = comboBoxWarehouseState.SelectedIndex > 0 ? comboBoxWarehouseState.SelectedIndex : 0;
+                int warehouseStateInt = CommonHandler.Get_WarehouseState_No(comboBoxWarehouseState.Text);
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 int approverInt = -1;
                 if (lookUpApprover.ItemIndex == 0)
@@ -191,7 +193,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_SWR.Tables[0].Rows.Clear();
                 dataSet_SWR.Tables[1].Rows.Clear();
                 headFocusedLineNo = 0;
-                swrDAO.QuerySpecialWarehouseReceiptHeadHead(dataSet_SWR.Tables[0], swrDateBeginStr, swrDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, approverInt, commonStr, false);
+                swrDAO.QuerySpecialWarehouseReceiptHead(dataSet_SWR.Tables[0], swrDateBeginStr, swrDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, approverInt, commonStr, false);
 
                 SetButtonAndColumnState(false);
                 checkAll.Checked = false;
@@ -607,11 +609,21 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 打印预览按钮事件
+        /// 预览按钮事件
         /// </summary>
         private void btnPreview_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string swrHeadNoStr = "";
+                if (gridViewSWRHead.GetFocusedDataRow() != null)
+                    swrHeadNoStr = DataTypeConvert.GetString(gridViewSWRHead.GetFocusedDataRow()["SpecialWarehouseReceipt"]);
+                swrDAO.PrintHandle(swrHeadNoStr, 1);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--预览按钮事件错误。", ex);
+            }
         }
 
         /// <summary>
@@ -934,9 +946,9 @@ namespace PSAP.VIEW.BSVIEW
                 case 2:
                     MessageHandler.ShowMessageBox(string.Format("预算外出库单[{0}]已经审批，不可以操作。", DataTypeConvert.GetString(gridViewSWRHead.GetFocusedDataRow()["SpecialWarehouseReceipt"])));
                     return false;
-                case 3:
-                    MessageHandler.ShowMessageBox(string.Format("预算外出库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWRHead.GetFocusedDataRow()["SpecialWarehouseReceipt"])));
-                    return false;
+                //case 3:
+                //    MessageHandler.ShowMessageBox(string.Format("预算外出库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWRHead.GetFocusedDataRow()["SpecialWarehouseReceipt"])));
+                //    return false;
                 case 4:
                     MessageHandler.ShowMessageBox(string.Format("预算外出库单[{0}]已经审批中，不可以操作。", DataTypeConvert.GetString(gridViewSWRHead.GetFocusedDataRow()["SpecialWarehouseReceipt"])));
                     return false;
@@ -972,14 +984,14 @@ namespace PSAP.VIEW.BSVIEW
                                 return false;
                             }
                             break;
-                        case 3:
-                            if (checkSettle)
-                            {
-                                MessageHandler.ShowMessageBox(string.Format("预算外出库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWRHead.GetDataRow(i)["SpecialWarehouseReceipt"])));
-                                gridViewSWRHead.FocusedRowHandle = i;
-                                return false;
-                            }
-                            break;
+                        //case 3:
+                        //    if (checkSettle)
+                        //    {
+                        //        MessageHandler.ShowMessageBox(string.Format("预算外出库单[{0}]已经结账，不可以操作。", DataTypeConvert.GetString(gridViewSWRHead.GetDataRow(i)["SpecialWarehouseReceipt"])));
+                        //        gridViewSWRHead.FocusedRowHandle = i;
+                        //        return false;
+                        //    }
+                        //    break;
                         case 4:
                             if (checkApproverBetween)
                             {
@@ -1043,5 +1055,7 @@ namespace PSAP.VIEW.BSVIEW
             dataSet_SWR.Tables[0].AcceptChanges();
             onlySelectColChangeRowState = false;
         }
+
+        #endregion
     }
 }

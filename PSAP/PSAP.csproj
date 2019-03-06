@@ -111,6 +111,7 @@
     <Compile Include="DAO\INVDAO\FrmInventoryAdjustmentsDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmInventoryMoveDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmOrderApplyDAO.cs" />
+    <Compile Include="DAO\INVDAO\FrmReturnedGoodsReportDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmSpecialWarehouseReceiptDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmSpecialWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseNowInfoDAO.cs" />
@@ -266,6 +267,12 @@
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmReturnedGoodsReport.Designer.cs">
       <DependentUpon>FrmReturnedGoodsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmReturnedGoodsReportQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmReturnedGoodsReportQuery.Designer.cs">
+      <DependentUpon>FrmReturnedGoodsReportQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmSpecialWarehouseReceipt.cs">
       <SubType>Form</SubType>
@@ -773,14 +780,26 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmReturnedGoodsReport.resx">
+      <DependentUpon>FrmReturnedGoodsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmReturnedGoodsReportQuery.resx">
+      <DependentUpon>FrmReturnedGoodsReportQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseReceipt.resx">
       <DependentUpon>FrmSpecialWarehouseReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseReceiptQuery.resx">
+      <DependentUpon>FrmSpecialWarehouseReceiptQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrant.resx">
       <DependentUpon>FrmSpecialWarehouseWarrant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmLanguageINVDAO.resx">
       <DependentUpon>FrmLanguageINVDAO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrantQuery.resx">
+      <DependentUpon>FrmSpecialWarehouseWarrantQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.resx">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>

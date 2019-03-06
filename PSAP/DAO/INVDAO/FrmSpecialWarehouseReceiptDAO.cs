@@ -22,15 +22,15 @@ namespace PSAP.DAO.INVDAO
         /// <param name="preparedStr">制单人</param>
         /// <param name="commonStr">通用查询条件</param>
         /// <param name="nullTable">是否查询空表</param>
-        public void QuerySpecialWarehouseReceiptHeadHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string repertoryNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
+        public void QuerySpecialWarehouseReceiptHead(DataTable queryDataTable, string beginDateStr, string endDateStr, string reqDepStr, string repertoryNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
-            BaseSQL.Query(QuerySpecialWarehouseReceiptHeadHead_SQL(beginDateStr, endDateStr, reqDepStr, repertoryNoStr, warehouseStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
+            BaseSQL.Query(QuerySpecialWarehouseReceiptHead_SQL(beginDateStr, endDateStr, reqDepStr, repertoryNoStr, warehouseStateInt, preparedStr, approverInt, commonStr, nullTable), queryDataTable);
         }
 
         /// <summary>
         /// 查询预算外出库单表头的SQL
         /// </summary>
-        public string QuerySpecialWarehouseReceiptHeadHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string repertoryNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
+        public string QuerySpecialWarehouseReceiptHead_SQL(string beginDateStr, string endDateStr, string reqDepStr, string repertoryNoStr, int warehouseStateInt, string preparedStr, int approverInt, string commonStr, bool nullTable)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
@@ -63,7 +63,7 @@ namespace PSAP.DAO.INVDAO
                     sqlStr += string.Format(" and WarehouseState in (1,4)");
                 else
                 {
-                    sqlStr = string.Format("select INV_SpecialWarehouseReceiptHead.* from INV_SpecialWarehouseReceiptHead left join PUR_ApprovalType on INV_SpecialWarehouseReceiptHead.ApprovalType = PUR_ApprovalType.TypeNo where {0} and INV_SpecialWarehouseReceiptHead.WarehouseState in (1, 4) and ((PUR_ApprovalType.ApprovalCat = 0 and exists (select * from(select top 1 * from F_OrderNoApprovalList(INV_SpecialWarehouseReceiptHead.SpecialWarehouseReceipt, INV_SpecialWarehouseReceiptHead.ApprovalType) Order by AppSequence) as minlist where Approver = {1})) or(PUR_ApprovalType.ApprovalCat = 1 and exists(select * from F_OrderNoApprovalList(INV_SpecialWarehouseReceiptHead.SpecialWarehouseReceipt, INV_SpecialWarehouseReceiptHead.ApprovalType) where Approver = {1}))) order by AutoId", sqlStr, approverInt);
+                    sqlStr = string.Format("select Head.* from INV_SpecialWarehouseReceiptHead as Head left join PUR_ApprovalType on Head.ApprovalType = PUR_ApprovalType.TypeNo where {0} and Head.WarehouseState in (1, 4) and ((PUR_ApprovalType.ApprovalCat = 0 and exists (select * from(select top 1 * from F_OrderNoApprovalList(Head.SpecialWarehouseReceipt, Head.ApprovalType) Order by AppSequence) as minlist where Approver = {1})) or(PUR_ApprovalType.ApprovalCat = 1 and exists(select * from F_OrderNoApprovalList(Head.SpecialWarehouseReceipt, Head.ApprovalType) where Approver = {1}))) order by AutoId", sqlStr, approverInt);
                     return sqlStr;
                 }
             }
@@ -512,5 +512,168 @@ namespace PSAP.DAO.INVDAO
             }
         }
 
+        /// <summary>
+        /// 打印处理
+        /// </summary>
+        /// <param name="swrHeadNoStr">预算外出库单号</param>
+        /// <param name="handleTypeInt">打印处理类型：1 预览 2 打印 3 设计</param>
+        public void PrintHandle(string swrHeadNoStr, int handleTypeInt)
+        {
+            DataSet ds = new DataSet();
+            DataTable headTable = BaseSQL.GetTableBySql(string.Format("select * from V_Prn_INV_SpecialWarehouseReceiptHead where SpecialWarehouseReceipt = '{0}' order by AutoId", swrHeadNoStr));
+            headTable.TableName = "SpecialWarehouseReceiptHead";
+            for (int i = 0; i < headTable.Columns.Count; i++)
+            {
+                #region 设定主表显示的标题
+
+                switch (headTable.Columns[i].ColumnName)
+                {
+                    case "SpecialWarehouseReceipt":
+                        headTable.Columns[i].Caption = "预算外出库单号";
+                        break;
+                    case "SpecialWarehouseReceiptDate":
+                        headTable.Columns[i].Caption = "预算外出库日期";
+                        break;
+                    case "DepartmentNo":
+                        headTable.Columns[i].Caption = "部门编号";
+                        break;
+                    case "DepartmentName":
+                        headTable.Columns[i].Caption = "部门名称";
+                        break;
+                    case "RepertoryNo":
+                        headTable.Columns[i].Caption = "出库仓库编号";
+                        break;
+                    case "RepertoryName":
+                        headTable.Columns[i].Caption = "出库仓库名称";
+                        break;
+                    case "Prepared":
+                        headTable.Columns[i].Caption = "制单人";
+                        break;
+                    case "PreparedIp":
+                        headTable.Columns[i].Caption = "制单人IP";
+                        break;
+                    case "Remark":
+                        headTable.Columns[i].Caption = "备注";
+                        break;
+                    case "ApprovalTypeNo":
+                        headTable.Columns[i].Caption = "审批类型编码";
+                        break;
+                    case "ApprovalTypeNoText":
+                        headTable.Columns[i].Caption = "审批类型名称";
+                        break;
+                    case "Modifier":
+                        headTable.Columns[i].Caption = "修改人";
+                        break;
+                    case "ModifierIp":
+                        headTable.Columns[i].Caption = "修改人IP";
+                        break;
+                    case "ModifierTime":
+                        headTable.Columns[i].Caption = "修改时间";
+                        break;
+                    case "WarehouseState":
+                        headTable.Columns[i].Caption = "单据状态";
+                        break;
+                    case "WarehouseStateDesc":
+                        headTable.Columns[i].Caption = "单据状态描述";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(headTable);
+
+            DataTable listTable = BaseSQL.GetTableBySql(string.Format("select *, ROW_NUMBER() over (order by AutoId) as RowNum from V_Prn_INV_SpecialWarehouseReceiptList where SpecialWarehouseReceipt = '{0}' order by AutoId", swrHeadNoStr));
+            listTable.TableName = "SpecialWarehouseReceiptList";
+            for (int i = 0; i < listTable.Columns.Count; i++)
+            {
+                #region 设定子表显示的标题
+
+                switch (listTable.Columns[i].ColumnName)
+                {
+                    case "RowNum":
+                        listTable.Columns[i].Caption = "行号";
+                        break;
+                    case "SpecialWarehouseReceipt":
+                        listTable.Columns[i].Caption = "预算外出库单号";
+                        break;
+                    case "CodeNo":
+                        listTable.Columns[i].Caption = "物料编号";
+                        break;
+                    case "CodeFileName":
+                        listTable.Columns[i].Caption = "零件编号";
+                        break;
+                    case "CodeName":
+                        listTable.Columns[i].Caption = "零件名称";
+                        break;
+                    case "CatgName":
+                        listTable.Columns[i].Caption = "分类名称";
+                        break;
+                    case "CatgDescription":
+                        listTable.Columns[i].Caption = "分类说明";
+                        break;
+                    case "CodeSpec":
+                        listTable.Columns[i].Caption = "规格型号";
+                        break;
+                    case "CodeWeight":
+                        listTable.Columns[i].Caption = "重量";
+                        break;
+                    case "MaterialVersion":
+                        listTable.Columns[i].Caption = "物料版本";
+                        break;
+                    case "LibName":
+                        listTable.Columns[i].Caption = "Level 1";
+                        break;
+                    case "MaterialCategory":
+                        listTable.Columns[i].Caption = "Level 2";
+                        break;
+                    case "MaterialName":
+                        listTable.Columns[i].Caption = "Level 3";
+                        break;
+                    case "Brand":
+                        listTable.Columns[i].Caption = "品牌";
+                        break;
+                    case "FinishCatg":
+                        listTable.Columns[i].Caption = "表面处理";
+                        break;
+                    case "LevelCatg":
+                        listTable.Columns[i].Caption = "加工等级";
+                        break;
+                    case "Unit":
+                        listTable.Columns[i].Caption = "单位";
+                        break;
+                    case "Qty":
+                        listTable.Columns[i].Caption = "出库数量";
+                        break;
+                    case "ProjectNo":
+                        listTable.Columns[i].Caption = "项目号";
+                        break;
+                    case "ProjectName":
+                        listTable.Columns[i].Caption = "项目名称";
+                        break;
+                    case "StnNo":
+                        listTable.Columns[i].Caption = "站号";
+                        break;
+                    case "Remark":
+                        listTable.Columns[i].Caption = "备注";
+                        break;
+                    case "ShelfId":
+                        listTable.Columns[i].Caption = "货架ID";
+                        break;
+                    case "ShelfNo":
+                        listTable.Columns[i].Caption = "货架号";
+                        break;
+                    case "ShelfLocation":
+                        listTable.Columns[i].Caption = "货架位置";
+                        break;
+                }
+
+                #endregion
+            }
+            ds.Tables.Add(listTable);
+
+            ReportHandler rptHandler = new ReportHandler();
+            List<DevExpress.XtraReports.Parameters.Parameter> paralist = rptHandler.GetSystemInfo_ParamList();
+            rptHandler.XtraReport_Handle("INV_SpecialWarehouseReceiptHead", ds, paralist, handleTypeInt);
+        }
     }
 }

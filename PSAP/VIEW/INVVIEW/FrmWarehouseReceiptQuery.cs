@@ -27,7 +27,7 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 窗体加载事件错误
+        /// 窗体加载事件
         /// </summary>
         private void FrmWarehouseReceiptQuery_Load(object sender, EventArgs e)
         {

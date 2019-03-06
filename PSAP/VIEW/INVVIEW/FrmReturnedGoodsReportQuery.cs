@@ -14,12 +14,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmSpecialWarehouseWarrantQuery : DockContent
+    public partial class FrmReturnedGoodsReportQuery : DockContent
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
-        FrmSpecialWarehouseWarrantDAO swwDAO = new FrmSpecialWarehouseWarrantDAO();
-
-        public FrmSpecialWarehouseWarrantQuery()
+        FrmReturnedGoodsReportDAO rgrDAO = new FrmReturnedGoodsReportDAO();
+        
+        public FrmReturnedGoodsReportQuery()
         {
             InitializeComponent();
         }
@@ -27,16 +27,18 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmSpecialWarehouseWarrantQuery_Load(object sender, EventArgs e)
+        private void FrmReturnedGoodsReportQuery_Load(object sender, EventArgs e)
         {
             try
             {
                 DateTime nowDate = BaseSQL.GetServerDateTime();
-                dateSWWDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
-                dateSWWDateEnd.DateTime = nowDate.Date;
+                dateRGRDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateRGRDateEnd.DateTime = nowDate.Date;
 
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
+                searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
+                searchLookUpBussinessBaseNo.Text = "全部";
                 lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
                 lookUpRepertoryNo.ItemIndex = 0;
                 comboBoxWarehouseState.SelectedIndex = 0;
@@ -45,6 +47,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
                 repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
+                repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
@@ -60,7 +63,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 设定列表显示信息
         /// </summary>
-        private void gridViewSWWHead_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        private void gridViewRGRHead_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "WarehouseState")
             {
@@ -71,7 +74,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewSWWHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewRGRHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
@@ -86,31 +89,32 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (dateSWWDateBegin.EditValue == null || dateSWWDateEnd.EditValue == null)
+                if (dateRGRDateBegin.EditValue == null || dateRGRDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("预算外入库日期不能为空，请设置后重新进行查询。");
-                    if (dateSWWDateBegin.EditValue == null)
-                        dateSWWDateBegin.Focus();
+                    MessageHandler.ShowMessageBox("退货日期不能为空，请设置后重新进行查询。");
+                    if (dateRGRDateBegin.EditValue == null)
+                        dateRGRDateBegin.Focus();
                     else
-                        dateSWWDateEnd.Focus();
+                        dateRGRDateEnd.Focus();
                     return;
                 }
-                string swwDateBeginStr = dateSWWDateBegin.DateTime.ToString("yyyy-MM-dd");
-                string swwDateEndStr = dateSWWDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+                string rgrDateBeginStr = dateRGRDateBegin.DateTime.ToString("yyyy-MM-dd");
+                string rgrDateEndStr = dateRGRDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
+                string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
                 string repertoryNoStr = lookUpRepertoryNo.ItemIndex > 0 ? lookUpRepertoryNo.EditValue.ToString() : "";
 
                 int warehouseStateInt = CommonHandler.Get_WarehouseState_No(comboBoxWarehouseState.Text);
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? lookUpPrepared.EditValue.ToString() : "";
                 string commonStr = textCommon.Text.Trim();
 
-                dataSet_SWW.Tables[0].Rows.Clear();
-                string querySqlStr = swwDAO.QuerySpecialWarehouseWarrantHead_SQL(swwDateBeginStr, swwDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, -1, commonStr, false);
+                dataSet_RGR.Tables[0].Rows.Clear();
+                string querySqlStr = rgrDAO.QueryReturnedGoodsReportHead_SQL(rgrDateBeginStr, rgrDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, warehouseStateInt, empNameStr, -1, commonStr, false);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
-                gridBottomOrderHead.QueryGridData(ref dataSet_SWW, "SWWHead", querySqlStr, countSqlStr, true);
+                gridBottomOrderHead.QueryGridData(ref dataSet_RGR, "RGRHead", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
             {
@@ -125,7 +129,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSWWHead);
+                FileHandler.SaveDevGridControlExportToExcel(gridViewRGRHead);
             }
             catch (Exception ex)
             {
@@ -136,16 +140,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 双击查询明细
         /// </summary>
-        private void gridViewSWWHead_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridViewRGRHead_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
                 if (e.Clicks == 2)
                 {
-                    string swwHeadNoStr = DataTypeConvert.GetString(gridViewSWWHead.GetFocusedDataRow()["SpecialWarehouseWarrant"]);
-                    FrmSpecialWarehouseWarrant.querySWWHeadNo = swwHeadNoStr;
+                    string rgrHeadNoStr = DataTypeConvert.GetString(gridViewRGRHead.GetFocusedDataRow()["ReturnedGoodsReportNo"]);
+                    FrmReturnedGoodsReport.queryRGRHeadNo = rgrHeadNoStr;
                     //FrmWarehouseWarrant_Drag.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmSpecialWarehouseWarrant");
+                    ViewHandler.ShowRightWindow("FrmReturnedGoodsReport");
                 }
             }
             catch (Exception ex)
