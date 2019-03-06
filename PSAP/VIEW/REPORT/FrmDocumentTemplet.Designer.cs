@@ -221,18 +221,18 @@
             this.cms.Name = "cmsCommonHandler";
             this.cms.Size = new System.Drawing.Size(521, 356);
             // 
-            // tsmiWcxddq
-            // 
-            this.tsmiWcxddq.Name = "tsmiWcxddq";
-            this.tsmiWcxddq.Size = new System.Drawing.Size(520, 22);
-            this.tsmiWcxddq.Text = "未查询到当前表的模板记录，操作错误。";
-            // 
-            // tsmiCxmbwj
-            // 
-            this.tsmiCxmbwj.Name = "tsmiCxmbwj";
-            this.tsmiCxmbwj.Size = new System.Drawing.Size(520, 22);
-            this.tsmiCxmbwj.Text = "查询模板文件异常。";
-            // 
+            //// tsmiWcxddq
+            //// 
+            //this.tsmiWcxddq.Name = "tsmiWcxddq";
+            //this.tsmiWcxddq.Size = new System.Drawing.Size(520, 22);
+            //this.tsmiWcxddq.Text = "未查询到当前表的模板记录，操作错误。";
+            //// 
+            //// tsmiCxmbwj
+            //// 
+            //this.tsmiCxmbwj.Name = "tsmiCxmbwj";
+            //this.tsmiCxmbwj.Size = new System.Drawing.Size(520, 22);
+            //this.tsmiCxmbwj.Text = "查询模板文件异常。";
+            //// 
             // tsmiCtjzsjcw
             // 
             this.tsmiCtjzsjcw.Name = "tsmiCtjzsjcw";
