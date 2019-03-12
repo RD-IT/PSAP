@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dSDepartment = new System.Data.DataSet();
             this.TableDepartment = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -43,7 +42,7 @@
             this.dataColBfree4 = new System.Data.DataColumn();
             this.dataColBfree5 = new System.Data.DataColumn();
             this.dataColParentDepartmentName = new System.Data.DataColumn();
-            this.bSDepartment = new System.Windows.Forms.BindingSource(this.components);
+            this.bSDepartment = new System.Windows.Forms.BindingSource();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -80,17 +79,17 @@
             this.colBfree51 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentDepartmentName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManagerForm = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barBtnSame = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnDown = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
             this.pnlDepartment = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiBmbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBmmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiXztj = new System.Windows.Forms.ToolStripMenuItem();
@@ -533,6 +532,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlGrid);
             this.pnlRight.Controls.Add(this.pnlEdit);
             this.pnlRight.Controls.Add(this.pnlToolBar);
@@ -632,7 +632,7 @@
             this.tsmiXztj,
             this.tsmiXzxj});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(257, 114);
+            this.cms.Size = new System.Drawing.Size(257, 92);
             // 
             // tsmiBmbhbnwk
             // 

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -59,7 +58,7 @@
             this.pnlMiddleBottom = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -117,7 +116,7 @@
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -140,7 +139,7 @@
             this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCt = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQgrq = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCxan = new System.Windows.Forms.ToolStripMenuItem();
@@ -788,9 +787,9 @@
             this.gridViewPrReqList.GridControl = this.gridControlPrReqList;
             this.gridViewPrReqList.IndicatorWidth = 40;
             this.gridViewPrReqList.Name = "gridViewPrReqList";
-            this.gridViewPrReqList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridViewPrReqList.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewPrReqList.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewPrReqList.OptionsBehavior.Editable = false;
+            this.gridViewPrReqList.OptionsBehavior.ReadOnly = true;
+            this.gridViewPrReqList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
@@ -1066,9 +1065,9 @@
             this.gridViewPrReqHead.GridControl = this.gridControlPrReqHead;
             this.gridViewPrReqHead.IndicatorWidth = 40;
             this.gridViewPrReqHead.Name = "gridViewPrReqHead";
-            this.gridViewPrReqHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridViewPrReqHead.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewPrReqHead.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewPrReqHead.OptionsBehavior.Editable = false;
+            this.gridViewPrReqHead.OptionsBehavior.ReadOnly = true;
+            this.gridViewPrReqHead.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPrReqHead.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqHead.OptionsView.ShowGroupPanel = false;
@@ -1313,7 +1312,7 @@
             this.tsmiQransj,
             this.tsmiSjxzcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(329, 224);
+            this.cms.Size = new System.Drawing.Size(329, 202);
             // 
             // tsmiCt
             // 

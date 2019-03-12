@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBaseEdit));
             this.pnlButton = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
@@ -41,7 +40,7 @@
             this.btnPrevious = new DevExpress.XtraEditors.SimpleButton();
             this.labContent = new DevExpress.XtraEditors.LabelControl();
             this.textContent = new DevExpress.XtraEditors.TextEdit();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlButton)).BeginInit();
@@ -54,6 +53,7 @@
             // 
             this.pnlButton.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.pnlButton.Appearance.Options.UseBackColor = true;
+            this.pnlButton.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlButton.Controls.Add(this.btnSaveExcel);
             this.pnlButton.Controls.Add(this.btnRefresh);
             this.pnlButton.Controls.Add(this.btnDelete);
@@ -177,18 +177,18 @@
             this.tsmiSave,
             this.tsmiEdit});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(153, 70);
+            this.cms.Size = new System.Drawing.Size(101, 48);
             // 
             // tsmiSave
             // 
             this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSave.Size = new System.Drawing.Size(100, 22);
             this.tsmiSave.Text = "保存";
             // 
             // tsmiEdit
             // 
             this.tsmiEdit.Name = "tsmiEdit";
-            this.tsmiEdit.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEdit.Size = new System.Drawing.Size(100, 22);
             this.tsmiEdit.Text = "编辑";
             // 
             // FrmBaseEdit

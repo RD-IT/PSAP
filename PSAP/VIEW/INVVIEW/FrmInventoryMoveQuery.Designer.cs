@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpOutRpertoryNo = new DevExpress.XtraEditors.LookUpEdit();
@@ -60,7 +59,7 @@
             this.dataColModifierIp = new System.Data.DataColumn();
             this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColReqDep = new System.Data.DataColumn();
-            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomIM = new PSAP.VIEW.BSVIEW.GridBottom();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
@@ -77,7 +76,7 @@
             this.colPRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModifier = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiYdrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
@@ -480,11 +479,9 @@
             this.gridViewIMHead.GridControl = this.gridControlIMHead;
             this.gridViewIMHead.IndicatorWidth = 40;
             this.gridViewIMHead.Name = "gridViewIMHead";
-            this.gridViewIMHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewIMHead.OptionsBehavior.Editable = false;
             this.gridViewIMHead.OptionsBehavior.ReadOnly = true;
-            this.gridViewIMHead.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewIMHead.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewIMHead.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewIMHead.OptionsView.ColumnAutoWidth = false;
             this.gridViewIMHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewIMHead.OptionsView.ShowFooter = true;
@@ -627,7 +624,7 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiYdrqbnwkcx});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(317, 48);
+            this.cms.Size = new System.Drawing.Size(317, 26);
             // 
             // tsmiYdrqbnwkcx
             // 

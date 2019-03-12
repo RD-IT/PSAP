@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlLeft = new DevExpress.XtraEditors.PanelControl();
             this.pnlLeftTree = new DevExpress.XtraEditors.PanelControl();
             this.treeListBom = new DevExpress.XtraTreeList.TreeList();
@@ -47,7 +46,7 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlBomMateriel = new DevExpress.XtraGrid.GridControl();
-            this.bSBomMateriel = new System.Windows.Forms.BindingSource(this.components);
+            this.bSBomMateriel = new System.Windows.Forms.BindingSource();
             this.dSBom = new System.Data.DataSet();
             this.TableBomManagement = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -81,7 +80,7 @@
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.labGetTime = new DevExpress.XtraEditors.LabelControl();
             this.dateGetTime = new DevExpress.XtraEditors.DateEdit();
-            this.bSBomManagement = new System.Windows.Forms.BindingSource(this.components);
+            this.bSBomManagement = new System.Windows.Forms.BindingSource();
             this.searchPartsCodeId = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchPartsCodeIdView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -98,7 +97,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiJjcxdqxzbomxx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLjmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLjmccxxxcw = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,6 +140,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlLeft.Controls.Add(this.pnlLeftTree);
             this.pnlLeft.Controls.Add(this.pnlLeftTop);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -283,6 +283,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.pnlEdit);
             this.pnlRight.Controls.Add(this.pnlToolBar);
@@ -828,7 +829,7 @@
             this.tsmiLjmcbnwk,
             this.tsmiLjmccxxxcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(329, 92);
+            this.cms.Size = new System.Drawing.Size(329, 70);
             // 
             // tsmiJjcxdqxzbomxx
             // 

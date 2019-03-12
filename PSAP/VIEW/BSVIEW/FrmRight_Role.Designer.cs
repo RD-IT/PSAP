@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dSRole = new System.Data.DataSet();
             this.TableRole = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColRoleNo = new System.Data.DataColumn();
             this.dataColRoleName = new System.Data.DataColumn();
-            this.bSRole = new System.Windows.Forms.BindingSource(this.components);
+            this.bSRole = new System.Windows.Forms.BindingSource();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.textRoleName = new DevExpress.XtraEditors.TextEdit();
@@ -59,7 +58,7 @@
             this.colMenuName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentMenuName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentMenuText1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiJsbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiJsmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiXzjsckqxcw = new System.Windows.Forms.ToolStripMenuItem();
@@ -260,6 +259,7 @@
             // 
             // pnlTreeList
             // 
+            this.pnlTreeList.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlTreeList.Controls.Add(this.treeListRole);
             this.pnlTreeList.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlTreeList.Location = new System.Drawing.Point(585, 2);
@@ -355,7 +355,7 @@
             this.tsmiJsmcbnwk,
             this.tsmiXzjsckqxcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(257, 92);
+            this.cms.Size = new System.Drawing.Size(257, 70);
             // 
             // tsmiJsbhbnwk
             // 

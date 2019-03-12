@@ -108,6 +108,7 @@
     <Compile Include="DAO\BSDAO\FrmOrganizationStruDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
+    <Compile Include="DAO\BSDAO\FrmSystemDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmInventoryAdjustmentsDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmInventoryMoveDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmOrderApplyDAO.cs" />
@@ -261,6 +262,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.Designer.cs">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmQueryStockDurationTotal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmQueryStockDurationTotal.Designer.cs">
+      <DependentUpon>FrmQueryStockDurationTotal.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmReturnedGoodsReport.cs">
       <SubType>Form</SubType>
@@ -779,6 +786,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmQueryStockDurationTotal.resx">
+      <DependentUpon>FrmQueryStockDurationTotal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmReturnedGoodsReport.resx">
       <DependentUpon>FrmReturnedGoodsReport.cs</DependentUpon>

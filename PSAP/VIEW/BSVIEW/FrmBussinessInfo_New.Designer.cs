@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dSBussiness = new System.Data.DataSet();
             this.TableBussinessBaseInfo = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -55,9 +54,9 @@
             this.dataCBussinessLicense = new System.Data.DataColumn();
             this.dataCBankAccout = new System.Data.DataColumn();
             this.dataCBankAddress = new System.Data.DataColumn();
-            this.bSBaseInfo = new System.Windows.Forms.BindingSource(this.components);
-            this.bSDetailInfo = new System.Windows.Forms.BindingSource(this.components);
-            this.bSFinancialInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bSBaseInfo = new System.Windows.Forms.BindingSource();
+            this.bSDetailInfo = new System.Windows.Forms.BindingSource();
+            this.bSFinancialInfo = new System.Windows.Forms.BindingSource();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.TabControlOtherInfo = new DevExpress.XtraTab.XtraTabControl();
@@ -110,7 +109,7 @@
             this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiWlfbh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWlfmc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWlffl = new System.Windows.Forms.ToolStripMenuItem();
@@ -332,6 +331,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.TabControlOtherInfo);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRight.Location = new System.Drawing.Point(826, 2);
@@ -619,6 +619,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlLeft.Controls.Add(this.pnlGrid);
             this.pnlLeft.Controls.Add(this.pnlEdit);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -845,7 +846,7 @@
             this.tsmiSzwlfjbxxmrzcw,
             this.tsmiSzwlfxxxxmrzcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(269, 136);
+            this.cms.Size = new System.Drawing.Size(269, 114);
             // 
             // tsmiWlfbh
             // 

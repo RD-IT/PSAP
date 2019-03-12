@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.bSMenu = new System.Windows.Forms.BindingSource(this.components);
+            this.bSMenu = new System.Windows.Forms.BindingSource();
             this.dSMenu = new System.Data.DataSet();
             this.TableMenu = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -76,7 +75,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManagerForm = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -85,8 +84,8 @@
             this.barBtnDown = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnMoveUp = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnMoveDown = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCdmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSjcdbnh = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.bSMenu)).BeginInit();
@@ -270,6 +269,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlGrid);
             this.pnlRight.Controls.Add(this.pnlEdit);
             this.pnlRight.Controls.Add(this.pnlToolBar);
@@ -618,7 +618,7 @@
             this.tsmiCdmcbnwk,
             this.tsmiSjcdbnh});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(317, 70);
+            this.cms.Size = new System.Drawing.Size(317, 48);
             // 
             // tsmiCdmcbnwk
             // 

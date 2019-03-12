@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettlement_Drag));
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pnlLeftBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWWList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WWList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WWList = new System.Windows.Forms.BindingSource();
             this.dataSet_WW = new System.Data.DataSet();
             this.dataTableWWHead = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -99,7 +98,7 @@
             this.splitterControl2 = new DevExpress.XtraEditors.SplitterControl();
             this.pnlLeftMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWWHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WWHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WWHead = new System.Windows.Forms.BindingSource();
             this.gridViewWWHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -137,7 +136,7 @@
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.gridControlSettlementList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_SettlementList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_SettlementList = new System.Windows.Forms.BindingSource();
             this.dataSet_Settlement = new System.Data.DataSet();
             this.dataTableSettlementHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -200,7 +199,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlSettlementHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_SettlementHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_SettlementHead = new System.Windows.Forms.BindingSource();
             this.gridViewSettlementHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -263,14 +262,14 @@
             this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
             this.labSettlementDate = new DevExpress.XtraEditors.LabelControl();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
             this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManagerForm = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCgjzd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWsp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBkycz = new System.Windows.Forms.ToolStripMenuItem();
@@ -292,7 +291,7 @@
             this.tsmiZbjjhg = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTjl = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms1 = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiWlfbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkbm = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSplx = new System.Windows.Forms.ToolStripMenuItem();
@@ -313,7 +312,7 @@
             this.tsmiCgqxsp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQxspan = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDyyl = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms2 = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiZbsd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSczbz = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiZbdyg = new System.Windows.Forms.ToolStripMenuItem();
@@ -331,7 +330,7 @@
             this.tsmiZgrid = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSxtzrk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzcgjz = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerLeft)).BeginInit();
             this.dockPnlLeft.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -446,7 +445,7 @@
             this.dockPnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.ID = new System.Guid("d81639c1-8c02-4585-88a1-522441f412f6");
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
-            this.dockPnlLeft.Location = new System.Drawing.Point(0, 24);
+            this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dockPnlLeft.Name = "dockPnlLeft";
             this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
             this.dockPnlLeft.Options.AllowDockBottom = false;
@@ -458,7 +457,7 @@
             this.dockPnlLeft.Options.ShowCloseButton = false;
             this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 557);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 581);
             this.dockPnlLeft.Text = "入库单";
             // 
             // dockPanel1_Container
@@ -469,7 +468,7 @@
             this.dockPanel1_Container.Controls.Add(this.pnlLeftTop);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 530);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 554);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // pnlLeftBottom
@@ -478,7 +477,7 @@
             this.pnlLeftBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftBottom.Location = new System.Drawing.Point(0, 332);
             this.pnlLeftBottom.Name = "pnlLeftBottom";
-            this.pnlLeftBottom.Size = new System.Drawing.Size(342, 198);
+            this.pnlLeftBottom.Size = new System.Drawing.Size(342, 222);
             this.pnlLeftBottom.TabIndex = 3;
             // 
             // gridControlWWList
@@ -495,7 +494,7 @@
             this.repSpinWWQty,
             this.repositoryItemSearchLookUpEdit2,
             this.repSearchShelfId});
-            this.gridControlWWList.Size = new System.Drawing.Size(338, 194);
+            this.gridControlWWList.Size = new System.Drawing.Size(338, 218);
             this.gridControlWWList.TabIndex = 4;
             this.gridControlWWList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWWList});
@@ -1440,6 +1439,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.panelControl2);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -2911,7 +2911,7 @@
             this.tsmiBc,
             this.tsmiTjl});
             this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(365, 488);
+            this.cms.Size = new System.Drawing.Size(365, 466);
             // 
             // tsmiCgjzd
             // 
