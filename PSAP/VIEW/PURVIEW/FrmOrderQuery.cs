@@ -200,7 +200,7 @@ namespace PSAP.VIEW.BSVIEW
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
                 string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
-                int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
+                int reqStateInt = CommonHandler.Get_OrderState_No(comboBoxReqState.Text); 
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
                 int prReqListAutoIdInt = (checkprReqListAutoId.Checked && spinprReqListAutoId.Value > 0) ? DataTypeConvert.GetInt(spinprReqListAutoId.Value) : 0;

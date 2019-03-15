@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpApprover = new DevExpress.XtraEditors.LookUpEdit();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
@@ -83,7 +82,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -122,7 +121,7 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -139,16 +138,16 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
             this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManagerForm = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiQgdyjy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQgd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWsp = new System.Windows.Forms.ToolStripMenuItem();
@@ -1399,6 +1398,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -1443,7 +1443,7 @@
             this.tsmiSlbnwkbc,
             this.tsmiCxmxrxyjcgdd});
             this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(365, 466);
+            this.cms.Size = new System.Drawing.Size(365, 444);
             // 
             // tsmiQgdyjy
             // 

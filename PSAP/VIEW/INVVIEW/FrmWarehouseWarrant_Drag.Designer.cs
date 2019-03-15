@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWarehouseWarrant_Drag));
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
@@ -59,7 +58,7 @@
             this.labWWDate = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWWList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WWList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WWList = new System.Windows.Forms.BindingSource();
             this.dataSet_WW = new System.Data.DataSet();
             this.dataTableWWHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -118,7 +117,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlWWHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WWHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WWHead = new System.Windows.Forms.BindingSource();
             this.gridViewWWHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -156,7 +155,7 @@
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.pnlLeftBottle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlOrderList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_OrderList = new System.Windows.Forms.BindingSource();
             this.dataSet_Order = new System.Data.DataSet();
             this.dataTableOrderHead = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -213,7 +212,7 @@
             this.colPrListAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlLeftMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlOrderHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource();
             this.gridViewOrderHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -253,28 +252,28 @@
             this.lab = new DevExpress.XtraEditors.LabelControl();
             this.labOrderDate = new DevExpress.XtraEditors.LabelControl();
             this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.splitterControl2 = new DevExpress.XtraEditors.SplitterControl();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
             this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonDown = new DevExpress.XtraBars.BarButtonItem();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManagerForm = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiHjbhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSplxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRklbbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkckbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqrkdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSlbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkckbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRklbbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSplxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSlbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHjbhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQgsyansjcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkdmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCxmxdsyjcgdcw = new System.Windows.Forms.ToolStripMenuItem();
@@ -1672,6 +1671,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -2814,7 +2814,7 @@
             this.tsmiYzrkdzrxxtdxmhjxdj,
             this.tsmiYzrkdzrxxtdgysjxdj});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(365, 444);
+            this.cms.Size = new System.Drawing.Size(365, 422);
             // 
             // tsmiRkrqbnwkcx
             // 
@@ -2822,29 +2822,11 @@
             this.tsmiRkrqbnwkcx.Size = new System.Drawing.Size(364, 22);
             this.tsmiRkrqbnwkcx.Text = "入库日期不能为空，请设置后重新进行查询。";
             // 
-            // tsmiHjbhbnwkbc
+            // tsmiDqrkdyjxghh
             // 
-            this.tsmiHjbhbnwkbc.Name = "tsmiHjbhbnwkbc";
-            this.tsmiHjbhbnwkbc.Size = new System.Drawing.Size(364, 22);
-            this.tsmiHjbhbnwkbc.Text = "货架编号不能为空，请填写后再进行保存。";
-            // 
-            // tsmiSplxbnwkbc
-            // 
-            this.tsmiSplxbnwkbc.Name = "tsmiSplxbnwkbc";
-            this.tsmiSplxbnwkbc.Size = new System.Drawing.Size(364, 22);
-            this.tsmiSplxbnwkbc.Text = "审批类型不能为空，请填写后再进行保存。";
-            // 
-            // tsmiRklbbnwkbc
-            // 
-            this.tsmiRklbbnwkbc.Name = "tsmiRklbbnwkbc";
-            this.tsmiRklbbnwkbc.Size = new System.Drawing.Size(364, 22);
-            this.tsmiRklbbnwkbc.Text = "入库类别不能为空，请填写后再进行保存。";
-            // 
-            // tsmiRkckbnwkbc
-            // 
-            this.tsmiRkckbnwkbc.Name = "tsmiRkckbnwkbc";
-            this.tsmiRkckbnwkbc.Size = new System.Drawing.Size(364, 22);
-            this.tsmiRkckbnwkbc.Text = "入库仓库不能为空，请填写后再进行保存。";
+            this.tsmiDqrkdyjxghh.Name = "tsmiDqrkdyjxghh";
+            this.tsmiDqrkdyjxghh.Size = new System.Drawing.Size(364, 22);
+            this.tsmiDqrkdyjxghh.Text = "当前入库单已经修改，请保存后再进行换行。";
             // 
             // tsmiRkbmbnwkbc
             // 
@@ -2852,11 +2834,29 @@
             this.tsmiRkbmbnwkbc.Size = new System.Drawing.Size(364, 22);
             this.tsmiRkbmbnwkbc.Text = "入库部门不能为空，请填写后再进行保存。";
             // 
-            // tsmiDqrkdyjxghh
+            // tsmiRkckbnwkbc
             // 
-            this.tsmiDqrkdyjxghh.Name = "tsmiDqrkdyjxghh";
-            this.tsmiDqrkdyjxghh.Size = new System.Drawing.Size(364, 22);
-            this.tsmiDqrkdyjxghh.Text = "当前入库单已经修改，请保存后再进行换行。";
+            this.tsmiRkckbnwkbc.Name = "tsmiRkckbnwkbc";
+            this.tsmiRkckbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkckbnwkbc.Text = "入库仓库不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRklbbnwkbc
+            // 
+            this.tsmiRklbbnwkbc.Name = "tsmiRklbbnwkbc";
+            this.tsmiRklbbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRklbbnwkbc.Text = "入库类别不能为空，请填写后再进行保存。";
+            // 
+            // tsmiSplxbnwkbc
+            // 
+            this.tsmiSplxbnwkbc.Name = "tsmiSplxbnwkbc";
+            this.tsmiSplxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSplxbnwkbc.Text = "审批类型不能为空，请填写后再进行保存。";
+            // 
+            // tsmiRkmxbnwkbc
+            // 
+            this.tsmiRkmxbnwkbc.Name = "tsmiRkmxbnwkbc";
+            this.tsmiRkmxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkmxbnwkbc.Text = "入库单明细不能为空，请重新订单适用后再进行保存。";
             // 
             // tsmiSlbnwkbc
             // 
@@ -2864,11 +2864,11 @@
             this.tsmiSlbnwkbc.Size = new System.Drawing.Size(364, 22);
             this.tsmiSlbnwkbc.Text = "数量不能为空，请填写后再进行保存。";
             // 
-            // tsmiRkmxbnwkbc
+            // tsmiHjbhbnwkbc
             // 
-            this.tsmiRkmxbnwkbc.Name = "tsmiRkmxbnwkbc";
-            this.tsmiRkmxbnwkbc.Size = new System.Drawing.Size(364, 22);
-            this.tsmiRkmxbnwkbc.Text = "入库单明细不能为空，请重新订单适用后再进行保存。";
+            this.tsmiHjbhbnwkbc.Name = "tsmiHjbhbnwkbc";
+            this.tsmiHjbhbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiHjbhbnwkbc.Text = "货架编号不能为空，请填写后再进行保存。";
             // 
             // tsmiQgsyansjcw
             // 

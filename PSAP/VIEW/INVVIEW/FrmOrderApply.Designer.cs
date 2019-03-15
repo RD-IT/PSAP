@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.searchLookUpBussinessBaseNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpBussinessBaseNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -63,7 +62,7 @@
             this.pnlMiddleBottom = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlOrderList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_OrderList = new System.Windows.Forms.BindingSource();
             this.dataSet_Order = new System.Data.DataSet();
             this.dataTableOrderHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -138,7 +137,7 @@
             this.gridColumnCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
             this.gridControlOrderHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource();
             this.gridViewOrderHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -171,7 +170,7 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.BtnConfirm = new DevExpress.XtraEditors.SimpleButton();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiQxzysydygcgd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQxzysydcgddmxjl = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
@@ -264,7 +263,7 @@
             this.searchLookUpBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchLookUpBussinessBaseNo.Properties.View = this.searchLookUpBussinessBaseNoView;
             this.searchLookUpBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
-            this.searchLookUpBussinessBaseNo.TabIndex = 34;
+            this.searchLookUpBussinessBaseNo.TabIndex = 8;
             // 
             // searchLookUpBussinessBaseNoView
             // 
@@ -320,7 +319,7 @@
             this.searchLookUpProjectNo.Properties.ValueMember = "ProjectNo";
             this.searchLookUpProjectNo.Properties.View = this.searchLookUpProjectNoView;
             this.searchLookUpProjectNo.Size = new System.Drawing.Size(120, 20);
-            this.searchLookUpProjectNo.TabIndex = 39;
+            this.searchLookUpProjectNo.TabIndex = 7;
             this.searchLookUpProjectNo.TabStop = false;
             // 
             // searchLookUpProjectNoView
@@ -377,7 +376,7 @@
             this.textCommon.Location = new System.Drawing.Point(707, 74);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 40;
+            this.textCommon.TabIndex = 9;
             this.textCommon.TabStop = false;
             // 
             // lookUpPrepared
@@ -395,7 +394,7 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
-            this.lookUpPrepared.TabIndex = 38;
+            this.lookUpPrepared.TabIndex = 6;
             this.lookUpPrepared.TabStop = false;
             // 
             // lookUpPurCategory
@@ -412,7 +411,7 @@
             this.lookUpPurCategory.Properties.NullText = "";
             this.lookUpPurCategory.Properties.ValueMember = "PurCategory";
             this.lookUpPurCategory.Size = new System.Drawing.Size(120, 20);
-            this.lookUpPurCategory.TabIndex = 37;
+            this.lookUpPurCategory.TabIndex = 5;
             this.lookUpPurCategory.TabStop = false;
             // 
             // lookUpReqDep
@@ -429,7 +428,7 @@
             this.lookUpReqDep.Properties.NullText = "";
             this.lookUpReqDep.Properties.ValueMember = "DepartmentNo";
             this.lookUpReqDep.Size = new System.Drawing.Size(120, 20);
-            this.lookUpReqDep.TabIndex = 36;
+            this.lookUpReqDep.TabIndex = 4;
             this.lookUpReqDep.TabStop = false;
             // 
             // dateOrderDateEnd
@@ -449,7 +448,7 @@
             this.dateOrderDateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateOrderDateEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateOrderDateEnd.Size = new System.Drawing.Size(100, 20);
-            this.dateOrderDateEnd.TabIndex = 35;
+            this.dateOrderDateEnd.TabIndex = 3;
             this.dateOrderDateEnd.TabStop = false;
             // 
             // lab
@@ -477,7 +476,7 @@
             this.dateOrderDateBegin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateOrderDateBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dateOrderDateBegin.Size = new System.Drawing.Size(100, 20);
-            this.dateOrderDateBegin.TabIndex = 34;
+            this.dateOrderDateBegin.TabIndex = 2;
             this.dateOrderDateBegin.TabStop = false;
             // 
             // btnQuery
@@ -485,7 +484,7 @@
             this.btnQuery.Location = new System.Drawing.Point(261, 13);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 41;
+            this.btnQuery.TabIndex = 10;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -495,7 +494,7 @@
             this.textOrderHeadNo.Location = new System.Drawing.Point(86, 14);
             this.textOrderHeadNo.Name = "textOrderHeadNo";
             this.textOrderHeadNo.Size = new System.Drawing.Size(150, 20);
-            this.textOrderHeadNo.TabIndex = 32;
+            this.textOrderHeadNo.TabIndex = 0;
             // 
             // labBussinessBaseNo
             // 
@@ -925,9 +924,9 @@
             this.gridViewOrderList.GridControl = this.gridControlOrderList;
             this.gridViewOrderList.IndicatorWidth = 40;
             this.gridViewOrderList.Name = "gridViewOrderList";
-            this.gridViewOrderList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridViewOrderList.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewOrderList.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewOrderList.OptionsBehavior.Editable = false;
+            this.gridViewOrderList.OptionsBehavior.ReadOnly = true;
+            this.gridViewOrderList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewOrderList.OptionsView.ColumnAutoWidth = false;
             this.gridViewOrderList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewOrderList.OptionsView.ShowFooter = true;
@@ -1304,9 +1303,9 @@
             this.gridViewOrderHead.GridControl = this.gridControlOrderHead;
             this.gridViewOrderHead.IndicatorWidth = 40;
             this.gridViewOrderHead.Name = "gridViewOrderHead";
-            this.gridViewOrderHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridViewOrderHead.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewOrderHead.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewOrderHead.OptionsBehavior.Editable = false;
+            this.gridViewOrderHead.OptionsBehavior.ReadOnly = true;
+            this.gridViewOrderHead.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewOrderHead.OptionsView.ColumnAutoWidth = false;
             this.gridViewOrderHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewOrderHead.OptionsView.ShowGroupPanel = false;
@@ -1651,7 +1650,7 @@
             this.tsmiQxzysydygcgd,
             this.tsmiQxzysydcgddmxjl});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(341, 70);
+            this.cms.Size = new System.Drawing.Size(341, 48);
             // 
             // tsmiQxzysydygcgd
             // 

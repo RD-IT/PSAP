@@ -170,7 +170,7 @@ namespace PSAP.VIEW.BSVIEW
                 string repertoryNoStr = lookUpRepertoryNo.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpRepertoryNo.EditValue) : "";
                 string wwTypeNoStr = lookUpWarehouseWarrantTypeNo.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpWarehouseWarrantTypeNo.EditValue) : "";
 
-                int warehouseStateInt = comboBoxWarehouseState.SelectedIndex > 0 ? comboBoxWarehouseState.SelectedIndex : 0;
+                int warehouseStateInt = CommonHandler.Get_WarehouseState_No(comboBoxWarehouseState.Text); 
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 int approverInt = -1;
                 if (lookUpApprover.ItemIndex == 0)

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWarehouseReceipt_Drag));
             this.dataSet_WR = new System.Data.DataSet();
             this.dataTableWRHead = new System.Data.DataTable();
@@ -59,9 +58,9 @@
             this.dataColCodeName = new System.Data.DataColumn();
             this.dataColShelfId = new System.Data.DataColumn();
             this.dataColProjectNo = new System.Data.DataColumn();
-            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource_WRList = new System.Windows.Forms.BindingSource(this.components);
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_WRList = new System.Windows.Forms.BindingSource();
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -152,7 +151,7 @@
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
             this.labWRDate = new DevExpress.XtraEditors.LabelControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqckdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -464,6 +463,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -479,9 +479,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlWRList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(2, 354);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 352);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1237, 189);
+            this.pnlBottom.Size = new System.Drawing.Size(1241, 193);
             this.pnlBottom.TabIndex = 9;
             // 
             // btnListAdd
@@ -509,7 +509,7 @@
             this.repSearchShelfId,
             this.repComboBoxStnNo,
             this.repSearchProjectNo});
-            this.gridControlWRList.Size = new System.Drawing.Size(1233, 185);
+            this.gridControlWRList.Size = new System.Drawing.Size(1237, 189);
             this.gridControlWRList.TabIndex = 4;
             this.gridControlWRList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWRList});
@@ -842,9 +842,9 @@
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(2, 349);
+            this.splitterControl1.Location = new System.Drawing.Point(0, 347);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1237, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1241, 5);
             this.splitterControl1.TabIndex = 8;
             this.splitterControl1.TabStop = false;
             // 
@@ -854,9 +854,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlWRHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1237, 269);
+            this.pnlMiddle.Size = new System.Drawing.Size(1241, 269);
             this.pnlMiddle.TabIndex = 2;
             // 
             // checkAll
@@ -885,7 +885,7 @@
             this.repLookUpApprovalType,
             this.repLookUpReqDep,
             this.repLookUpManufactureNo});
-            this.gridControlWRHead.Size = new System.Drawing.Size(1233, 231);
+            this.gridControlWRHead.Size = new System.Drawing.Size(1237, 231);
             this.gridControlWRHead.TabIndex = 5;
             this.gridControlWRHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWRHead});
@@ -1165,7 +1165,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1233, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1237, 34);
             this.pnlMiddleTop.TabIndex = 3;
             // 
             // btnPreview
@@ -1263,9 +1263,9 @@
             this.pnltop.Controls.Add(this.labWarehouseState);
             this.pnltop.Controls.Add(this.labWRDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(2, 2);
+            this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1237, 78);
+            this.pnltop.Size = new System.Drawing.Size(1241, 78);
             this.pnltop.TabIndex = 1;
             // 
             // labManufactureNo
@@ -1321,7 +1321,6 @@
             "全部",
             "待审批",
             "审批",
-            "已结账",
             "审批中"});
             this.comboBoxWarehouseState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
@@ -1536,7 +1535,7 @@
             this.tsmiCkdmxbnwkbc,
             this.tsmiYzckdznxzxtdxmhjxckbc});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(461, 246);
+            this.cms.Size = new System.Drawing.Size(461, 224);
             // 
             // tsmiCkrqbnwkcx
             // 

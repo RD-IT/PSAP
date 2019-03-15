@@ -1,10 +1,8 @@
-﻿using DevExpress.XtraBars.Docking;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using PSAP.DAO.BSDAO;
-using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -20,7 +18,6 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmBaseEdit : DockContent
     {
-
         /// <summary>
         /// form的主数据表名
         /// </summary>
@@ -80,7 +77,6 @@ namespace PSAP.VIEW.BSVIEW
         /// 删除后是否刷新
         /// </summary>
         public bool DeleteAfterRefresh = false;
-
 
         /// <summary>
         /// 行未改变状态也保存

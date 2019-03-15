@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.pnlTree = new DevExpress.XtraEditors.PanelControl();
             this.treeListBom = new DevExpress.XtraTreeList.TreeList();
@@ -54,7 +53,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCtjzsj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiZxcxlj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSjckbom = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +72,7 @@
             // 
             // pnlBom
             // 
+            this.pnlBom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlBom.Controls.Add(this.pnlTree);
             this.pnlBom.Controls.Add(this.pnlTop);
             this.pnlBom.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -345,7 +345,7 @@
             this.tsmiSjckbom,
             this.tsmiCxjgcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(248, 114);
+            this.cms.Size = new System.Drawing.Size(248, 92);
             // 
             // tsmiCtjzsj
             // 

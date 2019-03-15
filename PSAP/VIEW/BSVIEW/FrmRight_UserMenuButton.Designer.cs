@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlLeft = new DevExpress.XtraEditors.PanelControl();
             this.pnlLeftGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridControlUserList = new DevExpress.XtraGrid.GridControl();
@@ -51,7 +50,7 @@
             this.btnSaveRight = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCxyhqxxxcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCxyhdqxsjcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYhqxycgbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +78,7 @@
             // 
             // pnlLeft
             // 
+            this.pnlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlLeft.Controls.Add(this.pnlLeftGrid);
             this.pnlLeft.Controls.Add(this.pnlLeftTop);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -202,6 +202,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlRightTree);
             this.pnlRight.Controls.Add(this.pnlRightTop);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -318,7 +319,7 @@
             this.tsmiCxyhdqxsjcw,
             this.tsmiYhqxycgbc});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(221, 92);
+            this.cms.Size = new System.Drawing.Size(221, 70);
             // 
             // tsmiCxyhqxxxcw
             // 

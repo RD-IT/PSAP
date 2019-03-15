@@ -174,6 +174,7 @@
             this.searchLookUpProjectNoView.Name = "searchLookUpProjectNoView";
             this.searchLookUpProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpProjectNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewStnList_CustomDrawRowIndicator);
             // 
             // gridColProjectNo
             // 
@@ -337,7 +338,7 @@
             this.tsmiZhbnwk,
             this.tsmiXmhbnwk});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(245, 114);
+            this.cms.Size = new System.Drawing.Size(245, 92);
             // 
             // tsmiXm
             // 

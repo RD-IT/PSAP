@@ -121,15 +121,25 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnApprovalList_Click(object sender, EventArgs e)
         {
-            if (!editForm.EditState)
+            try
             {
-                DataRow dr = gridViewApprovalType.GetFocusedDataRow();
-                FrmApprovalList appList = new FrmApprovalList(DataTypeConvert.GetString(dr["TypeNo"]), DataTypeConvert.GetString(dr["TypeNoText"]));
-                appList.ShowDialog();
+                if (!editForm.EditState)
+                {
+                    DataRow dr = gridViewApprovalType.GetFocusedDataRow();
+                    if (dr != null)
+                    {
+                        FrmApprovalList appList = new FrmApprovalList(DataTypeConvert.GetString(dr["TypeNo"]), DataTypeConvert.GetString(dr["TypeNoText"]));
+                        appList.ShowDialog();
+                    }
+                }
+                else
+                {
+                    MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
+                ExceptionHandler.HandleException(this.Text + "--设定审批信息错误。", ex);
             }
         }
     }

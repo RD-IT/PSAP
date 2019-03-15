@@ -84,5 +84,35 @@ namespace PSAP.DAO.INVDAO
             IDataParameter[] parameters = new System.Data.IDataParameter[] { p1, p2 };
             return BaseSQL.RunProcedure(cmd, "P_Update_WarehouseNowInfo", parameters, out resultInt, out errorText);
         }
+
+        /// <summary>
+        /// 查询期间库存统计的SQL
+        /// </summary>
+        public string QueryStockDurationTotal_SQL(DateTime beginDate, string beginDateStr, string endDateStr, string repertoryNoStr, string projectNameStr, string codeFileNameStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (repertoryNoStr != "")
+            {
+                sqlStr += string.Format(" and RepertoryNo='{0}'", repertoryNoStr);
+            }
+            if (projectNameStr != "")
+            {
+                sqlStr += string.Format(" and ProjectName='{0}'", projectNameStr);
+            }
+            if (codeFileNameStr != "")
+            {
+                sqlStr += string.Format(" and CodeFileName='{0}'", codeFileNameStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (CodeName like '%{0}%' or CodeSpec like '%{0}%' or Brand like '%{0}%' or CatgName like '%{0}%')", commonStr);
+            }
+            string yearStr = beginDate.Year.ToString();
+            string beginingBeginDateStr = DateTime.Parse(beginDate.ToString("yyyy-01-01")).ToString("yyyy-MM-dd");
+            string beginingEndDateStr = beginDate.ToString("yyyy-MM-dd");
+            sqlStr = string.Format("select * from F_QueryStockDurationTotal_Column({1}, '{2}', '{3}', '{4}', '{5}') where {0} order by RepertoryNo, CodeFileName, ProjectNo", sqlStr, yearStr, beginingBeginDateStr, beginingEndDateStr, beginDateStr, endDateStr);
+            //BaseSQL.Query(sqlStr, queryDataTable);
+            return sqlStr;
+        }
     }
 }

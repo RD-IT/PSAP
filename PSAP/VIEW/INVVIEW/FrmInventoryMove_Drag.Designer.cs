@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInventoryMove_Drag));
             this.dataSet_IM = new System.Data.DataSet();
             this.dataTableIMHead = new System.Data.DataTable();
@@ -61,14 +60,14 @@
             this.dataColCodeName = new System.Data.DataColumn();
             this.dataColInProjectName = new System.Data.DataColumn();
             this.dataColOutProjectName = new System.Data.DataColumn();
-            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource_IMList = new System.Windows.Forms.BindingSource(this.components);
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_IMList = new System.Windows.Forms.BindingSource();
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pnlLeftMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWNowInfo = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WNowInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WNowInfo = new System.Windows.Forms.BindingSource();
             this.dataSet_WNowInfo = new System.Data.DataSet();
             this.TableWNowInfo = new System.Data.DataTable();
             this.dataAutoId = new System.Data.DataColumn();
@@ -183,7 +182,7 @@
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labIMDate = new DevExpress.XtraEditors.LabelControl();
-            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms1 = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqrkdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,7 +202,7 @@
             this.tsmiSxtzcgddsjcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzrkdzrxxtdxmhjxdj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzrkdzrxxtdgysjxdj = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqckdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -223,7 +222,7 @@
             this.tsmiRkhjhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCkdckxmhhjhhrk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSxtddqkcsjcw = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_IM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMList)).BeginInit();
@@ -510,7 +509,7 @@
             this.dockPnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.ID = new System.Guid("b4bf55cd-2af8-430c-bdda-dcc8c365bf19");
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
-            this.dockPnlLeft.Location = new System.Drawing.Point(0, 24);
+            this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dockPnlLeft.Name = "dockPnlLeft";
             this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
             this.dockPnlLeft.Options.AllowDockBottom = false;
@@ -522,7 +521,7 @@
             this.dockPnlLeft.Options.ShowCloseButton = false;
             this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 657);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 681);
             this.dockPnlLeft.Text = "当前库存";
             // 
             // dockPanel1_Container
@@ -531,7 +530,7 @@
             this.dockPanel1_Container.Controls.Add(this.pnlLeftTop);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 630);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 654);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // pnlLeftMiddle
@@ -540,7 +539,7 @@
             this.pnlLeftMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftMiddle.Location = new System.Drawing.Point(0, 93);
             this.pnlLeftMiddle.Name = "pnlLeftMiddle";
-            this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 537);
+            this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 561);
             this.pnlLeftMiddle.TabIndex = 2;
             // 
             // gridControlWNowInfo
@@ -553,7 +552,7 @@
             this.gridControlWNowInfo.Name = "gridControlWNowInfo";
             this.gridControlWNowInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repLookUpRepertoryNo});
-            this.gridControlWNowInfo.Size = new System.Drawing.Size(338, 533);
+            this.gridControlWNowInfo.Size = new System.Drawing.Size(338, 557);
             this.gridControlWNowInfo.TabIndex = 4;
             this.gridControlWNowInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWNowInfo});
@@ -913,6 +912,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -1997,7 +1997,7 @@
             this.tsmiCkdckxmhhjhhrk,
             this.tsmiSxtddqkcsjcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(533, 444);
+            this.cms.Size = new System.Drawing.Size(533, 422);
             // 
             // tsmiCkrqbnwkcx
             // 

@@ -176,7 +176,7 @@ namespace PSAP.VIEW.BSVIEW
                 string reqDateEndStr = dateReqDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
-                int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
+                int reqStateInt = CommonHandler.Get_OrderState_No(comboBoxReqState.Text); 
                 string empNameStr = lookUpApplicant.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpApplicant.EditValue) : "";
                 int approverInt = -1;
                 if (lookUpApprover.ItemIndex == 0)
