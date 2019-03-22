@@ -126,7 +126,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(333, 9);
+            this.btnRefresh.Location = new System.Drawing.Point(334, 9);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 9;
@@ -135,7 +135,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(252, 9);
+            this.btnDelete.Location = new System.Drawing.Point(253, 9);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 8;
@@ -144,7 +144,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(171, 9);
+            this.btnCancel.Location = new System.Drawing.Point(172, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -153,7 +153,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(90, 9);
+            this.btnSave.Location = new System.Drawing.Point(91, 9);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 6;
@@ -162,7 +162,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(9, 9);
+            this.btnNew.Location = new System.Drawing.Point(10, 9);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 23);
             this.btnNew.TabIndex = 5;
@@ -285,7 +285,7 @@
             this.tsmiDxx,
             this.tsmiSkbfbdhj});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(314, 92);
+            this.cms.Size = new System.Drawing.Size(314, 70);
             // 
             // tsmiSklx
             // 

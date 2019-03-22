@@ -46,6 +46,8 @@ namespace PSAP.VIEW.BSVIEW
                 repItemLookUpCollectionType.DataSource = new FrmCommonDAO().QueryCollectionType(false);
 
                 btnRefresh_Click(null, null);
+
+                btnSave_Click(null, null);
             }
             catch (Exception ex)
             {

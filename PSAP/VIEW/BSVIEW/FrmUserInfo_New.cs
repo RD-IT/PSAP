@@ -49,6 +49,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.BrowseXtraGridView = gridViewUserInfo;
                     editForm.CheckControl += CheckControl;
                     editForm.SaveRowBefore += SaveRowBefore;
+                    editForm.DeleteRowBefore += DeleteRowBefore;
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
@@ -78,6 +79,14 @@ namespace PSAP.VIEW.BSVIEW
             {
                 MessageHandler.ShowMessageBox(tsmiYgxmbnwk.Text);// ("员工姓名不能为空，请重新操作。");
                 textEmpName.Focus();
+                return false;
+            }
+
+            int count = new FrmLoginDAO().QueryUserInfoCount(textLoginId.Text.Trim());
+            if (count > 0)
+            {
+                MessageHandler.ShowMessageBox("当前登陆名已经被使用，不可以重复，请重新输入登陆名。");
+                textLoginId.Focus();
                 return false;
             }
 
@@ -111,6 +120,20 @@ namespace PSAP.VIEW.BSVIEW
                 }
             }
 
+            return true;
+        }
+
+        /// <summary>
+        /// 删除之前进行判断
+        /// </summary>
+        public bool DeleteRowBefore(DataRow dr, SqlCommand cmd)
+        {
+            int autoId = DataTypeConvert.GetInt(dr["AutoId", DataRowVersion.Original]);
+            if (autoId == 1)
+            {
+                MessageHandler.ShowMessageBox("管理员的用户信息不可以删除。");
+                return false;
+            }
             return true;
         }
 

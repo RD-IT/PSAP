@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -378,6 +379,28 @@ namespace PSAP.PSAPCommon
             StringBuilder temp = new StringBuilder(500);
             int i = GetPrivateProfileString(section, key, "", temp, 500, iniPath);
             return temp.ToString();
+        }
+
+        /// <summary>
+        /// 按照指定路径读取Excel的第一个Sheet里面的数据到表中
+        /// </summary>
+        public void ExcelToDataTable(DataTable queryDataTable, string fullPathStr)
+        {
+            if (File.Exists(fullPathStr))
+            {
+                string connStr = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 12.0;HDR=Yes;IMEX=1;'", fullPathStr);
+                if (fullPathStr.Substring(fullPathStr.Length - 4).ToLower() == ".xls")
+                    connStr = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0; HDR=YES; IMEX=1;'", fullPathStr);
+                using (OleDbConnection conn = new OleDbConnection(connStr))
+                {
+                    conn.Open();
+                    string tableNameStr = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0][2].ToString().Trim();
+                    string sqlStr = string.Format("select * from [{0}]", tableNameStr);
+                    OleDbDataAdapter adapt = new OleDbDataAdapter(sqlStr, conn);
+                    adapt.Fill(queryDataTable);
+                    conn.Close();
+                }
+            }
         }
     }
 }

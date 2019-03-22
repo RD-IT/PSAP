@@ -162,13 +162,29 @@ namespace PSAP.PSAPCommon
                 case "1":
                     //manufactureTypeDescStr = "正常";
                     manufactureTypeDescStr = f.tsmiZc.Text;
-                                        break;
+                    break;
                 case "2":
                     //manufactureTypeDescStr = "虚拟";
                     manufactureTypeDescStr = f.tsmiXn.Text;
-                                        break;
+                    break;
             }
             return manufactureTypeDescStr;
         }
+
+        /// <summary>
+        /// 得到新的版本号
+        /// </summary>
+        public static string GetNewVersionNo(string oldVersionStr)
+        {
+            if (oldVersionStr == "")
+                return "1";
+
+            int ii = (int)Convert.ToChar(oldVersionStr);
+            ii++;
+            if (ii > 57 && ii < 97)
+                ii = 97;
+            return ((char)ii).ToString();
+        }
+
     }
 }

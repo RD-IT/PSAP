@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.pnlTree = new DevExpress.XtraEditors.PanelControl();
             this.treeListBom = new DevExpress.XtraTreeList.TreeList();
@@ -45,6 +46,8 @@
             this.CCatgName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.CFilePath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            this.textCodeName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.labPartsCodeId = new DevExpress.XtraEditors.LabelControl();
@@ -53,7 +56,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCtjzsj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFxcxlj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSjckbom = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).BeginInit();
             this.cms.SuspendLayout();
@@ -86,9 +90,9 @@
             // 
             this.pnlTree.Controls.Add(this.treeListBom);
             this.pnlTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTree.Location = new System.Drawing.Point(2, 70);
+            this.pnlTree.Location = new System.Drawing.Point(0, 68);
             this.pnlTree.Name = "pnlTree";
-            this.pnlTree.Size = new System.Drawing.Size(999, 473);
+            this.pnlTree.Size = new System.Drawing.Size(1003, 477);
             this.pnlTree.TabIndex = 1;
             // 
             // treeListBom
@@ -125,7 +129,7 @@
             this.treeListBom.OptionsView.ShowIndicator = false;
             this.treeListBom.OptionsView.ShowVertLines = false;
             this.treeListBom.ParentFieldName = "ReParent";
-            this.treeListBom.Size = new System.Drawing.Size(995, 469);
+            this.treeListBom.Size = new System.Drawing.Size(999, 473);
             this.treeListBom.TabIndex = 2;
             this.treeListBom.FilterNode += new DevExpress.XtraTreeList.FilterNodeEventHandler(this.treeListBom_FilterNode);
             this.treeListBom.DoubleClick += new System.EventHandler(this.treeListBom_DoubleClick);
@@ -255,19 +259,38 @@
             // 
             // pnlTop
             // 
+            this.pnlTop.Controls.Add(this.textCodeName);
+            this.pnlTop.Controls.Add(this.labelControl1);
             this.pnlTop.Controls.Add(this.btnSaveExcel);
             this.pnlTop.Controls.Add(this.btnQuery);
             this.pnlTop.Controls.Add(this.labPartsCodeId);
             this.pnlTop.Controls.Add(this.searchCodeFileName);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTop.Location = new System.Drawing.Point(2, 2);
+            this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(999, 68);
+            this.pnlTop.Size = new System.Drawing.Size(1003, 68);
             this.pnlTop.TabIndex = 0;
+            // 
+            // textCodeName
+            // 
+            this.textCodeName.Location = new System.Drawing.Point(379, 23);
+            this.textCodeName.Name = "textCodeName";
+            this.textCodeName.Properties.ReadOnly = true;
+            this.textCodeName.Size = new System.Drawing.Size(150, 20);
+            this.textCodeName.TabIndex = 106;
+            this.textCodeName.TabStop = false;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(299, 26);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(48, 14);
+            this.labelControl1.TabIndex = 105;
+            this.labelControl1.Text = "零件名称";
             // 
             // btnSaveExcel
             // 
-            this.btnSaveExcel.Location = new System.Drawing.Point(408, 22);
+            this.btnSaveExcel.Location = new System.Drawing.Point(668, 22);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
             this.btnSaveExcel.TabIndex = 104;
@@ -276,7 +299,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(310, 22);
+            this.btnQuery.Location = new System.Drawing.Point(570, 22);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 103;
@@ -289,7 +312,7 @@
             this.labPartsCodeId.Name = "labPartsCodeId";
             this.labPartsCodeId.Size = new System.Drawing.Size(48, 14);
             this.labPartsCodeId.TabIndex = 13;
-            this.labPartsCodeId.Text = "零件名称";
+            this.labPartsCodeId.Text = "零件编号";
             // 
             // searchCodeFileName
             // 
@@ -298,12 +321,13 @@
             this.searchCodeFileName.Name = "searchCodeFileName";
             this.searchCodeFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchCodeFileName.Properties.DisplayMember = "CodeName";
+            this.searchCodeFileName.Properties.DisplayMember = "CodeFileName";
             this.searchCodeFileName.Properties.NullText = "";
-            this.searchCodeFileName.Properties.ValueMember = "CodeFileName";
+            this.searchCodeFileName.Properties.ValueMember = "AutoId";
             this.searchCodeFileName.Properties.View = this.searchPartsCodeIdView;
             this.searchCodeFileName.Size = new System.Drawing.Size(150, 20);
             this.searchCodeFileName.TabIndex = 1;
+            this.searchCodeFileName.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.searchCodeFileName_EditValueChanging);
             // 
             // searchPartsCodeIdView
             // 
@@ -398,6 +422,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).EndInit();
             this.cms.ResumeLayout(false);
@@ -438,5 +463,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiSjckbom;
         private System.Windows.Forms.ToolStripMenuItem tsmiCxjgcw;
         private System.Windows.Forms.ToolStripMenuItem tsmiSdsdgltjcw;
+        private DevExpress.XtraEditors.TextEdit textCodeName;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

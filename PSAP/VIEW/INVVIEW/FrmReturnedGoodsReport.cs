@@ -61,6 +61,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                ControlHandler.DevExpressStyle_ChangeControlLocation(btnListAdd.LookAndFeel.ActiveSkinName, new List<Control> { btnListAdd, checkAll });
+
                 DateTime nowDate = BaseSQL.GetServerDateTime();
                 dateRGRDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateRGRDateEnd.DateTime = nowDate.Date;

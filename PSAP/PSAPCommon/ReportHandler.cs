@@ -43,7 +43,7 @@ namespace PSAP.PSAPCommon
             string path = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocPath"]) + DataTypeConvert.GetString(docTempletTable.Rows[0]["DocFileName"]);
             string docVerStr = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocVersion"]);
 
-            string iniPath = "Report\\DocTemplet.ini";
+            string iniPath = System.Windows.Forms.Application.StartupPath + "\\Report\\DocTemplet.ini";
             string sectionStr = "DocTemplet";
             FileHandler fileHandler = new FileHandler();
             if (File.Exists(path))

@@ -44,6 +44,12 @@ namespace PSAP.DAO.BSDAO
             return dt;
         }
 
+        public DataTable QueryRoleMenu(string roleNoStr)
+        {
+            string sqlStr = string.Format("Select MenuName from BS_RoleMenu where RoleNo='{0}'", roleNoStr);
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
         /// <summary>
         /// 获取子菜单权限数据（个人）
         /// </summary>
@@ -58,6 +64,12 @@ namespace PSAP.DAO.BSDAO
                     "and convert(varchar(20),a.UserNo)='" + strPersonalNo.Trim() + "')";
             DataTable dt = PSAP.DAO.BSDAO.BaseSQL.GetTableBySql(sql);
             return dt;
+        }
+
+        public DataTable QueryPersonalMenu(string personalNoStr)
+        {
+            string sqlStr = string.Format("select b.MenuName from BS_UserMenuButton a inner join BS_MenuButton b on a.MenuButtonId=b.AutoId where b.buttonName like 'menuItemFlag' and a.UserNo = '{0}'", personalNoStr);
+            return BaseSQL.GetTableBySql(sqlStr);
         }
     }
 }

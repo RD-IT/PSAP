@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bSMenu = new System.Windows.Forms.BindingSource();
+            this.components = new System.ComponentModel.Container();
+            this.bSMenu = new System.Windows.Forms.BindingSource(this.components);
             this.dSMenu = new System.Data.DataSet();
             this.TableMenu = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -69,13 +70,13 @@
             this.textMenuText = new DevExpress.XtraEditors.TextEdit();
             this.labFormText = new DevExpress.XtraEditors.LabelControl();
             this.labMenuText = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpParentMenuName = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.searchParentMenuName = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchParentMenuNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager();
+            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -84,8 +85,8 @@
             this.barBtnDown = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnMoveUp = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnMoveDown = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCdmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSjcdbnh = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.bSMenu)).BeginInit();
@@ -105,8 +106,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpFormName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textFormText.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textMenuText.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpParentMenuName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchParentMenuName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchParentMenuNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).BeginInit();
@@ -283,9 +284,9 @@
             // 
             this.pnlGrid.Controls.Add(this.gridCrlMenu);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(2, 139);
+            this.pnlGrid.Location = new System.Drawing.Point(0, 137);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(1012, 500);
+            this.pnlGrid.Size = new System.Drawing.Size(1016, 504);
             this.pnlGrid.TabIndex = 10;
             // 
             // gridCrlMenu
@@ -295,7 +296,7 @@
             this.gridCrlMenu.Location = new System.Drawing.Point(2, 2);
             this.gridCrlMenu.MainView = this.gridViewMenu;
             this.gridCrlMenu.Name = "gridCrlMenu";
-            this.gridCrlMenu.Size = new System.Drawing.Size(1008, 496);
+            this.gridCrlMenu.Size = new System.Drawing.Size(1012, 500);
             this.gridCrlMenu.TabIndex = 1;
             this.gridCrlMenu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewMenu});
@@ -401,11 +402,11 @@
             this.pnlEdit.Controls.Add(this.textMenuText);
             this.pnlEdit.Controls.Add(this.labFormText);
             this.pnlEdit.Controls.Add(this.labMenuText);
-            this.pnlEdit.Controls.Add(this.lookUpParentMenuName);
+            this.pnlEdit.Controls.Add(this.searchParentMenuName);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEdit.Location = new System.Drawing.Point(2, 42);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(1012, 97);
+            this.pnlEdit.Size = new System.Drawing.Size(1016, 97);
             this.pnlEdit.TabIndex = 9;
             // 
             // labParentMenuName
@@ -475,29 +476,31 @@
             this.labMenuText.TabIndex = 12;
             this.labMenuText.Text = "菜单名称";
             // 
-            // lookUpParentMenuName
+            // searchParentMenuName
             // 
-            this.lookUpParentMenuName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSMenu, "ParentMenuName", true));
-            this.lookUpParentMenuName.Location = new System.Drawing.Point(359, 21);
-            this.lookUpParentMenuName.Name = "lookUpParentMenuName";
-            this.lookUpParentMenuName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.searchParentMenuName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSMenu, "ParentMenuName", true));
+            this.searchParentMenuName.Location = new System.Drawing.Point(359, 21);
+            this.searchParentMenuName.Name = "searchParentMenuName";
+            this.searchParentMenuName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpParentMenuName.Properties.DisplayMember = "MenuText";
-            this.lookUpParentMenuName.Properties.NullText = "";
-            this.lookUpParentMenuName.Properties.ValueMember = "MenuName";
-            this.lookUpParentMenuName.Properties.View = this.searchLookUpEdit1View;
-            this.lookUpParentMenuName.Size = new System.Drawing.Size(150, 20);
-            this.lookUpParentMenuName.TabIndex = 1;
+            this.searchParentMenuName.Properties.DisplayMember = "MenuText";
+            this.searchParentMenuName.Properties.NullText = "";
+            this.searchParentMenuName.Properties.ValueMember = "MenuName";
+            this.searchParentMenuName.Properties.View = this.searchParentMenuNameView;
+            this.searchParentMenuName.Size = new System.Drawing.Size(150, 20);
+            this.searchParentMenuName.TabIndex = 1;
             // 
-            // searchLookUpEdit1View
+            // searchParentMenuNameView
             // 
-            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.searchParentMenuNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2});
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.searchParentMenuNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchParentMenuNameView.IndicatorWidth = 40;
+            this.searchParentMenuNameView.Name = "searchParentMenuNameView";
+            this.searchParentMenuNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchParentMenuNameView.OptionsView.ShowGroupPanel = false;
+            this.searchParentMenuNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewMenu_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
@@ -518,9 +521,9 @@
             // pnlToolBar
             // 
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
+            this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(1012, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(1016, 40);
             this.pnlToolBar.TabIndex = 5;
             // 
             // splitterMiddle
@@ -665,8 +668,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpFormName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textFormText.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textMenuText.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpParentMenuName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchParentMenuName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchParentMenuNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuList)).EndInit();
@@ -731,8 +734,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colMenuName1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentMenuName1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentMenuText1;
-        private DevExpress.XtraEditors.SearchLookUpEdit lookUpParentMenuName;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraEditors.SearchLookUpEdit searchParentMenuName;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchParentMenuNameView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private System.Windows.Forms.ContextMenuStrip cms;

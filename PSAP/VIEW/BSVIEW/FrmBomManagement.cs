@@ -49,11 +49,16 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                ControlHandler.DevExpressStyle_ChangeControlLocation(btnListAdd.LookAndFeel.ActiveSkinName, new List<Control> { btnListAdd });
+
                 searchPartsCodeId.Properties.DataSource = commonDAO.QueryPartsCode(false);
                 lookUpMaterieState.Properties.DataSource = bomDAO.QueryBomMaterieState(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
-                RefreshTreeList();
+
+                searchCodeFileName.Properties.DataSource = commonDAO.QueryPartsCode(false);
+                //RefreshTreeList();
+                Set_ButtonEditGrid_State(true, null);
             }
             catch (Exception ex)
             {
@@ -71,11 +76,11 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (queryCodeFileNameStr != "")
                 {
-                    textCodeFileName.Text = queryCodeFileNameStr;
-                    textCodeFileName.Tag = queryParentCodeFileNameStr;
+                    searchCodeFileName.EditValue = queryCodeFileNameStr;
+                    searchCodeFileName.Tag = queryParentCodeFileNameStr;
                     queryCodeFileNameStr = "";
                     queryParentCodeFileNameStr = "";
-                    RefreshTreeList();
+                    //RefreshTreeList();
                     btnQuery_Click(null, null);
                 }
             }
@@ -225,7 +230,28 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            treeListBom_FocusedNodeChanged(null, null);
+            try
+            {
+                //treeListBom_FocusedNodeChanged(null, null);
+
+                if (bSBomManagement.Current != null)
+                {
+                    bool isNew = ((DataRowView)bSBomManagement.Current).Row.RowState == DataRowState.Added;
+                    bSBomManagement.CancelEdit();
+                    ((DataRowView)bSBomManagement.Current).Row.RejectChanges();
+
+                    dSBom.Tables[0].Rows.Clear();
+                    dSBom.Tables[1].Rows.Clear();
+                    Set_ButtonEditGrid_State(true, null);
+
+                    if (!isNew)
+                        treeListBom_FocusedNodeChanged(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--取消按钮事件错误。", ex);
+            }
         }
 
         /// <summary>
@@ -363,6 +389,28 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     case "LevelMaterielNo":
                         tmpStr = DataTypeConvert.GetString(gridViewBomMateriel.GetDataRow(e.RowHandle)["LevelMaterielNo"]);
+                        for (int i = 0; i < gridViewBomMateriel.DataRowCount; i++)
+                        {
+                            if (i != e.RowHandle)
+                            {
+                                string lineMaterNo = DataTypeConvert.GetString(gridViewBomMateriel.GetDataRow(i)["LevelMaterielNo"]);
+                                if (tmpStr == lineMaterNo)
+                                {
+                                    MessageHandler.ShowMessageBox("当前选择的子零件编号已经重复，请在同一项设定数量。");
+                                    //gridViewBomMateriel.SetRowCellValue(e.RowHandle, "LevelMaterielNo", "");
+                                    //gridViewBomMateriel.SetRowCellValue(e.RowHandle, "CodeName", "");
+
+                                    gridViewBomMateriel.DeleteRow(e.RowHandle);
+                                    gridViewBomMateriel.FocusedRowHandle = i;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+
+                            }
+                        }
+
                         if (tmpStr == "")
                             gridViewBomMateriel.SetRowCellValue(e.RowHandle, "CodeName", "");
                         else
@@ -422,27 +470,30 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (textCodeFileName.Text.Trim() != "")
-                {
-                    for (int i = 0; i < treeListBom.Nodes.Count; i++)
-                    {
-                        string parentCodeFileNameStr = "";
-                        if (DataTypeConvert.GetString(textCodeFileName.Tag) != "")
-                        {
-                            parentCodeFileNameStr = DataTypeConvert.GetString(textCodeFileName.Tag);
-                            textCodeFileName.Tag = "";
-                        }
-                        if (SearchFocusNode_CodeFileName(treeListBom.Nodes[i], textCodeFileName.Text.Trim(), parentCodeFileNameStr))
-                            break;
+                string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.EditValue);
+                treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo(codeFileNameStr);
+                treeListBom.ExpandAll();
+                //if (textCodeFileName.Text.Trim() != "")
+                //{
+                //    for (int i = 0; i < treeListBom.Nodes.Count; i++)
+                //    {
+                //        string parentCodeFileNameStr = "";
+                //        if (DataTypeConvert.GetString(textCodeFileName.Tag) != "")
+                //        {
+                //            parentCodeFileNameStr = DataTypeConvert.GetString(textCodeFileName.Tag);
+                //            textCodeFileName.Tag = "";
+                //        }
+                //        if (SearchFocusNode_CodeFileName(treeListBom.Nodes[i], textCodeFileName.Text.Trim(), parentCodeFileNameStr))
+                //            break;
 
-                        if (i == treeListBom.Nodes.Count - 1)
-                        {
-                            historyQuery.Clear();
-                            if (treeListBom.Nodes.Count > 0)
-                                treeListBom.FocusedNode = treeListBom.Nodes[0];
-                        }
-                    }
-                }
+                //        if (i == treeListBom.Nodes.Count - 1)
+                //        {
+                //            historyQuery.Clear();
+                //            if (treeListBom.Nodes.Count > 0)
+                //                treeListBom.FocusedNode = treeListBom.Nodes[0];
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -469,8 +520,9 @@ namespace PSAP.VIEW.BSVIEW
             {
                 cReIDStr = DataTypeConvert.GetString(treeListBom.FocusedNode["ReID"]);
             }
-            treeListBom.DataSource = bomDAO.QueryBomTreeList_BaseInfo("");
-            treeListBom.ExpandAll();
+            //treeListBom.DataSource = bomDAO.QueryBomTreeList_BaseInfo("");
+            //treeListBom.ExpandAll();
+            btnQuery_Click(null, null);
 
             if (cReIDStr != "")
             {
@@ -565,6 +617,7 @@ namespace PSAP.VIEW.BSVIEW
             else
                 ctlHandler.Set_Control_ReadOnly(searchPartsCodeId, true);
             ctlHandler.Set_Control_ReadOnly(lookUpMaterieState, state);
+            textCodeName.ReadOnly = true;
 
             gridViewBomMateriel.OptionsBehavior.Editable = !state;
 
@@ -621,6 +674,46 @@ namespace PSAP.VIEW.BSVIEW
             gridViewBomMateriel.AddNewRow();
             FocusedListView(true, "LevelMaterielNo", gridViewBomMateriel.GetFocusedDataSourceRowIndex());
             //gridViewOrderList.RefreshData();
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchPartsCodeId_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchPartsCodeId.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+
+                string selectCodeFileName = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchPartsCodeId.Properties.GetIndexByKeyValue(e.NewValue), "CodeFileName"));
+                DataTable tmpTable = new DataTable();
+                bomDAO.QueryBomManagement_Single(tmpTable, selectCodeFileName);
+                if(tmpTable.Rows.Count>0)
+                {
+                    MessageHandler.ShowMessageBox("当前选择的母零件编号已经设定过BOM信息，不可以重复登记。");
+                    searchCodeFileName.EditValue = selectCodeFileName;
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询结果存为Excel
+        /// </summary>
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileHandler.SaveTreeListControlExportToExcel(treeListBom);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+            }
         }
     }
 }

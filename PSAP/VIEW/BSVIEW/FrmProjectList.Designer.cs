@@ -323,6 +323,7 @@
             this.searchLookUpBussinessBaseNoView.Name = "searchLookUpBussinessBaseNoView";
             this.searchLookUpBussinessBaseNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpBussinessBaseNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewProjectList_CustomDrawRowIndicator);
             // 
             // gridColumnBussinessBaseNo
             // 
@@ -456,7 +457,7 @@
             this.tsmiKhbnwk,
             this.tsmiXmmcbnwk});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(269, 92);
+            this.cms.Size = new System.Drawing.Size(269, 70);
             // 
             // tsmiXmbh
             // 

@@ -2,6 +2,7 @@
 using DevExpress.XtraTreeList;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,5 +128,43 @@ namespace PSAP.PSAPCommon
             }
         }
 
+        /// <summary>
+        /// 根据DevExpress的样式不同，改变控件的位置
+        /// </summary>
+        public static void DevExpressStyle_ChangeControlLocation(string devExpressStyleStr,List<Control> controlList)
+        {
+            switch(devExpressStyleStr)
+            {
+                case "DevExpress Style":
+                case "Foggy":
+                case "Metropolis":
+                case "Metropolis Dark":
+                case "Office 2010 Black":
+                case "Office 2010 Blue":
+                case "Office 2010 Silver":
+                case "Office 2013":
+                case "Office 2013 Dark Gray":
+                case "Office 2013 Light Gray":
+                case "Office 2016 Colorful":
+                case "Office 2016 Dark":
+                case "Seven":
+                case "Seven Classic":
+                case "Sharp":
+                case "Sharp Plus":
+                case "Visual Studio 2013 Blue":
+                case "Visual Studio 2013 Dark":
+                case "Visual Studio 2013 Light":
+                case "VS2010":
+                case "Whiteprint":
+
+                    break;
+                default:
+                    foreach (Control ctl in controlList)
+                    {
+                        ctl.Location = new Point(ctl.Location.X + 1, ctl.Location.Y + 1);
+                    }
+                    break;
+            }
+        }
     }
 }

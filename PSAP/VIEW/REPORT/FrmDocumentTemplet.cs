@@ -2,6 +2,7 @@
 using DevExpress.XtraTreeList.Nodes;
 using PSAP.DAO.INVDAO;
 using PSAP.DAO.PURDAO;
+using PSAP.DAO.SADAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,9 @@ namespace PSAP.VIEW.BSVIEW
                     case "编辑":
                         switch (tableNameStr)
                         {
+                            case "SA_QuotationBaseInfo"://报价单
+                                new FrmQuotationInfoDAO().PrintHandle("", 3);
+                                break;
                             case "PUR_PrReqHead"://请购单
                                 new FrmPrReqDAO().PrintHandle("", 3);
                                 break;

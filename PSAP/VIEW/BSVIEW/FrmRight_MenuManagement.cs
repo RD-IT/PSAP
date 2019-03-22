@@ -55,7 +55,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterDataSet = dSMenu;
                     editForm.MasterBindingSource = bSMenu;
                     editForm.MasterEditPanel = pnlEdit;
-                    editForm.PrimaryKeyControl = textMenuText;
+                    //editForm.PrimaryKeyControl = textMenuText;
                     editForm.BrowseXtraGridView = gridViewMenu;
                     editForm.CheckControl += CheckControl;
                     editForm.QueryDataAfter += QueryDataAfter;
@@ -65,7 +65,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.Show();
 
                     lookUpFormName.Properties.DataSource = FrmRightBLL.InitFormNameDataTable();
-                    lookUpParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
+                    searchParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
                 }
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace PSAP.VIEW.BSVIEW
             if(DataTypeConvert.GetString(gridViewMenu.GetFocusedDataRow()["MenuName"])== DataTypeConvert.GetString(gridViewMenu.GetFocusedDataRow()["ParentMenuName"]))
             {
                 MessageHandler.ShowMessageBox(tsmiSjcdbnh.Text );// ("上级菜单不能和当前菜单相同，请重新操作。");
-                lookUpParentMenuName.Focus();
+                searchParentMenuName.Focus();
                 return false;
             }
 
@@ -101,7 +101,7 @@ namespace PSAP.VIEW.BSVIEW
         public void QueryDataAfter()
         {
             treeListMenu.ExpandAll();
-            lookUpParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
+            searchParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
         }
 
         /// <summary>

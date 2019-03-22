@@ -63,10 +63,13 @@ namespace PSAP.VIEW.BSVIEW
                 //treeListBom.OptionsBehavior.EnableFiltering = true;
                 //treeListBom.OptionsFilter.FilterMode = FilterMode.Smart;
 
-                treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo("");
-                treeListBom.ExpandAll();
+                //treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo("");
+                //treeListBom.ExpandAll();
+                //treeListBom.FilterNodes();
 
-                treeListBom.FilterNodes();
+                string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.Text);
+                treeListBom.DataSource = bomDAO.QueryBomTreeList_Negative_MoreInfo(codeFileNameStr);
+                treeListBom.ExpandAll();
             }
             catch (Exception ex)
             {
@@ -100,36 +103,36 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void treeListBom_FilterNode(object sender, DevExpress.XtraTreeList.FilterNodeEventArgs e)
         {
-            try
-            {
-                string nodeCFNStr = DataTypeConvert.GetString(e.Node["CodeFileName"]);
-                string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.EditValue);
+            //try
+            //{
+            //    string nodeCFNStr = DataTypeConvert.GetString(e.Node["CodeFileName"]);
+            //    string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.Text);
 
-                bool IsVisible = nodeCFNStr.IndexOf(codeFileNameStr) >= 0;
+            //    bool IsVisible = nodeCFNStr.IndexOf(codeFileNameStr) >= 0;
 
-                if (IsVisible)
-                {
-                    TreeListNode Node = e.Node.ParentNode;
-                    while (Node != null)
-                    {
-                        if (!Node.Visible)
-                        {
-                            Node.Visible = true;
-                            Node = Node.ParentNode;
-                        }
-                        else
-                            break;
-                    }
-                }
+            //    if (IsVisible)
+            //    {
+            //        TreeListNode Node = e.Node.ParentNode;
+            //        while (Node != null)
+            //        {
+            //            if (!Node.Visible)
+            //            {
+            //                Node.Visible = true;
+            //                Node = Node.ParentNode;
+            //            }
+            //            else
+            //                break;
+            //        }
+            //    }
 
-                e.Node.Visible = IsVisible;
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                //ExceptionHandler.HandleException(this.Text + "--设定树的过来条件错误。", ex);
-                ExceptionHandler.HandleException(this.Text + "--" + tsmiSdsdgltjcw.Text, ex);
-            }
+            //    e.Node.Visible = IsVisible;
+            //    e.Handled = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    //ExceptionHandler.HandleException(this.Text + "--设定树的过来条件错误。", ex);
+            //    ExceptionHandler.HandleException(this.Text + "--" + tsmiSdsdgltjcw.Text, ex);
+            //}
         }
 
         /// <summary>
@@ -145,6 +148,21 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
                 ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgcw.Text, ex);
+            }
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
     }

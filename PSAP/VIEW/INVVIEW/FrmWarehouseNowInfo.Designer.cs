@@ -560,6 +560,7 @@
             this.colCatgName.Name = "colCatgName";
             this.colCatgName.OptionsColumn.AllowEdit = false;
             this.colCatgName.OptionsColumn.AllowFocus = false;
+            this.colCatgName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCatgName.Visible = true;
             this.colCatgName.VisibleIndex = 10;
             this.colCatgName.Width = 90;
@@ -572,6 +573,7 @@
             this.colCodeNo.Name = "colCodeNo";
             this.colCodeNo.OptionsColumn.AllowEdit = false;
             this.colCodeNo.OptionsColumn.AllowFocus = false;
+            this.colCodeNo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeNo.Visible = true;
             this.colCodeNo.VisibleIndex = 7;
             this.colCodeNo.Width = 80;
@@ -583,6 +585,7 @@
             this.colMaterialVersion.FieldName = "MaterialVersion";
             this.colMaterialVersion.Name = "colMaterialVersion";
             this.colMaterialVersion.OptionsColumn.AllowEdit = false;
+            this.colMaterialVersion.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colMaterialVersion.Visible = true;
             this.colMaterialVersion.VisibleIndex = 11;
             this.colMaterialVersion.Width = 90;
@@ -594,6 +597,7 @@
             this.colCodeWeight.FieldName = "CodeWeight";
             this.colCodeWeight.Name = "colCodeWeight";
             this.colCodeWeight.OptionsColumn.AllowEdit = false;
+            this.colCodeWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeWeight.Visible = true;
             this.colCodeWeight.VisibleIndex = 12;
             this.colCodeWeight.Width = 80;
@@ -656,6 +660,7 @@
             this.colBrand.Name = "colBrand";
             this.colBrand.OptionsColumn.AllowEdit = false;
             this.colBrand.OptionsColumn.AllowFocus = false;
+            this.colBrand.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colBrand.Visible = true;
             this.colBrand.VisibleIndex = 9;
             this.colBrand.Width = 80;
@@ -668,6 +673,7 @@
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
             this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -680,6 +686,7 @@
             this.colCodeSpec.Name = "colCodeSpec";
             this.colCodeSpec.OptionsColumn.AllowEdit = false;
             this.colCodeSpec.OptionsColumn.AllowFocus = false;
+            this.colCodeSpec.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeSpec.Visible = true;
             this.colCodeSpec.VisibleIndex = 8;
             this.colCodeSpec.Width = 110;
@@ -715,6 +722,7 @@
             this.colCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeFileName.FieldName = "CodeFileName";
             this.colCodeFileName.Name = "colCodeFileName";
+            this.colCodeFileName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeFileName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CodeFileName", "共计{0}条")});
             this.colCodeFileName.Visible = true;

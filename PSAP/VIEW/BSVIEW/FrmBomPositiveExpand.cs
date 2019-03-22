@@ -124,6 +124,21 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
+            }
+        }
+
         ///// <summary>
         ///// 设定树的过来条件
         ///// </summary>

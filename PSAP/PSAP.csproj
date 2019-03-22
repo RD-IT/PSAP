@@ -34,6 +34,25 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -106,6 +125,7 @@
     <Compile Include="DAO\BSDAO\FrmDataQueryDesignDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmLoginDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmOrganizationStruDAO.cs" />
+    <Compile Include="DAO\BSDAO\FrmPartsCodeDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmRightDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmMainDAO.cs" />
     <Compile Include="DAO\BSDAO\FrmSystemDAO.cs" />
@@ -126,6 +146,7 @@
     <Compile Include="DAO\INVDAO\FrmWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmSettlementDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmWarehouseWarrantApplyDAO.cs" />
+    <Compile Include="DAO\SADAO\FrmQuotationInfoDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmAddRemarksDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmProjectDocumentDAO.cs" />
     <Compile Include="ENTITY\BSENTITY\bomManagement.cs" />
@@ -185,6 +206,12 @@
     <Compile Include="PSAPCommon\TreeSelectOptimize.cs" />
     <Compile Include="PSAPCommon\ViewHandler.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="VIEW\BSVIEW\FrmBomImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmBomImport.Designer.cs">
+      <DependentUpon>FrmBomImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\BSVIEW\FrmBomManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +247,12 @@
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmCollectionTypeList.Designer.cs">
       <DependentUpon>FrmCollectionTypeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmCurrencyCate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\BSVIEW\FrmCurrencyCate.Designer.cs">
+      <DependentUpon>FrmCurrencyCate.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\BSVIEW\FrmDeliveryLocation.cs">
       <SubType>Form</SubType>
@@ -329,6 +362,12 @@
     <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.Designer.cs">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmTest_WF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmTest_WF.Designer.cs">
+      <DependentUpon>FrmTest_WF.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SALEVIEW\FrmAddRemarks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +379,18 @@
     </Compile>
     <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.Designer.cs">
       <DependentUpon>FrmProjectDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfo.Designer.cs">
+      <DependentUpon>FrmQuotationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfoQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfoQuery.Designer.cs">
+      <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
@@ -737,6 +788,12 @@
     <Compile Include="VIEW\SWVIEW\FrmPartsCode.Designer.cs">
       <DependentUpon>FrmPartsCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SWVIEW\FrmPartsCodeImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SWVIEW\FrmPartsCodeImport.Designer.cs">
+      <DependentUpon>FrmPartsCodeImport.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -748,6 +805,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmBomImport.resx">
+      <DependentUpon>FrmBomImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmBomManagement.resx">
       <DependentUpon>FrmBomManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -765,6 +825,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmCollectionTypeList.resx">
       <DependentUpon>FrmCollectionTypeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\BSVIEW\FrmCurrencyCate.resx">
+      <DependentUpon>FrmCurrencyCate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\BSVIEW\FrmDeliveryLocation.resx">
       <DependentUpon>FrmDeliveryLocation.cs</DependentUpon>
@@ -820,11 +883,20 @@
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.resx">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF.resx">
+      <DependentUpon>FrmTest_WF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SALEVIEW\FrmAddRemarks.resx">
       <DependentUpon>FrmAddRemarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SALEVIEW\FrmProjectDocument.resx">
       <DependentUpon>FrmProjectDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfo.resx">
+      <DependentUpon>FrmQuotationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfoQuery.resx">
+      <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>
@@ -1028,6 +1100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmPartsCode.resx">
       <DependentUpon>FrmPartsCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SWVIEW\FrmPartsCodeImport.resx">
+      <DependentUpon>FrmPartsCodeImport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="dsPSAP.xsc">

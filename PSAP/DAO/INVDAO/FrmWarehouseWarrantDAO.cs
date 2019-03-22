@@ -612,7 +612,7 @@ namespace PSAP.DAO.INVDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
-
+                        DateTime serverTime = BaseSQL.GetServerDateTime();
                         cmd.CommandText = string.Format("select WarehouseWarrant from INV_WarehouseWarrantHead where WarehouseState = 2 and WarehouseWarrant in ({0})", wwHeadNoListStr);
                         DataTable approcalWWTable = new DataTable();
                         SqlDataAdapter appradpt = new SqlDataAdapter(cmd);
@@ -638,7 +638,7 @@ namespace PSAP.DAO.INVDAO
                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         for (int i = 0; i < approcalWWTable.Rows.Count; i++)

@@ -46,6 +46,8 @@ namespace PSAP.VIEW.BSVIEW
                 repItemLookUpPayType.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryPayType(false);
 
                 btnRefresh_Click(null, null);
+
+                btnSave_Click(null, null);
             }
             catch (Exception ex)
             {

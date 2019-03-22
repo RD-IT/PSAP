@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dSRole = new System.Data.DataSet();
             this.TableRole = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColRoleNo = new System.Data.DataColumn();
             this.dataColRoleName = new System.Data.DataColumn();
-            this.bSRole = new System.Windows.Forms.BindingSource();
+            this.bSRole = new System.Windows.Forms.BindingSource(this.components);
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.textRoleName = new DevExpress.XtraEditors.TextEdit();
@@ -58,10 +59,13 @@
             this.colMenuName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentMenuName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentMenuText1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiJsbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiJsmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiXzjsckqxcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSub = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dSRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSRole)).BeginInit();
@@ -80,6 +84,8 @@
             this.pnlTreeList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListRole)).BeginInit();
             this.cms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSRole
@@ -261,6 +267,7 @@
             // 
             this.pnlTreeList.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlTreeList.Controls.Add(this.treeListRole);
+            this.pnlTreeList.Controls.Add(this.panelControl1);
             this.pnlTreeList.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlTreeList.Location = new System.Drawing.Point(585, 2);
             this.pnlTreeList.Name = "pnlTreeList";
@@ -281,7 +288,7 @@
             this.treeListRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeListRole.Enabled = false;
             this.treeListRole.KeyFieldName = "MenuName";
-            this.treeListRole.Location = new System.Drawing.Point(2, 2);
+            this.treeListRole.Location = new System.Drawing.Point(0, 36);
             this.treeListRole.Name = "treeListRole";
             this.treeListRole.OptionsBehavior.Editable = false;
             this.treeListRole.OptionsBehavior.ReadOnly = true;
@@ -295,7 +302,7 @@
             this.treeListRole.OptionsView.ShowIndicator = false;
             this.treeListRole.OptionsView.ShowVertLines = false;
             this.treeListRole.ParentFieldName = "ParentMenuName";
-            this.treeListRole.Size = new System.Drawing.Size(396, 454);
+            this.treeListRole.Size = new System.Drawing.Size(400, 422);
             this.treeListRole.TabIndex = 2;
             this.treeListRole.BeforeCheckNode += new DevExpress.XtraTreeList.CheckNodeEventHandler(this.treeListRole_BeforeCheckNode);
             this.treeListRole.AfterCheckNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeListRole_AfterCheckNode);
@@ -375,6 +382,38 @@
             this.tsmiXzjsckqxcw.Size = new System.Drawing.Size(256, 22);
             this.tsmiXzjsckqxcw.Text = "选中角色查看权限错误。";
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.btnSub);
+            this.panelControl1.Controls.Add(this.btnAdd);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(400, 36);
+            this.panelControl1.TabIndex = 3;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.AllowFocus = false;
+            this.btnAdd.Location = new System.Drawing.Point(6, 7);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 23);
+            this.btnAdd.TabIndex = 101;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Text = "+";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnSub
+            // 
+            this.btnSub.AllowFocus = false;
+            this.btnSub.Location = new System.Drawing.Point(35, 7);
+            this.btnSub.Name = "btnSub";
+            this.btnSub.Size = new System.Drawing.Size(23, 23);
+            this.btnSub.TabIndex = 102;
+            this.btnSub.TabStop = false;
+            this.btnSub.Text = "-";
+            this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
+            // 
             // FrmRight_Role
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -405,6 +444,8 @@
             this.pnlTreeList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListRole)).EndInit();
             this.cms.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -445,5 +486,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiJsbhbnwk;
         private System.Windows.Forms.ToolStripMenuItem tsmiJsmcbnwk;
         private System.Windows.Forms.ToolStripMenuItem tsmiXzjsckqxcw;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton btnSub;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
     }
 }

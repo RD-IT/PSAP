@@ -142,7 +142,7 @@ namespace PSAP.VIEW.BSVIEW
         public void QueryMenuTreeList()
         {
             treeListRole.DataSource = FrmRightDAO.QueryMenuTree();
-            treeListRole.ExpandAll();
+            treeListRole.CollapseAll();
         }
 
         /// <summary>
@@ -226,6 +226,22 @@ namespace PSAP.VIEW.BSVIEW
                 node.ParentNode.CheckState = b ? CheckState.Checked : check;
                 SetCheckedParentNodes(node.ParentNode, check);
             }
+        }
+
+        /// <summary>
+        /// 扩展树节点
+        /// </summary>
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            treeListRole.ExpandAll();
+        }
+
+        /// <summary>
+        /// 收缩树节点
+        /// </summary>
+        private void btnSub_Click(object sender, EventArgs e)
+        {
+            treeListRole.CollapseAll();
         }
     }
 }

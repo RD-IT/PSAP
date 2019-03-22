@@ -392,10 +392,6 @@ namespace PSAP.DAO.INVDAO
 
                                 if (DataTypeConvert.GetInt(swwHeadTable.Rows[i]["WarehouseState"]) == 2)//全部审核通过进行下一步操作
                                 {
-                                    ////更新采购单明细已经进行采购结账的明细的出库单号和出库单明细的AutoId        什么时候采购结账单明细加采购单明细的AutoId什么时候启用
-                                    //cmd.CommandText = string.Format("update PUR_SettlementList set PUR_SettlementList.WarehouseWarrant = INV_WarehouseWarrantList.WarehouseWarrant, PUR_SettlementList.WarehouseWarrantListAutoId = INV_WarehouseWarrantList.AutoId from INV_WarehouseWarrantList where INV_WarehouseWarrantList.PoListAutoId = PUR_SettlementList.PoListAutoId and INV_WarehouseWarrantList.OrderHeadNo = PUR_SettlementList.OrderHeadNo and INV_WarehouseWarrantList.WarehouseWarrant = '{0}'", wwHeadNoStr);
-                                    //cmd.ExecuteNonQuery();
-
                                     SqlCommand cmd_proc = new SqlCommand("", conn, trans);
                                     string errorText = "";
                                     if (!new FrmWarehouseNowInfoDAO().Update_WarehouseNowInfo(cmd_proc, swwHeadNoStr, 1, out errorText))
@@ -455,7 +451,7 @@ namespace PSAP.DAO.INVDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
-
+                        DateTime serverTime = BaseSQL.GetServerDateTime();
                         cmd.CommandText = string.Format("select SpecialWarehouseReceipt from INV_SpecialWarehouseReceiptHead where WarehouseState = 2 and SpecialWarehouseReceipt in ({0})", swwHeadNoListStr);
                         DataTable approcalSWWTable = new DataTable();
                         SqlDataAdapter appradpt = new SqlDataAdapter(cmd);
@@ -479,7 +475,7 @@ namespace PSAP.DAO.INVDAO
                             //    return false;
                             //}
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "预算外出库单", orderHeadRows[i], "SpecialWarehouseReceipt", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "预算外出库单", orderHeadRows[i], "SpecialWarehouseReceipt", "取消审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         for (int i = 0; i < approcalSWWTable.Rows.Count; i++)

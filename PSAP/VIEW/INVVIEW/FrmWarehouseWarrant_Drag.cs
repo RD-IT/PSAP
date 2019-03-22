@@ -72,6 +72,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                ControlHandler.DevExpressStyle_ChangeControlLocation(checkAll.LookAndFeel.ActiveSkinName, new List<Control> { checkAll });
+
                 DateTime nowDate = BaseSQL.GetServerDateTime();
                 dateWWDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateWWDateEnd.DateTime = nowDate.Date;

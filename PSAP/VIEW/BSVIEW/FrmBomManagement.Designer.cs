@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlLeft = new DevExpress.XtraEditors.PanelControl();
             this.pnlLeftTree = new DevExpress.XtraEditors.PanelControl();
             this.treeListBom = new DevExpress.XtraTreeList.TreeList();
@@ -39,14 +40,19 @@
             this.CReID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.CReParent = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlLeftTop = new DevExpress.XtraEditors.PanelControl();
+            this.searchCodeFileName = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchCodeFileNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
-            this.textCodeFileName = new DevExpress.XtraEditors.TextEdit();
             this.labCodeFileName = new DevExpress.XtraEditors.LabelControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlBomMateriel = new DevExpress.XtraGrid.GridControl();
-            this.bSBomMateriel = new System.Windows.Forms.BindingSource();
+            this.bSBomMateriel = new System.Windows.Forms.BindingSource(this.components);
             this.dSBom = new System.Data.DataSet();
             this.TableBomManagement = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -78,9 +84,11 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
+            this.textCodeName = new DevExpress.XtraEditors.TextEdit();
+            this.bSBomManagement = new System.Windows.Forms.BindingSource(this.components);
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labGetTime = new DevExpress.XtraEditors.LabelControl();
             this.dateGetTime = new DevExpress.XtraEditors.DateEdit();
-            this.bSBomManagement = new System.Windows.Forms.BindingSource();
             this.searchPartsCodeId = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchPartsCodeIdView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -97,7 +105,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiJjcxdqxzbomxx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLjmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLjmccxxxcw = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +116,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTop)).BeginInit();
             this.pnlLeftTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textCodeFileName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
@@ -125,9 +134,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
             this.pnlEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpMaterieState.Properties)).BeginInit();
@@ -153,9 +163,9 @@
             // 
             this.pnlLeftTree.Controls.Add(this.treeListBom);
             this.pnlLeftTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLeftTree.Location = new System.Drawing.Point(2, 36);
+            this.pnlLeftTree.Location = new System.Drawing.Point(0, 40);
             this.pnlLeftTree.Name = "pnlLeftTree";
-            this.pnlLeftTree.Size = new System.Drawing.Size(496, 583);
+            this.pnlLeftTree.Size = new System.Drawing.Size(500, 581);
             this.pnlLeftTree.TabIndex = 3;
             // 
             // treeListBom
@@ -183,7 +193,7 @@
             this.treeListBom.OptionsView.ShowIndicator = false;
             this.treeListBom.OptionsView.ShowVertLines = false;
             this.treeListBom.ParentFieldName = "ReParent";
-            this.treeListBom.Size = new System.Drawing.Size(492, 579);
+            this.treeListBom.Size = new System.Drawing.Size(496, 577);
             this.treeListBom.TabIndex = 1;
             this.treeListBom.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListBom_FocusedNodeChanged);
             // 
@@ -246,36 +256,86 @@
             // 
             // pnlLeftTop
             // 
+            this.pnlLeftTop.Controls.Add(this.searchCodeFileName);
+            this.pnlLeftTop.Controls.Add(this.btnSaveExcel);
             this.pnlLeftTop.Controls.Add(this.btnQuery);
-            this.pnlLeftTop.Controls.Add(this.textCodeFileName);
             this.pnlLeftTop.Controls.Add(this.labCodeFileName);
             this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLeftTop.Location = new System.Drawing.Point(2, 2);
+            this.pnlLeftTop.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftTop.Name = "pnlLeftTop";
-            this.pnlLeftTop.Size = new System.Drawing.Size(496, 34);
+            this.pnlLeftTop.Size = new System.Drawing.Size(500, 40);
             this.pnlLeftTop.TabIndex = 2;
+            // 
+            // searchCodeFileName
+            // 
+            this.searchCodeFileName.EnterMoveNextControl = true;
+            this.searchCodeFileName.Location = new System.Drawing.Point(82, 10);
+            this.searchCodeFileName.Name = "searchCodeFileName";
+            this.searchCodeFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchCodeFileName.Properties.DisplayMember = "CodeFileName";
+            this.searchCodeFileName.Properties.NullText = "";
+            this.searchCodeFileName.Properties.ValueMember = "CodeFileName";
+            this.searchCodeFileName.Properties.View = this.searchCodeFileNameView;
+            this.searchCodeFileName.Size = new System.Drawing.Size(150, 20);
+            this.searchCodeFileName.TabIndex = 101;
+            // 
+            // searchCodeFileNameView
+            // 
+            this.searchCodeFileNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8});
+            this.searchCodeFileNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchCodeFileNameView.IndicatorWidth = 60;
+            this.searchCodeFileNameView.Name = "searchCodeFileNameView";
+            this.searchCodeFileNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchCodeFileNameView.OptionsView.ShowGroupPanel = false;
+            this.searchCodeFileNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBomMateriel_CustomDrawRowIndicator);
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "零件编号";
+            this.gridColumn6.FieldName = "CodeFileName";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "零件名称";
+            this.gridColumn7.FieldName = "CodeName";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 1;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "AutoId";
+            this.gridColumn8.FieldName = "AutoId";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.Location = new System.Drawing.Point(364, 9);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveExcel.TabIndex = 105;
+            this.btnSaveExcel.Text = "存为Excel";
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(268, 6);
+            this.btnQuery.Location = new System.Drawing.Point(268, 9);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 102;
-            this.btnQuery.Text = "查找";
+            this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
-            // 
-            // textCodeFileName
-            // 
-            this.textCodeFileName.EnterMoveNextControl = true;
-            this.textCodeFileName.Location = new System.Drawing.Point(82, 7);
-            this.textCodeFileName.Name = "textCodeFileName";
-            this.textCodeFileName.Size = new System.Drawing.Size(180, 20);
-            this.textCodeFileName.TabIndex = 101;
-            this.textCodeFileName.EditValueChanged += new System.EventHandler(this.textCodeFileName_EditValueChanged);
             // 
             // labCodeFileName
             // 
-            this.labCodeFileName.Location = new System.Drawing.Point(18, 10);
+            this.labCodeFileName.Location = new System.Drawing.Point(19, 13);
             this.labCodeFileName.Name = "labCodeFileName";
             this.labCodeFileName.Size = new System.Drawing.Size(48, 14);
             this.labCodeFileName.TabIndex = 13;
@@ -290,7 +350,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(507, 2);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(705, 621);
+            this.pnlRight.Size = new System.Drawing.Size(1014, 621);
             this.pnlRight.TabIndex = 1;
             // 
             // pnlBottom
@@ -298,9 +358,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlBomMateriel);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(2, 104);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 108);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(701, 515);
+            this.pnlBottom.Size = new System.Drawing.Size(1014, 513);
             this.pnlBottom.TabIndex = 10;
             // 
             // btnListAdd
@@ -324,7 +384,7 @@
             this.repSpinQty,
             this.repSearchCodeFileName,
             this.repbtnDelete});
-            this.gridControlBomMateriel.Size = new System.Drawing.Size(697, 511);
+            this.gridControlBomMateriel.Size = new System.Drawing.Size(1010, 509);
             this.gridControlBomMateriel.TabIndex = 2;
             this.gridControlBomMateriel.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewBomMateriel});
@@ -612,6 +672,8 @@
             // 
             // pnlEdit
             // 
+            this.pnlEdit.Controls.Add(this.textCodeName);
+            this.pnlEdit.Controls.Add(this.labelControl1);
             this.pnlEdit.Controls.Add(this.labGetTime);
             this.pnlEdit.Controls.Add(this.dateGetTime);
             this.pnlEdit.Controls.Add(this.searchPartsCodeId);
@@ -619,14 +681,36 @@
             this.pnlEdit.Controls.Add(this.lookUpMaterieState);
             this.pnlEdit.Controls.Add(this.labPartsCodeId);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEdit.Location = new System.Drawing.Point(2, 36);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(701, 68);
+            this.pnlEdit.Size = new System.Drawing.Size(1014, 68);
             this.pnlEdit.TabIndex = 9;
+            // 
+            // textCodeName
+            // 
+            this.textCodeName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bSBomManagement, "CodeName", true));
+            this.textCodeName.Location = new System.Drawing.Point(382, 21);
+            this.textCodeName.Name = "textCodeName";
+            this.textCodeName.Size = new System.Drawing.Size(150, 20);
+            this.textCodeName.TabIndex = 23;
+            this.textCodeName.TabStop = false;
+            // 
+            // bSBomManagement
+            // 
+            this.bSBomManagement.DataMember = "BomManagement";
+            this.bSBomManagement.DataSource = this.dSBom;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(295, 24);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(60, 14);
+            this.labelControl1.TabIndex = 22;
+            this.labelControl1.Text = "母零件名称";
             // 
             // labGetTime
             // 
-            this.labGetTime.Location = new System.Drawing.Point(547, 24);
+            this.labGetTime.Location = new System.Drawing.Point(801, 24);
             this.labGetTime.Name = "labGetTime";
             this.labGetTime.Size = new System.Drawing.Size(48, 14);
             this.labGetTime.TabIndex = 21;
@@ -636,7 +720,7 @@
             // 
             this.dateGetTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "GetTime", true));
             this.dateGetTime.EditValue = null;
-            this.dateGetTime.Location = new System.Drawing.Point(617, 21);
+            this.dateGetTime.Location = new System.Drawing.Point(871, 21);
             this.dateGetTime.Name = "dateGetTime";
             this.dateGetTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -650,25 +734,21 @@
             this.dateGetTime.TabIndex = 3;
             this.dateGetTime.TabStop = false;
             // 
-            // bSBomManagement
-            // 
-            this.bSBomManagement.DataMember = "BomManagement";
-            this.bSBomManagement.DataSource = this.dSBom;
-            // 
             // searchPartsCodeId
             // 
             this.searchPartsCodeId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "PartsCodeId", true));
             this.searchPartsCodeId.EnterMoveNextControl = true;
-            this.searchPartsCodeId.Location = new System.Drawing.Point(105, 21);
+            this.searchPartsCodeId.Location = new System.Drawing.Point(122, 21);
             this.searchPartsCodeId.Name = "searchPartsCodeId";
             this.searchPartsCodeId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchPartsCodeId.Properties.DisplayMember = "CodeName";
+            this.searchPartsCodeId.Properties.DisplayMember = "CodeFileName";
             this.searchPartsCodeId.Properties.NullText = "";
             this.searchPartsCodeId.Properties.ValueMember = "AutoId";
             this.searchPartsCodeId.Properties.View = this.searchPartsCodeIdView;
             this.searchPartsCodeId.Size = new System.Drawing.Size(150, 20);
             this.searchPartsCodeId.TabIndex = 0;
+            this.searchPartsCodeId.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.searchPartsCodeId_EditValueChanging);
             // 
             // searchPartsCodeIdView
             // 
@@ -707,7 +787,7 @@
             // 
             // labMaterieState
             // 
-            this.labMaterieState.Location = new System.Drawing.Point(287, 24);
+            this.labMaterieState.Location = new System.Drawing.Point(556, 24);
             this.labMaterieState.Name = "labMaterieState";
             this.labMaterieState.Size = new System.Drawing.Size(48, 14);
             this.labMaterieState.TabIndex = 19;
@@ -717,7 +797,7 @@
             // 
             this.lookUpMaterieState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBomManagement, "MaterieStateId", true));
             this.lookUpMaterieState.EnterMoveNextControl = true;
-            this.lookUpMaterieState.Location = new System.Drawing.Point(360, 21);
+            this.lookUpMaterieState.Location = new System.Drawing.Point(629, 21);
             this.lookUpMaterieState.Name = "lookUpMaterieState";
             this.lookUpMaterieState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -734,9 +814,9 @@
             // 
             this.labPartsCodeId.Location = new System.Drawing.Point(36, 24);
             this.labPartsCodeId.Name = "labPartsCodeId";
-            this.labPartsCodeId.Size = new System.Drawing.Size(48, 14);
+            this.labPartsCodeId.Size = new System.Drawing.Size(60, 14);
             this.labPartsCodeId.TabIndex = 12;
-            this.labPartsCodeId.Text = "零件名称";
+            this.labPartsCodeId.Text = "母零件编号";
             // 
             // pnlToolBar
             // 
@@ -746,14 +826,14 @@
             this.pnlToolBar.Controls.Add(this.btnSave);
             this.pnlToolBar.Controls.Add(this.btnNew);
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
+            this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(701, 34);
+            this.pnlToolBar.Size = new System.Drawing.Size(1014, 40);
             this.pnlToolBar.TabIndex = 5;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(329, 5);
+            this.btnRefresh.Location = new System.Drawing.Point(334, 9);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 18;
@@ -763,7 +843,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(248, 5);
+            this.btnDelete.Location = new System.Drawing.Point(253, 9);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 17;
@@ -774,7 +854,7 @@
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
-            this.btnCancel.Location = new System.Drawing.Point(167, 5);
+            this.btnCancel.Location = new System.Drawing.Point(172, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 16;
@@ -784,7 +864,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(86, 5);
+            this.btnSave.Location = new System.Drawing.Point(91, 9);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 15;
@@ -794,7 +874,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(5, 5);
+            this.btnNew.Location = new System.Drawing.Point(10, 9);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 23);
             this.btnNew.TabIndex = 14;
@@ -810,7 +890,7 @@
             this.pnlBom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBom.Location = new System.Drawing.Point(0, 0);
             this.pnlBom.Name = "pnlBom";
-            this.pnlBom.Size = new System.Drawing.Size(1214, 625);
+            this.pnlBom.Size = new System.Drawing.Size(1523, 625);
             this.pnlBom.TabIndex = 14;
             // 
             // splitterMiddle
@@ -852,7 +932,7 @@
             // FrmBomManagement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1214, 625);
+            this.ClientSize = new System.Drawing.Size(1523, 625);
             this.Controls.Add(this.pnlBom);
             this.Name = "FrmBomManagement";
             this.TabText = "BOM登记";
@@ -867,7 +947,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeftTop)).EndInit();
             this.pnlLeftTop.ResumeLayout(false);
             this.pnlLeftTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textCodeFileName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
             this.pnlRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
@@ -885,9 +966,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateGetTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSBomManagement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpMaterieState.Properties)).EndInit();
@@ -967,7 +1049,6 @@
         private DevExpress.XtraEditors.PanelControl pnlLeftTree;
         private DevExpress.XtraEditors.PanelControl pnlLeftTop;
         private DevExpress.XtraEditors.SimpleButton btnQuery;
-        private DevExpress.XtraEditors.TextEdit textCodeFileName;
         private DevExpress.XtraEditors.LabelControl labCodeFileName;
         private DevExpress.XtraEditors.LabelControl labGetTime;
         private DevExpress.XtraEditors.DateEdit dateGetTime;
@@ -975,5 +1056,13 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiJjcxdqxzbomxx;
         private System.Windows.Forms.ToolStripMenuItem tsmiLjmcbnwk;
         private System.Windows.Forms.ToolStripMenuItem tsmiLjmccxxxcw;
+        private DevExpress.XtraEditors.TextEdit textCodeName;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
+        private DevExpress.XtraEditors.SearchLookUpEdit searchCodeFileName;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchCodeFileNameView;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
     }
 }

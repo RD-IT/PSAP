@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using System.Reflection;
 using WeifenLuo.WinFormsUI.Docking;
 using PSAP.DAO.BSDAO;
+using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+using PSAP.PSAPCommon;
 
 namespace PSAP.BLL.BSBLL
 {
@@ -32,6 +35,31 @@ namespace PSAP.BLL.BSBLL
             }
         }
 
+        public void InitTreeList(TreeList treeList)
+        {
+            DataTable dt = FrmMainDAO.GetTopMenuData();//获取一级菜单数据
+            foreach (DataRow dr in dt.Rows)
+            {
+                TreeListNode node = treeList.Nodes.Add(new object[] { dr["MenuName"], dr["MenuText"] });
+                node.Checked = true;
+                node.Tag = "";
+                InitSubTreeListNode(node);
+            }
+        }
+
+        public void InitSubTreeListNode(TreeListNode parentNode)
+        {
+            DataTable dt = FrmMainDAO.GetChildMenuData(DataTypeConvert.GetString(parentNode[0]));
+            foreach (DataRow dr in dt.Rows)
+            {
+                TreeListNode node = parentNode.Nodes.Add(new object[] { dr["MenuName"], dr["MenuText"] });
+                node.Checked = false;
+                node.Tag = dr["FormName"].ToString();
+                InitSubTreeListNode(node);
+            }
+        }
+
+
         /// <summary>
         ///初始化主菜单的所有子菜单 
         /// </summary>
@@ -53,7 +81,8 @@ namespace PSAP.BLL.BSBLL
                     pItem.DropDownItems.Add(subItem);
                     try
                     {
-                        pItem.DropDownItems[subItem.Name].Enabled = false;//注释此项可关闭主菜单权限设定【开发用】
+                        if (PSAPCommon.SystemInfo.user.AutoId != 1)
+                            pItem.DropDownItems[subItem.Name].Enabled = false;//注释此项可关闭主菜单权限设定【开发用】
 
                         ToolStripItem pp = (ToolStripItem)subItem;
                         InitSubMenuItem(pp); //根据父菜单项加载子菜单
@@ -101,6 +130,46 @@ namespace PSAP.BLL.BSBLL
                 item.Name = dr["MenuName"].ToString();//一级菜单的menuname
                 mnsTmp.Items[item.Name].Enabled = true;//各一级菜单是主菜单menuStrip1集合的项
                 SetSubMenuItemByRole(mnsTmp.Items[item.Name], strRoleNo);//将一级菜单对应主菜单menuStrip1集合的项传给子菜单设置函数
+            }
+        }
+
+        public void SetTreeListByRole(int typeInt, TreeList treelist,string roleNoStr)
+        {
+            if (typeInt == 1)
+            {
+                DataTable roleTable = new FrmMainDAO().QueryRoleMenu(roleNoStr);
+                foreach (TreeListNode node in treelist.Nodes)
+                {
+                    SetSubTreeListNodeByRole(1, roleTable, node, roleNoStr);
+                }
+            }
+            else if(typeInt ==2)
+            {
+                DataTable roleTable = new FrmMainDAO().QueryPersonalMenu(roleNoStr);
+                foreach (TreeListNode node in treelist.Nodes)
+                {
+                    SetSubTreeListNodeByRole(2, roleTable, node, roleNoStr);
+                }
+            }
+        }
+
+        public void SetSubTreeListNodeByRole(int typeInt, DataTable roleTable, TreeListNode parentNode, string roleNoStr)
+        {
+            string mname = DataTypeConvert.GetString(parentNode[0]);
+            //DataTable dt = FrmMainDAO.GetChildMenuRoleRightData(mname, roleNoStr);// 获取子菜单权限数据（角色）
+            foreach (TreeListNode node in parentNode.Nodes)
+            {
+                string s = DataTypeConvert.GetString(node[0]);
+
+                if (roleTable.Select(string.Format("MenuName = '{0}'", DataTypeConvert.GetString(node[0]))).Length > 0)
+                {
+                    node.Checked = true;
+                    if (typeInt == 1)
+                    {
+                        node.Tag = DataTypeConvert.GetString(node.Tag) + ":Role";
+                    }
+                }
+                SetSubTreeListNodeByRole(typeInt, roleTable, node, roleNoStr);
             }
         }
 

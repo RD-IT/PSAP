@@ -226,6 +226,7 @@
             this.searchLookUpCodeFileNameView.Name = "searchLookUpCodeFileNameView";
             this.searchLookUpCodeFileNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpCodeFileNameView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpCodeFileNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
@@ -268,6 +269,7 @@
             this.searchLookUpProjectNoView.Name = "searchLookUpProjectNoView";
             this.searchLookUpProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpProjectNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             // 
             // gridColProjectNo
             // 
@@ -440,6 +442,7 @@
             this.searchLookUpBussinessBaseNoView.Name = "searchLookUpBussinessBaseNoView";
             this.searchLookUpBussinessBaseNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpBussinessBaseNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             // 
             // gridColumnBussinessBaseNo
             // 
@@ -1178,7 +1181,7 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRkrqbnwkcx});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(317, 48);
+            this.cms.Size = new System.Drawing.Size(317, 26);
             // 
             // tsmiRkrqbnwkcx
             // 

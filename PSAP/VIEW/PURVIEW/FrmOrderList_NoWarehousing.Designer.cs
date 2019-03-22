@@ -470,6 +470,7 @@
             this.searchLookUpCodeFileNameView.Name = "searchLookUpCodeFileNameView";
             this.searchLookUpCodeFileNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpCodeFileNameView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpCodeFileNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewOrderList_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
@@ -512,6 +513,7 @@
             this.searchLookUpProjectNoView.Name = "searchLookUpProjectNoView";
             this.searchLookUpProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpProjectNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewOrderList_CustomDrawRowIndicator);
             // 
             // gridColProjectNo
             // 
@@ -586,6 +588,7 @@
             this.searchLookUpBussinessBaseNoView.Name = "searchLookUpBussinessBaseNoView";
             this.searchLookUpBussinessBaseNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpBussinessBaseNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewOrderList_CustomDrawRowIndicator);
             // 
             // gridColumnBussinessBaseNo
             // 
@@ -1331,7 +1334,7 @@
             this.tsmiJhdhribnwk,
             this.tsmiDgrqbnwk});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(341, 70);
+            this.cms.Size = new System.Drawing.Size(341, 48);
             // 
             // tsmiJhdhribnwk
             // 

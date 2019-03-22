@@ -354,8 +354,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             else//保存
             {
-                btnSave_Click();
-                pnlButton.Focus();
+                if(btnSave_Click())
+                    pnlButton.Focus();
             }
         }
 
@@ -662,6 +662,7 @@ namespace PSAP.VIEW.BSVIEW
                             if (!DeleteRowBefore(updateRow, cmd))
                             {
                                 trans.Rollback();
+                                updateRow.Table.RejectChanges();
                                 return false;
                             }
                         }
@@ -680,6 +681,7 @@ namespace PSAP.VIEW.BSVIEW
                             if (!DeleteRowAfter(updateRow, cmd))
                             {
                                 trans.Rollback();
+                                updateRow.Table.RejectChanges();
                                 return false;
                             }
                         }
