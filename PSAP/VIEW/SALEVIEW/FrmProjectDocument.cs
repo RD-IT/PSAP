@@ -27,6 +27,7 @@ namespace PSAP.VIEW.BSVIEW
         /// 本地根目录
         /// </summary>
         public static string rootDir = @"\RongDa Project Documents";
+        //public static string rootDir = @"\RongDa Sale Documents";
 
         /// <summary>
         /// Ftp根目录
@@ -1218,14 +1219,14 @@ namespace PSAP.VIEW.BSVIEW
                     }
                     else//如果选中的是文件
                     {
-                        string fileFullPath = @rootPathLocal + @curPathNode.Path + lvwFiles.SelectedItems[0].Text;
+                        string fileFullPath = @rootPathLocal + (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path) + lvwFiles.SelectedItems[0].Text;
                         //string fileFullPath = @lvwFiles.SelectedItems[0].SubItems[7].Text + @"\" + lvwFiles.SelectedItems[0].Text;//190211
                         if (!File.Exists(fileFullPath) || lvwFiles.SelectedItems[0].SubItems[6].Text != "pc-songxi")//change
                         {
                             FrmProjectDocumentBLL.CacheToLocal(lvwFiles, assignVersion);//将文件缓存到本地
                         }
                         //同一台电脑如一个文件已被一个用户检出，另一个用户使用同一台电脑不允许打开
-                        if (Convert.ToInt32(lvwFiles.SelectedItems[0].SubItems[5].Text) != 90 &&
+                        if (Convert.ToInt32(lvwFiles.SelectedItems[0].SubItems[5].Text) != SystemInfo.user.AutoId &&
                             lvwFiles.SelectedItems[0].SubItems[6].Text == "pc-songxi")//change
                         {
                             //MessageBox.Show("当前电脑已经有用户进行了【检入】操作，其他用户无权打开！如需查看请使用其它电脑！", "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1237,7 +1238,7 @@ namespace PSAP.VIEW.BSVIEW
                         FileInfo f = new FileInfo(fileFullPath);
 
                         //将检出人文件打开动作记入文档表（检入时将升级）
-                        if (Convert.ToInt32(lvwFiles.SelectedItems[0].SubItems[5].Text) == 90 &&
+                        if (Convert.ToInt32(lvwFiles.SelectedItems[0].SubItems[5].Text) == SystemInfo.user.AutoId &&
                             lvwFiles.SelectedItems[0].SubItems[6].Text == "pc-songxi")//change
                         {
                             int documentID = Convert.ToInt32(lvwFiles.SelectedItems[0].Tag);
@@ -1809,7 +1810,8 @@ namespace PSAP.VIEW.BSVIEW
         private void lvwFiles_DragDrop(object sender, DragEventArgs e)
         {
             string[] sCopyFilesSourcePaths = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string sDestPath = @rootPathLocal + @curPathNode.Path;
+            //string sDestPath = @rootPathLocal + (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path) + @curPathNode.Path;
+            string sDestPath = @rootPathLocal + (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path);
             FrmProjectDocumentBLL.CopyToLocal(sCopyFilesSourcePaths, sDestPath, true, false, ilRight);
             //刷新文件列表
             tsmiRefresh_Click(null, null);
@@ -1841,7 +1843,7 @@ namespace PSAP.VIEW.BSVIEW
                     sCopyFilesSourcePaths = new string[sCopyFilesSourcePathsTmp.Count];
                     sCopyFilesSourcePathsTmp.CopyTo(sCopyFilesSourcePaths, 0);
 
-                    string sDestPath = @rootPathLocal + @curPathNode.Path;
+                    string sDestPath = @rootPathLocal + (string.IsNullOrEmpty(@curPathNode.Path) ? @"\" : @curPathNode.Path);// + @curPathNode.Path;
                     FrmProjectDocumentBLL.CopyToLocal(sCopyFilesSourcePaths, sDestPath, true, false, ilRight);
                     //刷新文件列表
                     tsmiRefresh_Click(null, null);
@@ -2390,6 +2392,7 @@ namespace PSAP.VIEW.BSVIEW
         private void tsbtnRootPath_Click(object sender, EventArgs e)
         {
             ShowFilesList(1, true, "");
+            tscboAddress.Text = curPathNode.Path;
         }
 
         private void txtQuery_KeyDown(object sender, KeyEventArgs e)

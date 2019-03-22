@@ -686,7 +686,7 @@ namespace PSAP.BLL.SALEBLL
 
                         //文件下载到本地的路径
                         localPath = FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + FrmProjectDocumentDAO.GetProjectLocalPath(Convert.ToInt32(lvi.Tag));
-                        DataTable dt = FrmProjectDocumentDAO.GetAddToFtp(Convert.ToInt32(lvi.Tag), 90, "pc-songxi");//change
+                        DataTable dt = FrmProjectDocumentDAO.GetAddToFtp(Convert.ToInt32(lvi.Tag), SystemInfo.user.AutoId, "pc-songxi");//change
 
                         //列出所有文件
                         foreach (DataRow dr in dt.Rows)
@@ -703,7 +703,7 @@ namespace PSAP.BLL.SALEBLL
                         dr = FrmProjectDocumentDAO.GetDocumentInfo(Convert.ToInt32(lvi.Tag));
                         //调用文件添加入库方法     //change  【90】
                         if (Convert.ToBoolean(dr["deleted"]) == false
-                            && Convert.ToInt32(dr["userID"]) == 90
+                            && Convert.ToInt32(dr["userID"]) == SystemInfo.user.AutoId
                             && dr["lockDomain"].ToString() == "pc-songxi"
                             && Convert.ToInt32(dr["defValStored"]) == 0)
                         {
@@ -846,7 +846,7 @@ namespace PSAP.BLL.SALEBLL
 
                         //文件下载到本地的路径
                         localPath = FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + FrmProjectDocumentDAO.GetProjectLocalPath(Convert.ToInt32(lvi.Tag));
-                        DataTable dt = FrmProjectDocumentDAO.GetCheckIn(Convert.ToInt32(lvi.Tag), 90, "pc-songxi");//change
+                        DataTable dt = FrmProjectDocumentDAO.GetCheckIn(Convert.ToInt32(lvi.Tag), SystemInfo.user.AutoId, "pc-songxi");//change
                         //列出所有文件
                         foreach (DataRow dr in dt.Rows)
                         {
@@ -862,7 +862,7 @@ namespace PSAP.BLL.SALEBLL
                         dr = FrmProjectDocumentDAO.GetDocumentInfo(Convert.ToInt32(lvi.Tag));
                         //调用检入文件方法     //change
                         if (Convert.ToBoolean(dr["deleted"]) == false
-                            && Convert.ToInt32(dr["userID"]) == 90
+                            && Convert.ToInt32(dr["userID"]) == SystemInfo.user.AutoId
                             && dr["lockDomain"].ToString() == "pc-songxi"
                             && Convert.ToInt32(dr["defValStored"]) == 1)
                         {
@@ -1074,7 +1074,7 @@ namespace PSAP.BLL.SALEBLL
                     FileInfo f = new FileInfo(localPath + ftpFileName);
                     f.MoveTo(Path.Combine(f.Directory.FullName, fileName));//改名
                     //更新【检出】状态标记   //change
-                    FrmProjectDocumentDAO.UpdateCheckOutFlag(documentID, localPath, 90, "pc-songxi");
+                    FrmProjectDocumentDAO.UpdateCheckOutFlag(documentID, localPath, SystemInfo.user.AutoId, "pc-songxi");
 
                 }
                 else
@@ -1356,7 +1356,7 @@ namespace PSAP.BLL.SALEBLL
                         {
                             if (addToFtpFlag == false)
                             {
-                                if (Convert.ToInt32(lvi.SubItems[5].Text) == 90 &&
+                                if (Convert.ToInt32(lvi.SubItems[5].Text) == SystemInfo.user.AutoId &&
                                     lvi.SubItems[6].Text == "pc-songxi" &&
                                     Convert.ToInt32(lvi.SubItems[8].Text) == 0)
                                 {
@@ -1374,7 +1374,7 @@ namespace PSAP.BLL.SALEBLL
                         {
                             if (checkInFlag == false)
                             {
-                                if (Convert.ToInt32(lvi.SubItems[5].Text) == 90 &&
+                                if (Convert.ToInt32(lvi.SubItems[5].Text) == SystemInfo.user.AutoId &&
                                     lvi.SubItems[6].Text == "pc-songxi" &&
                                      Convert.ToInt32(lvi.SubItems[8].Text) == 1)
                                 {
@@ -1483,7 +1483,7 @@ namespace PSAP.BLL.SALEBLL
             {
                 if (addToFtpFlag == false)
                 {
-                    if (FrmProjectDocumentDAO.GetAddToFtp(projectID, 90, "pc-songxi").Rows.Count > 0)
+                    if (FrmProjectDocumentDAO.GetAddToFtp(projectID, SystemInfo.user.AutoId, "pc-songxi").Rows.Count > 0)
                     {
                         cms.Items["tsmiAddToFtp"].Enabled = true;
                         addToFtpFlag = true;
@@ -1500,7 +1500,7 @@ namespace PSAP.BLL.SALEBLL
             {
                 if (checkInFlag == false)
                 {
-                    if (FrmProjectDocumentDAO.GetCheckIn(projectID, 90, "pc-songxi").Rows.Count > 0)
+                    if (FrmProjectDocumentDAO.GetCheckIn(projectID, SystemInfo.user.AutoId, "pc-songxi").Rows.Count > 0)
                     {
                         cms.Items["tsmiCheckIn"].Enabled = true;
                         checkInFlag = true;
