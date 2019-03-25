@@ -125,6 +125,7 @@ namespace PSAP.DAO.SADAO
                         if (headRow.RowState == DataRowState.Added)//新增
                         {
                             headRow["AutoQuotationNo"]= BaseSQL.GetMaxCodeNo(cmd, "QN");
+                            headRow["PreparedIp"] = SystemInfo.HostIpAddress;
                             //headRow["RecordDate"] = nowTime;
                             for (int i = 0; i < listTable.Rows.Count; i++)
                             {
@@ -144,6 +145,9 @@ namespace PSAP.DAO.SADAO
                             //        listTable.Rows[i]["QuotationDate"] = nowTime;
                             //    }
                             //}
+                            headRow["Modifier"] = SystemInfo.user.EmpName;
+                            headRow["ModifierIp"] = SystemInfo.HostIpAddress;
+                            headRow["ModifierTime"] = BaseSQL.GetServerDateTime();
                         }
 
                         //保存日志到日志表中

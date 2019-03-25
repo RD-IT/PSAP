@@ -224,7 +224,7 @@
             this.searchLookUpProjectNo.Properties.ValueMember = "ProjectName";
             this.searchLookUpProjectNo.Properties.View = this.searchLookUpProjectNoView;
             this.searchLookUpProjectNo.Size = new System.Drawing.Size(120, 20);
-            this.searchLookUpProjectNo.TabIndex = 34;
+            this.searchLookUpProjectNo.TabIndex = 3;
             // 
             // searchLookUpProjectNoView
             // 
@@ -276,7 +276,7 @@
             this.btnSaveExcel.Location = new System.Drawing.Point(368, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 33;
+            this.btnSaveExcel.TabIndex = 6;
             this.btnSaveExcel.Text = "存为Excel";
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
@@ -285,7 +285,7 @@
             this.btnQuery.Location = new System.Drawing.Point(276, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 10;
+            this.btnQuery.TabIndex = 5;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -295,7 +295,7 @@
             this.textCommon.Location = new System.Drawing.Point(86, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 9;
+            this.textCommon.TabIndex = 4;
             // 
             // searchLookUpBussinessBaseNo
             // 

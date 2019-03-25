@@ -47,7 +47,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 repLookUpCurrencyCate.DataSource = quoDAO.QueryCurrencyCate(false);
 
-                btnRefresh_Click(null, null);                
+                btnRefresh_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -104,6 +104,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (!btnEditQueryAutoQuotationNo.Properties.Buttons[0].Enabled)
+                    return;
+
                 if (btnEditQueryAutoQuotationNo.Text.Trim() != "")
                 {
                     TableQuotationBaseInfo.Rows.Clear();
@@ -201,10 +204,16 @@ namespace PSAP.VIEW.BSVIEW
                             gridViewQuotationPriceInfo.DeleteRow(i);
                             continue;
                         }
-                        if (DataTypeConvert.GetString(listRow["Price"]) == "")
+                        if (DataTypeConvert.GetString(listRow["Amount"]) == "")
                         {
-                            MessageHandler.ShowMessageBox("价格不能为空，请填写后再进行保存。");
-                            FocusedListView(true, "Price", i);
+                            MessageHandler.ShowMessageBox("金额不能为空，请填写后再进行保存。");
+                            FocusedListView(true, "Amount", i);
+                            return;
+                        }
+                        if (DataTypeConvert.GetString(listRow["Tax"]) == "")
+                        {
+                            MessageHandler.ShowMessageBox("税率不能为空，请填写后再进行保存。");
+                            FocusedListView(true, "Tax", i);
                             return;
                         }
                         if (DataTypeConvert.GetString(listRow["Versions"]) == "")
@@ -213,13 +222,13 @@ namespace PSAP.VIEW.BSVIEW
                             FocusedListView(true, "Versions", i);
                             return;
                         }
-                        if (DataTypeConvert.GetString(listRow["Offerer"]) == "") 
+                        if (DataTypeConvert.GetString(listRow["Offerer"]) == "")
                         {
                             MessageHandler.ShowMessageBox("报价人不能为空，请填写后再进行保存。");
                             FocusedListView(true, "Offerer", i);
                             return;
                         }
-                        if (DataTypeConvert.GetString(listRow["QuotationDate"]) == "") 
+                        if (DataTypeConvert.GetString(listRow["QuotationDate"]) == "")
                         {
                             MessageHandler.ShowMessageBox("报价日期不能为空，请填写后再进行保存。");
                             FocusedListView(true, "QuotationDate", i);
@@ -239,7 +248,7 @@ namespace PSAP.VIEW.BSVIEW
                         case 0:
                             return;
                     }
-                    
+
                     currentAutoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
                     btnRefresh_Click(null, null);
                 }
@@ -277,14 +286,14 @@ namespace PSAP.VIEW.BSVIEW
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (TableQuotationBaseInfo.Rows.Count == 0 || bSQuotationBaseInfo.Current == null)
                 {
                     MessageHandler.ShowMessageBox("当前没有报价信息记录，不能进行删除。");
                     return;
                 }
 
-                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要删除当前选中的{0}条记录吗？", 1)) != DialogResult.Yes)
+                if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的记录吗？") != DialogResult.Yes)
                 {
                     return;
                 }
@@ -377,7 +386,7 @@ namespace PSAP.VIEW.BSVIEW
         private void btnListAdd_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (!gridViewQuotationPriceInfo.OptionsBehavior.Editable)
                     return;
 
@@ -412,6 +421,7 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 e.Row["RecordDate"] = BaseSQL.GetServerDateTime();
+                e.Row["Prepared"] = SystemInfo.user.EmpName;
             }
             catch (Exception ex)
             {
@@ -437,6 +447,7 @@ namespace PSAP.VIEW.BSVIEW
                     e.Row["QuotationDate"] = BaseSQL.GetServerDateTime();
                     e.Row["QuotationState"] = 1;
                     e.Row["Offerer"] = SystemInfo.user.EmpName;
+                    e.Row["Tax"] = SystemInfo.Quotation_DefaultTax;
 
                     string currentVersion = "";
                     if (gridViewQuotationPriceInfo.RowCount > 1)
@@ -501,6 +512,8 @@ namespace PSAP.VIEW.BSVIEW
             btnRefresh.Enabled = state;
             btnPreview.Enabled = state;
 
+            btnEditQueryAutoQuotationNo.Properties.Buttons[0].Enabled = state;
+
             btnListAdd.Enabled = !state;
 
             textRFQNO.ReadOnly = state;
@@ -541,10 +554,17 @@ namespace PSAP.VIEW.BSVIEW
                     gridViewQuotationPriceInfo.FocusedRowHandle = i;
                     return true;
                 }
-                if (DataTypeConvert.GetString(gridViewQuotationPriceInfo.GetDataRow(i)["Price"]) == "")
+                if (DataTypeConvert.GetString(gridViewQuotationPriceInfo.GetDataRow(i)["Amount"]) == "")
                 {
                     gridViewQuotationPriceInfo.Focus();
-                    gridViewQuotationPriceInfo.FocusedColumn = colPrice;
+                    gridViewQuotationPriceInfo.FocusedColumn = colAmount;
+                    gridViewQuotationPriceInfo.FocusedRowHandle = i;
+                    return true;
+                }
+                if (DataTypeConvert.GetString(gridViewQuotationPriceInfo.GetDataRow(i)["Tax"]) == "")
+                {
+                    gridViewQuotationPriceInfo.Focus();
+                    gridViewQuotationPriceInfo.FocusedColumn = colAmount;
                     gridViewQuotationPriceInfo.FocusedRowHandle = i;
                     return true;
                 }
@@ -573,6 +593,30 @@ namespace PSAP.VIEW.BSVIEW
             //gridViewOrderList.RefreshData();
         }
 
-
+        /// <summary>
+        /// 子表单元格值变化进行的操作
+        /// </summary>
+        private void gridViewQuotationPriceInfo_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            try
+            {
+                switch (e.Column.FieldName)
+                {
+                    case "Amount":
+                    case "Tax":
+                        double amountDouble = DataTypeConvert.GetDouble(gridViewQuotationPriceInfo.GetDataRow(e.RowHandle)["Amount"]);
+                        double taxDouble = DataTypeConvert.GetDouble(gridViewQuotationPriceInfo.GetDataRow(e.RowHandle)["Tax"]);
+                        double taxAmountDouble = Math.Round(amountDouble * taxDouble, 2, MidpointRounding.AwayFromZero);
+                        double sumAmountDouble = amountDouble + taxAmountDouble;
+                        gridViewQuotationPriceInfo.SetRowCellValue(e.RowHandle, "TaxAmount", taxAmountDouble);
+                        gridViewQuotationPriceInfo.SetRowCellValue(e.RowHandle, "SumAmount", sumAmountDouble);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--子表单元格值变化进行的操作错误。", ex);
+            }
+        }
     }
 }

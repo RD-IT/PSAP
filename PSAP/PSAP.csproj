@@ -392,6 +392,30 @@
     <Compile Include="VIEW\SAVIEW\FrmQuotationInfoQuery.Designer.cs">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalsOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalsOrder.Designer.cs">
+      <DependentUpon>FrmSalsOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalsOrderQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalsOrderQuery.Designer.cs">
+      <DependentUpon>FrmSalsOrderQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.Designer.cs">
+      <DependentUpon>FrmSettleAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccountsQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccountsQuery.Designer.cs">
+      <DependentUpon>FrmSettleAccountsQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -897,6 +921,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfoQuery.resx">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccounts.resx">
+      <DependentUpon>FrmSettleAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccountsQuery.resx">
+      <DependentUpon>FrmSettleAccountsQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>

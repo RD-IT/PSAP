@@ -95,6 +95,11 @@ namespace PSAP.PSAPCommon
         public static double OrderList_DefaultTax = 0.16;
 
         /// <summary>
+        /// 报价单里面的默认税率值
+        /// </summary>
+        public static double Quotation_DefaultTax = 0.16;
+
+        /// <summary>
         /// 请购单适用转换为采购订单，明细的合计总数是否可以超过原请购单的数量 
         /// </summary>
         public static bool PrReqApplyBeyondCountIsSave = false;
