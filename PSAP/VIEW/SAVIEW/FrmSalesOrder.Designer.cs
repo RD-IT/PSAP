@@ -719,7 +719,7 @@
             this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 2;
-            this.colRepertoryNo.Width = 120;
+            this.colRepertoryNo.Width = 100;
             // 
             // colRequester
             // 
@@ -730,7 +730,7 @@
             this.colRequester.OptionsColumn.AllowEdit = false;
             this.colRequester.Visible = true;
             this.colRequester.VisibleIndex = 4;
-            this.colRequester.Width = 100;
+            this.colRequester.Width = 80;
             // 
             // colRFQNO
             // 
@@ -754,7 +754,7 @@
             this.colRemark.OptionsColumn.AllowFocus = false;
             this.colRemark.Visible = true;
             this.colRemark.VisibleIndex = 6;
-            this.colRemark.Width = 150;
+            this.colRemark.Width = 130;
             // 
             // colPrepared
             // 
@@ -772,8 +772,6 @@
             this.colModifier.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
-            this.colModifier.Visible = true;
-            this.colModifier.VisibleIndex = 8;
             this.colModifier.Width = 80;
             // 
             // colModifierTime
@@ -793,7 +791,7 @@
             this.colParentAutoQuotationNo.FieldName = "ParentAutoQuotationNo";
             this.colParentAutoQuotationNo.Name = "colParentAutoQuotationNo";
             this.colParentAutoQuotationNo.Visible = true;
-            this.colParentAutoQuotationNo.VisibleIndex = 9;
+            this.colParentAutoQuotationNo.VisibleIndex = 8;
             this.colParentAutoQuotationNo.Width = 120;
             // 
             // colParentAutoSalesOrderNo
@@ -803,7 +801,7 @@
             this.colParentAutoSalesOrderNo.FieldName = "ParentAutoSalesOrderNo";
             this.colParentAutoSalesOrderNo.Name = "colParentAutoSalesOrderNo";
             this.colParentAutoSalesOrderNo.Visible = true;
-            this.colParentAutoSalesOrderNo.VisibleIndex = 10;
+            this.colParentAutoSalesOrderNo.VisibleIndex = 9;
             this.colParentAutoSalesOrderNo.Width = 120;
             // 
             // colParentProjectNo
@@ -813,8 +811,8 @@
             this.colParentProjectNo.FieldName = "ParentProjectNo";
             this.colParentProjectNo.Name = "colParentProjectNo";
             this.colParentProjectNo.Visible = true;
-            this.colParentProjectNo.VisibleIndex = 11;
-            this.colParentProjectNo.Width = 120;
+            this.colParentProjectNo.VisibleIndex = 10;
+            this.colParentProjectNo.Width = 100;
             // 
             // repCheckSelect
             // 

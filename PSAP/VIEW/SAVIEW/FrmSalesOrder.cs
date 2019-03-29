@@ -206,8 +206,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                DataRow drHead = TableSalesOrder.NewRow();
-                TableSalesOrder.Rows.Add(drHead);
+                DataRow newRow = TableSalesOrder.NewRow();
+                TableSalesOrder.Rows.Add(newRow);
                 bindingSource_SalesOrder.MoveLast();
 
                 Set_ButtonEditGrid_State(false);
@@ -616,18 +616,22 @@ namespace PSAP.VIEW.BSVIEW
                         string autoQuotationNoStr = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["AutoQuotationNo"]);
                         if (oldAutoQuotationNoStr != autoQuotationNoStr)
                         {
+                            string BussinessBaseNo = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["BussinessBaseNo"]);
+
                             dr["AutoQuotationNo"] = autoQuotationNoStr;
                             textAutoQuotationNo.Text = autoQuotationNoStr;
-                            dr["BussinessBaseNo"] = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["BussinessBaseNo"]);
-                            searchBussinessBaseNo.EditValue = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["BussinessBaseNo"]);
+                            dr["BussinessBaseNo"] = BussinessBaseNo;
+                            searchBussinessBaseNo.EditValue = BussinessBaseNo;
 
                             string ParentAutoSalesOrderNo = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["ParentAutoSalesOrderNo"]);
                             if (ParentAutoSalesOrderNo != "")
                             {
+                                string ParentProjectNo = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["ParentProjectNo"]);
+
                                 textParentAutoSalesOrderNo.Text = ParentAutoSalesOrderNo;
                                 dr["ParentAutoSalesOrderNo"] = ParentAutoSalesOrderNo;
-                                textParentProjectNo.Text = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["ParentProjectNo"]);
-                                dr["ParentProjectNo"] = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["ParentProjectNo"]);
+                                textParentProjectNo.Text = ParentProjectNo;
+                                dr["ParentProjectNo"] = ParentProjectNo;
                                 labParentAutoSalesOrderNo.Visible = true;
                                 textParentAutoSalesOrderNo.Visible = true;
                                 labParentProjectNo.Visible = true;

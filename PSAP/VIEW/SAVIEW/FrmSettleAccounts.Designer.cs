@@ -1660,6 +1660,7 @@
             this.colQuotationVersions.Name = "colQuotationVersions";
             this.colQuotationVersions.Visible = true;
             this.colQuotationVersions.VisibleIndex = 5;
+            this.colQuotationVersions.Width = 60;
             // 
             // gridColumn13
             // 
@@ -1702,7 +1703,7 @@
             this.colTax.OptionsColumn.AllowFocus = false;
             this.colTax.Visible = true;
             this.colTax.VisibleIndex = 8;
-            this.colTax.Width = 80;
+            this.colTax.Width = 60;
             // 
             // gridColumn14
             // 

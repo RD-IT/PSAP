@@ -628,7 +628,7 @@
             this.colVersions.Name = "colVersions";
             this.colVersions.Visible = true;
             this.colVersions.VisibleIndex = 5;
-            this.colVersions.Width = 100;
+            this.colVersions.Width = 80;
             // 
             // colRemark
             // 

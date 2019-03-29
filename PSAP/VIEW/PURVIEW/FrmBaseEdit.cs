@@ -369,9 +369,9 @@ namespace PSAP.VIEW.BSVIEW
                 masterBindingSource.EndEdit();
                 DataRow dr = ((DataRowView)masterBindingSource.Current).Row;
 
-                if (dr.RowState == DataRowState.Added && dr[PrimaryKeyColumn].ToString() != "")
+                if (dr.RowState == DataRowState.Added && DataTypeConvert.GetString(dr[PrimaryKeyColumn]) != "")
                 {
-                    string sqlStr = string.Format("select count(*) from {0} where {1}='{2}'", TableName, PrimaryKeyColumn, dr[PrimaryKeyColumn].ToString());
+                    string sqlStr = string.Format("select count(*) from {0} where {1}='{2}'", TableName, PrimaryKeyColumn, DataTypeConvert.GetString(dr[PrimaryKeyColumn]));
                     if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
                     {
                         //MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));
@@ -381,9 +381,9 @@ namespace PSAP.VIEW.BSVIEW
                         return false;
                     }
                 }
-                else if (dr.RowState == DataRowState.Modified && dr[PrimaryKeyColumn].ToString() != "")
+                else if (dr.RowState == DataRowState.Modified && DataTypeConvert.GetString(dr[PrimaryKeyColumn]) != "")
                 {
-                    string sqlStr = string.Format("select count(*) from {0} where {1}='{2}' and {1}!='{3}'", TableName, PrimaryKeyColumn, dr[PrimaryKeyColumn, DataRowVersion.Current].ToString(), dr[PrimaryKeyColumn, DataRowVersion.Original].ToString());
+                    string sqlStr = string.Format("select count(*) from {0} where {1}='{2}' and {1}!='{3}'", TableName, PrimaryKeyColumn, DataTypeConvert.GetString(dr[PrimaryKeyColumn, DataRowVersion.Current]), DataTypeConvert.GetString(dr[PrimaryKeyColumn, DataRowVersion.Original]));
                     if (DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr)) > 0)
                     {
                         //MessageHandler.ShowMessageBox(string.Format("主键列[{0}]不可以输入重复的信息，请重新输入。", masterDataSet.Tables[0].Columns[PrimaryKeyColumn].Caption));

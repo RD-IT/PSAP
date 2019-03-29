@@ -150,14 +150,14 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 TableQuotationBaseInfo.Rows.Clear();
-                DataRow drHead = TableQuotationBaseInfo.NewRow();
-                TableQuotationBaseInfo.Rows.Add(drHead);
+                DataRow baseRow = TableQuotationBaseInfo.NewRow();
+                TableQuotationBaseInfo.Rows.Add(baseRow);
                 bindingSource_BaseInfo.MoveLast();
 
                 TableQuotationPriceInfo.Clear();
                 //gridViewQuotationPriceInfo.AddNewRow();
-                DataRow drlist = TableQuotationPriceInfo.NewRow();
-                TableQuotationPriceInfo.Rows.Add(drlist);
+                DataRow priceRow = TableQuotationPriceInfo.NewRow();
+                TableQuotationPriceInfo.Rows.Add(priceRow);
                 FocusedListView(false, "CurrencyCate", gridViewQuotationPriceInfo.GetFocusedDataSourceRowIndex());
                 gridViewQuotationPriceInfo.RefreshData();
                 Set_ButtonEditGrid_State(false);

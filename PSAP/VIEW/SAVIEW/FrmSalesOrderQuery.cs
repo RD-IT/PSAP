@@ -80,6 +80,7 @@ namespace PSAP.VIEW.BSVIEW
                         dateSalesOrderDateEnd.Focus();
                     return;
                 }
+
                 string recordDateBeginStr = dateSalesOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
                 string recordDateEndStr = dateSalesOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
@@ -137,5 +138,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
             }
         }
+
     }
 }

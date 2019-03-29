@@ -1240,7 +1240,7 @@ namespace PSAP.VIEW.BSVIEW
 
             gridViewOrderHead.SetFocusedRowCellValue("PurCategory", prReqHeadRow["PurCategory"]);
             gridViewOrderHead.SetFocusedRowCellValue("ReqDep", prReqHeadRow["ReqDep"]);
-            //gridViewPrReqHead.SetFocusedRowCellValue("BussinessBaseNo", orderDAO.GetBussinessBaseNo_ProjectNo(prReqHeadRow["ProjectNo"].ToString()));
+            //gridViewPrReqHead.SetFocusedRowCellValue("BussinessBaseNo", orderDAO.GetBussinessBaseNo_ProjectNo(DataTypeConvert.GetString(prReqHeadRow["ProjectNo"])));
             gridViewOrderHead.SetFocusedRowCellValue("ProjectNo", prReqHeadRow["ProjectNo"]);
             gridViewOrderHead.SetFocusedRowCellValue("StnNo", prReqHeadRow["StnNo"]);
 

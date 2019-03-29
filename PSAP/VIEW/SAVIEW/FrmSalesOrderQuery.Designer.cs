@@ -357,7 +357,7 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
-            this.lookUpPrepared.TabIndex = 31;
+            this.lookUpPrepared.TabIndex = 4;
             // 
             // labPrepared
             // 
@@ -434,7 +434,7 @@
             this.btnSaveExcel.Location = new System.Drawing.Point(575, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 6;
+            this.btnSaveExcel.TabIndex = 7;
             this.btnSaveExcel.Text = "存为Excel";
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
@@ -443,7 +443,7 @@
             this.btnQuery.Location = new System.Drawing.Point(483, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 5;
+            this.btnQuery.TabIndex = 6;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -453,7 +453,7 @@
             this.textCommon.Location = new System.Drawing.Point(293, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 4;
+            this.textCommon.TabIndex = 5;
             // 
             // searchLookUpBussinessBaseNo
             // 
@@ -761,7 +761,7 @@
             this.colProjectName.OptionsColumn.AllowEdit = false;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 4;
-            this.colProjectName.Width = 120;
+            this.colProjectName.Width = 100;
             // 
             // colQuotationVersions
             // 
@@ -781,6 +781,8 @@
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.OptionsColumn.AllowEdit = false;
+            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 6;
             this.colAmount.Width = 80;
@@ -809,6 +811,8 @@
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.OptionsColumn.AllowEdit = false;
             this.colTaxAmount.OptionsColumn.AllowFocus = false;
+            this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;
             this.colTaxAmount.VisibleIndex = 8;
             this.colTaxAmount.Width = 80;
@@ -821,6 +825,8 @@
             this.colSumAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSumAmount.FieldName = "SumAmount";
             this.colSumAmount.Name = "colSumAmount";
+            this.colSumAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.colSumAmount.Visible = true;
             this.colSumAmount.VisibleIndex = 9;
             this.colSumAmount.Width = 90;

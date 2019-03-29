@@ -610,7 +610,7 @@
             this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 2;
-            this.colRepertoryNo.Width = 120;
+            this.colRepertoryNo.Width = 100;
             // 
             // colRequester
             // 
@@ -621,7 +621,7 @@
             this.colRequester.OptionsColumn.AllowEdit = false;
             this.colRequester.Visible = true;
             this.colRequester.VisibleIndex = 4;
-            this.colRequester.Width = 100;
+            this.colRequester.Width = 80;
             // 
             // colRFQNO
             // 
@@ -707,7 +707,7 @@
             this.colParentProjectNo.Name = "colParentProjectNo";
             this.colParentProjectNo.Visible = true;
             this.colParentProjectNo.VisibleIndex = 12;
-            this.colParentProjectNo.Width = 120;
+            this.colParentProjectNo.Width = 100;
             // 
             // repCheckSelect
             // 

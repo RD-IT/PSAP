@@ -77,6 +77,20 @@ namespace PSAP.DAO.SADAO
                             return 0;
                         }
 
+                        //判断当前报价单版本的金额是否被多张销售订单的合计金额超过
+                        string versionsStr = DataTypeConvert.GetString(headRow["QuotationVersions"]);
+                        cmd.CommandText = string.Format("select Amount from SA_QuotationPriceInfo where AutoQuotationNo = '{0}' and Versions = '{1}'", autoQuotationNoStr, versionsStr);
+                        decimal versionAmount = DataTypeConvert.GetDecimal(cmd.ExecuteScalar());
+                        cmd.CommandText = string.Format("select IsNull(Sum(Amount), 0) from SA_SalesOrder where AutoQuotationNo = '{0}' and AutoSalesOrderNo != '{1}' and QuotationVersions = '{2}'", autoQuotationNoStr, DataTypeConvert.GetString(headRow["AutoSalesOrderNo"]), versionsStr);
+                        decimal otherSOAmount = DataTypeConvert.GetDecimal(cmd.ExecuteScalar());
+                        decimal soAmount = DataTypeConvert.GetDecimal(headRow["Amount"]);
+                        if (versionAmount < soAmount + otherSOAmount)
+                        {
+                            MessageHandler.ShowMessageBox(string.Format("多张销售订单的合计金额[{0}]大于报价单版本的金额[{1}]，请重新操作。", soAmount + otherSOAmount, versionAmount));
+                            return 0;
+                        }
+
+
                         //DateTime nowTime = BaseSQL.GetServerDateTime();
                         if (headRow.RowState == DataRowState.Added)//新增
                         {
