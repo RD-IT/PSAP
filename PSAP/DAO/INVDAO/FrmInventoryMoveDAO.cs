@@ -105,12 +105,12 @@ namespace PSAP.DAO.INVDAO
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
                         //检查当前库存数是否满足
-                        if (!CheckWarehouseNowInfoBeyondCount(cmd, IMHeadRow["InventoryMoveNo"].ToString(), IMListTable))
+                        if (!CheckWarehouseNowInfoBeyondCount(cmd, DataTypeConvert.GetString(IMHeadRow["InventoryMoveNo"]), IMListTable))
                         {
                             return 0;
                         }
 
-                        if (IMHeadRow["InventoryMoveNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(IMHeadRow["InventoryMoveNo"]) == "")//新增
                         {
                             string imNo = BaseSQL.GetMaxCodeNo(cmd, "IM");
                             IMHeadRow["InventoryMoveNo"] = imNo;

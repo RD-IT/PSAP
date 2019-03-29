@@ -4,9 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PSAP.DAO.SADAO
 {
@@ -26,9 +24,18 @@ namespace PSAP.DAO.SADAO
         }
 
         /// <summary>
+        /// 查询入库单表头
+        /// </summary>
+        public void QueryQuotationBaseInfo(DataTable queryDataTable, string beginDateStr, string endDateStr, string bussinessBaseNoStr, string preparedStr, string commonStr)
+        {
+            string sqlStr = QueryQuotationBaseInfo_SQL(beginDateStr, endDateStr, bussinessBaseNoStr, preparedStr, commonStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
         /// 查询入库单表头的SQL
         /// </summary>
-        public string QueryQuotationBaseInfo_SQL(string beginDateStr, string endDateStr, string bussinessBaseNoStr, string projectNameStr, string commonStr)
+        public string QueryQuotationBaseInfo_SQL(string beginDateStr, string endDateStr, string bussinessBaseNoStr, string preparedStr, string commonStr)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
@@ -39,19 +46,18 @@ namespace PSAP.DAO.SADAO
             {
                 sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
             }
-            if (projectNameStr != "")
+            if (preparedStr != "")
             {
-                sqlStr += string.Format(" and ProjectName='{0}'", projectNameStr);
+                sqlStr += string.Format(" and Prepared='{0}'", preparedStr);
             }
             if (commonStr != "")
             {
-                sqlStr += string.Format(" and (AutoQuotationNo like '%{0}%' or RFQNO like '%{0}%' or Requester like '%{0}%' or Remark like '%{0}%')", commonStr);
+                sqlStr += string.Format(" and (AutoQuotationNo like '%{0}%' or RFQNO like '%{0}%' or Requester like '%{0}%' or Remark like '%{0}%' or ProjectName like '%{0}%')", commonStr);
             }
             
             sqlStr = string.Format("select * from SA_QuotationBaseInfo where {0} order by AutoId", sqlStr);
             return sqlStr;
         }
-
 
         /// <summary>
         /// 按照报价单号查询报价基本信息
@@ -135,6 +141,14 @@ namespace PSAP.DAO.SADAO
                         }
                         else//修改
                         {
+                            string autoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                            if (CheckQuotationInfo_IsSalesOrder(cmd, autoQuotationNoStr))
+                            {
+                                headRow.Table.RejectChanges();
+                                listTable.RejectChanges();
+                                return 1;
+                            }
+
                             //for (int i = 0; i < listTable.Rows.Count; i++)
                             //{
                             //    if (listTable.Rows[i].RowState == DataRowState.Deleted)
@@ -151,7 +165,7 @@ namespace PSAP.DAO.SADAO
                         }
 
                         //保存日志到日志表中
-                        string logStr = LogHandler.RecordLog_DataRow(cmd, "报价登记信息", headRow, "AutoQuotationNo");
+                        string logStr = LogHandler.RecordLog_DataRow(cmd, "报价信息", headRow, "AutoQuotationNo");
 
                         cmd.CommandText = "select * from SA_QuotationBaseInfo where 1=2";
                         SqlDataAdapter adapterHead = new SqlDataAdapter(cmd);
@@ -197,6 +211,12 @@ namespace PSAP.DAO.SADAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
+
+                        if (CheckQuotationInfo_IsSalesOrder(cmd, autoQuotationNoStr))
+                        {
+                            return false;
+                        }
+
                         cmd.CommandText = string.Format("select * from SA_QuotationBaseInfo where AutoQuotationNo = '{0}'", autoQuotationNoStr);
                         DataTable tmpTable = new DataTable();
                         SqlDataAdapter adpt = new SqlDataAdapter(cmd);
@@ -205,7 +225,7 @@ namespace PSAP.DAO.SADAO
                         if (tmpTable.Rows.Count > 0)
                         {
                             //保存日志到日志表中
-                            string logStr = LogHandler.RecordLog_DeleteRow(cmd, "报价信息", tmpTable.Rows[0], "AutoQuotationNo");
+                            string logStr = LogHandler.RecordLog_DeleteRow(cmd, "报价单", tmpTable.Rows[0], "AutoQuotationNo");
                         }
 
                         cmd.CommandText = string.Format("Delete from SA_QuotationPriceInfo where AutoQuotationNo = '{0}'", autoQuotationNoStr);
@@ -278,11 +298,32 @@ namespace PSAP.DAO.SADAO
                     case "BussContact":
                         headTable.Columns[i].Caption = "客户联系人";
                         break;
-                    case "ProjectNo":
-                        headTable.Columns[i].Caption = "项目号";
-                        break;
                     case "ProjectName":
                         headTable.Columns[i].Caption = "项目名称";
+                        break;
+                    case "ParentAutoQuotationNo":
+                        headTable.Columns[i].Caption = "父级报价单号";
+                        break;
+                    case "ParentAutoSalesOrderNo":
+                        headTable.Columns[i].Caption = "父级销售订单号";
+                        break;
+                    case "ParentProjectNo":
+                        headTable.Columns[i].Caption = "父级项目号";
+                        break;
+                    case "Prepared":
+                        headTable.Columns[i].Caption = "制单人";
+                        break;
+                    case "PreparedIp":
+                        headTable.Columns[i].Caption = "制单人IP";
+                        break;
+                    case "Modifier":
+                        headTable.Columns[i].Caption = "修改人";
+                        break;
+                    case "ModifierIp":
+                        headTable.Columns[i].Caption = "修改人IP";
+                        break;
+                    case "ModifierTime":
+                        headTable.Columns[i].Caption = "修改时间";
                         break;
                 }
 
@@ -304,8 +345,17 @@ namespace PSAP.DAO.SADAO
                     case "AutoQuotationNo":
                         listTable.Columns[i].Caption = "报价单号";
                         break;
-                    case "Price":
-                        listTable.Columns[i].Caption = "价格";
+                    case "Amount":
+                        listTable.Columns[i].Caption = "金额";
+                        break;
+                    case "Tax":
+                        listTable.Columns[i].Caption = "税率";
+                        break;
+                    case "TaxAmount":
+                        listTable.Columns[i].Caption = "税额";
+                        break;
+                    case "SumAmount":
+                        listTable.Columns[i].Caption = "价税合计";
                         break;
                     case "Offerer":
                         listTable.Columns[i].Caption = "报价人";
@@ -348,5 +398,46 @@ namespace PSAP.DAO.SADAO
             rptHandler.XtraReport_Handle("SA_QuotationBaseInfo", ds, paralist, handleTypeInt);
         }
 
+        /// <summary>
+        /// 查询报价单明细的版本号
+        /// </summary>
+        public DataTable Query_QuotationPriceInfo_Versions(string autoQuotationNoStr)
+        {
+            string sqlStr = string.Format("select Versions, Amount, QuotationDate, Offerer from SA_QuotationPriceInfo where AutoQuotationNo = '{0}'", autoQuotationNoStr);
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询报价单版本的价格信息
+        /// </summary>
+        public DataTable Query_Version_PriceInfo(string autoQuotationNoStr, string versionStr)
+        {
+            string sqlStr = string.Format("select AutoQuotationNo, Versions, Amount, Tax, TaxAmount, SumAmount from SA_QuotationPriceInfo where AutoQuotationNo = '{0}' and Versions = '{1}'", autoQuotationNoStr, versionStr);
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 检查报价单是否有生成销售订单
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckQuotationInfo_IsSalesOrder(SqlCommand cmd, string autoQuotationNoStr)
+        {
+            string sqlStr = string.Format("select Count(*) from SA_SalesOrder where AutoQuotationNo = '{0}'", autoQuotationNoStr);
+            int count = 0;
+            if (cmd != null)
+            {
+                cmd.CommandText = sqlStr;
+                count = DataTypeConvert.GetInt(cmd.ExecuteScalar());
+            }
+            else
+                count = DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
+            if (count > 0)
+            {
+                MessageHandler.ShowMessageBox(string.Format("报价单[{0}]已经生成销售订单，不可以再进行修改或者删除。", autoQuotationNoStr));
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

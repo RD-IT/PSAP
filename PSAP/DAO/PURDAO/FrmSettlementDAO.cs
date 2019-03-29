@@ -123,12 +123,12 @@ namespace PSAP.DAO.PURDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        if (!CheckWarehouseWarrantApplyBeyondCount(cmd, SettlementHeadRow["SettlementNo"].ToString(), SettlementListTable))
+                        if (!CheckWarehouseWarrantApplyBeyondCount(cmd, DataTypeConvert.GetString(SettlementHeadRow["SettlementNo"]), SettlementListTable))
                         {
                             return 0;
                         }
 
-                        if (SettlementHeadRow["SettlementNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(SettlementHeadRow["SettlementNo"]) == "")//新增
                         {
                             string psNo = BaseSQL.GetMaxCodeNo(cmd, "PS");
                             SettlementHeadRow["SettlementNo"] = psNo;

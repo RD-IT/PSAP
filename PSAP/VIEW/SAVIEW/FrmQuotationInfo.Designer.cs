@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dSQuotation = new System.Data.DataSet();
+            this.dataSet_Quotation = new System.Data.DataSet();
             this.TableQuotationBaseInfo = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColAutoQuotationNo = new System.Data.DataColumn();
@@ -39,6 +39,14 @@
             this.dataColRequester = new System.Data.DataColumn();
             this.dataColRecordDate = new System.Data.DataColumn();
             this.dataColRemark = new System.Data.DataColumn();
+            this.dataColParentAutoQuotationNo = new System.Data.DataColumn();
+            this.dataColParentAutoSalesOrderNo = new System.Data.DataColumn();
+            this.dataColParentProjectNo = new System.Data.DataColumn();
+            this.dataColPrepared = new System.Data.DataColumn();
+            this.dataColPreparedIp = new System.Data.DataColumn();
+            this.dataColModifier = new System.Data.DataColumn();
+            this.dataColModifierIp = new System.Data.DataColumn();
+            this.dataColModifierTime = new System.Data.DataColumn();
             this.TableQuotationPriceInfo = new System.Data.DataTable();
             this.dataColuAutoId = new System.Data.DataColumn();
             this.dataColuAutoQuotationNo = new System.Data.DataColumn();
@@ -56,7 +64,7 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlQuotationPriceInfo = new DevExpress.XtraGrid.GridControl();
-            this.bSQuotationPriceInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_PriceInfo = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewQuotationPriceInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAutoQuotationNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -77,9 +85,22 @@
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colQuotationState = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
+            this.textParentProjectNo = new DevExpress.XtraEditors.TextEdit();
+            this.bindingSource_BaseInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.labParentProjectNo = new DevExpress.XtraEditors.LabelControl();
+            this.textParentAutoSalesOrderNo = new DevExpress.XtraEditors.TextEdit();
+            this.labParentAutoSalesOrderNo = new DevExpress.XtraEditors.LabelControl();
+            this.textParentAutoQuotationNo = new DevExpress.XtraEditors.TextEdit();
+            this.labParentAutoQuotationNo = new DevExpress.XtraEditors.LabelControl();
+            this.textProjectName = new DevExpress.XtraEditors.TextEdit();
+            this.textModifier = new DevExpress.XtraEditors.TextEdit();
+            this.textPrepared = new DevExpress.XtraEditors.TextEdit();
+            this.dateModifierTime = new DevExpress.XtraEditors.DateEdit();
+            this.labModifierTime = new DevExpress.XtraEditors.LabelControl();
+            this.labModifier = new DevExpress.XtraEditors.LabelControl();
+            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labRecordDate = new DevExpress.XtraEditors.LabelControl();
             this.dateRecordDate = new DevExpress.XtraEditors.DateEdit();
-            this.bSQuotationBaseInfo = new System.Windows.Forms.BindingSource(this.components);
             this.textRemark = new DevExpress.XtraEditors.TextEdit();
             this.labRemark = new DevExpress.XtraEditors.LabelControl();
             this.textRequester = new DevExpress.XtraEditors.TextEdit();
@@ -92,11 +113,6 @@
             this.gridColumnBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.searchProjectName = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchProjectNameView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.textRFQNO = new DevExpress.XtraEditors.TextEdit();
             this.labRFQNO = new DevExpress.XtraEditors.LabelControl();
             this.textAutoQuotationNo = new DevExpress.XtraEditors.TextEdit();
@@ -110,21 +126,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
-            this.dataColParentAutoQuotationNo = new System.Data.DataColumn();
-            this.dataColParentAutoSalsOrderNo = new System.Data.DataColumn();
-            this.dataColParentProjectNo = new System.Data.DataColumn();
-            this.dataColPrepared = new System.Data.DataColumn();
-            this.dataColPreparedIp = new System.Data.DataColumn();
-            this.dataColModifier = new System.Data.DataColumn();
-            this.dataColModifierIp = new System.Data.DataColumn();
-            this.dataColModifierTime = new System.Data.DataColumn();
-            this.labPrepared = new DevExpress.XtraEditors.LabelControl();
-            this.labModifier = new DevExpress.XtraEditors.LabelControl();
-            this.labModifierTime = new DevExpress.XtraEditors.LabelControl();
-            this.dateModifierTime = new DevExpress.XtraEditors.DateEdit();
-            this.textPrepared = new DevExpress.XtraEditors.TextEdit();
-            this.textModifier = new DevExpress.XtraEditors.TextEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSQuotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_Quotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableQuotationBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableQuotationPriceInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
@@ -132,7 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlQuotationPriceInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSQuotationPriceInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PriceInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewQuotationPriceInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpCurrencyCate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
@@ -142,30 +144,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
             this.pnlEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textParentProjectNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_BaseInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textParentAutoSalesOrderNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textParentAutoQuotationNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textProjectName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textModifier.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSQuotationBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRequester.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNoView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchProjectName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchProjectNameView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRFQNO.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textAutoQuotationNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditQueryAutoQuotationNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textModifier.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // dSQuotation
+            // dataSet_Quotation
             // 
-            this.dSQuotation.DataSetName = "NewDataSet";
-            this.dSQuotation.Tables.AddRange(new System.Data.DataTable[] {
+            this.dataSet_Quotation.DataSetName = "NewDataSet";
+            this.dataSet_Quotation.Tables.AddRange(new System.Data.DataTable[] {
             this.TableQuotationBaseInfo,
             this.TableQuotationPriceInfo});
             // 
@@ -181,7 +185,7 @@
             this.dataColRecordDate,
             this.dataColRemark,
             this.dataColParentAutoQuotationNo,
-            this.dataColParentAutoSalsOrderNo,
+            this.dataColParentAutoSalesOrderNo,
             this.dataColParentProjectNo,
             this.dataColPrepared,
             this.dataColPreparedIp,
@@ -231,6 +235,47 @@
             // 
             this.dataColRemark.Caption = "备注";
             this.dataColRemark.ColumnName = "Remark";
+            // 
+            // dataColParentAutoQuotationNo
+            // 
+            this.dataColParentAutoQuotationNo.Caption = "父级报价单号";
+            this.dataColParentAutoQuotationNo.ColumnName = "ParentAutoQuotationNo";
+            // 
+            // dataColParentAutoSalesOrderNo
+            // 
+            this.dataColParentAutoSalesOrderNo.Caption = "父级销售订单号";
+            this.dataColParentAutoSalesOrderNo.ColumnName = "ParentAutoSalesOrderNo";
+            // 
+            // dataColParentProjectNo
+            // 
+            this.dataColParentProjectNo.Caption = "父级项目号";
+            this.dataColParentProjectNo.ColumnName = "ParentProjectNo";
+            // 
+            // dataColPrepared
+            // 
+            this.dataColPrepared.Caption = "制单人";
+            this.dataColPrepared.ColumnName = "Prepared";
+            // 
+            // dataColPreparedIp
+            // 
+            this.dataColPreparedIp.Caption = "制单人IP";
+            this.dataColPreparedIp.ColumnName = "PreparedIp";
+            // 
+            // dataColModifier
+            // 
+            this.dataColModifier.Caption = "修改人";
+            this.dataColModifier.ColumnName = "Modifier";
+            // 
+            // dataColModifierIp
+            // 
+            this.dataColModifierIp.Caption = "修改人IP";
+            this.dataColModifierIp.ColumnName = "ModifierIp";
+            // 
+            // dataColModifierTime
+            // 
+            this.dataColModifierTime.Caption = "修改时间";
+            this.dataColModifierTime.ColumnName = "ModifierTime";
+            this.dataColModifierTime.DataType = typeof(System.DateTime);
             // 
             // TableQuotationPriceInfo
             // 
@@ -326,7 +371,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(0, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(1064, 542);
+            this.pnlRight.Size = new System.Drawing.Size(1355, 542);
             this.pnlRight.TabIndex = 0;
             // 
             // pnlBottom
@@ -336,7 +381,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBottom.Location = new System.Drawing.Point(0, 174);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1064, 368);
+            this.pnlBottom.Size = new System.Drawing.Size(1355, 368);
             this.pnlBottom.TabIndex = 8;
             // 
             // btnListAdd
@@ -351,7 +396,7 @@
             // 
             // gridControlQuotationPriceInfo
             // 
-            this.gridControlQuotationPriceInfo.DataSource = this.bSQuotationPriceInfo;
+            this.gridControlQuotationPriceInfo.DataSource = this.bindingSource_PriceInfo;
             this.gridControlQuotationPriceInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlQuotationPriceInfo.Location = new System.Drawing.Point(2, 2);
             this.gridControlQuotationPriceInfo.MainView = this.gridViewQuotationPriceInfo;
@@ -362,15 +407,15 @@
             this.repLookUpCurrencyCate,
             this.repDateQuotationDate,
             this.repSpinEditTax});
-            this.gridControlQuotationPriceInfo.Size = new System.Drawing.Size(1060, 364);
+            this.gridControlQuotationPriceInfo.Size = new System.Drawing.Size(1351, 364);
             this.gridControlQuotationPriceInfo.TabIndex = 3;
             this.gridControlQuotationPriceInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewQuotationPriceInfo});
             // 
-            // bSQuotationPriceInfo
+            // bindingSource_PriceInfo
             // 
-            this.bSQuotationPriceInfo.DataMember = "QuotationPriceInfo";
-            this.bSQuotationPriceInfo.DataSource = this.dSQuotation;
+            this.bindingSource_PriceInfo.DataMember = "QuotationPriceInfo";
+            this.bindingSource_PriceInfo.DataSource = this.dataSet_Quotation;
             // 
             // gridViewQuotationPriceInfo
             // 
@@ -427,6 +472,8 @@
             this.colCurrencyCate.ColumnEdit = this.repLookUpCurrencyCate;
             this.colCurrencyCate.FieldName = "CurrencyCate";
             this.colCurrencyCate.Name = "colCurrencyCate";
+            this.colCurrencyCate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CurrencyCate", "共计{0}条")});
             this.colCurrencyCate.Visible = true;
             this.colCurrencyCate.VisibleIndex = 0;
             this.colCurrencyCate.Width = 120;
@@ -456,7 +503,7 @@
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Price", "{0:N2}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 1;
             this.colAmount.Width = 100;
@@ -512,6 +559,8 @@
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.OptionsColumn.AllowEdit = false;
             this.colTaxAmount.OptionsColumn.AllowFocus = false;
+            this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;
             this.colTaxAmount.VisibleIndex = 3;
             this.colTaxAmount.Width = 100;
@@ -526,6 +575,8 @@
             this.colSumAmount.Name = "colSumAmount";
             this.colSumAmount.OptionsColumn.AllowEdit = false;
             this.colSumAmount.OptionsColumn.AllowFocus = false;
+            this.colSumAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.colSumAmount.Visible = true;
             this.colSumAmount.VisibleIndex = 4;
             this.colSumAmount.Width = 100;
@@ -615,6 +666,13 @@
             // 
             // pnlEdit
             // 
+            this.pnlEdit.Controls.Add(this.textParentProjectNo);
+            this.pnlEdit.Controls.Add(this.labParentProjectNo);
+            this.pnlEdit.Controls.Add(this.textParentAutoSalesOrderNo);
+            this.pnlEdit.Controls.Add(this.labParentAutoSalesOrderNo);
+            this.pnlEdit.Controls.Add(this.textParentAutoQuotationNo);
+            this.pnlEdit.Controls.Add(this.labParentAutoQuotationNo);
+            this.pnlEdit.Controls.Add(this.textProjectName);
             this.pnlEdit.Controls.Add(this.textModifier);
             this.pnlEdit.Controls.Add(this.textPrepared);
             this.pnlEdit.Controls.Add(this.dateModifierTime);
@@ -630,7 +688,6 @@
             this.pnlEdit.Controls.Add(this.labBussinessBaseNo);
             this.pnlEdit.Controls.Add(this.labProjectName);
             this.pnlEdit.Controls.Add(this.searchBussinessBaseNo);
-            this.pnlEdit.Controls.Add(this.searchProjectName);
             this.pnlEdit.Controls.Add(this.textRFQNO);
             this.pnlEdit.Controls.Add(this.labRFQNO);
             this.pnlEdit.Controls.Add(this.textAutoQuotationNo);
@@ -638,12 +695,156 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(1064, 134);
+            this.pnlEdit.Size = new System.Drawing.Size(1355, 134);
             this.pnlEdit.TabIndex = 7;
+            // 
+            // textParentProjectNo
+            // 
+            this.textParentProjectNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ParentProjectNo", true));
+            this.textParentProjectNo.EnterMoveNextControl = true;
+            this.textParentProjectNo.Location = new System.Drawing.Point(1107, 89);
+            this.textParentProjectNo.Name = "textParentProjectNo";
+            this.textParentProjectNo.Properties.ReadOnly = true;
+            this.textParentProjectNo.Size = new System.Drawing.Size(150, 20);
+            this.textParentProjectNo.TabIndex = 23;
+            this.textParentProjectNo.TabStop = false;
+            this.textParentProjectNo.Visible = false;
+            // 
+            // bindingSource_BaseInfo
+            // 
+            this.bindingSource_BaseInfo.DataMember = "QuotationBaseInfo";
+            this.bindingSource_BaseInfo.DataSource = this.dataSet_Quotation;
+            // 
+            // labParentProjectNo
+            // 
+            this.labParentProjectNo.Location = new System.Drawing.Point(1012, 92);
+            this.labParentProjectNo.Name = "labParentProjectNo";
+            this.labParentProjectNo.Size = new System.Drawing.Size(60, 14);
+            this.labParentProjectNo.TabIndex = 27;
+            this.labParentProjectNo.Text = "父级项目号";
+            this.labParentProjectNo.Visible = false;
+            // 
+            // textParentAutoSalesOrderNo
+            // 
+            this.textParentAutoSalesOrderNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ParentAutoSalesOrderNo", true));
+            this.textParentAutoSalesOrderNo.EnterMoveNextControl = true;
+            this.textParentAutoSalesOrderNo.Location = new System.Drawing.Point(1107, 55);
+            this.textParentAutoSalesOrderNo.Name = "textParentAutoSalesOrderNo";
+            this.textParentAutoSalesOrderNo.Properties.ReadOnly = true;
+            this.textParentAutoSalesOrderNo.Size = new System.Drawing.Size(150, 20);
+            this.textParentAutoSalesOrderNo.TabIndex = 22;
+            this.textParentAutoSalesOrderNo.TabStop = false;
+            this.textParentAutoSalesOrderNo.Visible = false;
+            // 
+            // labParentAutoSalesOrderNo
+            // 
+            this.labParentAutoSalesOrderNo.Location = new System.Drawing.Point(1012, 58);
+            this.labParentAutoSalesOrderNo.Name = "labParentAutoSalesOrderNo";
+            this.labParentAutoSalesOrderNo.Size = new System.Drawing.Size(84, 14);
+            this.labParentAutoSalesOrderNo.TabIndex = 25;
+            this.labParentAutoSalesOrderNo.Text = "父级销售订单号";
+            this.labParentAutoSalesOrderNo.Visible = false;
+            // 
+            // textParentAutoQuotationNo
+            // 
+            this.textParentAutoQuotationNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ParentAutoQuotationNo", true));
+            this.textParentAutoQuotationNo.EnterMoveNextControl = true;
+            this.textParentAutoQuotationNo.Location = new System.Drawing.Point(1107, 21);
+            this.textParentAutoQuotationNo.Name = "textParentAutoQuotationNo";
+            this.textParentAutoQuotationNo.Properties.ReadOnly = true;
+            this.textParentAutoQuotationNo.Size = new System.Drawing.Size(150, 20);
+            this.textParentAutoQuotationNo.TabIndex = 21;
+            this.textParentAutoQuotationNo.TabStop = false;
+            this.textParentAutoQuotationNo.Visible = false;
+            // 
+            // labParentAutoQuotationNo
+            // 
+            this.labParentAutoQuotationNo.Location = new System.Drawing.Point(1012, 24);
+            this.labParentAutoQuotationNo.Name = "labParentAutoQuotationNo";
+            this.labParentAutoQuotationNo.Size = new System.Drawing.Size(72, 14);
+            this.labParentAutoQuotationNo.TabIndex = 23;
+            this.labParentAutoQuotationNo.Text = "父级报价单号";
+            this.labParentAutoQuotationNo.Visible = false;
+            // 
+            // textProjectName
+            // 
+            this.textProjectName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ProjectName", true));
+            this.textProjectName.EnterMoveNextControl = true;
+            this.textProjectName.Location = new System.Drawing.Point(597, 21);
+            this.textProjectName.Name = "textProjectName";
+            this.textProjectName.Size = new System.Drawing.Size(150, 20);
+            this.textProjectName.TabIndex = 2;
+            // 
+            // textModifier
+            // 
+            this.textModifier.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Modifier", true));
+            this.textModifier.EnterMoveNextControl = true;
+            this.textModifier.Location = new System.Drawing.Point(354, 89);
+            this.textModifier.Name = "textModifier";
+            this.textModifier.Properties.ReadOnly = true;
+            this.textModifier.Size = new System.Drawing.Size(150, 20);
+            this.textModifier.TabIndex = 22;
+            this.textModifier.TabStop = false;
+            // 
+            // textPrepared
+            // 
+            this.textPrepared.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Prepared", true));
+            this.textPrepared.EnterMoveNextControl = true;
+            this.textPrepared.Location = new System.Drawing.Point(112, 89);
+            this.textPrepared.Name = "textPrepared";
+            this.textPrepared.Properties.ReadOnly = true;
+            this.textPrepared.Size = new System.Drawing.Size(150, 20);
+            this.textPrepared.TabIndex = 21;
+            this.textPrepared.TabStop = false;
+            // 
+            // dateModifierTime
+            // 
+            this.dateModifierTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ModifierTime", true));
+            this.dateModifierTime.EditValue = null;
+            this.dateModifierTime.EnterMoveNextControl = true;
+            this.dateModifierTime.Location = new System.Drawing.Point(597, 89);
+            this.dateModifierTime.Name = "dateModifierTime";
+            this.dateModifierTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateModifierTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateModifierTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateModifierTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateModifierTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateModifierTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateModifierTime.Properties.Mask.EditMask = "G";
+            this.dateModifierTime.Properties.ReadOnly = true;
+            this.dateModifierTime.Size = new System.Drawing.Size(150, 20);
+            this.dateModifierTime.TabIndex = 20;
+            this.dateModifierTime.TabStop = false;
+            // 
+            // labModifierTime
+            // 
+            this.labModifierTime.Location = new System.Drawing.Point(525, 92);
+            this.labModifierTime.Name = "labModifierTime";
+            this.labModifierTime.Size = new System.Drawing.Size(48, 14);
+            this.labModifierTime.TabIndex = 17;
+            this.labModifierTime.Text = "修改时间";
+            // 
+            // labModifier
+            // 
+            this.labModifier.Location = new System.Drawing.Point(281, 92);
+            this.labModifier.Name = "labModifier";
+            this.labModifier.Size = new System.Drawing.Size(36, 14);
+            this.labModifier.TabIndex = 16;
+            this.labModifier.Text = "修改人";
+            // 
+            // labPrepared
+            // 
+            this.labPrepared.Location = new System.Drawing.Point(36, 92);
+            this.labPrepared.Name = "labPrepared";
+            this.labPrepared.Size = new System.Drawing.Size(36, 14);
+            this.labPrepared.TabIndex = 14;
+            this.labPrepared.Text = "制单人";
             // 
             // labRecordDate
             // 
-            this.labRecordDate.Location = new System.Drawing.Point(823, 24);
+            this.labRecordDate.Location = new System.Drawing.Point(770, 24);
             this.labRecordDate.Name = "labRecordDate";
             this.labRecordDate.Size = new System.Drawing.Size(48, 14);
             this.labRecordDate.TabIndex = 13;
@@ -651,10 +852,10 @@
             // 
             // dateRecordDate
             // 
-            this.dateRecordDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "RecordDate", true));
+            this.dateRecordDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "RecordDate", true));
             this.dateRecordDate.EditValue = null;
             this.dateRecordDate.EnterMoveNextControl = true;
-            this.dateRecordDate.Location = new System.Drawing.Point(892, 21);
+            this.dateRecordDate.Location = new System.Drawing.Point(839, 21);
             this.dateRecordDate.Name = "dateRecordDate";
             this.dateRecordDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -670,23 +871,18 @@
             this.dateRecordDate.TabIndex = 3;
             this.dateRecordDate.TabStop = false;
             // 
-            // bSQuotationBaseInfo
-            // 
-            this.bSQuotationBaseInfo.DataMember = "QuotationBaseInfo";
-            this.bSQuotationBaseInfo.DataSource = this.dSQuotation;
-            // 
             // textRemark
             // 
-            this.textRemark.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "Remark", true));
+            this.textRemark.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Remark", true));
             this.textRemark.EnterMoveNextControl = true;
-            this.textRemark.Location = new System.Drawing.Point(630, 55);
+            this.textRemark.Location = new System.Drawing.Point(597, 55);
             this.textRemark.Name = "textRemark";
-            this.textRemark.Size = new System.Drawing.Size(412, 20);
+            this.textRemark.Size = new System.Drawing.Size(392, 20);
             this.textRemark.TabIndex = 6;
             // 
             // labRemark
             // 
-            this.labRemark.Location = new System.Drawing.Point(558, 58);
+            this.labRemark.Location = new System.Drawing.Point(525, 58);
             this.labRemark.Name = "labRemark";
             this.labRemark.Size = new System.Drawing.Size(24, 14);
             this.labRemark.TabIndex = 10;
@@ -694,16 +890,16 @@
             // 
             // textRequester
             // 
-            this.textRequester.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "Requester", true));
+            this.textRequester.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Requester", true));
             this.textRequester.EnterMoveNextControl = true;
-            this.textRequester.Location = new System.Drawing.Point(373, 55);
+            this.textRequester.Location = new System.Drawing.Point(354, 55);
             this.textRequester.Name = "textRequester";
             this.textRequester.Size = new System.Drawing.Size(150, 20);
             this.textRequester.TabIndex = 5;
             // 
             // labRequester
             // 
-            this.labRequester.Location = new System.Drawing.Point(300, 58);
+            this.labRequester.Location = new System.Drawing.Point(281, 58);
             this.labRequester.Name = "labRequester";
             this.labRequester.Size = new System.Drawing.Size(60, 14);
             this.labRequester.TabIndex = 8;
@@ -719,7 +915,7 @@
             // 
             // labProjectName
             // 
-            this.labProjectName.Location = new System.Drawing.Point(558, 24);
+            this.labProjectName.Location = new System.Drawing.Point(525, 24);
             this.labProjectName.Name = "labProjectName";
             this.labProjectName.Size = new System.Drawing.Size(48, 14);
             this.labProjectName.TabIndex = 6;
@@ -727,7 +923,7 @@
             // 
             // searchBussinessBaseNo
             // 
-            this.searchBussinessBaseNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "BussinessBaseNo", true));
+            this.searchBussinessBaseNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "BussinessBaseNo", true));
             this.searchBussinessBaseNo.EnterMoveNextControl = true;
             this.searchBussinessBaseNo.Location = new System.Drawing.Point(112, 55);
             this.searchBussinessBaseNo.Name = "searchBussinessBaseNo";
@@ -783,71 +979,18 @@
             this.gridColumnAutoId.Caption = "gridColumnAutoId";
             this.gridColumnAutoId.Name = "gridColumnAutoId";
             // 
-            // searchProjectName
-            // 
-            this.searchProjectName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "ProjectName", true));
-            this.searchProjectName.EnterMoveNextControl = true;
-            this.searchProjectName.Location = new System.Drawing.Point(630, 21);
-            this.searchProjectName.Margin = new System.Windows.Forms.Padding(4);
-            this.searchProjectName.Name = "searchProjectName";
-            this.searchProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchProjectName.Properties.DisplayMember = "ProjectName";
-            this.searchProjectName.Properties.NullText = "";
-            this.searchProjectName.Properties.ValueMember = "ProjectName";
-            this.searchProjectName.Properties.View = this.searchProjectNameView;
-            this.searchProjectName.Size = new System.Drawing.Size(150, 20);
-            this.searchProjectName.TabIndex = 2;
-            // 
-            // searchProjectNameView
-            // 
-            this.searchProjectNameView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColProjectNo,
-            this.gridColProjectName,
-            this.gridColRemark});
-            this.searchProjectNameView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchProjectNameView.IndicatorWidth = 60;
-            this.searchProjectNameView.Name = "searchProjectNameView";
-            this.searchProjectNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchProjectNameView.OptionsView.ShowGroupPanel = false;
-            this.searchProjectNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewQuotationPriceInfo_CustomDrawRowIndicator);
-            // 
-            // gridColProjectNo
-            // 
-            this.gridColProjectNo.Caption = "项目号";
-            this.gridColProjectNo.FieldName = "ProjectNo";
-            this.gridColProjectNo.Name = "gridColProjectNo";
-            this.gridColProjectNo.Visible = true;
-            this.gridColProjectNo.VisibleIndex = 0;
-            // 
-            // gridColProjectName
-            // 
-            this.gridColProjectName.Caption = "项目名称";
-            this.gridColProjectName.FieldName = "ProjectName";
-            this.gridColProjectName.Name = "gridColProjectName";
-            this.gridColProjectName.Visible = true;
-            this.gridColProjectName.VisibleIndex = 1;
-            // 
-            // gridColRemark
-            // 
-            this.gridColRemark.Caption = "备注";
-            this.gridColRemark.FieldName = "Remark";
-            this.gridColRemark.Name = "gridColRemark";
-            this.gridColRemark.Visible = true;
-            this.gridColRemark.VisibleIndex = 2;
-            // 
             // textRFQNO
             // 
-            this.textRFQNO.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "RFQNO", true));
+            this.textRFQNO.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "RFQNO", true));
             this.textRFQNO.EnterMoveNextControl = true;
-            this.textRFQNO.Location = new System.Drawing.Point(373, 21);
+            this.textRFQNO.Location = new System.Drawing.Point(354, 21);
             this.textRFQNO.Name = "textRFQNO";
             this.textRFQNO.Size = new System.Drawing.Size(150, 20);
             this.textRFQNO.TabIndex = 1;
             // 
             // labRFQNO
             // 
-            this.labRFQNO.Location = new System.Drawing.Point(300, 24);
+            this.labRFQNO.Location = new System.Drawing.Point(281, 24);
             this.labRFQNO.Name = "labRFQNO";
             this.labRFQNO.Size = new System.Drawing.Size(48, 14);
             this.labRFQNO.TabIndex = 2;
@@ -855,7 +998,7 @@
             // 
             // textAutoQuotationNo
             // 
-            this.textAutoQuotationNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "AutoQuotationNo", true));
+            this.textAutoQuotationNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "AutoQuotationNo", true));
             this.textAutoQuotationNo.EnterMoveNextControl = true;
             this.textAutoQuotationNo.Location = new System.Drawing.Point(112, 21);
             this.textAutoQuotationNo.Name = "textAutoQuotationNo";
@@ -885,7 +1028,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(1064, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(1355, 40);
             this.pnlToolBar.TabIndex = 6;
             // 
             // btnPreview
@@ -902,7 +1045,7 @@
             // btnEditQueryAutoQuotationNo
             // 
             this.btnEditQueryAutoQuotationNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditQueryAutoQuotationNo.Location = new System.Drawing.Point(864, 10);
+            this.btnEditQueryAutoQuotationNo.Location = new System.Drawing.Point(1155, 10);
             this.btnEditQueryAutoQuotationNo.Name = "btnEditQueryAutoQuotationNo";
             this.btnEditQueryAutoQuotationNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
@@ -916,7 +1059,7 @@
             // labQueryAutoQuotationNo
             // 
             this.labQueryAutoQuotationNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labQueryAutoQuotationNo.Location = new System.Drawing.Point(800, 13);
+            this.labQueryAutoQuotationNo.Location = new System.Drawing.Point(1091, 13);
             this.labQueryAutoQuotationNo.Name = "labQueryAutoQuotationNo";
             this.labQueryAutoQuotationNo.Size = new System.Drawing.Size(48, 14);
             this.labQueryAutoQuotationNo.TabIndex = 20;
@@ -973,125 +1116,17 @@
             this.btnNew.Text = "新增";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // dataColParentAutoQuotationNo
-            // 
-            this.dataColParentAutoQuotationNo.Caption = "父级报价单号";
-            this.dataColParentAutoQuotationNo.ColumnName = "ParentAutoQuotationNo";
-            // 
-            // dataColParentAutoSalsOrderNo
-            // 
-            this.dataColParentAutoSalsOrderNo.Caption = "父级销售订单号";
-            this.dataColParentAutoSalsOrderNo.ColumnName = "ParentAutoSalsOrderNo";
-            // 
-            // dataColParentProjectNo
-            // 
-            this.dataColParentProjectNo.Caption = "父级项目号";
-            this.dataColParentProjectNo.ColumnName = "ParentProjectNo";
-            // 
-            // dataColPrepared
-            // 
-            this.dataColPrepared.Caption = "制单人";
-            this.dataColPrepared.ColumnName = "Prepared";
-            // 
-            // dataColPreparedIp
-            // 
-            this.dataColPreparedIp.Caption = "制单人IP";
-            this.dataColPreparedIp.ColumnName = "PreparedIp";
-            // 
-            // dataColModifier
-            // 
-            this.dataColModifier.Caption = "修改人";
-            this.dataColModifier.ColumnName = "Modifier";
-            // 
-            // dataColModifierIp
-            // 
-            this.dataColModifierIp.Caption = "修改人IP";
-            this.dataColModifierIp.ColumnName = "ModifierIp";
-            // 
-            // dataColModifierTime
-            // 
-            this.dataColModifierTime.Caption = "修改时间";
-            this.dataColModifierTime.ColumnName = "ModifierTime";
-            this.dataColModifierTime.DataType = typeof(System.DateTime);
-            // 
-            // labPrepared
-            // 
-            this.labPrepared.Location = new System.Drawing.Point(36, 92);
-            this.labPrepared.Name = "labPrepared";
-            this.labPrepared.Size = new System.Drawing.Size(36, 14);
-            this.labPrepared.TabIndex = 14;
-            this.labPrepared.Text = "制单人";
-            // 
-            // labModifier
-            // 
-            this.labModifier.Location = new System.Drawing.Point(300, 92);
-            this.labModifier.Name = "labModifier";
-            this.labModifier.Size = new System.Drawing.Size(36, 14);
-            this.labModifier.TabIndex = 16;
-            this.labModifier.Text = "修改人";
-            // 
-            // labModifierTime
-            // 
-            this.labModifierTime.Location = new System.Drawing.Point(558, 92);
-            this.labModifierTime.Name = "labModifierTime";
-            this.labModifierTime.Size = new System.Drawing.Size(48, 14);
-            this.labModifierTime.TabIndex = 17;
-            this.labModifierTime.Text = "修改时间";
-            // 
-            // dateModifierTime
-            // 
-            this.dateModifierTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "ModifierTime", true));
-            this.dateModifierTime.EditValue = null;
-            this.dateModifierTime.EnterMoveNextControl = true;
-            this.dateModifierTime.Location = new System.Drawing.Point(630, 89);
-            this.dateModifierTime.Name = "dateModifierTime";
-            this.dateModifierTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateModifierTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateModifierTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.dateModifierTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateModifierTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.dateModifierTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateModifierTime.Properties.Mask.EditMask = "G";
-            this.dateModifierTime.Properties.ReadOnly = true;
-            this.dateModifierTime.Size = new System.Drawing.Size(150, 20);
-            this.dateModifierTime.TabIndex = 20;
-            this.dateModifierTime.TabStop = false;
-            // 
-            // textPrepared
-            // 
-            this.textPrepared.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "Prepared", true));
-            this.textPrepared.EnterMoveNextControl = true;
-            this.textPrepared.Location = new System.Drawing.Point(112, 89);
-            this.textPrepared.Name = "textPrepared";
-            this.textPrepared.Properties.ReadOnly = true;
-            this.textPrepared.Size = new System.Drawing.Size(150, 20);
-            this.textPrepared.TabIndex = 21;
-            this.textPrepared.TabStop = false;
-            // 
-            // textModifier
-            // 
-            this.textModifier.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSQuotationBaseInfo, "Modifier", true));
-            this.textModifier.EnterMoveNextControl = true;
-            this.textModifier.Location = new System.Drawing.Point(373, 89);
-            this.textModifier.Name = "textModifier";
-            this.textModifier.Properties.ReadOnly = true;
-            this.textModifier.Size = new System.Drawing.Size(150, 20);
-            this.textModifier.TabIndex = 22;
-            this.textModifier.TabStop = false;
-            // 
             // FrmQuotationInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1064, 542);
+            this.ClientSize = new System.Drawing.Size(1355, 542);
             this.Controls.Add(this.pnlRight);
             this.Name = "FrmQuotationInfo";
             this.TabText = "报价单";
             this.Text = "报价单";
             this.Activated += new System.EventHandler(this.FrmQuotationInfo_Activated);
             this.Load += new System.EventHandler(this.FrmQuotationInfo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dSQuotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_Quotation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableQuotationBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableQuotationPriceInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
@@ -1099,7 +1134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlQuotationPriceInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSQuotationPriceInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_PriceInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewQuotationPriceInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpCurrencyCate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
@@ -1110,32 +1145,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textParentProjectNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_BaseInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textParentAutoSalesOrderNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textParentAutoQuotationNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textProjectName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textModifier.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSQuotationBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRemark.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRequester.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNoView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchProjectName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchProjectNameView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRFQNO.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textAutoQuotationNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).EndInit();
             this.pnlToolBar.ResumeLayout(false);
             this.pnlToolBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditQueryAutoQuotationNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateModifierTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textModifier.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Data.DataSet dSQuotation;
+        private System.Data.DataSet dataSet_Quotation;
         private System.Data.DataTable TableQuotationBaseInfo;
         private System.Data.DataColumn dataColAutoId;
         private System.Data.DataColumn dataColAutoQuotationNo;
@@ -1166,17 +1203,12 @@
         private DevExpress.XtraEditors.LabelControl labQueryAutoQuotationNo;
         private DevExpress.XtraEditors.PanelControl pnlEdit;
         private DevExpress.XtraEditors.PanelControl pnlBottom;
-        private System.Windows.Forms.BindingSource bSQuotationBaseInfo;
-        private System.Windows.Forms.BindingSource bSQuotationPriceInfo;
+        private System.Windows.Forms.BindingSource bindingSource_BaseInfo;
+        private System.Windows.Forms.BindingSource bindingSource_PriceInfo;
         private DevExpress.XtraEditors.TextEdit textAutoQuotationNo;
         private DevExpress.XtraEditors.LabelControl labAutoQuotationNo;
         private DevExpress.XtraEditors.TextEdit textRFQNO;
         private DevExpress.XtraEditors.LabelControl labRFQNO;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchProjectName;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchProjectNameView;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColProjectNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColProjectName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColRemark;
         private DevExpress.XtraEditors.LabelControl labBussinessBaseNo;
         private DevExpress.XtraEditors.LabelControl labProjectName;
         private DevExpress.XtraEditors.SearchLookUpEdit searchBussinessBaseNo;
@@ -1217,7 +1249,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSumAmount;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinEditTax;
         private System.Data.DataColumn dataColParentAutoQuotationNo;
-        private System.Data.DataColumn dataColParentAutoSalsOrderNo;
+        private System.Data.DataColumn dataColParentAutoSalesOrderNo;
         private System.Data.DataColumn dataColParentProjectNo;
         private System.Data.DataColumn dataColPrepared;
         private System.Data.DataColumn dataColPreparedIp;
@@ -1230,5 +1262,12 @@
         private DevExpress.XtraEditors.TextEdit textModifier;
         private DevExpress.XtraEditors.TextEdit textPrepared;
         private DevExpress.XtraEditors.DateEdit dateModifierTime;
+        private DevExpress.XtraEditors.TextEdit textProjectName;
+        private DevExpress.XtraEditors.TextEdit textParentProjectNo;
+        private DevExpress.XtraEditors.LabelControl labParentProjectNo;
+        private DevExpress.XtraEditors.TextEdit textParentAutoSalesOrderNo;
+        private DevExpress.XtraEditors.LabelControl labParentAutoSalesOrderNo;
+        private DevExpress.XtraEditors.TextEdit textParentAutoQuotationNo;
+        private DevExpress.XtraEditors.LabelControl labParentAutoQuotationNo;
     }
 }

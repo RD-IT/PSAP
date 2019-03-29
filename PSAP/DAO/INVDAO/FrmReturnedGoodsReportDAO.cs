@@ -116,12 +116,12 @@ namespace PSAP.DAO.INVDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        //if (!CheckOrderApplyBeyondCount(cmd, wwHeadRow["WarehouseWarrant"].ToString(), wwListTable))
+                        //if (!CheckOrderApplyBeyondCount(cmd, DataTypeConvert.GetString(wwHeadRow["WarehouseWarrant"]), wwListTable))
                         //{
                         //    return 0;
                         //}
 
-                        if (rgrHeadRow["ReturnedGoodsReportNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(rgrHeadRow["ReturnedGoodsReportNo"]) == "")//新增
                         {
                             string swwNo = BaseSQL.GetMaxCodeNo(cmd, "RG");
                             rgrHeadRow["ReturnedGoodsReportNo"] = swwNo;

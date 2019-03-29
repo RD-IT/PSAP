@@ -6,11 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using System.Linq;
 
 namespace PSAP.VIEW.BSVIEW
 {

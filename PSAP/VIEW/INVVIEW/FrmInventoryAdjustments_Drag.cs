@@ -462,7 +462,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!iaDAO.DeleteInventoryAdjustments_Multi(dataSet_IA.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();

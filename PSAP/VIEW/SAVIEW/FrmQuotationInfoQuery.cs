@@ -35,8 +35,8 @@ namespace PSAP.VIEW.BSVIEW
 
                 searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
-                searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
-                searchLookUpProjectNo.Text = "全部";
+                lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
+                lookUpPrepared.EditValue = SystemInfo.user.EmpName;
 
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
 
@@ -81,16 +81,16 @@ namespace PSAP.VIEW.BSVIEW
                 string recordDateEndStr = dateRecordDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
                 string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
-                string projectNameStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
+                string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
 
-                dSQuotation.Tables[0].Rows.Clear();
+                dataSet_Quotation.Tables[0].Rows.Clear();
 
-                string querySqlStr = quoDAO.QueryQuotationBaseInfo_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNameStr, commonStr);
+                string querySqlStr = quoDAO.QueryQuotationBaseInfo_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, empNameStr, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
-                gridBottomOrderHead.QueryGridData(ref dSQuotation, "QuotationBaseInfo", querySqlStr, countSqlStr, true);
+                gridBottomOrderHead.QueryGridData(ref dataSet_Quotation, "QuotationBaseInfo", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
             {

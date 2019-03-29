@@ -147,6 +147,8 @@
     <Compile Include="DAO\PURDAO\FrmSettlementDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmWarehouseWarrantApplyDAO.cs" />
     <Compile Include="DAO\SADAO\FrmQuotationInfoDAO.cs" />
+    <Compile Include="DAO\SADAO\FrmSalesOrderDAO.cs" />
+    <Compile Include="DAO\SADAO\FrmSettleAccountsDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmAddRemarksDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmProjectDocumentDAO.cs" />
     <Compile Include="ENTITY\BSENTITY\bomManagement.cs" />
@@ -392,17 +394,17 @@
     <Compile Include="VIEW\SAVIEW\FrmQuotationInfoQuery.Designer.cs">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalsOrder.cs">
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalsOrder.Designer.cs">
-      <DependentUpon>FrmSalsOrder.cs</DependentUpon>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder.Designer.cs">
+      <DependentUpon>FrmSalesOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalsOrderQuery.cs">
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrderQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalsOrderQuery.Designer.cs">
-      <DependentUpon>FrmSalsOrderQuery.cs</DependentUpon>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrderQuery.Designer.cs">
+      <DependentUpon>FrmSalesOrderQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.cs">
       <SubType>Form</SubType>
@@ -921,6 +923,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfoQuery.resx">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder.resx">
+      <DependentUpon>FrmSalesOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrderQuery.resx">
+      <DependentUpon>FrmSalesOrderQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccounts.resx">
       <DependentUpon>FrmSettleAccounts.cs</DependentUpon>

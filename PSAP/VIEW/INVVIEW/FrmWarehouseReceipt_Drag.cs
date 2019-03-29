@@ -537,7 +537,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!wrDAO.DeleteWR_Multi(dataSet_WR.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();

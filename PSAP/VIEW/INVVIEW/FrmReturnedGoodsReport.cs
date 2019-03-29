@@ -526,7 +526,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!rgrDAO.DeleteRGR_Multi(dataSet_RGR.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();

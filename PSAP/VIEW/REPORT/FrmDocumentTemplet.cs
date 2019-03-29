@@ -69,8 +69,15 @@ namespace PSAP.VIEW.BSVIEW
                     case "编辑":
                         switch (tableNameStr)
                         {
+                            
                             case "SA_QuotationBaseInfo"://报价单
                                 new FrmQuotationInfoDAO().PrintHandle("", 3);
+                                break;
+                            case "SA_SalesOrder"://销售订单
+                                new FrmSalesOrderDAO().PrintHandle("", 3);
+                                break;
+                            case "SA_SettleAccountsHead"://销售结账单
+                                new FrmSettleAccountsDAO().PrintHandle("", 3);
                                 break;
                             case "PUR_PrReqHead"://请购单
                                 new FrmPrReqDAO().PrintHandle("", 3);

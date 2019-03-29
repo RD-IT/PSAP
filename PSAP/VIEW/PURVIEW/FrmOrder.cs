@@ -550,7 +550,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!orderDAO.DeleteOrder_Multi(dataSet_Order.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();

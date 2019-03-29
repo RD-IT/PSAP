@@ -24,6 +24,19 @@ namespace PSAP.VIEW.BSVIEW
         public static string queryAutoQuotationNoStr = "";
 
         /// <summary>
+        /// 新增COR报价单的父级报价单号
+        /// </summary>
+        public static string newParentAutoQuotationNoStr = "";
+        /// <summary>
+        /// 新增COR报价单的父级销售订单号
+        /// </summary>
+        public static string newParentAutoSalesOrderNoStr = "";
+        /// <summary>
+        /// 新增COR报价单的父级项目号
+        /// </summary>
+        public static string newParentProjectNoStr = "";
+
+        /// <summary>
         /// 当前的报价单号
         /// </summary>
         private string currentAutoQuotationNoStr = "";
@@ -39,10 +52,9 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmQuotationInfo_Load(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 ControlHandler.DevExpressStyle_ChangeControlLocation(btnListAdd.LookAndFeel.ActiveSkinName, new List<Control> { btnListAdd });
 
-                searchProjectName.Properties.DataSource = commonDAO.QueryProjectList(false);
                 searchBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(false);
 
                 repLookUpCurrencyCate.DataSource = quoDAO.QueryCurrencyCate(false);
@@ -67,6 +79,10 @@ namespace PSAP.VIEW.BSVIEW
                     btnEditQueryAutoQuotationNo.Text = queryAutoQuotationNoStr;
                     queryAutoQuotationNoStr = "";
                     btnEditQueryAutoQuotationNo_ButtonClick(null, null);
+                }
+                else if (newParentAutoQuotationNoStr != "")
+                {
+                    btnNew_Click(null, null);
                 }
             }
             catch (Exception ex)
@@ -133,15 +149,17 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                TableQuotationBaseInfo.Rows.Clear();
                 DataRow drHead = TableQuotationBaseInfo.NewRow();
                 TableQuotationBaseInfo.Rows.Add(drHead);
-                bSQuotationBaseInfo.MoveLast();
+                bindingSource_BaseInfo.MoveLast();
 
                 TableQuotationPriceInfo.Clear();
-                gridViewQuotationPriceInfo.AddNewRow();
+                //gridViewQuotationPriceInfo.AddNewRow();
+                DataRow drlist = TableQuotationPriceInfo.NewRow();
+                TableQuotationPriceInfo.Rows.Add(drlist);
                 FocusedListView(false, "CurrencyCate", gridViewQuotationPriceInfo.GetFocusedDataSourceRowIndex());
                 gridViewQuotationPriceInfo.RefreshData();
-
                 Set_ButtonEditGrid_State(false);
                 textRFQNO.Focus();
             }
@@ -158,18 +176,23 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (TableQuotationBaseInfo.Rows.Count == 0 || bSQuotationBaseInfo.Current == null)
+                if (TableQuotationBaseInfo.Rows.Count == 0 || bindingSource_BaseInfo.Current == null)
                     return;
 
                 if (btnSave.Text != "保存")
                 {
+                    DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
+                    string autoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                    if (quoDAO.CheckQuotationInfo_IsSalesOrder(null, autoQuotationNoStr))
+                        return;
+
                     Set_ButtonEditGrid_State(false);
                     textRFQNO.Focus();
                 }
                 else
                 {
-                    bSQuotationBaseInfo.EndEdit();
-                    DataRow headRow = ((DataRowView)bSQuotationBaseInfo.Current).Row;
+                    bindingSource_BaseInfo.EndEdit();
+                    DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
 
                     if (textRFQNO.Text.Trim() == "")
                     {
@@ -177,10 +200,10 @@ namespace PSAP.VIEW.BSVIEW
                         textRFQNO.Focus();
                         return;
                     }
-                    if (searchProjectName.Text.Trim() == "")
+                    if (textProjectName.Text.Trim() == "")
                     {
                         MessageHandler.ShowMessageBox("项目名称不能为空，请重新操作。");
-                        searchProjectName.Focus();
+                        textProjectName.Focus();
                         return;
                     }
                     if (searchBussinessBaseNo.Text.Trim() == "")
@@ -234,6 +257,14 @@ namespace PSAP.VIEW.BSVIEW
                             FocusedListView(true, "QuotationDate", i);
                             return;
                         }
+
+                        string versionsStr = DataTypeConvert.GetString(listRow["Versions"]);
+                        if (TableQuotationPriceInfo.Select(string.Format("Versions = '{0}'", versionsStr)).Length > 1)
+                        {
+                            MessageHandler.ShowMessageBox("版本号有重复，请重新填写后再进行保存。");
+                            FocusedListView(true, "Versions", i);
+                            return;
+                        }
                     }
 
                     int ret = quoDAO.SaveQuotationInfo(headRow, TableQuotationPriceInfo);
@@ -266,10 +297,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (bSQuotationBaseInfo.Current != null)
+                if (bindingSource_BaseInfo.Current != null)
                 {
-                    bSQuotationBaseInfo.CancelEdit();
-                    ((DataRowView)bSQuotationBaseInfo.Current).Row.RejectChanges();
+                    bindingSource_BaseInfo.CancelEdit();
+                    ((DataRowView)bindingSource_BaseInfo.Current).Row.RejectChanges();
 
                     btnRefresh_Click(null, null);
                 }
@@ -287,37 +318,46 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (TableQuotationBaseInfo.Rows.Count == 0 || bSQuotationBaseInfo.Current == null)
+                if (TableQuotationBaseInfo.Rows.Count == 0 || bindingSource_BaseInfo.Current == null)
                 {
                     MessageHandler.ShowMessageBox("当前没有报价信息记录，不能进行删除。");
                     return;
                 }
+                DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
+                string autoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                if (quoDAO.CheckQuotationInfo_IsSalesOrder(null, autoQuotationNoStr))
+                    return;
 
                 if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的记录吗？") != DialogResult.Yes)
                 {
                     return;
                 }
-                DataRow headRow = ((DataRowView)bSQuotationBaseInfo.Current).Row;
                 int autoIdInt = DataTypeConvert.GetInt(headRow["AutoId"]);
-                quoDAO.DeleteQuotationInfo(DataTypeConvert.GetString(headRow["AutoQuotationNo"]));
-
-                TableQuotationBaseInfo.Rows.Clear();
-                TableQuotationPriceInfo.Rows.Clear();
-                currentAutoQuotationNoStr = "";
-                quoDAO.QueryQuotationBaseInfo_UpOne(TableQuotationBaseInfo, autoIdInt);
-                if (TableQuotationBaseInfo.Rows.Count > 0)
+                if (quoDAO.DeleteQuotationInfo(autoQuotationNoStr))
                 {
-                    currentAutoQuotationNoStr = DataTypeConvert.GetString(TableQuotationBaseInfo.Rows[0]["AutoQuotationNo"]);
-                    quoDAO.QueryQuotationPriceInfo(TableQuotationPriceInfo, currentAutoQuotationNoStr);
-                }
-                else
-                {
-                    quoDAO.QueryQuotationBaseInfo_DownOne(TableQuotationBaseInfo, autoIdInt);
+                    TableQuotationBaseInfo.Rows.Clear();
+                    TableQuotationPriceInfo.Rows.Clear();
+                    currentAutoQuotationNoStr = "";
+                    quoDAO.QueryQuotationBaseInfo_UpOne(TableQuotationBaseInfo, autoIdInt);
                     if (TableQuotationBaseInfo.Rows.Count > 0)
                     {
                         currentAutoQuotationNoStr = DataTypeConvert.GetString(TableQuotationBaseInfo.Rows[0]["AutoQuotationNo"]);
                         quoDAO.QueryQuotationPriceInfo(TableQuotationPriceInfo, currentAutoQuotationNoStr);
                     }
+                    else
+                    {
+                        quoDAO.QueryQuotationBaseInfo_DownOne(TableQuotationBaseInfo, autoIdInt);
+                        if (TableQuotationBaseInfo.Rows.Count > 0)
+                        {
+                            currentAutoQuotationNoStr = DataTypeConvert.GetString(TableQuotationBaseInfo.Rows[0]["AutoQuotationNo"]);
+                            quoDAO.QueryQuotationPriceInfo(TableQuotationPriceInfo, currentAutoQuotationNoStr);
+                        }
+                    }
+                }
+                else
+                {
+                    currentAutoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                    btnRefresh_Click(null, null);
                 }
                 Set_ButtonEditGrid_State(true);
             }
@@ -370,8 +410,8 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 string autoQuotationNoStr = "";
-                if (bSQuotationBaseInfo.Current != null)
-                    autoQuotationNoStr = DataTypeConvert.GetString(((DataRowView)bSQuotationBaseInfo.Current).Row["AutoQuotationNo"]);
+                if (bindingSource_BaseInfo.Current != null)
+                    autoQuotationNoStr = DataTypeConvert.GetString(((DataRowView)bindingSource_BaseInfo.Current).Row["AutoQuotationNo"]);
                 quoDAO.PrintHandle(autoQuotationNoStr, 1);
             }
             catch (Exception ex)
@@ -422,6 +462,15 @@ namespace PSAP.VIEW.BSVIEW
             {
                 e.Row["RecordDate"] = BaseSQL.GetServerDateTime();
                 e.Row["Prepared"] = SystemInfo.user.EmpName;
+                if (newParentAutoQuotationNoStr != "")
+                {
+                    e.Row["ParentAutoQuotationNo"] = newParentAutoQuotationNoStr;
+                    e.Row["ParentAutoSalesOrderNo"] = newParentAutoSalesOrderNoStr; 
+                    e.Row["ParentProjectNo"] = newParentProjectNoStr;
+                    newParentAutoQuotationNoStr = "";
+                    newParentAutoSalesOrderNoStr = "";
+                    newParentProjectNoStr = "";
+                }
             }
             catch (Exception ex)
             {
@@ -436,9 +485,9 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (bSQuotationBaseInfo.Current != null)
+                if (bindingSource_BaseInfo.Current != null)
                 {
-                    DataRow headRow = ((DataRowView)bSQuotationBaseInfo.Current).Row;
+                    DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
 
                     e.Row["AutoQuotationNo"] = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
                     DataTable tmpTable = ((DataTable)repLookUpCurrencyCate.DataSource);
@@ -517,7 +566,7 @@ namespace PSAP.VIEW.BSVIEW
             btnListAdd.Enabled = !state;
 
             textRFQNO.ReadOnly = state;
-            searchProjectName.ReadOnly = state;
+            textProjectName.ReadOnly = state;
             searchBussinessBaseNo.ReadOnly = state;
             textRequester.ReadOnly = state;
             textRemark.ReadOnly = state;
@@ -525,6 +574,41 @@ namespace PSAP.VIEW.BSVIEW
             gridViewQuotationPriceInfo.OptionsBehavior.Editable = !state;
 
             repbtnDelete.Buttons[0].Enabled = !state;
+
+            if (bindingSource_BaseInfo.Current != null)
+            {
+                DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
+                string ParentAutoQuotationNo = DataTypeConvert.GetString(headRow["ParentAutoQuotationNo"]);
+                bool isVisible = ParentAutoQuotationNo != "";
+                labParentAutoQuotationNo.Visible = isVisible;
+                textParentAutoQuotationNo.Visible = isVisible;
+                labParentAutoSalesOrderNo.Visible = isVisible;
+                textParentAutoSalesOrderNo.Visible = isVisible;
+                labParentProjectNo.Visible = isVisible;
+                textParentProjectNo.Visible = isVisible;
+            }
+            else
+            {
+                labParentAutoQuotationNo.Visible = false;
+                textParentAutoQuotationNo.Visible = false;
+                labParentAutoSalesOrderNo.Visible = false;
+                textParentAutoSalesOrderNo.Visible = false;
+                labParentProjectNo.Visible = false;
+                textParentProjectNo.Visible = false;
+            }
+
+            if (this.Controls.ContainsKey("lblEditFlag"))
+            {
+                //检测窗口状态：新增、编辑="EDIT"，保存、取消=""
+                if (state)
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "";
+                }
+                else
+                {
+                    ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
+                }
+            }
         }
 
         /// <summary>
@@ -564,7 +648,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (DataTypeConvert.GetString(gridViewQuotationPriceInfo.GetDataRow(i)["Tax"]) == "")
                 {
                     gridViewQuotationPriceInfo.Focus();
-                    gridViewQuotationPriceInfo.FocusedColumn = colAmount;
+                    gridViewQuotationPriceInfo.FocusedColumn = colTax;
                     gridViewQuotationPriceInfo.FocusedRowHandle = i;
                     return true;
                 }
@@ -618,5 +702,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--子表单元格值变化进行的操作错误。", ex);
             }
         }
+
     }
 }

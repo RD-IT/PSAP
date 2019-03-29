@@ -12,12 +12,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmSettleAccountsQuery : DockContent
+    public partial class FrmSalesOrderQuery : DockContent
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
-        FrmSettleAccountsDAO saDAO = new FrmSettleAccountsDAO();
+        FrmSalesOrderDAO soDAO = new FrmSalesOrderDAO();
 
-        public FrmSettleAccountsQuery()
+        public FrmSalesOrderQuery()
         {
             InitializeComponent();
         }
@@ -25,23 +25,23 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void FrmSettleAccountsQuery_Load(object sender, EventArgs e)
+        private void FrmSalesOrderQuery_Load(object sender, EventArgs e)
         {
             try
             {
                 DateTime nowDate = BaseSQL.GetServerDateTime();
-                dateSADateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
-                dateSADateEnd.DateTime = nowDate.Date;
+                dateSalesOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateSalesOrderDateEnd.DateTime = nowDate.Date;
 
                 searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
-                lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
-                lookUpReqDep.ItemIndex = 0;
+                searchProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
+                searchProjectNo.Text = "全部";
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
 
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
-                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repLookUpCollectionTypeNo.DataSource = commonDAO.QueryCollectionType(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 
@@ -56,7 +56,7 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewQuotationBaseInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewSalesOrder_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
@@ -71,30 +71,30 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (dateSADateBegin.EditValue == null || dateSADateEnd.EditValue == null)
+                if (dateSalesOrderDateBegin.EditValue == null || dateSalesOrderDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("结账日期不能为空，请设置后重新进行查询。");
-                    if (dateSADateBegin.EditValue == null)
-                        dateSADateBegin.Focus();
+                    MessageHandler.ShowMessageBox("登记日期不能为空，请设置后重新进行查询。");
+                    if (dateSalesOrderDateBegin.EditValue == null)
+                        dateSalesOrderDateBegin.Focus();
                     else
-                        dateSADateEnd.Focus();
+                        dateSalesOrderDateEnd.Focus();
                     return;
                 }
-                string saDateBeginStr = dateSADateBegin.DateTime.ToString("yyyy-MM-dd");
-                string saDateEndStr = dateSADateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+                string recordDateBeginStr = dateSalesOrderDateBegin.DateTime.ToString("yyyy-MM-dd");
+                string recordDateEndStr = dateSalesOrderDateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
 
                 string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
-                string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
+                string projectNoStr = searchProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchProjectNo.EditValue) : "";
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
 
-                dataSet_SettleAccounts.Tables[0].Clear();
+                dataSet_SalesOrder.Tables[0].Rows.Clear();
 
-                string querySqlStr = saDAO.QuerySettleAccountsHead_SQL(saDateBeginStr, saDateEndStr, reqDepStr, bussinessBaseNoStr, empNameStr, commonStr, false);
+                string querySqlStr = soDAO.QuerySalesOrder_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNoStr, empNameStr, commonStr);
 
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
-                gridBottomOrderHead.QueryGridData(ref dataSet_SettleAccounts, "SettleAccountsHead", querySqlStr, countSqlStr, true);
+                gridBottomOrderHead.QueryGridData(ref dataSet_SalesOrder, "SalesOrder", querySqlStr, countSqlStr, true);
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSettleAccountsHead);
+                FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
             }
             catch (Exception ex)
             {
@@ -120,16 +120,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 双击查询明细
         /// </summary>
-        private void gridViewSettleAccountsHead_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridViewSalesOrder_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
                 if (e.Clicks == 2)
                 {
-                    string settleAccountNoStr = DataTypeConvert.GetString(gridViewSettleAccountsHead.GetFocusedDataRow()["SettleAccountNo"]);
-                    FrmSettleAccounts.querySettleAccountNo = settleAccountNoStr;
+                    string autoSalesOrderNoStr = DataTypeConvert.GetString(gridViewSalesOrder.GetFocusedDataRow()["AutoSalesOrderNo"]);
+                    FrmSalesOrder.queryAutoSalesOrderNoStr = autoSalesOrderNoStr;
                     //FrmWarehouseWarrant_Drag.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmSettleAccounts");
+                    ViewHandler.ShowRightWindow("FrmSalesOrder");
                 }
             }
             catch (Exception ex)

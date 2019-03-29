@@ -204,12 +204,12 @@ namespace PSAP.DAO.INVDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        if (!CheckOrderApplyBeyondCount(cmd, wwHeadRow["WarehouseWarrant"].ToString(), wwListTable))
+                        if (!CheckOrderApplyBeyondCount(cmd, DataTypeConvert.GetString(wwHeadRow["WarehouseWarrant"]), wwListTable))
                         {
                             return 0;
                         }
 
-                        if (wwHeadRow["WarehouseWarrant"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(wwHeadRow["WarehouseWarrant"]) == "")//新增
                         {
                             string wwNo = BaseSQL.GetMaxCodeNo(cmd, "WW");
                             wwHeadRow["WarehouseWarrant"] = wwNo;

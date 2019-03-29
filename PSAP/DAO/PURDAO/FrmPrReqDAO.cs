@@ -241,7 +241,7 @@ namespace PSAP.DAO.PURDAO
                     {
                         //RecordLog_DataTable("请购单",prReqHeadRow.Table, "PrReqNo");
                         SqlCommand cmd = new SqlCommand("", conn, trans);
-                        if (prReqHeadRow["PrReqNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(prReqHeadRow["PrReqNo"]) == "")//新增
                         {
                             string prReqNo = BaseSQL.GetMaxCodeNo(cmd, "PR");
                             prReqHeadRow["PrReqNo"] = prReqNo;

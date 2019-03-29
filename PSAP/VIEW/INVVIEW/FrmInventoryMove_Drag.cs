@@ -492,7 +492,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!imDAO.DeleteInventoryMove_Multi(dataSet_IM.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();

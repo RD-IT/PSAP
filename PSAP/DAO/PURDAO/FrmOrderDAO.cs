@@ -280,12 +280,12 @@ namespace PSAP.DAO.PURDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        if (!CheckPrReqApplyBeyondCount(cmd, orderHeadRow["OrderHeadNo"].ToString(), orderListTable))
+                        if (!CheckPrReqApplyBeyondCount(cmd, DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]), orderListTable))
                         {
                             return 0;
                         }
 
-                        if (orderHeadRow["OrderHeadNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]) == "")//新增
                         {
                             string orderHeadNo = BaseSQL.GetMaxCodeNo(cmd, "PO");
                             orderHeadRow["OrderHeadNo"] = orderHeadNo;

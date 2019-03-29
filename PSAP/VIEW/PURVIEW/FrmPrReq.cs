@@ -496,7 +496,9 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 //prReqDAO.DeletePrReq(DataTypeConvert.GetString(gridViewPrReqHead.GetFocusedDataRow()["PrReqNo"]));
                 if (!prReqDAO.DeletePrReq_Multi(dataSet_PrReq.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();

@@ -91,7 +91,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.ItemIndex = -1;
 
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
-                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);               
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
@@ -118,7 +118,6 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
                 ExceptionHandler.HandleException(this.Text + "--"+tsmiCtjzsj.Text , ex);
-
             }
         }
 
@@ -362,6 +361,7 @@ namespace PSAP.VIEW.BSVIEW
                 datePayDateEnd.Enabled = false;
             }
         }
+
         /// <summary>
         /// 保存按钮事件
         /// </summary>
@@ -521,7 +521,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!setDAO.DeleteSettlement_Multi(dataSet_Settlement.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();
@@ -1198,7 +1200,7 @@ namespace PSAP.VIEW.BSVIEW
                 gridViewSettlementList.RefreshData();
 
                 SetButtonAndColumnState(true);
-                headFocusedLineNo = gridViewSettlementList.DataRowCount;
+                headFocusedLineNo = gridViewSettlementHead.DataRowCount;
             }
             else
             {

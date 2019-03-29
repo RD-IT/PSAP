@@ -441,6 +441,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (masterBindingSource.Current != null)
                 {
                     masterBindingSource.CancelEdit();
+                    EditState = false;
                     ((DataRowView)masterBindingSource.Current).Row.RejectChanges();
                     newState = false;
                     if (CancelAfter != null)
