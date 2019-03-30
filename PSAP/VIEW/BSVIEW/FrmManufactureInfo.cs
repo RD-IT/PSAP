@@ -15,10 +15,13 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmManufactureInfo : DockContent
     {
         FrmBaseEdit editForm = null;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmManufactureInfo()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -50,7 +53,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -61,13 +65,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textManufactureNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("工程编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiGcbh.Text);// ("工程编号不能为空，请重新操作。");
                 textManufactureNo.Focus();
                 return false;
             }
             if (textManufactureName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("工程名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiGcmc.Text);// ("工程名称不能为空，请重新操作。");
                 textManufactureName.Focus();
                 return false;
             }

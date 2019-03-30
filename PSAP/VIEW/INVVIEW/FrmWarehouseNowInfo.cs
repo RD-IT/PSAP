@@ -17,10 +17,13 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmWarehouseNowInfoDAO wNowInfoDAO = new FrmWarehouseNowInfoDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmWarehouseNowInfo()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -45,7 +48,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCtjzsjcw.Text , ex);
             }
         }
 
@@ -79,7 +83,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCxansjcw.Text , ex);
             }
         }
 
@@ -94,7 +99,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCxjgcwexcelcw.Text , ex);
             }
         }
 
@@ -130,7 +136,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiSzgriddyghbcw.Text , ex);
             }
         }
     }

@@ -61,5 +61,15 @@ namespace PSAP.DAO.BSDAO
             dt=BaseSQL.GetTableBySql(sql);
             return dt;
         }
+
+        /// <summary>
+        /// 查询该登陆ID的用户数量
+        /// </summary>
+        public int QueryUserInfoCount(string loginIdStr)
+        {
+            string sqlStr = string.Format("select Count(*) from BS_UserInfo where LoginId = '{0}'", loginIdStr);
+            int count = DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
+            return count;
+        }
     }
 }

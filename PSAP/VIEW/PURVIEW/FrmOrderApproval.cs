@@ -1,4 +1,5 @@
-﻿using PSAP.DAO.PURDAO;
+﻿using PSAP.DAO.INVDAO;
+using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,16 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 采购单号
         /// </summary>
-        string orderHeadNoStr ="";
+        string orderHeadNoStr = "";
 
-        FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmOrderApproval()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmOrderApproval(string orderHeadNo)
@@ -40,13 +43,40 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 lookUpApprovalType.Properties.DataSource = new DAO.BSDAO.FrmCommonDAO().QueryApprovalType(false);
+                switch(orderHeadNoStr.Substring(0,2))
+                {
+                    case "PR"://请购单
 
-                approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        break;
+                    case "PO"://采购订单
+                        approvalDAO.QueryOrderHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        break;
+                    case "WW"://入库单
+
+                        break;
+                    case "WR"://材料出库单
+
+                        break;
+                    case "PS"://采购结账单
+
+                        break;
+                    case "SW"://预算外入库单
+                        approvalDAO.QuerySpecialWarehouseWarrantHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        break;
+                    case "SR"://预算外出库单
+                        approvalDAO.QuerySpecialWarehouseReceiptHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        break;
+                    case "RG"://退货单
+                        approvalDAO.QueryReturnedGoodsReportHead(dataSet_Order.Tables[0], orderHeadNoStr);
+                        break;
+                }
                 if (dataSet_Order.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("查询采购订单信息错误，请重新操作。");
-                    return;
+                    MessageHandler.ShowMessageBox("查询单据信息错误，请重新操作。");
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
                 }
+
                 string typeNoStr = DataTypeConvert.GetString(dataSet_Order.Tables[0].Rows[0]["ApprovalType"]);
                 int approvalCatInt = DataTypeConvert.GetInt(dataSet_Order.Tables[0].Rows[0]["ApprovalCat"]);
                 approvalDAO.QueryOrderApprovalInfo(dataSet_Order.Tables[1], orderHeadNoStr, typeNoStr);
@@ -58,7 +88,7 @@ namespace PSAP.VIEW.BSVIEW
                         if (DataTypeConvert.GetString(dataSet_Order.Tables[1].Rows[i]["OrderHeadNo"]) == "")
                         {
                             if (DataTypeConvert.GetInt(dataSet_Order.Tables[1].Rows[i]["Approver"]) != SystemInfo.user.AutoId)
-                                btnApproval.Enabled = false;                                
+                                btnApproval.Enabled = false;
                             else
                                 btnApproval.Enabled = true;
                             return;
@@ -76,7 +106,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -98,7 +129,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (e.Value != null)
             {
-                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());                
+                e.DisplayText = CommonHandler.Get_OrderState_Desc(e.Value.ToString());
             }
         }
 
@@ -122,20 +153,44 @@ namespace PSAP.VIEW.BSVIEW
             {
                 dataSet_Order.Tables[0].Rows[0]["Select"] = true;
                 int successCountInt = 0;
-                if (!orderDAO.OrderApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt))
+                switch (orderHeadNoStr.Substring(0, 2))
                 {
-
+                    case "PR"://请购单
+                        new FrmPrReqDAO().PrReqApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "PO"://采购订单
+                        new FrmOrderDAO().OrderApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "WW"://入库单
+                        new FrmWarehouseWarrantDAO().WWApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "WR"://材料出库单
+                        new FrmWarehouseReceiptDAO().WRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "PS"://采购结账单
+                        new FrmSettlementDAO().SettlementApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "SW"://预算外入库单
+                        new FrmSpecialWarehouseWarrantDAO().SWWApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "SR"://预算外出库单
+                        new FrmSpecialWarehouseReceiptDAO().SWRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
+                    case "RG"://退货单
+                        new FrmReturnedGoodsReportDAO().RGRApprovalInfo_Multi(dataSet_Order.Tables[0], ref successCountInt);
+                        break;
                 }
-                if(successCountInt>0)
+                if (successCountInt > 0)
                 {
-                    MessageHandler.ShowMessageBox("审批成功。");
+                    MessageHandler.ShowMessageBox(f.tsmiSpcg.Text);// ("审批成功。");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--审批按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSpansj.Text, ex);
             }
         }
 

@@ -22,7 +22,7 @@ namespace PSAP.BLL.SALEBLL
         /// <summary>
         /// 用于多语言文本引用
         /// </summary>
-        static FrmProjectDocument f = new FrmProjectDocument();
+        static PSAP.VIEW.BSVIEW.FrmLanguageBSDAO f = new PSAP.VIEW.BSVIEW.FrmLanguageBSDAO();
 
         static FrmProjectDocumentBLL()
         {
@@ -37,19 +37,19 @@ namespace PSAP.BLL.SALEBLL
 
             if (fileSize < 1024)
             {
-                fileSizeStr = fileSize + " 字节";
+                fileSizeStr = fileSize + " " + f.tsmiZj.Text;
             }
             else if (fileSize >= 1024 && fileSize < 1024 * 1024)
             {
-                fileSizeStr = Math.Round(fileSize * 1.0 / 1024, 2, MidpointRounding.AwayFromZero) + " KB(" + fileSize + "字节)";
+                fileSizeStr = Math.Round(fileSize * 1.0 / 1024, 2, MidpointRounding.AwayFromZero) + " KB(" + fileSize + f.tsmiZj.Text + ")";
             }
             else if (fileSize >= 1024 * 1024 && fileSize < 1024 * 1024 * 1024)
             {
-                fileSizeStr = Math.Round(fileSize * 1.0 / (1024 * 1024), 2, MidpointRounding.AwayFromZero) + " MB(" + fileSize + "字节)";
+                fileSizeStr = Math.Round(fileSize * 1.0 / (1024 * 1024), 2, MidpointRounding.AwayFromZero) + " MB(" + fileSize + f.tsmiZj.Text + ")";
             }
             else if (fileSize >= 1024 * 1024 * 1024)
             {
-                fileSizeStr = Math.Round(fileSize * 1.0 / (1024 * 1024 * 1024), 2, MidpointRounding.AwayFromZero) + " GB(" + fileSize + "字节)";
+                fileSizeStr = Math.Round(fileSize * 1.0 / (1024 * 1024 * 1024), 2, MidpointRounding.AwayFromZero) + " GB(" + fileSize + f.tsmiZj.Text + ")";
             }
 
             return fileSizeStr;
@@ -71,16 +71,24 @@ namespace PSAP.BLL.SALEBLL
         /// </summary>
         public static void intiFtpDir()
         {
-            if (!FrmProjectDocument.ftp.DirectoryExist(FrmProjectDocument.FtpRootDir))
+            try
             {
-                FrmProjectDocument.ftp.MakeDir(FrmProjectDocument.FtpRootDir);
-                FrmProjectDocument.ftp.GotoDirectory(FrmProjectDocument.FtpRootDir, false);
-                FrmProjectDocument.ftp.MakeDir("img");
-                for (int i = 0; i <= 15; i++)
+                if (!FrmProjectDocument.ftp.DirectoryExist(FrmProjectDocument.FtpRootDir))
                 {
-                    FrmProjectDocument.ftp.MakeDir(GetSerialNumber16(1, i));
+                    FrmProjectDocument.ftp.MakeDir(FrmProjectDocument.FtpRootDir);
+                    FrmProjectDocument.ftp.GotoDirectory(FrmProjectDocument.FtpRootDir, false);
+                    FrmProjectDocument.ftp.MakeDir("img");
+                    for (int i = 0; i <= 15; i++)
+                    {
+                        FrmProjectDocument.ftp.MakeDir(GetSerialNumber16(1, i));
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         //将本地文件复制到本地文件夹//////////////////////////////////////////////
@@ -102,8 +110,8 @@ namespace PSAP.BLL.SALEBLL
 
                 else//下载//////////////
                 {
-                    //dialogResult = MessageBox.Show("确定要将选定文件添加到系统缓存？", "消息提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    dialogResult = MessageBox.Show(f.cms.Items[2].Text, "消息提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    //dialogResult = MessageBox.Show("确定要将选定文件添加到系统缓存？",  f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    dialogResult = MessageBox.Show(f.tsmiQdyjxdwjtjdxthc.Text, f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (dialogResult == DialogResult.Cancel)
                     {
                         return;
@@ -132,7 +140,7 @@ namespace PSAP.BLL.SALEBLL
                         }
                         catch (Exception e)
                         {
-                            MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -249,7 +257,7 @@ namespace PSAP.BLL.SALEBLL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -289,7 +297,7 @@ namespace PSAP.BLL.SALEBLL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -313,7 +321,7 @@ namespace PSAP.BLL.SALEBLL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -322,58 +330,22 @@ namespace PSAP.BLL.SALEBLL
         //通过递归，复制并粘贴文件夹（包含文件夹下的所有文件）
         public static void CopyAndPasteDirectory(DirectoryInfo sourceDirInfo, DirectoryInfo destDirInfo, Boolean isOverwrite, Boolean isDownload, int destProjectID, string nPath, ImageList ilRight)
         {
-            int fileDestProjectID;
-            //判断目标文件夹是否是源文件夹的子目录，是则给出错误提示，不进行任何操作
-            for (DirectoryInfo dirInfo = destDirInfo.Parent; dirInfo != null; dirInfo = dirInfo.Parent)
+            try
             {
-                if (dirInfo.FullName == sourceDirInfo.FullName)
+                int fileDestProjectID;
+                //判断目标文件夹是否是源文件夹的子目录，是则给出错误提示，不进行任何操作
+                for (DirectoryInfo dirInfo = destDirInfo.Parent; dirInfo != null; dirInfo = dirInfo.Parent)
                 {
-                    MessageBox.Show("无法复制！目标文件夹是源文件夹的子目录！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            //创建目标文件夹
-            if (!Directory.Exists(destDirInfo.FullName))
-            {
-                if (!ht.Contains(destDirInfo.Parent.FullName))
-                {
-                    ht.Add(destDirInfo.Parent.FullName, destProjectID);
-                }
-
-                //路径//////////
-                if (!htPath.Contains(destDirInfo.Parent.FullName))
-                {
-                    htPath.Add(destDirInfo.Parent.FullName, nPath);
-                }
-
-                if (!htPath.Contains(destDirInfo.FullName))
-                {
-                    if (destDirInfo.Parent != null)
+                    if (dirInfo.FullName == sourceDirInfo.FullName)
                     {
-                        htPath.Add(destDirInfo.FullName, htPath[destDirInfo.Parent.FullName] + destDirInfo.Name + @"\");
+                        //MessageBox.Show("无法复制，目标文件夹是源文件夹的子目。", f.tsmiCw.Text , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(f.tsmiWffzmbwjjsy.Text, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
-                //路径//////////////
-
-                //将复制的文件夹数据同步到数据库
-                destProjectID = Convert.ToInt32(ht[destDirInfo.Parent.FullName]);
-                destProjectID = FrmProjectDocumentDAO.CreateFolderToSever(destDirInfo.Name, htPath[destDirInfo.FullName].ToString(), destProjectID);///
-
-                if (!ht.Contains(destDirInfo.FullName))
+                //创建目标文件夹
+                if (!Directory.Exists(destDirInfo.FullName))
                 {
-                    ht.Add(destDirInfo.FullName, destProjectID);
-                }
-
-                //新建文件夹
-                Directory.CreateDirectory(destDirInfo.FullName);
-            }
-            else
-            //**********************************************************************gggg
-            {
-                string projectPath = destDirInfo.FullName.Substring(FrmProjectDocument.diskLocal.Length + FrmProjectDocument.rootDir.Length) + @"\";
-                if (FrmProjectDocumentDAO.GetExistsProjectID(projectPath) != -1)
-                {
-                    destProjectID = FrmProjectDocumentDAO.GetExistsProjectID(projectPath);
                     if (!ht.Contains(destDirInfo.Parent.FullName))
                     {
                         ht.Add(destDirInfo.Parent.FullName, destProjectID);
@@ -394,54 +366,54 @@ namespace PSAP.BLL.SALEBLL
                     }
                     //路径//////////////
 
-                    ////将复制的文件夹数据同步到数据库
-                    //destProjectID = Convert.ToInt32(ht[destDirInfo.Parent.FullName]);
-                    //destProjectID = FrmProjectDocumentDAO.CreateFolderToSever(destDirInfo.Name, htPath[destDirInfo.FullName].ToString(), destProjectID);///
+                    //将复制的文件夹数据同步到数据库
+                    destProjectID = Convert.ToInt32(ht[destDirInfo.Parent.FullName]);
+                    destProjectID = FrmProjectDocumentDAO.CreateFolderToSever(destDirInfo.Name, htPath[destDirInfo.FullName].ToString(), destProjectID);///
 
                     if (!ht.Contains(destDirInfo.FullName))
                     {
                         ht.Add(destDirInfo.FullName, destProjectID);
                     }
 
-                    ////新建文件夹
-                    //Directory.CreateDirectory(destDirInfo.FullName);
-                }
-            }
-            //***************************************************************ggggg
-            DialogResult dialogResult;
-            //复制文件并将文件粘贴到目标文件夹下
-            foreach (FileInfo fileInfo in sourceDirInfo.GetFiles())
-            {
-                if (!File.Exists(Path.Combine(destDirInfo.FullName, fileInfo.Name)))//文件不存在
-                {
-                    //将新出现的文件图标上传到FTP
-                    if (!FrmProjectDocumentDAO.ExistsFileExtension(fileInfo.Name))
-                    {
-                        createNewIcoFileToFtp(ilRight, fileInfo);
-                    }
-
-                    //将复制的文档数据同步到数据库
-                    fileDestProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);
-                    FrmProjectDocumentDAO.CreateDocmentToLocal(fileInfo.Name, fileDestProjectID, FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + @htPath[destDirInfo.FullName].ToString(), fileInfo.Length, fileInfo.LastWriteTime);//190211
-                    //复制文件
-                    fileInfo.CopyTo(Path.Combine(destDirInfo.FullName, fileInfo.Name), isOverwrite);
-                    //记录操作过程
-                    string tmp;
-                    if (!File.Exists(Path.Combine(destDirInfo.FullName, fileInfo.Name)))
-                    {
-                        tmp = "新增";
-                    }
-                    else
-                    {
-                        tmp = "覆盖";
-                    }
-                    DocumentManagementRecord(fileInfo.FullName, Path.Combine(destDirInfo.FullName, fileInfo.Name), isDownload ? "下载" : "上传", tmp);
-
+                    //新建文件夹
+                    Directory.CreateDirectory(destDirInfo.FullName);
                 }
                 else
                 {
-                    dialogResult = MessageBox.Show("文件【" + fileInfo.Name + "】已存在，要覆盖原文件吗？", "文件存在确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    string projectPath = destDirInfo.FullName.Substring(FrmProjectDocument.diskLocal.Length + FrmProjectDocument.rootDir.Length) + @"\";
+                    if (FrmProjectDocumentDAO.GetExistsProjectID(projectPath) != -1)
+                    {
+                        destProjectID = FrmProjectDocumentDAO.GetExistsProjectID(projectPath);
+                        if (!ht.Contains(destDirInfo.Parent.FullName))
+                        {
+                            ht.Add(destDirInfo.Parent.FullName, destProjectID);
+                        }
+
+                        //路径//////////
+                        if (!htPath.Contains(destDirInfo.Parent.FullName))
+                        {
+                            htPath.Add(destDirInfo.Parent.FullName, nPath);
+                        }
+
+                        if (!htPath.Contains(destDirInfo.FullName))
+                        {
+                            if (destDirInfo.Parent != null)
+                            {
+                                htPath.Add(destDirInfo.FullName, htPath[destDirInfo.Parent.FullName] + destDirInfo.Name + @"\");
+                            }
+                        }
+                        if (!ht.Contains(destDirInfo.FullName))
+                        {
+                            ht.Add(destDirInfo.FullName, destProjectID);
+                        }
+
+                    }
+                }
+                DialogResult dialogResult;
+                //复制文件并将文件粘贴到目标文件夹下
+                foreach (FileInfo fileInfo in sourceDirInfo.GetFiles())
+                {
+                    if (!File.Exists(Path.Combine(destDirInfo.FullName, fileInfo.Name)))//文件不存在
                     {
                         //将新出现的文件图标上传到FTP
                         if (!FrmProjectDocumentDAO.ExistsFileExtension(fileInfo.Name))
@@ -449,49 +421,84 @@ namespace PSAP.BLL.SALEBLL
                             createNewIcoFileToFtp(ilRight, fileInfo);
                         }
 
-                        //将复制的文档数据同步到数据库(文件存在时不加入数据，最多只更新数据)
-                        fileDestProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);//111222mm
-                        //复制文件
-                        fileInfo.CopyTo(Path.Combine(destDirInfo.FullName, fileInfo.Name), true);
-
+                        //将复制的文档数据同步到数据库
+                        fileDestProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);
+                        FrmProjectDocumentDAO.CreateDocmentToLocal(fileInfo.Name, fileDestProjectID, FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + @htPath[destDirInfo.FullName].ToString(), fileInfo.Length, fileInfo.LastWriteTime);//190211
+                                                                                                                                                                                                                                                    //复制文件
+                        fileInfo.CopyTo(Path.Combine(destDirInfo.FullName, fileInfo.Name), isOverwrite);
                         //记录操作过程
                         string tmp;
-                        tmp = "覆盖";
+                        if (!File.Exists(Path.Combine(destDirInfo.FullName, fileInfo.Name)))
+                        {
+                            tmp = "新增";
+                        }
+                        else
+                        {
+                            tmp = "覆盖";
+                        }
                         DocumentManagementRecord(fileInfo.FullName, Path.Combine(destDirInfo.FullName, fileInfo.Name), isDownload ? "下载" : "上传", tmp);
+
+                    }
+                    else
+                    {
+                        dialogResult = MessageBox.Show("文件【" + fileInfo.Name + "】已存在，要覆盖原文件吗？", "文件存在确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            //将新出现的文件图标上传到FTP
+                            if (!FrmProjectDocumentDAO.ExistsFileExtension(fileInfo.Name))
+                            {
+                                createNewIcoFileToFtp(ilRight, fileInfo);
+                            }
+
+                            //将复制的文档数据同步到数据库(文件存在时不加入数据，最多只更新数据)
+                            fileDestProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);//111222mm
+                                                                                          //复制文件
+                            fileInfo.CopyTo(Path.Combine(destDirInfo.FullName, fileInfo.Name), true);
+
+                            //记录操作过程
+                            string tmp;
+                            tmp = "覆盖";
+                            DocumentManagementRecord(fileInfo.FullName, Path.Combine(destDirInfo.FullName, fileInfo.Name), isDownload ? "下载" : "上传", tmp);
+                        }
                     }
                 }
-            }
 
-            //递归复制并将子文件夹粘贴到目标文件夹下
-            foreach (DirectoryInfo sourceSubDirInfo in sourceDirInfo.GetDirectories())
+                //递归复制并将子文件夹粘贴到目标文件夹下
+                foreach (DirectoryInfo sourceSubDirInfo in sourceDirInfo.GetDirectories())
+                {
+                    DirectoryInfo destSubDirInfo = destDirInfo.CreateSubdirectory(sourceSubDirInfo.Name);
+
+                    //路径////////
+                    if (!htPath.Contains(destSubDirInfo.FullName))
+                    {
+                        {
+                            htPath.Add(destSubDirInfo.FullName, htPath[destSubDirInfo.Parent.FullName] + destSubDirInfo.Name + @"\");
+                        }
+                    }
+                    //路径///////
+
+                    //将复制的文件夹数据同步到数据库
+                    string projectPath = destSubDirInfo.FullName.Substring(FrmProjectDocument.diskLocal.Length + FrmProjectDocument.rootDir.Length) + @"\";
+                    if (FrmProjectDocumentDAO.GetExistsProjectID(projectPath) == -1)//只有数据库中没有记录时才添加
+                    {
+                        {
+                            destProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);
+                            destProjectID = FrmProjectDocumentDAO.CreateFolderToSever(destSubDirInfo.Name, htPath[destSubDirInfo.FullName].ToString(), destProjectID);///
+                        }
+                    }
+
+                    if (!ht.Contains(destSubDirInfo.FullName))
+                    {
+                        ht.Add(destSubDirInfo.FullName, destProjectID);
+                    }
+                    CopyAndPasteDirectory(sourceSubDirInfo, destSubDirInfo, isOverwrite, isDownload, destProjectID, Convert.ToString(htPath[destSubDirInfo.FullName]), ilRight);
+                }
+            }
+            catch (Exception e)
             {
-                DirectoryInfo destSubDirInfo = destDirInfo.CreateSubdirectory(sourceSubDirInfo.Name);
-
-                //路径////////
-                if (!htPath.Contains(destSubDirInfo.FullName))
-                {
-                    {
-                        htPath.Add(destSubDirInfo.FullName, htPath[destSubDirInfo.Parent.FullName] + destSubDirInfo.Name + @"\");
-                    }
-                }
-                //路径///////
-
-                //将复制的文件夹数据同步到数据库
-                string projectPath = destSubDirInfo.FullName.Substring(FrmProjectDocument.diskLocal.Length + FrmProjectDocument.rootDir.Length) + @"\";
-                if (FrmProjectDocumentDAO.GetExistsProjectID(projectPath) == -1)//只有数据库中没有记录时才添加
-                {
-                    {
-                        destProjectID = Convert.ToInt32(ht[destDirInfo.FullName]);
-                        destProjectID = FrmProjectDocumentDAO.CreateFolderToSever(destSubDirInfo.Name, htPath[destSubDirInfo.FullName].ToString(), destProjectID);///
-                    }
-                }
-
-                if (!ht.Contains(destSubDirInfo.FullName))
-                {
-                    ht.Add(destSubDirInfo.FullName, destProjectID);
-                }
-                CopyAndPasteDirectory(sourceSubDirInfo, destSubDirInfo, isOverwrite, isDownload, destProjectID, Convert.ToString(htPath[destSubDirInfo.FullName]), ilRight);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         /// <summary>
@@ -548,7 +555,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -558,38 +565,53 @@ namespace PSAP.BLL.SALEBLL
         /// </summary>     
         public static void DeleteFileByDirectory(DirectoryInfo info)
         {
-            foreach (DirectoryInfo newInfo in info.GetDirectories())
+            try
             {
-                DeleteFileByDirectory(newInfo);
+                foreach (DirectoryInfo newInfo in info.GetDirectories())
+                {
+                    DeleteFileByDirectory(newInfo);
+                }
+                foreach (FileInfo newInfo in info.GetFiles())
+                {
+                    newInfo.Attributes = newInfo.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
+                    newInfo.Delete();
+                }
+                info.Attributes = info.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
+                info.Delete();
             }
-            foreach (FileInfo newInfo in info.GetFiles())
+            catch (Exception e)
             {
-                newInfo.Attributes = newInfo.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
-                newInfo.Delete();
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            info.Attributes = info.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
-            info.Delete();
+
         }
 
 
         //遍历子项
         private static void DeleteChildItem(int iProjectID)
         {
-            DataTable dt = FrmProjectDocumentDAO.GetDocuments(iProjectID);
-            //列出所有文件
-            foreach (DataRow dr in dt.Rows)
+            try
             {
-                FrmProjectDocumentDAO.AddSqlDeleteSelFile(Convert.ToInt32(dr["DocumentID"]));
-            }
-
-            DataTable dt1 = FrmProjectDocumentDAO.GetProjectDir(iProjectID);//获取项目文件夹列表
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                if (dr1 != null)
+                DataTable dt = FrmProjectDocumentDAO.GetDocuments(iProjectID);
+                //列出所有文件
+                foreach (DataRow dr in dt.Rows)
                 {
-                    FrmProjectDocumentDAO.AddSqlDeleteSelDir(Convert.ToInt32(dr1["childProject"]));//增加删除SQL语句
-                    DeleteChildItem(Convert.ToInt32(dr1["childProject"]));//递归
+                    FrmProjectDocumentDAO.AddSqlDeleteSelFile(Convert.ToInt32(dr["DocumentID"]));
                 }
+
+                DataTable dt1 = FrmProjectDocumentDAO.GetProjectDir(iProjectID);//获取项目文件夹列表
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    if (dr1 != null)
+                    {
+                        FrmProjectDocumentDAO.AddSqlDeleteSelDir(Convert.ToInt32(dr1["childProject"]));//增加删除SQL语句
+                        DeleteChildItem(Convert.ToInt32(dr1["childProject"]));//递归
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -603,7 +625,7 @@ namespace PSAP.BLL.SALEBLL
             {
                 DialogResult dialogResult;
                 //dialogResult = MessageBox.Show("确定要删除选定项吗？", "删除确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                dialogResult = MessageBox.Show(f.cms.Items["msgDeleteM"].Text, f.cms.Items["msgDeleteCaption"].Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.tsmiQdyscxdxm.Text, f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                 if (dialogResult == DialogResult.Cancel)
                 {
@@ -613,7 +635,8 @@ namespace PSAP.BLL.SALEBLL
             }
             else
             {
-                MessageBox.Show("请先选择要删除的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要删除的文件或文件夹？", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.tsmiQxxzyscdwjhwjj.Text, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         #region **********************添加到库***********************************************
@@ -626,7 +649,8 @@ namespace PSAP.BLL.SALEBLL
             if (lv.SelectedItems.Count > 0)
             {
                 DialogResult dialogResult;
-                dialogResult = MessageBox.Show("确定要检入选定项吗？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                //dialogResult = MessageBox.Show("确定要检入选定项吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.tsmiQdyjrxdxm.Text, f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -635,7 +659,8 @@ namespace PSAP.BLL.SALEBLL
             }
             else
             {
-                MessageBox.Show("请先选择要检入的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要检入的文件或文件夹？", "提示", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(f.tsmiQxzyjrdwjhwjj.Text, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -661,7 +686,7 @@ namespace PSAP.BLL.SALEBLL
 
                         //文件下载到本地的路径
                         localPath = FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + FrmProjectDocumentDAO.GetProjectLocalPath(Convert.ToInt32(lvi.Tag));
-                        DataTable dt = FrmProjectDocumentDAO.GetAddToFtp(Convert.ToInt32(lvi.Tag), 90, "pc-songxi");//change
+                        DataTable dt = FrmProjectDocumentDAO.GetAddToFtp(Convert.ToInt32(lvi.Tag), SystemInfo.user.AutoId, "pc-songxi");//change
 
                         //列出所有文件
                         foreach (DataRow dr in dt.Rows)
@@ -678,7 +703,7 @@ namespace PSAP.BLL.SALEBLL
                         dr = FrmProjectDocumentDAO.GetDocumentInfo(Convert.ToInt32(lvi.Tag));
                         //调用文件添加入库方法     //change  【90】
                         if (Convert.ToBoolean(dr["deleted"]) == false
-                            && Convert.ToInt32(dr["userID"]) == 90
+                            && Convert.ToInt32(dr["userID"]) == SystemInfo.user.AutoId
                             && dr["lockDomain"].ToString() == "pc-songxi"
                             && Convert.ToInt32(dr["defValStored"]) == 0)
                         {
@@ -688,7 +713,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -730,7 +755,8 @@ namespace PSAP.BLL.SALEBLL
 
                 if (!File.Exists(localFilePath))
                 {
-                    MessageBox.Show("本地文件【" + fileName + "】不存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("本地文件【" + fileName + "】不存在。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(f.tsmiBdwj.Text + "【" + fileName + "】" + f.tsmiBcz.Text, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -748,7 +774,8 @@ namespace PSAP.BLL.SALEBLL
 
                 if (FrmProjectDocument.ftp.FileExist(ftpFileName))//文件存在
                 {//此部分正常是用不上的
-                    dialogResult = MessageBox.Show("文件已存在，不需再次添加入库？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                 //dialogResult = MessageBox.Show("文件已存在，不需再次添加入库。", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    dialogResult = MessageBox.Show(f.tsmiWjyczbxzctjrk.Text, f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (dialogResult == DialogResult.Cancel)
                     {
                         return;
@@ -764,7 +791,7 @@ namespace PSAP.BLL.SALEBLL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion **********************添加到库***********************************************
@@ -779,8 +806,10 @@ namespace PSAP.BLL.SALEBLL
         {
             if (lv.SelectedItems.Count > 0)
             {
+                //DialogResult dialogResult;
+                //dialogResult = MessageBox.Show("确定要检入选定项吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 DialogResult dialogResult;
-                dialogResult = MessageBox.Show("确定要检入选定项吗？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.tsmiQdyjrxdxm.Text, f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -789,7 +818,8 @@ namespace PSAP.BLL.SALEBLL
             }
             else
             {
-                MessageBox.Show("请先选择要检入的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要检入的文件或文件夹。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.tsmiQxxzyjrdwjhwjj.Text, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -816,7 +846,7 @@ namespace PSAP.BLL.SALEBLL
 
                         //文件下载到本地的路径
                         localPath = FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + FrmProjectDocumentDAO.GetProjectLocalPath(Convert.ToInt32(lvi.Tag));
-                        DataTable dt = FrmProjectDocumentDAO.GetCheckIn(Convert.ToInt32(lvi.Tag), 90, "pc-songxi");//change
+                        DataTable dt = FrmProjectDocumentDAO.GetCheckIn(Convert.ToInt32(lvi.Tag), SystemInfo.user.AutoId, "pc-songxi");//change
                         //列出所有文件
                         foreach (DataRow dr in dt.Rows)
                         {
@@ -832,7 +862,7 @@ namespace PSAP.BLL.SALEBLL
                         dr = FrmProjectDocumentDAO.GetDocumentInfo(Convert.ToInt32(lvi.Tag));
                         //调用检入文件方法     //change
                         if (Convert.ToBoolean(dr["deleted"]) == false
-                            && Convert.ToInt32(dr["userID"]) == 90
+                            && Convert.ToInt32(dr["userID"]) == SystemInfo.user.AutoId
                             && dr["lockDomain"].ToString() == "pc-songxi"
                             && Convert.ToInt32(dr["defValStored"]) == 1)
                         {
@@ -844,7 +874,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -885,7 +915,8 @@ namespace PSAP.BLL.SALEBLL
 
                 if (!File.Exists(localFilePath))
                 {
-                    MessageBox.Show("本地文件【" + fileName + "】不存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("本地文件【" + fileName + "】不存在！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(f.tsmiBdwj.Text + "【" + fileName + "】" + f.tsmiBcz.Text, f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 string xt = FrmProjectDocument.rootDir + @"\" + documentDir.Substring(documentDir.Length - 1, 1);
@@ -911,7 +942,7 @@ namespace PSAP.BLL.SALEBLL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion **********************检入***********************************************
@@ -927,7 +958,8 @@ namespace PSAP.BLL.SALEBLL
             if (lv.SelectedItems.Count > 0)
             {
                 DialogResult dialogResult;
-                dialogResult = MessageBox.Show("确定要检出选定项吗？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                //dialogResult = MessageBox.Show("确定要检出选定项吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.tsmiQdyjcxdxm.Text, f.tsmiTs.Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -936,7 +968,8 @@ namespace PSAP.BLL.SALEBLL
             }
             else
             {
-                MessageBox.Show("请先选择要检出的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要检出的文件或文件夹。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.tsmiQxxzyjcdwjhwjj.Text , f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -987,37 +1020,11 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        ///// <summary>
-        ///// 遍历检出子文件夹下的文件
-        ///// </summary>
-        ///// <param name="iProjectID"></param>
-        //private static void CheckOutChildItem(int iProjectID)
-        //{
-        //    //文件下载到本地进的路径
-        //    string localPath = FrmProjectDocument.diskLocal + FrmProjectDocument.rootDir + FrmProjectDocumentDAO.GetProjectLocalPath(iProjectID);
-        //    DataTable dt = FrmProjectDocumentDAO.GetDocuments(iProjectID);
-        //    //列出所有文件
-        //    foreach (DataRow dr in dt.Rows)
-        //    {
-        //        //调用检出文件方法
-        //        CheckOutFile(localPath, Convert.ToInt32(dr["DocumentID"]), dr["fileName"].ToString());
-        //    }
-
-        //    DataTable dt1 = FrmProjectDocumentDAO.GetProjectDir(iProjectID);//获取项目文件夹列表
-        //    //遍历所有文件夹
-        //    foreach (DataRow dr1 in dt1.Rows)
-        //    {
-        //        if (dr1 != null)
-        //        {
-        //            CheckOutChildItem(Convert.ToInt32(dr1["childProject"]));//递归
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// 检出文件
@@ -1043,7 +1050,8 @@ namespace PSAP.BLL.SALEBLL
                 }
                 else
                 {
-                    MessageBox.Show("远程文件夹不存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("远程文件夹不存在。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(f.tsmiYcwjjbcz.Text ,f.tsmiTs.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 string ftpFileName;
@@ -1066,18 +1074,19 @@ namespace PSAP.BLL.SALEBLL
                     FileInfo f = new FileInfo(localPath + ftpFileName);
                     f.MoveTo(Path.Combine(f.Directory.FullName, fileName));//改名
                     //更新【检出】状态标记   //change
-                    FrmProjectDocumentDAO.UpdateCheckOutFlag(documentID, localPath, 90, "pc-songxi");
+                    FrmProjectDocumentDAO.UpdateCheckOutFlag(documentID, localPath, SystemInfo.user.AutoId, "pc-songxi");
 
                 }
                 else
                 {
-                    MessageBox.Show("远程文件【" + fileName + "】不存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("远程文件【" + fileName + "】不存在。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(f.tsmiYcwj.Text +"【" + fileName + "】"+f.tsmiBcz.Text , f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion *********************检出***********************************************
@@ -1110,7 +1119,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1140,7 +1149,8 @@ namespace PSAP.BLL.SALEBLL
                 }
                 else
                 {
-                    MessageBox.Show("远程文件夹不存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("远程文件夹不存在。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(f.tsmiYcwjjbcz.Text , f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 string ftpFileName;
@@ -1164,14 +1174,15 @@ namespace PSAP.BLL.SALEBLL
                 }
                 else
                 {
-                    MessageBox.Show("远程文件【" + fileName + "】不存在！", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("远程文件【" + fileName + "】不存在。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(f.tsmiYcwj.Text+"【" + fileName + "】"+f.tsmiBcz.Text , f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion *********************缓存文件***********************************************
@@ -1345,7 +1356,7 @@ namespace PSAP.BLL.SALEBLL
                         {
                             if (addToFtpFlag == false)
                             {
-                                if (Convert.ToInt32(lvi.SubItems[5].Text) == 90 &&
+                                if (Convert.ToInt32(lvi.SubItems[5].Text) == SystemInfo.user.AutoId &&
                                     lvi.SubItems[6].Text == "pc-songxi" &&
                                     Convert.ToInt32(lvi.SubItems[8].Text) == 0)
                                 {
@@ -1363,7 +1374,7 @@ namespace PSAP.BLL.SALEBLL
                         {
                             if (checkInFlag == false)
                             {
-                                if (Convert.ToInt32(lvi.SubItems[5].Text) == 90 &&
+                                if (Convert.ToInt32(lvi.SubItems[5].Text) == SystemInfo.user.AutoId &&
                                     lvi.SubItems[6].Text == "pc-songxi" &&
                                      Convert.ToInt32(lvi.SubItems[8].Text) == 1)
                                 {
@@ -1398,7 +1409,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1472,7 +1483,7 @@ namespace PSAP.BLL.SALEBLL
             {
                 if (addToFtpFlag == false)
                 {
-                    if (FrmProjectDocumentDAO.GetAddToFtp(projectID, 90, "pc-songxi").Rows.Count > 0)
+                    if (FrmProjectDocumentDAO.GetAddToFtp(projectID, SystemInfo.user.AutoId, "pc-songxi").Rows.Count > 0)
                     {
                         cms.Items["tsmiAddToFtp"].Enabled = true;
                         addToFtpFlag = true;
@@ -1489,7 +1500,7 @@ namespace PSAP.BLL.SALEBLL
             {
                 if (checkInFlag == false)
                 {
-                    if (FrmProjectDocumentDAO.GetCheckIn(projectID, 90, "pc-songxi").Rows.Count > 0)
+                    if (FrmProjectDocumentDAO.GetCheckIn(projectID, SystemInfo.user.AutoId, "pc-songxi").Rows.Count > 0)
                     {
                         cms.Items["tsmiCheckIn"].Enabled = true;
                         checkInFlag = true;
@@ -1604,7 +1615,8 @@ namespace PSAP.BLL.SALEBLL
             if (lv.SelectedItems.Count > 0)
             {
                 DialogResult dialogResult;
-                dialogResult = MessageBox.Show("确定要隐藏选定文件吗？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                //dialogResult = MessageBox.Show("确定要隐藏选定文件吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.tsmiQdyycxdwjm.Text , f.tsmiTs.Text , MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -1613,7 +1625,8 @@ namespace PSAP.BLL.SALEBLL
             }
             else
             {
-                MessageBox.Show("请先选择要隐藏的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要隐藏的文件或文件夹。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.tsmiQxxzyycdwjhwjj.Text ,f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1654,7 +1667,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1672,7 +1685,8 @@ namespace PSAP.BLL.SALEBLL
             if (lv.SelectedItems.Count > 0)
             {
                 DialogResult dialogResult;
-                dialogResult = MessageBox.Show("确定要取消隐藏选定文件吗？", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                //dialogResult = MessageBox.Show("确定要取消隐藏选定文件吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(f.tsmiQdyycxdwjm.Text , f.tsmiTs.Text , MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -1681,7 +1695,8 @@ namespace PSAP.BLL.SALEBLL
             }
             else
             {
-                MessageBox.Show("请先选择要取消隐藏的文件或文件夹？", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("请先选择要取消隐藏的文件或文件夹？", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(f.tsmiQxxzyycdwjhwjj.Text , f.tsmiTs.Text , MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1722,7 +1737,7 @@ namespace PSAP.BLL.SALEBLL
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(e.Message, f.tsmiCw.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

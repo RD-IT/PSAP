@@ -12,7 +12,7 @@ namespace PSAP.DAO.INVDAO
 {
     public class FrmWarehouseWarrantDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmWarehouseWarrant_Drag f = new VIEW.BSVIEW.FrmWarehouseWarrant_Drag();
+        static PSAP.VIEW.BSVIEW.FrmLanguageINVDAO f = new VIEW.BSVIEW.FrmLanguageINVDAO();
         public FrmWarehouseWarrantDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);
@@ -204,12 +204,12 @@ namespace PSAP.DAO.INVDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        if (!CheckOrderApplyBeyondCount(cmd, wwHeadRow["WarehouseWarrant"].ToString(), wwListTable))
+                        if (!CheckOrderApplyBeyondCount(cmd, DataTypeConvert.GetString(wwHeadRow["WarehouseWarrant"]), wwListTable))
                         {
                             return 0;
                         }
 
-                        if (wwHeadRow["WarehouseWarrant"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(wwHeadRow["WarehouseWarrant"]) == "")//新增
                         {
                             string wwNo = BaseSQL.GetMaxCodeNo(cmd, "WW");
                             wwHeadRow["WarehouseWarrant"] = wwNo;
@@ -612,7 +612,7 @@ namespace PSAP.DAO.INVDAO
                     try
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
-
+                        DateTime serverTime = BaseSQL.GetServerDateTime();
                         cmd.CommandText = string.Format("select WarehouseWarrant from INV_WarehouseWarrantHead where WarehouseState = 2 and WarehouseWarrant in ({0})", wwHeadNoListStr);
                         DataTable approcalWWTable = new DataTable();
                         SqlDataAdapter appradpt = new SqlDataAdapter(cmd);
@@ -638,7 +638,7 @@ namespace PSAP.DAO.INVDAO
                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "入库单", orderHeadRows[i], "WarehouseWarrant", "取消审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         for (int i = 0; i < approcalWWTable.Rows.Count; i++)

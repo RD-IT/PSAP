@@ -13,8 +13,8 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmDocumentTempletDAO
     {
-               static PSAP.VIEW.BSVIEW.FrmDocumentTemplet f = new VIEW.BSVIEW.FrmDocumentTemplet();
-     public FrmDocumentTempletDAO()
+        static PSAP.VIEW.BSVIEW.FrmLanguagePURDAO f = new VIEW.BSVIEW.FrmLanguagePURDAO();
+        public FrmDocumentTempletDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);
         }
@@ -48,7 +48,7 @@ namespace PSAP.DAO.PURDAO
             {
                 //MessageHandler.ShowMessageBox("未查询到当前表的模板记录，操作错误。");
                 MessageHandler.ShowMessageBox(f.tsmiWcxddq.Text);
-                                return false;
+                return false;
             }
             string docPathStr = DataTypeConvert.GetString(docTempletTable.Rows[0]["DocPath"]) + DataTypeConvert.GetString(docTempletTable.Rows[0]["DocFileName"]);
 
@@ -80,7 +80,7 @@ namespace PSAP.DAO.PURDAO
             if (docTable.Rows.Count == 0)
                 //throw new Exception("查询模板文件异常。");
                 throw new Exception(f.tsmiCxmbwj.Text);
-                            return (byte[])docTable.Rows[0]["FileByte"];
+            return (byte[])docTable.Rows[0]["FileByte"];
         }
 
         /// <summary>

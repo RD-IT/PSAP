@@ -13,10 +13,14 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmUnitCatg_New : DockContent
     {
         FrmBaseEdit editForm = null;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmUnitCatg_New()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
+
         }
 
         /// <summary>
@@ -48,7 +52,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -59,17 +64,16 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textUnitNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("单位编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiDwbhbnwk.Text);// ("单位编号不能为空，请重新操作。");
                 textUnitNo.Focus();
                 return false;
             }
             if (textUnitName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("单位名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiDwmcbnwk.Text);// ("单位名称不能为空，请重新操作。");
                 textUnitName.Focus();
                 return false;
             }
-
             return true;
         }
 

@@ -145,10 +145,10 @@
   <data name="dockPnlLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABp0RVh0VGl0
-        bGUAU2FsZXNBbmFseXNpcztTYWxlczukskOOAAAAp0lEQVQ4T2P4//8/AyUYrPlGsgsI/ycCw9TCaYIG
-        wFwHNZx0A9BcRRUDULxK0AtYXIBpAL5YwGUALPAZfJt2/MeD0WMHmQ8OD7AB2ADUUIxAQ3IRqgEHDx78
-        D8MgA5EMwJY+fkHTDlEuIM4APC5A9gYbUsIiOQymAJ39D4j7kJI/wgvI/kcOAyQbv0ID8CtWA9BjAhaI
-        SAbUAw14BsSVGAbgSweEsjoAxHKIKGD4UK0AAAAASUVORK5CYII=
+        bGUAU2FsZXNBbmFseXNpcztTYWxlczukskOOAAAAoUlEQVQ4T7WQwQ2DMAxFc+pkvTJFp+BUqQNw6jC9
+        ZotOwAZcONT8UNs1JqQgwNKLYjl+thKIaBfj8b5dE7QCeav8FcgkzrVROH8Dx+zdMYISrkFzroVQPV5U
+        YFHA968gF0bgyQtijEoKI5AGSw+mAh+bBYUNLBeU5HNHtvzBE3xAg/JcYKenEAGuMrEDaf2O86nAR0Zw
+        By2oOf8JCqggD4UBxHKIKHXhKP4AAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="popupMenuList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -156,5 +156,17 @@
   </metadata>
   <metadata name="barManagerForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>570, 56</value>
+  </metadata>
+  <metadata name="cms.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>725, 56</value>
+  </metadata>
+  <metadata name="cms3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
+  <metadata name="cms2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>182, 95</value>
+  </metadata>
+  <metadata name="cms1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>264, 95</value>
   </metadata>
 </root>

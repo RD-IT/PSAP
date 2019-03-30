@@ -16,10 +16,14 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmBaseEdit editForm = null;
         FrmCommonDAO commonDAO = new FrmCommonDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmUserInfo_New()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
+
         }
 
         /// <summary>
@@ -45,6 +49,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.BrowseXtraGridView = gridViewUserInfo;
                     editForm.CheckControl += CheckControl;
                     editForm.SaveRowBefore += SaveRowBefore;
+                    editForm.DeleteRowBefore += DeleteRowBefore;
                     this.pnlToolBar.Controls.Add(editForm);
                     editForm.Dock = DockStyle.Fill;
                     editForm.Show();
@@ -54,7 +59,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -65,17 +71,25 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textLoginId.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("登陆名不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiDlmbnwk.Text);// ("登陆名不能为空，请重新操作。");
                 textLoginId.Focus();
                 return false;
             }
             if (textEmpName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("员工姓名不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiYgxmbnwk.Text);// ("员工姓名不能为空，请重新操作。");
                 textEmpName.Focus();
                 return false;
             }
-            
+
+            int count = new FrmLoginDAO().QueryUserInfoCount(textLoginId.Text.Trim());
+            if (count > 0)
+            {
+                MessageHandler.ShowMessageBox("当前登陆名已经被使用，不可以重复，请重新输入登陆名。");
+                textLoginId.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -110,6 +124,20 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 删除之前进行判断
+        /// </summary>
+        public bool DeleteRowBefore(DataRow dr, SqlCommand cmd)
+        {
+            int autoId = DataTypeConvert.GetInt(dr["AutoId", DataRowVersion.Original]);
+            if (autoId == 1)
+            {
+                MessageHandler.ShowMessageBox("管理员的用户信息不可以删除。");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// 确定行号
         /// </summary>
         private void gridViewUserInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -125,7 +153,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void TableUserInfo_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
-            if(((DataTable)lookUpDept.Properties.DataSource).Rows.Count>0)
+            if (((DataTable)lookUpDept.Properties.DataSource).Rows.Count > 0)
                 e.Row["DepartmentNo"] = DataTypeConvert.GetString(((DataTable)lookUpDept.Properties.DataSource).Rows[0]["DepartmentNo"]);
             e.Row["Founder"] = SystemInfo.user.EmpName;
             e.Row["CreateDate"] = BaseSQL.GetServerDateTime();

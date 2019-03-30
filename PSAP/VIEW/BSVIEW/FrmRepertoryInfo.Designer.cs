@@ -51,6 +51,9 @@
             this.colRepertoryNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRepertoryName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRepertoryType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCkbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCkmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSRepertoryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableRepertoryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSRepertoryInfo)).BeginInit();
@@ -64,6 +67,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlRepertoryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewRepertoryInfo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSRepertoryInfo
@@ -263,6 +267,26 @@
             this.colRepertoryType.VisibleIndex = 2;
             this.colRepertoryType.Width = 120;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCkbhbnwk,
+            this.tsmiCkmcbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
+            // 
+            // tsmiCkbhbnwk
+            // 
+            this.tsmiCkbhbnwk.Name = "tsmiCkbhbnwk";
+            this.tsmiCkbhbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiCkbhbnwk.Text = "仓库编号不能为空，请重新操作。";
+            // 
+            // tsmiCkmcbnwk
+            // 
+            this.tsmiCkmcbnwk.Name = "tsmiCkmcbnwk";
+            this.tsmiCkmcbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiCkmcbnwk.Text = "仓库名称不能为空，请重新操作。";
+            // 
             // FrmRepertoryInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -288,6 +312,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlRepertoryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewRepertoryInfo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -316,5 +341,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colRepertoryType;
         private DevExpress.XtraEditors.LabelControl labRepertoryType;
         private DevExpress.XtraEditors.RadioGroup radioRepertoryType;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkbhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkmcbnwk;
     }
 }

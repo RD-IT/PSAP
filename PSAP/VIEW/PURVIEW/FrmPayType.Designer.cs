@@ -49,7 +49,8 @@
             this.colPayTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPayTypeNoText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiFkbfbd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFklxbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFksmbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
@@ -231,15 +232,22 @@
             // cms
             // 
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiFkbfbd});
-            this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(362, 48);
+            this.tsmiFklxbnwk,
+            this.tsmiFksmbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
             // 
-            // tsmiFkbfbd
+            // tsmiFklxbnwk
             // 
-            this.tsmiFkbfbd.Name = "tsmiFkbfbd";
-            this.tsmiFkbfbd.Size = new System.Drawing.Size(361, 22);
-            this.tsmiFkbfbd.Text = "付款百分比的合计必须是100，请刷新后再重新操作。";
+            this.tsmiFklxbnwk.Name = "tsmiFklxbnwk";
+            this.tsmiFklxbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiFklxbnwk.Text = "付款类型不能为空，请重新操作。";
+            // 
+            // tsmiFksmbnwk
+            // 
+            this.tsmiFksmbnwk.Name = "tsmiFksmbnwk";
+            this.tsmiFksmbnwk.Size = new System.Drawing.Size(256, 22);
+            this.tsmiFksmbnwk.Text = "付款说明不能为空，请重新操作。";
             // 
             // FrmPayType
             // 
@@ -292,7 +300,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNoText;
         private DevExpress.XtraEditors.SimpleButton btnPayTypeList;
-        internal System.Windows.Forms.ContextMenuStrip cms;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiFkbfbd;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFklxbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFksmbnwk;
     }
 }

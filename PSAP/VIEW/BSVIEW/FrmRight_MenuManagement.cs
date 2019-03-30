@@ -55,7 +55,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.MasterDataSet = dSMenu;
                     editForm.MasterBindingSource = bSMenu;
                     editForm.MasterEditPanel = pnlEdit;
-                    editForm.PrimaryKeyControl = textMenuText;
+                    //editForm.PrimaryKeyControl = textMenuText;
                     editForm.BrowseXtraGridView = gridViewMenu;
                     editForm.CheckControl += CheckControl;
                     editForm.QueryDataAfter += QueryDataAfter;
@@ -65,7 +65,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.Show();
 
                     lookUpFormName.Properties.DataSource = FrmRightBLL.InitFormNameDataTable();
-                    lookUpParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
+                    searchParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
                 }
             }
             catch (Exception ex)
@@ -81,14 +81,14 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textMenuText.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("菜单名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiCdmcbnwk.Text );// ("菜单名称不能为空，请重新操作。");
                 textMenuText.Focus();
                 return false;
             }
             if(DataTypeConvert.GetString(gridViewMenu.GetFocusedDataRow()["MenuName"])== DataTypeConvert.GetString(gridViewMenu.GetFocusedDataRow()["ParentMenuName"]))
             {
-                MessageHandler.ShowMessageBox("上级菜单不能和当前菜单相同，请重新操作。");
-                lookUpParentMenuName.Focus();
+                MessageHandler.ShowMessageBox(tsmiSjcdbnh.Text );// ("上级菜单不能和当前菜单相同，请重新操作。");
+                searchParentMenuName.Focus();
                 return false;
             }
 
@@ -101,6 +101,7 @@ namespace PSAP.VIEW.BSVIEW
         public void QueryDataAfter()
         {
             treeListMenu.ExpandAll();
+            searchParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
         }
 
         /// <summary>
@@ -228,13 +229,19 @@ namespace PSAP.VIEW.BSVIEW
                     string parentMenuNameStr = DataTypeConvert.GetString(treeListMenu.FocusedNode["ParentMenuName"]);
                     FrmRightDAO.MenuUpMove(menuNameStr, parentMenuNameStr);
                     editForm.btnRefresh_Click(null, null);
+
+                    foreach(TreeListNode downNode in treeListMenu.Nodes)
+                    {
+                        if (FocusedHistoryNode(downNode, menuNameStr, parentMenuNameStr))
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--菜单上移事件错误。", ex);
             }
-        }
+        }        
 
         /// <summary>
         /// 菜单下移事件
@@ -249,6 +256,12 @@ namespace PSAP.VIEW.BSVIEW
                     string parentMenuNameStr = DataTypeConvert.GetString(treeListMenu.FocusedNode["ParentMenuName"]);
                     FrmRightDAO.MenuDownMove(menuNameStr, parentMenuNameStr);
                     editForm.btnRefresh_Click(null, null);
+
+                    foreach (TreeListNode downNode in treeListMenu.Nodes)
+                    {
+                        if (FocusedHistoryNode(downNode, menuNameStr, parentMenuNameStr))
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -264,18 +277,58 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                //if (bSMenu.Current != null)
+                //{
+                //    DataRow dr = ((DataRowView)bSMenu.Current).Row;
+                //    dr.RejectChanges();
+                //    editForm.Set_Button_State(true);
+                //    editForm.Set_EditZone_ControlReadOnly(true);
+                //} 
+
                 if (bSMenu.Current != null)
                 {
-                    DataRow dr = ((DataRowView)bSMenu.Current).Row;
-                    dr.RejectChanges();
-                    editForm.Set_Button_State(true);
-                    editForm.Set_EditZone_ControlReadOnly(true);
+                    if (((DataRowView)bSMenu.Current).IsEdit)
+                    {
+                        int oldId = e.OldNode == null ? 0 : DataTypeConvert.GetInt(e.OldNode["AutoId"]);
+                        DataRow dr = ((DataRowView)bSMenu.Current).Row;
+                        if (dr.RowState == DataRowState.Added && oldId != 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            dr.RejectChanges();
+                            editForm.Set_Button_State(true);
+                            editForm.Set_EditZone_ControlReadOnly(true);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--选择节点之前设定控件状态错误。", ex);
             }
+        }
+
+        /// <summary>
+        /// 聚焦之前的历史节点
+        /// </summary>
+        private bool FocusedHistoryNode(TreeListNode upNode, string menuNameStr, string parentMenuNameStr)
+        {
+            foreach (TreeListNode downNode in upNode.Nodes)
+            {
+                string mnStr = DataTypeConvert.GetString(downNode["MenuName"]);
+                string pmnStr = DataTypeConvert.GetString(downNode["ParentMenuName"]);
+                if (menuNameStr == mnStr && parentMenuNameStr == pmnStr)
+                {
+                    treeListMenu.FocusedNode = downNode;
+                    return true;
+                }
+                else
+                    FocusedHistoryNode(downNode, menuNameStr, parentMenuNameStr);
+            }
+
+            return false;
         }
     }
 }

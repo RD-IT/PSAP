@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new DevExpress.XtraEditors.PanelControl();
             this.label4 = new DevExpress.XtraEditors.LabelControl();
             this.txtPasswordNewV = new DevExpress.XtraEditors.TextEdit();
@@ -39,12 +40,20 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiYhdl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYhidbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXmm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYzmm = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXmmhyz = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panel1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPasswordNewV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPasswordNew.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -152,6 +161,54 @@
             this.btnConfirm.Text = "确定";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiYhdl,
+            this.tsmiYhidbnwk,
+            this.tsmiMm,
+            this.tsmiXmm,
+            this.tsmiYzmm,
+            this.tsmiXmmhyz});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(233, 136);
+            // 
+            // tsmiYhdl
+            // 
+            this.tsmiYhdl.Name = "tsmiYhdl";
+            this.tsmiYhdl.Size = new System.Drawing.Size(232, 22);
+            this.tsmiYhdl.Text = "用户登录";
+            // 
+            // tsmiYhidbnwk
+            // 
+            this.tsmiYhidbnwk.Name = "tsmiYhidbnwk";
+            this.tsmiYhidbnwk.Size = new System.Drawing.Size(232, 22);
+            this.tsmiYhidbnwk.Text = "用户ID不能为空。";
+            // 
+            // tsmiMm
+            // 
+            this.tsmiMm.Name = "tsmiMm";
+            this.tsmiMm.Size = new System.Drawing.Size(232, 22);
+            this.tsmiMm.Text = "密码不能为空。";
+            // 
+            // tsmiXmm
+            // 
+            this.tsmiXmm.Name = "tsmiXmm";
+            this.tsmiXmm.Size = new System.Drawing.Size(232, 22);
+            this.tsmiXmm.Text = "新密码不能为空。";
+            // 
+            // tsmiYzmm
+            // 
+            this.tsmiYzmm.Name = "tsmiYzmm";
+            this.tsmiYzmm.Size = new System.Drawing.Size(232, 22);
+            this.tsmiYzmm.Text = "验证密码不能为空。";
+            // 
+            // tsmiXmmhyz
+            // 
+            this.tsmiXmmhyz.Name = "tsmiXmmhyz";
+            this.tsmiXmmhyz.Size = new System.Drawing.Size(232, 22);
+            this.tsmiXmmhyz.Text = "新密码和验证密码必须一致。";
+            // 
             // FrmChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -172,6 +229,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPasswordNew.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +248,12 @@
         private DevExpress.XtraEditors.TextEdit txtPasswordNewV;
         private DevExpress.XtraEditors.LabelControl label3;
         private DevExpress.XtraEditors.TextEdit txtPasswordNew;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYhdl;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYhidbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMm;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXmm;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYzmm;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXmmhyz;
     }
 }

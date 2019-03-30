@@ -133,6 +133,8 @@
             this.colListRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSettlementCount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpCodeFileName.Properties)).BeginInit();
@@ -166,6 +168,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpWWTypeNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpRepertoryNo)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -196,7 +199,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1924, 78);
+            this.pnltop.Size = new System.Drawing.Size(1370, 78);
             this.pnltop.TabIndex = 2;
             // 
             // searchLookUpCodeFileName
@@ -223,6 +226,7 @@
             this.searchLookUpCodeFileNameView.Name = "searchLookUpCodeFileNameView";
             this.searchLookUpCodeFileNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpCodeFileNameView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpCodeFileNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
@@ -265,6 +269,7 @@
             this.searchLookUpProjectNoView.Name = "searchLookUpProjectNoView";
             this.searchLookUpProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpProjectNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             // 
             // gridColProjectNo
             // 
@@ -437,6 +442,7 @@
             this.searchLookUpBussinessBaseNoView.Name = "searchLookUpBussinessBaseNoView";
             this.searchLookUpBussinessBaseNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpBussinessBaseNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             // 
             // gridColumnBussinessBaseNo
             // 
@@ -573,7 +579,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 503);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1924, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1370, 58);
             this.pnlBottom.TabIndex = 7;
             // 
             // gridBottomOrderHead
@@ -583,7 +589,7 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_WW;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1920, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1366, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
             // dataSet_WW
@@ -766,7 +772,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1924, 425);
+            this.pnlMiddle.Size = new System.Drawing.Size(1370, 425);
             this.pnlMiddle.TabIndex = 9;
             // 
             // gridControlWWList
@@ -782,7 +788,7 @@
             this.repLookUpRepertoryNo,
             this.repLookUpWWTypeNo,
             this.repLookUpShelfId});
-            this.gridControlWWList.Size = new System.Drawing.Size(1920, 421);
+            this.gridControlWWList.Size = new System.Drawing.Size(1366, 421);
             this.gridControlWWList.TabIndex = 4;
             this.gridControlWWList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWWList});
@@ -1170,10 +1176,23 @@
             this.colSettlementCount.FieldName = "SettlementCount";
             this.colSettlementCount.Name = "colSettlementCount";
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRkrqbnwkcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 26);
+            // 
+            // tsmiRkrqbnwkcx
+            // 
+            this.tsmiRkrqbnwkcx.Name = "tsmiRkrqbnwkcx";
+            this.tsmiRkrqbnwkcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiRkrqbnwkcx.Text = "入库日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmWarehouseWarrantList_NoSettlement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1924, 561);
+            this.ClientSize = new System.Drawing.Size(1370, 561);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnltop);
@@ -1215,6 +1234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpWWTypeNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpRepertoryNo)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1325,5 +1345,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpRepertoryNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpWWTypeNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpShelfId;
+        internal System.Windows.Forms.ContextMenuStrip cms;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkrqbnwkcx;
     }
 }

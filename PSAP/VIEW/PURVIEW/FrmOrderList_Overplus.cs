@@ -17,10 +17,13 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmOrderList_Overplus()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -60,7 +63,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCtjzsjcw.Text , ex);
             }
         }
 
@@ -112,7 +116,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dateOrderDateBegin.EditValue == null || dateOrderDateEnd.EditValue == null)
                 {
-                    MessageHandler.ShowMessageBox("订购日期不能为空，请设置后重新进行查询。");
+                    MessageHandler.ShowMessageBox(tsmiDgrqbnwk.Text);// ("订购日期不能为空，请设置后重新进行查询。");
                     if (dateOrderDateBegin.EditValue == null)
                         dateOrderDateBegin.Focus();
                     else
@@ -128,7 +132,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (datePlanDateBegin.EditValue == null || datePlanDateEnd.EditValue == null)
                     {
-                        MessageHandler.ShowMessageBox("计划到货日期不能为空，请设置后重新进行查询。");
+                        MessageHandler.ShowMessageBox(tsmiJhdhribnwk.Text );// ("计划到货日期不能为空，请设置后重新进行查询。");
                         if (datePlanDateBegin.EditValue == null)
                             datePlanDateBegin.Focus();
                         else
@@ -142,7 +146,7 @@ namespace PSAP.VIEW.BSVIEW
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
                 string purCategoryStr = lookUpPurCategory.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPurCategory.EditValue) : "";
                 string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
-                int reqStateInt = comboBoxReqState.SelectedIndex > 0 ? comboBoxReqState.SelectedIndex : 0;
+                int reqStateInt = CommonHandler.Get_OrderState_No(comboBoxReqState.Text); 
                 string projectNoStr = searchLookUpProjectNo.Text != "全部" ? DataTypeConvert.GetString(searchLookUpProjectNo.EditValue) : "";
                 string codeFileNameStr = searchLookUpCodeFileName.Text != "全部" ? DataTypeConvert.GetString(searchLookUpCodeFileName.EditValue) : "";
                 string commonStr = textCommon.Text.Trim();
@@ -155,7 +159,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCxansjcw.Text , ex);
             }
         }
 
@@ -170,7 +175,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiCxjgcwexcelcw.Text , ex);
             }
         }
 
@@ -192,7 +198,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--"+f.tsmiSjcxmxcw.Text , ex);
             }
         }
 

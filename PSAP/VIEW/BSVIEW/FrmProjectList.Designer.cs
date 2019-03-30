@@ -64,9 +64,13 @@
             this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.labProjectNo = new DevExpress.XtraEditors.LabelControl();
             this.dockManagerStn = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.hideContainerRight = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPanelStn = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanelStn_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.hideContainerRight = new DevExpress.XtraBars.Docking.AutoHideContainer();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiXmbh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiKhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiXmmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSProjectList)).BeginInit();
@@ -84,8 +88,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textProjectNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerStn)).BeginInit();
-            this.dockPanelStn.SuspendLayout();
             this.hideContainerRight.SuspendLayout();
+            this.dockPanelStn.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSProjectList
@@ -318,6 +323,7 @@
             this.searchLookUpBussinessBaseNoView.Name = "searchLookUpBussinessBaseNoView";
             this.searchLookUpBussinessBaseNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpBussinessBaseNoView.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewProjectList_CustomDrawRowIndicator);
             // 
             // gridColumnBussinessBaseNo
             // 
@@ -405,6 +411,15 @@
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
+            // hideContainerRight
+            // 
+            this.hideContainerRight.BackColor = System.Drawing.SystemColors.Control;
+            this.hideContainerRight.Controls.Add(this.dockPanelStn);
+            this.hideContainerRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.hideContainerRight.Location = new System.Drawing.Point(1104, 0);
+            this.hideContainerRight.Name = "hideContainerRight";
+            this.hideContainerRight.Size = new System.Drawing.Size(20, 634);
+            // 
             // dockPanelStn
             // 
             this.dockPanelStn.Controls.Add(this.dockPanelStn_Container);
@@ -435,14 +450,32 @@
             this.dockPanelStn_Container.Size = new System.Drawing.Size(792, 607);
             this.dockPanelStn_Container.TabIndex = 0;
             // 
-            // hideContainerRight
+            // cms
             // 
-            this.hideContainerRight.BackColor = System.Drawing.SystemColors.Control;
-            this.hideContainerRight.Controls.Add(this.dockPanelStn);
-            this.hideContainerRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.hideContainerRight.Location = new System.Drawing.Point(1104, 0);
-            this.hideContainerRight.Name = "hideContainerRight";
-            this.hideContainerRight.Size = new System.Drawing.Size(20, 634);
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiXmbh,
+            this.tsmiKhbnwk,
+            this.tsmiXmmcbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(269, 70);
+            // 
+            // tsmiXmbh
+            // 
+            this.tsmiXmbh.Name = "tsmiXmbh";
+            this.tsmiXmbh.Size = new System.Drawing.Size(268, 22);
+            this.tsmiXmbh.Text = "项目号编号不能为空，请重新操作。";
+            // 
+            // tsmiKhbnwk
+            // 
+            this.tsmiKhbnwk.Name = "tsmiKhbnwk";
+            this.tsmiKhbnwk.Size = new System.Drawing.Size(268, 22);
+            this.tsmiKhbnwk.Text = "客户不能为空，请重新操作。";
+            // 
+            // tsmiXmmcbnwk
+            // 
+            this.tsmiXmmcbnwk.Name = "tsmiXmmcbnwk";
+            this.tsmiXmmcbnwk.Size = new System.Drawing.Size(268, 22);
+            this.tsmiXmmcbnwk.Text = "项目名称不能为空，请重新操作。";
             // 
             // FrmProjectList
             // 
@@ -474,8 +507,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textProjectNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerStn)).EndInit();
-            this.dockPanelStn.ResumeLayout(false);
             this.hideContainerRight.ResumeLayout(false);
+            this.dockPanelStn.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -519,5 +553,9 @@
         private DevExpress.XtraBars.Docking.DockPanel dockPanelStn;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanelStn_Container;
         private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerRight;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXmbh;
+        private System.Windows.Forms.ToolStripMenuItem tsmiKhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiXmmcbnwk;
     }
 }

@@ -22,17 +22,21 @@ namespace PSAP.VIEW.BSVIEW
         string TypeNoStr = "";
 
         FrmApprovalDAO approvalDAO = new FrmApprovalDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmApprovalList()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmApprovalList(string typeNo, string typeNoText)
         {
             InitializeComponent();
             TypeNoStr = typeNo;
-            this.Text = string.Format("审批类型【{0}】的信息设置", typeNoText);
+            //this.Text = string.Format("审批类型【{0}】的信息设置", typeNoText);
+            this.Text = string.Format(tsmiSplx.Text + "【{0}】" + tsmiDxxsz.Text, typeNoText);
         }
 
         /// <summary>
@@ -74,7 +78,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -86,7 +91,7 @@ namespace PSAP.VIEW.BSVIEW
             DataRow dr = gridViewApprovalList.GetFocusedDataRow();
             if (DataTypeConvert.GetString(dr["Approver"]) == "")
             {
-                MessageHandler.ShowMessageBox("审批人不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiSprbnwkqcxcz.Text);// ("审批人不能为空，请重新操作。");
                 gridCrlApprovalList.Focus();
                 gridViewApprovalList.FocusedColumn = colApprover;
                 return false;
@@ -95,7 +100,7 @@ namespace PSAP.VIEW.BSVIEW
             DataRow[] drs = TableApprovalList.Select(string.Format("Approver={0}", DataTypeConvert.GetString(dr["Approver"])));
             if (drs.Length > 1)
             {
-                MessageHandler.ShowMessageBox("不能设置相同的审批人，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiBnszxmdsprqcxcz.Text);// ("不能设置相同的审批人，请重新操作。");
                 gridCrlApprovalList.Focus();
                 gridViewApprovalList.FocusedColumn = colApprover;
                 return false;
@@ -112,9 +117,9 @@ namespace PSAP.VIEW.BSVIEW
             {
                 dr["AppSequence"] = approvalDAO.QueryApprovalList_MaxSequence(cmd, TypeNoStr);
             }
-            if (approvalDAO.ApprovalList_SameApproverUser(cmd, TypeNoStr,DataTypeConvert.GetInt(dr["Approver"])))
+            if (approvalDAO.ApprovalList_SameApproverUser(cmd, TypeNoStr, DataTypeConvert.GetInt(dr["Approver"])))
             {
-                MessageHandler.ShowMessageBox("不能设置相同的审批人，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiBnszxmdsprqcxcz.Text);// ("不能设置相同的审批人，请重新操作。");
                 gridCrlApprovalList.Focus();
                 gridViewApprovalList.FocusedColumn = colApprover;
                 return false;
@@ -157,7 +162,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定默认值事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定默认值事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdmrzsjcw.Text, ex);
             }
         }
 
@@ -190,12 +196,13 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                    MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--上移审批信息事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--上移审批信息事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSyspxxsjcw.Text, ex);
             }
         }
 
@@ -229,12 +236,13 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 else
                 {
-                    MessageHandler.ShowMessageBox("请先保存后再进行其他操作。");
+                    MessageHandler.ShowMessageBox(f.tsmiQxbchzjx.Text);// ("请先保存后再进行其他操作。");
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--下移审批信息事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--下移审批信息事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiXyspxxsjcw.Text, ex);
             }
         }
     }

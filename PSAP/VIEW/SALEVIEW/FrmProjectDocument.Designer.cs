@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProjectDocument));
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -142,8 +144,7 @@
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.tabProjectDoc = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabBaseInfo = new DevExpress.XtraBars.Navigation.TabNavigationPage();
-            this.btnDeleteRemarks = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSaveRemarks = new DevExpress.XtraEditors.SimpleButton();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gcRemarks = new DevExpress.XtraGrid.GridControl();
             this.bsRemarksInfo = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new System.Data.DataSet();
@@ -157,7 +158,10 @@
             this.colCreateDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
             this.btnAddRemarks = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDeleteRemarks = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSaveRemarks = new DevExpress.XtraEditors.SimpleButton();
             this.sAProjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.msgDeleteM = new System.Windows.Forms.ToolStripMenuItem();
@@ -222,12 +226,15 @@
             this.panelControl4.SuspendLayout();
             this.tabProjectDoc.SuspendLayout();
             this.tabBaseInfo.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRemarksInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
+            this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sAProjectBindingSource)).BeginInit();
             this.cms.SuspendLayout();
             this.cms1.SuspendLayout();
@@ -244,8 +251,8 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.tableLayoutPanel2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1006, 628);
-            this.splitContainerControl1.SplitterPosition = 426;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1172, 670);
+            this.splitContainerControl1.SplitterPosition = 480;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -264,7 +271,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 426);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1172, 480);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panelControl1
@@ -277,7 +284,7 @@
             this.panelControl1.Location = new System.Drawing.Point(2, 2);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1002, 196);
+            this.panelControl1.Size = new System.Drawing.Size(1168, 196);
             this.panelControl1.TabIndex = 0;
             // 
             // tabPane1
@@ -289,10 +296,10 @@
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(998, 142);
+            this.tabPane1.RegularSize = new System.Drawing.Size(1164, 142);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
             this.tabPane1.SelectedPageIndex = 0;
-            this.tabPane1.Size = new System.Drawing.Size(998, 142);
+            this.tabPane1.Size = new System.Drawing.Size(1164, 142);
             this.tabPane1.TabIndex = 4;
             this.tabPane1.Text = "tabPane1";
             this.tabPane1.Visible = false;
@@ -307,7 +314,7 @@
             this.tabNavigationPage1.Controls.Add(this.labelControl1);
             this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(980, 96);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(1146, 96);
             // 
             // btnQuery
             // 
@@ -409,7 +416,7 @@
             this.tsbtnAdvancedQuery});
             this.tsMain.Location = new System.Drawing.Point(2, 27);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(998, 25);
+            this.tsMain.Size = new System.Drawing.Size(1164, 25);
             this.tsMain.TabIndex = 3;
             this.tsMain.Text = "toolStrip1";
             // 
@@ -497,7 +504,7 @@
             this.msMain.Location = new System.Drawing.Point(2, 2);
             this.msMain.Name = "msMain";
             this.msMain.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.msMain.Size = new System.Drawing.Size(998, 25);
+            this.msMain.Size = new System.Drawing.Size(1164, 25);
             this.msMain.TabIndex = 2;
             this.msMain.Text = "menuStrip1";
             // 
@@ -728,7 +735,7 @@
             this.panelControl2.Location = new System.Drawing.Point(2, 202);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1002, 214);
+            this.panelControl2.Size = new System.Drawing.Size(1168, 268);
             this.panelControl2.TabIndex = 1;
             // 
             // panelControl5
@@ -896,7 +903,7 @@
             this.lvwFiles.Location = new System.Drawing.Point(2, 2);
             this.lvwFiles.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.lvwFiles.Name = "lvwFiles";
-            this.lvwFiles.Size = new System.Drawing.Size(998, 210);
+            this.lvwFiles.Size = new System.Drawing.Size(1164, 264);
             this.lvwFiles.SmallImageList = this.ilRight;
             this.lvwFiles.TabIndex = 2;
             this.lvwFiles.UseCompatibleStateImageBehavior = false;
@@ -1180,17 +1187,17 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1006, 197);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1172, 185);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.ssFooter);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(2, 169);
+            this.panelControl3.Location = new System.Drawing.Point(2, 157);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1002, 26);
+            this.panelControl3.Size = new System.Drawing.Size(1168, 26);
             this.panelControl3.TabIndex = 0;
             // 
             // ssFooter
@@ -1199,7 +1206,7 @@
             this.tsslblFilesNum});
             this.ssFooter.Location = new System.Drawing.Point(2, 2);
             this.ssFooter.Name = "ssFooter";
-            this.ssFooter.Size = new System.Drawing.Size(998, 22);
+            this.ssFooter.Size = new System.Drawing.Size(1164, 22);
             this.ssFooter.TabIndex = 4;
             // 
             // tsslblFilesNum
@@ -1214,7 +1221,7 @@
             this.panelControl4.Location = new System.Drawing.Point(2, 2);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1002, 163);
+            this.panelControl4.Size = new System.Drawing.Size(1168, 151);
             this.panelControl4.TabIndex = 1;
             // 
             // tabProjectDoc
@@ -1226,55 +1233,53 @@
             this.tabProjectDoc.Name = "tabProjectDoc";
             this.tabProjectDoc.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabBaseInfo});
-            this.tabProjectDoc.RegularSize = new System.Drawing.Size(998, 159);
+            this.tabProjectDoc.RegularSize = new System.Drawing.Size(1164, 147);
             this.tabProjectDoc.SelectedPage = this.tabBaseInfo;
             this.tabProjectDoc.SelectedPageIndex = 0;
-            this.tabProjectDoc.Size = new System.Drawing.Size(998, 159);
+            this.tabProjectDoc.Size = new System.Drawing.Size(1164, 147);
             this.tabProjectDoc.TabIndex = 13;
             this.tabProjectDoc.Text = "tabPane1";
             // 
             // tabBaseInfo
             // 
             this.tabBaseInfo.Caption = "基本信息";
-            this.tabBaseInfo.Controls.Add(this.btnDeleteRemarks);
-            this.tabBaseInfo.Controls.Add(this.btnSaveRemarks);
-            this.tabBaseInfo.Controls.Add(this.gcRemarks);
-            this.tabBaseInfo.Controls.Add(this.btnAddRemarks);
+            this.tabBaseInfo.Controls.Add(this.tableLayoutPanel3);
             this.tabBaseInfo.Margin = new System.Windows.Forms.Padding(2);
             this.tabBaseInfo.Name = "tabBaseInfo";
-            this.tabBaseInfo.Size = new System.Drawing.Size(980, 113);
+            this.tabBaseInfo.Size = new System.Drawing.Size(1146, 101);
             // 
-            // btnDeleteRemarks
+            // tableLayoutPanel3
             // 
-            this.btnDeleteRemarks.Location = new System.Drawing.Point(660, 95);
-            this.btnDeleteRemarks.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDeleteRemarks.Name = "btnDeleteRemarks";
-            this.btnDeleteRemarks.Size = new System.Drawing.Size(94, 23);
-            this.btnDeleteRemarks.TabIndex = 3;
-            this.btnDeleteRemarks.Text = "删除备注";
-            this.btnDeleteRemarks.Click += new System.EventHandler(this.btnDeleteRemarks_Click);
-            // 
-            // btnSaveRemarks
-            // 
-            this.btnSaveRemarks.Location = new System.Drawing.Point(660, 55);
-            this.btnSaveRemarks.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveRemarks.Name = "btnSaveRemarks";
-            this.btnSaveRemarks.Size = new System.Drawing.Size(94, 23);
-            this.btnSaveRemarks.TabIndex = 2;
-            this.btnSaveRemarks.Text = "保存更改";
-            this.btnSaveRemarks.Click += new System.EventHandler(this.btnSaveRemarks_Click);
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.tableLayoutPanel3.Controls.Add(this.gcRemarks, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panelControl6, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1146, 101);
+            this.tableLayoutPanel3.TabIndex = 4;
             // 
             // gcRemarks
             // 
             this.gcRemarks.DataSource = this.bsRemarksInfo;
+            this.gcRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcRemarks.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
-            this.gcRemarks.Location = new System.Drawing.Point(-4, 2);
+            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level2";
+            this.gcRemarks.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1,
+            gridLevelNode2});
+            this.gcRemarks.Location = new System.Drawing.Point(2, 2);
             this.gcRemarks.MainView = this.gvRemarks;
             this.gcRemarks.Margin = new System.Windows.Forms.Padding(2);
             this.gcRemarks.Name = "gcRemarks";
             this.gcRemarks.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1});
-            this.gcRemarks.Size = new System.Drawing.Size(653, 169);
+            this.gcRemarks.Size = new System.Drawing.Size(922, 97);
             this.gcRemarks.TabIndex = 1;
             this.gcRemarks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvRemarks});
@@ -1371,15 +1376,46 @@
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
+            // panelControl6
+            // 
+            this.panelControl6.Controls.Add(this.btnAddRemarks);
+            this.panelControl6.Controls.Add(this.btnDeleteRemarks);
+            this.panelControl6.Controls.Add(this.btnSaveRemarks);
+            this.panelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl6.Location = new System.Drawing.Point(929, 3);
+            this.panelControl6.Name = "panelControl6";
+            this.panelControl6.Size = new System.Drawing.Size(214, 95);
+            this.panelControl6.TabIndex = 2;
+            // 
             // btnAddRemarks
             // 
-            this.btnAddRemarks.Location = new System.Drawing.Point(662, 12);
+            this.btnAddRemarks.Location = new System.Drawing.Point(71, 14);
             this.btnAddRemarks.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddRemarks.Name = "btnAddRemarks";
             this.btnAddRemarks.Size = new System.Drawing.Size(94, 23);
             this.btnAddRemarks.TabIndex = 0;
             this.btnAddRemarks.Text = "添加说明";
             this.btnAddRemarks.Click += new System.EventHandler(this.btnAddRemarks_Click);
+            // 
+            // btnDeleteRemarks
+            // 
+            this.btnDeleteRemarks.Location = new System.Drawing.Point(71, 68);
+            this.btnDeleteRemarks.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDeleteRemarks.Name = "btnDeleteRemarks";
+            this.btnDeleteRemarks.Size = new System.Drawing.Size(94, 23);
+            this.btnDeleteRemarks.TabIndex = 3;
+            this.btnDeleteRemarks.Text = "删除备注";
+            this.btnDeleteRemarks.Click += new System.EventHandler(this.btnDeleteRemarks_Click);
+            // 
+            // btnSaveRemarks
+            // 
+            this.btnSaveRemarks.Location = new System.Drawing.Point(71, 41);
+            this.btnSaveRemarks.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveRemarks.Name = "btnSaveRemarks";
+            this.btnSaveRemarks.Size = new System.Drawing.Size(94, 23);
+            this.btnSaveRemarks.TabIndex = 2;
+            this.btnSaveRemarks.Text = "保存更改";
+            this.btnSaveRemarks.Click += new System.EventHandler(this.btnSaveRemarks_Click);
             // 
             // sAProjectBindingSource
             // 
@@ -1419,7 +1455,7 @@
             this.tsmiWqxjr,
             this.tsmiwqxjc});
             this.cms.Name = "contextMenuStrip1";
-            this.cms.Size = new System.Drawing.Size(557, 686);
+            this.cms.Size = new System.Drawing.Size(557, 664);
             // 
             // msgDeleteM
             // 
@@ -1647,7 +1683,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 628);
+            this.ClientSize = new System.Drawing.Size(1172, 670);
             this.Controls.Add(this.splitContainerControl1);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.KeyPreview = true;
@@ -1694,12 +1730,15 @@
             this.panelControl4.ResumeLayout(false);
             this.tabProjectDoc.ResumeLayout(false);
             this.tabBaseInfo.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRemarksInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
+            this.panelControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sAProjectBindingSource)).EndInit();
             this.cms.ResumeLayout(false);
             this.cms1.ResumeLayout(false);
@@ -1877,5 +1916,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiJtbzmy;
         private System.Windows.Forms.ToolStripMenuItem tsmiYcgjfz;
         private System.Windows.Forms.ToolStripMenuItem tsmidqljxytmwjj;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private DevExpress.XtraEditors.PanelControl panelControl6;
     }
 }

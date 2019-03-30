@@ -27,10 +27,13 @@ namespace PSAP.VIEW.BSVIEW
         /// 父节点部门名称
         /// </summary>
         private string parentDepartmentNameStr = "";
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmDepartment_New()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -65,7 +68,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -76,13 +80,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textDepartmentNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("部门编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiBmbhbnwk.Text);// ("部门编号不能为空，请重新操作。");
                 textDepartmentNo.Focus();
                 return false;
             }
             if (textDepartmentName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("部门名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiBmmcbnwk.Text);// ("部门名称不能为空，请重新操作。");
                 textDepartmentName.Focus();
                 return false;
             }
@@ -116,7 +120,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             e.Row["Founder"] = SystemInfo.user.EmpName;
             e.Row["CreateDate"] = BaseSQL.GetServerDateTime();
-            if(parentDepartmentNoStr!="")
+            if (parentDepartmentNoStr != "")
             {
                 e.Row["ParentDepartmentNo"] = parentDepartmentNoStr;
                 e.Row["ParentDepartmentName"] = parentDepartmentNameStr;
@@ -167,7 +171,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--新增同级部门错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--新增同级部门错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiXztj.Text, ex);
                 parentDepartmentNoStr = "";
                 parentDepartmentNameStr = "";
             }
@@ -189,7 +194,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--新增下级部门错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--新增下级部门错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiXzxj.Text, ex);
                 parentDepartmentNoStr = "";
                 parentDepartmentNameStr = "";
             }
@@ -203,11 +209,22 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 if (bSDepartment.Current != null)
-                {
-                    DataRow dr = ((DataRowView)bSDepartment.Current).Row;
-                    dr.RejectChanges();
-                    editForm.Set_Button_State(true);
-                    editForm.Set_EditZone_ControlReadOnly(true);
+                { 
+                    if (((DataRowView)bSDepartment.Current).IsEdit)
+                    {
+                        int oldId = e.OldNode == null ? 0 : DataTypeConvert.GetInt(e.OldNode["AutoId"]);
+                        DataRow dr = ((DataRowView)bSDepartment.Current).Row;
+                        if (dr.RowState == DataRowState.Added && oldId != 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            dr.RejectChanges();
+                            editForm.Set_Button_State(true);
+                            editForm.Set_EditZone_ControlReadOnly(true);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

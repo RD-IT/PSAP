@@ -142,6 +142,9 @@
             this.colOverplus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPayTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiJhdhribnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDgrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOrderList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderList)).BeginInit();
@@ -179,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet_Order
@@ -383,7 +387,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 481);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1785, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1370, 58);
             this.pnlBottom.TabIndex = 5;
             // 
             // gridBottomOrderHead
@@ -393,7 +397,7 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_Order;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1781, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1366, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
             // pnltop
@@ -427,7 +431,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1785, 78);
+            this.pnltop.Size = new System.Drawing.Size(1370, 78);
             this.pnltop.TabIndex = 6;
             // 
             // checkOverplus
@@ -850,7 +854,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1785, 403);
+            this.pnlMiddle.Size = new System.Drawing.Size(1370, 403);
             this.pnlMiddle.TabIndex = 7;
             // 
             // gridControlOrderList
@@ -865,7 +869,7 @@
             this.repLookUpPurCategory,
             this.repSearchProjectNo,
             this.repSearchBussinessBaseNo});
-            this.gridControlOrderList.Size = new System.Drawing.Size(1781, 399);
+            this.gridControlOrderList.Size = new System.Drawing.Size(1366, 399);
             this.gridControlOrderList.TabIndex = 4;
             this.gridControlOrderList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderList});
@@ -1322,10 +1326,30 @@
             this.colPrice.Visible = true;
             this.colPrice.VisibleIndex = 9;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiJhdhribnwk,
+            this.tsmiDgrqbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(341, 70);
+            // 
+            // tsmiJhdhribnwk
+            // 
+            this.tsmiJhdhribnwk.Name = "tsmiJhdhribnwk";
+            this.tsmiJhdhribnwk.Size = new System.Drawing.Size(340, 22);
+            this.tsmiJhdhribnwk.Text = "计划到货日期不能为空，请设置后重新进行查询。";
+            // 
+            // tsmiDgrqbnwk
+            // 
+            this.tsmiDgrqbnwk.Name = "tsmiDgrqbnwk";
+            this.tsmiDgrqbnwk.Size = new System.Drawing.Size(340, 22);
+            this.tsmiDgrqbnwk.Text = "订购日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmOrderList_Overplus
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1785, 539);
+            this.ClientSize = new System.Drawing.Size(1370, 539);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
@@ -1371,6 +1395,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1490,5 +1515,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPayTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
         private DevExpress.XtraEditors.CheckEdit checkOverplus;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJhdhribnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDgrqbnwk;
     }
 }

@@ -2,6 +2,7 @@
 using DevExpress.XtraTreeList.Nodes;
 using PSAP.DAO.INVDAO;
 using PSAP.DAO.PURDAO;
+using PSAP.DAO.SADAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,16 @@ namespace PSAP.VIEW.BSVIEW
                     case "编辑":
                         switch (tableNameStr)
                         {
+                            
+                            case "SA_QuotationBaseInfo"://报价单
+                                new FrmQuotationInfoDAO().PrintHandle("", 3);
+                                break;
+                            case "SA_SalesOrder"://销售订单
+                                new FrmSalesOrderDAO().PrintHandle("", 3);
+                                break;
+                            case "SA_SettleAccountsHead"://销售结账单
+                                new FrmSettleAccountsDAO().PrintHandle("", 3);
+                                break;
                             case "PUR_PrReqHead"://请购单
                                 new FrmPrReqDAO().PrintHandle("", 3);
                                 break;
@@ -88,6 +99,15 @@ namespace PSAP.VIEW.BSVIEW
                                 break;
                             case "INV_InventoryAdjustmentsHead"://库存调整单
                                 new FrmInventoryAdjustmentsDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_SpecialWarehouseWarrantHead"://预算外入库单
+                                new FrmSpecialWarehouseWarrantDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_SpecialWarehouseReceiptHead"://预算外出库单
+                                new FrmSpecialWarehouseReceiptDAO().PrintHandle("", 3);
+                                break;
+                            case "INV_ReturnedGoodsReportHead"://退货单
+                                new FrmReturnedGoodsReportDAO().PrintHandle("", 3);
                                 break;
                             default:
                                 return;

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWarehouseWarrant_Drag));
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpReqDep = new DevExpress.XtraEditors.LookUpEdit();
@@ -59,7 +58,7 @@
             this.labWWDate = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWWList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WWList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WWList = new System.Windows.Forms.BindingSource();
             this.dataSet_WW = new System.Data.DataSet();
             this.dataTableWWHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -118,7 +117,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlWWHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WWHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WWHead = new System.Windows.Forms.BindingSource();
             this.gridViewWWHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -156,7 +155,7 @@
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.pnlLeftBottle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlOrderList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderList = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_OrderList = new System.Windows.Forms.BindingSource();
             this.dataSet_Order = new System.Data.DataSet();
             this.dataTableOrderHead = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -213,7 +212,7 @@
             this.colPrListAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlLeftMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlOrderHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_OrderHead = new System.Windows.Forms.BindingSource();
             this.gridViewOrderHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -253,34 +252,38 @@
             this.lab = new DevExpress.XtraEditors.LabelControl();
             this.labOrderDate = new DevExpress.XtraEditors.LabelControl();
             this.labOrderHeadNo = new DevExpress.XtraEditors.LabelControl();
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.splitterControl2 = new DevExpress.XtraEditors.SplitterControl();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
             this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonDown = new DevExpress.XtraBars.BarButtonItem();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManagerForm = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiQb = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkd = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiWsp = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBkycz = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiYjsp = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiYjjz = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiYjspz = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkdzmx = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDsl = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCgcgdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBkybc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiWccdyc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkdshr = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkdyjy = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRkdqxs = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDqrkdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkckbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRklbbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSplxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSlbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHjbhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQgsyansjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRkdmxbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxmxdsyjcgdcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxmxdxyjcgjzdcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDgrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCxcgddsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJjcxcgddmxsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSxtzcgddsjcw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYzrkdzrxxtdxmhjxdj = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYzrkdzrxxtdgysjxdj = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpReqDep.Properties)).BeginInit();
@@ -1668,6 +1671,7 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlRight.Controls.Add(this.pnlBottom);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
@@ -1697,7 +1701,7 @@
             this.pnlLeftBottle.Location = new System.Drawing.Point(0, 257);
             this.pnlLeftBottle.Margin = new System.Windows.Forms.Padding(4);
             this.pnlLeftBottle.Name = "pnlLeftBottle";
-            this.pnlLeftBottle.Size = new System.Drawing.Size(342, 220);
+            this.pnlLeftBottle.Size = new System.Drawing.Size(342, 244);
             this.pnlLeftBottle.TabIndex = 2;
             // 
             // gridControlOrderList
@@ -1710,7 +1714,7 @@
             this.gridControlOrderList.MainView = this.gridViewOrderList;
             this.gridControlOrderList.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlOrderList.Name = "gridControlOrderList";
-            this.gridControlOrderList.Size = new System.Drawing.Size(338, 216);
+            this.gridControlOrderList.Size = new System.Drawing.Size(338, 240);
             this.gridControlOrderList.TabIndex = 4;
             this.gridControlOrderList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderList});
@@ -2687,7 +2691,7 @@
             this.dockPnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPnlLeft.ID = new System.Guid("0a466d4c-43a4-4cfb-93d2-1bf1c8102fb0");
             this.dockPnlLeft.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlLeft.Image")));
-            this.dockPnlLeft.Location = new System.Drawing.Point(0, 24);
+            this.dockPnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dockPnlLeft.Name = "dockPnlLeft";
             this.dockPnlLeft.Options.AllowDockAsTabbedDocument = false;
             this.dockPnlLeft.Options.AllowDockBottom = false;
@@ -2699,7 +2703,7 @@
             this.dockPnlLeft.Options.ShowCloseButton = false;
             this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 504);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 528);
             this.dockPnlLeft.Text = "采购订单";
             // 
             // dockPanel1_Container
@@ -2711,7 +2715,7 @@
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 477);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 501);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // splitterControl2
@@ -2790,113 +2794,141 @@
             // cms
             // 
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiQb,
-            this.tsmiRkd,
-            this.tsmiWsp,
-            this.tsmiBkycz,
-            this.tsmiYjsp,
-            this.tsmiYjjz,
-            this.tsmiYjspz,
-            this.tsmiRkdzmx,
-            this.tsmiDsl,
-            this.tsmiCgcgdd,
-            this.tsmiBkybc,
-            this.tsmiWccdyc,
-            this.tsmiRkdshr,
-            this.tsmiRkdyjy,
-            this.tsmiRkdqxs});
-            this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(353, 334);
+            this.tsmiRkrqbnwkcx,
+            this.tsmiDqrkdyjxghh,
+            this.tsmiRkbmbnwkbc,
+            this.tsmiRkckbnwkbc,
+            this.tsmiRklbbnwkbc,
+            this.tsmiSplxbnwkbc,
+            this.tsmiRkmxbnwkbc,
+            this.tsmiSlbnwkbc,
+            this.tsmiHjbhbnwkbc,
+            this.tsmiQgsyansjcw,
+            this.tsmiRkdmxbnwkbc,
+            this.tsmiCxmxdsyjcgdcw,
+            this.tsmiCxmxdxyjcgjzdcw,
+            this.tsmiDgrqbnwkcx,
+            this.tsmiCxcgddsjcw,
+            this.tsmiJjcxcgddmxsjcw,
+            this.tsmiSxtzcgddsjcw,
+            this.tsmiYzrkdzrxxtdxmhjxdj,
+            this.tsmiYzrkdzrxxtdgysjxdj});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(365, 422);
             // 
-            // tsmiQb
+            // tsmiRkrqbnwkcx
             // 
-            this.tsmiQb.Name = "tsmiQb";
-            this.tsmiQb.Size = new System.Drawing.Size(352, 22);
-            this.tsmiQb.Text = "全部";
+            this.tsmiRkrqbnwkcx.Name = "tsmiRkrqbnwkcx";
+            this.tsmiRkrqbnwkcx.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkrqbnwkcx.Text = "入库日期不能为空，请设置后重新进行查询。";
             // 
-            // tsmiRkd
+            // tsmiDqrkdyjxghh
             // 
-            this.tsmiRkd.Name = "tsmiRkd";
-            this.tsmiRkd.Size = new System.Drawing.Size(352, 22);
-            this.tsmiRkd.Text = "入库单";
+            this.tsmiDqrkdyjxghh.Name = "tsmiDqrkdyjxghh";
+            this.tsmiDqrkdyjxghh.Size = new System.Drawing.Size(364, 22);
+            this.tsmiDqrkdyjxghh.Text = "当前入库单已经修改，请保存后再进行换行。";
             // 
-            // tsmiWsp
+            // tsmiRkbmbnwkbc
             // 
-            this.tsmiWsp.Name = "tsmiWsp";
-            this.tsmiWsp.Size = new System.Drawing.Size(352, 22);
-            this.tsmiWsp.Text = "未审批";
+            this.tsmiRkbmbnwkbc.Name = "tsmiRkbmbnwkbc";
+            this.tsmiRkbmbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkbmbnwkbc.Text = "入库部门不能为空，请填写后再进行保存。";
             // 
-            // tsmiBkycz
+            // tsmiRkckbnwkbc
             // 
-            this.tsmiBkycz.Name = "tsmiBkycz";
-            this.tsmiBkycz.Size = new System.Drawing.Size(352, 22);
-            this.tsmiBkycz.Text = "，不可以操作。";
+            this.tsmiRkckbnwkbc.Name = "tsmiRkckbnwkbc";
+            this.tsmiRkckbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkckbnwkbc.Text = "入库仓库不能为空，请填写后再进行保存。";
             // 
-            // tsmiYjsp
+            // tsmiRklbbnwkbc
             // 
-            this.tsmiYjsp.Name = "tsmiYjsp";
-            this.tsmiYjsp.Size = new System.Drawing.Size(352, 22);
-            this.tsmiYjsp.Text = "已经审批";
+            this.tsmiRklbbnwkbc.Name = "tsmiRklbbnwkbc";
+            this.tsmiRklbbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRklbbnwkbc.Text = "入库类别不能为空，请填写后再进行保存。";
             // 
-            // tsmiYjjz
+            // tsmiSplxbnwkbc
             // 
-            this.tsmiYjjz.Name = "tsmiYjjz";
-            this.tsmiYjjz.Size = new System.Drawing.Size(352, 22);
-            this.tsmiYjjz.Text = "已经结账";
+            this.tsmiSplxbnwkbc.Name = "tsmiSplxbnwkbc";
+            this.tsmiSplxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSplxbnwkbc.Text = "审批类型不能为空，请填写后再进行保存。";
             // 
-            // tsmiYjspz
+            // tsmiRkmxbnwkbc
             // 
-            this.tsmiYjspz.Name = "tsmiYjspz";
-            this.tsmiYjspz.Size = new System.Drawing.Size(352, 22);
-            this.tsmiYjspz.Text = "已经审批中";
+            this.tsmiRkmxbnwkbc.Name = "tsmiRkmxbnwkbc";
+            this.tsmiRkmxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkmxbnwkbc.Text = "入库单明细不能为空，请重新订单适用后再进行保存。";
             // 
-            // tsmiRkdzmx
+            // tsmiSlbnwkbc
             // 
-            this.tsmiRkdzmx.Name = "tsmiRkdzmx";
-            this.tsmiRkdzmx.Size = new System.Drawing.Size(352, 22);
-            this.tsmiRkdzmx.Text = "入库单中明细";
+            this.tsmiSlbnwkbc.Name = "tsmiSlbnwkbc";
+            this.tsmiSlbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSlbnwkbc.Text = "数量不能为空，请填写后再进行保存。";
             // 
-            // tsmiDsl
+            // tsmiHjbhbnwkbc
             // 
-            this.tsmiDsl.Name = "tsmiDsl";
-            this.tsmiDsl.Size = new System.Drawing.Size(352, 22);
-            this.tsmiDsl.Text = "的数量";
+            this.tsmiHjbhbnwkbc.Name = "tsmiHjbhbnwkbc";
+            this.tsmiHjbhbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiHjbhbnwkbc.Text = "货架编号不能为空，请填写后再进行保存。";
             // 
-            // tsmiCgcgdd
+            // tsmiQgsyansjcw
             // 
-            this.tsmiCgcgdd.Name = "tsmiCgcgdd";
-            this.tsmiCgcgdd.Size = new System.Drawing.Size(352, 22);
-            this.tsmiCgcgdd.Text = "超过采购订单的数量";
+            this.tsmiQgsyansjcw.Name = "tsmiQgsyansjcw";
+            this.tsmiQgsyansjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiQgsyansjcw.Text = "请购适用按钮事件错误。";
             // 
-            // tsmiBkybc
+            // tsmiRkdmxbnwkbc
             // 
-            this.tsmiBkybc.Name = "tsmiBkybc";
-            this.tsmiBkybc.Size = new System.Drawing.Size(352, 22);
-            this.tsmiBkybc.Text = "不可以保存。";
+            this.tsmiRkdmxbnwkbc.Name = "tsmiRkdmxbnwkbc";
+            this.tsmiRkdmxbnwkbc.Size = new System.Drawing.Size(364, 22);
+            this.tsmiRkdmxbnwkbc.Text = "入库单明细不能为空，请重新订单适用后再进行保存。";
             // 
-            // tsmiWccdyc
+            // tsmiCxmxdsyjcgdcw
             // 
-            this.tsmiWccdyc.Name = "tsmiWccdyc";
-            this.tsmiWccdyc.Size = new System.Drawing.Size(352, 22);
-            this.tsmiWccdyc.Text = "未查询到要操作的入库单，请刷新后再进行操作。";
+            this.tsmiCxmxdsyjcgdcw.Name = "tsmiCxmxdsyjcgdcw";
+            this.tsmiCxmxdsyjcgdcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiCxmxdsyjcgdcw.Text = "查询明细的上一级采购单错误。";
             // 
-            // tsmiRkdshr
+            // tsmiCxmxdxyjcgjzdcw
             // 
-            this.tsmiRkdshr.Name = "tsmiRkdshr";
-            this.tsmiRkdshr.Size = new System.Drawing.Size(352, 22);
-            this.tsmiRkdshr.Text = "入库单审核入库错误";
+            this.tsmiCxmxdxyjcgjzdcw.Name = "tsmiCxmxdxyjcgjzdcw";
+            this.tsmiCxmxdxyjcgjzdcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiCxmxdxyjcgjzdcw.Text = "查询明细的下一级采购结账单错误。";
             // 
-            // tsmiRkdyjy
+            // tsmiDgrqbnwkcx
             // 
-            this.tsmiRkdyjy.Name = "tsmiRkdyjy";
-            this.tsmiRkdyjy.Size = new System.Drawing.Size(352, 22);
-            this.tsmiRkdyjy.Text = "入库单已经有适用的采购结账单记录，不可以操作。";
+            this.tsmiDgrqbnwkcx.Name = "tsmiDgrqbnwkcx";
+            this.tsmiDgrqbnwkcx.Size = new System.Drawing.Size(364, 22);
+            this.tsmiDgrqbnwkcx.Text = "订购日期不能为空，请设置后重新进行查询。";
             // 
-            // tsmiRkdqxs
+            // tsmiCxcgddsjcw
             // 
-            this.tsmiRkdqxs.Name = "tsmiRkdqxs";
-            this.tsmiRkdqxs.Size = new System.Drawing.Size(352, 22);
-            this.tsmiRkdqxs.Text = "入库单取消审核出库错误";
+            this.tsmiCxcgddsjcw.Name = "tsmiCxcgddsjcw";
+            this.tsmiCxcgddsjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiCxcgddsjcw.Text = "查询采购订单事件错误。";
+            // 
+            // tsmiJjcxcgddmxsjcw
+            // 
+            this.tsmiJjcxcgddmxsjcw.Name = "tsmiJjcxcgddmxsjcw";
+            this.tsmiJjcxcgddmxsjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiJjcxcgddmxsjcw.Text = "聚焦查询采购订单明细事件错误。";
+            // 
+            // tsmiSxtzcgddsjcw
+            // 
+            this.tsmiSxtzcgddsjcw.Name = "tsmiSxtzcgddsjcw";
+            this.tsmiSxtzcgddsjcw.Size = new System.Drawing.Size(364, 22);
+            this.tsmiSxtzcgddsjcw.Text = "实现拖拽采购订单事件错误。";
+            // 
+            // tsmiYzrkdzrxxtdxmhjxdj
+            // 
+            this.tsmiYzrkdzrxxtdxmhjxdj.Name = "tsmiYzrkdzrxxtdxmhjxdj";
+            this.tsmiYzrkdzrxxtdxmhjxdj.Size = new System.Drawing.Size(364, 22);
+            this.tsmiYzrkdzrxxtdxmhjxdj.Text = "\"一张入库单只允许相同的项目号进行登记。";
+            // 
+            // tsmiYzrkdzrxxtdgysjxdj
+            // 
+            this.tsmiYzrkdzrxxtdgysjxdj.Name = "tsmiYzrkdzrxxtdgysjxdj";
+            this.tsmiYzrkdzrxxtdgysjxdj.Size = new System.Drawing.Size(364, 22);
+            this.tsmiYzrkdzrxxtdgysjxdj.Text = "一张入库单只允许相同的供应商进行登记。";
             // 
             // FrmWarehouseWarrant_Drag
             // 
@@ -3240,20 +3272,24 @@
         private DevExpress.XtraBars.BarButtonItem barButtonUp;
         private DevExpress.XtraBars.BarButtonItem barButtonDown;
         internal System.Windows.Forms.ContextMenuStrip cms;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiQb;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiWsp;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiBkycz;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiYjsp;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiRkd;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiYjjz;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiYjspz;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiRkdzmx;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiDsl;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiCgcgdd;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiBkybc;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiWccdyc;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiRkdqxs;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiRkdshr;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiRkdyjy;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkrqbnwkcx;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiDqrkdyjxghh;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkbmbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkckbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRklbbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSplxbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiHjbhbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkmxbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiSlbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiQgsyansjcw;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiRkdmxbnwkbc;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCxmxdsyjcgdcw;
+        internal System.Windows.Forms.ToolStripMenuItem tsmiCxmxdxyjcgjzdcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDgrqbnwkcx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxcgddsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJjcxcgddmxsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSxtzcgddsjcw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYzrkdzrxxtdxmhjxdj;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYzrkdzrxxtdgysjxdj;
     }
 }

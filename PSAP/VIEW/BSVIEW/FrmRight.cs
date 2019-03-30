@@ -48,7 +48,7 @@ namespace PSAP.VIEW.BSVIEW
             // TODO: 这行代码将数据加载到表“dsPSAP.BS_Department”中。您可以根据需要移动或删除它。
             this.bS_DepartmentTableAdapter.Fill(this.dsPSAP.BS_Department);
 
-            dtblTmp = BSCommon.getUserInfoList("", "", "", "");
+            dtblTmp = BSCommon.getUserInfoList("", "", "");
             dgvUserList.DataSource = dtblTmp;
             dgvUserList.ColumnHeadersHeight = 32;
             dgvUserList.Columns[0].Width = 40;
@@ -97,7 +97,7 @@ namespace PSAP.VIEW.BSVIEW
 
         private void btnStretch_Click(object sender, EventArgs e)
         {
-            dtblTmp = BSCommon.getUserInfoList(txtUserID.Text, txtLoginID.Text, txtUserName.Text, cboDepartmentName.Text.Trim());
+            dtblTmp = BSCommon.getUserInfoList(txtLoginID.Text, txtUserName.Text, cboDepartmentName.Text.Trim());
             dgvUserList.DataSource = dtblTmp;
 
         }

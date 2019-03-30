@@ -11,7 +11,7 @@ namespace PSAP.DAO.BSDAO
 {
     class FrmCollectionTypeDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmCollectionType f = new VIEW.BSVIEW.FrmCollectionType();
+        static PSAP.VIEW.BSVIEW.FrmLanguageBSDAO f = new VIEW.BSVIEW.FrmLanguageBSDAO();
         public FrmCollectionTypeDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);

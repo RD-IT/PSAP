@@ -49,11 +49,8 @@
             this.colCollectionTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCollectionTypeNoText = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiSkbfbd = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDsklxx = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiZjdzw = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBfbdzw = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSmdzw = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSklx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSksm = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.bSCollectionType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSCollectionType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableCollectionType)).BeginInit();
@@ -235,43 +232,22 @@
             // cms
             // 
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiSkbfbd,
-            this.tsmiDsklxx,
-            this.tsmiZjdzw,
-            this.tsmiBfbdzw,
-            this.tsmiSmdzw});
-            this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(362, 114);
+            this.tsmiSklx,
+            this.tsmiSksm});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(257, 70);
             // 
-            // tsmiSkbfbd
+            // tsmiSklx
             // 
-            this.tsmiSkbfbd.Name = "tsmiSkbfbd";
-            this.tsmiSkbfbd.Size = new System.Drawing.Size(361, 22);
-            this.tsmiSkbfbd.Text = "收款百分比的合计必须是100，请刷新后再重新操作。";
+            this.tsmiSklx.Name = "tsmiSklx";
+            this.tsmiSklx.Size = new System.Drawing.Size(256, 22);
+            this.tsmiSklx.Text = "收款类型不能为空，请重新操作。";
             // 
-            // tsmiDsklxx
+            // tsmiSksm
             // 
-            this.tsmiDsklxx.Name = "tsmiDsklxx";
-            this.tsmiDsklxx.Size = new System.Drawing.Size(361, 22);
-            this.tsmiDsklxx.Text = "对[收款类型信息]表进行[修改]操作：";
-            // 
-            // tsmiZjdzw
-            // 
-            this.tsmiZjdzw.Name = "tsmiZjdzw";
-            this.tsmiZjdzw.Size = new System.Drawing.Size(361, 22);
-            this.tsmiZjdzw.Text = "主键的值为";
-            // 
-            // tsmiBfbdzw
-            // 
-            this.tsmiBfbdzw.Name = "tsmiBfbdzw";
-            this.tsmiBfbdzw.Size = new System.Drawing.Size(361, 22);
-            this.tsmiBfbdzw.Text = "百分比的值为";
-            // 
-            // tsmiSmdzw
-            // 
-            this.tsmiSmdzw.Name = "tsmiSmdzw";
-            this.tsmiSmdzw.Size = new System.Drawing.Size(361, 22);
-            this.tsmiSmdzw.Text = "说明的值为";
+            this.tsmiSksm.Name = "tsmiSksm";
+            this.tsmiSksm.Size = new System.Drawing.Size(256, 22);
+            this.tsmiSksm.Text = "收款说明不能为空，请重新操作。";
             // 
             // FrmCollectionType
             // 
@@ -324,11 +300,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn colCollectionTypeNo;
         private DevExpress.XtraGrid.Columns.GridColumn colCollectionTypeNoText;
-        internal System.Windows.Forms.ContextMenuStrip cms;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiSkbfbd;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiDsklxx;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiZjdzw;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiBfbdzw;
-        internal System.Windows.Forms.ToolStripMenuItem tsmiSmdzw;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSklx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSksm;
     }
 }

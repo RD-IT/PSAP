@@ -19,17 +19,21 @@ namespace PSAP.VIEW.BSVIEW
         string collectionTypeNoStr = "";
 
         FrmCollectionTypeDAO collectionTypeDAO = new FrmCollectionTypeDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmCollectionTypeList()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         public FrmCollectionTypeList(string ctNoStr, string ctNoTextStr)
         {
             InitializeComponent();
             collectionTypeNoStr = ctNoStr;
-            this.Text = string.Format("收款类型【{0}】的信息", ctNoTextStr);
+            //this.Text = string.Format("收款类型【{0}】的信息", ctNoTextStr);
+            this.Text = string.Format(tsmiSklx.Text + "【{0}】" + tsmiDxx.Text, ctNoTextStr);
         }
 
         /// <summary>
@@ -42,10 +46,13 @@ namespace PSAP.VIEW.BSVIEW
                 repItemLookUpCollectionType.DataSource = new FrmCommonDAO().QueryCollectionType(false);
 
                 btnRefresh_Click(null, null);
+
+                btnSave_Click(null, null);
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -73,7 +80,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定默认值事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定默认值事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdmrzsjcw.Text, ex);
             }
         }
 
@@ -95,7 +103,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--新增按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--新增按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiXzansj.Text, ex);
             }
         }
 
@@ -104,7 +113,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (btnSave.Text != "保存")
+            if (btnSave.Tag.ToString() != "保存")
             {
                 try
                 {
@@ -127,7 +136,7 @@ namespace PSAP.VIEW.BSVIEW
                     int sumInt = DataTypeConvert.GetInt(TableCollectionTypeList.Compute("Sum(CollectionPercentum)", ""));
                     if (sumInt != 100)
                     {
-                        MessageHandler.ShowMessageBox("收款百分比的合计必须是100，请重新操作。");
+                        MessageHandler.ShowMessageBox(tsmiSkbfbdhj.Text);// ("收款百分比的合计必须是100，请重新操作。");
                         gridViewCollectionTypeList.Focus();
                         gridViewCollectionTypeList.FocusedColumn = colCollectionPercentum;
                         return;
@@ -146,7 +155,8 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
+                    //ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
+                    ExceptionHandler.HandleException(this.Text + "--" + f.tsmiBcansj.Text, ex);
                     gridViewCollectionTypeList.Focus();
                     gridViewCollectionTypeList.FocusedColumn = colCollectionPercentum;
                 }
@@ -173,7 +183,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--删除按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--删除按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiScansj.Text, ex);
             }
         }
 
@@ -191,7 +202,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--刷新按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--刷新按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSxansjcw.Text, ex);
             }
         }
 
@@ -211,9 +223,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             btnNew.Enabled = !state;
             if (state)
-                btnSave.Text = "修改";
+            {
+                btnSave.Tag = "修改";
+                btnSave.Text = f.tsmiXg.Text;
+            }
             else
-                btnSave.Text = "保存";
+            {
+                btnSave.Tag = "保存";
+                btnSave.Text = f.tsmiBc.Text;
+            }
             btnCancel.Enabled = !state;
             btnDelete.Enabled = !state;
             btnRefresh.Enabled = state;

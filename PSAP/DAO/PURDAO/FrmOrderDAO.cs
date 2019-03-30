@@ -12,7 +12,7 @@ namespace PSAP.DAO.PURDAO
 {
     class FrmOrderDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmOrder f = new VIEW.BSVIEW.FrmOrder();
+        static PSAP.VIEW.BSVIEW.FrmLanguagePURDAO f = new VIEW.BSVIEW.FrmLanguagePURDAO();
         public FrmOrderDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);
@@ -280,12 +280,12 @@ namespace PSAP.DAO.PURDAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        if (!CheckPrReqApplyBeyondCount(cmd, orderHeadRow["OrderHeadNo"].ToString(), orderListTable))
+                        if (!CheckPrReqApplyBeyondCount(cmd, DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]), orderListTable))
                         {
                             return 0;
                         }
 
-                        if (orderHeadRow["OrderHeadNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(orderHeadRow["OrderHeadNo"]) == "")//新增
                         {
                             string orderHeadNo = BaseSQL.GetMaxCodeNo(cmd, "PO");
                             orderHeadRow["OrderHeadNo"] = orderHeadNo;

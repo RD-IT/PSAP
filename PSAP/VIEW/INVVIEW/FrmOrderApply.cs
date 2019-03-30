@@ -1,6 +1,5 @@
 ﻿using PSAP.DAO.BSDAO;
 using PSAP.DAO.INVDAO;
-using PSAP.DAO.PURDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -17,10 +16,14 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmOrderApplyDAO orderApplyDAO = new FrmOrderApplyDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmOrderApply()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
+
         }
 
         /// <summary>
@@ -30,6 +33,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                ControlHandler.DevExpressStyle_ChangeControlLocation(checkAll.LookAndFeel.ActiveSkinName, new List<Control> { checkAll });
+
                 DateTime nowDate = BaseSQL.GetServerDateTime();
                 dateOrderDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateOrderDateEnd.DateTime = nowDate.Date;
@@ -52,7 +57,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -70,7 +76,7 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (dateOrderDateBegin.EditValue == null || dateOrderDateEnd.EditValue == null)
                     {
-                        MessageHandler.ShowMessageBox("订购日期不能为空，请设置后重新进行查询。");
+                        MessageHandler.ShowMessageBox(f.tsmiDgrqbnwkcx.Text);// ("订购日期不能为空，请设置后重新进行查询。");
                         if (dateOrderDateBegin.EditValue == null)
                             dateOrderDateBegin.Focus();
                         else
@@ -93,7 +99,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCxansjcw.Text, ex);
             }
         }
 
@@ -137,7 +144,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--主表聚焦行改变事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--主表聚焦行改变事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiZbjjhgb.Text, ex);
             }
         }
 
@@ -159,7 +167,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定子表当前行选择事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定子表当前行选择事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSdzbdqhxzsjcw.Text, ex);
             }
         }
 
@@ -205,14 +214,14 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (gridViewOrderHead.GetFocusedDataRow() == null)
                 {
-                    MessageHandler.ShowMessageBox("请选择要适用的一个采购单，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiQxzysydygcgd.Text);// ("请选择要适用的一个采购单，请重新操作。");
                     textOrderHeadNo.Focus();
                     return;
                 }
                 int count = dataSet_Order.Tables[1].Select("ListSelect=1").Length;
                 if (count == 0)
                 {
-                    MessageHandler.ShowMessageBox("请选择要适用的采购订单明细记录，请重新操作。");
+                    MessageHandler.ShowMessageBox(tsmiQxzysydcgddmxjl.Text);// ("请选择要适用的采购订单明细记录，请重新操作。");
                     gridViewOrderList.Focus();
                     return;
                 }
@@ -222,7 +231,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--确认按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--确认按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiQransjcw.Text, ex);
             }
         }
 
@@ -247,7 +257,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击选中错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击选中错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSjxzcw.Text, ex);
             }
         }
     }

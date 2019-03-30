@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtUserID = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.label1 = new DevExpress.XtraEditors.LabelControl();
@@ -38,10 +39,16 @@
             this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.label3 = new DevExpress.XtraEditors.LabelControl();
             this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiYhdl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYhidbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMmbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiYhdlcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUserID
@@ -143,6 +150,40 @@
             this.btnChangePassword.Text = "修改密码";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiYhdl,
+            this.tsmiYhidbnwk,
+            this.tsmiMmbnwk,
+            this.tsmiYhdlcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(174, 114);
+            // 
+            // tsmiYhdl
+            // 
+            this.tsmiYhdl.Name = "tsmiYhdl";
+            this.tsmiYhdl.Size = new System.Drawing.Size(173, 22);
+            this.tsmiYhdl.Text = "用户登录";
+            // 
+            // tsmiYhidbnwk
+            // 
+            this.tsmiYhidbnwk.Name = "tsmiYhidbnwk";
+            this.tsmiYhidbnwk.Size = new System.Drawing.Size(173, 22);
+            this.tsmiYhidbnwk.Text = "用户ID不能为空。";
+            // 
+            // tsmiMmbnwk
+            // 
+            this.tsmiMmbnwk.Name = "tsmiMmbnwk";
+            this.tsmiMmbnwk.Size = new System.Drawing.Size(173, 22);
+            this.tsmiMmbnwk.Text = "密码不能为空。";
+            // 
+            // tsmiYhdlcw
+            // 
+            this.tsmiYhdlcw.Name = "tsmiYhdlcw";
+            this.tsmiYhdlcw.Size = new System.Drawing.Size(173, 22);
+            this.tsmiYhdlcw.Text = "用户登录错误。";
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -163,6 +204,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -179,6 +221,11 @@
         private DevExpress.XtraEditors.SimpleButton btnChangePassword;
         private System.Windows.Forms.ComboBox cboLanguage;
         private DevExpress.XtraEditors.LabelControl label3;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYhdl;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYhidbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMmbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYhdlcw;
     }
 }
 

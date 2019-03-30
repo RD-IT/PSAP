@@ -44,6 +44,24 @@ namespace PSAP.PSAPCommon
         }
 
         /// <summary>
+        /// 根据订单状态描述得到订单状态编号
+        /// </summary>
+        public static int Get_OrderState_No(string stateDescStr)
+        {
+            int stateNoInt = 0;//全部
+            if (stateDescStr == f.tsmiDsp.Text)//待审批
+                stateNoInt = 1;
+            else if (stateDescStr == f.tsmiSp.Text)//审批
+                stateNoInt = 2;
+            else if (stateDescStr == f.tsmiGb.Text)//关闭
+                stateNoInt = 3;
+            else if (stateDescStr == f.tsmiSpz.Text)//审批中
+                stateNoInt = 4;
+
+            return stateNoInt;
+        }
+
+        /// <summary>
         /// 根据入库单状态编号得到入库单状态描述
         /// </summary>
         public static string Get_WarehouseState_Desc(string wStateStr)
@@ -69,6 +87,24 @@ namespace PSAP.PSAPCommon
                     break;
             }
             return stateDescStr;
+        }
+
+        /// <summary>
+        /// 根据入库单状态描述得到入库单状态编号
+        /// </summary>
+        public static int Get_WarehouseState_No(string wStateDescStr)
+        {
+            int wStateNoInt = 0;//全部
+            if (wStateDescStr == f.tsmiDsp.Text)//待审批
+                wStateNoInt = 1;
+            else if (wStateDescStr == f.tsmiSp.Text)//审批
+                wStateNoInt = 2;
+            else if (wStateDescStr == f.tsmiYjz.Text)//已结账
+                wStateNoInt = 3;
+            else if (wStateDescStr == f.tsmiSpz.Text)//审批中
+                wStateNoInt = 4;
+
+            return wStateNoInt;
         }
 
         /// <summary>
@@ -126,13 +162,29 @@ namespace PSAP.PSAPCommon
                 case "1":
                     //manufactureTypeDescStr = "正常";
                     manufactureTypeDescStr = f.tsmiZc.Text;
-                                        break;
+                    break;
                 case "2":
                     //manufactureTypeDescStr = "虚拟";
                     manufactureTypeDescStr = f.tsmiXn.Text;
-                                        break;
+                    break;
             }
             return manufactureTypeDescStr;
         }
+
+        /// <summary>
+        /// 得到新的版本号
+        /// </summary>
+        public static string GetNewVersionNo(string oldVersionStr)
+        {
+            if (oldVersionStr == "")
+                return "1";
+
+            int ii = (int)Convert.ToChar(oldVersionStr);
+            ii++;
+            if (ii > 57 && ii < 97)
+                ii = 97;
+            return ((char)ii).ToString();
+        }
+
     }
 }

@@ -145,10 +145,9 @@
   <data name="dockPnlLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABh0RVh0VGl0
-        bGUAU2FsZXNSZXBvcnQ7U2FsZXM7v2GnUwAAAJJJREFUOE+1k90NgCAMhB3OV6dwE8NQvrKF21TOcMpP
-        KcQEkkuVlq8t1UVElpa24xQI/mDVuGqTh1q2TPYCnHMC9QCMIygDoNYeADGANAHw9NZcgPdeLM1vocxu
-        3MczgGoK2oFrXyVVjNEBWgUagHu/K4iAsRaMtsYAZQvJew7gd55aawoB9AGs3xo+ZGUMnwG4AfnRJa+e
-        +b8vAAAAAElFTkSuQmCC
+        bGUAU2FsZXNSZXBvcnQ7U2FsZXM7v2GnUwAAAHlJREFUOE+9kN0JgDAMhDtcX52im0iH8rVbdJvIQSr9
+        uUYt6AcfHJJcg05Epm77IVAznRk+lKWZ/fwVYowC2VJtmaMFgC3VArPgCd8WpJRMwb8XGPACRg6+UeEF
+        7AJWUPLyBZrXfiJ4VaDDzLaAaeCagjvxYp9z8O4E+dElr5pv4JYAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="popupMenuList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -158,6 +157,6 @@
     <value>1230, 6</value>
   </metadata>
   <metadata name="cms.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>13, 50</value>
+    <value>17, 45</value>
   </metadata>
 </root>

@@ -135,7 +135,7 @@
             this.labWWDate = new DevExpress.XtraEditors.LabelControl();
             this.labWarehouseWarrant = new DevExpress.XtraEditors.LabelControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.pnlGrid = new DevExpress.XtraEditors.PanelControl();
             this.gridControlSettlementList = new DevExpress.XtraGrid.GridControl();
             this.bindingSource_SettlementList = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_Settlement = new System.Data.DataSet();
@@ -291,6 +291,7 @@
             this.tsmiDqcgjzd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiZbjjhg = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTjl = new System.Windows.Forms.ToolStripMenuItem();
             this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiWlfbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkbm = new System.Windows.Forms.ToolStripMenuItem();
@@ -331,7 +332,6 @@
             this.tsmiSxtzrk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzcgjz = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiTjl = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerLeft)).BeginInit();
             this.dockPnlLeft.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -369,8 +369,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseWarrant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).BeginInit();
             this.pnlRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).BeginInit();
+            this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSettlementList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_SettlementList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Settlement)).BeginInit();
@@ -1440,7 +1440,8 @@
             // 
             // pnlRight
             // 
-            this.pnlRight.Controls.Add(this.panelControl2);
+            this.pnlRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlRight.Controls.Add(this.pnlGrid);
             this.pnlRight.Controls.Add(this.splitterControl1);
             this.pnlRight.Controls.Add(this.pnlMiddle);
             this.pnlRight.Controls.Add(this.pnltop);
@@ -1450,14 +1451,14 @@
             this.pnlRight.Size = new System.Drawing.Size(1020, 581);
             this.pnlRight.TabIndex = 1;
             // 
-            // panelControl2
+            // pnlGrid
             // 
-            this.panelControl2.Controls.Add(this.gridControlSettlementList);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(2, 322);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1016, 257);
-            this.panelControl2.TabIndex = 3;
+            this.pnlGrid.Controls.Add(this.gridControlSettlementList);
+            this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlGrid.Location = new System.Drawing.Point(0, 320);
+            this.pnlGrid.Name = "pnlGrid";
+            this.pnlGrid.Size = new System.Drawing.Size(1020, 261);
+            this.pnlGrid.TabIndex = 3;
             // 
             // gridControlSettlementList
             // 
@@ -1473,7 +1474,7 @@
             this.repbtnDelete,
             this.repSpinUnit,
             this.repSpinTax1});
-            this.gridControlSettlementList.Size = new System.Drawing.Size(1012, 253);
+            this.gridControlSettlementList.Size = new System.Drawing.Size(1016, 257);
             this.gridControlSettlementList.TabIndex = 3;
             this.gridControlSettlementList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSettlementList});
@@ -2016,10 +2017,10 @@
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(2, 317);
+            this.splitterControl1.Location = new System.Drawing.Point(0, 315);
             this.splitterControl1.Margin = new System.Windows.Forms.Padding(4);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1016, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1020, 5);
             this.splitterControl1.TabIndex = 8;
             this.splitterControl1.TabStop = false;
             // 
@@ -2029,9 +2030,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlSettlementHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1016, 237);
+            this.pnlMiddle.Size = new System.Drawing.Size(1020, 237);
             this.pnlMiddle.TabIndex = 2;
             // 
             // checkAll
@@ -2060,7 +2061,7 @@
             this.repSpinTax,
             this.repLookUpApprovalType,
             this.repCheckIsVoucher});
-            this.gridControlSettlementHead.Size = new System.Drawing.Size(1012, 199);
+            this.gridControlSettlementHead.Size = new System.Drawing.Size(1016, 199);
             this.gridControlSettlementHead.TabIndex = 4;
             this.gridControlSettlementHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSettlementHead});
@@ -2407,7 +2408,7 @@
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1012, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1016, 34);
             this.pnlMiddleTop.TabIndex = 1;
             // 
             // btnPreview
@@ -2502,10 +2503,10 @@
             this.pnltop.Controls.Add(this.labWarehouseState);
             this.pnltop.Controls.Add(this.labSettlementDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(2, 2);
+            this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Margin = new System.Windows.Forms.Padding(4);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1016, 78);
+            this.pnltop.Size = new System.Drawing.Size(1020, 78);
             this.pnltop.TabIndex = 1;
             // 
             // checkPayDate
@@ -3033,6 +3034,12 @@
             this.tsmiBc.Size = new System.Drawing.Size(364, 22);
             this.tsmiBc.Text = "保存";
             // 
+            // tsmiTjl
+            // 
+            this.tsmiTjl.Name = "tsmiTjl";
+            this.tsmiTjl.Size = new System.Drawing.Size(364, 22);
+            this.tsmiTjl.Text = "条记录。";
+            // 
             // cms1
             // 
             this.cms1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3200,7 +3207,7 @@
             this.tsmiSxtzrk,
             this.tsmiYzcgjz});
             this.cms2.Name = "cmsCommonHandler";
-            this.cms2.Size = new System.Drawing.Size(329, 400);
+            this.cms2.Size = new System.Drawing.Size(329, 378);
             // 
             // tsmiZbsd
             // 
@@ -3309,12 +3316,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // tsmiTjl
-            // 
-            this.tsmiTjl.Name = "tsmiTjl";
-            this.tsmiTjl.Size = new System.Drawing.Size(364, 22);
-            this.tsmiTjl.Text = "条记录。";
-            // 
             // FrmSettlement_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -3369,8 +3370,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.textWarehouseWarrant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRight)).EndInit();
             this.pnlRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGrid)).EndInit();
+            this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSettlementList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_SettlementList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Settlement)).EndInit();
@@ -3495,7 +3496,7 @@
         private DevExpress.XtraEditors.DateEdit datePayDateBegin;
         private DevExpress.XtraEditors.LabelControl labPayDate;
         private DevExpress.XtraEditors.LabelControl lab2;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl pnlGrid;
         private DevExpress.XtraEditors.PanelControl pnlMiddle;
         private DevExpress.XtraEditors.SplitterControl splitterControl1;
         private System.Windows.Forms.BindingSource bindingSource_SettlementHead;

@@ -33,10 +33,13 @@ namespace PSAP.VIEW.BSVIEW
         /// 要查询的父零件编号
         /// </summary>
         public static string queryParentCodeFileNameStr = "";
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmBomManagement()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -46,15 +49,21 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                ControlHandler.DevExpressStyle_ChangeControlLocation(btnListAdd.LookAndFeel.ActiveSkinName, new List<Control> { btnListAdd });
+
                 searchPartsCodeId.Properties.DataSource = commonDAO.QueryPartsCode(false);
                 lookUpMaterieState.Properties.DataSource = bomDAO.QueryBomMaterieState(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
-                RefreshTreeList();
+
+                searchCodeFileName.Properties.DataSource = commonDAO.QueryPartsCode(false);
+                //RefreshTreeList();
+                Set_ButtonEditGrid_State(true, null);
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -67,17 +76,18 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (queryCodeFileNameStr != "")
                 {
-                    textCodeFileName.Text = queryCodeFileNameStr;
-                    textCodeFileName.Tag = queryParentCodeFileNameStr;
+                    searchCodeFileName.EditValue = queryCodeFileNameStr;
+                    searchCodeFileName.Tag = queryParentCodeFileNameStr;
                     queryCodeFileNameStr = "";
                     queryParentCodeFileNameStr = "";
-                    RefreshTreeList();
+                    //RefreshTreeList();
                     btnQuery_Click(null, null);
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjhsjcw.Text, ex);
             }
         }
 
@@ -90,7 +100,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
-        }        
+        }
 
         /// <summary>
         /// 聚焦查询当前选中Bom信息
@@ -107,7 +117,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--聚焦查询当前选中Bom信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--聚焦查询当前选中Bom信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiJjcxdqxzbomxx.Text, ex);
             }
         }
 
@@ -131,7 +142,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--新增按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--新增按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiXzansj.Text, ex);
             }
         }
 
@@ -145,7 +157,7 @@ namespace PSAP.VIEW.BSVIEW
                 if (dSBom.Tables[0].Rows.Count == 0 || bSBomManagement.Current == null)
                     return;
 
-                if (btnSave.Text != "保存")
+                if (btnSave.Tag.ToString() != "保存")
                 {
                     Set_ButtonEditGrid_State(false, dSBom.Tables[0].Rows[0]);
                     lookUpMaterieState.Focus();
@@ -158,7 +170,7 @@ namespace PSAP.VIEW.BSVIEW
                     int partsCodeIdInt = DataTypeConvert.GetInt(headRow["PartsCodeId"]);
                     if (partsCodeIdInt == 0)
                     {
-                        MessageHandler.ShowMessageBox("零件名称不能为空，请填写后再进行保存。");
+                        MessageHandler.ShowMessageBox(tsmiLjmcbnwk.Text);// ("零件名称不能为空，请填写后再进行保存。");
                         searchPartsCodeId.Focus();
                         return;
                     }
@@ -167,7 +179,7 @@ namespace PSAP.VIEW.BSVIEW
                     DataRow[] drs = tmpTable.Select(string.Format("AutoId={0}", partsCodeIdInt));
                     if (drs.Length == 0)
                     {
-                        MessageHandler.ShowMessageBox("零件名称查询信息错误，请填写后再进行保存。");
+                        MessageHandler.ShowMessageBox(tsmiLjmccxxxcw.Text);// ("零件名称查询信息错误，请填写后再进行保存。");
                         searchPartsCodeId.Focus();
                         return;
                     }
@@ -184,7 +196,7 @@ namespace PSAP.VIEW.BSVIEW
                         }
                         if (DataTypeConvert.GetString(listRow["Qty"]) == "")
                         {
-                            MessageHandler.ShowMessageBox("数量不能为空，请填写后再进行保存。");
+                            MessageHandler.ShowMessageBox(f.tsmiSlbnwkbc.Text);// ("数量不能为空，请填写后再进行保存。");
                             FocusedListView(true, "Qty", i);
                             return;
                         }
@@ -208,7 +220,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--保存按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiBcansj.Text, ex);
             }
         }
 
@@ -217,7 +230,28 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            treeListBom_FocusedNodeChanged(null, null);
+            try
+            {
+                //treeListBom_FocusedNodeChanged(null, null);
+
+                if (bSBomManagement.Current != null)
+                {
+                    bool isNew = ((DataRowView)bSBomManagement.Current).Row.RowState == DataRowState.Added;
+                    bSBomManagement.CancelEdit();
+                    ((DataRowView)bSBomManagement.Current).Row.RejectChanges();
+
+                    dSBom.Tables[0].Rows.Clear();
+                    dSBom.Tables[1].Rows.Clear();
+                    Set_ButtonEditGrid_State(true, null);
+
+                    if (!isNew)
+                        treeListBom_FocusedNodeChanged(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--取消按钮事件错误。", ex);
+            }
         }
 
         /// <summary>
@@ -229,11 +263,12 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (dSBom.Tables[0].Rows.Count == 0)
                 {
-                    MessageHandler.ShowMessageBox("请在要操作的记录前面选中。");
+                    MessageHandler.ShowMessageBox(f.tsmiQzyczdjlq.Text);// ("请在要操作的记录前面选中。");
                     return;
                 }
 
-                if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要删除当前选中的{0}条记录吗？", 1)) != DialogResult.Yes)
+                //if (MessageHandler.ShowMessageBox_YesNo(string.Format("确定要删除当前选中的{0}条记录吗？", 1)) != DialogResult.Yes)
+                if (MessageHandler.ShowMessageBox_YesNo(string.Format(f.tsmiQdyscdqxzd.Text + "{0}" + f.tsmiTjlm.Text, 1)) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -245,7 +280,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--删除按钮事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--删除按钮事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiScansj.Text, ex);
             }
         }
 
@@ -255,7 +291,7 @@ namespace PSAP.VIEW.BSVIEW
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             treeListBom_FocusedNodeChanged(null, null);
-        }        
+        }
 
         /// <summary>
         /// 子表新增一行事件
@@ -271,7 +307,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--子表新增一行事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--子表新增一行事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiZbxzyhsjcw.Text, ex);
             }
         }
 
@@ -291,9 +328,10 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--删除子表中的一行错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--删除子表中的一行错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSczbzyhcw.Text, ex);
             }
-        }        
+        }
 
         /// <summary>
         /// 设定主表的默认值
@@ -312,7 +350,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定主表的默认值错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定主表的默认值错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCxbhgjzdjdcw.Text, ex);
             }
         }
 
@@ -333,7 +372,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设定子表的默认值错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设定子表的默认值错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCxbhgjzdjdcw.Text, ex);
             }
         }
 
@@ -349,6 +389,28 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     case "LevelMaterielNo":
                         tmpStr = DataTypeConvert.GetString(gridViewBomMateriel.GetDataRow(e.RowHandle)["LevelMaterielNo"]);
+                        for (int i = 0; i < gridViewBomMateriel.DataRowCount; i++)
+                        {
+                            if (i != e.RowHandle)
+                            {
+                                string lineMaterNo = DataTypeConvert.GetString(gridViewBomMateriel.GetDataRow(i)["LevelMaterielNo"]);
+                                if (tmpStr == lineMaterNo)
+                                {
+                                    MessageHandler.ShowMessageBox("当前选择的子零件编号已经重复，请在同一项设定数量。");
+                                    //gridViewBomMateriel.SetRowCellValue(e.RowHandle, "LevelMaterielNo", "");
+                                    //gridViewBomMateriel.SetRowCellValue(e.RowHandle, "CodeName", "");
+
+                                    gridViewBomMateriel.DeleteRow(e.RowHandle);
+                                    gridViewBomMateriel.FocusedRowHandle = i;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+
+                            }
+                        }
+
                         if (tmpStr == "")
                             gridViewBomMateriel.SetRowCellValue(e.RowHandle, "CodeName", "");
                         else
@@ -365,7 +427,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--子表单元格值变化进行的操作错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--子表单元格值变化进行的操作错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiZbdygzbhjxdczcw.Text, ex);
             }
         }
 
@@ -395,7 +458,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--子表按键事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--子表按键事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiZbajsjcw.Text, ex);
             }
         }
 
@@ -406,31 +470,35 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (textCodeFileName.Text.Trim() != "")
-                {
-                    for (int i = 0; i < treeListBom.Nodes.Count; i++)
-                    {
-                        string parentCodeFileNameStr = "";
-                        if (DataTypeConvert.GetString(textCodeFileName.Tag) != "")
-                        {
-                            parentCodeFileNameStr = DataTypeConvert.GetString(textCodeFileName.Tag);
-                            textCodeFileName.Tag = "";
-                        }
-                        if (SearchFocusNode_CodeFileName(treeListBom.Nodes[i], textCodeFileName.Text.Trim(), parentCodeFileNameStr))
-                            break;
+                string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.EditValue);
+                treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo(codeFileNameStr);
+                treeListBom.ExpandAll();
+                //if (textCodeFileName.Text.Trim() != "")
+                //{
+                //    for (int i = 0; i < treeListBom.Nodes.Count; i++)
+                //    {
+                //        string parentCodeFileNameStr = "";
+                //        if (DataTypeConvert.GetString(textCodeFileName.Tag) != "")
+                //        {
+                //            parentCodeFileNameStr = DataTypeConvert.GetString(textCodeFileName.Tag);
+                //            textCodeFileName.Tag = "";
+                //        }
+                //        if (SearchFocusNode_CodeFileName(treeListBom.Nodes[i], textCodeFileName.Text.Trim(), parentCodeFileNameStr))
+                //            break;
 
-                        if (i == treeListBom.Nodes.Count - 1)
-                        {
-                            historyQuery.Clear();
-                            if (treeListBom.Nodes.Count > 0)
-                                treeListBom.FocusedNode = treeListBom.Nodes[0];
-                        }
-                    }
-                }
+                //        if (i == treeListBom.Nodes.Count - 1)
+                //        {
+                //            historyQuery.Clear();
+                //            if (treeListBom.Nodes.Count > 0)
+                //                treeListBom.FocusedNode = treeListBom.Nodes[0];
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询包含关键字的节点错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询包含关键字的节点错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCxbhgjzdjdcw.Text, ex);
             }
         }
 
@@ -452,8 +520,9 @@ namespace PSAP.VIEW.BSVIEW
             {
                 cReIDStr = DataTypeConvert.GetString(treeListBom.FocusedNode["ReID"]);
             }
-            treeListBom.DataSource = bomDAO.QueryBomTreeList_BaseInfo("");
-            treeListBom.ExpandAll();
+            //treeListBom.DataSource = bomDAO.QueryBomTreeList_BaseInfo("");
+            //treeListBom.ExpandAll();
+            btnQuery_Click(null, null);
 
             if (cReIDStr != "")
             {
@@ -488,7 +557,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private bool SearchFocusNode_CodeFileName(TreeListNode node, string codeFileNameStr, string parentCodeFileNameStr)
         {
-            if (DataTypeConvert.GetString(node["CodeFileName"]).Contains(codeFileNameStr)&&(parentCodeFileNameStr==""|| DataTypeConvert.GetString(node["ParentCodeFileName"]).Contains(parentCodeFileNameStr)))
+            if (DataTypeConvert.GetString(node["CodeFileName"]).Contains(codeFileNameStr) && (parentCodeFileNameStr == "" || DataTypeConvert.GetString(node["ParentCodeFileName"]).Contains(parentCodeFileNameStr)))
             {
                 string reIDStr = DataTypeConvert.GetString(node["ReID"]);
                 if (!historyQuery.Contains(reIDStr))
@@ -527,9 +596,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             btnNew.Enabled = state;
             if (state)
-                btnSave.Text = "修改";
+            {
+                btnSave.Tag = "修改";
+                btnSave.Text = f.tsmiXg.Text;
+            }
             else
-                btnSave.Text = "保存";
+            {
+                btnSave.Tag = "保存";
+                btnSave.Text = f.tsmiBc.Text;
+            }
             btnCancel.Enabled = !state;
             btnDelete.Enabled = state;
             btnRefresh.Enabled = state;
@@ -542,6 +617,7 @@ namespace PSAP.VIEW.BSVIEW
             else
                 ctlHandler.Set_Control_ReadOnly(searchPartsCodeId, true);
             ctlHandler.Set_Control_ReadOnly(lookUpMaterieState, state);
+            textCodeName.ReadOnly = true;
 
             gridViewBomMateriel.OptionsBehavior.Editable = !state;
 
@@ -598,6 +674,46 @@ namespace PSAP.VIEW.BSVIEW
             gridViewBomMateriel.AddNewRow();
             FocusedListView(true, "LevelMaterielNo", gridViewBomMateriel.GetFocusedDataSourceRowIndex());
             //gridViewOrderList.RefreshData();
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchPartsCodeId_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchPartsCodeId.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+
+                string selectCodeFileName = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchPartsCodeId.Properties.GetIndexByKeyValue(e.NewValue), "CodeFileName"));
+                DataTable tmpTable = new DataTable();
+                bomDAO.QueryBomManagement_Single(tmpTable, selectCodeFileName);
+                if(tmpTable.Rows.Count>0)
+                {
+                    MessageHandler.ShowMessageBox("当前选择的母零件编号已经设定过BOM信息，不可以重复登记。");
+                    searchCodeFileName.EditValue = selectCodeFileName;
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 查询结果存为Excel
+        /// </summary>
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileHandler.SaveTreeListControlExportToExcel(treeListBom);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+            }
         }
     }
 }

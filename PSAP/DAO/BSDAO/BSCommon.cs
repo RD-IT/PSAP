@@ -72,19 +72,34 @@ namespace PSAP.DAO.BSDAO
         /// <param name="strUserName"></param>
         /// <param name="strDepartmentName"></param>
         /// <returns></returns>
-        public static DataTable getUserInfoList(string strUserID, string strLoginID, string strUserName, string strDepartmentName)
+        public static DataTable getUserInfoList(string strLoginID, string strUserName, string strDepartmentName)
         {
-            string sqlString = "select a.autoID,a.loginID,a.empName,b.DepartmentName,d.RoleName,c.RoleNo " +
-            "from BS_UserInfo a left join BS_Department b on a.DepartmentNo=b.DepartmentNo " +
-            "left join BS_RoleUser c on a.AutoID=c.UserNo " +  //autoID是UserInfo表的关键字
-            "left join BS_Role d on c.RoleNo=d.RoleNo " +
-            "where convert(varchar(10),a.AutoID) like '%" + strUserID.Trim() + "%' " +
-            "and a.LoginID like '%" + strLoginID.Trim() + "%' " +
-            "and b.DepartmentName like '%" + strDepartmentName.Trim() + "%' " +
-            "and a.EmpName like '%" + strUserName.Trim() + "%'";
-            DataTable dtblTmp = new DataTable();
-            dtblTmp = BaseSQL.GetTableBySql(sqlString);
-            return dtblTmp;
+            //string sqlString = "select a.autoID,a.loginID,a.empName,b.DepartmentName,d.RoleName,c.RoleNo " +
+            //"from BS_UserInfo a left join BS_Department b on a.DepartmentNo=b.DepartmentNo " +
+            //"left join BS_RoleUser c on a.AutoID=c.UserNo " +  //autoID是UserInfo表的关键字
+            //"left join BS_Role d on c.RoleNo=d.RoleNo " +
+            //"where convert(varchar(10),a.AutoID) like '%" + strUserID.Trim() + "%' " +
+            //"and a.LoginID like '%" + strLoginID.Trim() + "%' " +
+            //"and b.DepartmentName like '%" + strDepartmentName.Trim() + "%' " +
+            //"and a.EmpName like '%" + strUserName.Trim() + "%'";
+            //DataTable dtblTmp = new DataTable();
+            //dtblTmp = BaseSQL.GetTableBySql(sqlString);
+
+            string sqlStr = " 1=1";
+            if (strLoginID != "")
+            {
+                sqlStr += string.Format(" and a.LoginID like '%{0}%'", strLoginID);
+            }
+            if (strUserName != "")
+            {
+                sqlStr += string.Format(" and a.EmpName like '%{0}%'", strUserName);
+            }
+            if (strDepartmentName != "")
+            {
+                sqlStr += string.Format(" and b.DepartmentName like '%{0}%'", strDepartmentName);
+            }
+            sqlStr = string.Format("select a.autoID,a.loginID,a.empName,b.DepartmentName,d.RoleName,c.RoleNo from BS_UserInfo a left join BS_Department b on a.DepartmentNo=b.DepartmentNo left join BS_RoleUser c on a.AutoID=c.UserNo left join BS_Role d on c.RoleNo=d.RoleNo where {0}", sqlStr);
+            return BaseSQL.GetTableBySql(sqlStr); ;
         }
 
         public static DataTable getThemeInfo()

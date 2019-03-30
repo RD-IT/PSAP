@@ -19,10 +19,13 @@ namespace PSAP.VIEW.BSVIEW
         FrmBaseEdit editForm = null;
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmBussinessInfoDAO bussDAO = new FrmBussinessInfoDAO();
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmBussinessInfo_New()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.BrowseXtraGridView = gridViewBaseInfo;
                     editForm.RowStateUnchangedIsSave = true;
                     editForm.MasterEditPanelAddControl = new List<Control>() { textContact, textCompanyLR, textCompanyAddress, textZipCode, textPhoneNo, textFaxNo, textE_mail, textWebSite, lookUpCountryCode, textBussinessLicense, textBankAccout, textBankAddress };
-                    editForm.CheckControl += CheckControl;                    
+                    editForm.CheckControl += CheckControl;
                     editForm.NewAfter += NewAfter;
                     editForm.SaveRowAfter += SaveRowAfter;
                     editForm.CancelAfter += QueryDataAfter;
@@ -64,7 +67,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -75,19 +79,19 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textBussinessBaseNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("往来方编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiWlfbh.Text);// ("往来方编号不能为空，请重新操作。");
                 textBussinessBaseNo.Focus();
                 return false;
             }
             if (textBussinessBaseText.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("往来方名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiWlfmc.Text);// ("往来方名称不能为空，请重新操作。");
                 textBussinessBaseText.Focus();
                 return false;
             }
             if (lookUpBussinessCategory.ItemIndex < 0)
             {
-                MessageHandler.ShowMessageBox("往来方分类不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiWlffl.Text);// ("往来方分类不能为空，请重新操作。");
                 textBussinessBaseText.Focus();
                 return false;
             }
@@ -131,7 +135,7 @@ namespace PSAP.VIEW.BSVIEW
             bussDAO.Update_BussinessOtherInfo(cmd, dSBussiness.Tables[1], dSBussiness.Tables[2]);
             return true;
         }
-        
+
         /// <summary>
         /// 查询往来方其他信息
         /// </summary>
@@ -157,7 +161,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public bool DeleteRowBefore(DataRow dr, SqlCommand cmd)
         {
-            bussDAO.Delete_BussinessOtherInfo(cmd, DataTypeConvert.GetString(dr["BussinessBaseNo",DataRowVersion.Original]));
+            bussDAO.Delete_BussinessOtherInfo(cmd, DataTypeConvert.GetString(dr["BussinessBaseNo", DataRowVersion.Original]));
 
             return true;
         }
@@ -205,7 +209,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设置往来方基本信息默认值错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设置往来方基本信息默认值错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSzwlfjbxxmrzcw.Text, ex);
             }
         }
 
@@ -222,7 +227,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--设置往来方详细信息默认值错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--设置往来方详细信息默认值错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSzwlfxxxxmrzcw.Text, ex);
             }
         }
 

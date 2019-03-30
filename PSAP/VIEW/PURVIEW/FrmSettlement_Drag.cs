@@ -70,6 +70,8 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                ControlHandler.DevExpressStyle_ChangeControlLocation(checkAll.LookAndFeel.ActiveSkinName, new List<Control> { checkAll });
+
                 DateTime nowDate = BaseSQL.GetServerDateTime();
                 dateSettlementDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateSettlementDateEnd.DateTime = nowDate.Date;
@@ -89,7 +91,7 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.ItemIndex = -1;
 
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
-                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);               
+                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
@@ -116,7 +118,6 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
                 ExceptionHandler.HandleException(this.Text + "--"+tsmiCtjzsj.Text , ex);
-
             }
         }
 
@@ -222,7 +223,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 string bussinessBaseNoStr = DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) != "全部" ? DataTypeConvert.GetString(searchLookUpBussinessBaseNo.EditValue) : "";
                 string reqDepStr = lookUpReqDep.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpReqDep.EditValue) : "";
-                int wStateInt = comboBoxWarehouseState.SelectedIndex > 0 ? comboBoxWarehouseState.SelectedIndex : 0;
+                int wStateInt = CommonHandler.Get_WarehouseState_No(comboBoxWarehouseState.Text); 
                 string empNameStr = lookUpPrepared.ItemIndex > 0 ? DataTypeConvert.GetString(lookUpPrepared.EditValue) : "";
                 int approverInt = -1;
                 if (lookUpApprover.ItemIndex == 0)
@@ -360,6 +361,7 @@ namespace PSAP.VIEW.BSVIEW
                 datePayDateEnd.Enabled = false;
             }
         }
+
         /// <summary>
         /// 保存按钮事件
         /// </summary>
@@ -519,7 +521,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
                 if (!setDAO.DeleteSettlement_Multi(dataSet_Settlement.Tables[0]))
-                    btnQuery_Click(null, null);
+                {
+
+                }
 
                 btnQuery_Click(null, null);
                 ClearHeadGridAllSelect();
@@ -1196,7 +1200,7 @@ namespace PSAP.VIEW.BSVIEW
                 gridViewSettlementList.RefreshData();
 
                 SetButtonAndColumnState(true);
-                headFocusedLineNo = gridViewSettlementList.DataRowCount;
+                headFocusedLineNo = gridViewSettlementHead.DataRowCount;
             }
             else
             {

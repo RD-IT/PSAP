@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpOutRpertoryNo = new DevExpress.XtraEditors.LookUpEdit();
@@ -60,7 +59,7 @@
             this.dataColModifierIp = new System.Data.DataColumn();
             this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColReqDep = new System.Data.DataColumn();
-            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomIM = new PSAP.VIEW.BSVIEW.GridBottom();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
@@ -77,6 +76,8 @@
             this.colPRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModifier = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.tsmiYdrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpOutRpertoryNo.Properties)).BeginInit();
@@ -99,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewIMHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpInRepertoryNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnltop
@@ -477,11 +479,9 @@
             this.gridViewIMHead.GridControl = this.gridControlIMHead;
             this.gridViewIMHead.IndicatorWidth = 40;
             this.gridViewIMHead.Name = "gridViewIMHead";
-            this.gridViewIMHead.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewIMHead.OptionsBehavior.Editable = false;
             this.gridViewIMHead.OptionsBehavior.ReadOnly = true;
-            this.gridViewIMHead.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewIMHead.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewIMHead.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewIMHead.OptionsView.ColumnAutoWidth = false;
             this.gridViewIMHead.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewIMHead.OptionsView.ShowFooter = true;
@@ -619,6 +619,19 @@
             this.colModifier.VisibleIndex = 7;
             this.colModifier.Width = 80;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiYdrqbnwkcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 26);
+            // 
+            // tsmiYdrqbnwkcx
+            // 
+            this.tsmiYdrqbnwkcx.Name = "tsmiYdrqbnwkcx";
+            this.tsmiYdrqbnwkcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiYdrqbnwkcx.Text = "移动日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmInventoryMoveQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -653,6 +666,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewIMHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpInRepertoryNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -707,5 +721,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPRemark;
         private DevExpress.XtraGrid.Columns.GridColumn colPrepared;
         private DevExpress.XtraGrid.Columns.GridColumn colModifier;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiYdrqbnwkcx;
     }
 }

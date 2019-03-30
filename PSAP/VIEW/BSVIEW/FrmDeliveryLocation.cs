@@ -13,10 +13,13 @@ namespace PSAP.VIEW.BSVIEW
     public partial class FrmDeliveryLocation : DockContent
     {
         FrmBaseEdit editForm = null;
+        static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
         public FrmDeliveryLocation()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(f);
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -48,7 +51,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + f.tsmiCtjzsjcw.Text, ex);
             }
         }
 
@@ -59,13 +63,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textLocationNo.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("交货处编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiJhcbhbnwk.Text);// ("交货处编号不能为空，请重新操作。");
                 textLocationNo.Focus();
                 return false;
             }
             if (textLocationName.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("交货处名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiJhcmcbnwk.Text);// ("交货处名称不能为空，请重新操作。");
                 textLocationName.Focus();
                 return false;
             }

@@ -36,7 +36,7 @@ namespace PSAP.BLL.BSBLL
             //初始设置所有菜单无效
             foreach (ToolStripMenuItem ctrl in mnuS.Items)
             {
-                //ctrl.Enabled = false;//主菜单保持有效状态
+                //ctrl.Enabled = false;//主菜单保持有效状态//
                 foreach (object subItem in ctrl.DropDownItems)
                 {
                     if (subItem.GetType() == refMenuItem.GetType())

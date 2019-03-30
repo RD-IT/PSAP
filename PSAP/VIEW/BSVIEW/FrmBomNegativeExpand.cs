@@ -23,6 +23,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBomNegativeExpand()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -36,7 +37,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjzsj.Text, ex);
             }
         }
 
@@ -61,14 +63,18 @@ namespace PSAP.VIEW.BSVIEW
                 //treeListBom.OptionsBehavior.EnableFiltering = true;
                 //treeListBom.OptionsFilter.FilterMode = FilterMode.Smart;
 
-                treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo("");
-                treeListBom.ExpandAll();
+                //treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo("");
+                //treeListBom.ExpandAll();
+                //treeListBom.FilterNodes();
 
-                treeListBom.FilterNodes();
+                string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.Text);
+                treeListBom.DataSource = bomDAO.QueryBomTreeList_Negative_MoreInfo(codeFileNameStr);
+                treeListBom.ExpandAll();
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--正向查询零件的Bom信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--反向查询零件的Bom信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiFxcxlj.Text, ex);
             }
         }
 
@@ -80,14 +86,15 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 string codeFileNameStr = DataTypeConvert.GetString(treeListBom.FocusedNode["CodeFileName"]);
-                string parentCodeFileNameStr= DataTypeConvert.GetString(treeListBom.FocusedNode["ParentCodeFileName"]);
+                string parentCodeFileNameStr = DataTypeConvert.GetString(treeListBom.FocusedNode["ParentCodeFileName"]);
                 FrmBomManagement.queryCodeFileNameStr = codeFileNameStr;
                 FrmBomManagement.queryParentCodeFileNameStr = parentCodeFileNameStr;
                 ViewHandler.ShowRightWindow("FrmBomManagement");
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查看Bom信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查看Bom信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSjckbom.Text, ex);
             }
         }
 
@@ -96,35 +103,36 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void treeListBom_FilterNode(object sender, DevExpress.XtraTreeList.FilterNodeEventArgs e)
         {
-            try
-            {
-                string nodeCFNStr = DataTypeConvert.GetString(e.Node["CodeFileName"]);
-                string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.EditValue);
+            //try
+            //{
+            //    string nodeCFNStr = DataTypeConvert.GetString(e.Node["CodeFileName"]);
+            //    string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.Text);
 
-                bool IsVisible = nodeCFNStr.IndexOf(codeFileNameStr) >= 0;
+            //    bool IsVisible = nodeCFNStr.IndexOf(codeFileNameStr) >= 0;
 
-                if (IsVisible)
-                {
-                    TreeListNode Node = e.Node.ParentNode;
-                    while (Node != null)
-                    {
-                        if (!Node.Visible)
-                        {
-                            Node.Visible = true;
-                            Node = Node.ParentNode;
-                        }
-                        else
-                            break;
-                    }
-                }
+            //    if (IsVisible)
+            //    {
+            //        TreeListNode Node = e.Node.ParentNode;
+            //        while (Node != null)
+            //        {
+            //            if (!Node.Visible)
+            //            {
+            //                Node.Visible = true;
+            //                Node = Node.ParentNode;
+            //            }
+            //            else
+            //                break;
+            //        }
+            //    }
 
-                e.Node.Visible = IsVisible;
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--设定树的过来条件错误。", ex);
-            }
+            //    e.Node.Visible = IsVisible;
+            //    e.Handled = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    //ExceptionHandler.HandleException(this.Text + "--设定树的过来条件错误。", ex);
+            //    ExceptionHandler.HandleException(this.Text + "--" + tsmiSdsdgltjcw.Text, ex);
+            //}
         }
 
         /// <summary>
@@ -138,7 +146,23 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgcw.Text, ex);
+            }
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
     }

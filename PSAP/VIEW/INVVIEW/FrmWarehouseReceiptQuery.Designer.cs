@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dataSet_WR = new System.Data.DataSet();
             this.dataTableWRHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -47,7 +46,7 @@
             this.dataColSelect = new System.Data.DataColumn();
             this.dataColWarehouseState = new System.Data.DataColumn();
             this.dataColManufactureNo = new System.Data.DataColumn();
-            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.labManufactureNo = new DevExpress.XtraEditors.LabelControl();
@@ -92,6 +91,8 @@
             this.repLookUpManufactureNo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
+            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_WR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableWRHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_WRHead)).BeginInit();
@@ -120,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).BeginInit();
             this.pnlMiddle.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet_WR
@@ -329,7 +331,6 @@
             "全部",
             "待审批",
             "审批",
-            "已结账",
             "审批中"});
             this.comboBoxWarehouseState.Size = new System.Drawing.Size(120, 20);
             this.comboBoxWarehouseState.TabIndex = 6;
@@ -796,6 +797,19 @@
             this.pnlMiddle.Size = new System.Drawing.Size(1204, 311);
             this.pnlMiddle.TabIndex = 8;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCkrqbnwkcx});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(317, 26);
+            // 
+            // tsmiCkrqbnwkcx
+            // 
+            this.tsmiCkrqbnwkcx.Name = "tsmiCkrqbnwkcx";
+            this.tsmiCkrqbnwkcx.Size = new System.Drawing.Size(316, 22);
+            this.tsmiCkrqbnwkcx.Text = "出库日期不能为空，请设置后重新进行查询。";
+            // 
             // FrmWarehouseReceiptQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -836,6 +850,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMiddle)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -905,5 +920,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpManufactureNo;
         private DevExpress.XtraEditors.PanelControl pnlMiddle;
         private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCkrqbnwkcx;
     }
 }

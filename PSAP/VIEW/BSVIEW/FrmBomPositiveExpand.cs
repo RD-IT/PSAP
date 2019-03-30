@@ -23,6 +23,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBomPositiveExpand()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -37,7 +38,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjzsj.Text, ex);
             }
         }
 
@@ -71,7 +73,8 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--正向查询零件的Bom信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--正向查询零件的Bom信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiZxcxlj.Text, ex);
             }
         }
 
@@ -93,14 +96,15 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 string codeFileNameStr = DataTypeConvert.GetString(treeListBom.FocusedNode["CodeFileName"]);
-                string parentCodeFileNameStr= DataTypeConvert.GetString(treeListBom.FocusedNode["ParentCodeFileName"]);
+                string parentCodeFileNameStr = DataTypeConvert.GetString(treeListBom.FocusedNode["ParentCodeFileName"]);
                 FrmBomManagement.queryCodeFileNameStr = codeFileNameStr;
                 FrmBomManagement.queryParentCodeFileNameStr = parentCodeFileNameStr;
                 ViewHandler.ShowRightWindow("FrmBomManagement");
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--双击查看Bom信息错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--双击查看Bom信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiSjckbom.Text, ex);
             }
         }
 
@@ -115,7 +119,23 @@ namespace PSAP.VIEW.BSVIEW
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgcw.Text, ex);
+            }
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
 

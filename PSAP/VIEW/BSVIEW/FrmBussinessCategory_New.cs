@@ -17,6 +17,7 @@ namespace PSAP.VIEW.BSVIEW
         public FrmBussinessCategory_New()
         {
             InitializeComponent();
+            PSAP.BLL.BSBLL.BSBLL.language(this);
         }
 
         /// <summary>
@@ -59,13 +60,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             if (textBussinessCategory.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("商业往来类别编号不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiSywllbbh.Text);// ("商业往来类别编号不能为空，请重新操作。");
                 textBussinessCategory.Focus();
                 return false;
             }
             if (textBussinessCategoryText.Text.Trim() == "")
             {
-                MessageHandler.ShowMessageBox("商业往来类别名称不能为空，请重新操作。");
+                MessageHandler.ShowMessageBox(tsmiSywllbmc.Text);// ("商业往来类别名称不能为空，请重新操作。");
                 textBussinessCategoryText.Focus();
                 return false;
             }

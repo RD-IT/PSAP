@@ -51,6 +51,9 @@
             this.colUnitNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiJhcbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiJhcmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dSDeliveryLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bSDeliveryLocation)).BeginInit();
@@ -64,6 +67,7 @@
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlDeliveryLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryLocation)).BeginInit();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dSDeliveryLocation
@@ -255,6 +259,26 @@
             this.colUnitDescription.VisibleIndex = 2;
             this.colUnitDescription.Width = 180;
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiJhcbhbnwk,
+            this.tsmiJhcmcbnwk});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(269, 70);
+            // 
+            // tsmiJhcbhbnwk
+            // 
+            this.tsmiJhcbhbnwk.Name = "tsmiJhcbhbnwk";
+            this.tsmiJhcbhbnwk.Size = new System.Drawing.Size(268, 22);
+            this.tsmiJhcbhbnwk.Text = "交货处编号不能为空，请重新操作。";
+            // 
+            // tsmiJhcmcbnwk
+            // 
+            this.tsmiJhcmcbnwk.Name = "tsmiJhcmcbnwk";
+            this.tsmiJhcmcbnwk.Size = new System.Drawing.Size(268, 22);
+            this.tsmiJhcmcbnwk.Text = "交货处名称不能为空，请重新操作。";
+            // 
             // FrmDeliveryLocation
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -280,6 +304,7 @@
             this.pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCrlDeliveryLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryLocation)).EndInit();
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -308,5 +333,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colUnitNo;
         private DevExpress.XtraGrid.Columns.GridColumn colUnitName;
         private DevExpress.XtraGrid.Columns.GridColumn colUnitDescription;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJhcbhbnwk;
+        private System.Windows.Forms.ToolStripMenuItem tsmiJhcmcbnwk;
     }
 }

@@ -11,10 +11,19 @@ namespace PSAP.DAO.BSDAO
 {
     class FrmBomManagementDAO
     {
-        static PSAP.VIEW.BSVIEW.FrmBomManagement f = new VIEW.BSVIEW.FrmBomManagement();
+        static PSAP.VIEW.BSVIEW.FrmLanguageBSDAO f = new VIEW.BSVIEW.FrmLanguageBSDAO();
         public FrmBomManagementDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);
+        }
+
+        /// <summary>
+        /// 查询和当前零件编号相同的Bom信息数量
+        /// </summary>
+        public int QueryBom_CodeFileNameCount(string codeFileNameStr)
+        {
+            string sqlStr = string.Format("select Count(*) from BS_BomManagement where MaterielNo = '{0}'", codeFileNameStr);
+            return DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
         }
 
         /// <summary>
@@ -40,7 +49,7 @@ namespace PSAP.DAO.BSDAO
             {
                 sqlStr += string.Format(" and MaterielNo = '{0}'", materielNoStr);
             }
-            sqlStr = string.Format("select * from BS_BomManagement where {0} order by AutoId", sqlStr);
+            sqlStr = string.Format("select BS_BomManagement.*, SW_PartsCode.CodeName from BS_BomManagement left join SW_PartsCode on BS_BomManagement.MaterielNo = SW_PartsCode.CodeFileName where {0} order by BS_BomManagement.AutoId", sqlStr);
             BaseSQL.Query(sqlStr, queryDataTable);
         }
 
@@ -74,6 +83,60 @@ namespace PSAP.DAO.BSDAO
         {
             string sqlStr = string.Format("select bom.*, SW_PartsCode.CodeName, SW_PartsCode.AutoId as PCAutoId, SW_PartsCode.FilePath, SW_PartsCode.Brand, SW_PartsCode.CatgName, SW_PartsCode.CodeSpec, SW_PartsCode.Unit, BS_BomMaterieState.MaterieStateText from F_BomMateriel_TreeRelation('{0}') as bom left join SW_PartsCode on bom.CodeFileName = SW_PartsCode.CodeFileName left join BS_BomManagement on bom.CodeFileName = BS_BomManagement.MaterielNo left join BS_BomMaterieState on BS_BomMaterieState.MaterieStateId = BS_BomManagement.MaterieStateId Order by CodeFileName", materielNoStr);
             return BaseSQL.Query(sqlStr).Tables[0];
+        }
+
+        /// <summary>
+        /// 查询Bom的反展开树形更多信息
+        /// </summary>
+        public DataTable QueryBomTreeList_Negative_MoreInfo(string materielNoStr)
+        {
+            string sqlStr = string.Format("select '' as ReParent, bom.*, SW_PartsCode.CodeName, SW_PartsCode.AutoId as PCAutoId, SW_PartsCode.FilePath, SW_PartsCode.Brand, SW_PartsCode.CatgName, SW_PartsCode.CodeSpec, SW_PartsCode.Unit, BS_BomMaterieState.MaterieStateText from F_BomMateriel_ParentRelation('{0}') as bom left join SW_PartsCode on bom.CodeFileName = SW_PartsCode.CodeFileName left join BS_BomManagement on bom.CodeFileName = BS_BomManagement.MaterielNo left join BS_BomMaterieState on BS_BomMaterieState.MaterieStateId = BS_BomManagement.MaterieStateId Order by CodeFileName", materielNoStr);
+            DataTable parentRelationTable = BaseSQL.GetTableBySql(sqlStr);
+            DataTable queryTable = parentRelationTable.Clone();
+            List<string> rootCodeFileNameList = new List<string>();
+            if (parentRelationTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < parentRelationTable.Rows.Count; i++)
+                {
+                    string parentCFNStr = DataTypeConvert.GetString(parentRelationTable.Rows[i]["ParentCodeFileName"]);
+                    if (parentRelationTable.Select(string.Format("CodeFileName='{0}'", parentCFNStr)).Length == 0)
+                    {
+                        if (rootCodeFileNameList.IndexOf(parentCFNStr) < 0)
+                            rootCodeFileNameList.Add(parentCFNStr);
+                    }
+                }
+            }
+            else
+                rootCodeFileNameList.Add(materielNoStr);
+
+            foreach (string rootCFN in rootCodeFileNameList)
+            {
+                sqlStr = string.Format("select ('/' + Cast(PC.AutoId as varchar(max)) + '/') as ReID, '' as ReParent, PC.AutoId, CodeFileName, 0 as ParentAutoId, '' as ParentCodeFileName, 1 as Qty, CodeName, PC.AutoId as PCAutoId, FilePath, Brand, CatgName, CodeSpec, Unit, BS_BomMaterieState.MaterieStateText from SW_PartsCode as PC left join BS_BomManagement as BomM on BomM.MaterielNo = PC.CodeFileName left join BS_BomMaterieState on BS_BomMaterieState.MaterieStateId = BomM.MaterieStateId where CodeFileName = '{0}'", rootCFN);
+                DataTable rootTable = BaseSQL.GetTableBySql(sqlStr);
+                if (rootTable.Rows.Count == 0)
+                    continue;
+                queryTable.ImportRow(rootTable.Rows[0]);
+
+                RecursionTreeList(rootTable.Rows[0], parentRelationTable, queryTable);
+            }
+
+            return queryTable;
+        }
+
+        /// <summary>
+        /// 递归创建树的数据表  
+        /// </summary>
+        private void RecursionTreeList(DataRow parentRow, DataTable sourceTable, DataTable targetTable)
+        {
+            string cfnStr = DataTypeConvert.GetString(parentRow["CodeFileName"]);
+            DataRow[] drs = sourceTable.Select(string.Format("ParentCodeFileName='{0}'", cfnStr));
+            foreach(DataRow dr in drs)
+            {
+                dr["ReID"] = parentRow["ReID"] + DataTypeConvert.GetString(dr["AutoId"]) + "/";
+                dr["ReParent"] = parentRow["ReID"];
+                targetTable.ImportRow(dr);
+                RecursionTreeList(dr, sourceTable, targetTable);
+            }
         }
 
         /// <summary>
@@ -185,6 +248,61 @@ namespace PSAP.DAO.BSDAO
 
                         trans.Commit();
                         return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 保存导入的Bom信息
+        /// </summary>
+        public void SaveImportBom(DataTable bomTable)
+        {
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("", conn, trans);
+                        DateTime nowDate = BaseSQL.GetServerDateTime();
+                        string nowLongDate = nowDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        //var query = from g in bomTable.AsEnumerable()
+                        //            group g by new { t1 = g.Field<string>("MotherCodeFileName") } into cfnList
+                        //            select new { MotherCodeFileName = cfnList.Key.t1, StallInfo = cfnList };
+                        //foreach (var cfnInfo in query)
+                        //{
+                        //    string codeFileNameStr = cfnInfo.MotherCodeFileName;
+
+                        DataView dv = new DataView(bomTable);
+                        DataTable rootTable = dv.ToTable(true, "MotherCodeFileName");
+                        foreach (DataRow rootDR in rootTable.Rows)
+                        {
+                            string codeFileNameStr = DataTypeConvert.GetString(rootDR["MotherCodeFileName"]);
+
+                            cmd.CommandText = string.Format("Insert into BS_BomManagement(MaterielNo, PartsCodeId, GetTime) select CodeFileName, AutoId, '{1}' from SW_PartsCode where CodeFileName = '{0}'", codeFileNameStr, nowLongDate);
+                            cmd.ExecuteNonQuery();
+
+                            DataRow[] drs = bomTable.Select(string.Format("MotherCodeFileName='{0}'", codeFileNameStr));
+                            foreach (DataRow dr in drs)
+                            {
+                                cmd.CommandText = string.Format("Insert into BS_BomMateriel(MaterielNo, LevelMaterielNo, Qty, GetTime) values ('{0}', '{1}', {2}, '{3}')", codeFileNameStr, DataTypeConvert.GetString(dr["SubCodeFileName"]), DataTypeConvert.GetInt(dr["Qty"]), nowLongDate);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        trans.Commit();
                     }
                     catch (Exception ex)
                     {

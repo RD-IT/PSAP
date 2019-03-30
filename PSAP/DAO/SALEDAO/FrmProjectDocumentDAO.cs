@@ -1,5 +1,6 @@
 ﻿using PSAP.BLL.SALEBLL;
 using PSAP.DAO.BSDAO;
+using PSAP.PSAPCommon;
 using PSAP.VIEW.BSVIEW;
 using System;
 using System.Collections;
@@ -269,7 +270,7 @@ namespace PSAP.DAO.SALEDAO
                 sql = "insert into SA_Documents(filename,busy,extensionID,deleted,flags," +
                     "lockProject,userId,lockDomain,lockPath,lockDate,latestRevisionNo,objectTypeID,defValStored) " +
                     "values('" + documentName + "', 0," + fileExtensionID + " , 0,0," +
-                    inProjectID + ",'90','pc-songxi','" + lockPath + "','" + DateTime.Now + "',0 ,1,0)";//'90':userID
+                    inProjectID + ",'"+ SystemInfo.user.AutoId + "','pc-songxi','" + lockPath + "','" + DateTime.Now + "',0 ,1,0)";//'90':userID
                 sqlLlist.Add(sql);
 
                 //增加文档和项目关联关系信息
@@ -279,7 +280,7 @@ namespace PSAP.DAO.SALEDAO
 
                 //增加文档版本信息
                 sql = "insert into SA_Revisions(documentID,RevNr,date,UserID,fileSize,fileDate) " +
-                      "values(" + newDocumentID + ",0,'" + DateTime.Now + "',90," + fileSize + ",'" + fileDate + "')";//change 90
+                      "values(" + newDocumentID + ",0,'" + DateTime.Now + "',"+ SystemInfo.user.AutoId + "," + fileSize + ",'" + fileDate + "')";//change 90
                 sqlLlist.Add(sql);
 
                 BaseSQL.ExecuteSqlTran(sqlLlist);
@@ -359,7 +360,7 @@ namespace PSAP.DAO.SALEDAO
 
                 //增加文档版本信息(添加到库时版本始终为1)
                 sql = "insert into SA_Revisions(documentID,RevNr,date,UserID,fileSize,fileDate) " +
-                      "values(" + documentID + ", 1 ,'" + DateTime.Now + "',90," + fileSize + ",'" + fileDate + "')";//change 90
+                      "values(" + documentID + ", 1 ,'" + DateTime.Now + "',"+ SystemInfo.user.AutoId + "," + fileSize + ",'" + fileDate + "')";//change 90
                 sqlLlist.Add(sql);
                 BaseSQL.ExecuteSqlTran(sqlLlist);
 
@@ -403,7 +404,7 @@ namespace PSAP.DAO.SALEDAO
 
                 //增加文档版本信息
                 sql = "insert into SA_Revisions(documentID,RevNr,date,UserID,fileSize,fileDate) " +
-                      "values(" + documentID + "," + latestRevisionNo + ",'" + DateTime.Now + "',90," + fileSize + ",'" + fileDate + "')";//change 90
+                      "values(" + documentID + "," + latestRevisionNo + ",'" + DateTime.Now + "',"+ SystemInfo.user.AutoId + "," + fileSize + ",'" + fileDate + "')";//change 90
                 sqlLlist.Add(sql);
                 BaseSQL.ExecuteSqlTran(sqlLlist);
             }

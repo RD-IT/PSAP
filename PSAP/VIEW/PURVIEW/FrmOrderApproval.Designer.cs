@@ -37,30 +37,11 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColOrderHeadDate = new System.Data.DataColumn();
-            this.dataColPurCategory = new System.Data.DataColumn();
-            this.dataColBussinessBaseNo = new System.Data.DataColumn();
-            this.dataColTax = new System.Data.DataColumn();
             this.dataColReqDep = new System.Data.DataColumn();
-            this.dataColPrepared = new System.Data.DataColumn();
-            this.dataColPreparedIp = new System.Data.DataColumn();
-            this.dataColProjectNo = new System.Data.DataColumn();
-            this.dataColStnNo = new System.Data.DataColumn();
-            this.dataColPlanDate = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColApproverIp = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
-            this.dataColModifier = new System.Data.DataColumn();
-            this.dataColModifierIp = new System.Data.DataColumn();
-            this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColReqState = new System.Data.DataColumn();
-            this.dataColPrReqRemark = new System.Data.DataColumn();
-            this.dataColClosed = new System.Data.DataColumn();
-            this.dataColClosedIp = new System.Data.DataColumn();
-            this.dataColClosedTime = new System.Data.DataColumn();
-            this.dataColSelect = new System.Data.DataColumn();
             this.dataColApprovalType = new System.Data.DataColumn();
-            this.dataColPayTypeNo = new System.Data.DataColumn();
             this.dataColApprovalCat = new System.Data.DataColumn();
+            this.dataColSelect = new System.Data.DataColumn();
             this.TableOrderApprovalInfo = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
             this.dataColTypeNo = new System.Data.DataColumn();
@@ -94,6 +75,8 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnApproval = new DevExpress.XtraEditors.SimpleButton();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCxcgddxxcw = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpApprovalType.Properties)).BeginInit();
@@ -111,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderAppInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -166,30 +150,11 @@
             this.dataColumn1,
             this.dataColumn2,
             this.dataColOrderHeadDate,
-            this.dataColPurCategory,
-            this.dataColBussinessBaseNo,
-            this.dataColTax,
             this.dataColReqDep,
-            this.dataColPrepared,
-            this.dataColPreparedIp,
-            this.dataColProjectNo,
-            this.dataColStnNo,
-            this.dataColPlanDate,
-            this.dataColumn3,
-            this.dataColApproverIp,
-            this.dataColumn4,
-            this.dataColModifier,
-            this.dataColModifierIp,
-            this.dataColModifierTime,
             this.dataColReqState,
-            this.dataColPrReqRemark,
-            this.dataColClosed,
-            this.dataColClosedIp,
-            this.dataColClosedTime,
-            this.dataColSelect,
             this.dataColApprovalType,
-            this.dataColPayTypeNo,
-            this.dataColApprovalCat});
+            this.dataColApprovalCat,
+            this.dataColSelect});
             this.TableOrderHead.TableName = "OrderHead";
             // 
             // dataColumn1
@@ -208,84 +173,10 @@
             this.dataColOrderHeadDate.ColumnName = "OrderHeadDate";
             this.dataColOrderHeadDate.DataType = typeof(System.DateTime);
             // 
-            // dataColPurCategory
-            // 
-            this.dataColPurCategory.Caption = "采购类型";
-            this.dataColPurCategory.ColumnName = "PurCategory";
-            // 
-            // dataColBussinessBaseNo
-            // 
-            this.dataColBussinessBaseNo.Caption = "往来方";
-            this.dataColBussinessBaseNo.ColumnName = "BussinessBaseNo";
-            // 
-            // dataColTax
-            // 
-            this.dataColTax.Caption = "税率";
-            this.dataColTax.ColumnName = "Tax";
-            this.dataColTax.DataType = typeof(double);
-            // 
             // dataColReqDep
             // 
             this.dataColReqDep.Caption = "申请部门";
             this.dataColReqDep.ColumnName = "ReqDep";
-            // 
-            // dataColPrepared
-            // 
-            this.dataColPrepared.Caption = "制单人";
-            this.dataColPrepared.ColumnName = "Prepared";
-            // 
-            // dataColPreparedIp
-            // 
-            this.dataColPreparedIp.Caption = "制单人IP";
-            this.dataColPreparedIp.ColumnName = "PreparedIp";
-            // 
-            // dataColProjectNo
-            // 
-            this.dataColProjectNo.Caption = "项目号";
-            this.dataColProjectNo.ColumnName = "ProjectNo";
-            // 
-            // dataColStnNo
-            // 
-            this.dataColStnNo.Caption = "站号";
-            this.dataColStnNo.ColumnName = "StnNo";
-            // 
-            // dataColPlanDate
-            // 
-            this.dataColPlanDate.Caption = "计划到货日期";
-            this.dataColPlanDate.ColumnName = "PlanDate";
-            this.dataColPlanDate.DataType = typeof(System.DateTime);
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.Caption = "审批人";
-            this.dataColumn3.ColumnName = "Approver";
-            // 
-            // dataColApproverIp
-            // 
-            this.dataColApproverIp.Caption = "审批人IP";
-            this.dataColApproverIp.ColumnName = "ApproverIp";
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.Caption = "审批时间";
-            this.dataColumn4.ColumnName = "ApproverTime";
-            this.dataColumn4.DataType = typeof(System.DateTime);
-            // 
-            // dataColModifier
-            // 
-            this.dataColModifier.Caption = "修改人";
-            this.dataColModifier.ColumnName = "Modifier";
-            // 
-            // dataColModifierIp
-            // 
-            this.dataColModifierIp.Caption = "修改人IP";
-            this.dataColModifierIp.ColumnName = "ModifierIp";
-            // 
-            // dataColModifierTime
-            // 
-            this.dataColModifierTime.Caption = "修改时间";
-            this.dataColModifierTime.ColumnName = "ModifierTime";
-            this.dataColModifierTime.DataType = typeof(System.DateTime);
             // 
             // dataColReqState
             // 
@@ -293,48 +184,21 @@
             this.dataColReqState.ColumnName = "ReqState";
             this.dataColReqState.DataType = typeof(int);
             // 
-            // dataColPrReqRemark
-            // 
-            this.dataColPrReqRemark.Caption = "备注";
-            this.dataColPrReqRemark.ColumnName = "PrReqRemark";
-            // 
-            // dataColClosed
-            // 
-            this.dataColClosed.Caption = "关闭人";
-            this.dataColClosed.ColumnName = "Closed";
-            // 
-            // dataColClosedIp
-            // 
-            this.dataColClosedIp.Caption = "关闭人IP";
-            this.dataColClosedIp.ColumnName = "ClosedIp";
-            // 
-            // dataColClosedTime
-            // 
-            this.dataColClosedTime.Caption = "关闭时间";
-            this.dataColClosedTime.ColumnName = "ClosedTime";
-            this.dataColClosedTime.DataType = typeof(System.DateTime);
-            // 
-            // dataColSelect
-            // 
-            this.dataColSelect.Caption = "";
-            this.dataColSelect.ColumnName = "Select";
-            this.dataColSelect.DataType = typeof(bool);
-            // 
             // dataColApprovalType
             // 
             this.dataColApprovalType.Caption = "审批类型";
             this.dataColApprovalType.ColumnName = "ApprovalType";
-            // 
-            // dataColPayTypeNo
-            // 
-            this.dataColPayTypeNo.Caption = "付款类型";
-            this.dataColPayTypeNo.ColumnName = "PayTypeNo";
             // 
             // dataColApprovalCat
             // 
             this.dataColApprovalCat.Caption = "审批方式";
             this.dataColApprovalCat.ColumnName = "ApprovalCat";
             this.dataColApprovalCat.DataType = typeof(int);
+            // 
+            // dataColSelect
+            // 
+            this.dataColSelect.ColumnName = "Select";
+            this.dataColSelect.DataType = typeof(bool);
             // 
             // TableOrderApprovalInfo
             // 
@@ -467,7 +331,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 89);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(584, 232);
+            this.pnlMiddle.Size = new System.Drawing.Size(584, 233);
             this.pnlMiddle.TabIndex = 5;
             // 
             // gridCrlOrderAppInfo
@@ -477,7 +341,7 @@
             this.gridCrlOrderAppInfo.Location = new System.Drawing.Point(2, 2);
             this.gridCrlOrderAppInfo.MainView = this.gridViewOrderAppInfo;
             this.gridCrlOrderAppInfo.Name = "gridCrlOrderAppInfo";
-            this.gridCrlOrderAppInfo.Size = new System.Drawing.Size(580, 228);
+            this.gridCrlOrderAppInfo.Size = new System.Drawing.Size(580, 229);
             this.gridCrlOrderAppInfo.TabIndex = 9;
             this.gridCrlOrderAppInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderAppInfo});
@@ -598,7 +462,7 @@
             this.pnlBottom.Controls.Add(this.btnCancel);
             this.pnlBottom.Controls.Add(this.btnApproval);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 322);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(584, 40);
             this.pnlBottom.TabIndex = 6;
@@ -625,11 +489,24 @@
             this.btnApproval.Text = "审批";
             this.btnApproval.Click += new System.EventHandler(this.btnApproval_Click);
             // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCxcgddxxcw});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(281, 48);
+            // 
+            // tsmiCxcgddxxcw
+            // 
+            this.tsmiCxcgddxxcw.Name = "tsmiCxcgddxxcw";
+            this.tsmiCxcgddxxcw.Size = new System.Drawing.Size(280, 22);
+            this.tsmiCxcgddxxcw.Text = "查询采购订单信息错误，请重新操作。";
+            // 
             // FrmOrderApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.pnlBottom);
@@ -660,6 +537,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderAppInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -704,32 +582,15 @@
         private System.Data.DataColumn dataColumn1;
         private System.Data.DataColumn dataColumn2;
         private System.Data.DataColumn dataColOrderHeadDate;
-        private System.Data.DataColumn dataColPurCategory;
-        private System.Data.DataColumn dataColBussinessBaseNo;
-        private System.Data.DataColumn dataColTax;
         private System.Data.DataColumn dataColReqDep;
-        private System.Data.DataColumn dataColPrepared;
-        private System.Data.DataColumn dataColPreparedIp;
-        private System.Data.DataColumn dataColProjectNo;
-        private System.Data.DataColumn dataColStnNo;
-        private System.Data.DataColumn dataColPlanDate;
-        private System.Data.DataColumn dataColumn3;
-        private System.Data.DataColumn dataColApproverIp;
-        private System.Data.DataColumn dataColumn4;
-        private System.Data.DataColumn dataColModifier;
-        private System.Data.DataColumn dataColModifierIp;
-        private System.Data.DataColumn dataColModifierTime;
         private System.Data.DataColumn dataColReqState;
-        private System.Data.DataColumn dataColPrReqRemark;
-        private System.Data.DataColumn dataColClosed;
-        private System.Data.DataColumn dataColClosedIp;
-        private System.Data.DataColumn dataColClosedTime;
-        private System.Data.DataColumn dataColSelect;
         private System.Data.DataColumn dataColApprovalType;
-        private System.Data.DataColumn dataColPayTypeNo;
         private System.Windows.Forms.BindingSource bsOrderHead;
         private DevExpress.XtraEditors.LabelControl labApprovalCat;
         private DevExpress.XtraEditors.LookUpEdit lookUpApprovalType;
         private System.Data.DataColumn dataColApprovalCat;
+        private System.Data.DataColumn dataColSelect;
+        private System.Windows.Forms.ContextMenuStrip cms;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCxcgddxxcw;
     }
 }

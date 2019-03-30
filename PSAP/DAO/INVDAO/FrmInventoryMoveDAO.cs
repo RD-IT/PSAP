@@ -12,8 +12,8 @@ namespace PSAP.DAO.INVDAO
 {
     class FrmInventoryMoveDAO
     {
-                   static PSAP.VIEW.BSVIEW.FrmInventoryMove_Drag f = new VIEW.BSVIEW.FrmInventoryMove_Drag();
- public FrmInventoryMoveDAO()
+        static PSAP.VIEW.BSVIEW.FrmLanguageINVDAO f = new VIEW.BSVIEW.FrmLanguageINVDAO();
+        public FrmInventoryMoveDAO()
         {
             PSAP.BLL.BSBLL.BSBLL.language(f);
         }
@@ -77,7 +77,7 @@ namespace PSAP.DAO.INVDAO
         /// </summary>
         /// <param name="queryDataTable">要查询填充的数据表</param>
         /// <param name="inventoryMoveNoStr">移动单号</param>
-        public void QueryInventoryMoveList(DataTable queryDataTable, string inventoryMoveNoStr,bool nullTable)
+        public void QueryInventoryMoveList(DataTable queryDataTable, string inventoryMoveNoStr, bool nullTable)
         {
             string sqlStr = string.Format(" and InventoryMoveNo='{0}'", inventoryMoveNoStr);
             if (nullTable)
@@ -105,12 +105,12 @@ namespace PSAP.DAO.INVDAO
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
                         //检查当前库存数是否满足
-                        if (!CheckWarehouseNowInfoBeyondCount(cmd, IMHeadRow["InventoryMoveNo"].ToString(), IMListTable))
+                        if (!CheckWarehouseNowInfoBeyondCount(cmd, DataTypeConvert.GetString(IMHeadRow["InventoryMoveNo"]), IMListTable))
                         {
                             return 0;
                         }
 
-                        if (IMHeadRow["InventoryMoveNo"].ToString() == "")//新增
+                        if (DataTypeConvert.GetString(IMHeadRow["InventoryMoveNo"]) == "")//新增
                         {
                             string imNo = BaseSQL.GetMaxCodeNo(cmd, "IM");
                             IMHeadRow["InventoryMoveNo"] = imNo;
@@ -199,8 +199,8 @@ namespace PSAP.DAO.INVDAO
                 if (qtySum > nowQty)
                 {
                     //MessageHandler.ShowMessageBox(string.Format("库存移动单中明细[{0}]的数量[{1}]超过当前的库存数量[{2}]，不可以保存。", codeFileNameStr, qtySum, nowQty));
-                    MessageHandler.ShowMessageBox(string.Format(f.tsmiKcyddz.Text+"[{0}]"+f.tsmiDsl.Text+"[{1}]"+f.tsmiCgdqdk.Text+"[{2}]，"+f.tsmiBkybc.Text, codeFileNameStr, qtySum, nowQty));
-                                        return false;
+                    MessageHandler.ShowMessageBox(string.Format(f.tsmiKcyddz.Text + "[{0}]" + f.tsmiDsl.Text + "[{1}]" + f.tsmiCgdqdk.Text + "[{2}]，" + f.tsmiBkybc.Text, codeFileNameStr, qtySum, nowQty));
+                    return false;
                 }
             }
             return true;
@@ -423,7 +423,7 @@ namespace PSAP.DAO.INVDAO
                         break;
                     case "Remark":
                         listTable.Columns[i].Caption = "备注";
-                        break;                    
+                        break;
                 }
 
                 #endregion

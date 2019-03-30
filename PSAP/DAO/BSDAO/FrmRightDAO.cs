@@ -105,6 +105,12 @@ namespace PSAP.DAO.BSDAO
             return dt;
         }
 
+        public DataTable GetButtonPersonal(string userNoStr)
+        {
+            string sqlStr = string.Format("select a.UserNo,b.* from BS_UserMenuButton a left join BS_MenuButton b on a.MenuButtonId = b.AutoId where b.ButtonName <> 'menuItemFlag' and a.UserNo like '%{0}%'", userNoStr);
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
         /// <summary>
         /// 将设定的角色权限保存到数据库中（向sql语句组中增加sql语句）
         /// </summary>

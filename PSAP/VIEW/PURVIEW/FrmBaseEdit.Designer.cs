@@ -53,6 +53,7 @@
             // 
             this.pnlButton.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.pnlButton.Appearance.Options.UseBackColor = true;
+            this.pnlButton.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pnlButton.Controls.Add(this.btnSaveExcel);
             this.pnlButton.Controls.Add(this.btnRefresh);
             this.pnlButton.Controls.Add(this.btnDelete);
@@ -176,18 +177,18 @@
             this.tsmiSave,
             this.tsmiEdit});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(153, 70);
+            this.cms.Size = new System.Drawing.Size(101, 48);
             // 
             // tsmiSave
             // 
             this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSave.Size = new System.Drawing.Size(100, 22);
             this.tsmiSave.Text = "保存";
             // 
             // tsmiEdit
             // 
             this.tsmiEdit.Name = "tsmiEdit";
-            this.tsmiEdit.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEdit.Size = new System.Drawing.Size(100, 22);
             this.tsmiEdit.Text = "编辑";
             // 
             // FrmBaseEdit

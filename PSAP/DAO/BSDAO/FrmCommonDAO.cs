@@ -205,7 +205,7 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         public DataTable QueryBussinessBaseInfo(bool addAllItem)
         {
-            string sqlStr = "select Info.AutoId, Info.BussinessBaseNo, Info.BussinessBaseText, Cate.BussinessCategoryText from BS_BussinessBaseInfo as Info left join BS_BussinessCategory as Cate on Info.BussinessCategory=Cate.BussinessCategory where BussinessIsUse=1 Order by AutoId";
+            string sqlStr = "select Info.AutoId, Info.BussinessBaseNo, Info.BussinessBaseText, Cate.BussinessCategoryText from BS_BussinessBaseInfo as Info left join BS_BussinessCategory as Cate on Info.BussinessCategory=Cate.BussinessCategory Order by AutoId";
             if (addAllItem)
             {
                 sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as BussinessBaseNo, '" + f.tsmiQb + "' as BussinessBaseText, '" + f.tsmiQb + "' as BussinessCategoryText union " + sqlStr;
