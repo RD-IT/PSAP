@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
             this.searchLookUpProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpProjectNoView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -58,7 +59,7 @@
             this.pnlMiddleBottom = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_PrReq = new System.Data.DataSet();
             this.dataTablePrReqHead = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -116,7 +117,7 @@
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnlMiddleTop = new DevExpress.XtraEditors.PanelControl();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -139,7 +140,7 @@
             this.colApplicant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApprover = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCt = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQgrq = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCxan = new System.Windows.Forms.ToolStripMenuItem();
@@ -787,15 +788,14 @@
             this.gridViewPrReqList.GridControl = this.gridControlPrReqList;
             this.gridViewPrReqList.IndicatorWidth = 40;
             this.gridViewPrReqList.Name = "gridViewPrReqList";
-            this.gridViewPrReqList.OptionsBehavior.Editable = false;
-            this.gridViewPrReqList.OptionsBehavior.ReadOnly = true;
             this.gridViewPrReqList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowFooter = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
             this.gridViewPrReqList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrReqList_RowClick);
-            this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
+            this.gridViewPrReqList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
+            this.gridViewPrReqList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqHead_KeyDown);
             // 
             // colAutoId1
             // 
@@ -827,8 +827,6 @@
             this.colPrReqNo1.FieldName = "PrReqNo";
             this.colPrReqNo1.Name = "colPrReqNo1";
             this.colPrReqNo1.OptionsColumn.AllowEdit = false;
-            this.colPrReqNo1.OptionsColumn.AllowFocus = false;
-            this.colPrReqNo1.OptionsColumn.ReadOnly = true;
             this.colPrReqNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colPrReqNo1.Visible = true;
@@ -918,7 +916,6 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 3;
             this.colCodeName.Width = 110;
@@ -1074,6 +1071,7 @@
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
             this.gridViewPrReqHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewPrReqHead_FocusedRowChanged);
             this.gridViewPrReqHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewPrReqHead_CustomColumnDisplayText);
+            this.gridViewPrReqHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -1100,8 +1098,6 @@
             this.colPrReqNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrReqNo.FieldName = "PrReqNo";
             this.colPrReqNo.Name = "colPrReqNo";
-            this.colPrReqNo.OptionsColumn.AllowEdit = false;
-            this.colPrReqNo.OptionsColumn.AllowFocus = false;
             this.colPrReqNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colPrReqNo.Visible = true;
@@ -1114,8 +1110,6 @@
             this.colReqState.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colReqState.FieldName = "ReqState";
             this.colReqState.Name = "colReqState";
-            this.colReqState.OptionsColumn.AllowEdit = false;
-            this.colReqState.OptionsColumn.AllowFocus = false;
             this.colReqState.Visible = true;
             this.colReqState.VisibleIndex = 1;
             this.colReqState.Width = 60;
@@ -1128,7 +1122,6 @@
             this.colReqDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colReqDate.FieldName = "ReqDate";
             this.colReqDate.Name = "colReqDate";
-            this.colReqDate.OptionsColumn.AllowEdit = false;
             this.colReqDate.Visible = true;
             this.colReqDate.VisibleIndex = 2;
             this.colReqDate.Width = 90;
@@ -1140,7 +1133,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 3;
             this.colReqDep.Width = 120;
@@ -1165,7 +1157,6 @@
             this.colProjectNo.ColumnEdit = this.repSearchProjectNo;
             this.colProjectNo.FieldName = "ProjectNo";
             this.colProjectNo.Name = "colProjectNo";
-            this.colProjectNo.OptionsColumn.AllowEdit = false;
             this.colProjectNo.Visible = true;
             this.colProjectNo.VisibleIndex = 4;
             this.colProjectNo.Width = 100;
@@ -1225,7 +1216,6 @@
             this.colStnNo.ColumnEdit = this.repComboBoxStnNo;
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
-            this.colStnNo.OptionsColumn.AllowEdit = false;
             this.colStnNo.Visible = true;
             this.colStnNo.VisibleIndex = 5;
             this.colStnNo.Width = 100;
@@ -1246,7 +1236,6 @@
             this.colPurCategory.ColumnEdit = this.repLookUpPurCategory;
             this.colPurCategory.FieldName = "PurCategory";
             this.colPurCategory.Name = "colPurCategory";
-            this.colPurCategory.OptionsColumn.AllowEdit = false;
             this.colPurCategory.Visible = true;
             this.colPurCategory.VisibleIndex = 6;
             this.colPurCategory.Width = 80;
@@ -1270,8 +1259,6 @@
             this.colApplicant.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colApplicant.FieldName = "Applicant";
             this.colApplicant.Name = "colApplicant";
-            this.colApplicant.OptionsColumn.AllowEdit = false;
-            this.colApplicant.OptionsColumn.AllowFocus = false;
             this.colApplicant.Visible = true;
             this.colApplicant.VisibleIndex = 8;
             this.colApplicant.Width = 70;
@@ -1282,7 +1269,6 @@
             this.colPrReqRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrReqRemark.FieldName = "PrReqRemark";
             this.colPrReqRemark.Name = "colPrReqRemark";
-            this.colPrReqRemark.OptionsColumn.AllowEdit = false;
             this.colPrReqRemark.Visible = true;
             this.colPrReqRemark.VisibleIndex = 7;
             this.colPrReqRemark.Width = 140;
@@ -1293,8 +1279,6 @@
             this.colApprover.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colApprover.FieldName = "Approver";
             this.colApprover.Name = "colApprover";
-            this.colApprover.OptionsColumn.AllowEdit = false;
-            this.colApprover.OptionsColumn.AllowFocus = false;
             this.colApprover.Visible = true;
             this.colApprover.VisibleIndex = 9;
             this.colApprover.Width = 70;

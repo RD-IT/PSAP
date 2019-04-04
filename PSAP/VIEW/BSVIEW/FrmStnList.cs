@@ -100,12 +100,9 @@ namespace PSAP.VIEW.BSVIEW
         /// <summary>
         /// 确定行号
         /// </summary>
-        private void gridViewStnList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void searchLookUpProjectNoView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>

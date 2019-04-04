@@ -11,20 +11,7 @@ namespace PSAP.DAO.SADAO
     class FrmQuotationInfoDAO
     {
         /// <summary>
-        /// 查询币种列表
-        /// </summary>
-        public DataTable QueryCurrencyCate(bool addAllItem)
-        {
-            string sqlStr = "select AutoId, CurrencyCateAbb, CurrencyCateName, ExchangeRate from BS_CurrencyCate order by AutoId";
-            if (addAllItem)
-            {
-                sqlStr = "select 0 as AutoId, '' as CurrencyCateAbb, '全部' as CurrencyCateName, 1 as ExchangeRate union " + sqlStr;
-            }
-            return BaseSQL.GetTableBySql(sqlStr);
-        }
-
-        /// <summary>
-        /// 查询入库单表头
+        /// 查询报价单
         /// </summary>
         public void QueryQuotationBaseInfo(DataTable queryDataTable, string beginDateStr, string endDateStr, string bussinessBaseNoStr, string preparedStr, string commonStr)
         {
@@ -33,7 +20,7 @@ namespace PSAP.DAO.SADAO
         }
 
         /// <summary>
-        /// 查询入库单表头的SQL
+        /// 查询报价单的SQL
         /// </summary>
         public string QueryQuotationBaseInfo_SQL(string beginDateStr, string endDateStr, string bussinessBaseNoStr, string preparedStr, string commonStr)
         {
@@ -57,6 +44,33 @@ namespace PSAP.DAO.SADAO
             
             sqlStr = string.Format("select * from SA_QuotationBaseInfo where {0} order by AutoId", sqlStr);
             return sqlStr;
+        }
+
+        /// <summary>
+        /// 查询未转销售订单的报价单
+        /// </summary>
+        public void QueryQuotationBaseInfo_NotInSalesOrder(DataTable queryDataTable, string beginDateStr, string endDateStr, string bussinessBaseNoStr, string preparedStr, string commonStr)
+        {
+            string sqlStr = " AutoQuotationNo not in (select AutoQuotationNo from SA_SalesOrder)";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and RecordDate between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (bussinessBaseNoStr != "")
+            {
+                sqlStr += string.Format(" and BussinessBaseNo='{0}'", bussinessBaseNoStr);
+            }
+            if (preparedStr != "")
+            {
+                sqlStr += string.Format(" and Prepared='{0}'", preparedStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (AutoQuotationNo like '%{0}%' or RFQNO like '%{0}%' or Requester like '%{0}%' or Remark like '%{0}%' or ProjectName like '%{0}%')", commonStr);
+            }
+
+            sqlStr = string.Format("select * from SA_QuotationBaseInfo where {0} order by AutoId", sqlStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
         }
 
         /// <summary>

@@ -202,7 +202,6 @@
             this.gridViewPayType.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPayType.OptionsView.ShowFooter = true;
             this.gridViewPayType.OptionsView.ShowGroupPanel = false;
-            this.gridViewPayType.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPayType_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 

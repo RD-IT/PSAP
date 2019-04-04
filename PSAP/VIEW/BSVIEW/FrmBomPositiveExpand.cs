@@ -48,11 +48,8 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewBomMateriel_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }        
 
         /// <summary>
         /// 正向查询零件的Bom信息
@@ -86,6 +83,21 @@ namespace PSAP.VIEW.BSVIEW
             string codeFileNameStr = DataTypeConvert.GetString(searchCodeFileName.EditValue);
             treeListBom.DataSource = bomDAO.QueryBomTreeList_MoreInfo(codeFileNameStr);
             treeListBom.ExpandAll();
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void treeListBom_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.TreeList_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
         }
 
         /// <summary>

@@ -547,7 +547,7 @@
             this.searchLookUpMaterialView.Name = "searchLookUpMaterialView";
             this.searchLookUpMaterialView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpMaterialView.OptionsView.ShowGroupPanel = false;
-            this.searchLookUpMaterialView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPartsCode_CustomDrawRowIndicator);
+            this.searchLookUpMaterialView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.searchLookUpMaterialView_CustomDrawRowIndicator);
             // 
             // gridColuAutoId
             // 
@@ -837,7 +837,6 @@
             this.gridViewPartsCode.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPartsCode.OptionsView.ShowFooter = true;
             this.gridViewPartsCode.OptionsView.ShowGroupPanel = false;
-            this.gridViewPartsCode.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPartsCode_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInventoryMove_Drag));
             this.dataSet_IM = new System.Data.DataSet();
             this.dataTableIMHead = new System.Data.DataTable();
@@ -60,14 +61,14 @@
             this.dataColCodeName = new System.Data.DataColumn();
             this.dataColInProjectName = new System.Data.DataColumn();
             this.dataColOutProjectName = new System.Data.DataColumn();
-            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource();
-            this.bindingSource_IMList = new System.Windows.Forms.BindingSource();
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
+            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_IMList = new System.Windows.Forms.BindingSource(this.components);
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.pnlLeftMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlWNowInfo = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_WNowInfo = new System.Windows.Forms.BindingSource();
+            this.bindingSource_WNowInfo = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_WNowInfo = new System.Data.DataSet();
             this.TableWNowInfo = new System.Data.DataTable();
             this.dataAutoId = new System.Data.DataColumn();
@@ -182,7 +183,7 @@
             this.labCommon = new DevExpress.XtraEditors.LabelControl();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labIMDate = new DevExpress.XtraEditors.LabelControl();
-            this.cms1 = new System.Windows.Forms.ContextMenuStrip();
+            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqrkdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -202,7 +203,7 @@
             this.tsmiSxtzcgddsjcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzrkdzrxxtdxmhjxdj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYzrkdzrxxtdgysjxdj = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqckdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -222,7 +223,7 @@
             this.tsmiRkhjhbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCkdckxmhhjhhrk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSxtddqkcsjcw = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_IM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableIMList)).BeginInit();
@@ -537,9 +538,9 @@
             // 
             this.pnlLeftMiddle.Controls.Add(this.gridControlWNowInfo);
             this.pnlLeftMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLeftMiddle.Location = new System.Drawing.Point(0, 93);
+            this.pnlLeftMiddle.Location = new System.Drawing.Point(0, 110);
             this.pnlLeftMiddle.Name = "pnlLeftMiddle";
-            this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 561);
+            this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 544);
             this.pnlLeftMiddle.TabIndex = 2;
             // 
             // gridControlWNowInfo
@@ -552,7 +553,7 @@
             this.gridControlWNowInfo.Name = "gridControlWNowInfo";
             this.gridControlWNowInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repLookUpRepertoryNo});
-            this.gridControlWNowInfo.Size = new System.Drawing.Size(338, 557);
+            this.gridControlWNowInfo.Size = new System.Drawing.Size(338, 540);
             this.gridControlWNowInfo.TabIndex = 4;
             this.gridControlWNowInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWNowInfo});
@@ -645,6 +646,7 @@
             this.gridViewWNowInfo.OptionsView.ShowGroupPanel = false;
             this.gridViewWNowInfo.OptionsView.ShowIndicator = false;
             this.gridViewWNowInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewIMHead_CustomDrawRowIndicator);
+            this.gridViewWNowInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewIMHead_KeyDown);
             this.gridViewWNowInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridViewWNowInfo_MouseDown);
             this.gridViewWNowInfo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridViewWNowInfo_MouseMove);
             // 
@@ -659,7 +661,6 @@
             this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn14.FieldName = "CodeFileName";
             this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 2;
             this.gridColumn14.Width = 110;
@@ -670,8 +671,6 @@
             this.gridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn18.FieldName = "CodeName";
             this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.OptionsColumn.AllowEdit = false;
-            this.gridColumn18.OptionsColumn.AllowFocus = false;
             this.gridColumn18.Visible = true;
             this.gridColumn18.VisibleIndex = 5;
             this.gridColumn18.Width = 110;
@@ -682,7 +681,6 @@
             this.gridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn19.FieldName = "Qty";
             this.gridColumn19.Name = "gridColumn19";
-            this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.gridColumn19.Visible = true;
@@ -695,7 +693,6 @@
             this.colProjectName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
-            this.colProjectName.OptionsColumn.AllowEdit = false;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 1;
             this.colProjectName.Width = 80;
@@ -707,7 +704,6 @@
             this.colRepertoryNo.ColumnEdit = this.repLookUpRepertoryNo;
             this.colRepertoryNo.FieldName = "RepertoryNo";
             this.colRepertoryNo.Name = "colRepertoryNo";
-            this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 0;
             this.colRepertoryNo.Width = 80;
@@ -728,7 +724,6 @@
             this.colShelfNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colShelfNo.FieldName = "ShelfNo";
             this.colShelfNo.Name = "colShelfNo";
-            this.colShelfNo.OptionsColumn.AllowEdit = false;
             this.colShelfNo.Visible = true;
             this.colShelfNo.VisibleIndex = 4;
             this.colShelfNo.Width = 80;
@@ -751,13 +746,13 @@
             this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftTop.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftTop.Name = "pnlLeftTop";
-            this.pnlLeftTop.Size = new System.Drawing.Size(342, 93);
+            this.pnlLeftTop.Size = new System.Drawing.Size(342, 110);
             this.pnlLeftTop.TabIndex = 1;
             // 
             // checkZero
             // 
             this.checkZero.EditValue = true;
-            this.checkZero.Location = new System.Drawing.Point(215, 8);
+            this.checkZero.Location = new System.Drawing.Point(221, 14);
             this.checkZero.Name = "checkZero";
             this.checkZero.Properties.Caption = "库存数不等于0";
             this.checkZero.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
@@ -768,7 +763,7 @@
             // lookUpRepertoryNo
             // 
             this.lookUpRepertoryNo.EnterMoveNextControl = true;
-            this.lookUpRepertoryNo.Location = new System.Drawing.Point(75, 8);
+            this.lookUpRepertoryNo.Location = new System.Drawing.Point(86, 14);
             this.lookUpRepertoryNo.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpRepertoryNo.Name = "lookUpRepertoryNo";
             this.lookUpRepertoryNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -787,7 +782,7 @@
             // searchLookUpCodeFileName
             // 
             this.searchLookUpCodeFileName.EnterMoveNextControl = true;
-            this.searchLookUpCodeFileName.Location = new System.Drawing.Point(75, 65);
+            this.searchLookUpCodeFileName.Location = new System.Drawing.Point(86, 74);
             this.searchLookUpCodeFileName.Name = "searchLookUpCodeFileName";
             this.searchLookUpCodeFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -828,7 +823,7 @@
             // 
             // labCodeFileName
             // 
-            this.labCodeFileName.Location = new System.Drawing.Point(9, 68);
+            this.labCodeFileName.Location = new System.Drawing.Point(20, 77);
             this.labCodeFileName.Name = "labCodeFileName";
             this.labCodeFileName.Size = new System.Drawing.Size(60, 14);
             this.labCodeFileName.TabIndex = 207;
@@ -837,7 +832,7 @@
             // searchLookUpProjectNo
             // 
             this.searchLookUpProjectNo.EnterMoveNextControl = true;
-            this.searchLookUpProjectNo.Location = new System.Drawing.Point(75, 37);
+            this.searchLookUpProjectNo.Location = new System.Drawing.Point(86, 44);
             this.searchLookUpProjectNo.Name = "searchLookUpProjectNo";
             this.searchLookUpProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -887,7 +882,7 @@
             // 
             // btnWNowInfoQuery
             // 
-            this.btnWNowInfoQuery.Location = new System.Drawing.Point(231, 64);
+            this.btnWNowInfoQuery.Location = new System.Drawing.Point(245, 73);
             this.btnWNowInfoQuery.Name = "btnWNowInfoQuery";
             this.btnWNowInfoQuery.Size = new System.Drawing.Size(75, 23);
             this.btnWNowInfoQuery.TabIndex = 204;
@@ -896,7 +891,7 @@
             // 
             // labProjectNo
             // 
-            this.labProjectNo.Location = new System.Drawing.Point(9, 40);
+            this.labProjectNo.Location = new System.Drawing.Point(20, 47);
             this.labProjectNo.Name = "labProjectNo";
             this.labProjectNo.Size = new System.Drawing.Size(48, 14);
             this.labProjectNo.TabIndex = 114;
@@ -904,7 +899,7 @@
             // 
             // labPrReqNo
             // 
-            this.labPrReqNo.Location = new System.Drawing.Point(9, 11);
+            this.labPrReqNo.Location = new System.Drawing.Point(20, 17);
             this.labPrReqNo.Name = "labPrReqNo";
             this.labPrReqNo.Size = new System.Drawing.Size(36, 14);
             this.labPrReqNo.TabIndex = 108;
@@ -928,9 +923,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlIMList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(2, 271);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 269);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1016, 408);
+            this.pnlBottom.Size = new System.Drawing.Size(1020, 412);
             this.pnlBottom.TabIndex = 7;
             // 
             // btnListAdd
@@ -957,7 +952,7 @@
             this.repbtnDelete,
             this.repSearchOutProjectNo,
             this.repSearchOutShelfNo});
-            this.gridControlIMList.Size = new System.Drawing.Size(1012, 404);
+            this.gridControlIMList.Size = new System.Drawing.Size(1016, 408);
             this.gridControlIMList.TabIndex = 2;
             this.gridControlIMList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIMList});
@@ -1014,8 +1009,7 @@
             this.columnInventoryMoveNo.FieldName = "InventoryMoveNo";
             this.columnInventoryMoveNo.Name = "columnInventoryMoveNo";
             this.columnInventoryMoveNo.OptionsColumn.AllowEdit = false;
-            this.columnInventoryMoveNo.OptionsColumn.AllowFocus = false;
-            this.columnInventoryMoveNo.OptionsColumn.ReadOnly = true;
+            this.columnInventoryMoveNo.OptionsColumn.TabStop = false;
             this.columnInventoryMoveNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.columnInventoryMoveNo.Visible = true;
@@ -1093,7 +1087,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -1328,9 +1322,9 @@
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(2, 266);
+            this.splitterControl1.Location = new System.Drawing.Point(0, 264);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(1016, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(1020, 5);
             this.splitterControl1.TabIndex = 6;
             this.splitterControl1.TabStop = false;
             // 
@@ -1340,9 +1334,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlIMHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1016, 186);
+            this.pnlMiddle.Size = new System.Drawing.Size(1020, 186);
             this.pnlMiddle.TabIndex = 3;
             // 
             // checkAll
@@ -1368,7 +1362,7 @@
             this.repLookUpReqDep,
             this.repCheckSelect,
             this.repLookUpInRepertoryNo});
-            this.gridControlIMHead.Size = new System.Drawing.Size(1012, 148);
+            this.gridControlIMHead.Size = new System.Drawing.Size(1016, 148);
             this.gridControlIMHead.TabIndex = 3;
             this.gridControlIMHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIMHead});
@@ -1402,6 +1396,7 @@
             this.gridViewIMHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewIMHead_CustomDrawRowIndicator);
             this.gridViewIMHead.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewIMHead_InitNewRow);
             this.gridViewIMHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewIMHead_FocusedRowChanged);
+            this.gridViewIMHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewIMHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -1433,7 +1428,7 @@
             this.colInventoryMoveNo.FieldName = "InventoryMoveNo";
             this.colInventoryMoveNo.Name = "colInventoryMoveNo";
             this.colInventoryMoveNo.OptionsColumn.AllowEdit = false;
-            this.colInventoryMoveNo.OptionsColumn.AllowFocus = false;
+            this.colInventoryMoveNo.OptionsColumn.TabStop = false;
             this.colInventoryMoveNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "InventoryMoveNo", "共计{0}条")});
             this.colInventoryMoveNo.Visible = true;
@@ -1449,7 +1444,7 @@
             this.colOrderHeadDate.FieldName = "InventoryMoveDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
             this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadDate.OptionsColumn.AllowFocus = false;
+            this.colOrderHeadDate.OptionsColumn.TabStop = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 2;
             this.colOrderHeadDate.Width = 90;
@@ -1501,7 +1496,7 @@
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
             this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
+            this.colReqDep.OptionsColumn.TabStop = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 6;
             this.colReqDep.Width = 80;
@@ -1537,7 +1532,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
+            this.colPrepared.OptionsColumn.TabStop = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 7;
             this.colPrepared.Width = 80;
@@ -1549,7 +1544,7 @@
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
             this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
+            this.colModifier.OptionsColumn.TabStop = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 8;
             this.colModifier.Width = 80;
@@ -1564,7 +1559,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(1012, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(1016, 34);
             this.pnlMiddleTop.TabIndex = 2;
             // 
             // btnPreview
@@ -1636,10 +1631,10 @@
             this.pnltop.Controls.Add(this.labPrepared);
             this.pnltop.Controls.Add(this.labIMDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(2, 2);
+            this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Margin = new System.Windows.Forms.Padding(4);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1016, 78);
+            this.pnltop.Size = new System.Drawing.Size(1020, 78);
             this.pnltop.TabIndex = 1;
             // 
             // lookUpOutRpertoryNo

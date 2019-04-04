@@ -382,6 +382,12 @@
     <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.Designer.cs">
       <DependentUpon>FrmProjectDocument.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationApply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationApply.Designer.cs">
+      <DependentUpon>FrmQuotationApply.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SAVIEW\FrmQuotationInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -394,11 +400,17 @@
     <Compile Include="VIEW\SAVIEW\FrmQuotationInfoQuery.Designer.cs">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalesOrder.cs">
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfo_History.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalesOrder.Designer.cs">
-      <DependentUpon>FrmSalesOrder.cs</DependentUpon>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfo_History.Designer.cs">
+      <DependentUpon>FrmQuotationInfo_History.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_History.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_History.Designer.cs">
+      <DependentUpon>FrmSalesOrder_History.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SAVIEW\FrmSalesOrderQuery.cs">
       <SubType>Form</SubType>
@@ -406,11 +418,17 @@
     <Compile Include="VIEW\SAVIEW\FrmSalesOrderQuery.Designer.cs">
       <DependentUpon>FrmSalesOrderQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.cs">
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_NoSettle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.Designer.cs">
-      <DependentUpon>FrmSettleAccounts.cs</DependentUpon>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_NoSettle.Designer.cs">
+      <DependentUpon>FrmSalesOrder_NoSettle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts_Drag.Designer.cs">
+      <DependentUpon>FrmSettleAccounts_Drag.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SAVIEW\FrmSettleAccountsQuery.cs">
       <SubType>Form</SubType>
@@ -918,20 +936,29 @@
     <EmbeddedResource Include="VIEW\SALEVIEW\FrmProjectDocument.resx">
       <DependentUpon>FrmProjectDocument.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationApply.resx">
+      <DependentUpon>FrmQuotationApply.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfo.resx">
       <DependentUpon>FrmQuotationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfoQuery.resx">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder.resx">
-      <DependentUpon>FrmSalesOrder.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfo_History.resx">
+      <DependentUpon>FrmQuotationInfo_History.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder_History.resx">
+      <DependentUpon>FrmSalesOrder_History.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrderQuery.resx">
       <DependentUpon>FrmSalesOrderQuery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccounts.resx">
-      <DependentUpon>FrmSettleAccounts.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder_NoSettle.resx">
+      <DependentUpon>FrmSalesOrder_NoSettle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccounts_Drag.resx">
+      <DependentUpon>FrmSettleAccounts_Drag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccountsQuery.resx">
       <DependentUpon>FrmSettleAccountsQuery.cs</DependentUpon>

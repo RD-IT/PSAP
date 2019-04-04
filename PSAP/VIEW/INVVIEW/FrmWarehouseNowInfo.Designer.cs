@@ -546,6 +546,7 @@
             this.gridViewWNowInfo.OptionsView.ShowFooter = true;
             this.gridViewWNowInfo.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridViewWNowInfo_CellMerge);
             this.gridViewWNowInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
+            this.gridViewWNowInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewWNowInfo_KeyDown);
             // 
             // colAutoId
             // 
@@ -558,8 +559,6 @@
             this.colCatgName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCatgName.FieldName = "CatgName";
             this.colCatgName.Name = "colCatgName";
-            this.colCatgName.OptionsColumn.AllowEdit = false;
-            this.colCatgName.OptionsColumn.AllowFocus = false;
             this.colCatgName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCatgName.Visible = true;
             this.colCatgName.VisibleIndex = 10;
@@ -571,8 +570,6 @@
             this.colCodeNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeNo.FieldName = "CodeNo";
             this.colCodeNo.Name = "colCodeNo";
-            this.colCodeNo.OptionsColumn.AllowEdit = false;
-            this.colCodeNo.OptionsColumn.AllowFocus = false;
             this.colCodeNo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeNo.Visible = true;
             this.colCodeNo.VisibleIndex = 7;
@@ -584,7 +581,6 @@
             this.colMaterialVersion.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colMaterialVersion.FieldName = "MaterialVersion";
             this.colMaterialVersion.Name = "colMaterialVersion";
-            this.colMaterialVersion.OptionsColumn.AllowEdit = false;
             this.colMaterialVersion.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colMaterialVersion.Visible = true;
             this.colMaterialVersion.VisibleIndex = 11;
@@ -596,7 +592,6 @@
             this.colCodeWeight.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeWeight.FieldName = "CodeWeight";
             this.colCodeWeight.Name = "colCodeWeight";
-            this.colCodeWeight.OptionsColumn.AllowEdit = false;
             this.colCodeWeight.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeWeight.Visible = true;
             this.colCodeWeight.VisibleIndex = 12;
@@ -609,7 +604,6 @@
             this.colRepertoryNo.ColumnEdit = this.repLookUpRepertoryNo;
             this.colRepertoryNo.FieldName = "RepertoryNo";
             this.colRepertoryNo.Name = "colRepertoryNo";
-            this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 0;
             this.colRepertoryNo.Width = 100;
@@ -634,7 +628,6 @@
             this.colShelfNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colShelfNo.FieldName = "ShelfNo";
             this.colShelfNo.Name = "colShelfNo";
-            this.colShelfNo.OptionsColumn.AllowEdit = false;
             this.colShelfNo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colShelfNo.Visible = true;
             this.colShelfNo.VisibleIndex = 4;
@@ -646,7 +639,6 @@
             this.colProjectName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
-            this.colProjectName.OptionsColumn.AllowEdit = false;
             this.colProjectName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 3;
@@ -658,8 +650,6 @@
             this.colBrand.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colBrand.FieldName = "Brand";
             this.colBrand.Name = "colBrand";
-            this.colBrand.OptionsColumn.AllowEdit = false;
-            this.colBrand.OptionsColumn.AllowFocus = false;
             this.colBrand.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colBrand.Visible = true;
             this.colBrand.VisibleIndex = 9;
@@ -671,8 +661,6 @@
             this.colCodeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
-            this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
             this.colCodeName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
@@ -684,8 +672,6 @@
             this.colCodeSpec.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeSpec.FieldName = "CodeSpec";
             this.colCodeSpec.Name = "colCodeSpec";
-            this.colCodeSpec.OptionsColumn.AllowEdit = false;
-            this.colCodeSpec.OptionsColumn.AllowFocus = false;
             this.colCodeSpec.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colCodeSpec.Visible = true;
             this.colCodeSpec.VisibleIndex = 8;
@@ -697,7 +683,6 @@
             this.colUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colUnit.FieldName = "Unit";
             this.colUnit.Name = "colUnit";
-            this.colUnit.OptionsColumn.AllowEdit = false;
             this.colUnit.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colUnit.Visible = true;
             this.colUnit.VisibleIndex = 6;

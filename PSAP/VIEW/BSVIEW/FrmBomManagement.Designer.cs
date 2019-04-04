@@ -196,6 +196,7 @@
             this.treeListBom.Size = new System.Drawing.Size(496, 577);
             this.treeListBom.TabIndex = 1;
             this.treeListBom.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListBom_FocusedNodeChanged);
+            this.treeListBom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListBom_KeyDown);
             // 
             // CCodeFileName
             // 
@@ -602,7 +603,7 @@
             this.colLevelMaterielName.FieldName = "LevelMaterielName";
             this.colLevelMaterielName.Name = "colLevelMaterielName";
             this.colLevelMaterielName.OptionsColumn.AllowEdit = false;
-            this.colLevelMaterielName.OptionsColumn.AllowFocus = false;
+            this.colLevelMaterielName.OptionsColumn.TabStop = false;
             this.colLevelMaterielName.Visible = true;
             this.colLevelMaterielName.VisibleIndex = 1;
             this.colLevelMaterielName.Width = 120;
@@ -646,7 +647,7 @@
             this.colGetTime.FieldName = "GetTime";
             this.colGetTime.Name = "colGetTime";
             this.colGetTime.OptionsColumn.AllowEdit = false;
-            this.colGetTime.OptionsColumn.AllowFocus = false;
+            this.colGetTime.OptionsColumn.TabStop = false;
             this.colGetTime.Visible = true;
             this.colGetTime.VisibleIndex = 3;
             this.colGetTime.Width = 130;

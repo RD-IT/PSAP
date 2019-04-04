@@ -775,6 +775,7 @@
             this.gridViewWWList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewWWList_RowClick);
             this.gridViewWWList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWHead_CustomDrawRowIndicator);
             this.gridViewWWList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewWWList_CellValueChanged);
+            this.gridViewWWList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewWWHead_KeyDown);
             // 
             // colAutoId1
             // 
@@ -788,7 +789,7 @@
             this.colWarehouseWarrant1.FieldName = "WarehouseWarrant";
             this.colWarehouseWarrant1.Name = "colWarehouseWarrant1";
             this.colWarehouseWarrant1.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrant1.OptionsColumn.AllowFocus = false;
+            this.colWarehouseWarrant1.OptionsColumn.TabStop = false;
             this.colWarehouseWarrant1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colWarehouseWarrant1.Visible = true;
@@ -803,7 +804,7 @@
             this.colCodeFileName.FieldName = "CodeFileName";
             this.colCodeFileName.Name = "colCodeFileName";
             this.colCodeFileName.OptionsColumn.AllowEdit = false;
-            this.colCodeFileName.OptionsColumn.AllowFocus = false;
+            this.colCodeFileName.OptionsColumn.TabStop = false;
             this.colCodeFileName.Visible = true;
             this.colCodeFileName.VisibleIndex = 1;
             this.colCodeFileName.Width = 110;
@@ -867,7 +868,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -918,7 +919,7 @@
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.OptionsColumn.AllowEdit = false;
-            this.colProjectName.OptionsColumn.AllowFocus = false;
+            this.colProjectName.OptionsColumn.TabStop = false;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 4;
             this.colProjectName.Width = 100;
@@ -930,7 +931,7 @@
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
             this.colStnNo.OptionsColumn.AllowEdit = false;
-            this.colStnNo.OptionsColumn.AllowFocus = false;
+            this.colStnNo.OptionsColumn.TabStop = false;
             this.colStnNo.Visible = true;
             this.colStnNo.VisibleIndex = 5;
             this.colStnNo.Width = 80;
@@ -942,7 +943,7 @@
             this.colOrderHeadNo.FieldName = "OrderHeadNo";
             this.colOrderHeadNo.Name = "colOrderHeadNo";
             this.colOrderHeadNo.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadNo.OptionsColumn.AllowFocus = false;
+            this.colOrderHeadNo.OptionsColumn.TabStop = false;
             this.colOrderHeadNo.Visible = true;
             this.colOrderHeadNo.VisibleIndex = 6;
             this.colOrderHeadNo.Width = 110;
@@ -1082,6 +1083,7 @@
             this.gridViewWWHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWHead_CustomDrawRowIndicator);
             this.gridViewWWHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewWWHead_FocusedRowChanged);
             this.gridViewWWHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewWWHead_CustomColumnDisplayText);
+            this.gridViewWWHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewWWHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -1113,7 +1115,7 @@
             this.colWarehouseWarrant.FieldName = "WarehouseWarrant";
             this.colWarehouseWarrant.Name = "colWarehouseWarrant";
             this.colWarehouseWarrant.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrant.OptionsColumn.AllowFocus = false;
+            this.colWarehouseWarrant.OptionsColumn.TabStop = false;
             this.colWarehouseWarrant.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colWarehouseWarrant.Visible = true;
@@ -1127,7 +1129,7 @@
             this.colWarehouseState.FieldName = "WarehouseState";
             this.colWarehouseState.Name = "colWarehouseState";
             this.colWarehouseState.OptionsColumn.AllowEdit = false;
-            this.colWarehouseState.OptionsColumn.AllowFocus = false;
+            this.colWarehouseState.OptionsColumn.TabStop = false;
             this.colWarehouseState.Visible = true;
             this.colWarehouseState.VisibleIndex = 2;
             this.colWarehouseState.Width = 60;
@@ -1140,7 +1142,7 @@
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
             this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
+            this.colReqDep.OptionsColumn.TabStop = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 9;
             this.colReqDep.Width = 110;
@@ -1168,7 +1170,7 @@
             this.colWarehouseWarrantDate.FieldName = "WarehouseWarrantDate";
             this.colWarehouseWarrantDate.Name = "colWarehouseWarrantDate";
             this.colWarehouseWarrantDate.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrantDate.OptionsColumn.AllowFocus = false;
+            this.colWarehouseWarrantDate.OptionsColumn.TabStop = false;
             this.colWarehouseWarrantDate.Visible = true;
             this.colWarehouseWarrantDate.VisibleIndex = 4;
             this.colWarehouseWarrantDate.Width = 90;
@@ -1181,7 +1183,7 @@
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
             this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
-            this.colBussinessBaseNo.OptionsColumn.AllowFocus = false;
+            this.colBussinessBaseNo.OptionsColumn.TabStop = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 3;
             this.colBussinessBaseNo.Width = 130;
@@ -1337,7 +1339,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
+            this.colPrepared.OptionsColumn.TabStop = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 10;
             this.colPrepared.Width = 70;
@@ -1349,7 +1351,7 @@
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
             this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
+            this.colModifier.OptionsColumn.TabStop = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 11;
             this.colModifier.Width = 70;
@@ -1473,7 +1475,7 @@
             this.tsmiYzrkdzrxxtdxmhjxdj,
             this.tsmiYzrkdzrxxtdgysjxdj});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(365, 444);
+            this.cms.Size = new System.Drawing.Size(365, 422);
             // 
             // tsmiRkrqbnwkcx
             // 

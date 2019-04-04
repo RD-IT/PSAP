@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.searchAdjustmentsProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -65,7 +66,7 @@
             this.dataColModifierIp = new System.Data.DataColumn();
             this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColReqDep = new System.Data.DataColumn();
-            this.bindingSource_IAHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_IAHead = new System.Windows.Forms.BindingSource(this.components);
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.gridControlIAHead = new DevExpress.XtraGrid.GridControl();
             this.gridViewIAHead = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -86,7 +87,7 @@
             this.colPRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModifier = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiTzrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
@@ -534,6 +535,7 @@
             this.gridViewIAHead.OptionsView.ShowFooter = true;
             this.gridViewIAHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewIAHead_RowClick);
             this.gridViewIAHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewIAHead_CustomDrawRowIndicator);
+            this.gridViewIAHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewIAHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -546,8 +548,6 @@
             this.colIAHeadNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colIAHeadNo.FieldName = "InventoryAdjustmentsNo";
             this.colIAHeadNo.Name = "colIAHeadNo";
-            this.colIAHeadNo.OptionsColumn.AllowEdit = false;
-            this.colIAHeadNo.OptionsColumn.AllowFocus = false;
             this.colIAHeadNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "InventoryMoveNo", "共计{0}条")});
             this.colIAHeadNo.Visible = true;
@@ -562,8 +562,6 @@
             this.colOrderHeadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colOrderHeadDate.FieldName = "InventoryAdjustmentsDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
-            this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadDate.OptionsColumn.AllowFocus = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 1;
             this.colOrderHeadDate.Width = 90;
@@ -575,7 +573,6 @@
             this.colAdjustmentsRepertoryNo.ColumnEdit = this.repLookUpInRepertoryNo;
             this.colAdjustmentsRepertoryNo.FieldName = "AdjustmentsRepertoryNo";
             this.colAdjustmentsRepertoryNo.Name = "colAdjustmentsRepertoryNo";
-            this.colAdjustmentsRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colAdjustmentsRepertoryNo.Visible = true;
             this.colAdjustmentsRepertoryNo.VisibleIndex = 2;
             this.colAdjustmentsRepertoryNo.Width = 100;
@@ -602,7 +599,6 @@
             this.colAdjustmentsProjectNo.ColumnEdit = this.repSearchAdjustmentsProjectNo;
             this.colAdjustmentsProjectNo.FieldName = "AdjustmentsProjectNo";
             this.colAdjustmentsProjectNo.Name = "colAdjustmentsProjectNo";
-            this.colAdjustmentsProjectNo.OptionsColumn.AllowEdit = false;
             this.colAdjustmentsProjectNo.Visible = true;
             this.colAdjustmentsProjectNo.VisibleIndex = 3;
             this.colAdjustmentsProjectNo.Width = 110;
@@ -668,8 +664,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 5;
             this.colReqDep.Width = 100;
@@ -693,7 +687,6 @@
             this.colPRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPRemark.FieldName = "Remark";
             this.colPRemark.Name = "colPRemark";
-            this.colPRemark.OptionsColumn.AllowEdit = false;
             this.colPRemark.Visible = true;
             this.colPRemark.VisibleIndex = 4;
             this.colPRemark.Width = 140;
@@ -704,8 +697,6 @@
             this.colPrepared.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
-            this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 6;
             this.colPrepared.Width = 80;
@@ -716,8 +707,6 @@
             this.colModifier.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
-            this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 7;
             this.colModifier.Width = 80;

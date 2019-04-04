@@ -215,7 +215,6 @@
             this.gridViewWarehouseWarrantType.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewWarehouseWarrantType.OptionsView.ShowFooter = true;
             this.gridViewWarehouseWarrantType.OptionsView.ShowGroupPanel = false;
-            this.gridViewWarehouseWarrantType.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWarehouseWarrantType_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 

@@ -209,6 +209,7 @@
             this.gridViewCollectionTypeList.OptionsView.ShowFooter = true;
             this.gridViewCollectionTypeList.OptionsView.ShowGroupPanel = false;
             this.gridViewCollectionTypeList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewCollectionTypeList_CustomDrawRowIndicator);
+            this.gridViewCollectionTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewCollectionTypeList_KeyDown);
             // 
             // colAutoId
             // 
@@ -223,7 +224,7 @@
             this.colCollectionTypeNo.FieldName = "CollectionTypeNo";
             this.colCollectionTypeNo.Name = "colCollectionTypeNo";
             this.colCollectionTypeNo.OptionsColumn.AllowEdit = false;
-            this.colCollectionTypeNo.OptionsColumn.AllowFocus = false;
+            this.colCollectionTypeNo.OptionsColumn.TabStop = false;
             this.colCollectionTypeNo.Visible = true;
             this.colCollectionTypeNo.VisibleIndex = 0;
             this.colCollectionTypeNo.Width = 120;

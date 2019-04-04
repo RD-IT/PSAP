@@ -227,7 +227,6 @@
             this.gridViewRepertoryInfo.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewRepertoryInfo.OptionsView.ShowFooter = true;
             this.gridViewRepertoryInfo.OptionsView.ShowGroupPanel = false;
-            this.gridViewRepertoryInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewRepertoryInfo_CustomDrawRowIndicator);
             this.gridViewRepertoryInfo.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewRepertoryInfo_CustomColumnDisplayText);
             // 
             // colAutoId

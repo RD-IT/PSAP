@@ -304,22 +304,23 @@ namespace PSAP.DAO.SADAO
         /// <summary>
         /// 查询未结账得销售订单
         /// </summary>
-        public void QuerySalesOrder_NoIsEnd(DataTable queryDataTable, string autoSalesOrderNoStr, string soDateBeginStr, string soDateEndStr, string bussinessBaseNoStr)
+        public void QuerySalesOrder_NoIsEnd(DataTable queryDataTable, string soDateBeginStr, string soDateEndStr, string bussinessBaseNoStr, string commonStr)
         {
-            string sqlStr = " IsNull(IsEnd, 0)=0";
-            if (autoSalesOrderNoStr != "")
-            {
-                sqlStr += string.Format(" and AutoSalesOrderNo like '%{0}%'", autoSalesOrderNoStr);
-            }
-            if (soDateBeginStr != "")
-            {
-                sqlStr += string.Format(" and SalesOrderDate between '{0}' and '{1}'", soDateBeginStr, soDateEndStr);
-            }
-            if (bussinessBaseNoStr != "")
-            {
-                sqlStr += string.Format(" and BussinessBaseNo = '{0}'", bussinessBaseNoStr);
-            }
-            sqlStr = string.Format("select *, (Select IsNull(Sum(Amount), 0) from SA_SettleAccountsList where SA_SettleAccountsList.AutoSalesOrderNo = SA_SalesOrder.AutoSalesOrderNo) as SettleAmount, Amount - (Select IsNull(Sum(Amount), 0) from SA_SettleAccountsList where SA_SettleAccountsList.AutoSalesOrderNo = SA_SalesOrder.AutoSalesOrderNo) as NoSettleAmount from SA_SalesOrder where {0} order by AutoId", sqlStr);
+            //string sqlStr = " IsNull(IsEnd, 0)=0";
+            //if (autoSalesOrderNoStr != "")
+            //{
+            //    sqlStr += string.Format(" and AutoSalesOrderNo like '%{0}%'", autoSalesOrderNoStr);
+            //}
+            //if (soDateBeginStr != "")
+            //{
+            //    sqlStr += string.Format(" and SalesOrderDate between '{0}' and '{1}'", soDateBeginStr, soDateEndStr);
+            //}
+            //if (bussinessBaseNoStr != "")
+            //{
+            //    sqlStr += string.Format(" and BussinessBaseNo = '{0}'", bussinessBaseNoStr);
+            //}
+            //sqlStr = string.Format("select *, (Select IsNull(Sum(Amount), 0) from SA_SettleAccountsList where SA_SettleAccountsList.AutoSalesOrderNo = SA_SalesOrder.AutoSalesOrderNo) as SettleAmount, Amount - (Select IsNull(Sum(Amount), 0) from SA_SettleAccountsList where SA_SettleAccountsList.AutoSalesOrderNo = SA_SalesOrder.AutoSalesOrderNo) as NoSettleAmount from SA_SalesOrder where {0} order by AutoId", sqlStr);
+            string sqlStr = QuerySalesOrder_NoSettle_SQL(soDateBeginStr, soDateEndStr, bussinessBaseNoStr, "", "", commonStr);
             BaseSQL.Query(sqlStr, queryDataTable);
         }
 
@@ -354,6 +355,12 @@ namespace PSAP.DAO.SADAO
             return sqlStr;
         }
 
+        public void QuerySalesOrder(DataTable queryDataTable, string soDateBeginStr, string soDateEndStr, string bussinessBaseNoStr, string projectNoStr, string preparedStr, string commonStr)
+        {
+            string sqlStr = QuerySalesOrder_SQL(soDateBeginStr, soDateEndStr, bussinessBaseNoStr, projectNoStr, preparedStr, commonStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
         /// <summary>
         /// 检查报价单是否有生成销售订单
         /// </summary>
@@ -375,6 +382,37 @@ namespace PSAP.DAO.SADAO
             }
             else
                 return false;
+        }
+
+        /// <summary>
+        /// 查询未结账完的销售订单
+        /// </summary>
+        public string QuerySalesOrder_NoSettle_SQL(string soDateBeginStr, string soDateEndStr, string bussinessBaseNoStr, string projectNoStr, string preparedStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (soDateBeginStr != "")
+            {
+                sqlStr += string.Format(" and SalesOrderDate between '{0}' and '{1}'", soDateBeginStr, soDateEndStr);
+            }
+            if (bussinessBaseNoStr != "")
+            {
+                sqlStr += string.Format(" and BussinessBaseNo = '{0}'", bussinessBaseNoStr);
+            }
+            if (projectNoStr != "")
+            {
+                sqlStr += string.Format(" and ProjectNo = '{0}'", projectNoStr);
+            }
+            if (preparedStr != "")
+            {
+                sqlStr += string.Format(" and Prepared = '{0}'", preparedStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (AutoSalesOrderNo like '%{0}%' or ProjectName like '%{0}%' or AutoQuotationNo like '%{0}%' or CustomerPoNo like '%{0}%' or CollectionTypeNo like '%{0}%' or ProjectLeader like '%{0}%' or Remark like '%{0}%')", commonStr);
+            }
+
+            sqlStr = string.Format("select *, (Amount - SettleAmount) as NoSettleAmount from V_SA_SalesOrder_NoSettle where {0} order by AutoId", sqlStr);
+            return sqlStr;
         }
     }
 }

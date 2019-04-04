@@ -176,7 +176,8 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (content.DockHandler.Form.Name.Equals(dc.DockHandler.Form.Name))
                     {
-                        content.DockHandler.Activate();
+                        //content.DockHandler.Activate();
+                        content.DockHandler.Form.Activate();
                         return;
                     }
                 }

@@ -223,7 +223,6 @@
             this.gridViewRole.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewRole.OptionsView.ShowFooter = true;
             this.gridViewRole.OptionsView.ShowGroupPanel = false;
-            this.gridViewRole.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewRole_CustomDrawRowIndicator);
             this.gridViewRole.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewRole_FocusedRowChanged);
             // 
             // colAutoId

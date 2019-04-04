@@ -371,7 +371,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(0, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(1355, 542);
+            this.pnlRight.Size = new System.Drawing.Size(1131, 542);
             this.pnlRight.TabIndex = 0;
             // 
             // pnlBottom
@@ -379,9 +379,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlQuotationPriceInfo);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 174);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 205);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1355, 368);
+            this.pnlBottom.Size = new System.Drawing.Size(1131, 337);
             this.pnlBottom.TabIndex = 8;
             // 
             // btnListAdd
@@ -407,7 +407,7 @@
             this.repLookUpCurrencyCate,
             this.repDateQuotationDate,
             this.repSpinEditTax});
-            this.gridControlQuotationPriceInfo.Size = new System.Drawing.Size(1351, 364);
+            this.gridControlQuotationPriceInfo.Size = new System.Drawing.Size(1127, 333);
             this.gridControlQuotationPriceInfo.TabIndex = 3;
             this.gridControlQuotationPriceInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewQuotationPriceInfo});
@@ -558,7 +558,7 @@
             this.colTaxAmount.FieldName = "TaxAmount";
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.OptionsColumn.AllowEdit = false;
-            this.colTaxAmount.OptionsColumn.AllowFocus = false;
+            this.colTaxAmount.OptionsColumn.TabStop = false;
             this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;
@@ -574,7 +574,7 @@
             this.colSumAmount.FieldName = "SumAmount";
             this.colSumAmount.Name = "colSumAmount";
             this.colSumAmount.OptionsColumn.AllowEdit = false;
-            this.colSumAmount.OptionsColumn.AllowFocus = false;
+            this.colSumAmount.OptionsColumn.TabStop = false;
             this.colSumAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.colSumAmount.Visible = true;
@@ -695,18 +695,18 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(1355, 134);
+            this.pnlEdit.Size = new System.Drawing.Size(1131, 165);
             this.pnlEdit.TabIndex = 7;
             // 
             // textParentProjectNo
             // 
             this.textParentProjectNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ParentProjectNo", true));
             this.textParentProjectNo.EnterMoveNextControl = true;
-            this.textParentProjectNo.Location = new System.Drawing.Point(1107, 89);
+            this.textParentProjectNo.Location = new System.Drawing.Point(863, 89);
             this.textParentProjectNo.Name = "textParentProjectNo";
             this.textParentProjectNo.Properties.ReadOnly = true;
             this.textParentProjectNo.Size = new System.Drawing.Size(150, 20);
-            this.textParentProjectNo.TabIndex = 23;
+            this.textParentProjectNo.TabIndex = 12;
             this.textParentProjectNo.TabStop = false;
             this.textParentProjectNo.Visible = false;
             // 
@@ -717,7 +717,7 @@
             // 
             // labParentProjectNo
             // 
-            this.labParentProjectNo.Location = new System.Drawing.Point(1012, 92);
+            this.labParentProjectNo.Location = new System.Drawing.Point(768, 92);
             this.labParentProjectNo.Name = "labParentProjectNo";
             this.labParentProjectNo.Size = new System.Drawing.Size(60, 14);
             this.labParentProjectNo.TabIndex = 27;
@@ -728,17 +728,17 @@
             // 
             this.textParentAutoSalesOrderNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ParentAutoSalesOrderNo", true));
             this.textParentAutoSalesOrderNo.EnterMoveNextControl = true;
-            this.textParentAutoSalesOrderNo.Location = new System.Drawing.Point(1107, 55);
+            this.textParentAutoSalesOrderNo.Location = new System.Drawing.Point(863, 55);
             this.textParentAutoSalesOrderNo.Name = "textParentAutoSalesOrderNo";
             this.textParentAutoSalesOrderNo.Properties.ReadOnly = true;
             this.textParentAutoSalesOrderNo.Size = new System.Drawing.Size(150, 20);
-            this.textParentAutoSalesOrderNo.TabIndex = 22;
+            this.textParentAutoSalesOrderNo.TabIndex = 11;
             this.textParentAutoSalesOrderNo.TabStop = false;
             this.textParentAutoSalesOrderNo.Visible = false;
             // 
             // labParentAutoSalesOrderNo
             // 
-            this.labParentAutoSalesOrderNo.Location = new System.Drawing.Point(1012, 58);
+            this.labParentAutoSalesOrderNo.Location = new System.Drawing.Point(768, 58);
             this.labParentAutoSalesOrderNo.Name = "labParentAutoSalesOrderNo";
             this.labParentAutoSalesOrderNo.Size = new System.Drawing.Size(84, 14);
             this.labParentAutoSalesOrderNo.TabIndex = 25;
@@ -749,17 +749,17 @@
             // 
             this.textParentAutoQuotationNo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ParentAutoQuotationNo", true));
             this.textParentAutoQuotationNo.EnterMoveNextControl = true;
-            this.textParentAutoQuotationNo.Location = new System.Drawing.Point(1107, 21);
+            this.textParentAutoQuotationNo.Location = new System.Drawing.Point(863, 21);
             this.textParentAutoQuotationNo.Name = "textParentAutoQuotationNo";
             this.textParentAutoQuotationNo.Properties.ReadOnly = true;
             this.textParentAutoQuotationNo.Size = new System.Drawing.Size(150, 20);
-            this.textParentAutoQuotationNo.TabIndex = 21;
+            this.textParentAutoQuotationNo.TabIndex = 10;
             this.textParentAutoQuotationNo.TabStop = false;
             this.textParentAutoQuotationNo.Visible = false;
             // 
             // labParentAutoQuotationNo
             // 
-            this.labParentAutoQuotationNo.Location = new System.Drawing.Point(1012, 24);
+            this.labParentAutoQuotationNo.Location = new System.Drawing.Point(768, 24);
             this.labParentAutoQuotationNo.Name = "labParentAutoQuotationNo";
             this.labParentAutoQuotationNo.Size = new System.Drawing.Size(72, 14);
             this.labParentAutoQuotationNo.TabIndex = 23;
@@ -779,22 +779,22 @@
             // 
             this.textModifier.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Modifier", true));
             this.textModifier.EnterMoveNextControl = true;
-            this.textModifier.Location = new System.Drawing.Point(354, 89);
+            this.textModifier.Location = new System.Drawing.Point(354, 123);
             this.textModifier.Name = "textModifier";
             this.textModifier.Properties.ReadOnly = true;
             this.textModifier.Size = new System.Drawing.Size(150, 20);
-            this.textModifier.TabIndex = 22;
+            this.textModifier.TabIndex = 8;
             this.textModifier.TabStop = false;
             // 
             // textPrepared
             // 
             this.textPrepared.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Prepared", true));
             this.textPrepared.EnterMoveNextControl = true;
-            this.textPrepared.Location = new System.Drawing.Point(112, 89);
+            this.textPrepared.Location = new System.Drawing.Point(112, 123);
             this.textPrepared.Name = "textPrepared";
             this.textPrepared.Properties.ReadOnly = true;
             this.textPrepared.Size = new System.Drawing.Size(150, 20);
-            this.textPrepared.TabIndex = 21;
+            this.textPrepared.TabIndex = 7;
             this.textPrepared.TabStop = false;
             // 
             // dateModifierTime
@@ -802,7 +802,7 @@
             this.dateModifierTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "ModifierTime", true));
             this.dateModifierTime.EditValue = null;
             this.dateModifierTime.EnterMoveNextControl = true;
-            this.dateModifierTime.Location = new System.Drawing.Point(597, 89);
+            this.dateModifierTime.Location = new System.Drawing.Point(597, 123);
             this.dateModifierTime.Name = "dateModifierTime";
             this.dateModifierTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -815,12 +815,12 @@
             this.dateModifierTime.Properties.Mask.EditMask = "G";
             this.dateModifierTime.Properties.ReadOnly = true;
             this.dateModifierTime.Size = new System.Drawing.Size(150, 20);
-            this.dateModifierTime.TabIndex = 20;
+            this.dateModifierTime.TabIndex = 9;
             this.dateModifierTime.TabStop = false;
             // 
             // labModifierTime
             // 
-            this.labModifierTime.Location = new System.Drawing.Point(525, 92);
+            this.labModifierTime.Location = new System.Drawing.Point(525, 126);
             this.labModifierTime.Name = "labModifierTime";
             this.labModifierTime.Size = new System.Drawing.Size(48, 14);
             this.labModifierTime.TabIndex = 17;
@@ -828,7 +828,7 @@
             // 
             // labModifier
             // 
-            this.labModifier.Location = new System.Drawing.Point(281, 92);
+            this.labModifier.Location = new System.Drawing.Point(281, 126);
             this.labModifier.Name = "labModifier";
             this.labModifier.Size = new System.Drawing.Size(36, 14);
             this.labModifier.TabIndex = 16;
@@ -836,7 +836,7 @@
             // 
             // labPrepared
             // 
-            this.labPrepared.Location = new System.Drawing.Point(36, 92);
+            this.labPrepared.Location = new System.Drawing.Point(36, 126);
             this.labPrepared.Name = "labPrepared";
             this.labPrepared.Size = new System.Drawing.Size(36, 14);
             this.labPrepared.TabIndex = 14;
@@ -844,7 +844,7 @@
             // 
             // labRecordDate
             // 
-            this.labRecordDate.Location = new System.Drawing.Point(770, 24);
+            this.labRecordDate.Location = new System.Drawing.Point(525, 58);
             this.labRecordDate.Name = "labRecordDate";
             this.labRecordDate.Size = new System.Drawing.Size(48, 14);
             this.labRecordDate.TabIndex = 13;
@@ -855,7 +855,7 @@
             this.dateRecordDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "RecordDate", true));
             this.dateRecordDate.EditValue = null;
             this.dateRecordDate.EnterMoveNextControl = true;
-            this.dateRecordDate.Location = new System.Drawing.Point(839, 21);
+            this.dateRecordDate.Location = new System.Drawing.Point(597, 55);
             this.dateRecordDate.Name = "dateRecordDate";
             this.dateRecordDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -868,21 +868,21 @@
             this.dateRecordDate.Properties.Mask.EditMask = "G";
             this.dateRecordDate.Properties.ReadOnly = true;
             this.dateRecordDate.Size = new System.Drawing.Size(150, 20);
-            this.dateRecordDate.TabIndex = 3;
+            this.dateRecordDate.TabIndex = 5;
             this.dateRecordDate.TabStop = false;
             // 
             // textRemark
             // 
             this.textRemark.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_BaseInfo, "Remark", true));
             this.textRemark.EnterMoveNextControl = true;
-            this.textRemark.Location = new System.Drawing.Point(597, 55);
+            this.textRemark.Location = new System.Drawing.Point(112, 89);
             this.textRemark.Name = "textRemark";
-            this.textRemark.Size = new System.Drawing.Size(392, 20);
+            this.textRemark.Size = new System.Drawing.Size(635, 20);
             this.textRemark.TabIndex = 6;
             // 
             // labRemark
             // 
-            this.labRemark.Location = new System.Drawing.Point(525, 58);
+            this.labRemark.Location = new System.Drawing.Point(36, 92);
             this.labRemark.Name = "labRemark";
             this.labRemark.Size = new System.Drawing.Size(24, 14);
             this.labRemark.TabIndex = 10;
@@ -895,7 +895,7 @@
             this.textRequester.Location = new System.Drawing.Point(354, 55);
             this.textRequester.Name = "textRequester";
             this.textRequester.Size = new System.Drawing.Size(150, 20);
-            this.textRequester.TabIndex = 5;
+            this.textRequester.TabIndex = 4;
             // 
             // labRequester
             // 
@@ -934,7 +934,7 @@
             this.searchBussinessBaseNo.Properties.ValueMember = "BussinessBaseNo";
             this.searchBussinessBaseNo.Properties.View = this.searchBussinessBaseNoView;
             this.searchBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
-            this.searchBussinessBaseNo.TabIndex = 4;
+            this.searchBussinessBaseNo.TabIndex = 3;
             // 
             // searchBussinessBaseNoView
             // 
@@ -1028,7 +1028,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(1355, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(1131, 40);
             this.pnlToolBar.TabIndex = 6;
             // 
             // btnPreview
@@ -1045,7 +1045,7 @@
             // btnEditQueryAutoQuotationNo
             // 
             this.btnEditQueryAutoQuotationNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditQueryAutoQuotationNo.Location = new System.Drawing.Point(1155, 10);
+            this.btnEditQueryAutoQuotationNo.Location = new System.Drawing.Point(931, 10);
             this.btnEditQueryAutoQuotationNo.Name = "btnEditQueryAutoQuotationNo";
             this.btnEditQueryAutoQuotationNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
@@ -1059,7 +1059,7 @@
             // labQueryAutoQuotationNo
             // 
             this.labQueryAutoQuotationNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labQueryAutoQuotationNo.Location = new System.Drawing.Point(1091, 13);
+            this.labQueryAutoQuotationNo.Location = new System.Drawing.Point(867, 13);
             this.labQueryAutoQuotationNo.Name = "labQueryAutoQuotationNo";
             this.labQueryAutoQuotationNo.Size = new System.Drawing.Size(48, 14);
             this.labQueryAutoQuotationNo.TabIndex = 20;
@@ -1119,7 +1119,7 @@
             // FrmQuotationInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1355, 542);
+            this.ClientSize = new System.Drawing.Size(1131, 542);
             this.Controls.Add(this.pnlRight);
             this.Name = "FrmQuotationInfo";
             this.TabText = "报价单";

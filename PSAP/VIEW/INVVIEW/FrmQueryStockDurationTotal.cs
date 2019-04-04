@@ -55,9 +55,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewDurationStock_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewDurationStock_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -144,6 +156,6 @@ namespace PSAP.VIEW.BSVIEW
             {
                 ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
             }
-        }
+        }        
     }
 }

@@ -189,7 +189,6 @@
             this.gridViewBussinessCategory.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewBussinessCategory.OptionsView.ShowFooter = true;
             this.gridViewBussinessCategory.OptionsView.ShowGroupPanel = false;
-            this.gridViewBussinessCategory.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBussinessCategory_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 

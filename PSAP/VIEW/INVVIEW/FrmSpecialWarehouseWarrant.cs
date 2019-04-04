@@ -141,9 +141,6 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmSpecialWarehouseWarrant_Shown(object sender, EventArgs e)
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
-            //pnlLeftMiddle.Height = gridControlSWWHead.Height + 2;
-
-            //dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
 
         #endregion
@@ -284,10 +281,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewSWWHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -295,9 +289,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewSWWHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -730,6 +736,10 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "CodeFileName", gridViewSWWList.GetFocusedDataSourceRowIndex());
                     }
                 }
+                else
+                {
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -907,7 +917,7 @@ namespace PSAP.VIEW.BSVIEW
             //if (SystemInfo.WarehouseReceiptIsAlterDate)
             //{
             //    colWarehouseReceiptDate.OptionsColumn.AllowEdit = ret;
-            //    colWarehouseReceiptDate.OptionsColumn.AllowFocus = ret;
+            //    colWarehouseReceiptDate.OptionsColumn.TabStop = ret;
             //}
 
             colRepertoryNo.OptionsColumn.AllowEdit = ret;

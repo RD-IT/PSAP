@@ -710,6 +710,7 @@
             this.gridViewSettlementHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewSettlementHead_RowClick);
             this.gridViewSettlementHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewSettlementHead_CustomDrawRowIndicator);
             this.gridViewSettlementHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewSettlementHead_CustomColumnDisplayText);
+            this.gridViewSettlementHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettlementHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -722,8 +723,6 @@
             this.colSettlementNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colSettlementNo.FieldName = "SettlementNo";
             this.colSettlementNo.Name = "colSettlementNo";
-            this.colSettlementNo.OptionsColumn.AllowEdit = false;
-            this.colSettlementNo.OptionsColumn.AllowFocus = false;
             this.colSettlementNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colSettlementNo.Visible = true;
@@ -736,8 +735,6 @@
             this.colWarehouseState.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colWarehouseState.FieldName = "WarehouseState";
             this.colWarehouseState.Name = "colWarehouseState";
-            this.colWarehouseState.OptionsColumn.AllowEdit = false;
-            this.colWarehouseState.OptionsColumn.AllowFocus = false;
             this.colWarehouseState.Visible = true;
             this.colWarehouseState.VisibleIndex = 1;
             this.colWarehouseState.Width = 60;
@@ -750,8 +747,6 @@
             this.colSettlementDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colSettlementDate.FieldName = "SettlementDate";
             this.colSettlementDate.Name = "colSettlementDate";
-            this.colSettlementDate.OptionsColumn.AllowEdit = false;
-            this.colSettlementDate.OptionsColumn.AllowFocus = false;
             this.colSettlementDate.Visible = true;
             this.colSettlementDate.VisibleIndex = 2;
             this.colSettlementDate.Width = 90;
@@ -763,7 +758,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 5;
             this.colReqDep.Width = 100;
@@ -788,7 +782,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 4;
             this.colBussinessBaseNo.Width = 130;
@@ -854,7 +847,6 @@
             this.colTax.ColumnEdit = this.repSpinTax;
             this.colTax.FieldName = "Tax";
             this.colTax.Name = "colTax";
-            this.colTax.OptionsColumn.AllowEdit = false;
             this.colTax.Visible = true;
             this.colTax.VisibleIndex = 6;
             this.colTax.Width = 60;
@@ -884,7 +876,6 @@
             this.colPayDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colPayDate.FieldName = "PayDate";
             this.colPayDate.Name = "colPayDate";
-            this.colPayDate.OptionsColumn.AllowEdit = false;
             this.colPayDate.Visible = true;
             this.colPayDate.VisibleIndex = 7;
             this.colPayDate.Width = 90;
@@ -896,7 +887,6 @@
             this.colApprovalType.ColumnEdit = this.repLookUpApprovalType;
             this.colApprovalType.FieldName = "ApprovalType";
             this.colApprovalType.Name = "colApprovalType";
-            this.colApprovalType.OptionsColumn.AllowEdit = false;
             this.colApprovalType.Visible = true;
             this.colApprovalType.VisibleIndex = 8;
             this.colApprovalType.Width = 100;
@@ -923,8 +913,6 @@
             this.colIsVoucher.ColumnEdit = this.repCheckIsVoucher;
             this.colIsVoucher.FieldName = "IsVoucher";
             this.colIsVoucher.Name = "colIsVoucher";
-            this.colIsVoucher.OptionsColumn.AllowEdit = false;
-            this.colIsVoucher.OptionsColumn.AllowFocus = false;
             this.colIsVoucher.Visible = true;
             this.colIsVoucher.VisibleIndex = 10;
             this.colIsVoucher.Width = 70;
@@ -942,7 +930,6 @@
             this.colRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
-            this.colRemark.OptionsColumn.AllowEdit = false;
             this.colRemark.Visible = true;
             this.colRemark.VisibleIndex = 9;
             this.colRemark.Width = 140;
@@ -953,8 +940,6 @@
             this.colPrepared.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
-            this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 11;
             this.colPrepared.Width = 70;
@@ -965,8 +950,6 @@
             this.colModifier.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
-            this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 12;
             // 
@@ -976,7 +959,6 @@
             this.colInvoiceNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colInvoiceNo.FieldName = "InvoiceNo";
             this.colInvoiceNo.Name = "colInvoiceNo";
-            this.colInvoiceNo.OptionsColumn.AllowEdit = false;
             this.colInvoiceNo.Visible = true;
             this.colInvoiceNo.VisibleIndex = 3;
             this.colInvoiceNo.Width = 100;
@@ -1008,7 +990,7 @@
             this.tsmiCxjgcw,
             this.tsmiSjcx});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(317, 180);
+            this.cms.Size = new System.Drawing.Size(317, 158);
             // 
             // tsmiCtjz
             // 

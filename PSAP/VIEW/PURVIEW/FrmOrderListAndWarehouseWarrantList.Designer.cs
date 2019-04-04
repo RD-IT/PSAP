@@ -816,6 +816,7 @@
             this.gridViewOrderList.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridViewOrderList_CellMerge);
             this.gridViewOrderList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewOrderList_CustomDrawRowIndicator);
             this.gridViewOrderList.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewOrderList_CustomColumnDisplayText);
+            this.gridViewOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewOrderList_KeyDown);
             // 
             // colAutoId
             // 
@@ -833,8 +834,6 @@
             this.colOrderHeadNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colOrderHeadNo.FieldName = "OrderHeadNo";
             this.colOrderHeadNo.Name = "colOrderHeadNo";
-            this.colOrderHeadNo.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadNo.OptionsColumn.AllowFocus = false;
             this.colOrderHeadNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colOrderHeadNo.Visible = true;
@@ -847,7 +846,6 @@
             this.colCodeFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeFileName.FieldName = "CodeFileName";
             this.colCodeFileName.Name = "colCodeFileName";
-            this.colCodeFileName.OptionsColumn.AllowEdit = false;
             this.colCodeFileName.Visible = true;
             this.colCodeFileName.VisibleIndex = 4;
             this.colCodeFileName.Width = 110;
@@ -858,7 +856,6 @@
             this.colCodeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
-            this.colCodeName.OptionsColumn.AllowEdit = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 5;
             this.colCodeName.Width = 110;
@@ -871,7 +868,6 @@
             this.colPlanDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colPlanDate.FieldName = "PlanDate";
             this.colPlanDate.Name = "colPlanDate";
-            this.colPlanDate.OptionsColumn.AllowEdit = false;
             this.colPlanDate.Width = 90;
             // 
             // colQty
@@ -880,7 +876,6 @@
             this.colQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colQty.FieldName = "Qty";
             this.colQty.Name = "colQty";
-            this.colQty.OptionsColumn.AllowEdit = false;
             this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.colQty.Visible = true;
@@ -894,7 +889,6 @@
             this.colUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colUnit.FieldName = "Unit";
             this.colUnit.Name = "colUnit";
-            this.colUnit.OptionsColumn.AllowEdit = false;
             this.colUnit.Width = 90;
             // 
             // colAmount
@@ -905,7 +899,6 @@
             this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
-            this.colAmount.OptionsColumn.AllowEdit = false;
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
@@ -917,7 +910,6 @@
             this.colRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
-            this.colRemark.OptionsColumn.AllowEdit = false;
             // 
             // colReqState
             // 
@@ -925,8 +917,6 @@
             this.colReqState.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colReqState.FieldName = "ReqState";
             this.colReqState.Name = "colReqState";
-            this.colReqState.OptionsColumn.AllowEdit = false;
-            this.colReqState.OptionsColumn.AllowFocus = false;
             this.colReqState.Visible = true;
             this.colReqState.VisibleIndex = 2;
             // 
@@ -937,7 +927,6 @@
             this.colProjectNo.ColumnEdit = this.repSearchProjectNo;
             this.colProjectNo.FieldName = "ProjectNo";
             this.colProjectNo.Name = "colProjectNo";
-            this.colProjectNo.OptionsColumn.AllowEdit = false;
             this.colProjectNo.Visible = true;
             this.colProjectNo.VisibleIndex = 9;
             this.colProjectNo.Width = 100;
@@ -995,7 +984,6 @@
             this.colStnNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
-            this.colStnNo.OptionsColumn.AllowEdit = false;
             this.colStnNo.Visible = true;
             this.colStnNo.VisibleIndex = 10;
             this.colStnNo.Width = 80;
@@ -1007,7 +995,6 @@
             this.colPurCategory.ColumnEdit = this.repLookUpPurCategory;
             this.colPurCategory.FieldName = "PurCategory";
             this.colPurCategory.Name = "colPurCategory";
-            this.colPurCategory.OptionsColumn.AllowEdit = false;
             this.colPurCategory.Visible = true;
             this.colPurCategory.VisibleIndex = 11;
             this.colPurCategory.Width = 80;
@@ -1032,7 +1019,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 12;
             this.colBussinessBaseNo.Width = 130;
@@ -1098,7 +1084,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 13;
             this.colReqDep.Width = 80;
@@ -1124,7 +1109,6 @@
             this.colOrderHeadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colOrderHeadDate.FieldName = "OrderHeadDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
-            this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 3;
             this.colOrderHeadDate.Width = 85;
@@ -1258,7 +1242,7 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmidgribnwk});
             this.cms.Name = "contextMenuStrip1";
-            this.cms.Size = new System.Drawing.Size(317, 48);
+            this.cms.Size = new System.Drawing.Size(317, 26);
             // 
             // tsmidgribnwk
             // 

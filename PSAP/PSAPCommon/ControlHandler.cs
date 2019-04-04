@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTreeList;
 using System;
 using System.Collections.Generic;
@@ -164,6 +165,49 @@ namespace PSAP.PSAPCommon
                         ctl.Location = new Point(ctl.Location.X + 1, ctl.Location.Y + 1);
                     }
                     break;
+            }
+        }
+
+        /// <summary>
+        /// GridView复制显示的信息到剪贴板中
+        /// </summary>
+        /// <param name="sender">GridView对象</param>
+        /// <param name="e">KeyDown事件的参数</param>
+        public static void GridView_GetFocusedCellDisplayText_KeyDown(object sender, KeyEventArgs e)
+        {
+            GridView gridView = (GridView)sender;
+            if (e.Control & e.KeyCode == Keys.C)
+            {
+                string displayText = DataTypeConvert.GetString(gridView.GetFocusedRowCellDisplayText(gridView.FocusedColumn));
+                Clipboard.SetDataObject(displayText);
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// TreeList复制显示的信息到剪贴板中
+        /// </summary>
+        /// <param name="sender">TreeList对象</param>
+        /// <param name="e">KeyDown事件的参数</param>
+        public static void TreeList_GetFocusedCellDisplayText_KeyDown(object sender, KeyEventArgs e)
+        {
+            TreeList treeList = (TreeList)sender;
+            if (e.Control & e.KeyCode == Keys.C)
+            {
+                string displayText = DataTypeConvert.GetString(treeList.FocusedNode[treeList.FocusedColumn]);
+                Clipboard.SetDataObject(displayText);
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// GridView设置显示的行号
+        /// </summary>
+        public static void GridView_CustomDrawRowIndicator(RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            {
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
         }
     }

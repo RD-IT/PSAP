@@ -174,7 +174,7 @@
             this.searchLookUpProjectNoView.Name = "searchLookUpProjectNoView";
             this.searchLookUpProjectNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpProjectNoView.OptionsView.ShowGroupPanel = false;
-            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewStnList_CustomDrawRowIndicator);
+            this.searchLookUpProjectNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.searchLookUpProjectNoView_CustomDrawRowIndicator);
             // 
             // gridColProjectNo
             // 
@@ -280,7 +280,6 @@
             this.gridViewStnList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewStnList.OptionsView.ShowFooter = true;
             this.gridViewStnList.OptionsView.ShowGroupPanel = false;
-            this.gridViewStnList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewStnList_CustomDrawRowIndicator);
             this.gridViewStnList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewStnList_InitNewRow);
             // 
             // colAutoId

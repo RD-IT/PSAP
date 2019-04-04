@@ -1,4 +1,5 @@
-﻿using PSAP.DAO.BSDAO;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using PSAP.DAO.BSDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
@@ -314,6 +315,42 @@ namespace PSAP.DAO.BSDAO
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 查询币种列表
+        /// </summary>
+        public DataTable QueryCurrencyCate(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, CurrencyCateAbb, CurrencyCateName, ExchangeRate from BS_CurrencyCate order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '' as CurrencyCateAbb, '全部' as CurrencyCateName, 1 as ExchangeRate union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询的全部数据存为Excel文件
+        /// </summary>
+        /// <param name="QueryContainer">查询数据的容器</param>
+        /// <param name="sqlStr">查询全部数据的SQL</param>
+        /// <param name="displayGridView">显示数据的GridView容器</param>
+        public void SaveExcel_QueryAllData(DataTable QueryContainer, string sqlStr, GridView displayGridView)
+        {
+            displayGridView.GridControl.Visible = false;
+            DataTable tempTable = QueryContainer.Copy();
+            QueryContainer.Rows.Clear();
+            BaseSQL.Query(sqlStr, QueryContainer);
+            
+            FileHandler.SaveDevGridControlExportToExcel(displayGridView);
+
+            QueryContainer.Rows.Clear();
+            foreach (DataRow dr in tempTable.Rows)
+            {
+                QueryContainer.ImportRow(dr);
+            }
+            displayGridView.GridControl.Visible = true;
         }
     }
 }

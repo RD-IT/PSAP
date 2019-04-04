@@ -107,17 +107,6 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void gridViewRole_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
         /// 选中角色查看权限
         /// </summary>
         public void gridViewRole_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)

@@ -668,7 +668,6 @@
             this.gridViewBaseInfo.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewBaseInfo.OptionsView.ShowFooter = true;
             this.gridViewBaseInfo.OptionsView.ShowGroupPanel = false;
-            this.gridViewBaseInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBaseInfo_CustomDrawRowIndicator);
             this.gridViewBaseInfo.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewBaseInfo_FocusedRowChanged);
             // 
             // colAutoId

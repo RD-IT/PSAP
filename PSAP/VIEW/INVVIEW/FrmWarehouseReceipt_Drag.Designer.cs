@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWarehouseReceipt_Drag));
             this.dataSet_WR = new System.Data.DataSet();
             this.dataTableWRHead = new System.Data.DataTable();
@@ -58,9 +59,9 @@
             this.dataColCodeName = new System.Data.DataColumn();
             this.dataColShelfId = new System.Data.DataColumn();
             this.dataColProjectNo = new System.Data.DataColumn();
-            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource();
-            this.bindingSource_WRList = new System.Windows.Forms.BindingSource();
-            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager();
+            this.bindingSource_WRHead = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource_WRList = new System.Windows.Forms.BindingSource(this.components);
+            this.dockManagerLeft = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -151,7 +152,7 @@
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.labWarehouseState = new DevExpress.XtraEditors.LabelControl();
             this.labWRDate = new DevExpress.XtraEditors.LabelControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCkrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDqckdyjxghh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCkbmbnwkbc = new System.Windows.Forms.ToolStripMenuItem();
@@ -559,7 +560,7 @@
             this.columnWarehouseReceipt.FieldName = "WarehouseReceipt";
             this.columnWarehouseReceipt.Name = "columnWarehouseReceipt";
             this.columnWarehouseReceipt.OptionsColumn.AllowEdit = false;
-            this.columnWarehouseReceipt.OptionsColumn.AllowFocus = false;
+            this.columnWarehouseReceipt.OptionsColumn.TabStop = false;
             this.columnWarehouseReceipt.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.columnWarehouseReceipt.Visible = true;
@@ -637,7 +638,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -923,6 +924,7 @@
             this.gridViewWRHead.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewWRHead_InitNewRow);
             this.gridViewWRHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewWRHead_FocusedRowChanged);
             this.gridViewWRHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewWRHead_CustomColumnDisplayText);
+            this.gridViewWRHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewWRHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -954,7 +956,7 @@
             this.colWarehouseReceipt.FieldName = "WarehouseReceipt";
             this.colWarehouseReceipt.Name = "colWarehouseReceipt";
             this.colWarehouseReceipt.OptionsColumn.AllowEdit = false;
-            this.colWarehouseReceipt.OptionsColumn.AllowFocus = false;
+            this.colWarehouseReceipt.OptionsColumn.TabStop = false;
             this.colWarehouseReceipt.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colWarehouseReceipt.Visible = true;
@@ -968,7 +970,7 @@
             this.colWarehouseState.FieldName = "WarehouseState";
             this.colWarehouseState.Name = "colWarehouseState";
             this.colWarehouseState.OptionsColumn.AllowEdit = false;
-            this.colWarehouseState.OptionsColumn.AllowFocus = false;
+            this.colWarehouseState.OptionsColumn.TabStop = false;
             this.colWarehouseState.Visible = true;
             this.colWarehouseState.VisibleIndex = 2;
             this.colWarehouseState.Width = 60;
@@ -981,7 +983,7 @@
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
             this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
+            this.colReqDep.OptionsColumn.TabStop = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 9;
             this.colReqDep.Width = 110;
@@ -1009,7 +1011,7 @@
             this.colWarehouseReceiptDate.FieldName = "WarehouseReceiptDate";
             this.colWarehouseReceiptDate.Name = "colWarehouseReceiptDate";
             this.colWarehouseReceiptDate.OptionsColumn.AllowEdit = false;
-            this.colWarehouseReceiptDate.OptionsColumn.AllowFocus = false;
+            this.colWarehouseReceiptDate.OptionsColumn.TabStop = false;
             this.colWarehouseReceiptDate.Visible = true;
             this.colWarehouseReceiptDate.VisibleIndex = 3;
             this.colWarehouseReceiptDate.Width = 90;
@@ -1110,7 +1112,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
+            this.colPrepared.OptionsColumn.TabStop = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 10;
             this.colPrepared.Width = 70;
@@ -1122,7 +1124,7 @@
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
             this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
+            this.colModifier.OptionsColumn.TabStop = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 11;
             this.colModifier.Width = 70;

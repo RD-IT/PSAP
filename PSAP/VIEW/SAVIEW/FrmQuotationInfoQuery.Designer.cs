@@ -237,7 +237,7 @@
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 559);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1855, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1264, 58);
             this.pnlBottom.TabIndex = 6;
             // 
             // gridBottomOrderHead
@@ -247,7 +247,7 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_Quotation;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1851, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1260, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
             // pnltop
@@ -267,7 +267,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1855, 78);
+            this.pnltop.Size = new System.Drawing.Size(1264, 78);
             this.pnltop.TabIndex = 7;
             // 
             // lookUpPrepared
@@ -454,7 +454,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1855, 481);
+            this.pnlMiddle.Size = new System.Drawing.Size(1264, 481);
             this.pnlMiddle.TabIndex = 8;
             // 
             // gridControlQuotationBaseInfo
@@ -467,7 +467,7 @@
             this.gridControlQuotationBaseInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repSearchBussinessBaseNo,
             this.repCheckSelect});
-            this.gridControlQuotationBaseInfo.Size = new System.Drawing.Size(1851, 477);
+            this.gridControlQuotationBaseInfo.Size = new System.Drawing.Size(1260, 477);
             this.gridControlQuotationBaseInfo.TabIndex = 4;
             this.gridControlQuotationBaseInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewQuotationBaseInfo});
@@ -500,6 +500,7 @@
             this.gridViewQuotationBaseInfo.OptionsView.ShowFooter = true;
             this.gridViewQuotationBaseInfo.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewQuotationBaseInfo_RowClick);
             this.gridViewQuotationBaseInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewQuotationBaseInfo_CustomDrawRowIndicator);
+            this.gridViewQuotationBaseInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewQuotationBaseInfo_KeyDown);
             // 
             // colAutoId
             // 
@@ -512,8 +513,6 @@
             this.colAutoQuotationNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colAutoQuotationNo.FieldName = "AutoQuotationNo";
             this.colAutoQuotationNo.Name = "colAutoQuotationNo";
-            this.colAutoQuotationNo.OptionsColumn.AllowEdit = false;
-            this.colAutoQuotationNo.OptionsColumn.AllowFocus = false;
             this.colAutoQuotationNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colAutoQuotationNo.Visible = true;
@@ -528,8 +527,6 @@
             this.colRecordDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colRecordDate.FieldName = "RecordDate";
             this.colRecordDate.Name = "colRecordDate";
-            this.colRecordDate.OptionsColumn.AllowEdit = false;
-            this.colRecordDate.OptionsColumn.AllowFocus = false;
             this.colRecordDate.Visible = true;
             this.colRecordDate.VisibleIndex = 5;
             this.colRecordDate.Width = 130;
@@ -541,8 +538,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
-            this.colBussinessBaseNo.OptionsColumn.AllowFocus = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 3;
             this.colBussinessBaseNo.Width = 130;
@@ -607,7 +602,6 @@
             this.colRepertoryNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRepertoryNo.FieldName = "ProjectName";
             this.colRepertoryNo.Name = "colRepertoryNo";
-            this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 2;
             this.colRepertoryNo.Width = 100;
@@ -618,7 +612,6 @@
             this.colRequester.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRequester.FieldName = "Requester";
             this.colRequester.Name = "colRequester";
-            this.colRequester.OptionsColumn.AllowEdit = false;
             this.colRequester.Visible = true;
             this.colRequester.VisibleIndex = 4;
             this.colRequester.Width = 80;
@@ -629,8 +622,6 @@
             this.colRFQNO.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRFQNO.FieldName = "RFQNO";
             this.colRFQNO.Name = "colRFQNO";
-            this.colRFQNO.OptionsColumn.AllowEdit = false;
-            this.colRFQNO.OptionsColumn.AllowFocus = false;
             this.colRFQNO.Visible = true;
             this.colRFQNO.VisibleIndex = 1;
             this.colRFQNO.Width = 120;
@@ -641,8 +632,6 @@
             this.colRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
-            this.colRemark.OptionsColumn.AllowEdit = false;
-            this.colRemark.OptionsColumn.AllowFocus = false;
             this.colRemark.Visible = true;
             this.colRemark.VisibleIndex = 6;
             this.colRemark.Width = 150;
@@ -719,7 +708,7 @@
             // FrmQuotationInfoQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1855, 617);
+            this.ClientSize = new System.Drawing.Size(1264, 617);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);

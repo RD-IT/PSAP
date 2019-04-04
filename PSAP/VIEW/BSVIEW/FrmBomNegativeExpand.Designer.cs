@@ -133,6 +133,7 @@
             this.treeListBom.TabIndex = 2;
             this.treeListBom.FilterNode += new DevExpress.XtraTreeList.FilterNodeEventHandler(this.treeListBom_FilterNode);
             this.treeListBom.DoubleClick += new System.EventHandler(this.treeListBom_DoubleClick);
+            this.treeListBom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListBom_KeyDown);
             // 
             // CCodeFileName
             // 

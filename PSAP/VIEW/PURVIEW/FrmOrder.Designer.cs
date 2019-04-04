@@ -1048,6 +1048,7 @@
             this.gridViewOrderHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewPrReqHead_FocusedRowChanged);
             this.gridViewOrderHead.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqHead_CellValueChanged);
             this.gridViewOrderHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewPrReqHead_CustomColumnDisplayText);
+            this.gridViewOrderHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewOrderHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -1079,7 +1080,7 @@
             this.colOrderHeadNo.FieldName = "OrderHeadNo";
             this.colOrderHeadNo.Name = "colOrderHeadNo";
             this.colOrderHeadNo.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadNo.OptionsColumn.AllowFocus = false;
+            this.colOrderHeadNo.OptionsColumn.TabStop = false;
             this.colOrderHeadNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colOrderHeadNo.Visible = true;
@@ -1093,7 +1094,7 @@
             this.colReqState.FieldName = "ReqState";
             this.colReqState.Name = "colReqState";
             this.colReqState.OptionsColumn.AllowEdit = false;
-            this.colReqState.OptionsColumn.AllowFocus = false;
+            this.colReqState.OptionsColumn.TabStop = false;
             this.colReqState.Visible = true;
             this.colReqState.VisibleIndex = 2;
             this.colReqState.Width = 60;
@@ -1107,7 +1108,7 @@
             this.colOrderHeadDate.FieldName = "OrderHeadDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
             this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadDate.OptionsColumn.AllowFocus = false;
+            this.colOrderHeadDate.OptionsColumn.TabStop = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 3;
             this.colOrderHeadDate.Width = 90;
@@ -1423,7 +1424,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
+            this.colPrepared.OptionsColumn.TabStop = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 14;
             this.colPrepared.Width = 70;
@@ -1435,7 +1436,7 @@
             this.colClosed.FieldName = "Closed";
             this.colClosed.Name = "colClosed";
             this.colClosed.OptionsColumn.AllowEdit = false;
-            this.colClosed.OptionsColumn.AllowFocus = false;
+            this.colClosed.OptionsColumn.TabStop = false;
             this.colClosed.Visible = true;
             this.colClosed.VisibleIndex = 15;
             // 
@@ -1633,7 +1634,7 @@
             this.gridViewOrderList.OptionsView.ShowFooter = true;
             this.gridViewOrderList.OptionsView.ShowGroupPanel = false;
             this.gridViewOrderList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewOrderList_RowClick);
-            this.gridViewOrderList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqList_CustomDrawRowIndicator);
+            this.gridViewOrderList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
             this.gridViewOrderList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPrReqList_InitNewRow);
             this.gridViewOrderList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqList_CellValueChanged);
             this.gridViewOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqList_KeyDown);
@@ -1650,8 +1651,7 @@
             this.colOrderHeadNo1.FieldName = "OrderHeadNo";
             this.colOrderHeadNo1.Name = "colOrderHeadNo1";
             this.colOrderHeadNo1.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadNo1.OptionsColumn.AllowFocus = false;
-            this.colOrderHeadNo1.OptionsColumn.ReadOnly = true;
+            this.colOrderHeadNo1.OptionsColumn.TabStop = false;
             this.colOrderHeadNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colOrderHeadNo1.Visible = true;
@@ -1729,7 +1729,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -1847,6 +1847,7 @@
             this.colTaxAmount.FieldName = "TaxAmount";
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.OptionsColumn.AllowEdit = false;
+            this.colTaxAmount.OptionsColumn.TabStop = false;
             this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;
@@ -1862,6 +1863,7 @@
             this.colSumAmount.FieldName = "SumAmount";
             this.colSumAmount.Name = "colSumAmount";
             this.colSumAmount.OptionsColumn.AllowEdit = false;
+            this.colSumAmount.OptionsColumn.TabStop = false;
             this.colSumAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.colSumAmount.Visible = true;
@@ -1917,7 +1919,7 @@
             this.colPrReqNo.FieldName = "PrReqNo";
             this.colPrReqNo.Name = "colPrReqNo";
             this.colPrReqNo.OptionsColumn.AllowEdit = false;
-            this.colPrReqNo.OptionsColumn.AllowFocus = false;
+            this.colPrReqNo.OptionsColumn.TabStop = false;
             this.colPrReqNo.Visible = true;
             this.colPrReqNo.VisibleIndex = 11;
             this.colPrReqNo.Width = 110;
@@ -2505,7 +2507,7 @@
             this.cms4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiDqcgdyjxghh});
             this.cms4.Name = "cms4";
-            this.cms4.Size = new System.Drawing.Size(317, 48);
+            this.cms4.Size = new System.Drawing.Size(317, 26);
             // 
             // tsmiDqcgdyjxghh
             // 

@@ -488,6 +488,7 @@
             this.gridViewSettleAppInfo.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewSettleAppInfo.OptionsView.ShowGroupPanel = false;
             this.gridViewSettleAppInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewSettleAppInfo_CustomDrawRowIndicator);
+            this.gridViewSettleAppInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettleAppInfo_KeyDown);
             // 
             // colAutoId
             // 
@@ -580,7 +581,7 @@
             this.tsmiSpcg,
             this.tsmiSpan});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(293, 114);
+            this.cms.Size = new System.Drawing.Size(293, 92);
             // 
             // tsmiCccgjz
             // 

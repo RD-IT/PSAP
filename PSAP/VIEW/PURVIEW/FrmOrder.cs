@@ -285,20 +285,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewPrReqHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
-        /// 确定行号
+        /// 获取单元格显示的信息
         /// </summary>
-        private void gridViewPrReqList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridViewOrderHead_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -307,10 +308,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -881,6 +879,10 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "CodeFileName", gridViewOrderList.GetFocusedDataSourceRowIndex());
                     }
                 }
+                else
+                {
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -1289,5 +1291,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSjcxmxcw.Text, ex);
             }
         }
+
     }
 }

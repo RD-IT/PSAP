@@ -636,6 +636,7 @@
             this.gridViewWWHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewWWHead_RowClick);
             this.gridViewWWHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWHead_CustomDrawRowIndicator);
             this.gridViewWWHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewWWHead_CustomColumnDisplayText);
+            this.gridViewWWHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewWWHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -648,8 +649,6 @@
             this.colWarehouseWarrant.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colWarehouseWarrant.FieldName = "WarehouseWarrant";
             this.colWarehouseWarrant.Name = "colWarehouseWarrant";
-            this.colWarehouseWarrant.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrant.OptionsColumn.AllowFocus = false;
             this.colWarehouseWarrant.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colWarehouseWarrant.Visible = true;
@@ -662,8 +661,6 @@
             this.colWarehouseState.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colWarehouseState.FieldName = "WarehouseState";
             this.colWarehouseState.Name = "colWarehouseState";
-            this.colWarehouseState.OptionsColumn.AllowEdit = false;
-            this.colWarehouseState.OptionsColumn.AllowFocus = false;
             this.colWarehouseState.Visible = true;
             this.colWarehouseState.VisibleIndex = 1;
             this.colWarehouseState.Width = 60;
@@ -675,8 +672,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 7;
             this.colReqDep.Width = 110;
@@ -703,8 +698,6 @@
             this.colWarehouseWarrantDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colWarehouseWarrantDate.FieldName = "WarehouseWarrantDate";
             this.colWarehouseWarrantDate.Name = "colWarehouseWarrantDate";
-            this.colWarehouseWarrantDate.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrantDate.OptionsColumn.AllowFocus = false;
             this.colWarehouseWarrantDate.Visible = true;
             this.colWarehouseWarrantDate.VisibleIndex = 3;
             this.colWarehouseWarrantDate.Width = 90;
@@ -716,8 +709,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
-            this.colBussinessBaseNo.OptionsColumn.AllowFocus = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 2;
             this.colBussinessBaseNo.Width = 130;
@@ -783,7 +774,6 @@
             this.colRepertoryNo.ColumnEdit = this.repLookUpRepertoryNo;
             this.colRepertoryNo.FieldName = "RepertoryNo";
             this.colRepertoryNo.Name = "colRepertoryNo";
-            this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 4;
             this.colRepertoryNo.Width = 100;
@@ -809,7 +799,6 @@
             this.colWarehouseWarrantTypeNo.ColumnEdit = this.repLookUpWWTypeNo;
             this.colWarehouseWarrantTypeNo.FieldName = "WarehouseWarrantTypeNo";
             this.colWarehouseWarrantTypeNo.Name = "colWarehouseWarrantTypeNo";
-            this.colWarehouseWarrantTypeNo.OptionsColumn.AllowEdit = false;
             this.colWarehouseWarrantTypeNo.Visible = true;
             this.colWarehouseWarrantTypeNo.VisibleIndex = 5;
             this.colWarehouseWarrantTypeNo.Width = 100;
@@ -834,7 +823,6 @@
             this.colApprovalType.ColumnEdit = this.repLookUpApprovalType;
             this.colApprovalType.FieldName = "ApprovalType";
             this.colApprovalType.Name = "colApprovalType";
-            this.colApprovalType.OptionsColumn.AllowEdit = false;
             this.colApprovalType.Visible = true;
             this.colApprovalType.VisibleIndex = 6;
             this.colApprovalType.Width = 100;
@@ -860,7 +848,6 @@
             this.colRemark1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark1.FieldName = "Remark";
             this.colRemark1.Name = "colRemark1";
-            this.colRemark1.OptionsColumn.AllowEdit = false;
             this.colRemark1.Visible = true;
             this.colRemark1.VisibleIndex = 8;
             this.colRemark1.Width = 100;
@@ -871,8 +858,6 @@
             this.colPrepared.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
-            this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 9;
             this.colPrepared.Width = 70;
@@ -883,8 +868,6 @@
             this.colModifier.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
-            this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 10;
             this.colModifier.Width = 70;
@@ -920,7 +903,7 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRkrqbnwkcx});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(317, 48);
+            this.cms.Size = new System.Drawing.Size(317, 26);
             // 
             // tsmiRkrqbnwkcx
             // 

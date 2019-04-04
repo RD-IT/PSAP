@@ -46,6 +46,8 @@
             this.CCatgName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.CFilePath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlTop = new DevExpress.XtraEditors.PanelControl();
+            this.textCodeName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.labPartsCodeId = new DevExpress.XtraEditors.LabelControl();
@@ -59,8 +61,6 @@
             this.tsmiZxcxlj = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSjckbom = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCxjgcw = new System.Windows.Forms.ToolStripMenuItem();
-            this.textCodeName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBom)).BeginInit();
             this.pnlBom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTree)).BeginInit();
@@ -68,10 +68,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeListBom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
             this.pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).BeginInit();
             this.cms.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBom
@@ -130,6 +130,7 @@
             this.treeListBom.Size = new System.Drawing.Size(1015, 491);
             this.treeListBom.TabIndex = 2;
             this.treeListBom.DoubleClick += new System.EventHandler(this.treeListBom_DoubleClick);
+            this.treeListBom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListBom_KeyDown);
             // 
             // CCodeFileName
             // 
@@ -268,6 +269,23 @@
             this.pnlTop.Size = new System.Drawing.Size(1019, 68);
             this.pnlTop.TabIndex = 0;
             // 
+            // textCodeName
+            // 
+            this.textCodeName.Location = new System.Drawing.Point(379, 23);
+            this.textCodeName.Name = "textCodeName";
+            this.textCodeName.Properties.ReadOnly = true;
+            this.textCodeName.Size = new System.Drawing.Size(150, 20);
+            this.textCodeName.TabIndex = 108;
+            this.textCodeName.TabStop = false;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(299, 26);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(48, 14);
+            this.labelControl1.TabIndex = 107;
+            this.labelControl1.Text = "零件名称";
+            // 
             // btnSaveExcel
             // 
             this.btnSaveExcel.Location = new System.Drawing.Point(668, 22);
@@ -378,23 +396,6 @@
             this.tsmiCxjgcw.Size = new System.Drawing.Size(247, 22);
             this.tsmiCxjgcw.Text = "查询结果存为Excel错误。";
             // 
-            // textCodeName
-            // 
-            this.textCodeName.Location = new System.Drawing.Point(379, 23);
-            this.textCodeName.Name = "textCodeName";
-            this.textCodeName.Properties.ReadOnly = true;
-            this.textCodeName.Size = new System.Drawing.Size(150, 20);
-            this.textCodeName.TabIndex = 108;
-            this.textCodeName.TabStop = false;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(299, 26);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(48, 14);
-            this.labelControl1.TabIndex = 107;
-            this.labelControl1.Text = "零件名称";
-            // 
             // FrmBomPositiveExpand
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -412,10 +413,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchCodeFileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchPartsCodeIdView)).EndInit();
             this.cms.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textCodeName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

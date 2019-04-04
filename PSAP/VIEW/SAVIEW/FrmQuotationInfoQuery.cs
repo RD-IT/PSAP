@@ -14,13 +14,23 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmQuotationInfoQuery : DockContent
     {
+        #region 私有变量
+
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmQuotationInfoDAO quoDAO = new FrmQuotationInfoDAO();
+
+        #endregion
+
+        #region 构造方法
 
         public FrmQuotationInfoQuery()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region 页面事件
 
         /// <summary>
         /// 窗体加载事件
@@ -55,9 +65,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewQuotationBaseInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewQuotationBaseInfo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -133,5 +155,7 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
             }
         }
+
+        #endregion
     }
 }
