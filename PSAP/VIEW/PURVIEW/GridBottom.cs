@@ -15,10 +15,20 @@ namespace PSAP.VIEW.BSVIEW
     {
         #region 初始化分页显示的参数
 
-        private int rowCount = 0;//总记录数
-        private int pageCount = 0;//总页数
+        /// <summary>
+        /// 查询结果的总记录数
+        /// </summary>
+        private int rowCount = 0;
 
-        private int curPage = 0;//当前页码
+        /// <summary>
+        /// 查询结果的总页数
+        /// </summary>
+        public int pageCount = 0;
+
+        /// <summary>
+        /// 当前页码数
+        /// </summary>
+        private int curPage = 0;
 
         private int startLine = 0;//从第start行开始返回
 
@@ -29,8 +39,7 @@ namespace PSAP.VIEW.BSVIEW
 
         /// <summary>
         /// 每页记录数
-        /// </summary>
-        
+        /// </summary>        
         [Description("每页记录数")]
         [Browsable(true)]
         public int pageRowCount

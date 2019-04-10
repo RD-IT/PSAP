@@ -22,6 +22,11 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public static int wwListAutoId = 0;
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmSettlementQuery()
         {
             InitializeComponent();
@@ -213,7 +218,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_Settlement.Tables[0].Clear();
 
                 string querySqlStr = setDAO.QuerySettlementHead_SQL(orderDateBeginStr, orderDateEndStr, payDateBeginStr, payDateEndStr, reqDepStr, bussinessBaseNoStr, wStateInt, empNameStr, -1, commonStr, wwListAutoIdInt, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_Settlement, "SettlementHead", querySqlStr, countSqlStr, true);
@@ -232,7 +237,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSettlementHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSettlementHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSettlementHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_Settlement.Tables[0], lastQuerySqlStr, gridViewSettlementHead);
             }
             catch (Exception ex)
             {

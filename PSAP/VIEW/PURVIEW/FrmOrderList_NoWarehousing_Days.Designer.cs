@@ -1,6 +1,6 @@
 ﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class FrmOrderList_NoWarehousing
+    partial class FrmOrderList_NoWarehousing_Days
     {
         /// <summary>
         /// Required designer variable.
@@ -60,6 +60,7 @@
             this.dataColWarehouseWarrentCount = new System.Data.DataColumn();
             this.dataColCodeFileName = new System.Data.DataColumn();
             this.dataColPrReqNo = new System.Data.DataColumn();
+            this.dataColPlanDays = new System.Data.DataColumn();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
@@ -142,6 +143,7 @@
             this.colOverplus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPayTypeNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPlanDays = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiJhdhribnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDgrqbnwk = new System.Windows.Forms.ToolStripMenuItem();
@@ -227,7 +229,8 @@
             this.dataColOverplus,
             this.dataColWarehouseWarrentCount,
             this.dataColCodeFileName,
-            this.dataColPrReqNo});
+            this.dataColPrReqNo,
+            this.dataColPlanDays});
             this.dataTableOrderList.TableName = "OrderList";
             // 
             // dataColAutoId
@@ -381,13 +384,19 @@
             this.dataColPrReqNo.Caption = "请购单号";
             this.dataColPrReqNo.ColumnName = "PrReqNo";
             // 
+            // dataColPlanDays
+            // 
+            this.dataColPlanDays.Caption = "到货剩余天数";
+            this.dataColPlanDays.ColumnName = "PlanDays";
+            this.dataColPlanDays.DataType = typeof(int);
+            // 
             // pnlBottom
             // 
             this.pnlBottom.Controls.Add(this.gridBottomOrderHead);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 428);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 439);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1266, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1303, 58);
             this.pnlBottom.TabIndex = 6;
             // 
             // gridBottomOrderHead
@@ -397,7 +406,7 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_Order;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1262, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1299, 54);
             this.gridBottomOrderHead.TabIndex = 20;
             // 
             // pnltop
@@ -431,7 +440,7 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1266, 78);
+            this.pnltop.Size = new System.Drawing.Size(1303, 78);
             this.pnltop.TabIndex = 0;
             // 
             // checkOverplus
@@ -854,7 +863,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1266, 350);
+            this.pnlMiddle.Size = new System.Drawing.Size(1303, 361);
             this.pnlMiddle.TabIndex = 8;
             // 
             // gridControlOrderList
@@ -869,7 +878,7 @@
             this.repLookUpPurCategory,
             this.repSearchProjectNo,
             this.repSearchBussinessBaseNo});
-            this.gridControlOrderList.Size = new System.Drawing.Size(1262, 346);
+            this.gridControlOrderList.Size = new System.Drawing.Size(1299, 357);
             this.gridControlOrderList.TabIndex = 4;
             this.gridControlOrderList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderList});
@@ -901,7 +910,8 @@
             this.colCodeSpec,
             this.colOverplus,
             this.colPayTypeNo,
-            this.colPrice});
+            this.colPrice,
+            this.colPlanDays});
             this.gridViewOrderList.GridControl = this.gridControlOrderList;
             this.gridViewOrderList.IndicatorWidth = 40;
             this.gridViewOrderList.Name = "gridViewOrderList";
@@ -913,6 +923,7 @@
             this.gridViewOrderList.OptionsView.ShowFooter = true;
             this.gridViewOrderList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewOrderList_RowClick);
             this.gridViewOrderList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewOrderList_CustomDrawRowIndicator);
+            this.gridViewOrderList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewOrderList_FocusedRowChanged);
             this.gridViewOrderList.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewOrderList_CustomColumnDisplayText);
             this.gridViewOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewOrderList_KeyDown);
             // 
@@ -962,7 +973,7 @@
             this.colPlanDate.FieldName = "PlanDate";
             this.colPlanDate.Name = "colPlanDate";
             this.colPlanDate.Visible = true;
-            this.colPlanDate.VisibleIndex = 14;
+            this.colPlanDate.VisibleIndex = 7;
             this.colPlanDate.Width = 90;
             // 
             // colQty
@@ -986,7 +997,7 @@
             this.colUnit.FieldName = "Unit";
             this.colUnit.Name = "colUnit";
             this.colUnit.Visible = true;
-            this.colUnit.VisibleIndex = 7;
+            this.colUnit.VisibleIndex = 9;
             this.colUnit.Width = 60;
             // 
             // colAmount
@@ -1000,7 +1011,7 @@
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 9;
+            this.colAmount.VisibleIndex = 11;
             this.colAmount.Width = 85;
             // 
             // colTax
@@ -1042,7 +1053,7 @@
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
             this.colRemark.Visible = true;
-            this.colRemark.VisibleIndex = 15;
+            this.colRemark.VisibleIndex = 16;
             this.colRemark.Width = 100;
             // 
             // colReqState
@@ -1063,7 +1074,7 @@
             this.colProjectNo.FieldName = "ProjectNo";
             this.colProjectNo.Name = "colProjectNo";
             this.colProjectNo.Visible = true;
-            this.colProjectNo.VisibleIndex = 10;
+            this.colProjectNo.VisibleIndex = 12;
             this.colProjectNo.Width = 100;
             // 
             // repSearchProjectNo
@@ -1120,7 +1131,7 @@
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
             this.colStnNo.Visible = true;
-            this.colStnNo.VisibleIndex = 11;
+            this.colStnNo.VisibleIndex = 13;
             this.colStnNo.Width = 80;
             // 
             // colPurCategory
@@ -1131,7 +1142,7 @@
             this.colPurCategory.FieldName = "PurCategory";
             this.colPurCategory.Name = "colPurCategory";
             this.colPurCategory.Visible = true;
-            this.colPurCategory.VisibleIndex = 16;
+            this.colPurCategory.VisibleIndex = 17;
             this.colPurCategory.Width = 80;
             // 
             // repLookUpPurCategory
@@ -1155,7 +1166,7 @@
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
             this.colBussinessBaseNo.Visible = true;
-            this.colBussinessBaseNo.VisibleIndex = 12;
+            this.colBussinessBaseNo.VisibleIndex = 14;
             this.colBussinessBaseNo.Width = 130;
             // 
             // repSearchBussinessBaseNo
@@ -1220,7 +1231,7 @@
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
             this.colReqDep.Visible = true;
-            this.colReqDep.VisibleIndex = 13;
+            this.colReqDep.VisibleIndex = 15;
             this.colReqDep.Width = 80;
             // 
             // repLookUpReqDep
@@ -1264,7 +1275,7 @@
             this.colBrand.FieldName = "Brand";
             this.colBrand.Name = "colBrand";
             this.colBrand.Visible = true;
-            this.colBrand.VisibleIndex = 17;
+            this.colBrand.VisibleIndex = 18;
             // 
             // colCodeSpec
             // 
@@ -1273,7 +1284,7 @@
             this.colCodeSpec.FieldName = "CodeSpec";
             this.colCodeSpec.Name = "colCodeSpec";
             this.colCodeSpec.Visible = true;
-            this.colCodeSpec.VisibleIndex = 18;
+            this.colCodeSpec.VisibleIndex = 19;
             this.colCodeSpec.Width = 110;
             // 
             // colOverplus
@@ -1295,7 +1306,7 @@
             this.colPayTypeNo.FieldName = "PayTypeNo";
             this.colPayTypeNo.Name = "colPayTypeNo";
             this.colPayTypeNo.Visible = true;
-            this.colPayTypeNo.VisibleIndex = 19;
+            this.colPayTypeNo.VisibleIndex = 20;
             // 
             // colPrice
             // 
@@ -1306,8 +1317,18 @@
             this.colPrice.FieldName = "Price";
             this.colPrice.Name = "colPrice";
             this.colPrice.Visible = true;
-            this.colPrice.VisibleIndex = 8;
+            this.colPrice.VisibleIndex = 10;
             this.colPrice.Width = 85;
+            // 
+            // colPlanDays
+            // 
+            this.colPlanDays.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPlanDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPlanDays.FieldName = "PlanDays";
+            this.colPlanDays.Name = "colPlanDays";
+            this.colPlanDays.Visible = true;
+            this.colPlanDays.VisibleIndex = 8;
+            this.colPlanDays.Width = 90;
             // 
             // cms
             // 
@@ -1329,17 +1350,17 @@
             this.tsmiDgrqbnwk.Size = new System.Drawing.Size(340, 22);
             this.tsmiDgrqbnwk.Text = "订购日期不能为空，请设置后重新进行查询。";
             // 
-            // FrmOrderList_NoWarehousing
+            // FrmOrderList_NoWarehousing_Days
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1266, 486);
+            this.ClientSize = new System.Drawing.Size(1303, 497);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
-            this.Name = "FrmOrderList_NoWarehousing";
-            this.TabText = "采购未入库查询";
-            this.Text = "采购未入库查询";
-            this.Load += new System.EventHandler(this.FrmOrderList_NoWarehousing_Load);
+            this.Name = "FrmOrderList_NoWarehousing_Days";
+            this.TabText = "采购未入库天数查询";
+            this.Text = "采购未入库天数查询";
+            this.Load += new System.EventHandler(this.FrmOrderList_NoWarehousing_Days_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOrderList)).EndInit();
@@ -1501,5 +1522,7 @@
         private System.Windows.Forms.ContextMenuStrip cms;
         private System.Windows.Forms.ToolStripMenuItem tsmiJhdhribnwk;
         private System.Windows.Forms.ToolStripMenuItem tsmiDgrqbnwk;
+        private System.Data.DataColumn dataColPlanDays;
+        private DevExpress.XtraGrid.Columns.GridColumn colPlanDays;
     }
 }

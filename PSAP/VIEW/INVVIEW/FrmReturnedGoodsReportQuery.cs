@@ -18,7 +18,12 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmReturnedGoodsReportDAO rgrDAO = new FrmReturnedGoodsReportDAO();
-        
+
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmReturnedGoodsReportQuery()
         {
             InitializeComponent();
@@ -123,7 +128,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_RGR.Tables[0].Rows.Clear();
                 string querySqlStr = rgrDAO.QueryReturnedGoodsReportHead_SQL(rgrDateBeginStr, rgrDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, warehouseStateInt, empNameStr, -1, commonStr, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_RGR, "RGRHead", querySqlStr, countSqlStr, true);
@@ -141,7 +146,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewRGRHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewRGRHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewRGRHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_RGR.Tables[0], lastQuerySqlStr, gridViewRGRHead);
             }
             catch (Exception ex)
             {

@@ -18,6 +18,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmSpecialWarehouseReceiptDAO swrDAO = new FrmSpecialWarehouseReceiptDAO();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmSpecialWarehouseReceiptQuery()
         {
             InitializeComponent();
@@ -118,7 +123,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_SWR.Tables[0].Rows.Clear();
                 string querySqlStr = swrDAO.QuerySpecialWarehouseReceiptHead_SQL(swrDateBeginStr, swrDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, -1, commonStr, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_SWR, "SWRHead", querySqlStr, countSqlStr, true);
@@ -136,7 +141,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSWRHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSWRHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSWRHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_SWR.Tables[0], lastQuerySqlStr, gridViewSWRHead);
             }
             catch (Exception ex)
             {

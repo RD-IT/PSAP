@@ -333,22 +333,22 @@ namespace PSAP.DAO.BSDAO
         /// <summary>
         /// 查询的全部数据存为Excel文件
         /// </summary>
-        /// <param name="QueryContainer">查询数据的容器</param>
+        /// <param name="QueryTableContainer">查询数据的容器</param>
         /// <param name="sqlStr">查询全部数据的SQL</param>
         /// <param name="displayGridView">显示数据的GridView容器</param>
-        public void SaveExcel_QueryAllData(DataTable QueryContainer, string sqlStr, GridView displayGridView)
+        public void SaveExcel_QueryAllData(DataTable QueryTableContainer, string sqlStr, GridView displayGridView)
         {
             displayGridView.GridControl.Visible = false;
-            DataTable tempTable = QueryContainer.Copy();
-            QueryContainer.Rows.Clear();
-            BaseSQL.Query(sqlStr, QueryContainer);
-            
+            DataTable tempTable = QueryTableContainer.Copy();
+            QueryTableContainer.Rows.Clear();
+            BaseSQL.Query(sqlStr, QueryTableContainer);
+
             FileHandler.SaveDevGridControlExportToExcel(displayGridView);
 
-            QueryContainer.Rows.Clear();
+            QueryTableContainer.Rows.Clear();
             foreach (DataRow dr in tempTable.Rows)
             {
-                QueryContainer.ImportRow(dr);
+                QueryTableContainer.ImportRow(dr);
             }
             displayGridView.GridControl.Visible = true;
         }

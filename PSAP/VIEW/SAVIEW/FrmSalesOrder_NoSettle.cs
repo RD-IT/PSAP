@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmSalesOrderDAO soDAO = new FrmSalesOrderDAO();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         #endregion
 
         #region 构造方法
@@ -114,7 +119,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_SalesOrder.Tables[0].Rows.Clear();
 
                 string querySqlStr = soDAO.QuerySalesOrder_NoSettle_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNoStr, empNameStr, commonStr);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_SalesOrder, "SalesOrder", querySqlStr, countSqlStr, true);
@@ -132,7 +137,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_SalesOrder.Tables[0], lastQuerySqlStr, gridViewSalesOrder);
             }
             catch (Exception ex)
             {

@@ -364,6 +364,12 @@
     <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.Designer.cs">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing_Days.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing_Days.Designer.cs">
+      <DependentUpon>FrmOrderList_NoWarehousing_Days.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\PURVIEW\FrmTest_WF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -926,6 +932,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.resx">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing_Days.resx">
+      <DependentUpon>FrmOrderList_NoWarehousing_Days.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF.resx">
       <DependentUpon>FrmTest_WF.cs</DependentUpon>

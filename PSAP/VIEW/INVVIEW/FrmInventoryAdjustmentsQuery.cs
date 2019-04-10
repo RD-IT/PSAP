@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmInventoryAdjustmentsDAO iaDAO = new FrmInventoryAdjustmentsDAO();
             static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmInventoryAdjustmentsQuery()
         {
             InitializeComponent();
@@ -111,8 +116,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_IA.Tables[0].Clear();
                 string querySqlStr = iaDAO.QueryInventoryAdjustmentsHead_SQL(orderDateBeginStr, orderDateEndStr, repertoryNoStr, projectNoStr, reqDepStr, empNameStr, commonStr, false);
-
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomIA.QueryGridData(ref dataSet_IA, "IAHead", querySqlStr, countSqlStr, true);
             }
@@ -130,7 +134,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewIAHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewIAHead);
+                if (gridBottomIA.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewIAHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_IA.Tables[0], lastQuerySqlStr, gridViewIAHead);
             }
             catch (Exception ex)
             {

@@ -895,11 +895,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             return;
 
-            for (int i = dataSet_SalesOrder.Tables[0].Rows.Count - 1; i >= 0; i--)
-            {
-                if (dataSet_SettleAccounts.Tables[1].Select(string.Format("AutoSalesOrderNo='{0}'", DataTypeConvert.GetString(dataSet_SalesOrder.Tables[0].Rows[i]["AutoSalesOrderNo"]))).Length > 0)
-                    dataSet_SalesOrder.Tables[0].Rows.RemoveAt(i);
-            }
+            //for (int i = dataSet_SalesOrder.Tables[0].Rows.Count - 1; i >= 0; i--)
+            //{
+            //    if (dataSet_SettleAccounts.Tables[1].Select(string.Format("AutoSalesOrderNo='{0}'", DataTypeConvert.GetString(dataSet_SalesOrder.Tables[0].Rows[i]["AutoSalesOrderNo"]))).Length > 0)
+            //        dataSet_SalesOrder.Tables[0].Rows.RemoveAt(i);
+            //}
         }
 
 

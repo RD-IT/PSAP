@@ -58,7 +58,6 @@
             this.dataColParentProjectNo = new System.Data.DataColumn();
             this.dataColSalesOrderState = new System.Data.DataColumn();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
-            this.btnAllSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpPrepared = new DevExpress.XtraEditors.LookUpEdit();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.searchProjectNo = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -322,7 +321,6 @@
             // 
             // pnltop
             // 
-            this.pnltop.Controls.Add(this.btnAllSaveExcel);
             this.pnltop.Controls.Add(this.lookUpPrepared);
             this.pnltop.Controls.Add(this.labPrepared);
             this.pnltop.Controls.Add(this.searchProjectNo);
@@ -342,16 +340,6 @@
             this.pnltop.Name = "pnltop";
             this.pnltop.Size = new System.Drawing.Size(1905, 78);
             this.pnltop.TabIndex = 8;
-            // 
-            // btnAllSaveExcel
-            // 
-            this.btnAllSaveExcel.Location = new System.Drawing.Point(669, 43);
-            this.btnAllSaveExcel.Name = "btnAllSaveExcel";
-            this.btnAllSaveExcel.Size = new System.Drawing.Size(100, 23);
-            this.btnAllSaveExcel.TabIndex = 33;
-            this.btnAllSaveExcel.Text = "全部存为Excel";
-            this.btnAllSaveExcel.Visible = false;
-            this.btnAllSaveExcel.Click += new System.EventHandler(this.btnAllSaveExcel_Click);
             // 
             // lookUpPrepared
             // 
@@ -1111,6 +1099,5 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckIsEnd;
         private DevExpress.XtraEditors.LookUpEdit lookUpPrepared;
         private DevExpress.XtraEditors.LabelControl labPrepared;
-        private DevExpress.XtraEditors.SimpleButton btnAllSaveExcel;
     }
 }

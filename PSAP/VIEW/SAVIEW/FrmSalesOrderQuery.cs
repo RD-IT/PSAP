@@ -59,7 +59,7 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpCollectionTypeNo.DataSource = commonDAO.QueryCollectionType(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
-                gridBottomOrderHead.pageRowCount = 5;
+                //gridBottomOrderHead.pageRowCount = 5;
 
                 btnQuery_Click(null, null);
             }
@@ -138,26 +138,19 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+
+                //int result = new CustomXtraMessageBoxForm().ShowMessageBox("请选择要存为 Excel 的查询记录：", new string[] { "当前页面记录", "全部查询记录", "取消" });
+                //MessageHandler.ShowMessageBox(result.ToString());
+
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_SalesOrder.Tables[0], lastQuerySqlStr, gridViewSalesOrder);
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
-            }
-        }
-
-        /// <summary>
-        /// 全部查询结果存为Excel
-        /// </summary>
-        private void btnAllSaveExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                commonDAO.SaveExcel_QueryAllData(dataSet_SalesOrder.Tables[0], lastQuerySqlStr, gridViewSalesOrder);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--全部查询结果存为Excel错误。", ex);
             }
         }
 

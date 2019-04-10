@@ -17,6 +17,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmWarehouseNowInfoDAO wNowInfoDAO = new FrmWarehouseNowInfoDAO();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmQueryStockDurationTotal()
         {
             InitializeComponent();
@@ -98,6 +103,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
 
                 string querySqlStr = wNowInfoDAO.QueryStockDurationTotal_SQL(dateDurBegin.DateTime.Date, durDateBeginStr, durDateEndStr, repertoryNoStr, projectNameStr, codeFileNameStr, commonStr);
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomWNowInfo.QueryGridData(ref dataSet_DurationStock, "DurationStock", querySqlStr, countSqlStr, true);
             }
@@ -114,7 +120,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewDurationStock);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewDurationStock);
+                if (gridBottomWNowInfo.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewDurationStock);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_DurationStock.Tables[0], lastQuerySqlStr, gridViewDurationStock);
             }
             catch (Exception ex)
             {

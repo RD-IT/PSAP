@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmWarehouseNowInfoDAO wNowInfoDAO = new FrmWarehouseNowInfoDAO();
         static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmWarehouseNowInfo()
         {
             InitializeComponent();
@@ -90,6 +95,7 @@ namespace PSAP.VIEW.BSVIEW
                 string commonStr = textCommon.Text.Trim();
 
                 string querySqlStr = wNowInfoDAO.QueryWarehouseNowInfo_SQL(codeFileNameStr, repertoryNoStr, projectNameStr, shelfNoStr, commonStr, !checkZero.Checked);
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomWNowInfo.QueryGridData(ref dataSet_WNowInfo, "WNowInfo", querySqlStr, countSqlStr, true);
             }
@@ -107,7 +113,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewWNowInfo);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewWNowInfo);
+                if (gridBottomWNowInfo.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewWNowInfo);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_WNowInfo.Tables[0], lastQuerySqlStr, gridViewWNowInfo);
             }
             catch (Exception ex)
             {

@@ -139,6 +139,11 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public static int DragForm_LeftDock_Width = 400;
 
+        /// <summary>
+        /// 查询采购未入库天数的接近计划到货日期的天数
+        /// </summary>
+        public static int OrderNoWarehousing_Days = 5;
+
         #endregion
 
         #region Socket设置参数

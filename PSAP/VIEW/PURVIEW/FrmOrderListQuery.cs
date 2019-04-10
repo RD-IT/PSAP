@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmOrderDAO orderDAO = new FrmOrderDAO();
         static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmOrderListQuery()
         {
             InitializeComponent();
@@ -172,7 +177,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_Order.Tables[0].Clear();
 
                 string querySqlStr = orderDAO.QueryOrderList_Head_SQL(planDateBeginStr, planDateEndStr, orderDateBeginStr, orderDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, commonStr);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderHead", querySqlStr, countSqlStr, true);  
             }
@@ -190,7 +195,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_Order.Tables[0], lastQuerySqlStr, gridViewPrReqHead);
             }
             catch (Exception ex)
             {

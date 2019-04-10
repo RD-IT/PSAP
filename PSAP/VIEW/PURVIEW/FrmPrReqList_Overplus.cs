@@ -18,6 +18,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmPrReqList_Overplus()
         {
             InitializeComponent();
@@ -121,7 +126,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_PrReq.Tables[0].Clear();
 
                 string querySqlStr = prReqDAO.Query_PrReqList_Overplus(reqDateBeginStr, reqDateEndStr, reqDepStr, purCategoryStr, projectNoStr, reqStateInt, codeFileNameStr, checkOverplus.Checked, commonStr);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqList", querySqlStr, countSqlStr, true);
             }
@@ -139,7 +144,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
+                if (gridBottomPrReq.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_PrReq.Tables[0], lastQuerySqlStr, gridViewPrReqList);
             }
             catch (Exception ex)
             {
