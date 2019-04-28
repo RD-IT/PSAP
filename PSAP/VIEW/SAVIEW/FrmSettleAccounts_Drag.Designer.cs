@@ -603,6 +603,11 @@
             this.repSpinTax1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.repSpinTax1.EditFormat.FormatString = "p0";
             this.repSpinTax1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinTax1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.repSpinTax1.Mask.EditMask = "p0";
             this.repSpinTax1.MaxValue = new decimal(new int[] {
             1,
@@ -736,6 +741,7 @@
             // 
             // gridCtlSettleAccountsHead
             // 
+            this.gridCtlSettleAccountsHead.AllowDrop = true;
             this.gridCtlSettleAccountsHead.DataSource = this.bindingSource_SAHead;
             this.gridCtlSettleAccountsHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridCtlSettleAccountsHead.Location = new System.Drawing.Point(2, 36);
@@ -750,6 +756,9 @@
             this.gridCtlSettleAccountsHead.TabIndex = 5;
             this.gridCtlSettleAccountsHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSettleAccountsHead});
+            this.gridCtlSettleAccountsHead.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridCtlSettleAccountsList_DragDrop);
+            this.gridCtlSettleAccountsHead.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridCtlSettleAccountsList_DragEnter);
+            this.gridCtlSettleAccountsHead.DragOver += new System.Windows.Forms.DragEventHandler(this.gridCtlSettleAccountsList_DragOver);
             // 
             // gridViewSettleAccountsHead
             // 
@@ -1569,8 +1578,10 @@
             this.gridViewSalesOrder.Name = "gridViewSalesOrder";
             this.gridViewSalesOrder.OptionsBehavior.Editable = false;
             this.gridViewSalesOrder.OptionsBehavior.ReadOnly = true;
+            this.gridViewSalesOrder.OptionsSelection.CheckBoxSelectorColumnWidth = 35;
             this.gridViewSalesOrder.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewSalesOrder.OptionsSelection.MultiSelect = true;
+            this.gridViewSalesOrder.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewSalesOrder.OptionsView.ColumnAutoWidth = false;
             this.gridViewSalesOrder.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewSalesOrder.OptionsView.ShowFooter = true;
@@ -1594,7 +1605,7 @@
             this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "AutoSalesOrderNo", "共计{0}条")});
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 0;
+            this.gridColumn7.VisibleIndex = 1;
             this.gridColumn7.Width = 110;
             // 
             // colSalesOrderDate
@@ -1606,7 +1617,7 @@
             this.colSalesOrderDate.FieldName = "SalesOrderDate";
             this.colSalesOrderDate.Name = "colSalesOrderDate";
             this.colSalesOrderDate.Visible = true;
-            this.colSalesOrderDate.VisibleIndex = 7;
+            this.colSalesOrderDate.VisibleIndex = 8;
             this.colSalesOrderDate.Width = 80;
             // 
             // colAutoQuotationNo
@@ -1616,7 +1627,7 @@
             this.colAutoQuotationNo.FieldName = "AutoQuotationNo";
             this.colAutoQuotationNo.Name = "colAutoQuotationNo";
             this.colAutoQuotationNo.Visible = true;
-            this.colAutoQuotationNo.VisibleIndex = 5;
+            this.colAutoQuotationNo.VisibleIndex = 6;
             this.colAutoQuotationNo.Width = 110;
             // 
             // gridColumn8
@@ -1627,7 +1638,7 @@
             this.gridColumn8.FieldName = "BussinessBaseNo";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 1;
+            this.gridColumn8.VisibleIndex = 2;
             this.gridColumn8.Width = 90;
             // 
             // repSearchLookUpBussinessBaseNo
@@ -1691,7 +1702,7 @@
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 8;
+            this.colProjectName.VisibleIndex = 9;
             this.colProjectName.Width = 80;
             // 
             // colQuotationVersions
@@ -1701,7 +1712,7 @@
             this.colQuotationVersions.FieldName = "QuotationVersions";
             this.colQuotationVersions.Name = "colQuotationVersions";
             this.colQuotationVersions.Visible = true;
-            this.colQuotationVersions.VisibleIndex = 6;
+            this.colQuotationVersions.VisibleIndex = 7;
             this.colQuotationVersions.Width = 60;
             // 
             // gridColumn13
@@ -1715,7 +1726,7 @@
             this.gridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 2;
+            this.gridColumn13.VisibleIndex = 3;
             this.gridColumn13.Width = 70;
             // 
             // colNoSettleAmount
@@ -1733,7 +1744,7 @@
             this.colNoSettleAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NoSettleAmount", "{0:N2}")});
             this.colNoSettleAmount.Visible = true;
-            this.colNoSettleAmount.VisibleIndex = 3;
+            this.colNoSettleAmount.VisibleIndex = 4;
             this.colNoSettleAmount.Width = 70;
             // 
             // colSettleAmount
@@ -1745,7 +1756,7 @@
             this.colSettleAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettleAmount", "{0:N2}")});
             this.colSettleAmount.Visible = true;
-            this.colSettleAmount.VisibleIndex = 4;
+            this.colSettleAmount.VisibleIndex = 5;
             this.colSettleAmount.Width = 70;
             // 
             // colTax
@@ -1757,7 +1768,7 @@
             this.colTax.FieldName = "Tax";
             this.colTax.Name = "colTax";
             this.colTax.Visible = true;
-            this.colTax.VisibleIndex = 9;
+            this.colTax.VisibleIndex = 10;
             this.colTax.Width = 60;
             // 
             // gridColumn14
@@ -1783,7 +1794,7 @@
             this.gridColumn15.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 10;
+            this.gridColumn15.VisibleIndex = 11;
             this.gridColumn15.Width = 70;
             // 
             // colCollectionTypeNo
@@ -1812,7 +1823,7 @@
             this.colCustomerPoNo.FieldName = "CustomerPoNo";
             this.colCustomerPoNo.Name = "colCustomerPoNo";
             this.colCustomerPoNo.Visible = true;
-            this.colCustomerPoNo.VisibleIndex = 11;
+            this.colCustomerPoNo.VisibleIndex = 12;
             this.colCustomerPoNo.Width = 110;
             // 
             // colProjectLeader
@@ -1822,7 +1833,7 @@
             this.colProjectLeader.FieldName = "ProjectLeader";
             this.colProjectLeader.Name = "colProjectLeader";
             this.colProjectLeader.Visible = true;
-            this.colProjectLeader.VisibleIndex = 12;
+            this.colProjectLeader.VisibleIndex = 13;
             this.colProjectLeader.Width = 80;
             // 
             // colIsEnd
@@ -1849,7 +1860,7 @@
             this.gridColumn16.FieldName = "Remark";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 13;
+            this.gridColumn16.VisibleIndex = 14;
             this.gridColumn16.Width = 80;
             // 
             // gridColumn17
@@ -2062,7 +2073,7 @@
             this.labelCommon.TabIndex = 204;
             this.labelCommon.Text = "通用查询：";
             // 
-            // FrmSettleAccounts
+            // FrmSettleAccounts_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1395, 643);

@@ -734,7 +734,10 @@
             this.gridViewWWList.Name = "gridViewWWList";
             this.gridViewWWList.OptionsBehavior.Editable = false;
             this.gridViewWWList.OptionsBehavior.ReadOnly = true;
+            this.gridViewWWList.OptionsSelection.CheckBoxSelectorColumnWidth = 35;
             this.gridViewWWList.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewWWList.OptionsSelection.MultiSelect = true;
+            this.gridViewWWList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewWWList.OptionsView.ColumnAutoWidth = false;
             this.gridViewWWList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewWWList.OptionsView.ShowGroupPanel = false;
@@ -765,7 +768,7 @@
             this.gridColumn17.FieldName = "CodeFileName";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 0;
+            this.gridColumn17.VisibleIndex = 1;
             this.gridColumn17.Width = 110;
             // 
             // gridColumn21
@@ -775,7 +778,7 @@
             this.gridColumn21.FieldName = "CodeName";
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 6;
+            this.gridColumn21.VisibleIndex = 7;
             this.gridColumn21.Width = 110;
             // 
             // gridColumn22
@@ -786,7 +789,7 @@
             this.gridColumn22.FieldName = "Qty";
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 1;
+            this.gridColumn22.VisibleIndex = 2;
             this.gridColumn22.Width = 70;
             // 
             // repSpinWWQty
@@ -812,7 +815,7 @@
             this.colSettlementCount.FieldName = "SettlementCount";
             this.colSettlementCount.Name = "colSettlementCount";
             this.colSettlementCount.Visible = true;
-            this.colSettlementCount.VisibleIndex = 2;
+            this.colSettlementCount.VisibleIndex = 3;
             // 
             // colOverplus
             // 
@@ -825,7 +828,7 @@
             this.colOverplus.FieldName = "Overplus";
             this.colOverplus.Name = "colOverplus";
             this.colOverplus.Visible = true;
-            this.colOverplus.VisibleIndex = 3;
+            this.colOverplus.VisibleIndex = 4;
             // 
             // colShelfId
             // 
@@ -835,7 +838,7 @@
             this.colShelfId.FieldName = "ShelfId";
             this.colShelfId.Name = "colShelfId";
             this.colShelfId.Visible = true;
-            this.colShelfId.VisibleIndex = 8;
+            this.colShelfId.VisibleIndex = 9;
             this.colShelfId.Width = 80;
             // 
             // repSearchShelfId
@@ -890,7 +893,7 @@
             this.colPrReqListRemark.FieldName = "Remark";
             this.colPrReqListRemark.Name = "colPrReqListRemark";
             this.colPrReqListRemark.Visible = true;
-            this.colPrReqListRemark.VisibleIndex = 7;
+            this.colPrReqListRemark.VisibleIndex = 8;
             this.colPrReqListRemark.Width = 120;
             // 
             // colProjectName
@@ -900,7 +903,7 @@
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 4;
+            this.colProjectName.VisibleIndex = 5;
             this.colProjectName.Width = 80;
             // 
             // colStnNo
@@ -910,7 +913,7 @@
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
             this.colStnNo.Visible = true;
-            this.colStnNo.VisibleIndex = 5;
+            this.colStnNo.VisibleIndex = 6;
             this.colStnNo.Width = 70;
             // 
             // colOrderHeadNo
@@ -920,7 +923,7 @@
             this.colOrderHeadNo.FieldName = "OrderHeadNo";
             this.colOrderHeadNo.Name = "colOrderHeadNo";
             this.colOrderHeadNo.Visible = true;
-            this.colOrderHeadNo.VisibleIndex = 9;
+            this.colOrderHeadNo.VisibleIndex = 10;
             this.colOrderHeadNo.Width = 110;
             // 
             // colPoListAutoId
@@ -2025,6 +2028,7 @@
             // 
             // gridControlSettlementHead
             // 
+            this.gridControlSettlementHead.AllowDrop = true;
             this.gridControlSettlementHead.DataSource = this.bindingSource_SettlementHead;
             this.gridControlSettlementHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlSettlementHead.Location = new System.Drawing.Point(2, 36);
@@ -2041,6 +2045,9 @@
             this.gridControlSettlementHead.TabIndex = 4;
             this.gridControlSettlementHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSettlementHead});
+            this.gridControlSettlementHead.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlSettlementList_DragDrop);
+            this.gridControlSettlementHead.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlSettlementList_DragEnter);
+            this.gridControlSettlementHead.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControlSettlementList_DragOver);
             // 
             // bindingSource_SettlementHead
             // 

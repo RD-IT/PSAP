@@ -52,8 +52,11 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpBussinessBaseNo.Text = "全部";
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
+                lookUpQState.Properties.DataSource = CommonHandler.GetQuotationInfoStateTable(true);
+                lookUpQState.ItemIndex = 0;
 
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
+                repLookUpQState.DataSource = CommonHandler.GetQuotationInfoStateTable(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
 
@@ -113,7 +116,18 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_Quotation.Tables[0].Rows.Clear();
 
-                string querySqlStr = quoDAO.QueryQuotationBaseInfo_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, empNameStr, commonStr);
+                int qStateInt = -1;
+                switch(lookUpQState.ItemIndex)
+                {
+                    case 1:
+                        qStateInt = 0;
+                        break;
+                    case 2:
+                        qStateInt = 1;
+                        break;
+                }
+
+                string querySqlStr = quoDAO.QueryQuotationBaseInfoAndCor_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, empNameStr, commonStr,qStateInt);
                 lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
@@ -154,9 +168,9 @@ namespace PSAP.VIEW.BSVIEW
                 if (e.Clicks == 2)
                 {
                     string autoQuotationNoStr = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["AutoQuotationNo"]);
-                    FrmQuotationInfo.queryAutoQuotationNoStr = autoQuotationNoStr;
+                    FrmQuotationInfo_History.queryAutoQuotationNoStr = autoQuotationNoStr;
                     //FrmWarehouseWarrant_Drag.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmQuotationInfo");
+                    ViewHandler.ShowRightWindow("FrmQuotationInfo_History");
                 }
             }
             catch (Exception ex)

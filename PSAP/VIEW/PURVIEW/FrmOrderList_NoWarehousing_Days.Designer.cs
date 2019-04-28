@@ -1358,8 +1358,8 @@
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
             this.Name = "FrmOrderList_NoWarehousing_Days";
-            this.TabText = "采购未入库天数查询";
-            this.Text = "采购未入库天数查询";
+            this.TabText = "入库预警查询";
+            this.Text = "入库预警查询";
             this.Load += new System.EventHandler(this.FrmOrderList_NoWarehousing_Days_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_OrderList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Order)).EndInit();

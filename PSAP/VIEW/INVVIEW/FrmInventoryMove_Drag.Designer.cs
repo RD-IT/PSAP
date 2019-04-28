@@ -639,8 +639,10 @@
             this.gridViewWNowInfo.Name = "gridViewWNowInfo";
             this.gridViewWNowInfo.OptionsBehavior.Editable = false;
             this.gridViewWNowInfo.OptionsBehavior.ReadOnly = true;
+            this.gridViewWNowInfo.OptionsSelection.CheckBoxSelectorColumnWidth = 35;
             this.gridViewWNowInfo.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewWNowInfo.OptionsSelection.MultiSelect = true;
+            this.gridViewWNowInfo.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewWNowInfo.OptionsView.ColumnAutoWidth = false;
             this.gridViewWNowInfo.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewWNowInfo.OptionsView.ShowGroupPanel = false;
@@ -662,7 +664,7 @@
             this.gridColumn14.FieldName = "CodeFileName";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 2;
+            this.gridColumn14.VisibleIndex = 3;
             this.gridColumn14.Width = 110;
             // 
             // gridColumn18
@@ -672,7 +674,7 @@
             this.gridColumn18.FieldName = "CodeName";
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 5;
+            this.gridColumn18.VisibleIndex = 6;
             this.gridColumn18.Width = 110;
             // 
             // gridColumn19
@@ -684,7 +686,7 @@
             this.gridColumn19.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 3;
+            this.gridColumn19.VisibleIndex = 4;
             this.gridColumn19.Width = 60;
             // 
             // colProjectName
@@ -694,7 +696,7 @@
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 1;
+            this.colProjectName.VisibleIndex = 2;
             this.colProjectName.Width = 80;
             // 
             // colRepertoryNo
@@ -705,7 +707,7 @@
             this.colRepertoryNo.FieldName = "RepertoryNo";
             this.colRepertoryNo.Name = "colRepertoryNo";
             this.colRepertoryNo.Visible = true;
-            this.colRepertoryNo.VisibleIndex = 0;
+            this.colRepertoryNo.VisibleIndex = 1;
             this.colRepertoryNo.Width = 80;
             // 
             // repLookUpRepertoryNo
@@ -725,7 +727,7 @@
             this.colShelfNo.FieldName = "ShelfNo";
             this.colShelfNo.Name = "colShelfNo";
             this.colShelfNo.Visible = true;
-            this.colShelfNo.VisibleIndex = 4;
+            this.colShelfNo.VisibleIndex = 5;
             this.colShelfNo.Width = 80;
             // 
             // colProjectNo1
@@ -1353,6 +1355,7 @@
             // 
             // gridControlIMHead
             // 
+            this.gridControlIMHead.AllowDrop = true;
             this.gridControlIMHead.DataSource = this.bindingSource_IMHead;
             this.gridControlIMHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlIMHead.Location = new System.Drawing.Point(2, 36);
@@ -1366,6 +1369,9 @@
             this.gridControlIMHead.TabIndex = 3;
             this.gridControlIMHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIMHead});
+            this.gridControlIMHead.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlIMList_DragDrop);
+            this.gridControlIMHead.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlIMList_DragEnter);
+            this.gridControlIMHead.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControlIMList_DragOver);
             // 
             // gridViewIMHead
             // 

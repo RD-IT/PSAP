@@ -493,6 +493,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewSettleAccountsList.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 //int wwListAutoId = 0;
                 //if (gridViewSettleAccountsList.GetFocusedDataRow() != null)
                 //    wwListAutoId = DataTypeConvert.GetInt(gridViewSettleAccountsList.GetFocusedDataRow()["WarehouseWarrantListAutoId"]);
@@ -735,6 +742,10 @@ namespace PSAP.VIEW.BSVIEW
                     if (!dragRect.Contains(new Point(e.X, e.Y)))
                     {
                         int[] rowint = view.GetSelectedRows();
+
+                        if (rowint.Length == 0)
+                            rowint = new int[] { view.FocusedRowHandle };
+
                         List<DataRow> row = new List<DataRow>();
                         foreach (int i in rowint)
                         {

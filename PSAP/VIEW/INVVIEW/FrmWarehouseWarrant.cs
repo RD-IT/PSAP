@@ -602,6 +602,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewWWList.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 gridViewWWList.DeleteRow(gridViewWWList.FocusedRowHandle);
             }
             catch (Exception ex)

@@ -517,6 +517,7 @@
             this.repSpinQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.repSpinQty.EditFormat.FormatString = "N2";
             this.repSpinQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinQty.Mask.EditMask = "N2";
             this.repSpinQty.MaxValue = new decimal(new int[] {
             1410065407,
             2,
@@ -546,7 +547,17 @@
             this.repSpinEditTax.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.repSpinEditTax.EditFormat.FormatString = "p0";
             this.repSpinEditTax.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinEditTax.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.repSpinEditTax.Mask.EditMask = "p0";
+            this.repSpinEditTax.MaxValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.repSpinEditTax.Name = "repSpinEditTax";
             // 
             // colTaxAmount

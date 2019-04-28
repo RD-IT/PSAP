@@ -1249,6 +1249,7 @@
             // 
             // gridControlWWHead
             // 
+            this.gridControlWWHead.AllowDrop = true;
             this.gridControlWWHead.DataSource = this.bindingSource_WWHead;
             this.gridControlWWHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlWWHead.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
@@ -1267,6 +1268,9 @@
             this.gridControlWWHead.TabIndex = 4;
             this.gridControlWWHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWWHead});
+            this.gridControlWWHead.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlWWList_DragDrop);
+            this.gridControlWWHead.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlWWList_DragEnter);
+            this.gridControlWWHead.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControlWWList_DragOver);
             // 
             // bindingSource_WWHead
             // 
@@ -1985,8 +1989,10 @@
             this.gridViewOrderList.Name = "gridViewOrderList";
             this.gridViewOrderList.OptionsBehavior.Editable = false;
             this.gridViewOrderList.OptionsBehavior.ReadOnly = true;
+            this.gridViewOrderList.OptionsSelection.CheckBoxSelectorColumnWidth = 35;
             this.gridViewOrderList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewOrderList.OptionsSelection.MultiSelect = true;
+            this.gridViewOrderList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewOrderList.OptionsView.ColumnAutoWidth = false;
             this.gridViewOrderList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewOrderList.OptionsView.ShowGroupPanel = false;
@@ -2017,7 +2023,7 @@
             this.gridColumn16.FieldName = "CodeFileName";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 0;
+            this.gridColumn16.VisibleIndex = 1;
             this.gridColumn16.Width = 110;
             // 
             // gridColumn17
@@ -2027,7 +2033,7 @@
             this.gridColumn17.FieldName = "CodeName";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 4;
+            this.gridColumn17.VisibleIndex = 5;
             this.gridColumn17.Width = 90;
             // 
             // gridColumn18
@@ -2039,7 +2045,7 @@
             this.gridColumn18.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 1;
+            this.gridColumn18.VisibleIndex = 2;
             this.gridColumn18.Width = 50;
             // 
             // colWarehouseWarrentCount
@@ -2051,7 +2057,7 @@
             this.colWarehouseWarrentCount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WarehouseWarrentCount", "{0:0.##}")});
             this.colWarehouseWarrentCount.Visible = true;
-            this.colWarehouseWarrentCount.VisibleIndex = 2;
+            this.colWarehouseWarrentCount.VisibleIndex = 3;
             this.colWarehouseWarrentCount.Width = 60;
             // 
             // colOverplus
@@ -2067,7 +2073,7 @@
             this.colOverplus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Overplus", "{0:0.##}")});
             this.colOverplus.Visible = true;
-            this.colOverplus.VisibleIndex = 3;
+            this.colOverplus.VisibleIndex = 4;
             this.colOverplus.Width = 60;
             // 
             // colUnit
@@ -2079,7 +2085,7 @@
             this.colUnit.FieldName = "Unit";
             this.colUnit.Name = "colUnit";
             this.colUnit.Visible = true;
-            this.colUnit.VisibleIndex = 5;
+            this.colUnit.VisibleIndex = 6;
             this.colUnit.Width = 80;
             // 
             // colAmount
@@ -2093,7 +2099,7 @@
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 6;
+            this.colAmount.VisibleIndex = 7;
             this.colAmount.Width = 80;
             // 
             // colTax1
@@ -2139,7 +2145,7 @@
             this.colPlanDate1.FieldName = "PlanDate";
             this.colPlanDate1.Name = "colPlanDate1";
             this.colPlanDate1.Visible = true;
-            this.colPlanDate1.VisibleIndex = 7;
+            this.colPlanDate1.VisibleIndex = 8;
             this.colPlanDate1.Width = 90;
             // 
             // colRemark
@@ -2149,7 +2155,7 @@
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
             this.colRemark.Visible = true;
-            this.colRemark.VisibleIndex = 8;
+            this.colRemark.VisibleIndex = 9;
             this.colRemark.Width = 140;
             // 
             // colPrReqNo

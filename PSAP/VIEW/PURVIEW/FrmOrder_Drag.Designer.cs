@@ -833,6 +833,7 @@
             // 
             // gridControlOrderHead
             // 
+            this.gridControlOrderHead.AllowDrop = true;
             this.gridControlOrderHead.DataSource = this.bindingSource_OrderHead;
             this.gridControlOrderHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlOrderHead.Location = new System.Drawing.Point(2, 36);
@@ -852,6 +853,9 @@
             this.gridControlOrderHead.TabIndex = 3;
             this.gridControlOrderHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOrderHead});
+            this.gridControlOrderHead.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlOrderList_DragDrop);
+            this.gridControlOrderHead.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlOrderList_DragEnter);
+            this.gridControlOrderHead.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControlOrderList_DragOver);
             // 
             // bindingSource_OrderHead
             // 
@@ -2313,8 +2317,10 @@
             this.gridViewPrReqList.Name = "gridViewPrReqList";
             this.gridViewPrReqList.OptionsBehavior.Editable = false;
             this.gridViewPrReqList.OptionsBehavior.ReadOnly = true;
+            this.gridViewPrReqList.OptionsSelection.CheckBoxSelectorColumnWidth = 35;
             this.gridViewPrReqList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewPrReqList.OptionsSelection.MultiSelect = true;
+            this.gridViewPrReqList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewPrReqList.OptionsView.ColumnAutoWidth = false;
             this.gridViewPrReqList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPrReqList.OptionsView.ShowGroupPanel = false;
@@ -2345,7 +2351,7 @@
             this.gridColumn14.FieldName = "CodeFileName";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 0;
+            this.gridColumn14.VisibleIndex = 1;
             this.gridColumn14.Width = 110;
             // 
             // gridColumn18
@@ -2355,7 +2361,7 @@
             this.gridColumn18.FieldName = "CodeName";
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 4;
+            this.gridColumn18.VisibleIndex = 5;
             this.gridColumn18.Width = 80;
             // 
             // gridColumn19
@@ -2367,7 +2373,7 @@
             this.gridColumn19.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 1;
+            this.gridColumn19.VisibleIndex = 2;
             this.gridColumn19.Width = 60;
             // 
             // colOrderCount
@@ -2379,7 +2385,7 @@
             this.colOrderCount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OrderCount", "{0:0.##}")});
             this.colOrderCount.Visible = true;
-            this.colOrderCount.VisibleIndex = 2;
+            this.colOrderCount.VisibleIndex = 3;
             this.colOrderCount.Width = 60;
             // 
             // colOverplus
@@ -2395,7 +2401,7 @@
             this.colOverplus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Overplus", "{0:0.##}")});
             this.colOverplus.Visible = true;
-            this.colOverplus.VisibleIndex = 3;
+            this.colOverplus.VisibleIndex = 4;
             this.colOverplus.Width = 60;
             // 
             // colRequirementDate
@@ -2407,7 +2413,7 @@
             this.colRequirementDate.FieldName = "RequirementDate";
             this.colRequirementDate.Name = "colRequirementDate";
             this.colRequirementDate.Visible = true;
-            this.colRequirementDate.VisibleIndex = 5;
+            this.colRequirementDate.VisibleIndex = 6;
             this.colRequirementDate.Width = 90;
             // 
             // colPrReqListRemark
@@ -2417,7 +2423,7 @@
             this.colPrReqListRemark.FieldName = "PrReqListRemark";
             this.colPrReqListRemark.Name = "colPrReqListRemark";
             this.colPrReqListRemark.Visible = true;
-            this.colPrReqListRemark.VisibleIndex = 6;
+            this.colPrReqListRemark.VisibleIndex = 7;
             this.colPrReqListRemark.Width = 100;
             // 
             // splitterControl2

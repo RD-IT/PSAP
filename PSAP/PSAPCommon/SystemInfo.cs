@@ -144,6 +144,11 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public static int OrderNoWarehousing_Days = 5;
 
+        /// <summary>
+        /// 生成计划单审批生成BOM信息：1 生成BOM第一级节点  2 生成BOM最末节点  3 系统提示选择1或者2
+        /// </summary>
+        public static int ProductionScheduleBOMType = 3;
+
         #endregion
 
         #region Socket设置参数

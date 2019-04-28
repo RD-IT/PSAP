@@ -170,5 +170,20 @@ namespace PSAP.VIEW.BSVIEW
         {
             ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewPartsCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
+        }
     }
 }

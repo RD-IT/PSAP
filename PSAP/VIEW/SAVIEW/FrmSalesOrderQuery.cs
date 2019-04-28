@@ -59,7 +59,7 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpCollectionTypeNo.DataSource = commonDAO.QueryCollectionType(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
-                //gridBottomOrderHead.pageRowCount = 5;
+                gridBottomOrderHead.pageRowCount = 5;
 
                 btnQuery_Click(null, null);
             }
@@ -119,7 +119,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_SalesOrder.Tables[0].Rows.Clear();
 
-                string querySqlStr = soDAO.QuerySalesOrder_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNoStr, empNameStr, commonStr);
+                string querySqlStr = soDAO.QuerySalesOrderAndCor_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNoStr, empNameStr, commonStr);
                 lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 

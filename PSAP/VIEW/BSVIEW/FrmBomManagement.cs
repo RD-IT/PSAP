@@ -331,6 +331,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewBomMateriel.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 //int prListAutoIdInt = 0;
                 //if (gridViewIMList.GetFocusedDataRow() != null)
                 //    prListAutoIdInt = DataTypeConvert.GetInt(gridViewIMList.GetFocusedDataRow()["PrListAutoId"]);

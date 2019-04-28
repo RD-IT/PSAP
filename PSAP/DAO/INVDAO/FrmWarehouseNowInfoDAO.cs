@@ -114,5 +114,19 @@ namespace PSAP.DAO.INVDAO
             //BaseSQL.Query(sqlStr, queryDataTable);
             return sqlStr;
         }
+
+        /// <summary>
+        /// 查询Bom零件的库存数量
+        /// </summary>
+        public DataTable QueryBomWarehouseNowInfo(string codeFileNameStr, string repertoryNoStr)
+        {
+            string repNoSQLStr = "";
+            if (repertoryNoStr != "")
+            {
+                repNoSQLStr = string.Format(" and RepertoryNo = '{0}'", repertoryNoStr);
+            }
+            string sqlStr = string.Format("select bom.*, SW_PartsCode.CodeName, SW_PartsCode.AutoId as PCAutoId, SW_PartsCode.FilePath, SW_PartsCode.Brand, SW_PartsCode.CatgName, SW_PartsCode.CodeSpec, SW_PartsCode.Unit, BS_BomMaterieState.MaterieStateText, (select IsNull(SUM(Qty), 0) from INV_WarehouseNowInfo where INV_WarehouseNowInfo.CodeFileName = bom.CodeFileName {1} ) as WarehouseQty from F_BomMateriel_TreeRelation('{0}') as bom left join SW_PartsCode on bom.CodeFileName = SW_PartsCode.CodeFileName left join BS_BomManagement on bom.CodeFileName = BS_BomManagement.MaterielNo left join BS_BomMaterieState on BS_BomMaterieState.MaterieStateId = BS_BomManagement.MaterieStateId Order by CodeFileName", codeFileNameStr, repNoSQLStr);
+            return BaseSQL.Query(sqlStr).Tables[0];
+        }
     }
 }

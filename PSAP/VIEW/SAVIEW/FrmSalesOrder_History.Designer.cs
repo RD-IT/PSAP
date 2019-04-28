@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSalesOrder_History));
             this.dataSet_SalesOrder = new System.Data.DataSet();
             this.TableSalesOrder = new System.Data.DataTable();
@@ -139,7 +139,6 @@
             this.dateSalesOrderDate = new DevExpress.XtraEditors.DateEdit();
             this.textRemark = new DevExpress.XtraEditors.TextEdit();
             this.labRemark = new DevExpress.XtraEditors.LabelControl();
-            this.textProjectLeader = new DevExpress.XtraEditors.TextEdit();
             this.labProjectLeader = new DevExpress.XtraEditors.LabelControl();
             this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.labProjectName = new DevExpress.XtraEditors.LabelControl();
@@ -218,6 +217,7 @@
             this.dateSalesOrderDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.lab1 = new DevExpress.XtraEditors.LabelControl();
             this.labRecordDate = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpProjectLeader = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_SalesOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableSalesOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_SalesOrder)).BeginInit();
@@ -256,7 +256,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRemark.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textProjectLeader.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchProjectName.Properties)).BeginInit();
@@ -283,6 +282,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDateBegin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpProjectLeader.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dataSet_SalesOrder
@@ -866,6 +866,7 @@
             // 
             // pnlMiddle
             // 
+            this.pnlMiddle.Controls.Add(this.lookUpProjectLeader);
             this.pnlMiddle.Controls.Add(this.btnEditAutoQuotationNo);
             this.pnlMiddle.Controls.Add(this.lookUpCurrencyCate);
             this.pnlMiddle.Controls.Add(this.labCurrencyCate);
@@ -898,7 +899,6 @@
             this.pnlMiddle.Controls.Add(this.dateSalesOrderDate);
             this.pnlMiddle.Controls.Add(this.textRemark);
             this.pnlMiddle.Controls.Add(this.labRemark);
-            this.pnlMiddle.Controls.Add(this.textProjectLeader);
             this.pnlMiddle.Controls.Add(this.labProjectLeader);
             this.pnlMiddle.Controls.Add(this.labBussinessBaseNo);
             this.pnlMiddle.Controls.Add(this.labProjectName);
@@ -921,7 +921,7 @@
             this.btnEditAutoQuotationNo.Location = new System.Drawing.Point(597, 21);
             this.btnEditAutoQuotationNo.Name = "btnEditAutoQuotationNo";
             this.btnEditAutoQuotationNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "查询", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "选择", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.btnEditAutoQuotationNo.Properties.ReadOnly = true;
             this.btnEditAutoQuotationNo.Size = new System.Drawing.Size(150, 21);
             this.btnEditAutoQuotationNo.TabIndex = 2;
@@ -1085,7 +1085,17 @@
             this.spinTax.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spinTax.Properties.EditFormat.FormatString = "p0";
             this.spinTax.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spinTax.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.spinTax.Properties.Mask.EditMask = "p0";
+            this.spinTax.Properties.MaxValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.spinTax.Size = new System.Drawing.Size(150, 20);
             this.spinTax.TabIndex = 8;
             this.spinTax.EditValueChanged += new System.EventHandler(this.spinAmount_EditValueChanged);
@@ -1320,15 +1330,6 @@
             this.labRemark.Size = new System.Drawing.Size(24, 14);
             this.labRemark.TabIndex = 10;
             this.labRemark.Text = "备注";
-            // 
-            // textProjectLeader
-            // 
-            this.textProjectLeader.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_SalesOrder, "ProjectLeader", true));
-            this.textProjectLeader.EnterMoveNextControl = true;
-            this.textProjectLeader.Location = new System.Drawing.Point(354, 157);
-            this.textProjectLeader.Name = "textProjectLeader";
-            this.textProjectLeader.Size = new System.Drawing.Size(150, 20);
-            this.textProjectLeader.TabIndex = 13;
             // 
             // labProjectLeader
             // 
@@ -2092,6 +2093,25 @@
             this.labRecordDate.TabIndex = 9;
             this.labRecordDate.Text = "登记日期：";
             // 
+            // lookUpProjectLeader
+            // 
+            this.lookUpProjectLeader.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource_SalesOrder, "ProjectLeader", true));
+            this.lookUpProjectLeader.EnterMoveNextControl = true;
+            this.lookUpProjectLeader.Location = new System.Drawing.Point(354, 157);
+            this.lookUpProjectLeader.Margin = new System.Windows.Forms.Padding(4);
+            this.lookUpProjectLeader.Name = "lookUpProjectLeader";
+            this.lookUpProjectLeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpProjectLeader.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 80, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LoginId", "用户名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EmpName", "员工名", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpProjectLeader.Properties.DisplayMember = "EmpName";
+            this.lookUpProjectLeader.Properties.NullText = "";
+            this.lookUpProjectLeader.Properties.ValueMember = "EmpName";
+            this.lookUpProjectLeader.Size = new System.Drawing.Size(150, 20);
+            this.lookUpProjectLeader.TabIndex = 13;
+            // 
             // FrmSalesOrder_History
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2143,7 +2163,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRemark.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textProjectLeader.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBussinessBaseNoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchProjectName.Properties)).EndInit();
@@ -2171,6 +2190,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSalesOrderDateBegin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpProjectLeader.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2222,7 +2242,6 @@
         private DevExpress.XtraEditors.DateEdit dateSalesOrderDate;
         private DevExpress.XtraEditors.TextEdit textRemark;
         private DevExpress.XtraEditors.LabelControl labRemark;
-        private DevExpress.XtraEditors.TextEdit textProjectLeader;
         private DevExpress.XtraEditors.LabelControl labProjectLeader;
         private DevExpress.XtraEditors.LabelControl labBussinessBaseNo;
         private DevExpress.XtraEditors.LabelControl labProjectName;
@@ -2364,5 +2383,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnQuery;
+        private DevExpress.XtraEditors.LookUpEdit lookUpProjectLeader;
     }
 }

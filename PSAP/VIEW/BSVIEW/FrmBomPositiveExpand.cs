@@ -49,7 +49,22 @@ namespace PSAP.VIEW.BSVIEW
         private void gridViewBomMateriel_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             ControlHandler.GridView_CustomDrawRowIndicator(e);
-        }        
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
+            {
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
+            }
+        }
 
         /// <summary>
         /// 正向查询零件的Bom信息
@@ -133,21 +148,6 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
                 ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgcw.Text, ex);
-            }
-        }
-
-        /// <summary>
-        /// 根据选择显示零件名称
-        /// </summary>
-        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
-            try
-            {
-                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
 

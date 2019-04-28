@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTreeList.Nodes;
 using PSAP.DAO.INVDAO;
+using PSAP.DAO.PBDAO;
 using PSAP.DAO.PURDAO;
 using PSAP.DAO.SADAO;
 using PSAP.PSAPCommon;
@@ -108,6 +109,10 @@ namespace PSAP.VIEW.BSVIEW
                                 break;
                             case "INV_ReturnedGoodsReportHead"://退货单
                                 new FrmReturnedGoodsReportDAO().PrintHandle("", 3);
+                                break;
+
+                            case "PB_ProductionSchedule"://生产计划单
+                                new FrmProductionScheduleDAO().PrintHandle("", 3);
                                 break;
                             default:
                                 return;

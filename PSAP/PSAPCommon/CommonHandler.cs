@@ -1,6 +1,7 @@
 ﻿using PSAP.VIEW.BSVIEW;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -186,5 +187,36 @@ namespace PSAP.PSAPCommon
             return ((char)ii).ToString();
         }
 
+        /// <summary>
+        /// 得到报价单状态数据表
+        /// </summary>
+        public static DataTable GetQuotationInfoStateTable(bool isAll)
+        {
+            DataTable table = new DataTable("table");
+            table.Columns.Add("AutoId", Type.GetType("System.Int32"));
+            table.Columns.Add("Name", Type.GetType("System.String"));
+
+            DataRow newRow;
+
+            if(isAll)
+            {
+                newRow = table.NewRow();
+                newRow["AutoId"] = -1;
+                newRow["Name"] = "全部";
+                table.Rows.Add(newRow);
+            }
+
+            newRow = table.NewRow();
+            newRow["AutoId"] = 0;
+            newRow["Name"] = "正常";
+            table.Rows.Add(newRow);
+
+            newRow = table.NewRow();
+            newRow["AutoId"] = 1;
+            newRow["Name"] = "关闭";
+            table.Rows.Add(newRow);
+
+            return table;
+        }
     }
 }

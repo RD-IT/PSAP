@@ -61,10 +61,14 @@ namespace PSAP.VIEW.BSVIEW
                 ControlHandler.DevExpressStyle_ChangeControlLocation(btnListAdd.LookAndFeel.ActiveSkinName, new List<Control> { btnListAdd });
 
                 DataTable bussBaseTable = commonDAO.QueryBussinessBaseInfo(false);
+                DataTable currencyCateTable = commonDAO.QueryCurrencyCate(false);
 
                 searchBussinessBaseNo.Properties.DataSource = bussBaseTable;
 
-                repLookUpCurrencyCate.DataSource = commonDAO.QueryCurrencyCate(false);
+                repLookUpCurrencyCate.DataSource = currencyCateTable;
+
+                repItemCORBussinessBaseNo.DataSource = bussBaseTable;
+                repItemCORCurrencyCate.DataSource = currencyCateTable;
 
                 DateTime nowDate = BaseSQL.GetServerDateTime();
                 dateRecordDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
@@ -74,6 +78,7 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpBussinessBaseNo.Text = "全部";
 
                 repSearchLookUpBussinessBaseNo.DataSource = bussBaseTable;
+                repLookUpQState.DataSource = CommonHandler.GetQuotationInfoStateTable(false);
 
                 Set_ButtonEditGrid_State(true);
             }
@@ -139,6 +144,21 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewCOR_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 新增按钮事件
         /// </summary>
         private void btnNew_Click(object sender, EventArgs e)
@@ -151,6 +171,10 @@ namespace PSAP.VIEW.BSVIEW
 
                 ColumnView headView = (ColumnView)gridControlQuotation.FocusedView;
                 gridViewQuotation.FocusedRowHandle = headView.FocusedRowHandle;
+
+                TableCORInfo.Rows.Clear();
+                PageCORInfo.PageVisible = false;
+                xtraTabBottom.SelectedTabPageIndex = 0;
 
                 TableQuotationPriceInfo.Clear();
                 //gridViewQuotationPriceInfo.AddNewRow();
@@ -175,6 +199,9 @@ namespace PSAP.VIEW.BSVIEW
             try
             {
                 if (TableQuotationBaseInfo.Rows.Count == 0 || bindingSource_BaseInfo.Current == null)
+                    return;
+
+                if (!CheckState(false,true))
                     return;
 
                 if (btnSave.Text != "保存")
@@ -280,6 +307,8 @@ namespace PSAP.VIEW.BSVIEW
 
                     //currentAutoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
                     Set_ButtonEditGrid_State(true);
+
+                    gridViewQuotation_FocusedRowChanged(null, null);
                 }
             }
             catch (Exception ex)
@@ -302,6 +331,8 @@ namespace PSAP.VIEW.BSVIEW
                     if (gridViewQuotation.GetFocusedDataRow() != null)
                         gridViewQuotation.GetFocusedDataRow().RejectChanges();
                     Set_ButtonEditGrid_State(true);
+
+                    gridViewQuotation_FocusedRowChanged(null, null);
                 }
             }
             catch (Exception ex)
@@ -323,6 +354,9 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
 
+                if (!CheckState(false, true))
+                    return;
+
                 DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
                 string autoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
                 if (quoDAO.CheckQuotationInfo_IsSalesOrder(null, autoQuotationNoStr))
@@ -334,7 +368,8 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 if (quoDAO.DeleteQuotationInfo(autoQuotationNoStr))
                 {
-
+                    gridViewQuotation_FocusedRowChanged(null, null);
+                    return;
                 }
 
                 btnQuery_Click(null, null);
@@ -364,6 +399,74 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 关闭报价单
+        /// </summary>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TableQuotationBaseInfo.Rows.Count == 0 || bindingSource_BaseInfo.Current == null)
+                {
+                    MessageHandler.ShowMessageBox("当前没有报价信息记录，不能进行关闭。");
+                    return;
+                }
+
+                if (!CheckState(false, true))
+                    return;
+
+                DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
+                string autoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                if (quoDAO.CheckQuotationInfo_IsSalesOrder(null, autoQuotationNoStr))
+                    return;
+
+                if (MessageHandler.ShowMessageBox_YesNo("确定要关闭当前选中的记录吗？") != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                quoDAO.CloseQuotationInfo(headRow, autoQuotationNoStr);
+                gridViewQuotation_FocusedRowChanged(null, null);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--关闭报价单错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 取消关闭报价单
+        /// </summary>
+        private void btnRecover_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TableQuotationBaseInfo.Rows.Count == 0 || bindingSource_BaseInfo.Current == null)
+                {
+                    MessageHandler.ShowMessageBox("当前没有报价信息记录，不能进行取消关闭。");
+                    return;
+                }
+
+                if (!CheckState(true, false))
+                    return;
+
+                DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
+                string autoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                if (MessageHandler.ShowMessageBox_YesNo("确定要取消关闭当前选中的记录吗？") != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                quoDAO.RecoverQuotationInfo(headRow, autoQuotationNoStr);
+                gridViewQuotation_FocusedRowChanged(null, null);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--取消关闭报价单错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 子表新增一行事件
         /// </summary>
         private void btnListAdd_Click(object sender, EventArgs e)
@@ -372,6 +475,8 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (!gridViewQuotationPriceInfo.OptionsBehavior.Editable)
                     return;
+
+                gridViewQuotationPriceInfo.ClearSorting();
 
                 ListNewRow();
             }
@@ -388,6 +493,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewQuotationPriceInfo.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 gridViewQuotationPriceInfo.DeleteRow(gridViewQuotationPriceInfo.FocusedRowHandle);
             }
             catch (Exception ex)
@@ -405,6 +517,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 e.Row["RecordDate"] = BaseSQL.GetServerDateTime();
                 e.Row["Prepared"] = SystemInfo.user.EmpName;
+                e.Row["QuotationState"] = 0;
                 if (newParentAutoQuotationNoStr != "")
                 {
                     e.Row["ParentAutoQuotationNo"] = newParentAutoQuotationNoStr;
@@ -413,6 +526,14 @@ namespace PSAP.VIEW.BSVIEW
                     newParentAutoQuotationNoStr = "";
                     newParentAutoSalesOrderNoStr = "";
                     newParentProjectNoStr = "";
+
+                    DataTable tempTable = new DataTable();
+                    quoDAO.QueryQuotationBaseInfo(tempTable, DataTypeConvert.GetString(e.Row["ParentAutoQuotationNo"]));
+                    if(tempTable.Rows.Count>0)
+                    {
+                        e.Row["BussinessBaseNo"] = DataTypeConvert.GetString(tempTable.Rows[0]["BussinessBaseNo"]);
+                        e.Row["Requester"] = DataTypeConvert.GetString(tempTable.Rows[0]["Requester"]);
+                    }
                 }
             }
             catch (Exception ex)
@@ -440,6 +561,7 @@ namespace PSAP.VIEW.BSVIEW
                     e.Row["QuotationState"] = 1;
                     e.Row["Offerer"] = SystemInfo.user.EmpName;
                     e.Row["Tax"] = SystemInfo.Quotation_DefaultTax;
+                    e.Row["IsPoUse"] = 0;
 
                     string currentVersion = "";
                     if (gridViewQuotationPriceInfo.RowCount > 1)
@@ -478,7 +600,8 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "CurrencyCate", gridViewQuotationPriceInfo.GetFocusedDataSourceRowIndex());
                     }
                 }
-                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+                else
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
             }
             catch (Exception ex)
             {
@@ -527,6 +650,10 @@ namespace PSAP.VIEW.BSVIEW
                 textParentAutoSalesOrderNo.Visible = isVisible;
                 labParentProjectNo.Visible = isVisible;
                 textParentProjectNo.Visible = isVisible;
+
+                int quotationState = DataTypeConvert.GetInt(headRow["QuotationState"]);
+                btnClose.Enabled = state && quotationState == 0;
+                btnRecover.Enabled = state && quotationState != 0;
             }
             else
             {
@@ -536,6 +663,9 @@ namespace PSAP.VIEW.BSVIEW
                 textParentAutoSalesOrderNo.Visible = false;
                 labParentProjectNo.Visible = false;
                 textParentProjectNo.Visible = false;
+
+                btnClose.Enabled = false;
+                btnRecover.Enabled = false;
             }
 
             if (this.Controls.ContainsKey("lblEditFlag"))
@@ -550,6 +680,35 @@ namespace PSAP.VIEW.BSVIEW
                     ((Label)this.Controls["lblEditFlag"]).Text = "EDIT";
                 }
             }
+        }
+
+        /// <summary>
+        /// 检测报价单状态是否可以操作
+        /// </summary>
+        private bool CheckState(bool check0, bool check1)
+        {
+            DataRow headRow = ((DataRowView)bindingSource_BaseInfo.Current).Row;
+            if (headRow == null)
+                return false;
+            int quotationState = DataTypeConvert.GetInt(headRow["QuotationState"]);
+            switch (quotationState)
+            {
+                case 0://正常状态
+                    if (check0)
+                    {
+                        MessageHandler.ShowMessageBox(string.Format("报价单[{0}]是正常状态，不可以操作。", DataTypeConvert.GetString(headRow["AutoQuotationNo"])));
+                        return false;
+                    }
+                    break;
+                case 1://停用状态
+                    if (check1)
+                    {
+                        MessageHandler.ShowMessageBox(string.Format("报价单[{0}]是关闭状态，不可以操作。", DataTypeConvert.GetString(headRow["AutoQuotationNo"])));
+                        return false;
+                    }
+                    break;
+            }
+            return true;
         }
 
         /// <summary>
@@ -728,6 +887,8 @@ namespace PSAP.VIEW.BSVIEW
                 else
                 {
                     dataSet_Quotation.Tables[1].Rows.Clear();
+                    dataSet_Quotation.Tables[2].Rows.Clear();
+                    PageCORInfo.PageVisible = false;
                 }
             }
             catch (Exception ex)
@@ -743,8 +904,17 @@ namespace PSAP.VIEW.BSVIEW
         {
             dataSet_Quotation.Tables[1].Rows.Clear();
             quoDAO.QueryQuotationPriceInfo(dataSet_Quotation.Tables[1], autoQuotationNoStr);
+
+            dataSet_Quotation.Tables[2].Rows.Clear();
+            quoDAO.QueryQuotationCORInfo(dataSet_Quotation.Tables[2], autoQuotationNoStr);
+
+            PageCORInfo.PageVisible = dataSet_Quotation.Tables[2].Rows.Count != 0;
+
+            xtraTabBottom.SelectedTabPageIndex = 0;
+
         }
 
         #endregion
+
     }
 }

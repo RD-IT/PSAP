@@ -170,10 +170,10 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         public DataTable QueryProjectList(bool addAllItem)
         {
-            string sqlStr = "select AutoId, ProjectNo, ProjectName, Remark from BS_ProjectList order by AutoId";
+            string sqlStr = "select AutoId, ProjectNo, ProjectName, Remark from BS_ProjectList order by AutoId desc";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as ProjectNo, '" + f.tsmiQb + "' as ProjectName, '" + f.tsmiQb + "' as Remark union " + sqlStr;
+                sqlStr = "select 9999999999 as AutoId, '" + f.tsmiQb + "' as ProjectNo, '" + f.tsmiQb + "' as ProjectName, '" + f.tsmiQb + "' as Remark union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }

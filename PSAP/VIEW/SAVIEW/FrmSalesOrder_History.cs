@@ -52,6 +52,7 @@ namespace PSAP.VIEW.BSVIEW
                 searchBussinessBaseNo.Properties.DataSource = bussBaseTable;
                 lookUpCollectionTypeNo.Properties.DataSource = commonDAO.QueryCollectionType(false);
                 lookUpCurrencyCate.Properties.DataSource = commonDAO.QueryCurrencyCate(false);
+                lookUpProjectLeader.Properties.DataSource = commonDAO.QueryUserInfo(false);
 
                 DateTime nowDate = BaseSQL.GetServerDateTime();
 
@@ -217,7 +218,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (bindingSource_SalesOrder.Current != null && lookUpQuotationVersions.ItemIndex > -1)
                 {
-                    DataRow dr = gridViewSalesOrder.GetFocusedDataRow();
+                    DataRow dr = ((DataRowView)bindingSource_SalesOrder.Current).Row;
                     //bindingSource_SalesOrder.EndEdit();
                     //if (dr.RowState == DataRowState.Added || dr.RowState == DataRowState.Modified)
                     if (!btnNew.Enabled)
@@ -227,6 +228,7 @@ namespace PSAP.VIEW.BSVIEW
                         DataTable priceTable = quoDAO.Query_Version_PriceInfo(autoQuotationNoStr, versionStr);
                         if (priceTable.Rows.Count > 0)
                         {
+                            dr["QuotationVersions"]= lookUpQuotationVersions.Text.Trim();
                             gridViewSalesOrder.SetFocusedRowCellValue("Amount", DataTypeConvert.GetDecimal(priceTable.Rows[0]["Amount"]));
                             gridViewSalesOrder.SetFocusedRowCellValue("Tax", DataTypeConvert.GetDecimal(priceTable.Rows[0]["Tax"]));
                             spinAmount.Value = DataTypeConvert.GetDecimal(priceTable.Rows[0]["Amount"]);
@@ -299,9 +301,9 @@ namespace PSAP.VIEW.BSVIEW
                 if (e.Clicks == 2)
                 {
                     string autoQuotationNoStr = DataTypeConvert.GetString(gridViewQuotationBaseInfo.GetFocusedDataRow()["AutoQuotationNo"]);
-                    FrmQuotationInfo.queryAutoQuotationNoStr = autoQuotationNoStr;
+                    FrmQuotationInfo_History.queryAutoQuotationNoStr = autoQuotationNoStr;
                     //FrmWarehouseWarrant_Drag.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmQuotationInfo");
+                    ViewHandler.ShowRightWindow("FrmQuotationInfo_History");
                 }
             }
             catch (Exception ex)
@@ -415,6 +417,7 @@ namespace PSAP.VIEW.BSVIEW
 
                     //currentAutoSalesOrderNoStr = DataTypeConvert.GetString(headRow["AutoSalesOrderNo"]);
                     Set_ButtonEditGrid_State(true);
+                    gridViewSalesOrder_FocusedRowChanged(null, null);
                 }
             }
             catch (Exception ex)
@@ -437,6 +440,8 @@ namespace PSAP.VIEW.BSVIEW
                     if (gridViewSalesOrder.GetFocusedDataRow() != null)
                         gridViewSalesOrder.GetFocusedDataRow().RejectChanges();
                     Set_ButtonEditGrid_State(true);
+
+                    gridViewSalesOrder_FocusedRowChanged(null, null);
                 }
 
                 //if (gridViewSalesOrder.GetDataRow(headFocusedLineNo).RowState != DataRowState.Unchanged)
@@ -582,10 +587,10 @@ namespace PSAP.VIEW.BSVIEW
                     return;
                 }
 
-                FrmQuotationInfo.newParentAutoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
-                FrmQuotationInfo.newParentAutoSalesOrderNoStr = DataTypeConvert.GetString(headRow["AutoSalesOrderNo"]);
-                FrmQuotationInfo.newParentProjectNoStr = DataTypeConvert.GetString(headRow["ProjectNo"]);
-                ViewHandler.ShowRightWindow("FrmQuotationInfo");
+                FrmQuotationInfo_History.newParentAutoQuotationNoStr = DataTypeConvert.GetString(headRow["AutoQuotationNo"]);
+                FrmQuotationInfo_History.newParentAutoSalesOrderNoStr = DataTypeConvert.GetString(headRow["AutoSalesOrderNo"]);
+                FrmQuotationInfo_History.newParentProjectNoStr = DataTypeConvert.GetString(headRow["ProjectNo"]);
+                ViewHandler.ShowRightWindow("FrmQuotationInfo_History");
             }
             catch (Exception ex)
             {
@@ -643,7 +648,7 @@ namespace PSAP.VIEW.BSVIEW
             lookUpCurrencyCate.ReadOnly = state;
             spinAmount.ReadOnly = state;
             spinTax.ReadOnly = state;
-            textProjectLeader.ReadOnly = state;
+            lookUpProjectLeader.ReadOnly = state;
             textRemark.ReadOnly = state;
 
             if (bindingSource_SalesOrder.Current != null)

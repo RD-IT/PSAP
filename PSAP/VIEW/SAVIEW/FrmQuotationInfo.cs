@@ -456,6 +456,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewQuotationPriceInfo.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 gridViewQuotationPriceInfo.DeleteRow(gridViewQuotationPriceInfo.FocusedRowHandle);
             }
             catch (Exception ex)
@@ -481,6 +488,14 @@ namespace PSAP.VIEW.BSVIEW
                     newParentAutoQuotationNoStr = "";
                     newParentAutoSalesOrderNoStr = "";
                     newParentProjectNoStr = "";
+
+                    DataTable tempTable = new DataTable();
+                    quoDAO.QueryQuotationBaseInfo(tempTable, DataTypeConvert.GetString(e.Row["ParentAutoQuotationNo"]));
+                    if (tempTable.Rows.Count > 0)
+                    {
+                        e.Row["BussinessBaseNo"] = DataTypeConvert.GetString(tempTable.Rows[0]["BussinessBaseNo"]);
+                        e.Row["Requester"] = DataTypeConvert.GetString(tempTable.Rows[0]["Requester"]);
+                    }
                 }
             }
             catch (Exception ex)

@@ -48,9 +48,12 @@
             this.dataColModifier = new System.Data.DataColumn();
             this.dataColModifierIp = new System.Data.DataColumn();
             this.dataColModifierTime = new System.Data.DataColumn();
+            this.dataColQuotationState = new System.Data.DataColumn();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomOrderHead = new PSAP.VIEW.BSVIEW.GridBottom();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
+            this.lookUpQState = new DevExpress.XtraEditors.LookUpEdit();
+            this.labQState = new DevExpress.XtraEditors.LabelControl();
             this.lookUpPrepared = new DevExpress.XtraEditors.LookUpEdit();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
@@ -91,6 +94,8 @@
             this.colParentAutoQuotationNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentAutoSalesOrderNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParentProjectNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuotationState = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repLookUpQState = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_BaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Quotation)).BeginInit();
@@ -99,6 +104,7 @@
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpQState.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPrepared.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).BeginInit();
@@ -113,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewQuotationBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpQState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,7 +153,8 @@
             this.dataColPreparedIp,
             this.dataColModifier,
             this.dataColModifierIp,
-            this.dataColModifierTime});
+            this.dataColModifierTime,
+            this.dataColQuotationState});
             this.TableQuotationBaseInfo.TableName = "QuotationBaseInfo";
             // 
             // dataColAutoId
@@ -231,13 +239,19 @@
             this.dataColModifierTime.ColumnName = "ModifierTime";
             this.dataColModifierTime.DataType = typeof(System.DateTime);
             // 
+            // dataColQuotationState
+            // 
+            this.dataColQuotationState.Caption = "状态";
+            this.dataColQuotationState.ColumnName = "QuotationState";
+            this.dataColQuotationState.DataType = typeof(short);
+            // 
             // pnlBottom
             // 
             this.pnlBottom.Controls.Add(this.gridBottomOrderHead);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 559);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1264, 58);
+            this.pnlBottom.Size = new System.Drawing.Size(1706, 58);
             this.pnlBottom.TabIndex = 6;
             // 
             // gridBottomOrderHead
@@ -247,11 +261,13 @@
             this.gridBottomOrderHead.MasterDataSet = this.dataSet_Quotation;
             this.gridBottomOrderHead.Name = "gridBottomOrderHead";
             this.gridBottomOrderHead.pageRowCount = 5;
-            this.gridBottomOrderHead.Size = new System.Drawing.Size(1260, 54);
+            this.gridBottomOrderHead.Size = new System.Drawing.Size(1702, 54);
             this.gridBottomOrderHead.TabIndex = 0;
             // 
             // pnltop
             // 
+            this.pnltop.Controls.Add(this.lookUpQState);
+            this.pnltop.Controls.Add(this.labQState);
             this.pnltop.Controls.Add(this.lookUpPrepared);
             this.pnltop.Controls.Add(this.labPrepared);
             this.pnltop.Controls.Add(this.btnSaveExcel);
@@ -267,8 +283,34 @@
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(1264, 78);
+            this.pnltop.Size = new System.Drawing.Size(1706, 78);
             this.pnltop.TabIndex = 7;
+            // 
+            // lookUpQState
+            // 
+            this.lookUpQState.EnterMoveNextControl = true;
+            this.lookUpQState.Location = new System.Drawing.Point(587, 14);
+            this.lookUpQState.Margin = new System.Windows.Forms.Padding(4);
+            this.lookUpQState.Name = "lookUpQState";
+            this.lookUpQState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpQState.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 80, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "状态", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpQState.Properties.DisplayMember = "Name";
+            this.lookUpQState.Properties.NullText = "";
+            this.lookUpQState.Properties.ValueMember = "AutoId";
+            this.lookUpQState.Size = new System.Drawing.Size(120, 20);
+            this.lookUpQState.TabIndex = 3;
+            // 
+            // labQState
+            // 
+            this.labQState.Location = new System.Drawing.Point(543, 17);
+            this.labQState.Margin = new System.Windows.Forms.Padding(4);
+            this.labQState.Name = "labQState";
+            this.labQState.Size = new System.Drawing.Size(36, 14);
+            this.labQState.TabIndex = 26;
+            this.labQState.Text = "状态：";
             // 
             // lookUpPrepared
             // 
@@ -286,7 +328,7 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
-            this.lookUpPrepared.TabIndex = 3;
+            this.lookUpPrepared.TabIndex = 4;
             // 
             // labPrepared
             // 
@@ -302,7 +344,7 @@
             this.btnSaveExcel.Location = new System.Drawing.Point(575, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 6;
+            this.btnSaveExcel.TabIndex = 7;
             this.btnSaveExcel.Text = "存为Excel";
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
@@ -311,7 +353,7 @@
             this.btnQuery.Location = new System.Drawing.Point(483, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 5;
+            this.btnQuery.TabIndex = 6;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -321,7 +363,7 @@
             this.textCommon.Location = new System.Drawing.Point(293, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 4;
+            this.textCommon.TabIndex = 5;
             // 
             // searchLookUpBussinessBaseNo
             // 
@@ -454,7 +496,7 @@
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(1264, 481);
+            this.pnlMiddle.Size = new System.Drawing.Size(1706, 481);
             this.pnlMiddle.TabIndex = 8;
             // 
             // gridControlQuotationBaseInfo
@@ -466,8 +508,9 @@
             this.gridControlQuotationBaseInfo.Name = "gridControlQuotationBaseInfo";
             this.gridControlQuotationBaseInfo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repSearchBussinessBaseNo,
-            this.repCheckSelect});
-            this.gridControlQuotationBaseInfo.Size = new System.Drawing.Size(1260, 477);
+            this.repCheckSelect,
+            this.repLookUpQState});
+            this.gridControlQuotationBaseInfo.Size = new System.Drawing.Size(1702, 477);
             this.gridControlQuotationBaseInfo.TabIndex = 4;
             this.gridControlQuotationBaseInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewQuotationBaseInfo});
@@ -488,7 +531,8 @@
             this.colModifierTime,
             this.colParentAutoQuotationNo,
             this.colParentAutoSalesOrderNo,
-            this.colParentProjectNo});
+            this.colParentProjectNo,
+            this.colQuotationState});
             this.gridViewQuotationBaseInfo.GridControl = this.gridControlQuotationBaseInfo;
             this.gridViewQuotationBaseInfo.IndicatorWidth = 40;
             this.gridViewQuotationBaseInfo.Name = "gridViewQuotationBaseInfo";
@@ -528,7 +572,7 @@
             this.colRecordDate.FieldName = "RecordDate";
             this.colRecordDate.Name = "colRecordDate";
             this.colRecordDate.Visible = true;
-            this.colRecordDate.VisibleIndex = 5;
+            this.colRecordDate.VisibleIndex = 6;
             this.colRecordDate.Width = 130;
             // 
             // colBussinessBaseNo
@@ -633,7 +677,7 @@
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
             this.colRemark.Visible = true;
-            this.colRemark.VisibleIndex = 6;
+            this.colRemark.VisibleIndex = 7;
             this.colRemark.Width = 150;
             // 
             // colPrepared
@@ -643,7 +687,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.Visible = true;
-            this.colPrepared.VisibleIndex = 7;
+            this.colPrepared.VisibleIndex = 8;
             this.colPrepared.Width = 80;
             // 
             // colModifier
@@ -653,7 +697,7 @@
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
             this.colModifier.Visible = true;
-            this.colModifier.VisibleIndex = 8;
+            this.colModifier.VisibleIndex = 9;
             this.colModifier.Width = 80;
             // 
             // colModifierTime
@@ -665,7 +709,7 @@
             this.colModifierTime.FieldName = "ModifierTime";
             this.colModifierTime.Name = "colModifierTime";
             this.colModifierTime.Visible = true;
-            this.colModifierTime.VisibleIndex = 9;
+            this.colModifierTime.VisibleIndex = 10;
             this.colModifierTime.Width = 130;
             // 
             // colParentAutoQuotationNo
@@ -675,7 +719,7 @@
             this.colParentAutoQuotationNo.FieldName = "ParentAutoQuotationNo";
             this.colParentAutoQuotationNo.Name = "colParentAutoQuotationNo";
             this.colParentAutoQuotationNo.Visible = true;
-            this.colParentAutoQuotationNo.VisibleIndex = 10;
+            this.colParentAutoQuotationNo.VisibleIndex = 11;
             this.colParentAutoQuotationNo.Width = 120;
             // 
             // colParentAutoSalesOrderNo
@@ -685,7 +729,7 @@
             this.colParentAutoSalesOrderNo.FieldName = "ParentAutoSalesOrderNo";
             this.colParentAutoSalesOrderNo.Name = "colParentAutoSalesOrderNo";
             this.colParentAutoSalesOrderNo.Visible = true;
-            this.colParentAutoSalesOrderNo.VisibleIndex = 11;
+            this.colParentAutoSalesOrderNo.VisibleIndex = 12;
             this.colParentAutoSalesOrderNo.Width = 120;
             // 
             // colParentProjectNo
@@ -695,8 +739,29 @@
             this.colParentProjectNo.FieldName = "ParentProjectNo";
             this.colParentProjectNo.Name = "colParentProjectNo";
             this.colParentProjectNo.Visible = true;
-            this.colParentProjectNo.VisibleIndex = 12;
+            this.colParentProjectNo.VisibleIndex = 13;
             this.colParentProjectNo.Width = 100;
+            // 
+            // colQuotationState
+            // 
+            this.colQuotationState.AppearanceHeader.Options.UseTextOptions = true;
+            this.colQuotationState.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colQuotationState.ColumnEdit = this.repLookUpQState;
+            this.colQuotationState.FieldName = "QuotationState";
+            this.colQuotationState.Name = "colQuotationState";
+            this.colQuotationState.Visible = true;
+            this.colQuotationState.VisibleIndex = 5;
+            this.colQuotationState.Width = 50;
+            // 
+            // repLookUpQState
+            // 
+            this.repLookUpQState.AutoHeight = false;
+            this.repLookUpQState.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repLookUpQState.DisplayMember = "Name";
+            this.repLookUpQState.Name = "repLookUpQState";
+            this.repLookUpQState.NullText = "";
+            this.repLookUpQState.ValueMember = "AutoId";
             // 
             // repCheckSelect
             // 
@@ -708,7 +773,7 @@
             // FrmQuotationInfoQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1264, 617);
+            this.ClientSize = new System.Drawing.Size(1706, 617);
             this.Controls.Add(this.pnlMiddle);
             this.Controls.Add(this.pnltop);
             this.Controls.Add(this.pnlBottom);
@@ -724,6 +789,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);
             this.pnltop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpQState.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpPrepared.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpBussinessBaseNo.Properties)).EndInit();
@@ -738,6 +804,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewQuotationBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpQState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
             this.ResumeLayout(false);
 
@@ -807,5 +874,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colParentProjectNo;
         private DevExpress.XtraEditors.LookUpEdit lookUpPrepared;
         private DevExpress.XtraEditors.LabelControl labPrepared;
+        private System.Data.DataColumn dataColQuotationState;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuotationState;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpQState;
+        private DevExpress.XtraEditors.LookUpEdit lookUpQState;
+        private DevExpress.XtraEditors.LabelControl labQState;
     }
 }
