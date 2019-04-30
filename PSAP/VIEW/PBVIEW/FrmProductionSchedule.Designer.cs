@@ -397,6 +397,7 @@
             this.gridViewPScheduleBOM.GridControl = this.gridControlPScheduleBOM;
             this.gridViewPScheduleBOM.IndicatorWidth = 40;
             this.gridViewPScheduleBOM.Name = "gridViewPScheduleBOM";
+            this.gridViewPScheduleBOM.OptionsBehavior.Editable = false;
             this.gridViewPScheduleBOM.OptionsMenu.EnableColumnMenu = false;
             this.gridViewPScheduleBOM.OptionsMenu.EnableFooterMenu = false;
             this.gridViewPScheduleBOM.OptionsMenu.EnableGroupPanelMenu = false;
@@ -407,6 +408,9 @@
             this.gridViewPScheduleBOM.OptionsView.ShowFooter = true;
             this.gridViewPScheduleBOM.OptionsView.ShowGroupPanel = false;
             this.gridViewPScheduleBOM.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPSchedule_CustomDrawRowIndicator);
+            this.gridViewPScheduleBOM.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPScheduleBOM_InitNewRow);
+            this.gridViewPScheduleBOM.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPScheduleBOM_CellValueChanged);
+            this.gridViewPScheduleBOM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPScheduleBOM_KeyDown);
             // 
             // colAutoId1
             // 
@@ -474,6 +478,8 @@
             this.repSpinQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.repSpinQty.EditFormat.FormatString = "d";
             this.repSpinQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinQty.IsFloatValue = false;
+            this.repSpinQty.Mask.EditMask = "N00";
             this.repSpinQty.MaxValue = new decimal(new int[] {
             1410065407,
             2,
@@ -509,6 +515,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.repbtnDelete.Name = "repbtnDelete";
             this.repbtnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repbtnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repbtnDelete_ButtonClick);
             // 
             // repositoryItemSearchLookUpEdit1
             // 
@@ -816,6 +823,7 @@
             this.repSpinPlannedQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.repSpinPlannedQty.EditFormat.FormatString = "d";
             this.repSpinPlannedQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinPlannedQty.IsFloatValue = false;
             this.repSpinPlannedQty.Mask.EditMask = "d";
             this.repSpinPlannedQty.MaxValue = new decimal(new int[] {
             -727379969,

@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Utils.Drawing;
 
 namespace PSAP.PSAPCommon
 {
@@ -132,9 +132,9 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 根据DevExpress的样式不同，改变控件的位置
         /// </summary>
-        public static void DevExpressStyle_ChangeControlLocation(string devExpressStyleStr,List<Control> controlList)
+        public static void DevExpressStyle_ChangeControlLocation(string devExpressStyleStr, List<Control> controlList)
         {
-            switch(devExpressStyleStr)
+            switch (devExpressStyleStr)
             {
                 case "DevExpress Style":
                 case "Foggy":
@@ -208,6 +208,39 @@ namespace PSAP.PSAPCommon
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
+        }
+
+        /// <summary>
+        /// TreeList设置显示根节点的行号
+        /// </summary>
+        public static void TreeList_CustomDrawNodeIndicator_RootNode(object sender, DevExpress.XtraTreeList.CustomDrawNodeIndicatorEventArgs e)
+        {
+            TreeList tmpTree = sender as TreeList;
+            IndicatorObjectInfoArgs args = e.ObjectArgs as IndicatorObjectInfoArgs;
+            if (args != null)
+            {
+                if (tmpTree.Nodes.Contains(e.Node))
+                {
+                    int rowNum = tmpTree.GetNodeIndex(e.Node) + 1;
+                    //this.treeList.IndicatorWidth = rowNum.ToString().Length * 10 + 10;
+                    args.DisplayText = rowNum.ToString();
+                }
+            }
+        }
+
+        /// <summary>
+        /// TreeList设置显示所有节点的行号
+        /// </summary>
+        public static void TreeList_CustomDrawNodeIndicator_AllNode(object sender, DevExpress.XtraTreeList.CustomDrawNodeIndicatorEventArgs e)
+        {
+            TreeList tmpTree = sender as TreeList;
+            IndicatorObjectInfoArgs args = e.ObjectArgs as IndicatorObjectInfoArgs;
+            if (args != null)
+            {
+                int rowNum = tmpTree.GetVisibleIndexByNode(e.Node) + 1;
+                //this.treeList.IndicatorWidth = rowNum.ToString().Length * 10 + 10;
+                args.DisplayText = rowNum.ToString();
             }
         }
     }

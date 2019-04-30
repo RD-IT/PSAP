@@ -418,8 +418,8 @@
             this.Controls.Add(this.pnlPage);
             this.Controls.Add(this.pnlTop);
             this.Name = "FrmWarehouseNowInfo_Bom";
-            this.TabText = "Bom零件当前库存查询";
-            this.Text = "Bom零件当前库存查询";
+            this.TabText = "BOM零件库存查询";
+            this.Text = "BOM零件库存查询";
             this.Load += new System.EventHandler(this.FrmWarehouseNowInfo_Bom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
             this.pnlTop.ResumeLayout(false);

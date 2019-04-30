@@ -50,7 +50,7 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TopLevel = false;
                     editForm.TableName = "BS_Menu";
                     editForm.TableCaption = "主菜单管理";
-                    editForm.Sql = "select BS_Menu.*, menu.MenuText as ParentMenuText from BS_Menu left join BS_Menu as menu on BS_Menu.ParentMenuName = menu.MenuName order by BS_Menu.MenuOrder, BS_Menu.AutoId";
+                    editForm.Sql = "select BS_Menu.*, menu.MenuText as ParentMenuText from BS_Menu left join BS_Menu as menu on BS_Menu.ParentMenuName = menu.MenuName order by BS_Menu.AutoId";
                     editForm.PrimaryKeyColumn = "MenuName";
                     editForm.MasterDataSet = dSMenu;
                     editForm.MasterBindingSource = bSMenu;

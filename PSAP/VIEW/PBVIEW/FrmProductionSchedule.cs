@@ -26,14 +26,14 @@ namespace PSAP.VIEW.BSVIEW
         int headFocusedLineNo = 0;
 
         /// <summary>
-        /// 查询的生产计划编号
+        /// 查询的生产计划单号
         /// </summary>
         public static string queryPsNo = "";
 
-        /// <summary>
-        /// 查询的明细AutoId
-        /// </summary>
-        public static int queryListAutoId = 0;
+        ///// <summary>
+        ///// 查询的明细AutoId
+        ///// </summary>
+        //public static int queryListAutoId = 0;
 
         /// <summary>
         /// 只有选择列改变行状态的时候
@@ -140,7 +140,6 @@ namespace PSAP.VIEW.BSVIEW
 
         #endregion
 
-
         /// <summary>
         /// 查询按钮事件
         /// </summary>
@@ -236,11 +235,11 @@ namespace PSAP.VIEW.BSVIEW
                         psDAO.QueryProductionScheduleBom(dataSet_PSchedule.Tables[1], DataTypeConvert.GetString(gridViewPSchedule.GetFocusedDataRow()["PsNo"]), false);
                         //if (queryListAutoId > 0)
                         //{
-                        //    for (int i = 0; i < gridViewOrderList.DataRowCount; i++)
+                        //    for (int i = 0; i < gridViewPScheduleBOM.DataRowCount; i++)
                         //    {
-                        //        if (DataTypeConvert.GetInt(gridViewOrderList.GetDataRow(i)["AutoId"]) == queryListAutoId)
+                        //        if (DataTypeConvert.GetInt(gridViewPScheduleBOM.GetDataRow(i)["AutoId"]) == queryListAutoId)
                         //        {
-                        //            gridViewOrderList.FocusedRowHandle = i;
+                        //            gridViewPScheduleBOM.FocusedRowHandle = i;
                         //            queryListAutoId = 0;
                         //            break;
                         //        }
@@ -356,9 +355,9 @@ namespace PSAP.VIEW.BSVIEW
                 FocusedHeadView("CodeFileName");
 
                 dataSet_PSchedule.Tables[1].Clear();
-                //gridViewOrderList.AddNewRow();
-                //FocusedListView(false, "CodeFileName", gridViewOrderList.GetFocusedDataSourceRowIndex());
-                //gridViewOrderList.RefreshData();
+                //gridViewPScheduleBOM.AddNewRow();
+                //FocusedListView(false, "CodeFileName", gridViewPScheduleBOM.GetFocusedDataSourceRowIndex());
+                //gridViewPScheduleBOM.RefreshData();
 
                 SetButtonAndColumnState(true);
                 headFocusedLineNo = gridViewPSchedule.DataRowCount;
@@ -421,6 +420,28 @@ namespace PSAP.VIEW.BSVIEW
                         MessageHandler.ShowMessageBox("单据日期不能为空，请填写后再进行保存。");
                         FocusedHeadView("CurrentDate");
                         return;
+                    }
+
+                    for (int i = gridViewPScheduleBOM.DataRowCount - 1; i >= 0; i--)
+                    {
+                        DataRow listRow = gridViewPScheduleBOM.GetDataRow(i);
+                        if (DataTypeConvert.GetString(listRow["CodeFileName"]) == "")
+                        {
+                            gridViewPScheduleBOM.DeleteRow(i);
+                            continue;
+                        }
+                        if (DataTypeConvert.GetString(listRow["Qty"]) == "")
+                        {
+                            MessageHandler.ShowMessageBox("需求数量不能为空，请填写后再进行保存。");
+                            FocusedListView(true, "Qty", i);
+                            return;
+                        }
+                        if (DataTypeConvert.GetString(listRow["TotalQty"]) == "")
+                        {
+                            MessageHandler.ShowMessageBox("实际使用数量不能为空，请填写后再进行保存。");
+                            FocusedListView(true, "TotalQty", i);
+                            return;
+                        }
                     }
 
                     int ret = psDAO.SaveProductionSchedule(gridViewPSchedule.GetFocusedDataRow());
@@ -664,6 +685,114 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 子表设定默认值
+        /// </summary>
+        private void gridViewPScheduleBOM_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            try
+            {
+                gridViewPScheduleBOM.SetFocusedRowCellValue("PsNo", DataTypeConvert.GetString(gridViewPSchedule.GetFocusedDataRow()["PsNo"]));
+                gridViewPScheduleBOM.SetFocusedRowCellValue("Qty", 1);
+                gridViewPScheduleBOM.SetFocusedRowCellValue("TotalQty", 1);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--子表设定默认值错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 子表按键事件
+        /// </summary>
+        private void gridViewPScheduleBOM_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    if (!colRemark.OptionsColumn.AllowEdit)
+                //        return;
+
+                //    if (gridViewPScheduleBOM.GetFocusedDataSourceRowIndex() >= gridViewPScheduleBOM.DataRowCount - 1 && gridViewPScheduleBOM.FocusedColumn.Name == "colRemark")
+                //    {
+                //        ListNewRow();
+                //    }
+                //    else if (gridViewPScheduleBOM.FocusedColumn.Name == "colRemark")
+                //    {
+                //        gridViewPScheduleBOM.FocusedRowHandle = gridViewPScheduleBOM.FocusedRowHandle + 1;
+                //        FocusedListView(true, "CodeFileName", gridViewPScheduleBOM.GetFocusedDataSourceRowIndex());
+                //    }
+                //}
+                //else
+                {
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--子表按键事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 子表单元格值变化进行的操作
+        /// </summary>
+        private void gridViewPScheduleBOM_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            try
+            {
+                switch (e.Column.FieldName)
+                {
+                    case "CodeFileName":
+                        string tmpStr = DataTypeConvert.GetString(gridViewPScheduleBOM.GetDataRow(e.RowHandle)["CodeFileName"]);
+                        if (tmpStr == "")
+                            gridViewPScheduleBOM.SetRowCellValue(e.RowHandle, "CodeName", "");
+                        else
+                        {
+                            DataTable temp = (DataTable)repSearchCodeFileName.DataSource;
+                            DataRow[] drs = temp.Select(string.Format("CodeFileName='{0}'", tmpStr));
+                            if (drs.Length > 0)
+                            {
+                                gridViewPScheduleBOM.SetRowCellValue(e.RowHandle, "CodeName", DataTypeConvert.GetString(drs[0]["CodeName"]));
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--子表单元格值变化进行的操作错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 删除子表中的一行
+        /// </summary>
+        private void repbtnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                if (gridViewPScheduleBOM.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
+                //int prListAutoIdInt = 0;
+                //if (gridViewPScheduleBOM.GetFocusedDataRow() != null)
+                //    prListAutoIdInt = DataTypeConvert.GetInt(gridViewPScheduleBOM.GetFocusedDataRow()["PrListAutoId"]);
+                gridViewPScheduleBOM.DeleteRow(gridViewPScheduleBOM.FocusedRowHandle);
+                //if (prListAutoIdInt > 0)
+                //    gridViewPrReqHead_FocusedRowChanged(sender, null);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--删除子表中的一行错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 设定当前行选择
         /// </summary>
         private void repCheckSelect_EditValueChanged(object sender, EventArgs e)
@@ -673,6 +802,53 @@ namespace PSAP.VIEW.BSVIEW
             else
                 gridViewPSchedule.GetFocusedDataRow()["Select"] = true;
             onlySelectColChangeRowState = true;
+        }
+
+        /// <summary>
+        /// 检查是否有未填写字段
+        /// </summary>
+        private bool IsHaveBlankLine()
+        {
+            gridViewPScheduleBOM.FocusedRowHandle = 0;
+            for (int i = 0; i < gridViewPScheduleBOM.DataRowCount; i++)
+            {
+                if (DataTypeConvert.GetString(gridViewPScheduleBOM.GetDataRow(i)["CodeFileName"]) == "")
+                {
+                    gridViewPScheduleBOM.Focus();
+                    gridViewPScheduleBOM.FocusedColumn = colCodeFileName;
+                    gridViewPScheduleBOM.FocusedRowHandle = i;
+                    return true;
+                }
+                if (DataTypeConvert.GetString(gridViewPScheduleBOM.GetDataRow(i)["Qty"]) == "")
+                {
+                    gridViewPScheduleBOM.Focus();
+                    gridViewPScheduleBOM.FocusedColumn = colQty;
+                    gridViewPScheduleBOM.FocusedRowHandle = i;
+                    return true;
+                }
+                if (DataTypeConvert.GetString(gridViewPScheduleBOM.GetDataRow(i)["TotalQty"]) == "")
+                {
+                    gridViewPScheduleBOM.Focus();
+                    gridViewPScheduleBOM.FocusedColumn = colTotalQty;
+                    gridViewPScheduleBOM.FocusedRowHandle = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 子表新增一行
+        /// </summary>
+        private void ListNewRow()
+        {
+            if (IsHaveBlankLine())
+                return;
+
+            //gridViewPrReqList.PostEditor();
+            gridViewPScheduleBOM.AddNewRow();
+            FocusedListView(true, "CodeFileName", gridViewPScheduleBOM.GetFocusedDataSourceRowIndex());
+            //gridViewPScheduleBOM.RefreshData();
         }
 
         /// <summary>
@@ -705,6 +881,11 @@ namespace PSAP.VIEW.BSVIEW
             colPlannedEndtime.OptionsColumn.AllowEdit = ret;
             colRemark.OptionsColumn.AllowEdit = ret;
 
+            colCodeFileName.OptionsColumn.AllowEdit = ret;
+            colQty.OptionsColumn.AllowEdit = ret;
+            colTotalQty.OptionsColumn.AllowEdit = ret;
+
+            repbtnDelete.Buttons[0].Enabled = ret;
             repCheckSelect.ReadOnly = ret;
             checkAll.ReadOnly = ret;
 
@@ -831,5 +1012,7 @@ namespace PSAP.VIEW.BSVIEW
             dataSet_PSchedule.Tables[0].AcceptChanges();
             onlySelectColChangeRowState = false;
         }
+
+
     }
 }

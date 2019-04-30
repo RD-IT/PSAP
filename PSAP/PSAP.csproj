@@ -137,7 +137,7 @@
     <Compile Include="DAO\INVDAO\FrmSpecialWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseNowInfoDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseReceiptDAO.cs" />
-    <Compile Include="DAO\PBDAO\FrmPBBomManagementDAO.cs" />
+    <Compile Include="DAO\PBDAO\FrmPBDesignBomDAO.cs" />
     <Compile Include="DAO\PBDAO\FrmProductionScheduleDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmApprovalDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmDocumentTempletDAO.cs" />
@@ -360,11 +360,11 @@
     <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.Designer.cs">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\PBVIEW\FrmPBBomManagement.cs">
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\PBVIEW\FrmPBBomManagement.Designer.cs">
-      <DependentUpon>FrmPBBomManagement.cs</DependentUpon>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom.Designer.cs">
+      <DependentUpon>FrmPBDesignBom.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PBVIEW\FrmProductionSchedule.cs">
       <SubType>Form</SubType>
@@ -377,6 +377,12 @@
     </Compile>
     <Compile Include="VIEW\PBVIEW\FrmProductionScheduleQuery.Designer.cs">
       <DependentUpon>FrmProductionScheduleQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmSelectSalesOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmSelectSalesOrder.Designer.cs">
+      <DependentUpon>FrmSelectSalesOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmLanguagePURDAO.cs">
       <SubType>Form</SubType>
@@ -956,14 +962,17 @@
     <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.resx">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\PBVIEW\FrmPBBomManagement.resx">
-      <DependentUpon>FrmPBBomManagement.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmPBDesignBom.resx">
+      <DependentUpon>FrmPBDesignBom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionSchedule.resx">
       <DependentUpon>FrmProductionSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionScheduleQuery.resx">
       <DependentUpon>FrmProductionScheduleQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmSelectSalesOrder.resx">
+      <DependentUpon>FrmSelectSalesOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmLanguagePURDAO.resx">
       <DependentUpon>FrmLanguagePURDAO.cs</DependentUpon>

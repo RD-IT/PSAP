@@ -1,4 +1,4 @@
-﻿namespace PSAP.VIEW.PBVIEW
+﻿namespace PSAP.VIEW.BSVIEW
 {
     partial class FrmProductionScheduleQuery
     {
@@ -37,6 +37,7 @@
             this.Name = "FrmProductionScheduleQuery";
             this.TabText = "生产计划单查询";
             this.Text = "生产计划单查询";
+            this.Load += new System.EventHandler(this.FrmProductionScheduleQuery_Load);
             this.ResumeLayout(false);
 
         }

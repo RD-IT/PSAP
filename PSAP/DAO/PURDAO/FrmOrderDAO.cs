@@ -538,6 +538,8 @@ namespace PSAP.DAO.PURDAO
                         cmd.CommandText = string.Format("Update PUR_OrderHead set ReqState={1}, Approver='{2}', ApproverIp='{3}', ApproverTime=null where OrderHeadNo in ({0})", orderHeadNoListStr, 1, "", "");
                         cmd.ExecuteNonQuery();
 
+                        DateTime serverTime = BaseSQL.GetServerDateTime();
+
                         //保存日志到日志表中
                         DataRow[] orderHeadRows = orderHeadTable.Select("select=1");
                         for (int i = 0; i < orderHeadRows.Length; i++)
@@ -552,7 +554,7 @@ namespace PSAP.DAO.PURDAO
                                                                 return false;
                             }
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "采购订单", orderHeadRows[i], "OrderHeadNo", "取消审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();

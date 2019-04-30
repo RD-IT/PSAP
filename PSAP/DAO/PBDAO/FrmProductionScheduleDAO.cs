@@ -296,10 +296,10 @@ namespace PSAP.DAO.PBDAO
                             string psNoStr = DataTypeConvert.GetString(headRows[i]["PsNo"]);
                             string codeFileNameStr = DataTypeConvert.GetString(headRows[i]["CodeFileName"]);
                             int qtyInt = DataTypeConvert.GetInt(headRows[i]["PlannedQty"]);
-                            //生产物料明细？？？
+                            //根据BOM的定义生成物料明细
                             if (saveTypeInt == 1)//保存BOM的第一级节点
                             {
-                                cmd.CommandText = string.Format("insert into PB_ProductionScheduleBom (PsNo, CodeFileName, Qty, TotalQty) select '{1}', LevelMaterielNo, Qty * {2}, Qty * {2} from BS_BomMateriel where MaterielNo = '{0}'", codeFileNameStr, psNoStr, qtyInt);
+                                cmd.CommandText = string.Format("insert into PB_ProductionScheduleBom (PsNo, CodeFileName, Qty, TotalQty) select '{1}', LevelMaterielNo, Qty, Qty * {2} from BS_BomMateriel where MaterielNo = '{0}'", codeFileNameStr, psNoStr, qtyInt);
                                 cmd.ExecuteNonQuery();
                             }
                             else//保存BOM的最末节点
@@ -380,6 +380,8 @@ namespace PSAP.DAO.PBDAO
                         cmd.CommandText = string.Format("Delete from PB_ProductionScheduleBom where PsNo in ({0})", psNoListStr);
                         cmd.ExecuteNonQuery();
 
+                        DateTime serverTime = BaseSQL.GetServerDateTime();
+
                         //保存日志到日志表中
                         DataRow[] headRows = headTable.Select("select=1");
                         for (int i = 0; i < headRows.Length; i++)
@@ -394,7 +396,7 @@ namespace PSAP.DAO.PBDAO
                             //    return false;
                             //}
 
-                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "生产计划单", headRows[i], "PsNo", "取消审批", SystemInfo.user.EmpName, BaseSQL.GetServerDateTime().ToString("yyyy-MM-dd HH:mm:ss"));
+                            string logStr = LogHandler.RecordLog_OperateRow(cmd, "生产计划单", headRows[i], "PsNo", "取消审批", SystemInfo.user.EmpName, serverTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         trans.Commit();
