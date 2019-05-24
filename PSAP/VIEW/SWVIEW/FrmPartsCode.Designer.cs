@@ -829,7 +829,7 @@
             this.colBfree2,
             this.colBfree3});
             this.gridViewPartsCode.GridControl = this.gridCrlPartsCode;
-            this.gridViewPartsCode.IndicatorWidth = 50;
+            this.gridViewPartsCode.IndicatorWidth = 60;
             this.gridViewPartsCode.Name = "gridViewPartsCode";
             this.gridViewPartsCode.OptionsBehavior.Editable = false;
             this.gridViewPartsCode.OptionsSelection.EnableAppearanceFocusedCell = false;

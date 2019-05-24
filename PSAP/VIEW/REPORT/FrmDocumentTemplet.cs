@@ -70,7 +70,7 @@ namespace PSAP.VIEW.BSVIEW
                     case "编辑":
                         switch (tableNameStr)
                         {
-                            
+                            //销售管理
                             case "SA_QuotationBaseInfo"://报价单
                                 new FrmQuotationInfoDAO().PrintHandle("", 3);
                                 break;
@@ -80,6 +80,8 @@ namespace PSAP.VIEW.BSVIEW
                             case "SA_SettleAccountsHead"://销售结账单
                                 new FrmSettleAccountsDAO().PrintHandle("", 3);
                                 break;
+
+                            //采购管理
                             case "PUR_PrReqHead"://请购单
                                 new FrmPrReqDAO().PrintHandle("", 3);
                                 break;
@@ -89,6 +91,8 @@ namespace PSAP.VIEW.BSVIEW
                             case "PUR_SettlementHead"://采购结账单
                                 new FrmSettlementDAO().PrintHandle("", 3);
                                 break;
+
+                            //库存管理
                             case "INV_WarehouseWarrantHead"://入库单
                                 new FrmWarehouseWarrantDAO().PrintHandle("", 3);
                                 break;
@@ -110,10 +114,18 @@ namespace PSAP.VIEW.BSVIEW
                             case "INV_ReturnedGoodsReportHead"://退货单
                                 new FrmReturnedGoodsReportDAO().PrintHandle("", 3);
                                 break;
-
+                            
+                            //生产管理
                             case "PB_ProductionSchedule"://生产计划单
                                 new FrmProductionScheduleDAO().PrintHandle("", 3);
                                 break;
+
+                            //人事管理
+
+
+                            //会计管理
+
+
                             default:
                                 return;
                         }

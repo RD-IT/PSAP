@@ -59,7 +59,7 @@ namespace PSAP.PSAPCommon
             else
                 return Convert.ToDouble(obj);
         }
-
+        
         /// <summary>
         /// 将Object类型转换为Decimal类型
         /// </summary>

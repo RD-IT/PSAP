@@ -50,7 +50,8 @@ namespace PSAP.VIEW.BSVIEW
                     editForm.TopLevel = false;
                     editForm.TableName = "BS_Menu";
                     editForm.TableCaption = "主菜单管理";
-                    editForm.Sql = "select BS_Menu.*, menu.MenuText as ParentMenuText from BS_Menu left join BS_Menu as menu on BS_Menu.ParentMenuName = menu.MenuName order by BS_Menu.AutoId";
+                    editForm.Sql = "select BS_Menu.*, menu.MenuText as ParentMenuText from BS_Menu left join BS_Menu as menu on BS_Menu.ParentMenuName = menu.MenuName order by BS_Menu.MenuOrder, BS_Menu.AutoId";
+                    //必须按照MenuOrder，AutoId进行排序，否则树显示的顺序不准确
                     editForm.PrimaryKeyColumn = "MenuName";
                     editForm.MasterDataSet = dSMenu;
                     editForm.MasterBindingSource = bSMenu;
@@ -66,11 +67,38 @@ namespace PSAP.VIEW.BSVIEW
 
                     lookUpFormName.Properties.DataSource = FrmRightBLL.InitFormNameDataTable();
                     searchParentMenuName.Properties.DataSource = FrmRightDAO.QueryMenuList();
+                    
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 窗体激活事件
+        /// </summary>
+        private void FrmRight_MenuManagement_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                if (treeListMenu.Nodes.Count > 0)
+                {
+                    string menuNameStr = DataTypeConvert.GetString(treeListMenu.Nodes[0]["MenuName"]);
+                    for (int i = 0; i < gridViewMenu.DataRowCount; i++)
+                    {
+                        if (DataTypeConvert.GetString(gridViewMenu.GetDataRow(i)["MenuName"]) == menuNameStr)
+                        {
+                            gridViewMenu.FocusedRowHandle = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--窗体激活事件错误。", ex);
             }
         }
 
@@ -342,5 +370,7 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
+
+
     }
 }

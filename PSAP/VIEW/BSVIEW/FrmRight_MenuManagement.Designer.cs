@@ -650,6 +650,7 @@
             this.TabText = "主菜单管理";
             this.Text = "主菜单管理";
             this.Load += new System.EventHandler(this.FrmRight_MenuManagement_Load);
+            this.Shown += new System.EventHandler(this.FrmRight_MenuManagement_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bSMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableMenu)).EndInit();
