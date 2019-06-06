@@ -108,7 +108,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewQuotationBaseInfo_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            if (e.Clicks == 2)
+            if (e.Clicks == 2 && e.Button == MouseButtons.Left)
             {
                 BtnConfirm_Click(null, null);
             }

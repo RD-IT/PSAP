@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PSAP.PSAPCommon
 {
@@ -82,7 +80,7 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 各种登记单查询的列表每页显示行数
         /// </summary>
-        public static int OrderQueryGrid_PageRowCount = 100;
+        public static int OrderQueryGrid_PageRowCount = 500;
 
         /// <summary>
         /// 各种登记单以下查询界面默认查询日期的时间段
@@ -148,6 +146,11 @@ namespace PSAP.PSAPCommon
         /// 生成计划单审批生成BOM信息：1 生成BOM第一级节点  2 生成BOM最末节点  3 系统提示选择1或者2
         /// </summary>
         public static int ProductionScheduleBOMType = 3;
+
+        /// <summary>
+        /// 消息提示框显示最大的行记录数
+        /// </summary>
+        public static int ToolTipDisplayMaxRowCount = 10;
 
         #endregion
 

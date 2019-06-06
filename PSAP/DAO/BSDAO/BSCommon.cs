@@ -8,7 +8,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.DAO.BSDAO
 {

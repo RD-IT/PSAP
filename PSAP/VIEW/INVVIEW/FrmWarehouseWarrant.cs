@@ -912,7 +912,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2 && btnOrderApply.Enabled)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left && btnOrderApply.Enabled)
                 {
                     string orderHeadNoStr = DataTypeConvert.GetString(gridViewWWList.GetFocusedDataRow()["OrderHeadNo"]);
                     int poListAutoId = DataTypeConvert.GetInt(gridViewWWList.GetFocusedDataRow()["PoListAutoId"]);

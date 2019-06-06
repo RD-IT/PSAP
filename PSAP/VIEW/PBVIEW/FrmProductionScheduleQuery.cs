@@ -175,7 +175,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string psNoStr = DataTypeConvert.GetString(gridViewProductionSchedule.GetFocusedDataRow()["PsNo"]);
                     FrmProductionSchedule_Drag.queryPsNoStr = psNoStr;

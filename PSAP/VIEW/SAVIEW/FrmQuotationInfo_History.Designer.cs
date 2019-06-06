@@ -77,6 +77,7 @@
             this.dcQuotationDate = new System.Data.DataColumn();
             this.dcVersions = new System.Data.DataColumn();
             this.dcProjectName = new System.Data.DataColumn();
+            this.dcIsPoUse = new System.Data.DataColumn();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabBottom = new DevExpress.XtraTab.XtraTabControl();
             this.PagePriceInfo = new DevExpress.XtraTab.XtraTabPage();
@@ -131,6 +132,8 @@
             this.colOfferer1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQuotationDate1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVersions1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsPoUse1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repItemCheckIsPoUse = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.textParentProjectNo = new DevExpress.XtraEditors.TextEdit();
             this.bindingSource_BaseInfo = new System.Windows.Forms.BindingSource(this.components);
@@ -217,9 +220,6 @@
             this.dateRecordDateBegin = new DevExpress.XtraEditors.DateEdit();
             this.lab1 = new DevExpress.XtraEditors.LabelControl();
             this.labelRecordDate = new DevExpress.XtraEditors.LabelControl();
-            this.dcIsPoUse = new System.Data.DataColumn();
-            this.colIsPoUse1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repItemCheckIsPoUse = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_Quotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableQuotationBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableQuotationPriceInfo)).BeginInit();
@@ -250,6 +250,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repItemCORBussinessBaseNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemCORCurrencyCate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repItemCheckIsPoUse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
             this.pnlEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textParentProjectNo.Properties)).BeginInit();
@@ -290,7 +291,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDateBegin.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repItemCheckIsPoUse)).BeginInit();
             this.SuspendLayout();
             // 
             // dataSet_Quotation
@@ -599,6 +599,12 @@
             // 
             this.dcProjectName.Caption = "项目名称";
             this.dcProjectName.ColumnName = "ProjectName";
+            // 
+            // dcIsPoUse
+            // 
+            this.dcIsPoUse.Caption = "生成销售订单";
+            this.dcIsPoUse.ColumnName = "IsPoUse";
+            this.dcIsPoUse.DataType = typeof(short);
             // 
             // pnlRight
             // 
@@ -1247,6 +1253,26 @@
             this.colVersions1.Visible = true;
             this.colVersions1.VisibleIndex = 10;
             // 
+            // colIsPoUse1
+            // 
+            this.colIsPoUse1.AppearanceHeader.Options.UseTextOptions = true;
+            this.colIsPoUse1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsPoUse1.ColumnEdit = this.repItemCheckIsPoUse;
+            this.colIsPoUse1.FieldName = "IsPoUse";
+            this.colIsPoUse1.Name = "colIsPoUse1";
+            this.colIsPoUse1.Visible = true;
+            this.colIsPoUse1.VisibleIndex = 11;
+            this.colIsPoUse1.Width = 85;
+            // 
+            // repItemCheckIsPoUse
+            // 
+            this.repItemCheckIsPoUse.AutoHeight = false;
+            this.repItemCheckIsPoUse.Name = "repItemCheckIsPoUse";
+            this.repItemCheckIsPoUse.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.repItemCheckIsPoUse.ValueChecked = ((short)(1));
+            this.repItemCheckIsPoUse.ValueGrayed = ((short)(0));
+            this.repItemCheckIsPoUse.ValueUnchecked = ((short)(0));
+            // 
             // pnlEdit
             // 
             this.pnlEdit.Controls.Add(this.textParentProjectNo);
@@ -1807,6 +1833,8 @@
             this.colAutoQuotationNo1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colAutoQuotationNo1.FieldName = "AutoQuotationNo";
             this.colAutoQuotationNo1.Name = "colAutoQuotationNo1";
+            this.colAutoQuotationNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "AutoQuotationNo", "共计{0}条")});
             this.colAutoQuotationNo1.Visible = true;
             this.colAutoQuotationNo1.VisibleIndex = 0;
             this.colAutoQuotationNo1.Width = 110;
@@ -2148,32 +2176,6 @@
             this.labelRecordDate.TabIndex = 9;
             this.labelRecordDate.Text = "登记日期：";
             // 
-            // dcIsPoUse
-            // 
-            this.dcIsPoUse.Caption = "生成销售订单";
-            this.dcIsPoUse.ColumnName = "IsPoUse";
-            this.dcIsPoUse.DataType = typeof(short);
-            // 
-            // colIsPoUse1
-            // 
-            this.colIsPoUse1.AppearanceHeader.Options.UseTextOptions = true;
-            this.colIsPoUse1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colIsPoUse1.ColumnEdit = this.repItemCheckIsPoUse;
-            this.colIsPoUse1.FieldName = "IsPoUse";
-            this.colIsPoUse1.Name = "colIsPoUse1";
-            this.colIsPoUse1.Visible = true;
-            this.colIsPoUse1.VisibleIndex = 11;
-            this.colIsPoUse1.Width = 85;
-            // 
-            // repItemCheckIsPoUse
-            // 
-            this.repItemCheckIsPoUse.AutoHeight = false;
-            this.repItemCheckIsPoUse.Name = "repItemCheckIsPoUse";
-            this.repItemCheckIsPoUse.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.repItemCheckIsPoUse.ValueChecked = ((short)(1));
-            this.repItemCheckIsPoUse.ValueGrayed = ((short)(0));
-            this.repItemCheckIsPoUse.ValueUnchecked = ((short)(0));
-            // 
             // FrmQuotationInfo_History
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2216,6 +2218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repItemCORBussinessBaseNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repItemCORCurrencyCate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repItemCheckIsPoUse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
@@ -2258,7 +2261,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateRecordDateBegin.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repItemCheckIsPoUse)).EndInit();
             this.ResumeLayout(false);
 
         }

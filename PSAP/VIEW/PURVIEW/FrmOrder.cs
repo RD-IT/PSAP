@@ -1281,7 +1281,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2 && btnNew.Enabled)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left && btnNew.Enabled)
                 {
                     string prReqNoStr = DataTypeConvert.GetString(gridViewOrderList.GetFocusedDataRow()["PrReqNo"]);
                     int prListAutoId = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["PrListAutoId"]);

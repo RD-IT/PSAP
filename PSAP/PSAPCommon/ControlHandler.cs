@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.Utils.Drawing;
+using DevExpress.Utils;
 
 namespace PSAP.PSAPCommon
 {
@@ -241,6 +242,38 @@ namespace PSAP.PSAPCommon
                 int rowNum = tmpTree.GetVisibleIndexByNode(e.Node) + 1;
                 //this.treeList.IndicatorWidth = rowNum.ToString().Length * 10 + 10;
                 args.DisplayText = rowNum.ToString();
+            }
+        }
+
+        public static ToolTipController MyToolTipClt = null;
+        public static ToolTipControllerShowEventArgs args = null;
+
+        /// <summary>
+        /// ToolTip消息提示
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="showTime">显示时长</param>
+        /// <param name="isAutoHide">自动隐藏</param>
+        public static void NewToolTip(string title, string content, int showTime, bool isAutoHide)
+        {
+            try
+            {
+                MyToolTipClt = new ToolTipController();
+                args = MyToolTipClt.CreateShowArgs();
+                title = string.IsNullOrEmpty(title) ? "温馨提示" : title;
+                args.AutoHide = isAutoHide;
+                MyToolTipClt.ShowBeak = true;
+                MyToolTipClt.ShowShadow = true;
+                MyToolTipClt.Rounded = true;
+                MyToolTipClt.AutoPopDelay = (showTime == 0 ? 2000 : showTime);
+                MyToolTipClt.Active = true;
+                MyToolTipClt.HideHint();
+                MyToolTipClt.ShowHint(content, title, Control.MousePosition);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
