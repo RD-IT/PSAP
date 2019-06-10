@@ -505,6 +505,8 @@
             this.colAutoQuotationNo1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colAutoQuotationNo1.FieldName = "AutoQuotationNo";
             this.colAutoQuotationNo1.Name = "colAutoQuotationNo1";
+            this.colAutoQuotationNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "AutoQuotationNo", "共计{0}条")});
             this.colAutoQuotationNo1.Visible = true;
             this.colAutoQuotationNo1.VisibleIndex = 0;
             this.colAutoQuotationNo1.Width = 110;

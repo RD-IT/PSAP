@@ -1,4 +1,6 @@
-﻿using PSAP.DAO.BSDAO;
+﻿using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+using PSAP.DAO.BSDAO;
 using PSAP.DAO.SADAO;
 using PSAP.PSAPCommon;
 using System;
@@ -12,12 +14,17 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmStnSummary : DockContent
+    public partial class FrmStnSummary_Drag : DockContent
     {
         #region 私有变量
 
         FrmStnSummaryDAO ssDAO = new FrmStnSummaryDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
+
+        /// <summary>
+        /// 拖动Tree区域的信息
+        /// </summary>
+        TreeListHitInfo downHitInfo = null;
 
         /// <summary>
         /// 要查询的报价单号
@@ -48,7 +55,7 @@ namespace PSAP.VIEW.BSVIEW
 
         #region 构造方法
 
-        public FrmStnSummary()
+        public FrmStnSummary_Drag()
         {
             InitializeComponent();
         }
@@ -64,6 +71,10 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                DateTime nowDate = BaseSQL.GetServerDateTime();
+                dateGetTimeBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
+                dateGetTimeEnd.DateTime = nowDate.Date;
+
                 btnRefresh_Click(null, null);
             }
             catch (Exception ex)
@@ -105,8 +116,210 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void FrmStnSummary_Shown(object sender, EventArgs e)
         {
-            //dockPnlRight.Width = SystemInfo.DragForm_LeftDock_Width;
+            dockPnlRight.Width = SystemInfo.DragForm_LeftDock_Width;
         }
+
+        #endregion
+
+        #region 右侧基础功能模块列表区域的事件和方法
+
+        /// <summary>
+        /// 查询按钮事件
+        /// </summary>
+        private void btnModuleQuery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string getTimeBeginStr = "";
+                string getTimeEndStr = "";
+                if (dateGetTimeBegin.EditValue != null && dateGetTimeEnd.EditValue != null)
+                {
+                    getTimeBeginStr = dateGetTimeBegin.DateTime.ToString("yyyy-MM-dd");
+                    getTimeEndStr = dateGetTimeEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
+                }
+
+                string commonStr = textCommon.Text.Trim();
+
+                treeListStnModule.DataSource = ssDAO.QueryBaseStnModule_OnlyRoot(getTimeBeginStr, getTimeEndStr, commonStr);
+
+                //Set_ButtonEditGrid_State(true);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询按钮事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 新增基础功能模块
+        /// </summary>
+        private void btnModuleNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmStnModule.defaultNewState = true;
+                ViewHandler.ShowRightWindow("FrmStnModule");
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--新增基础功能模块错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 复制新增基础功能模块
+        /// </summary>
+        private void btnModuleCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TreeListNode focusedNode = treeListStnModule.FocusedNode;
+                if (focusedNode == null)
+                {
+                    MessageHandler.ShowMessageBox("请选择要进行复制的基础功能模块。");
+                    return;
+                }
+
+                string smNoStr = DataTypeConvert.GetString(focusedNode["ReParent"]);
+                if (smNoStr == "")
+                    smNoStr = DataTypeConvert.GetString(focusedNode["ReID"]);
+
+                FrmStnModule.copySMNoStr = smNoStr;
+                ViewHandler.ShowRightWindow("FrmStnModule");
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--复制新增基础功能模块错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 双击查看功能模块信息
+        /// </summary>
+        private void treeListStnModule_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                TreeListNode node = treeListStnModule.FocusedNode;
+                if (node.Nodes.Count == 0 && DataTypeConvert.GetString(node["ReParent"]) == "")
+                {
+                    ssDAO.QueryBaseStnModule_OnlyLeaf((DataTable)treeListStnModule.DataSource, DataTypeConvert.GetString(node["ReID"]));
+
+                    treeListStnModule.RefreshDataSource();
+
+                    treeListStnModule.FocusedNode.ExpandAll();
+                    treeListStnModule.FocusedNode.Expanded = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--双击查看功能模块信息错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 确定行号
+        /// </summary>
+        private void treeListStnModule_CustomDrawNodeIndicator(object sender, DevExpress.XtraTreeList.CustomDrawNodeIndicatorEventArgs e)
+        {
+            ControlHandler.TreeList_CustomDrawNodeIndicator_RootNode(sender, e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void treeListStnModule_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.TreeList_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
+        }
+
+        #region 拖出基础功能模块列表TreeList
+
+        /// <summary>
+        /// 在TreeList中按下鼠标事件
+        /// </summary>
+        private void treeListStnModule_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                TreeList treelist = sender as TreeList;
+                downHitInfo = null;
+                TreeListHitInfo hitInfo = treelist.CalcHitInfo(new Point(e.X, e.Y));
+
+                if (Control.ModifierKeys != Keys.None)
+                    return;
+                if (e.Button == MouseButtons.Left)
+                {
+                    downHitInfo = hitInfo;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--在TreeList中按下鼠标事件错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 在TreeList中移动鼠标事件
+        /// </summary>
+        private void treeListStnModule_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                TreeList treelist = sender as TreeList;
+                if (e.Button == MouseButtons.Left && downHitInfo != null)
+                {
+                    if (treelist.Selection.Count == 0)
+                        return;
+                    else if (treelist.Selection.Count == 1)
+                    {
+                        string parentStr = DataTypeConvert.GetString(treelist.Selection[0]["ReParent"]);
+                        if (parentStr != "")
+                        {
+                            MessageHandler.ShowMessageBox("拖拽选项只能选择主功能模块信息，不可以拖拽功能模块的明细信息。");
+                            return;
+                        }
+                    }
+                    Size dragSize = SystemInformation.DragSize;
+                    Rectangle dragRect = new Rectangle(new Point(downHitInfo.MousePoint.X - dragSize.Width / 2,
+                        downHitInfo.MousePoint.Y - dragSize.Height / 2), dragSize);
+
+                    if (!dragRect.Contains(new Point(e.X, e.Y)))
+                    {
+                        List<TreeListNode> nodes = new List<TreeListNode>();
+                        foreach (TreeListNode n in treelist.Selection)
+                        {
+                            if (DataTypeConvert.GetString(n["ReParent"]) == "")
+                                nodes.Add(n);
+                        }
+                        if (nodes.Count == 0)
+                        {
+                            MessageHandler.ShowMessageBox("请选择要拖拽的主功能模块信息。");
+                            return;
+                        }
+                        else
+                        {
+                            treelist.DoDragDrop(nodes, DragDropEffects.Move);
+                            downHitInfo = null;
+                            DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--在TreeList中移动鼠标事件错误。", ex);
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -374,6 +587,11 @@ namespace PSAP.VIEW.BSVIEW
 
                 if (btnStnListSave.Text != "保存")
                 {
+                    //DataRow headRow = ((DataRowView)bindingSource_StnList.Current).Row;
+                    //int autoIdInt = DataTypeConvert.GetInt(headRow["AutoId"]);
+                    //if (ssDAO.CheckStnList_IsModule(null, autoIdInt))
+                    //    return;
+
                     Set_ButtonEditGrid_State(false);
                     textEditStnNo.Focus();
                 }
@@ -511,14 +729,12 @@ namespace PSAP.VIEW.BSVIEW
             btnStnListDelete.Enabled = state;
             btnRefresh.Enabled = state;
 
-            btnModuleSelect.Enabled = state;
             btnModuleDelete.Enabled = state;
-
-            btnModuleNew.Enabled = state;
-            btnModuleCopy.Enabled = state;
 
             textEditStnNo.ReadOnly = state;
             textEditStnDesc.ReadOnly = state;
+
+            repbtnDelete.Buttons[0].Enabled = !state;
 
             if (this.Controls.ContainsKey("lblEditFlag"))
             {
@@ -537,37 +753,6 @@ namespace PSAP.VIEW.BSVIEW
         #endregion
 
         #region 左侧工位功能模块列表区域的事件和方法
-
-        /// <summary>
-        /// 选择工位功能模块
-        /// </summary>
-        private void btnModuleSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (bindingSource_StnList.Current == null)
-                {
-                    MessageHandler.ShowMessageBox("请选择要操作的工位信息。");
-                    return;
-                }
-
-                FrmSelectStnModule ssmForm = new FrmSelectStnModule();
-                if (ssmForm.ShowDialog() == DialogResult.OK)
-                {
-                    DataRow headRow = ((DataRowView)bindingSource_StnList.Current).Row;
-                    int autoIdInt = DataTypeConvert.GetInt(headRow["AutoId"]);
-                    string stnNoStr = DataTypeConvert.GetString(headRow["StnNo"]);
-                    if (ssDAO.SaveStnListModule(autoIdInt, stnNoStr, ssmForm.smNoStrList))
-                    {
-                        gridViewStnList_FocusedRowChanged(null, null);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--选择工位功能模块错误。", ex);
-            }
-        }
 
         /// <summary>
         /// 删除工位功能模块
@@ -619,112 +804,71 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        #region 拖入
+
         /// <summary>
-        /// 新增基础功能模块
+        /// 拖拽在GridControl上面
         /// </summary>
-        private void btnModuleNew_Click(object sender, EventArgs e)
+        private void gridControlModuleList_DragOver(object sender, DragEventArgs e)
         {
-            try
-            {
-                FrmStnModule.defaultNewState = true;
-                ViewHandler.ShowRightWindow("FrmStnModule");
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--新增基础功能模块错误。", ex);
-            }
+            if (e.Data.GetDataPresent(typeof(List<TreeListNode>)))
+                e.Effect = DragDropEffects.Move;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
         /// <summary>
-        /// 复制新增基础功能模块
+        /// 拖拽进入到GridControl控件
         /// </summary>
-        private void btnModuleCopy_Click(object sender, EventArgs e)
+        private void gridControlModuleList_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        /// <summary>
+        /// 实现拖拽功能模块事件
+        /// </summary>
+        private void gridControlModuleList_DragDrop(object sender, DragEventArgs e)
         {
             try
             {
-                DataRow focusedRow = gridViewModuleList.GetFocusedDataRow();
-                if (focusedRow == null)
+                if (btnEditAutoQuotationNo.Text.Trim() == "")
                 {
-                    MessageHandler.ShowMessageBox("请选择要进行复制的功能模块。");
+                    MessageHandler.ShowMessageBox("请先选择要操作的报价单。");
                     return;
                 }
 
-                string smNoStr = DataTypeConvert.GetString(focusedRow["SMNo"]);
+                if (TableStnList.Rows.Count == 0 || bindingSource_StnList.Current == null)
+                {
+                    MessageHandler.ShowMessageBox("请先选择要操作的工位信息。");
+                    return;
+                }
+                if (!btnStnListNew.Enabled)
+                {
+                    MessageHandler.ShowMessageBox("工位信息正在编辑状态，请保存后再进行拖拽功能模块操作。");
+                    return;
+                }
 
-                FrmStnModule.copySMNoStr = smNoStr;
-                ViewHandler.ShowRightWindow("FrmStnModule");
+                List<string> smNoStrList = new List<string>();
+                List<TreeListNode> nodes = e.Data.GetData(typeof(List<TreeListNode>)) as List<TreeListNode>;
+                foreach (TreeListNode node in nodes)
+                {
+                    smNoStrList.Add(DataTypeConvert.GetString(node["ReID"]));
+                }
+                DataRow headRow = ((DataRowView)bindingSource_StnList.Current).Row;
+                int autoIdInt = DataTypeConvert.GetInt(headRow["AutoId"]);
+                string stnNoStr = DataTypeConvert.GetString(headRow["StnNo"]);
+                if (ssDAO.SaveStnListModule(autoIdInt, stnNoStr, smNoStrList))
+                {
+                    gridViewStnList_FocusedRowChanged(null, null);
+                }
+
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--复制新增基础功能模块错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--实现拖拽功能模块事件错误。", ex);
             }
         }
-
-        #region 拖入
-
-        ///// <summary>
-        ///// 拖拽在GridControl上面
-        ///// </summary>
-        //private void gridControlModuleList_DragOver(object sender, DragEventArgs e)
-        //{
-        //    if (e.Data.GetDataPresent(typeof(List<TreeListNode>)))
-        //        e.Effect = DragDropEffects.Move;
-        //    else
-        //        e.Effect = DragDropEffects.None;
-        //}
-
-        ///// <summary>
-        ///// 拖拽进入到GridControl控件
-        ///// </summary>
-        //private void gridControlModuleList_DragEnter(object sender, DragEventArgs e)
-        //{
-        //    e.Effect = DragDropEffects.Move;
-        //}
-
-        ///// <summary>
-        ///// 实现拖拽功能模块事件
-        ///// </summary>
-        //private void gridControlModuleList_DragDrop(object sender, DragEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (btnEditAutoQuotationNo.Text.Trim() == "")
-        //        {
-        //            MessageHandler.ShowMessageBox("请先选择要操作的报价单。");
-        //            return;
-        //        }
-
-        //        if (TableStnList.Rows.Count == 0 || bindingSource_StnList.Current == null)
-        //        {
-        //            MessageHandler.ShowMessageBox("请先选择要操作的工位信息。");
-        //            return;
-        //        }
-        //        if (!btnStnListNew.Enabled)
-        //        {
-        //            MessageHandler.ShowMessageBox("工位信息正在编辑状态，请保存后再进行拖拽功能模块操作。");
-        //            return;
-        //        }
-
-        //        List<string> smNoStrList = new List<string>();
-        //        List<TreeListNode> nodes = e.Data.GetData(typeof(List<TreeListNode>)) as List<TreeListNode>;
-        //        foreach (TreeListNode node in nodes)
-        //        {
-        //            smNoStrList.Add(DataTypeConvert.GetString(node["ReID"]));
-        //        }
-        //        DataRow headRow = ((DataRowView)bindingSource_StnList.Current).Row;
-        //        int autoIdInt = DataTypeConvert.GetInt(headRow["AutoId"]);
-        //        string stnNoStr = DataTypeConvert.GetString(headRow["StnNo"]);
-        //        if (ssDAO.SaveStnListModule(autoIdInt, stnNoStr, smNoStrList))
-        //        {
-        //            gridViewStnList_FocusedRowChanged(null, null);
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ExceptionHandler.HandleException(this.Text + "--实现拖拽功能模块事件错误。", ex);
-        //    }
-        //}
 
         #endregion
 
@@ -745,43 +889,6 @@ namespace PSAP.VIEW.BSVIEW
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
-            }
-        }
-
-        /// <summary>
-        /// 刷新功能模块的明细信息
-        /// </summary>
-        private void gridViewModuleList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            try
-            {
-                DataRow focusedRow = gridViewModuleList.GetFocusedDataRow();
-                if (focusedRow != null)
-                {
-                    string smNoStr = DataTypeConvert.GetString(focusedRow["SMNo"]);
-                    if (smNoStr != "")
-                        QueryDeliveryDetail(smNoStr);
-                }
-                else
-                {
-                    QueryDeliveryDetail("");
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--刷新功能模块的明细信息错误。", ex);
-            }
-        }
-
-        /// <summary>
-        /// 根据功能模块号查询相关的供货明细信息
-        /// </summary>
-        private void QueryDeliveryDetail(string smNoStr)
-        {
-            dataSet_DeliveryDetail.Tables[0].Rows.Clear();
-            if (smNoStr != "")
-            {
-                ssDAO.QueryDeliveryDetail_AllInfo(dataSet_DeliveryDetail.Tables[0], smNoStr);
             }
         }
 

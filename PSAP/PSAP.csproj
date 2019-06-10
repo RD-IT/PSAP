@@ -557,6 +557,18 @@
     <Compile Include="VIEW\SAVIEW\FrmStnSummary.Designer.cs">
       <DependentUpon>FrmStnSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Drag.Designer.cs">
+      <DependentUpon>FrmStnSummary_Drag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Query.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Query.Designer.cs">
+      <DependentUpon>FrmStnSummary_Query.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1140,6 +1152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmStnSummary.resx">
       <DependentUpon>FrmStnSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmStnSummary_Drag.resx">
+      <DependentUpon>FrmStnSummary_Drag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmStnSummary_Query.resx">
+      <DependentUpon>FrmStnSummary_Query.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>

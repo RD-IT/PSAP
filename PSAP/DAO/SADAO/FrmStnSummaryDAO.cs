@@ -10,6 +10,51 @@ namespace PSAP.DAO.SADAO
     class FrmStnSummaryDAO
     {
         /// <summary>
+        /// 查询功能模块信息（增加一个全部选项）
+        /// </summary>
+        public DataTable QueryStnModule(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, SMNo, FunctionDesc from SA_StnModule Order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '全部' as SMNo, '全部' as FunctionDesc union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询基础功能模块信息
+        /// </summary>
+        public void QueryStnModule(DataTable queryDataTable, string beginDateStr, string endDateStr, string commonStr)
+        {
+            string sqlStr = " 1=1";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and GetTime between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (SMNo like '%{0}%' or FunctionDesc like '%{0}%' or FunctionDetail like '%{0}%')", commonStr);
+            }
+            sqlStr = string.Format("Select * from SA_StnModule where {0} Order By SMNo", sqlStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询供货明细的全部信息（主表和子表关联的信息）
+        /// </summary>
+        public void QueryDeliveryDetail_AllInfo(DataTable queryDataTable, string smNoStr)
+        {
+            string sqlStr = " 1=1";
+            if (smNoStr != "")
+            {
+                sqlStr += string.Format(" and SMNo = '{0}'", smNoStr);
+            }
+            sqlStr = string.Format("select dd.SMNo, dd.DeliveryText, dd.FunctionDesc, md.MaterialName, md.MaterialBrand, md.MaterialDesc, md.MaterialCate, md.MaterialQty as MatQty, md.Unit as MatUnit, md.Amount as MatAmount from SA_DeliveryDetail as dd join SA_MaterialDetail as md on dd.AutoId = md.DeliveryDetailNO where {0} order by dd.SMNo, dd.AutoId", sqlStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
         /// 查询基础功能模块的根节点信息
         /// </summary>
         public DataTable QueryBaseStnModule_OnlyRoot(string beginDateStr, string endDateStr, string commonStr)
@@ -81,6 +126,36 @@ namespace PSAP.DAO.SADAO
             }
             sqlStr = string.Format("select stn.AutoId, stn.StnSummaryListId, modu.SMNo, modu.FunctionDesc, modu.FunctionDetail from SA_StnSummaryListModule as stn left join SA_StnModule as modu on stn.StnModuleId = modu.SMNo where {0} Order by stn.AutoId", sqlStr);
             BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
+        /// 查询工位信息的SQL（包括几个表关联的全部信息）
+        /// </summary>
+        public string QueryStnSummaryList_SQL(string beginDateStr, string endDateStr, string smNoStr, string preparedStr, string commonStr, bool nullTable)
+        {
+            string sqlStr = " 1=1";
+            if (beginDateStr != "")
+            {
+                sqlStr += string.Format(" and GetTime between '{0}' and '{1}'", beginDateStr, endDateStr);
+            }
+            if (smNoStr != "")
+            {
+                sqlStr += string.Format(" and SMNo = '{0}'", smNoStr);
+            }
+            if (preparedStr != "")
+            {
+                sqlStr += string.Format(" and Prepared = '{0}'", preparedStr);
+            }
+            if (commonStr != "")
+            {
+                sqlStr += string.Format(" and (SSNo like '%{0}%' or StnNo like '%{0}%' or StnDesc like '%{0}%' or AutoQuotationNo like '%{0}%' or SMNo like '%{0}%' or FunctionDesc like '%{0}%')", commonStr);
+            }
+            if (nullTable)
+            {
+                sqlStr += " and 1=2";
+            }
+            sqlStr = string.Format("select * from V_SA_StnSummaryListInfo where {0} order by SSNo, AutoId, ListModuleAutoId", sqlStr);
+            return sqlStr;
         }
 
         /// <summary>
@@ -276,7 +351,7 @@ namespace PSAP.DAO.SADAO
         /// <summary>
         /// 删除工位模块关系
         /// </summary>
-        public bool DeleteStnListModule(int autoIdInt)
+        public bool DeleteStnListModule(List<int> autoIdIntList)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -287,19 +362,30 @@ namespace PSAP.DAO.SADAO
                     {
                         SqlCommand cmd = new SqlCommand("", conn, trans);
 
-                        cmd.CommandText = string.Format("select SA_StnSummaryList.AutoId, SA_StnSummaryList.StnNo, SA_StnSummaryListModule.StnModuleId from SA_StnSummaryListModule left join SA_StnSummaryList on SA_StnSummaryListModule.StnSummaryListId = SA_StnSummaryList.AutoId where SA_StnSummaryListModule.AutoId = {0}", autoIdInt);
+                        string listStr = "";
+
+                        if (autoIdIntList.Count == 0)
+                            return false;
+
+                        foreach (int autoIdInt in autoIdIntList)
+                        {
+                            listStr += string.Format("{0},", autoIdInt);
+                        }
+
+                        listStr = listStr.Substring(0, listStr.Length - 1);
+                        cmd.CommandText = string.Format("select SA_StnSummaryList.AutoId, SA_StnSummaryList.StnNo, SA_StnSummaryListModule.StnModuleId from SA_StnSummaryListModule left join SA_StnSummaryList on SA_StnSummaryListModule.StnSummaryListId = SA_StnSummaryList.AutoId where SA_StnSummaryListModule.AutoId in ({0})", listStr);
                         DataTable tmpTable = new DataTable();
                         SqlDataAdapter adpt = new SqlDataAdapter(cmd);
                         adpt.Fill(tmpTable);
 
-                        if (tmpTable.Rows.Count > 0)
+                        for (int i = 0; i < tmpTable.Rows.Count; i++)
                         {
                             //保存日志到日志表中
-                            string logStr = string.Format("删除工位模块关系：工位站号[{0}]，功能模块号[{1}]", DataTypeConvert.GetString(tmpTable.Rows[0]["StnNo"]), DataTypeConvert.GetString(tmpTable.Rows[0]["StnModuleId"]));
+                            string logStr = string.Format("删除工位模块关系：工位站号[{0}]，功能模块号[{1}]", DataTypeConvert.GetString(tmpTable.Rows[i]["StnNo"]), DataTypeConvert.GetString(tmpTable.Rows[i]["StnModuleId"]));
                             LogHandler.RecordLog(cmd, logStr);
                         }
 
-                        cmd.CommandText = string.Format("Delete from SA_StnSummaryListModule where AutoId = '{0}'", autoIdInt);
+                        cmd.CommandText = string.Format("Delete from SA_StnSummaryListModule where AutoId in ({0})", listStr);
                         cmd.ExecuteNonQuery();
 
                         trans.Commit();

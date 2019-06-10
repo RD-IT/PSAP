@@ -1,6 +1,6 @@
 ﻿namespace PSAP.VIEW.BSVIEW
 {
-    partial class FrmStnSummary
+    partial class FrmStnSummary_Drag
     {
         /// <summary>
         /// Required designer variable.
@@ -31,40 +31,9 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.dataSet_DeliveryDetail = new System.Data.DataSet();
-            this.TableDeliveryDetail = new System.Data.DataTable();
-            this.dataColumn1 = new System.Data.DataColumn();
-            this.dataColuSMNo = new System.Data.DataColumn();
-            this.dataColuDeliveryText = new System.Data.DataColumn();
-            this.dataColuFunctionDesc = new System.Data.DataColumn();
-            this.dataColuMatQty = new System.Data.DataColumn();
-            this.dataColuMatUnit = new System.Data.DataColumn();
-            this.dataColuMatAmount = new System.Data.DataColumn();
-            this.dataColumn2 = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStnSummary_Drag));
             this.btnEditAutoQuotationNo = new DevExpress.XtraEditors.ButtonEdit();
             this.pnlLeft = new DevExpress.XtraEditors.PanelControl();
-            this.pnlDeliveryDetail = new DevExpress.XtraEditors.PanelControl();
-            this.TabControlDeliveryDetail = new DevExpress.XtraTab.XtraTabControl();
-            this.PageDeliveryDetail = new DevExpress.XtraTab.XtraTabPage();
-            this.pnlDeliveryDetailGrid = new DevExpress.XtraEditors.PanelControl();
-            this.gridControlDeliveryDetail = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_DeliveryDetail = new System.Windows.Forms.BindingSource(this.components);
-            this.gridViewDeliveryDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colSMNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDeliveryText = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repMemoDeliveryText = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.colFunctionDesc1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMaterialName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMaterialBrand = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMaterialCate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMatUnit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMatQty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMatAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMaterialDesc = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pnlDeliveryDetailToolBar = new DevExpress.XtraEditors.PanelControl();
-            this.splitterRight = new DevExpress.XtraEditors.SplitterControl();
             this.pnlModuleList = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabModuleList = new DevExpress.XtraTab.XtraTabControl();
             this.PageModuleList = new DevExpress.XtraTab.XtraTabPage();
@@ -99,10 +68,12 @@
             this.colSMNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFunctionDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFunctionDetail = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.pnlModuleListToolBar = new DevExpress.XtraEditors.PanelControl();
-            this.btnModuleCopy = new DevExpress.XtraEditors.SimpleButton();
-            this.btnModuleSelect = new DevExpress.XtraEditors.SimpleButton();
-            this.btnModuleNew = new DevExpress.XtraEditors.SimpleButton();
             this.btnModuleDelete = new DevExpress.XtraEditors.SimpleButton();
             this.splitterLeft = new DevExpress.XtraEditors.SplitterControl();
             this.pnlStnList = new DevExpress.XtraEditors.PanelControl();
@@ -119,6 +90,11 @@
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPreparedIp = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGetTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repSpinQty = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.repLookUpCurrencyCate = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repDateQuotationDate = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repSpinEditAmount = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.pnlStnListEdit = new DevExpress.XtraEditors.PanelControl();
             this.textEditStnDesc = new DevExpress.XtraEditors.TextEdit();
             this.labStnDesc = new DevExpress.XtraEditors.LabelControl();
@@ -139,23 +115,25 @@
             this.btnEditSSNo = new DevExpress.XtraEditors.ButtonEdit();
             this.labAutoQuotationNo = new DevExpress.XtraEditors.LabelControl();
             this.dockManagerRight = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryDetail)).BeginInit();
+            this.dockPnlRight = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.treeListStnModule = new DevExpress.XtraTreeList.TreeList();
+            this.treeColFunctionDesc = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeColDetail = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.pnlRightToolBar = new DevExpress.XtraEditors.PanelControl();
+            this.btnModuleCopy = new DevExpress.XtraEditors.SimpleButton();
+            this.btnModuleNew = new DevExpress.XtraEditors.SimpleButton();
+            this.pnlRightTop = new DevExpress.XtraEditors.PanelControl();
+            this.btnModuleQuery = new DevExpress.XtraEditors.SimpleButton();
+            this.textCommon = new DevExpress.XtraEditors.TextEdit();
+            this.labCommon = new DevExpress.XtraEditors.LabelControl();
+            this.dateGetTimeEnd = new DevExpress.XtraEditors.DateEdit();
+            this.dateGetTimeBegin = new DevExpress.XtraEditors.DateEdit();
+            this.lab1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelGetTime = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAutoQuotationNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).BeginInit();
             this.pnlLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetail)).BeginInit();
-            this.pnlDeliveryDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TabControlDeliveryDetail)).BeginInit();
-            this.TabControlDeliveryDetail.SuspendLayout();
-            this.PageDeliveryDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetailGrid)).BeginInit();
-            this.pnlDeliveryDetailGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repMemoDeliveryText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetailToolBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlModuleList)).BeginInit();
             this.pnlModuleList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabModuleList)).BeginInit();
@@ -170,6 +148,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.TableStnList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableStnListModule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewModuleList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlModuleListToolBar)).BeginInit();
             this.pnlModuleListToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStnList)).BeginInit();
@@ -182,6 +166,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlStnList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_StnList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStnList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpCurrencyCate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDateQuotationDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDateQuotationDate.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinEditAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStnListEdit)).BeginInit();
             this.pnlStnListEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEditStnDesc.Properties)).BeginInit();
@@ -194,81 +184,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditSSNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerRight)).BeginInit();
+            this.dockPnlRight.SuspendLayout();
+            this.dockPanel1_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListStnModule)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRightToolBar)).BeginInit();
+            this.pnlRightToolBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRightTop)).BeginInit();
+            this.pnlRightTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeEnd.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeEnd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeBegin.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeBegin.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataSet_DeliveryDetail
-            // 
-            this.dataSet_DeliveryDetail.DataSetName = "NewDataSet";
-            this.dataSet_DeliveryDetail.Tables.AddRange(new System.Data.DataTable[] {
-            this.TableDeliveryDetail});
-            // 
-            // TableDeliveryDetail
-            // 
-            this.TableDeliveryDetail.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColuSMNo,
-            this.dataColuDeliveryText,
-            this.dataColuFunctionDesc,
-            this.dataColuMatQty,
-            this.dataColuMatUnit,
-            this.dataColuMatAmount,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4});
-            this.TableDeliveryDetail.TableName = "DeliveryDetail";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.Caption = "类别";
-            this.dataColumn1.ColumnName = "MaterialCate";
-            // 
-            // dataColuSMNo
-            // 
-            this.dataColuSMNo.Caption = "模块序号";
-            this.dataColuSMNo.ColumnName = "SMNo";
-            // 
-            // dataColuDeliveryText
-            // 
-            this.dataColuDeliveryText.Caption = "供货明细内容";
-            this.dataColuDeliveryText.ColumnName = "DeliveryText";
-            // 
-            // dataColuFunctionDesc
-            // 
-            this.dataColuFunctionDesc.Caption = "详细功能";
-            this.dataColuFunctionDesc.ColumnName = "FunctionDesc";
-            // 
-            // dataColuMatQty
-            // 
-            this.dataColuMatQty.Caption = "数量";
-            this.dataColuMatQty.ColumnName = "MatQty";
-            this.dataColuMatQty.DataType = typeof(double);
-            // 
-            // dataColuMatUnit
-            // 
-            this.dataColuMatUnit.Caption = "单价";
-            this.dataColuMatUnit.ColumnName = "MatUnit";
-            this.dataColuMatUnit.DataType = typeof(double);
-            // 
-            // dataColuMatAmount
-            // 
-            this.dataColuMatAmount.Caption = "金额";
-            this.dataColuMatAmount.ColumnName = "MatAmount";
-            this.dataColuMatAmount.DataType = typeof(double);
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.Caption = "元器件名称";
-            this.dataColumn2.ColumnName = "MaterialName";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.Caption = "元器件品牌";
-            this.dataColumn3.ColumnName = "MaterialBrand";
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.Caption = "功能描述";
-            this.dataColumn4.ColumnName = "MaterialDesc";
             // 
             // btnEditAutoQuotationNo
             // 
@@ -284,8 +212,6 @@
             // pnlLeft
             // 
             this.pnlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlLeft.Controls.Add(this.pnlDeliveryDetail);
-            this.pnlLeft.Controls.Add(this.splitterRight);
             this.pnlLeft.Controls.Add(this.pnlModuleList);
             this.pnlLeft.Controls.Add(this.splitterLeft);
             this.pnlLeft.Controls.Add(this.pnlStnList);
@@ -293,244 +219,16 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(1264, 729);
+            this.pnlLeft.Size = new System.Drawing.Size(973, 729);
             this.pnlLeft.TabIndex = 1;
-            // 
-            // pnlDeliveryDetail
-            // 
-            this.pnlDeliveryDetail.Controls.Add(this.TabControlDeliveryDetail);
-            this.pnlDeliveryDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDeliveryDetail.Location = new System.Drawing.Point(900, 68);
-            this.pnlDeliveryDetail.Name = "pnlDeliveryDetail";
-            this.pnlDeliveryDetail.Size = new System.Drawing.Size(364, 661);
-            this.pnlDeliveryDetail.TabIndex = 21;
-            // 
-            // TabControlDeliveryDetail
-            // 
-            this.TabControlDeliveryDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TabControlDeliveryDetail.Location = new System.Drawing.Point(2, 2);
-            this.TabControlDeliveryDetail.Name = "TabControlDeliveryDetail";
-            this.TabControlDeliveryDetail.SelectedTabPage = this.PageDeliveryDetail;
-            this.TabControlDeliveryDetail.Size = new System.Drawing.Size(360, 657);
-            this.TabControlDeliveryDetail.TabIndex = 23;
-            this.TabControlDeliveryDetail.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.PageDeliveryDetail});
-            // 
-            // PageDeliveryDetail
-            // 
-            this.PageDeliveryDetail.Controls.Add(this.pnlDeliveryDetailGrid);
-            this.PageDeliveryDetail.Controls.Add(this.pnlDeliveryDetailToolBar);
-            this.PageDeliveryDetail.Name = "PageDeliveryDetail";
-            this.PageDeliveryDetail.Size = new System.Drawing.Size(354, 628);
-            this.PageDeliveryDetail.Text = "供货明细列表";
-            // 
-            // pnlDeliveryDetailGrid
-            // 
-            this.pnlDeliveryDetailGrid.Controls.Add(this.gridControlDeliveryDetail);
-            this.pnlDeliveryDetailGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDeliveryDetailGrid.Location = new System.Drawing.Point(0, 40);
-            this.pnlDeliveryDetailGrid.Name = "pnlDeliveryDetailGrid";
-            this.pnlDeliveryDetailGrid.Size = new System.Drawing.Size(354, 588);
-            this.pnlDeliveryDetailGrid.TabIndex = 24;
-            // 
-            // gridControlDeliveryDetail
-            // 
-            this.gridControlDeliveryDetail.DataSource = this.bindingSource_DeliveryDetail;
-            this.gridControlDeliveryDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlDeliveryDetail.Location = new System.Drawing.Point(2, 2);
-            this.gridControlDeliveryDetail.MainView = this.gridViewDeliveryDetail;
-            this.gridControlDeliveryDetail.Name = "gridControlDeliveryDetail";
-            this.gridControlDeliveryDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repMemoDeliveryText});
-            this.gridControlDeliveryDetail.Size = new System.Drawing.Size(350, 584);
-            this.gridControlDeliveryDetail.TabIndex = 6;
-            this.gridControlDeliveryDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewDeliveryDetail});
-            // 
-            // bindingSource_DeliveryDetail
-            // 
-            this.bindingSource_DeliveryDetail.DataMember = "DeliveryDetail";
-            this.bindingSource_DeliveryDetail.DataSource = this.dataSet_DeliveryDetail;
-            // 
-            // gridViewDeliveryDetail
-            // 
-            this.gridViewDeliveryDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colSMNo1,
-            this.colDeliveryText,
-            this.colFunctionDesc1,
-            this.colMaterialName,
-            this.colMaterialBrand,
-            this.colMaterialCate,
-            this.colMatUnit,
-            this.colMatQty,
-            this.colMatAmount,
-            this.colMaterialDesc});
-            this.gridViewDeliveryDetail.GridControl = this.gridControlDeliveryDetail;
-            this.gridViewDeliveryDetail.IndicatorWidth = 40;
-            this.gridViewDeliveryDetail.Name = "gridViewDeliveryDetail";
-            this.gridViewDeliveryDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridViewDeliveryDetail.OptionsBehavior.Editable = false;
-            this.gridViewDeliveryDetail.OptionsBehavior.ReadOnly = true;
-            this.gridViewDeliveryDetail.OptionsMenu.EnableColumnMenu = false;
-            this.gridViewDeliveryDetail.OptionsMenu.EnableFooterMenu = false;
-            this.gridViewDeliveryDetail.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gridViewDeliveryDetail.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewDeliveryDetail.OptionsNavigation.EnterMoveNextColumn = true;
-            this.gridViewDeliveryDetail.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewDeliveryDetail.OptionsView.AllowCellMerge = true;
-            this.gridViewDeliveryDetail.OptionsView.ColumnAutoWidth = false;
-            this.gridViewDeliveryDetail.OptionsView.EnableAppearanceOddRow = true;
-            this.gridViewDeliveryDetail.OptionsView.ShowFooter = true;
-            this.gridViewDeliveryDetail.OptionsView.ShowGroupPanel = false;
-            this.gridViewDeliveryDetail.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewStnList_CustomDrawRowIndicator);
-            this.gridViewDeliveryDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewStnList_KeyDown);
-            // 
-            // colSMNo1
-            // 
-            this.colSMNo1.AppearanceHeader.Options.UseTextOptions = true;
-            this.colSMNo1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colSMNo1.FieldName = "SMNo";
-            this.colSMNo1.Name = "colSMNo1";
-            // 
-            // colDeliveryText
-            // 
-            this.colDeliveryText.AppearanceCell.Options.UseTextOptions = true;
-            this.colDeliveryText.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colDeliveryText.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDeliveryText.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colDeliveryText.ColumnEdit = this.repMemoDeliveryText;
-            this.colDeliveryText.FieldName = "DeliveryText";
-            this.colDeliveryText.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            this.colDeliveryText.Name = "colDeliveryText";
-            this.colDeliveryText.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "DeliveryText", "共计{0}条")});
-            this.colDeliveryText.Visible = true;
-            this.colDeliveryText.VisibleIndex = 0;
-            this.colDeliveryText.Width = 120;
-            // 
-            // repMemoDeliveryText
-            // 
-            this.repMemoDeliveryText.Name = "repMemoDeliveryText";
-            // 
-            // colFunctionDesc1
-            // 
-            this.colFunctionDesc1.AppearanceHeader.Options.UseTextOptions = true;
-            this.colFunctionDesc1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colFunctionDesc1.FieldName = "FunctionDesc";
-            this.colFunctionDesc1.Name = "colFunctionDesc1";
-            // 
-            // colMaterialName
-            // 
-            this.colMaterialName.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMaterialName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMaterialName.FieldName = "MaterialName";
-            this.colMaterialName.Name = "colMaterialName";
-            this.colMaterialName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMaterialName.Visible = true;
-            this.colMaterialName.VisibleIndex = 1;
-            this.colMaterialName.Width = 100;
-            // 
-            // colMaterialBrand
-            // 
-            this.colMaterialBrand.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMaterialBrand.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMaterialBrand.FieldName = "MaterialBrand";
-            this.colMaterialBrand.Name = "colMaterialBrand";
-            this.colMaterialBrand.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMaterialBrand.Visible = true;
-            this.colMaterialBrand.VisibleIndex = 2;
-            this.colMaterialBrand.Width = 80;
-            // 
-            // colMaterialCate
-            // 
-            this.colMaterialCate.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMaterialCate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMaterialCate.FieldName = "MaterialCate";
-            this.colMaterialCate.Name = "colMaterialCate";
-            this.colMaterialCate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMaterialCate.Visible = true;
-            this.colMaterialCate.VisibleIndex = 3;
-            this.colMaterialCate.Width = 60;
-            // 
-            // colMatUnit
-            // 
-            this.colMatUnit.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMatUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMatUnit.DisplayFormat.FormatString = "N2";
-            this.colMatUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colMatUnit.FieldName = "MatUnit";
-            this.colMatUnit.Name = "colMatUnit";
-            this.colMatUnit.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMatUnit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MatUnit", "{0:N2}")});
-            this.colMatUnit.Visible = true;
-            this.colMatUnit.VisibleIndex = 4;
-            this.colMatUnit.Width = 80;
-            // 
-            // colMatQty
-            // 
-            this.colMatQty.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMatQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMatQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colMatQty.FieldName = "MatQty";
-            this.colMatQty.Name = "colMatQty";
-            this.colMatQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMatQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MatQty", "{0:0.##}")});
-            this.colMatQty.Visible = true;
-            this.colMatQty.VisibleIndex = 5;
-            this.colMatQty.Width = 70;
-            // 
-            // colMatAmount
-            // 
-            this.colMatAmount.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMatAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMatAmount.DisplayFormat.FormatString = "N2";
-            this.colMatAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colMatAmount.FieldName = "MatAmount";
-            this.colMatAmount.Name = "colMatAmount";
-            this.colMatAmount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMatAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MatAmount", "{0:N2}")});
-            this.colMatAmount.Visible = true;
-            this.colMatAmount.VisibleIndex = 6;
-            this.colMatAmount.Width = 90;
-            // 
-            // colMaterialDesc
-            // 
-            this.colMaterialDesc.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMaterialDesc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMaterialDesc.FieldName = "MaterialDesc";
-            this.colMaterialDesc.Name = "colMaterialDesc";
-            this.colMaterialDesc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.colMaterialDesc.Visible = true;
-            this.colMaterialDesc.VisibleIndex = 7;
-            this.colMaterialDesc.Width = 200;
-            // 
-            // pnlDeliveryDetailToolBar
-            // 
-            this.pnlDeliveryDetailToolBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDeliveryDetailToolBar.Location = new System.Drawing.Point(0, 0);
-            this.pnlDeliveryDetailToolBar.Name = "pnlDeliveryDetailToolBar";
-            this.pnlDeliveryDetailToolBar.Size = new System.Drawing.Size(354, 40);
-            this.pnlDeliveryDetailToolBar.TabIndex = 23;
-            // 
-            // splitterRight
-            // 
-            this.splitterRight.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
-            this.splitterRight.Location = new System.Drawing.Point(895, 68);
-            this.splitterRight.Name = "splitterRight";
-            this.splitterRight.Size = new System.Drawing.Size(5, 661);
-            this.splitterRight.TabIndex = 20;
-            this.splitterRight.TabStop = false;
             // 
             // pnlModuleList
             // 
             this.pnlModuleList.Controls.Add(this.xtraTabModuleList);
-            this.pnlModuleList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlModuleList.Location = new System.Drawing.Point(475, 68);
+            this.pnlModuleList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlModuleList.Location = new System.Drawing.Point(480, 68);
             this.pnlModuleList.Name = "pnlModuleList";
-            this.pnlModuleList.Size = new System.Drawing.Size(420, 661);
+            this.pnlModuleList.Size = new System.Drawing.Size(493, 661);
             this.pnlModuleList.TabIndex = 4;
             // 
             // xtraTabModuleList
@@ -539,7 +237,7 @@
             this.xtraTabModuleList.Location = new System.Drawing.Point(2, 2);
             this.xtraTabModuleList.Name = "xtraTabModuleList";
             this.xtraTabModuleList.SelectedTabPage = this.PageModuleList;
-            this.xtraTabModuleList.Size = new System.Drawing.Size(416, 657);
+            this.xtraTabModuleList.Size = new System.Drawing.Size(489, 657);
             this.xtraTabModuleList.TabIndex = 3;
             this.xtraTabModuleList.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.PageModuleList});
@@ -549,7 +247,7 @@
             this.PageModuleList.Controls.Add(this.pnlModuleListGrid);
             this.PageModuleList.Controls.Add(this.pnlModuleListToolBar);
             this.PageModuleList.Name = "PageModuleList";
-            this.PageModuleList.Size = new System.Drawing.Size(410, 628);
+            this.PageModuleList.Size = new System.Drawing.Size(483, 628);
             this.PageModuleList.Text = "工位功能模块列表";
             // 
             // pnlModuleListGrid
@@ -558,20 +256,30 @@
             this.pnlModuleListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlModuleListGrid.Location = new System.Drawing.Point(0, 40);
             this.pnlModuleListGrid.Name = "pnlModuleListGrid";
-            this.pnlModuleListGrid.Size = new System.Drawing.Size(410, 588);
+            this.pnlModuleListGrid.Size = new System.Drawing.Size(483, 588);
             this.pnlModuleListGrid.TabIndex = 1;
             // 
             // gridControlModuleList
             // 
+            this.gridControlModuleList.AllowDrop = true;
             this.gridControlModuleList.DataSource = this.bindingSource_StnListModule;
             this.gridControlModuleList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlModuleList.Location = new System.Drawing.Point(2, 2);
             this.gridControlModuleList.MainView = this.gridViewModuleList;
             this.gridControlModuleList.Name = "gridControlModuleList";
-            this.gridControlModuleList.Size = new System.Drawing.Size(406, 584);
+            this.gridControlModuleList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemSpinEdit1,
+            this.repositoryItemButtonEdit1,
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemDateEdit1,
+            this.repositoryItemSpinEdit2});
+            this.gridControlModuleList.Size = new System.Drawing.Size(479, 584);
             this.gridControlModuleList.TabIndex = 5;
             this.gridControlModuleList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewModuleList});
+            this.gridControlModuleList.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlModuleList_DragDrop);
+            this.gridControlModuleList.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlModuleList_DragEnter);
+            this.gridControlModuleList.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControlModuleList_DragOver);
             // 
             // bindingSource_StnListModule
             // 
@@ -724,6 +432,7 @@
             this.gridViewModuleList.GridControl = this.gridControlModuleList;
             this.gridViewModuleList.IndicatorWidth = 40;
             this.gridViewModuleList.Name = "gridViewModuleList";
+            this.gridViewModuleList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewModuleList.OptionsBehavior.Editable = false;
             this.gridViewModuleList.OptionsBehavior.ReadOnly = true;
             this.gridViewModuleList.OptionsMenu.EnableColumnMenu = false;
@@ -731,15 +440,12 @@
             this.gridViewModuleList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewModuleList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewModuleList.OptionsNavigation.EnterMoveNextColumn = true;
-            this.gridViewModuleList.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewModuleList.OptionsSelection.MultiSelect = true;
             this.gridViewModuleList.OptionsView.ColumnAutoWidth = false;
             this.gridViewModuleList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewModuleList.OptionsView.ShowFooter = true;
             this.gridViewModuleList.OptionsView.ShowGroupPanel = false;
             this.gridViewModuleList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewModuleList_RowClick);
             this.gridViewModuleList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewStnList_CustomDrawRowIndicator);
-            this.gridViewModuleList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewModuleList_FocusedRowChanged);
             this.gridViewModuleList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewStnList_KeyDown);
             // 
             // colAutoId1
@@ -784,52 +490,86 @@
             this.colFunctionDetail.VisibleIndex = 2;
             this.colFunctionDetail.Width = 250;
             // 
+            // repositoryItemSpinEdit1
+            // 
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEdit1.MaxValue = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyCateAbb", "币种缩写"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyCateName", "币种名称"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ExchangeRate", "汇率")});
+            this.repositoryItemLookUpEdit1.DisplayMember = "CurrencyCateName";
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.NullText = "";
+            this.repositoryItemLookUpEdit1.ValueMember = "AutoId";
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.Mask.EditMask = "G";
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // repositoryItemSpinEdit2
+            // 
+            this.repositoryItemSpinEdit2.AutoHeight = false;
+            this.repositoryItemSpinEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit2.DisplayFormat.FormatString = "N2";
+            this.repositoryItemSpinEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEdit2.EditFormat.FormatString = "N2";
+            this.repositoryItemSpinEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEdit2.Mask.EditMask = "N2";
+            this.repositoryItemSpinEdit2.MaxValue = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.repositoryItemSpinEdit2.Name = "repositoryItemSpinEdit2";
+            // 
             // pnlModuleListToolBar
             // 
-            this.pnlModuleListToolBar.Controls.Add(this.btnModuleCopy);
-            this.pnlModuleListToolBar.Controls.Add(this.btnModuleSelect);
-            this.pnlModuleListToolBar.Controls.Add(this.btnModuleNew);
             this.pnlModuleListToolBar.Controls.Add(this.btnModuleDelete);
             this.pnlModuleListToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlModuleListToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlModuleListToolBar.Name = "pnlModuleListToolBar";
-            this.pnlModuleListToolBar.Size = new System.Drawing.Size(410, 40);
+            this.pnlModuleListToolBar.Size = new System.Drawing.Size(483, 40);
             this.pnlModuleListToolBar.TabIndex = 0;
-            // 
-            // btnModuleCopy
-            // 
-            this.btnModuleCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModuleCopy.Location = new System.Drawing.Point(324, 9);
-            this.btnModuleCopy.Name = "btnModuleCopy";
-            this.btnModuleCopy.Size = new System.Drawing.Size(75, 23);
-            this.btnModuleCopy.TabIndex = 106;
-            this.btnModuleCopy.TabStop = false;
-            this.btnModuleCopy.Text = "复制";
-            this.btnModuleCopy.Click += new System.EventHandler(this.btnModuleCopy_Click);
-            // 
-            // btnModuleSelect
-            // 
-            this.btnModuleSelect.Location = new System.Drawing.Point(10, 9);
-            this.btnModuleSelect.Name = "btnModuleSelect";
-            this.btnModuleSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnModuleSelect.TabIndex = 52;
-            this.btnModuleSelect.Text = "选择";
-            this.btnModuleSelect.Click += new System.EventHandler(this.btnModuleSelect_Click);
-            // 
-            // btnModuleNew
-            // 
-            this.btnModuleNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModuleNew.Location = new System.Drawing.Point(243, 9);
-            this.btnModuleNew.Name = "btnModuleNew";
-            this.btnModuleNew.Size = new System.Drawing.Size(75, 23);
-            this.btnModuleNew.TabIndex = 105;
-            this.btnModuleNew.TabStop = false;
-            this.btnModuleNew.Text = "新增";
-            this.btnModuleNew.Click += new System.EventHandler(this.btnModuleNew_Click);
             // 
             // btnModuleDelete
             // 
-            this.btnModuleDelete.Location = new System.Drawing.Point(91, 9);
+            this.btnModuleDelete.Location = new System.Drawing.Point(10, 9);
             this.btnModuleDelete.Name = "btnModuleDelete";
             this.btnModuleDelete.Size = new System.Drawing.Size(75, 23);
             this.btnModuleDelete.TabIndex = 51;
@@ -839,7 +579,7 @@
             // splitterLeft
             // 
             this.splitterLeft.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
-            this.splitterLeft.Location = new System.Drawing.Point(470, 68);
+            this.splitterLeft.Location = new System.Drawing.Point(475, 68);
             this.splitterLeft.Name = "splitterLeft";
             this.splitterLeft.Size = new System.Drawing.Size(5, 661);
             this.splitterLeft.TabIndex = 19;
@@ -851,7 +591,7 @@
             this.pnlStnList.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlStnList.Location = new System.Drawing.Point(0, 68);
             this.pnlStnList.Name = "pnlStnList";
-            this.pnlStnList.Size = new System.Drawing.Size(470, 661);
+            this.pnlStnList.Size = new System.Drawing.Size(475, 661);
             this.pnlStnList.TabIndex = 3;
             // 
             // xtraTabStnList
@@ -860,7 +600,7 @@
             this.xtraTabStnList.Location = new System.Drawing.Point(2, 2);
             this.xtraTabStnList.Name = "xtraTabStnList";
             this.xtraTabStnList.SelectedTabPage = this.PageStnList;
-            this.xtraTabStnList.Size = new System.Drawing.Size(466, 657);
+            this.xtraTabStnList.Size = new System.Drawing.Size(471, 657);
             this.xtraTabStnList.TabIndex = 2;
             this.xtraTabStnList.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.PageStnList});
@@ -871,7 +611,7 @@
             this.PageStnList.Controls.Add(this.pnlStnListEdit);
             this.PageStnList.Controls.Add(this.pnlStnListToolBar);
             this.PageStnList.Name = "PageStnList";
-            this.PageStnList.Size = new System.Drawing.Size(460, 628);
+            this.PageStnList.Size = new System.Drawing.Size(465, 628);
             this.PageStnList.Text = "工位信息列表";
             // 
             // pnlStnListGrid
@@ -880,7 +620,7 @@
             this.pnlStnListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlStnListGrid.Location = new System.Drawing.Point(0, 86);
             this.pnlStnListGrid.Name = "pnlStnListGrid";
-            this.pnlStnListGrid.Size = new System.Drawing.Size(460, 542);
+            this.pnlStnListGrid.Size = new System.Drawing.Size(465, 542);
             this.pnlStnListGrid.TabIndex = 2;
             // 
             // gridControlStnList
@@ -890,7 +630,13 @@
             this.gridControlStnList.Location = new System.Drawing.Point(2, 2);
             this.gridControlStnList.MainView = this.gridViewStnList;
             this.gridControlStnList.Name = "gridControlStnList";
-            this.gridControlStnList.Size = new System.Drawing.Size(456, 538);
+            this.gridControlStnList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repSpinQty,
+            this.repbtnDelete,
+            this.repLookUpCurrencyCate,
+            this.repDateQuotationDate,
+            this.repSpinEditAmount});
+            this.gridControlStnList.Size = new System.Drawing.Size(461, 538);
             this.gridControlStnList.TabIndex = 4;
             this.gridControlStnList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewStnList});
@@ -913,6 +659,7 @@
             this.gridViewStnList.GridControl = this.gridControlStnList;
             this.gridViewStnList.IndicatorWidth = 40;
             this.gridViewStnList.Name = "gridViewStnList";
+            this.gridViewStnList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewStnList.OptionsBehavior.Editable = false;
             this.gridViewStnList.OptionsBehavior.ReadOnly = true;
             this.gridViewStnList.OptionsMenu.EnableColumnMenu = false;
@@ -920,7 +667,6 @@
             this.gridViewStnList.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridViewStnList.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewStnList.OptionsNavigation.EnterMoveNextColumn = true;
-            this.gridViewStnList.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridViewStnList.OptionsView.ColumnAutoWidth = false;
             this.gridViewStnList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewStnList.OptionsView.ShowFooter = true;
@@ -988,6 +734,74 @@
             this.colGetTime.VisibleIndex = 3;
             this.colGetTime.Width = 130;
             // 
+            // repSpinQty
+            // 
+            this.repSpinQty.AutoHeight = false;
+            this.repSpinQty.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repSpinQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinQty.MaxValue = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.repSpinQty.Name = "repSpinQty";
+            // 
+            // repbtnDelete
+            // 
+            this.repbtnDelete.AutoHeight = false;
+            this.repbtnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.repbtnDelete.Name = "repbtnDelete";
+            this.repbtnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // repLookUpCurrencyCate
+            // 
+            this.repLookUpCurrencyCate.AutoHeight = false;
+            this.repLookUpCurrencyCate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repLookUpCurrencyCate.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AutoId", "AutoId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyCateAbb", "币种缩写"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyCateName", "币种名称"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ExchangeRate", "汇率")});
+            this.repLookUpCurrencyCate.DisplayMember = "CurrencyCateName";
+            this.repLookUpCurrencyCate.Name = "repLookUpCurrencyCate";
+            this.repLookUpCurrencyCate.NullText = "";
+            this.repLookUpCurrencyCate.ValueMember = "AutoId";
+            // 
+            // repDateQuotationDate
+            // 
+            this.repDateQuotationDate.AutoHeight = false;
+            this.repDateQuotationDate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repDateQuotationDate.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repDateQuotationDate.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repDateQuotationDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repDateQuotationDate.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repDateQuotationDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repDateQuotationDate.Mask.EditMask = "G";
+            this.repDateQuotationDate.Name = "repDateQuotationDate";
+            // 
+            // repSpinEditAmount
+            // 
+            this.repSpinEditAmount.AutoHeight = false;
+            this.repSpinEditAmount.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repSpinEditAmount.DisplayFormat.FormatString = "N2";
+            this.repSpinEditAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinEditAmount.EditFormat.FormatString = "N2";
+            this.repSpinEditAmount.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinEditAmount.Mask.EditMask = "N2";
+            this.repSpinEditAmount.MaxValue = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.repSpinEditAmount.Name = "repSpinEditAmount";
+            // 
             // pnlStnListEdit
             // 
             this.pnlStnListEdit.Controls.Add(this.textEditStnDesc);
@@ -997,7 +811,7 @@
             this.pnlStnListEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlStnListEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlStnListEdit.Name = "pnlStnListEdit";
-            this.pnlStnListEdit.Size = new System.Drawing.Size(460, 46);
+            this.pnlStnListEdit.Size = new System.Drawing.Size(465, 46);
             this.pnlStnListEdit.TabIndex = 1;
             // 
             // textEditStnDesc
@@ -1044,7 +858,7 @@
             this.pnlStnListToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlStnListToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlStnListToolBar.Name = "pnlStnListToolBar";
-            this.pnlStnListToolBar.Size = new System.Drawing.Size(460, 40);
+            this.pnlStnListToolBar.Size = new System.Drawing.Size(465, 40);
             this.pnlStnListToolBar.TabIndex = 0;
             // 
             // btnStnListCancel
@@ -1097,7 +911,7 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1264, 68);
+            this.pnlTop.Size = new System.Drawing.Size(973, 68);
             this.pnlTop.TabIndex = 1;
             // 
             // btnRefresh
@@ -1173,6 +987,8 @@
             // dockManagerRight
             // 
             this.dockManagerRight.Form = this;
+            this.dockManagerRight.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.dockPnlRight});
             this.dockManagerRight.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -1184,34 +1000,225 @@
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
-            // FrmStnSummary
+            // dockPnlRight
+            // 
+            this.dockPnlRight.Controls.Add(this.dockPanel1_Container);
+            this.dockPnlRight.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.dockPnlRight.ID = new System.Guid("c120855e-ccb7-4c11-a2ad-84ddcf3588fe");
+            this.dockPnlRight.Image = ((System.Drawing.Image)(resources.GetObject("dockPnlRight.Image")));
+            this.dockPnlRight.Location = new System.Drawing.Point(973, 0);
+            this.dockPnlRight.Name = "dockPnlRight";
+            this.dockPnlRight.Options.AllowDockAsTabbedDocument = false;
+            this.dockPnlRight.Options.AllowDockBottom = false;
+            this.dockPnlRight.Options.AllowDockFill = false;
+            this.dockPnlRight.Options.AllowDockLeft = false;
+            this.dockPnlRight.Options.AllowDockTop = false;
+            this.dockPnlRight.Options.AllowFloating = false;
+            this.dockPnlRight.Options.FloatOnDblClick = false;
+            this.dockPnlRight.Options.ShowCloseButton = false;
+            this.dockPnlRight.Options.ShowMaximizeButton = false;
+            this.dockPnlRight.OriginalSize = new System.Drawing.Size(400, 200);
+            this.dockPnlRight.Size = new System.Drawing.Size(400, 729);
+            this.dockPnlRight.Text = "基础功能模块列表";
+            // 
+            // dockPanel1_Container
+            // 
+            this.dockPanel1_Container.Controls.Add(this.treeListStnModule);
+            this.dockPanel1_Container.Controls.Add(this.pnlRightToolBar);
+            this.dockPanel1_Container.Controls.Add(this.pnlRightTop);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
+            this.dockPanel1_Container.Name = "dockPanel1_Container";
+            this.dockPanel1_Container.Size = new System.Drawing.Size(392, 702);
+            this.dockPanel1_Container.TabIndex = 0;
+            // 
+            // treeListStnModule
+            // 
+            this.treeListStnModule.AllowDrop = true;
+            this.treeListStnModule.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeColFunctionDesc,
+            this.treeColDetail});
+            this.treeListStnModule.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeListStnModule.IndicatorWidth = 40;
+            this.treeListStnModule.KeyFieldName = "ReID";
+            this.treeListStnModule.Location = new System.Drawing.Point(0, 116);
+            this.treeListStnModule.Name = "treeListStnModule";
+            this.treeListStnModule.OptionsBehavior.Editable = false;
+            this.treeListStnModule.OptionsBehavior.ReadOnly = true;
+            this.treeListStnModule.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.treeListStnModule.OptionsClipboard.CopyNodeHierarchy = DevExpress.Utils.DefaultBoolean.True;
+            this.treeListStnModule.OptionsSelection.MultiSelect = true;
+            this.treeListStnModule.OptionsSelection.UseIndicatorForSelection = true;
+            this.treeListStnModule.OptionsView.AutoWidth = false;
+            this.treeListStnModule.OptionsView.EnableAppearanceEvenRow = true;
+            this.treeListStnModule.OptionsView.EnableAppearanceOddRow = true;
+            this.treeListStnModule.ParentFieldName = "ReParent";
+            this.treeListStnModule.Size = new System.Drawing.Size(392, 586);
+            this.treeListStnModule.TabIndex = 2;
+            this.treeListStnModule.CustomDrawNodeIndicator += new DevExpress.XtraTreeList.CustomDrawNodeIndicatorEventHandler(this.treeListStnModule_CustomDrawNodeIndicator);
+            this.treeListStnModule.DoubleClick += new System.EventHandler(this.treeListStnModule_DoubleClick);
+            this.treeListStnModule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListStnModule_KeyDown);
+            this.treeListStnModule.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeListStnModule_MouseDown);
+            this.treeListStnModule.MouseMove += new System.Windows.Forms.MouseEventHandler(this.treeListStnModule_MouseMove);
+            // 
+            // treeColFunctionDesc
+            // 
+            this.treeColFunctionDesc.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeColFunctionDesc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeColFunctionDesc.Caption = "功能模块号 - 功能简述 / 供货内容";
+            this.treeColFunctionDesc.FieldName = "FunctionDesc";
+            this.treeColFunctionDesc.Name = "treeColFunctionDesc";
+            this.treeColFunctionDesc.Visible = true;
+            this.treeColFunctionDesc.VisibleIndex = 0;
+            this.treeColFunctionDesc.Width = 250;
+            // 
+            // treeColDetail
+            // 
+            this.treeColDetail.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeColDetail.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeColDetail.Caption = "供货数量 * 单价 = 金额";
+            this.treeColDetail.FieldName = "Detail";
+            this.treeColDetail.Name = "treeColDetail";
+            this.treeColDetail.Visible = true;
+            this.treeColDetail.VisibleIndex = 1;
+            this.treeColDetail.Width = 200;
+            // 
+            // pnlRightToolBar
+            // 
+            this.pnlRightToolBar.Controls.Add(this.btnModuleCopy);
+            this.pnlRightToolBar.Controls.Add(this.btnModuleNew);
+            this.pnlRightToolBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlRightToolBar.Location = new System.Drawing.Point(0, 76);
+            this.pnlRightToolBar.Name = "pnlRightToolBar";
+            this.pnlRightToolBar.Size = new System.Drawing.Size(392, 40);
+            this.pnlRightToolBar.TabIndex = 3;
+            // 
+            // btnModuleCopy
+            // 
+            this.btnModuleCopy.Location = new System.Drawing.Point(91, 9);
+            this.btnModuleCopy.Name = "btnModuleCopy";
+            this.btnModuleCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleCopy.TabIndex = 106;
+            this.btnModuleCopy.TabStop = false;
+            this.btnModuleCopy.Text = "复制";
+            this.btnModuleCopy.Click += new System.EventHandler(this.btnModuleCopy_Click);
+            // 
+            // btnModuleNew
+            // 
+            this.btnModuleNew.Location = new System.Drawing.Point(10, 9);
+            this.btnModuleNew.Name = "btnModuleNew";
+            this.btnModuleNew.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleNew.TabIndex = 105;
+            this.btnModuleNew.TabStop = false;
+            this.btnModuleNew.Text = "新增";
+            this.btnModuleNew.Click += new System.EventHandler(this.btnModuleNew_Click);
+            // 
+            // pnlRightTop
+            // 
+            this.pnlRightTop.Controls.Add(this.btnModuleQuery);
+            this.pnlRightTop.Controls.Add(this.textCommon);
+            this.pnlRightTop.Controls.Add(this.labCommon);
+            this.pnlRightTop.Controls.Add(this.dateGetTimeEnd);
+            this.pnlRightTop.Controls.Add(this.dateGetTimeBegin);
+            this.pnlRightTop.Controls.Add(this.lab1);
+            this.pnlRightTop.Controls.Add(this.labelGetTime);
+            this.pnlRightTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlRightTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlRightTop.Name = "pnlRightTop";
+            this.pnlRightTop.Size = new System.Drawing.Size(392, 76);
+            this.pnlRightTop.TabIndex = 1;
+            // 
+            // btnModuleQuery
+            // 
+            this.btnModuleQuery.Location = new System.Drawing.Point(255, 43);
+            this.btnModuleQuery.Name = "btnModuleQuery";
+            this.btnModuleQuery.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleQuery.TabIndex = 104;
+            this.btnModuleQuery.Text = "查询";
+            this.btnModuleQuery.Click += new System.EventHandler(this.btnModuleQuery_Click);
+            // 
+            // textCommon
+            // 
+            this.textCommon.EnterMoveNextControl = true;
+            this.textCommon.Location = new System.Drawing.Point(86, 44);
+            this.textCommon.Name = "textCommon";
+            this.textCommon.Size = new System.Drawing.Size(150, 20);
+            this.textCommon.TabIndex = 103;
+            // 
+            // labCommon
+            // 
+            this.labCommon.Location = new System.Drawing.Point(20, 47);
+            this.labCommon.Name = "labCommon";
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
+            this.labCommon.TabIndex = 108;
+            this.labCommon.Text = "通用查询：";
+            // 
+            // dateGetTimeEnd
+            // 
+            this.dateGetTimeEnd.EditValue = null;
+            this.dateGetTimeEnd.EnterMoveNextControl = true;
+            this.dateGetTimeEnd.Location = new System.Drawing.Point(202, 14);
+            this.dateGetTimeEnd.Name = "dateGetTimeEnd";
+            this.dateGetTimeEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateGetTimeEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateGetTimeEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dateGetTimeEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateGetTimeEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dateGetTimeEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateGetTimeEnd.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dateGetTimeEnd.Size = new System.Drawing.Size(100, 20);
+            this.dateGetTimeEnd.TabIndex = 102;
+            // 
+            // dateGetTimeBegin
+            // 
+            this.dateGetTimeBegin.EditValue = null;
+            this.dateGetTimeBegin.EnterMoveNextControl = true;
+            this.dateGetTimeBegin.Location = new System.Drawing.Point(86, 14);
+            this.dateGetTimeBegin.Name = "dateGetTimeBegin";
+            this.dateGetTimeBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateGetTimeBegin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateGetTimeBegin.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dateGetTimeBegin.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateGetTimeBegin.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dateGetTimeBegin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateGetTimeBegin.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dateGetTimeBegin.Size = new System.Drawing.Size(100, 20);
+            this.dateGetTimeBegin.TabIndex = 101;
+            // 
+            // lab1
+            // 
+            this.lab1.Location = new System.Drawing.Point(192, 17);
+            this.lab1.Name = "lab1";
+            this.lab1.Size = new System.Drawing.Size(4, 14);
+            this.lab1.TabIndex = 107;
+            this.lab1.Text = "-";
+            // 
+            // labelGetTime
+            // 
+            this.labelGetTime.Location = new System.Drawing.Point(20, 17);
+            this.labelGetTime.Name = "labelGetTime";
+            this.labelGetTime.Size = new System.Drawing.Size(60, 14);
+            this.labelGetTime.TabIndex = 106;
+            this.labelGetTime.Text = "登记日期：";
+            // 
+            // FrmStnSummary_Drag
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1264, 729);
+            this.ClientSize = new System.Drawing.Size(1373, 729);
             this.Controls.Add(this.pnlLeft);
-            this.Name = "FrmStnSummary";
-            this.TabText = "工位信息登记";
-            this.Text = "工位信息登记";
+            this.Controls.Add(this.dockPnlRight);
+            this.Name = "FrmStnSummary_Drag";
+            this.TabText = "工位信息登记_D";
+            this.Text = "工位信息登记_D";
             this.Activated += new System.EventHandler(this.FrmStnSummary_Activated);
             this.Load += new System.EventHandler(this.FrmStnSummary_Load);
             this.Shown += new System.EventHandler(this.FrmStnSummary_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAutoQuotationNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).EndInit();
             this.pnlLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetail)).EndInit();
-            this.pnlDeliveryDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TabControlDeliveryDetail)).EndInit();
-            this.TabControlDeliveryDetail.ResumeLayout(false);
-            this.PageDeliveryDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetailGrid)).EndInit();
-            this.pnlDeliveryDetailGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repMemoDeliveryText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetailToolBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlModuleList)).EndInit();
             this.pnlModuleList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabModuleList)).EndInit();
@@ -1226,6 +1233,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.TableStnList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableStnListModule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewModuleList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlModuleListToolBar)).EndInit();
             this.pnlModuleListToolBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlStnList)).EndInit();
@@ -1238,6 +1251,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlStnList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_StnList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStnList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repbtnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repLookUpCurrencyCate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDateQuotationDate.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repDateQuotationDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repSpinEditAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStnListEdit)).EndInit();
             this.pnlStnListEdit.ResumeLayout(false);
             this.pnlStnListEdit.PerformLayout();
@@ -1252,6 +1271,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditSSNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerRight)).EndInit();
+            this.dockPnlRight.ResumeLayout(false);
+            this.dockPanel1_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeListStnModule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRightToolBar)).EndInit();
+            this.pnlRightToolBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRightTop)).EndInit();
+            this.pnlRightTop.ResumeLayout(false);
+            this.pnlRightTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeEnd.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeEnd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeBegin.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateGetTimeBegin.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1305,6 +1337,11 @@
         private System.Windows.Forms.BindingSource bindingSource_StnList;
         private DevExpress.XtraGrid.GridControl gridControlStnList;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewStnList;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinQty;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repbtnDelete;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpCurrencyCate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repDateQuotationDate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repSpinEditAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colAutoId;
         private DevExpress.XtraGrid.Columns.GridColumn colSSNo;
         private DevExpress.XtraGrid.Columns.GridColumn colStnNo;
@@ -1328,43 +1365,29 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSMNo;
         private DevExpress.XtraGrid.Columns.GridColumn colFunctionDesc;
         private DevExpress.XtraGrid.Columns.GridColumn colFunctionDetail;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit2;
         private DevExpress.XtraEditors.PanelControl pnlModuleListToolBar;
         private DevExpress.XtraBars.Docking.DockManager dockManagerRight;
+        private DevExpress.XtraBars.Docking.DockPanel dockPnlRight;
+        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
+        private DevExpress.XtraEditors.PanelControl pnlRightTop;
+        private DevExpress.XtraEditors.SimpleButton btnModuleQuery;
+        private DevExpress.XtraEditors.TextEdit textCommon;
+        private DevExpress.XtraEditors.LabelControl labCommon;
+        private DevExpress.XtraEditors.DateEdit dateGetTimeEnd;
+        private DevExpress.XtraEditors.DateEdit dateGetTimeBegin;
+        private DevExpress.XtraEditors.LabelControl lab1;
+        private DevExpress.XtraEditors.LabelControl labelGetTime;
+        private DevExpress.XtraTreeList.TreeList treeListStnModule;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeColFunctionDesc;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeColDetail;
         private DevExpress.XtraEditors.SimpleButton btnModuleDelete;
         private DevExpress.XtraEditors.SimpleButton btnModuleNew;
         private DevExpress.XtraEditors.SimpleButton btnModuleCopy;
-        private DevExpress.XtraEditors.SimpleButton btnModuleSelect;
-        private DevExpress.XtraEditors.PanelControl pnlDeliveryDetail;
-        private DevExpress.XtraEditors.SplitterControl splitterRight;
-        private DevExpress.XtraTab.XtraTabControl TabControlDeliveryDetail;
-        private DevExpress.XtraTab.XtraTabPage PageDeliveryDetail;
-        private System.Data.DataSet dataSet_DeliveryDetail;
-        private System.Data.DataTable TableDeliveryDetail;
-        private System.Data.DataColumn dataColumn1;
-        private System.Data.DataColumn dataColuSMNo;
-        private System.Data.DataColumn dataColuDeliveryText;
-        private System.Data.DataColumn dataColuFunctionDesc;
-        private System.Data.DataColumn dataColuMatQty;
-        private System.Data.DataColumn dataColuMatUnit;
-        private System.Data.DataColumn dataColuMatAmount;
-        private System.Data.DataColumn dataColumn2;
-        private System.Data.DataColumn dataColumn3;
-        private System.Data.DataColumn dataColumn4;
-        private DevExpress.XtraEditors.PanelControl pnlDeliveryDetailGrid;
-        private DevExpress.XtraEditors.PanelControl pnlDeliveryDetailToolBar;
-        private System.Windows.Forms.BindingSource bindingSource_DeliveryDetail;
-        private DevExpress.XtraGrid.GridControl gridControlDeliveryDetail;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewDeliveryDetail;
-        private DevExpress.XtraGrid.Columns.GridColumn colSMNo1;
-        private DevExpress.XtraGrid.Columns.GridColumn colDeliveryText;
-        private DevExpress.XtraGrid.Columns.GridColumn colFunctionDesc1;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaterialName;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaterialBrand;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaterialCate;
-        private DevExpress.XtraGrid.Columns.GridColumn colMatUnit;
-        private DevExpress.XtraGrid.Columns.GridColumn colMatQty;
-        private DevExpress.XtraGrid.Columns.GridColumn colMatAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaterialDesc;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repMemoDeliveryText;
+        private DevExpress.XtraEditors.PanelControl pnlRightToolBar;
     }
 }
