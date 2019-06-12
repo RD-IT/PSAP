@@ -68,21 +68,15 @@
             this.colSSNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStnNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStnDesc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repMemoStnDesc = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGetTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAutoQuotationNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSMNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFunctionDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colListModuleAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repSearchBussinessBaseNo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridCBussinessBaseNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridCBussinessBaseText = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridCBussinessCategoryText = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridCAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repCheckSelect = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.repLookUpReqDep = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repCheckIsVoucher = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.dataColFunctionDetail = new System.Data.DataColumn();
+            this.colFunctionDetail = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textCommon.Properties)).BeginInit();
@@ -102,11 +96,7 @@
             this.pnlMiddle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCtlStnSummaryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStnSummaryList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repCheckIsVoucher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repMemoStnDesc)).BeginInit();
             this.SuspendLayout();
             // 
             // pnltop
@@ -135,7 +125,7 @@
             this.btnSaveExcel.Location = new System.Drawing.Point(575, 43);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveExcel.TabIndex = 33;
+            this.btnSaveExcel.TabIndex = 6;
             this.btnSaveExcel.Text = "存为Excel";
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
@@ -145,7 +135,7 @@
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery.TabIndex = 6;
+            this.btnQuery.TabIndex = 5;
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -156,7 +146,7 @@
             this.textCommon.Margin = new System.Windows.Forms.Padding(4);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
-            this.textCommon.TabIndex = 5;
+            this.textCommon.TabIndex = 4;
             // 
             // lookUpPrepared
             // 
@@ -174,7 +164,7 @@
             this.lookUpPrepared.Properties.NullText = "";
             this.lookUpPrepared.Properties.ValueMember = "EmpName";
             this.lookUpPrepared.Size = new System.Drawing.Size(120, 20);
-            this.lookUpPrepared.TabIndex = 4;
+            this.lookUpPrepared.TabIndex = 3;
             // 
             // searchLookUpStnModule
             // 
@@ -328,7 +318,8 @@
             this.dataColAutoQuotationNo,
             this.dataColListModuleAutoId,
             this.dataColSMNo,
-            this.dataColFunctionDesc});
+            this.dataColFunctionDesc,
+            this.dataColFunctionDetail});
             this.TableStnSummaryList.TableName = "StnSummaryList";
             // 
             // dataColAutoId
@@ -424,10 +415,7 @@
             this.gridCtlStnSummaryList.MainView = this.gridViewStnSummaryList;
             this.gridCtlStnSummaryList.Name = "gridCtlStnSummaryList";
             this.gridCtlStnSummaryList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repSearchBussinessBaseNo,
-            this.repCheckSelect,
-            this.repLookUpReqDep,
-            this.repCheckIsVoucher});
+            this.repMemoStnDesc});
             this.gridCtlStnSummaryList.Size = new System.Drawing.Size(1214, 421);
             this.gridCtlStnSummaryList.TabIndex = 5;
             this.gridCtlStnSummaryList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -445,6 +433,7 @@
             this.colAutoQuotationNo,
             this.colSMNo,
             this.colFunctionDesc,
+            this.colFunctionDetail,
             this.colListModuleAutoId});
             this.gridViewStnSummaryList.GridControl = this.gridCtlStnSummaryList;
             this.gridViewStnSummaryList.IndicatorWidth = 40;
@@ -490,13 +479,20 @@
             // 
             // colStnDesc
             // 
+            this.colStnDesc.AppearanceCell.Options.UseTextOptions = true;
+            this.colStnDesc.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colStnDesc.AppearanceHeader.Options.UseTextOptions = true;
             this.colStnDesc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colStnDesc.ColumnEdit = this.repMemoStnDesc;
             this.colStnDesc.FieldName = "StnDesc";
             this.colStnDesc.Name = "colStnDesc";
             this.colStnDesc.Visible = true;
             this.colStnDesc.VisibleIndex = 3;
             this.colStnDesc.Width = 200;
+            // 
+            // repMemoStnDesc
+            // 
+            this.repMemoStnDesc.Name = "repMemoStnDesc";
             // 
             // colPrepared
             // 
@@ -549,92 +545,28 @@
             this.colFunctionDesc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colFunctionDesc.Visible = true;
             this.colFunctionDesc.VisibleIndex = 7;
-            this.colFunctionDesc.Width = 300;
+            this.colFunctionDesc.Width = 200;
             // 
             // colListModuleAutoId
             // 
             this.colListModuleAutoId.FieldName = "ListModuleAutoId";
             this.colListModuleAutoId.Name = "colListModuleAutoId";
             // 
-            // repSearchBussinessBaseNo
+            // dataColFunctionDetail
             // 
-            this.repSearchBussinessBaseNo.AutoHeight = false;
-            this.repSearchBussinessBaseNo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repSearchBussinessBaseNo.DisplayMember = "BussinessBaseText";
-            this.repSearchBussinessBaseNo.Name = "repSearchBussinessBaseNo";
-            this.repSearchBussinessBaseNo.NullText = "";
-            this.repSearchBussinessBaseNo.ValueMember = "BussinessBaseNo";
-            this.repSearchBussinessBaseNo.View = this.gridView1;
+            this.dataColFunctionDetail.Caption = "详细功能";
+            this.dataColFunctionDetail.ColumnName = "FunctionDetail";
             // 
-            // gridView1
+            // colFunctionDetail
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridCBussinessBaseNo,
-            this.gridCBussinessBaseText,
-            this.gridCBussinessCategoryText,
-            this.gridCAutoId});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.IndicatorWidth = 60;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridCBussinessBaseNo
-            // 
-            this.gridCBussinessBaseNo.Caption = "往来方编号";
-            this.gridCBussinessBaseNo.FieldName = "BussinessBaseNo";
-            this.gridCBussinessBaseNo.Name = "gridCBussinessBaseNo";
-            this.gridCBussinessBaseNo.Visible = true;
-            this.gridCBussinessBaseNo.VisibleIndex = 0;
-            // 
-            // gridCBussinessBaseText
-            // 
-            this.gridCBussinessBaseText.Caption = "往来方名称";
-            this.gridCBussinessBaseText.FieldName = "BussinessBaseText";
-            this.gridCBussinessBaseText.Name = "gridCBussinessBaseText";
-            this.gridCBussinessBaseText.Visible = true;
-            this.gridCBussinessBaseText.VisibleIndex = 1;
-            // 
-            // gridCBussinessCategoryText
-            // 
-            this.gridCBussinessCategoryText.Caption = "往来方分类";
-            this.gridCBussinessCategoryText.FieldName = "BussinessCategoryText";
-            this.gridCBussinessCategoryText.Name = "gridCBussinessCategoryText";
-            this.gridCBussinessCategoryText.Visible = true;
-            this.gridCBussinessCategoryText.VisibleIndex = 2;
-            // 
-            // gridCAutoId
-            // 
-            this.gridCAutoId.Caption = "AutoId";
-            this.gridCAutoId.FieldName = "AutoId";
-            this.gridCAutoId.Name = "gridCAutoId";
-            // 
-            // repCheckSelect
-            // 
-            this.repCheckSelect.AutoHeight = false;
-            this.repCheckSelect.Name = "repCheckSelect";
-            this.repCheckSelect.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.repCheckSelect.ValueGrayed = false;
-            // 
-            // repLookUpReqDep
-            // 
-            this.repLookUpReqDep.AutoHeight = false;
-            this.repLookUpReqDep.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repLookUpReqDep.DisplayMember = "DepartmentName";
-            this.repLookUpReqDep.Name = "repLookUpReqDep";
-            this.repLookUpReqDep.NullText = "";
-            this.repLookUpReqDep.ValueMember = "DepartmentNo";
-            // 
-            // repCheckIsVoucher
-            // 
-            this.repCheckIsVoucher.AutoHeight = false;
-            this.repCheckIsVoucher.Name = "repCheckIsVoucher";
-            this.repCheckIsVoucher.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.repCheckIsVoucher.ValueChecked = 1;
-            this.repCheckIsVoucher.ValueGrayed = 0;
-            this.repCheckIsVoucher.ValueUnchecked = 0;
+            this.colFunctionDetail.AppearanceHeader.Options.UseTextOptions = true;
+            this.colFunctionDetail.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colFunctionDetail.FieldName = "FunctionDetail";
+            this.colFunctionDetail.Name = "colFunctionDetail";
+            this.colFunctionDetail.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colFunctionDetail.Visible = true;
+            this.colFunctionDetail.VisibleIndex = 8;
+            this.colFunctionDetail.Width = 300;
             // 
             // FrmStnSummary_Query
             // 
@@ -667,11 +599,7 @@
             this.pnlMiddle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCtlStnSummaryList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStnSummaryList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repSearchBussinessBaseNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repCheckSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repLookUpReqDep)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repCheckIsVoucher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repMemoStnDesc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -723,14 +651,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSMNo;
         private DevExpress.XtraGrid.Columns.GridColumn colFunctionDesc;
         private DevExpress.XtraGrid.Columns.GridColumn colListModuleAutoId;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repSearchBussinessBaseNo;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridCBussinessBaseNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridCBussinessBaseText;
-        private DevExpress.XtraGrid.Columns.GridColumn gridCBussinessCategoryText;
-        private DevExpress.XtraGrid.Columns.GridColumn gridCAutoId;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckSelect;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repLookUpReqDep;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repCheckIsVoucher;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repMemoStnDesc;
+        private System.Data.DataColumn dataColFunctionDetail;
+        private DevExpress.XtraGrid.Columns.GridColumn colFunctionDetail;
     }
 }

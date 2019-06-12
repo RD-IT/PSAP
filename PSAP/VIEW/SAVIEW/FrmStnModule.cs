@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using PSAP.DAO.BSDAO;
 using PSAP.DAO.SADAO;
 using PSAP.PSAPCommon;
@@ -41,6 +42,16 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private DataRow copyRow = null;
 
+        /// <summary>
+        /// 复制编辑新的功能模块号
+        /// </summary>
+        public static string copyNewSMNoStr = "";
+
+        /// <summary>
+        /// 工位和模块关系的ID
+        /// </summary>
+        public static int StnSummaryListModule_AutoId = 0;
+
         #endregion
 
         #region 构造方法
@@ -67,13 +78,6 @@ namespace PSAP.VIEW.BSVIEW
 
                 Set_ButtonEditGrid_State(true);
 
-
-                //构建GridLevelNode并添加到LevelTree集合里面
-                GridLevelNode node = new GridLevelNode();
-                node.LevelTemplate = gridViewMaterialDetail;
-                node.RelationName = "RelationDM";//这里对应集合的属性名称
-                gridControlDeliveryDetail.LevelTree.Nodes.AddRange(new GridLevelNode[] { node });
-
             }
             catch (Exception ex)
             {
@@ -94,7 +98,7 @@ namespace PSAP.VIEW.BSVIEW
                     querySMNoStr = "";
 
                     dataSet_StnModule.Tables[0].Clear();
-                    smDAO.QueryStnModule(dataSet_StnModule.Tables[0], "", "", "", textCommon.Text);
+                    smDAO.QueryStnModule(dataSet_StnModule.Tables[0], "", "", "", textCommon.Text, "");
                     Set_ButtonEditGrid_State(true);
 
                     if (dataSet_StnModule.Tables[0].Rows.Count > 0)
@@ -108,23 +112,27 @@ namespace PSAP.VIEW.BSVIEW
                     textCommon.Text = "";
                     dataSet_StnModule.Tables[0].Clear();
                     TableDeliveryDetail.Rows.Clear();
-                    TableMaterialDetail.Rows.Clear();
                     btnNew_Click(null, null);
                     defaultNewState = false;
                 }
                 else if (copySMNoStr != "")
                 {
-                    textCommon.Text = copySMNoStr;
+                    textCommon.Tag = copySMNoStr;
                     copySMNoStr = "";
-                    dataSet_StnModule.Tables[0].Clear();
-                    smDAO.QueryStnModule(dataSet_StnModule.Tables[0], "", "", "", textCommon.Text);
-                    Set_ButtonEditGrid_State(true);
-                    if (dataSet_StnModule.Tables[0].Rows.Count > 0)
-                    {
-                        dateGetTimeBegin.DateTime = DataTypeConvert.GetDateTime(dataSet_StnModule.Tables[0].Rows[0]["GetTime"]).Date;
-                        dateGetTimeEnd.DateTime = dateGetTimeBegin.DateTime.AddDays(7);
-                    }
-
+                    this.Width = 1024;
+                    this.Height = 768;
+                    dockPnlLeft.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
+                    copyNewSMNoStr = "";
+                    dataSet_StnModule.Tables[0].Rows.Clear();
+                    dataSet_DeliveryDetail.Tables[0].Rows.Clear();
+                    //smDAO.QueryStnModule(dataSet_StnModule.Tables[0], "", "", "", textCommon.Text);
+                    //Set_ButtonEditGrid_State(true);
+                    //if (dataSet_StnModule.Tables[0].Rows.Count > 0)
+                    //{
+                    //    dateGetTimeBegin.DateTime = DataTypeConvert.GetDateTime(dataSet_StnModule.Tables[0].Rows[0]["GetTime"]).Date;
+                    //    dateGetTimeEnd.DateTime = dateGetTimeBegin.DateTime.AddDays(7);
+                    //}
+                    
                     btnCopy_Click(null, null);
                 }
             }
@@ -226,44 +234,17 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 扩展所有供货明细的详细信息
+        /// 查询结果存为Excel
         /// </summary>
-        private void btnExpand_Click(object sender, EventArgs e)
+        private void btnSaveExcel_Click(object sender, EventArgs e)
         {
             try
             {
-                if (gridViewDeliveryDetail.DataRowCount > 0)
-                {
-                    for (int i = 0; i < gridViewDeliveryDetail.DataRowCount; i++)
-                    {
-                        gridViewDeliveryDetail.ExpandMasterRow(i, 0);
-                    }
-                }
+                FileHandler.SaveDevGridControlExportToExcel(gridViewDeliveryDetail);
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--扩展所有供货明细的详细信息错误。", ex);
-            }
-        }
-
-        /// <summary>
-        /// 收缩所有供货明细的详细信息
-        /// </summary>
-        private void btnCollapse_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (gridViewDeliveryDetail.DataRowCount > 0)
-                {
-                    for (int i = 0; i < gridViewDeliveryDetail.DataRowCount; i++)
-                    {
-                        gridViewDeliveryDetail.CollapseMasterRow(i);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--收缩所有供货明细的详细信息错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
             }
         }
 
@@ -299,23 +280,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
-                    int focusedRowIndex = gridViewDeliveryDetail.GetFocusedDataSourceRowIndex();
-                    if (gridViewDeliveryDetail.GetMasterRowExpanded(focusedRowIndex))
-                        gridViewDeliveryDetail.CollapseMasterRow(focusedRowIndex);
-                    else
-                        gridViewDeliveryDetail.ExpandMasterRow(focusedRowIndex, 0);
-                }
-                else if (e.Button == MouseButtons.Right)
-                {
-                    int autoIdInt = DataTypeConvert.GetInt(gridViewDeliveryDetail.GetFocusedDataRow()["AutoId"]);
-                    DataRow[] mdRows = dataSet_DeliveryDetail.Tables[1].Select(string.Format("DeliveryDetailNO = {0}", autoIdInt));
-                    string contentStr = "";
-                    for (int i = 0; i < (mdRows.Length <= SystemInfo.ToolTipDisplayMaxRowCount ? mdRows.Length : SystemInfo.ToolTipDisplayMaxRowCount); i++)
-                    {
-                        contentStr += string.Format("名称：{0}  数量：{1}  品牌：{2}\n", DataTypeConvert.GetString(mdRows[i]["MaterialName"]), DataTypeConvert.GetString(mdRows[i]["MaterialQty"]), DataTypeConvert.GetString(mdRows[i]["MaterialBrand"]));
-                    }
-
-                    ControlHandler.NewToolTip("", contentStr, 3000, false);
+                    btnDDSave_Click(null, null);
                 }
             }
             catch (Exception ex)
@@ -325,16 +290,49 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 设置Grid单元格合并
+        /// </summary>
+        private void gridViewDeliveryDetail_CellMerge(object sender, DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                string firstColumnFieldName = "AutoId";
+
+                switch (e.Column.FieldName)
+                {
+                    case "DeliveryText":
+                    case "FunctionDesc":
+                    case "Unit":
+                    case "DeliveryQty":
+                    case "Amount":
+                    case "Prepared":
+                        {
+                            string valueFirstColumn1 = Convert.ToString(view.GetRowCellValue(e.RowHandle1, firstColumnFieldName));
+                            string valueFirstColumn2 = Convert.ToString(view.GetRowCellValue(e.RowHandle2, firstColumnFieldName));
+                            string valueOtherColumn1 = Convert.ToString(view.GetRowCellValue(e.RowHandle1, e.Column.FieldName));
+                            string valueOtherColumn2 = Convert.ToString(view.GetRowCellValue(e.RowHandle2, e.Column.FieldName));
+                            e.Merge = valueFirstColumn1 == valueFirstColumn2 && valueOtherColumn1 == valueOtherColumn2;
+                            e.Handled = true;
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--设置Grid单元格合并错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 根据功能模块号查询相关的供货明细信息
         /// </summary>
         private void QueryDeliveryDetail(string smNoStr)
         {
-            dataSet_DeliveryDetail.Tables[1].Rows.Clear();
             dataSet_DeliveryDetail.Tables[0].Rows.Clear();
             if (smNoStr != "")
             {
-                smDAO.QueryDeliveryDetail(dataSet_DeliveryDetail.Tables[0], smNoStr);
-                smDAO.QueryMaterialDetail(dataSet_DeliveryDetail.Tables[1], smNoStr);
+                smDAO.QueryDeliveryDetail_AllInfo(dataSet_DeliveryDetail.Tables[0], smNoStr);
             }
         }
 
@@ -355,6 +353,8 @@ namespace PSAP.VIEW.BSVIEW
 
                 ColumnView headView = (ColumnView)gridControlStnModule.FocusedView;
                 gridViewStnModule.FocusedRowHandle = headView.FocusedRowHandle;
+
+                copyRow = null;
 
                 Set_ButtonEditGrid_State(false);
                 textFunctionDesc.Focus();
@@ -398,20 +398,35 @@ namespace PSAP.VIEW.BSVIEW
                         return;
                     }
 
-                    string copySMNoStr = "";
+                    if (headRow.RowState == DataRowState.Modified)
+                    {
+                        int count = new FrmStnSummaryDAO().QueryOtherStnUseModuleCount(DataTypeConvert.GetString(headRow["SMNo"]), 0);
+                        if (count > 1)
+                        {
+                            if (MessageHandler.ShowMessageBox_YesNo(string.Format("功能模块[{0}]有{1}个工位信息使用，确认继续修改吗？", DataTypeConvert.GetString(headRow["SMNo"]), count)) != DialogResult.Yes)
+                                return;
+                        }
+                    }
+                    string tmpSMNoStr = "";
                     if (copyRow != null)
                     {
                         if (MessageHandler.ShowMessageBox_YesNo("确认是否复制供货明细信息？") == DialogResult.Yes)
-                            copySMNoStr = DataTypeConvert.GetString(copyRow["SMNo"]);
+                            tmpSMNoStr = DataTypeConvert.GetString(copyRow["SMNo"]);
                     }
-                    int ret = smDAO.SaveStnModule(headRow, copySMNoStr);
+                    int ret = smDAO.SaveStnModule(headRow, tmpSMNoStr, StnSummaryListModule_AutoId);
                     switch (ret)
                     {
                         case -1:
 
                             break;
                         case 1:
+                            if (DataTypeConvert.GetString(textCommon.Tag) != "")
+                            {
+                                copyNewSMNoStr = DataTypeConvert.GetString(headRow["SMNo"]);
+                                StnSummaryListModule_AutoId = 0;
+                            }
                             copyRow = null;
+                            textCommon.Tag = "";
                             break;
                         case 0:
                             return;
@@ -503,18 +518,34 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (TableStnModule.Rows.Count == 0 || bindingSource_StnModule.Current == null)
+                DataRow headRow;
+                string tmpSMNoStr = DataTypeConvert.GetString(textCommon.Tag);
+                if (tmpSMNoStr != "")
                 {
-                    MessageHandler.ShowMessageBox("当前没有功能模块信息记录，不能进行复制。");
-                    return;
+                    DataTable tmpTable = TableStnModule.Clone();
+                    smDAO.QueryStnModule(tmpTable, "", "", "", tmpSMNoStr, "");
+
+                    btnNew_Click(null, null);
+                    
+                    copyRow = tmpTable.Rows[0];
                 }
+                else
+                {
+                    if (TableStnModule.Rows.Count == 0 || bindingSource_StnModule.Current == null)
+                    {
+                        MessageHandler.ShowMessageBox("当前没有功能模块信息记录，不能进行复制。");
+                        return;
+                    }
 
-                DataRow headRow = ((DataRowView)bindingSource_StnModule.Current).Row;
-                DataTable tmpTable = TableStnModule.Clone();
-                tmpTable.ImportRow(headRow);
-                copyRow = tmpTable.Rows[0];
+                    headRow = ((DataRowView)bindingSource_StnModule.Current).Row;
+                    DataTable tmpTable = TableStnModule.Clone();
+                    tmpTable.ImportRow(headRow);
 
-                btnNew_Click(null, null);
+                    btnNew_Click(null, null);
+
+                    copyRow = tmpTable.Rows[0];
+                }
+                
                 headRow = ((DataRowView)bindingSource_StnModule.Current).Row;
                 headRow["FunctionDesc"] = copyRow["FunctionDesc"];
                 headRow["FunctionDetail"] = copyRow["FunctionDetail"];
@@ -568,12 +599,14 @@ namespace PSAP.VIEW.BSVIEW
                 btnDDNew.Enabled = btnDelete.Enabled;
                 btnDDSave.Enabled = btnDelete.Enabled;
                 btnDDDelete.Enabled = btnDelete.Enabled;
+                btnSaveExcel.Enabled = btnDelete.Enabled;
             }
             else
             {
                 btnDDNew.Enabled = false;
                 btnDDSave.Enabled = false;
                 btnDDDelete.Enabled = false;
+                btnSaveExcel.Enabled = false;
             }
 
             if (this.Controls.ContainsKey("lblEditFlag"))
@@ -614,7 +647,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_StnModule.Tables[0].Rows.Clear();
 
-                smDAO.QueryStnModule(dataSet_StnModule.Tables[0], getTimeBeginStr, getTimeEndStr, "", commonStr);
+                smDAO.QueryStnModule(dataSet_StnModule.Tables[0], getTimeBeginStr, getTimeEndStr, "", "", commonStr);
 
                 Set_ButtonEditGrid_State(true);
             }

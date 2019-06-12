@@ -29,58 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStnModule));
-            this.gridViewMaterialDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnDeliveryDetailNO = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMaterialName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMaterialBrand = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMaterialDesc = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMaterialCate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMaterialQty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnUnit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnGetTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridControlDeliveryDetail = new DevExpress.XtraGrid.GridControl();
-            this.dataSet_DeliveryDetail = new System.Data.DataSet();
-            this.TableDeliveryDetail = new System.Data.DataTable();
-            this.dataColuAutoId = new System.Data.DataColumn();
-            this.dataColuSMNo = new System.Data.DataColumn();
-            this.dataColuDeliveryText = new System.Data.DataColumn();
-            this.dataColuFunctionDesc = new System.Data.DataColumn();
-            this.dataColuDeliveryQty = new System.Data.DataColumn();
-            this.dataColuUnit = new System.Data.DataColumn();
-            this.dataColuAmount = new System.Data.DataColumn();
-            this.dataColuPrepared = new System.Data.DataColumn();
-            this.dataColuPreparedIp = new System.Data.DataColumn();
-            this.dataColuGetTime = new System.Data.DataColumn();
-            this.TableMaterialDetail = new System.Data.DataTable();
-            this.dcAutoId = new System.Data.DataColumn();
-            this.dcDeliveryDetailNO = new System.Data.DataColumn();
-            this.dcMaterialName = new System.Data.DataColumn();
-            this.dcMaterialBrand = new System.Data.DataColumn();
-            this.dcMaterialDesc = new System.Data.DataColumn();
-            this.dcMaterialQty = new System.Data.DataColumn();
-            this.dcMaterialCate = new System.Data.DataColumn();
-            this.dcUnit = new System.Data.DataColumn();
-            this.dcAmount = new System.Data.DataColumn();
-            this.dcPrepared = new System.Data.DataColumn();
-            this.dcPreparedIp = new System.Data.DataColumn();
-            this.dcGetTime = new System.Data.DataColumn();
-            this.gridViewDeliveryDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSMNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDeliveryText = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFunctionDesc1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDeliveryQty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUnit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrepared1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPreparedIp1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colGetTime1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bindingSource_DeliveryDetail = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet_StnModule = new System.Data.DataSet();
             this.TableStnModule = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -115,9 +64,44 @@
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabBottom = new DevExpress.XtraTab.XtraTabControl();
             this.PageDeliveryDetail = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControlDeliveryDetail = new DevExpress.XtraGrid.GridControl();
+            this.bindingSource_DeliveryDetail = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet_DeliveryDetail = new System.Data.DataSet();
+            this.TableDeliveryDetail = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColuSMNo = new System.Data.DataColumn();
+            this.dataColuDeliveryText = new System.Data.DataColumn();
+            this.dataColuFunctionDesc = new System.Data.DataColumn();
+            this.dataColuMatQty = new System.Data.DataColumn();
+            this.dataColuMatUnit = new System.Data.DataColumn();
+            this.dataColuMatAmount = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
+            this.dataColuAutoId = new System.Data.DataColumn();
+            this.dataColuUnit = new System.Data.DataColumn();
+            this.dataColuAmount = new System.Data.DataColumn();
+            this.dataColuDeliveryQty = new System.Data.DataColumn();
+            this.dataColuPrepared = new System.Data.DataColumn();
+            this.gridViewDeliveryDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSMNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDeliveryText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repMemoDeliveryText = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.colFunctionDesc1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUnit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDeliveryQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrepared1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaterialName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaterialBrand = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaterialCate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMatUnit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMatQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMatAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaterialDesc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlBottomToolBar = new DevExpress.XtraEditors.PanelControl();
-            this.btnCollapse = new DevExpress.XtraEditors.SimpleButton();
-            this.btnExpand = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnDDDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnDDSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnDDNew = new DevExpress.XtraEditors.SimpleButton();
@@ -138,13 +122,6 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableMaterialDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DeliveryDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_StnModule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableStnModule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerLeft)).BeginInit();
@@ -167,6 +144,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabBottom)).BeginInit();
             this.xtraTabBottom.SuspendLayout();
             this.PageDeliveryDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DeliveryDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repMemoDeliveryText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottomToolBar)).BeginInit();
             this.pnlBottomToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).BeginInit();
@@ -180,474 +163,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlToolBar)).BeginInit();
             this.pnlToolBar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // gridViewMaterialDetail
-            // 
-            this.gridViewMaterialDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnAutoId,
-            this.gridColumnDeliveryDetailNO,
-            this.gridColumnMaterialName,
-            this.gridColumnMaterialBrand,
-            this.gridColumnMaterialDesc,
-            this.gridColumnMaterialCate,
-            this.gridColumnMaterialQty,
-            this.gridColumnUnit,
-            this.gridColumnAmount,
-            this.gridColumnPrepared,
-            this.gridColumnGetTime});
-            this.gridViewMaterialDetail.GridControl = this.gridControlDeliveryDetail;
-            this.gridViewMaterialDetail.IndicatorWidth = 40;
-            this.gridViewMaterialDetail.Name = "gridViewMaterialDetail";
-            this.gridViewMaterialDetail.OptionsBehavior.Editable = false;
-            this.gridViewMaterialDetail.OptionsBehavior.ReadOnly = true;
-            this.gridViewMaterialDetail.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewMaterialDetail.OptionsView.ColumnAutoWidth = false;
-            this.gridViewMaterialDetail.OptionsView.EnableAppearanceOddRow = true;
-            this.gridViewMaterialDetail.OptionsView.ShowFooter = true;
-            this.gridViewMaterialDetail.OptionsView.ShowGroupPanel = false;
-            this.gridViewMaterialDetail.ViewCaption = "元器件列表";
-            this.gridViewMaterialDetail.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewDeliveryDetail_CustomDrawRowIndicator);
-            this.gridViewMaterialDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewDeliveryDetail_KeyDown);
-            // 
-            // gridColumnAutoId
-            // 
-            this.gridColumnAutoId.Caption = "AutoId";
-            this.gridColumnAutoId.FieldName = "AutoId";
-            this.gridColumnAutoId.Name = "gridColumnAutoId";
-            // 
-            // gridColumnDeliveryDetailNO
-            // 
-            this.gridColumnDeliveryDetailNO.Caption = "DeliveryDetailNO";
-            this.gridColumnDeliveryDetailNO.FieldName = "DeliveryDetailNO";
-            this.gridColumnDeliveryDetailNO.Name = "gridColumnDeliveryDetailNO";
-            // 
-            // gridColumnMaterialName
-            // 
-            this.gridColumnMaterialName.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnMaterialName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnMaterialName.Caption = "名称";
-            this.gridColumnMaterialName.FieldName = "MaterialName";
-            this.gridColumnMaterialName.Name = "gridColumnMaterialName";
-            this.gridColumnMaterialName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "MaterialName", "共计{0}条")});
-            this.gridColumnMaterialName.Visible = true;
-            this.gridColumnMaterialName.VisibleIndex = 0;
-            this.gridColumnMaterialName.Width = 100;
-            // 
-            // gridColumnMaterialBrand
-            // 
-            this.gridColumnMaterialBrand.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnMaterialBrand.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnMaterialBrand.Caption = "品牌";
-            this.gridColumnMaterialBrand.FieldName = "MaterialBrand";
-            this.gridColumnMaterialBrand.Name = "gridColumnMaterialBrand";
-            this.gridColumnMaterialBrand.Visible = true;
-            this.gridColumnMaterialBrand.VisibleIndex = 1;
-            this.gridColumnMaterialBrand.Width = 100;
-            // 
-            // gridColumnMaterialDesc
-            // 
-            this.gridColumnMaterialDesc.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnMaterialDesc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnMaterialDesc.Caption = "功能描述";
-            this.gridColumnMaterialDesc.FieldName = "MaterialDesc";
-            this.gridColumnMaterialDesc.Name = "gridColumnMaterialDesc";
-            this.gridColumnMaterialDesc.Visible = true;
-            this.gridColumnMaterialDesc.VisibleIndex = 2;
-            this.gridColumnMaterialDesc.Width = 150;
-            // 
-            // gridColumnMaterialCate
-            // 
-            this.gridColumnMaterialCate.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnMaterialCate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnMaterialCate.Caption = "类别";
-            this.gridColumnMaterialCate.FieldName = "MaterialCate";
-            this.gridColumnMaterialCate.Name = "gridColumnMaterialCate";
-            this.gridColumnMaterialCate.Visible = true;
-            this.gridColumnMaterialCate.VisibleIndex = 3;
-            this.gridColumnMaterialCate.Width = 80;
-            // 
-            // gridColumnMaterialQty
-            // 
-            this.gridColumnMaterialQty.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnMaterialQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnMaterialQty.Caption = "数量";
-            this.gridColumnMaterialQty.FieldName = "MaterialQty";
-            this.gridColumnMaterialQty.Name = "gridColumnMaterialQty";
-            this.gridColumnMaterialQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MaterialQty", "{0:0.##}")});
-            this.gridColumnMaterialQty.Visible = true;
-            this.gridColumnMaterialQty.VisibleIndex = 4;
-            this.gridColumnMaterialQty.Width = 100;
-            // 
-            // gridColumnUnit
-            // 
-            this.gridColumnUnit.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnUnit.Caption = "单价";
-            this.gridColumnUnit.DisplayFormat.FormatString = "N2";
-            this.gridColumnUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnUnit.FieldName = "Unit";
-            this.gridColumnUnit.Name = "gridColumnUnit";
-            this.gridColumnUnit.Visible = true;
-            this.gridColumnUnit.VisibleIndex = 5;
-            this.gridColumnUnit.Width = 100;
-            // 
-            // gridColumnAmount
-            // 
-            this.gridColumnAmount.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnAmount.Caption = "金额";
-            this.gridColumnAmount.DisplayFormat.FormatString = "N2";
-            this.gridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnAmount.FieldName = "Amount";
-            this.gridColumnAmount.Name = "gridColumnAmount";
-            this.gridColumnAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
-            this.gridColumnAmount.Visible = true;
-            this.gridColumnAmount.VisibleIndex = 6;
-            this.gridColumnAmount.Width = 100;
-            // 
-            // gridColumnPrepared
-            // 
-            this.gridColumnPrepared.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnPrepared.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnPrepared.Caption = "制单人";
-            this.gridColumnPrepared.FieldName = "Prepared";
-            this.gridColumnPrepared.Name = "gridColumnPrepared";
-            this.gridColumnPrepared.Visible = true;
-            this.gridColumnPrepared.VisibleIndex = 7;
-            this.gridColumnPrepared.Width = 60;
-            // 
-            // gridColumnGetTime
-            // 
-            this.gridColumnGetTime.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumnGetTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnGetTime.Caption = "登记时间";
-            this.gridColumnGetTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.gridColumnGetTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.gridColumnGetTime.FieldName = "GetTime";
-            this.gridColumnGetTime.Name = "gridColumnGetTime";
-            this.gridColumnGetTime.Visible = true;
-            this.gridColumnGetTime.VisibleIndex = 8;
-            this.gridColumnGetTime.Width = 130;
-            // 
-            // gridControlDeliveryDetail
-            // 
-            this.gridControlDeliveryDetail.DataMember = "DeliveryDetail";
-            this.gridControlDeliveryDetail.DataSource = this.dataSet_DeliveryDetail;
-            this.gridControlDeliveryDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.gridViewMaterialDetail;
-            gridLevelNode1.RelationName = "Child";
-            this.gridControlDeliveryDetail.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.gridControlDeliveryDetail.Location = new System.Drawing.Point(0, 40);
-            this.gridControlDeliveryDetail.MainView = this.gridViewDeliveryDetail;
-            this.gridControlDeliveryDetail.Name = "gridControlDeliveryDetail";
-            this.gridControlDeliveryDetail.Size = new System.Drawing.Size(947, 344);
-            this.gridControlDeliveryDetail.TabIndex = 5;
-            this.gridControlDeliveryDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewDeliveryDetail,
-            this.gridViewMaterialDetail});
-            // 
-            // dataSet_DeliveryDetail
-            // 
-            this.dataSet_DeliveryDetail.DataSetName = "NewDataSet";
-            this.dataSet_DeliveryDetail.Relations.AddRange(new System.Data.DataRelation[] {
-            new System.Data.DataRelation("RelationDM", "DeliveryDetail", "MaterialDetail", new string[] {
-                        "AutoId"}, new string[] {
-                        "DeliveryDetailNO"}, false)});
-            this.dataSet_DeliveryDetail.Tables.AddRange(new System.Data.DataTable[] {
-            this.TableDeliveryDetail,
-            this.TableMaterialDetail});
-            // 
-            // TableDeliveryDetail
-            // 
-            this.TableDeliveryDetail.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColuAutoId,
-            this.dataColuSMNo,
-            this.dataColuDeliveryText,
-            this.dataColuFunctionDesc,
-            this.dataColuDeliveryQty,
-            this.dataColuUnit,
-            this.dataColuAmount,
-            this.dataColuPrepared,
-            this.dataColuPreparedIp,
-            this.dataColuGetTime});
-            this.TableDeliveryDetail.Constraints.AddRange(new System.Data.Constraint[] {
-            new System.Data.UniqueConstraint("Constraint1", new string[] {
-                        "AutoId"}, false)});
-            this.TableDeliveryDetail.TableName = "DeliveryDetail";
-            // 
-            // dataColuAutoId
-            // 
-            this.dataColuAutoId.ColumnName = "AutoId";
-            this.dataColuAutoId.DataType = typeof(int);
-            // 
-            // dataColuSMNo
-            // 
-            this.dataColuSMNo.Caption = "模块序号";
-            this.dataColuSMNo.ColumnName = "SMNo";
-            // 
-            // dataColuDeliveryText
-            // 
-            this.dataColuDeliveryText.Caption = "供货明细内容";
-            this.dataColuDeliveryText.ColumnName = "DeliveryText";
-            // 
-            // dataColuFunctionDesc
-            // 
-            this.dataColuFunctionDesc.Caption = "详细功能";
-            this.dataColuFunctionDesc.ColumnName = "FunctionDesc";
-            // 
-            // dataColuDeliveryQty
-            // 
-            this.dataColuDeliveryQty.Caption = "供货数量";
-            this.dataColuDeliveryQty.ColumnName = "DeliveryQty";
-            this.dataColuDeliveryQty.DataType = typeof(double);
-            // 
-            // dataColuUnit
-            // 
-            this.dataColuUnit.Caption = "单价";
-            this.dataColuUnit.ColumnName = "Unit";
-            this.dataColuUnit.DataType = typeof(double);
-            // 
-            // dataColuAmount
-            // 
-            this.dataColuAmount.Caption = "金额";
-            this.dataColuAmount.ColumnName = "Amount";
-            this.dataColuAmount.DataType = typeof(double);
-            // 
-            // dataColuPrepared
-            // 
-            this.dataColuPrepared.Caption = "制单人";
-            this.dataColuPrepared.ColumnName = "Prepared";
-            // 
-            // dataColuPreparedIp
-            // 
-            this.dataColuPreparedIp.Caption = "制单人IP";
-            this.dataColuPreparedIp.ColumnName = "PreparedIp";
-            // 
-            // dataColuGetTime
-            // 
-            this.dataColuGetTime.Caption = "登记时间";
-            this.dataColuGetTime.ColumnName = "GetTime";
-            this.dataColuGetTime.DataType = typeof(System.DateTime);
-            // 
-            // TableMaterialDetail
-            // 
-            this.TableMaterialDetail.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dcAutoId,
-            this.dcDeliveryDetailNO,
-            this.dcMaterialName,
-            this.dcMaterialBrand,
-            this.dcMaterialDesc,
-            this.dcMaterialQty,
-            this.dcMaterialCate,
-            this.dcUnit,
-            this.dcAmount,
-            this.dcPrepared,
-            this.dcPreparedIp,
-            this.dcGetTime});
-            this.TableMaterialDetail.Constraints.AddRange(new System.Data.Constraint[] {
-            new System.Data.ForeignKeyConstraint("RelationDM", "DeliveryDetail", new string[] {
-                        "AutoId"}, new string[] {
-                        "DeliveryDetailNO"}, System.Data.AcceptRejectRule.None, System.Data.Rule.Cascade, System.Data.Rule.Cascade)});
-            this.TableMaterialDetail.TableName = "MaterialDetail";
-            // 
-            // dcAutoId
-            // 
-            this.dcAutoId.Caption = "AutoId";
-            this.dcAutoId.ColumnName = "AutoId";
-            this.dcAutoId.DataType = typeof(int);
-            // 
-            // dcDeliveryDetailNO
-            // 
-            this.dcDeliveryDetailNO.Caption = "DeliveryDetailNO";
-            this.dcDeliveryDetailNO.ColumnName = "DeliveryDetailNO";
-            this.dcDeliveryDetailNO.DataType = typeof(int);
-            // 
-            // dcMaterialName
-            // 
-            this.dcMaterialName.Caption = "名称";
-            this.dcMaterialName.ColumnName = "MaterialName";
-            // 
-            // dcMaterialBrand
-            // 
-            this.dcMaterialBrand.Caption = "品牌";
-            this.dcMaterialBrand.ColumnName = "MaterialBrand";
-            // 
-            // dcMaterialDesc
-            // 
-            this.dcMaterialDesc.Caption = "功能描述";
-            this.dcMaterialDesc.ColumnName = "MaterialDesc";
-            // 
-            // dcMaterialQty
-            // 
-            this.dcMaterialQty.Caption = "数量";
-            this.dcMaterialQty.ColumnName = "MaterialQty";
-            this.dcMaterialQty.DataType = typeof(decimal);
-            // 
-            // dcMaterialCate
-            // 
-            this.dcMaterialCate.Caption = "类别";
-            this.dcMaterialCate.ColumnName = "MaterialCate";
-            // 
-            // dcUnit
-            // 
-            this.dcUnit.Caption = "单价";
-            this.dcUnit.ColumnName = "Unit";
-            this.dcUnit.DataType = typeof(double);
-            // 
-            // dcAmount
-            // 
-            this.dcAmount.Caption = "金额";
-            this.dcAmount.ColumnName = "Amount";
-            this.dcAmount.DataType = typeof(double);
-            // 
-            // dcPrepared
-            // 
-            this.dcPrepared.Caption = "制单人";
-            this.dcPrepared.ColumnName = "Prepared";
-            // 
-            // dcPreparedIp
-            // 
-            this.dcPreparedIp.Caption = "制单人IP";
-            this.dcPreparedIp.ColumnName = "PreparedIp";
-            // 
-            // dcGetTime
-            // 
-            this.dcGetTime.Caption = "登记时间";
-            this.dcGetTime.ColumnName = "GetTime";
-            this.dcGetTime.DataType = typeof(System.DateTime);
-            // 
-            // gridViewDeliveryDetail
-            // 
-            this.gridViewDeliveryDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colAutoId1,
-            this.colSMNo1,
-            this.colDeliveryText,
-            this.colFunctionDesc1,
-            this.colDeliveryQty,
-            this.colUnit,
-            this.colAmount,
-            this.colPrepared1,
-            this.colPreparedIp1,
-            this.colGetTime1});
-            this.gridViewDeliveryDetail.GridControl = this.gridControlDeliveryDetail;
-            this.gridViewDeliveryDetail.IndicatorWidth = 40;
-            this.gridViewDeliveryDetail.Name = "gridViewDeliveryDetail";
-            this.gridViewDeliveryDetail.OptionsBehavior.Editable = false;
-            this.gridViewDeliveryDetail.OptionsBehavior.ReadOnly = true;
-            this.gridViewDeliveryDetail.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewDeliveryDetail.OptionsView.ColumnAutoWidth = false;
-            this.gridViewDeliveryDetail.OptionsView.EnableAppearanceOddRow = true;
-            this.gridViewDeliveryDetail.OptionsView.ShowFooter = true;
-            this.gridViewDeliveryDetail.OptionsView.ShowGroupPanel = false;
-            this.gridViewDeliveryDetail.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewDeliveryDetail_RowClick);
-            this.gridViewDeliveryDetail.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewDeliveryDetail_CustomDrawRowIndicator);
-            this.gridViewDeliveryDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewDeliveryDetail_KeyDown);
-            // 
-            // colAutoId1
-            // 
-            this.colAutoId1.FieldName = "AutoId";
-            this.colAutoId1.Name = "colAutoId1";
-            // 
-            // colSMNo1
-            // 
-            this.colSMNo1.FieldName = "SMNo";
-            this.colSMNo1.Name = "colSMNo1";
-            // 
-            // colDeliveryText
-            // 
-            this.colDeliveryText.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDeliveryText.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colDeliveryText.FieldName = "DeliveryText";
-            this.colDeliveryText.Name = "colDeliveryText";
-            this.colDeliveryText.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "DeliveryText", "共计{0}条")});
-            this.colDeliveryText.Visible = true;
-            this.colDeliveryText.VisibleIndex = 0;
-            this.colDeliveryText.Width = 150;
-            // 
-            // colFunctionDesc1
-            // 
-            this.colFunctionDesc1.AppearanceHeader.Options.UseTextOptions = true;
-            this.colFunctionDesc1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colFunctionDesc1.FieldName = "FunctionDesc";
-            this.colFunctionDesc1.Name = "colFunctionDesc1";
-            this.colFunctionDesc1.Visible = true;
-            this.colFunctionDesc1.VisibleIndex = 1;
-            this.colFunctionDesc1.Width = 240;
-            // 
-            // colDeliveryQty
-            // 
-            this.colDeliveryQty.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDeliveryQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colDeliveryQty.FieldName = "DeliveryQty";
-            this.colDeliveryQty.Name = "colDeliveryQty";
-            this.colDeliveryQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DeliveryQty", "{0:0.##}")});
-            this.colDeliveryQty.Visible = true;
-            this.colDeliveryQty.VisibleIndex = 2;
-            this.colDeliveryQty.Width = 90;
-            // 
-            // colUnit
-            // 
-            this.colUnit.AppearanceHeader.Options.UseTextOptions = true;
-            this.colUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colUnit.DisplayFormat.FormatString = "N2";
-            this.colUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colUnit.FieldName = "Unit";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.Visible = true;
-            this.colUnit.VisibleIndex = 3;
-            this.colUnit.Width = 100;
-            // 
-            // colAmount
-            // 
-            this.colAmount.AppearanceHeader.Options.UseTextOptions = true;
-            this.colAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colAmount.DisplayFormat.FormatString = "N2";
-            this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colAmount.FieldName = "Amount";
-            this.colAmount.Name = "colAmount";
-            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
-            this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 4;
-            this.colAmount.Width = 100;
-            // 
-            // colPrepared1
-            // 
-            this.colPrepared1.AppearanceHeader.Options.UseTextOptions = true;
-            this.colPrepared1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colPrepared1.FieldName = "Prepared";
-            this.colPrepared1.Name = "colPrepared1";
-            this.colPrepared1.Visible = true;
-            this.colPrepared1.VisibleIndex = 5;
-            this.colPrepared1.Width = 60;
-            // 
-            // colPreparedIp1
-            // 
-            this.colPreparedIp1.FieldName = "PreparedIp";
-            this.colPreparedIp1.Name = "colPreparedIp1";
-            // 
-            // colGetTime1
-            // 
-            this.colGetTime1.AppearanceHeader.Options.UseTextOptions = true;
-            this.colGetTime1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colGetTime1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.colGetTime1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colGetTime1.FieldName = "GetTime";
-            this.colGetTime1.Name = "colGetTime1";
-            this.colGetTime1.Visible = true;
-            this.colGetTime1.VisibleIndex = 6;
-            this.colGetTime1.Width = 130;
-            // 
-            // bindingSource_DeliveryDetail
-            // 
-            this.bindingSource_DeliveryDetail.DataMember = "DeliveryDetail";
-            this.bindingSource_DeliveryDetail.DataSource = this.dataSet_DeliveryDetail;
             // 
             // dataSet_StnModule
             // 
@@ -738,7 +253,7 @@
             this.dockPnlLeft.Options.ShowCloseButton = false;
             this.dockPnlLeft.Options.ShowMaximizeButton = false;
             this.dockPnlLeft.OriginalSize = new System.Drawing.Size(350, 200);
-            this.dockPnlLeft.Size = new System.Drawing.Size(350, 643);
+            this.dockPnlLeft.Size = new System.Drawing.Size(350, 729);
             this.dockPnlLeft.Text = "功能模块列表";
             // 
             // dockPanel1_Container
@@ -747,7 +262,7 @@
             this.dockPanel1_Container.Controls.Add(this.pnlLeftTop);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 616);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(342, 702);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // pnlLeftGrid
@@ -756,7 +271,7 @@
             this.pnlLeftGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftGrid.Location = new System.Drawing.Point(0, 76);
             this.pnlLeftGrid.Name = "pnlLeftGrid";
-            this.pnlLeftGrid.Size = new System.Drawing.Size(342, 540);
+            this.pnlLeftGrid.Size = new System.Drawing.Size(342, 626);
             this.pnlLeftGrid.TabIndex = 7;
             // 
             // gridControlStnModule
@@ -766,7 +281,7 @@
             this.gridControlStnModule.Location = new System.Drawing.Point(2, 2);
             this.gridControlStnModule.MainView = this.gridViewStnModule;
             this.gridControlStnModule.Name = "gridControlStnModule";
-            this.gridControlStnModule.Size = new System.Drawing.Size(338, 536);
+            this.gridControlStnModule.Size = new System.Drawing.Size(338, 622);
             this.gridControlStnModule.TabIndex = 6;
             this.gridControlStnModule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewStnModule});
@@ -957,7 +472,7 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(350, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(953, 643);
+            this.pnlRight.Size = new System.Drawing.Size(658, 729);
             this.pnlRight.TabIndex = 1;
             // 
             // xtraTabBottom
@@ -966,7 +481,7 @@
             this.xtraTabBottom.Location = new System.Drawing.Point(0, 230);
             this.xtraTabBottom.Name = "xtraTabBottom";
             this.xtraTabBottom.SelectedTabPage = this.PageDeliveryDetail;
-            this.xtraTabBottom.Size = new System.Drawing.Size(953, 413);
+            this.xtraTabBottom.Size = new System.Drawing.Size(658, 499);
             this.xtraTabBottom.TabIndex = 9;
             this.xtraTabBottom.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.PageDeliveryDetail});
@@ -976,45 +491,379 @@
             this.PageDeliveryDetail.Controls.Add(this.gridControlDeliveryDetail);
             this.PageDeliveryDetail.Controls.Add(this.pnlBottomToolBar);
             this.PageDeliveryDetail.Name = "PageDeliveryDetail";
-            this.PageDeliveryDetail.Size = new System.Drawing.Size(947, 384);
+            this.PageDeliveryDetail.Size = new System.Drawing.Size(652, 470);
             this.PageDeliveryDetail.Text = "供货明细列表";
+            // 
+            // gridControlDeliveryDetail
+            // 
+            this.gridControlDeliveryDetail.DataSource = this.bindingSource_DeliveryDetail;
+            this.gridControlDeliveryDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlDeliveryDetail.Location = new System.Drawing.Point(0, 40);
+            this.gridControlDeliveryDetail.MainView = this.gridViewDeliveryDetail;
+            this.gridControlDeliveryDetail.Name = "gridControlDeliveryDetail";
+            this.gridControlDeliveryDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repMemoDeliveryText});
+            this.gridControlDeliveryDetail.Size = new System.Drawing.Size(652, 430);
+            this.gridControlDeliveryDetail.TabIndex = 7;
+            this.gridControlDeliveryDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewDeliveryDetail});
+            // 
+            // bindingSource_DeliveryDetail
+            // 
+            this.bindingSource_DeliveryDetail.DataMember = "DeliveryDetail";
+            this.bindingSource_DeliveryDetail.DataSource = this.dataSet_DeliveryDetail;
+            // 
+            // dataSet_DeliveryDetail
+            // 
+            this.dataSet_DeliveryDetail.DataSetName = "NewDataSet";
+            this.dataSet_DeliveryDetail.Tables.AddRange(new System.Data.DataTable[] {
+            this.TableDeliveryDetail});
+            // 
+            // TableDeliveryDetail
+            // 
+            this.TableDeliveryDetail.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColuSMNo,
+            this.dataColuDeliveryText,
+            this.dataColuFunctionDesc,
+            this.dataColuMatQty,
+            this.dataColuMatUnit,
+            this.dataColuMatAmount,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColuAutoId,
+            this.dataColuUnit,
+            this.dataColuAmount,
+            this.dataColuDeliveryQty,
+            this.dataColuPrepared});
+            this.TableDeliveryDetail.TableName = "DeliveryDetail";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.Caption = "类别";
+            this.dataColumn1.ColumnName = "MaterialCate";
+            // 
+            // dataColuSMNo
+            // 
+            this.dataColuSMNo.Caption = "模块序号";
+            this.dataColuSMNo.ColumnName = "SMNo";
+            // 
+            // dataColuDeliveryText
+            // 
+            this.dataColuDeliveryText.Caption = "供货明细内容";
+            this.dataColuDeliveryText.ColumnName = "DeliveryText";
+            // 
+            // dataColuFunctionDesc
+            // 
+            this.dataColuFunctionDesc.Caption = "详细功能";
+            this.dataColuFunctionDesc.ColumnName = "FunctionDesc";
+            // 
+            // dataColuMatQty
+            // 
+            this.dataColuMatQty.Caption = "数量";
+            this.dataColuMatQty.ColumnName = "MatQty";
+            this.dataColuMatQty.DataType = typeof(double);
+            // 
+            // dataColuMatUnit
+            // 
+            this.dataColuMatUnit.Caption = "单价";
+            this.dataColuMatUnit.ColumnName = "MatUnit";
+            this.dataColuMatUnit.DataType = typeof(double);
+            // 
+            // dataColuMatAmount
+            // 
+            this.dataColuMatAmount.Caption = "金额";
+            this.dataColuMatAmount.ColumnName = "MatAmount";
+            this.dataColuMatAmount.DataType = typeof(double);
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.Caption = "元器件名称";
+            this.dataColumn2.ColumnName = "MaterialName";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.Caption = "元器件品牌";
+            this.dataColumn3.ColumnName = "MaterialBrand";
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.Caption = "功能描述";
+            this.dataColumn4.ColumnName = "MaterialDesc";
+            // 
+            // dataColuAutoId
+            // 
+            this.dataColuAutoId.ColumnName = "AutoId";
+            this.dataColuAutoId.DataType = typeof(int);
+            // 
+            // dataColuUnit
+            // 
+            this.dataColuUnit.Caption = "供货单价";
+            this.dataColuUnit.ColumnName = "Unit";
+            this.dataColuUnit.DataType = typeof(double);
+            // 
+            // dataColuAmount
+            // 
+            this.dataColuAmount.Caption = "供货金额";
+            this.dataColuAmount.ColumnName = "Amount";
+            this.dataColuAmount.DataType = typeof(double);
+            // 
+            // dataColuDeliveryQty
+            // 
+            this.dataColuDeliveryQty.Caption = "供货数量";
+            this.dataColuDeliveryQty.ColumnName = "DeliveryQty";
+            this.dataColuDeliveryQty.DataType = typeof(double);
+            // 
+            // dataColuPrepared
+            // 
+            this.dataColuPrepared.Caption = "制单人";
+            this.dataColuPrepared.ColumnName = "Prepared";
+            // 
+            // gridViewDeliveryDetail
+            // 
+            this.gridViewDeliveryDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSMNo1,
+            this.colDeliveryText,
+            this.colFunctionDesc1,
+            this.colUnit,
+            this.colDeliveryQty,
+            this.colAmount,
+            this.colPrepared1,
+            this.colMaterialName,
+            this.colMaterialBrand,
+            this.colMaterialCate,
+            this.colMatUnit,
+            this.colMatQty,
+            this.colMatAmount,
+            this.colMaterialDesc,
+            this.colAutoId1});
+            this.gridViewDeliveryDetail.GridControl = this.gridControlDeliveryDetail;
+            this.gridViewDeliveryDetail.IndicatorWidth = 40;
+            this.gridViewDeliveryDetail.Name = "gridViewDeliveryDetail";
+            this.gridViewDeliveryDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewDeliveryDetail.OptionsBehavior.Editable = false;
+            this.gridViewDeliveryDetail.OptionsBehavior.ReadOnly = true;
+            this.gridViewDeliveryDetail.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewDeliveryDetail.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewDeliveryDetail.OptionsMenu.EnableGroupPanelMenu = false;
+            this.gridViewDeliveryDetail.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewDeliveryDetail.OptionsNavigation.EnterMoveNextColumn = true;
+            this.gridViewDeliveryDetail.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewDeliveryDetail.OptionsView.AllowCellMerge = true;
+            this.gridViewDeliveryDetail.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDeliveryDetail.OptionsView.EnableAppearanceOddRow = true;
+            this.gridViewDeliveryDetail.OptionsView.ShowFooter = true;
+            this.gridViewDeliveryDetail.OptionsView.ShowGroupPanel = false;
+            this.gridViewDeliveryDetail.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewDeliveryDetail_RowClick);
+            this.gridViewDeliveryDetail.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridViewDeliveryDetail_CellMerge);
+            this.gridViewDeliveryDetail.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewDeliveryDetail_CustomDrawRowIndicator);
+            this.gridViewDeliveryDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewDeliveryDetail_KeyDown);
+            // 
+            // colSMNo1
+            // 
+            this.colSMNo1.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSMNo1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSMNo1.FieldName = "SMNo";
+            this.colSMNo1.Name = "colSMNo1";
+            // 
+            // colDeliveryText
+            // 
+            this.colDeliveryText.AppearanceCell.Options.UseTextOptions = true;
+            this.colDeliveryText.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colDeliveryText.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDeliveryText.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDeliveryText.ColumnEdit = this.repMemoDeliveryText;
+            this.colDeliveryText.FieldName = "DeliveryText";
+            this.colDeliveryText.Name = "colDeliveryText";
+            this.colDeliveryText.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "DeliveryText", "共计{0}条")});
+            this.colDeliveryText.Visible = true;
+            this.colDeliveryText.VisibleIndex = 0;
+            this.colDeliveryText.Width = 120;
+            // 
+            // repMemoDeliveryText
+            // 
+            this.repMemoDeliveryText.Name = "repMemoDeliveryText";
+            // 
+            // colFunctionDesc1
+            // 
+            this.colFunctionDesc1.AppearanceCell.Options.UseTextOptions = true;
+            this.colFunctionDesc1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colFunctionDesc1.AppearanceHeader.Options.UseTextOptions = true;
+            this.colFunctionDesc1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colFunctionDesc1.ColumnEdit = this.repMemoDeliveryText;
+            this.colFunctionDesc1.FieldName = "FunctionDesc";
+            this.colFunctionDesc1.Name = "colFunctionDesc1";
+            this.colFunctionDesc1.Visible = true;
+            this.colFunctionDesc1.VisibleIndex = 1;
+            this.colFunctionDesc1.Width = 120;
+            // 
+            // colUnit
+            // 
+            this.colUnit.AppearanceHeader.Options.UseTextOptions = true;
+            this.colUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colUnit.DisplayFormat.FormatString = "N2";
+            this.colUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colUnit.FieldName = "Unit";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Unit", "{0:N2}")});
+            this.colUnit.Visible = true;
+            this.colUnit.VisibleIndex = 2;
+            this.colUnit.Width = 80;
+            // 
+            // colDeliveryQty
+            // 
+            this.colDeliveryQty.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDeliveryQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDeliveryQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colDeliveryQty.FieldName = "DeliveryQty";
+            this.colDeliveryQty.Name = "colDeliveryQty";
+            this.colDeliveryQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DeliveryQty", "{0:0.##}")});
+            this.colDeliveryQty.Visible = true;
+            this.colDeliveryQty.VisibleIndex = 3;
+            this.colDeliveryQty.Width = 70;
+            // 
+            // colAmount
+            // 
+            this.colAmount.AppearanceHeader.Options.UseTextOptions = true;
+            this.colAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colAmount.DisplayFormat.FormatString = "N2";
+            this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colAmount.FieldName = "Amount";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
+            this.colAmount.Visible = true;
+            this.colAmount.VisibleIndex = 4;
+            this.colAmount.Width = 90;
+            // 
+            // colPrepared1
+            // 
+            this.colPrepared1.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPrepared1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPrepared1.FieldName = "Prepared";
+            this.colPrepared1.Name = "colPrepared1";
+            this.colPrepared1.Visible = true;
+            this.colPrepared1.VisibleIndex = 5;
+            this.colPrepared1.Width = 60;
+            // 
+            // colMaterialName
+            // 
+            this.colMaterialName.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMaterialName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMaterialName.FieldName = "MaterialName";
+            this.colMaterialName.Name = "colMaterialName";
+            this.colMaterialName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMaterialName.Visible = true;
+            this.colMaterialName.VisibleIndex = 6;
+            this.colMaterialName.Width = 100;
+            // 
+            // colMaterialBrand
+            // 
+            this.colMaterialBrand.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMaterialBrand.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMaterialBrand.FieldName = "MaterialBrand";
+            this.colMaterialBrand.Name = "colMaterialBrand";
+            this.colMaterialBrand.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMaterialBrand.Visible = true;
+            this.colMaterialBrand.VisibleIndex = 7;
+            this.colMaterialBrand.Width = 80;
+            // 
+            // colMaterialCate
+            // 
+            this.colMaterialCate.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMaterialCate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMaterialCate.FieldName = "MaterialCate";
+            this.colMaterialCate.Name = "colMaterialCate";
+            this.colMaterialCate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMaterialCate.Visible = true;
+            this.colMaterialCate.VisibleIndex = 8;
+            this.colMaterialCate.Width = 60;
+            // 
+            // colMatUnit
+            // 
+            this.colMatUnit.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMatUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMatUnit.DisplayFormat.FormatString = "N2";
+            this.colMatUnit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colMatUnit.FieldName = "MatUnit";
+            this.colMatUnit.Name = "colMatUnit";
+            this.colMatUnit.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMatUnit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MatUnit", "{0:N2}")});
+            this.colMatUnit.Visible = true;
+            this.colMatUnit.VisibleIndex = 9;
+            this.colMatUnit.Width = 80;
+            // 
+            // colMatQty
+            // 
+            this.colMatQty.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMatQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMatQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colMatQty.FieldName = "MatQty";
+            this.colMatQty.Name = "colMatQty";
+            this.colMatQty.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMatQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MatQty", "{0:0.##}")});
+            this.colMatQty.Visible = true;
+            this.colMatQty.VisibleIndex = 10;
+            this.colMatQty.Width = 70;
+            // 
+            // colMatAmount
+            // 
+            this.colMatAmount.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMatAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMatAmount.DisplayFormat.FormatString = "N2";
+            this.colMatAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colMatAmount.FieldName = "MatAmount";
+            this.colMatAmount.Name = "colMatAmount";
+            this.colMatAmount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMatAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MatAmount", "{0:N2}")});
+            this.colMatAmount.Visible = true;
+            this.colMatAmount.VisibleIndex = 11;
+            this.colMatAmount.Width = 90;
+            // 
+            // colMaterialDesc
+            // 
+            this.colMaterialDesc.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMaterialDesc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMaterialDesc.FieldName = "MaterialDesc";
+            this.colMaterialDesc.Name = "colMaterialDesc";
+            this.colMaterialDesc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.colMaterialDesc.Visible = true;
+            this.colMaterialDesc.VisibleIndex = 12;
+            this.colMaterialDesc.Width = 200;
+            // 
+            // colAutoId1
+            // 
+            this.colAutoId1.FieldName = "AutoId";
+            this.colAutoId1.Name = "colAutoId1";
             // 
             // pnlBottomToolBar
             // 
-            this.pnlBottomToolBar.Controls.Add(this.btnCollapse);
-            this.pnlBottomToolBar.Controls.Add(this.btnExpand);
+            this.pnlBottomToolBar.Controls.Add(this.btnSaveExcel);
             this.pnlBottomToolBar.Controls.Add(this.btnDDDelete);
             this.pnlBottomToolBar.Controls.Add(this.btnDDSave);
             this.pnlBottomToolBar.Controls.Add(this.btnDDNew);
             this.pnlBottomToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBottomToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlBottomToolBar.Name = "pnlBottomToolBar";
-            this.pnlBottomToolBar.Size = new System.Drawing.Size(947, 40);
+            this.pnlBottomToolBar.Size = new System.Drawing.Size(652, 40);
             this.pnlBottomToolBar.TabIndex = 0;
             // 
-            // btnCollapse
+            // btnSaveExcel
             // 
-            this.btnCollapse.AllowFocus = false;
-            this.btnCollapse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCollapse.Location = new System.Drawing.Point(917, 9);
-            this.btnCollapse.Name = "btnCollapse";
-            this.btnCollapse.Size = new System.Drawing.Size(23, 23);
-            this.btnCollapse.TabIndex = 208;
-            this.btnCollapse.TabStop = false;
-            this.btnCollapse.Text = "-";
-            this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
-            // 
-            // btnExpand
-            // 
-            this.btnExpand.AllowFocus = false;
-            this.btnExpand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExpand.Location = new System.Drawing.Point(888, 9);
-            this.btnExpand.Name = "btnExpand";
-            this.btnExpand.Size = new System.Drawing.Size(23, 23);
-            this.btnExpand.TabIndex = 207;
-            this.btnExpand.TabStop = false;
-            this.btnExpand.Text = "+";
-            this.btnExpand.Click += new System.EventHandler(this.btnExpand_Click);
+            this.btnSaveExcel.Location = new System.Drawing.Point(252, 9);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveExcel.TabIndex = 204;
+            this.btnSaveExcel.TabStop = false;
+            this.btnSaveExcel.Text = "存为Excel";
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
             // btnDDDelete
             // 
@@ -1061,7 +910,7 @@
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(953, 190);
+            this.pnlEdit.Size = new System.Drawing.Size(658, 190);
             this.pnlEdit.TabIndex = 8;
             // 
             // textPrepared
@@ -1176,7 +1025,7 @@
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(953, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(658, 40);
             this.pnlToolBar.TabIndex = 7;
             // 
             // btnCopy
@@ -1233,22 +1082,19 @@
             // FrmStnModule
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1303, 643);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.dockPnlLeft);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmStnModule";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "功能模块登记";
             this.Text = "功能模块登记";
             this.Activated += new System.EventHandler(this.FrmStnModule_Activated);
             this.Load += new System.EventHandler(this.FrmStnModule_Load);
             this.Shown += new System.EventHandler(this.FrmStnModule_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableMaterialDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DeliveryDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_StnModule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableStnModule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerLeft)).EndInit();
@@ -1272,6 +1118,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabBottom)).EndInit();
             this.xtraTabBottom.ResumeLayout(false);
             this.PageDeliveryDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DeliveryDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableDeliveryDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repMemoDeliveryText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottomToolBar)).EndInit();
             this.pnlBottomToolBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlEdit)).EndInit();
@@ -1348,55 +1200,40 @@
         private DevExpress.XtraEditors.LabelControl labelGetTime;
         private System.Data.DataSet dataSet_DeliveryDetail;
         private System.Data.DataTable TableDeliveryDetail;
-        private System.Data.DataColumn dataColuAutoId;
+        private System.Data.DataColumn dataColumn1;
         private System.Data.DataColumn dataColuSMNo;
         private System.Data.DataColumn dataColuDeliveryText;
         private System.Data.DataColumn dataColuFunctionDesc;
-        private System.Data.DataColumn dataColuDeliveryQty;
+        private System.Data.DataColumn dataColuMatQty;
+        private System.Data.DataColumn dataColuMatUnit;
+        private System.Data.DataColumn dataColuMatAmount;
+        private System.Data.DataColumn dataColumn2;
+        private System.Data.DataColumn dataColumn3;
+        private System.Data.DataColumn dataColumn4;
+        private System.Windows.Forms.BindingSource bindingSource_DeliveryDetail;
+        private DevExpress.XtraGrid.GridControl gridControlDeliveryDetail;
+        private System.Data.DataColumn dataColuAutoId;
         private System.Data.DataColumn dataColuUnit;
         private System.Data.DataColumn dataColuAmount;
+        private System.Data.DataColumn dataColuDeliveryQty;
         private System.Data.DataColumn dataColuPrepared;
-        private System.Data.DataColumn dataColuPreparedIp;
-        private System.Data.DataColumn dataColuGetTime;
-        private System.Data.DataTable TableMaterialDetail;
-        private System.Data.DataColumn dcAutoId;
-        private System.Data.DataColumn dcDeliveryDetailNO;
-        private System.Data.DataColumn dcMaterialName;
-        private System.Data.DataColumn dcMaterialBrand;
-        private System.Data.DataColumn dcMaterialDesc;
-        private System.Data.DataColumn dcMaterialQty;
-        private System.Data.DataColumn dcMaterialCate;
-        private System.Data.DataColumn dcUnit;
-        private System.Data.DataColumn dcAmount;
-        private System.Data.DataColumn dcPrepared;
-        private System.Data.DataColumn dcPreparedIp;
-        private System.Data.DataColumn dcGetTime;
-        private DevExpress.XtraGrid.GridControl gridControlDeliveryDetail;
-        private System.Windows.Forms.BindingSource bindingSource_DeliveryDetail;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDeliveryDetail;
-        private DevExpress.XtraGrid.Columns.GridColumn colAutoId1;
         private DevExpress.XtraGrid.Columns.GridColumn colSMNo1;
         private DevExpress.XtraGrid.Columns.GridColumn colDeliveryText;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repMemoDeliveryText;
         private DevExpress.XtraGrid.Columns.GridColumn colFunctionDesc1;
-        private DevExpress.XtraGrid.Columns.GridColumn colDeliveryQty;
         private DevExpress.XtraGrid.Columns.GridColumn colUnit;
+        private DevExpress.XtraGrid.Columns.GridColumn colDeliveryQty;
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colPrepared1;
-        private DevExpress.XtraGrid.Columns.GridColumn colPreparedIp1;
-        private DevExpress.XtraGrid.Columns.GridColumn colGetTime1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMaterialDetail;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAutoId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnDeliveryDetailNO;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMaterialName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMaterialBrand;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMaterialDesc;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMaterialCate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMaterialQty;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnUnit;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPrepared;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnGetTime;
-        private DevExpress.XtraEditors.SimpleButton btnCollapse;
-        private DevExpress.XtraEditors.SimpleButton btnExpand;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaterialName;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaterialBrand;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaterialCate;
+        private DevExpress.XtraGrid.Columns.GridColumn colMatUnit;
+        private DevExpress.XtraGrid.Columns.GridColumn colMatQty;
+        private DevExpress.XtraGrid.Columns.GridColumn colMatAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaterialDesc;
+        private DevExpress.XtraGrid.Columns.GridColumn colAutoId1;
+        private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
     }
 }

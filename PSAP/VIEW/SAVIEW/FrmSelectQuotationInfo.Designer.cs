@@ -164,7 +164,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(668, 43);
+            this.btnQuery.Location = new System.Drawing.Point(470, 43);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 5;
@@ -174,7 +174,7 @@
             // textCommon
             // 
             this.textCommon.EnterMoveNextControl = true;
-            this.textCommon.Location = new System.Drawing.Point(425, 44);
+            this.textCommon.Location = new System.Drawing.Point(293, 44);
             this.textCommon.Name = "textCommon";
             this.textCommon.Size = new System.Drawing.Size(150, 20);
             this.textCommon.TabIndex = 4;
@@ -276,9 +276,9 @@
             // 
             this.labCommon.Location = new System.Drawing.Point(227, 47);
             this.labCommon.Name = "labCommon";
-            this.labCommon.Size = new System.Drawing.Size(192, 14);
+            this.labCommon.Size = new System.Drawing.Size(60, 14);
             this.labCommon.TabIndex = 22;
-            this.labCommon.Text = "通用查询（报价单号或工位序号）：";
+            this.labCommon.Text = "通用查询：";
             // 
             // labBussinessBaseNo
             // 
@@ -519,7 +519,7 @@
             this.colBussinessBaseNo1.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo1.Name = "colBussinessBaseNo1";
             this.colBussinessBaseNo1.Visible = true;
-            this.colBussinessBaseNo1.VisibleIndex = 2;
+            this.colBussinessBaseNo1.VisibleIndex = 1;
             this.colBussinessBaseNo1.Width = 100;
             // 
             // repSearchLookUpBussinessBaseNo
@@ -584,7 +584,7 @@
             this.colQuotationState1.FieldName = "QuotationState";
             this.colQuotationState1.Name = "colQuotationState1";
             this.colQuotationState1.Visible = true;
-            this.colQuotationState1.VisibleIndex = 4;
+            this.colQuotationState1.VisibleIndex = 3;
             this.colQuotationState1.Width = 40;
             // 
             // repLookUpQState
@@ -606,7 +606,7 @@
             this.colRecordDate.FieldName = "RecordDate";
             this.colRecordDate.Name = "colRecordDate";
             this.colRecordDate.Visible = true;
-            this.colRecordDate.VisibleIndex = 5;
+            this.colRecordDate.VisibleIndex = 4;
             this.colRecordDate.Width = 80;
             // 
             // colProjectName
@@ -616,7 +616,7 @@
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 3;
+            this.colProjectName.VisibleIndex = 2;
             this.colProjectName.Width = 90;
             // 
             // colRFQNO
@@ -626,7 +626,7 @@
             this.colRFQNO.FieldName = "RFQNO";
             this.colRFQNO.Name = "colRFQNO";
             this.colRFQNO.Visible = true;
-            this.colRFQNO.VisibleIndex = 6;
+            this.colRFQNO.VisibleIndex = 5;
             this.colRFQNO.Width = 100;
             // 
             // colRequester
@@ -636,7 +636,7 @@
             this.colRequester.FieldName = "Requester";
             this.colRequester.Name = "colRequester";
             this.colRequester.Visible = true;
-            this.colRequester.VisibleIndex = 7;
+            this.colRequester.VisibleIndex = 6;
             this.colRequester.Width = 80;
             // 
             // colParentAutoQuotationNo
@@ -646,7 +646,7 @@
             this.colParentAutoQuotationNo.FieldName = "ParentAutoQuotationNo";
             this.colParentAutoQuotationNo.Name = "colParentAutoQuotationNo";
             this.colParentAutoQuotationNo.Visible = true;
-            this.colParentAutoQuotationNo.VisibleIndex = 8;
+            this.colParentAutoQuotationNo.VisibleIndex = 7;
             this.colParentAutoQuotationNo.Width = 110;
             // 
             // colPrepared1
@@ -680,8 +680,6 @@
             this.colSSNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colSSNo.FieldName = "SSNo";
             this.colSSNo.Name = "colSSNo";
-            this.colSSNo.Visible = true;
-            this.colSSNo.VisibleIndex = 1;
             this.colSSNo.Width = 110;
             // 
             // pnlMiddle
@@ -705,8 +703,8 @@
             this.Name = "FrmSelectQuotationInfo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TabText = "选择报价单和工位信息";
-            this.Text = "选择报价单和工位信息";
+            this.TabText = "选择报价单";
+            this.Text = "选择报价单";
             this.Load += new System.EventHandler(this.FrmSelectQuotationInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).EndInit();
             this.pnltop.ResumeLayout(false);

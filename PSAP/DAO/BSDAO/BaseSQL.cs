@@ -263,7 +263,7 @@ namespace PSAP.DAO.BSDAO
                         string strsql = SQLStringList[n].ToString();
                         if (strsql.Trim().Length > 1)
                         {
-                             //nn = n;
+                            //nn = n;
                             cmd.CommandText = strsql;
                             cmd.ExecuteNonQuery();
                         }
@@ -376,7 +376,7 @@ namespace PSAP.DAO.BSDAO
         /// <summary>
         /// 执行一条计算查询结果语句，返回查询结果（object）。
         /// </summary>
-        public static object GetSingle(SqlCommand cmd , string SQLString)
+        public static object GetSingle(SqlCommand cmd, string SQLString)
         {
             cmd.CommandText = SQLString;
             object obj = cmd.ExecuteScalar();
@@ -498,6 +498,35 @@ namespace PSAP.DAO.BSDAO
         public static DateTime GetServerDateTime()
         {
             return Convert.ToDateTime(GetSingle("select getdate()"));
+        }
+
+        /// <summary>
+        /// 备份数据库
+        /// </summary>
+        /// <param name="databaseNameStr">数据库名称</param>
+        /// <param name="saveFileStr">保存数据库的文件路径名</param>
+        public static bool BackupDataBase(string databaseNameStr, string filePathNameStr)
+        {
+            using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
+            {
+                conn.Open();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("", conn);
+                    cmd.CommandText = string.Format("BACKUP DATABASE {0} TO DISK = '{1}'", databaseNameStr, filePathNameStr);
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         #endregion
@@ -779,7 +808,7 @@ namespace PSAP.DAO.BSDAO
             {
                 cmd.Parameters.Add(parameter);
             }
-            cmd.Parameters.Add("@ErrorText", SqlDbType.NVarChar,200).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("@ErrorText", SqlDbType.NVarChar, 200).Direction = ParameterDirection.Output;
             cmd.ExecuteNonQuery();
             errorText = DataTypeConvert.GetString(cmd.Parameters["@ErrorText"].Value);
             resultInt = DataTypeConvert.GetInt(cmd.Parameters["@ReturnValue"].Value);
@@ -801,6 +830,6 @@ namespace PSAP.DAO.BSDAO
             return command;
         }
         #endregion
-
-    }
+        
+    }    
 }

@@ -101,6 +101,15 @@ namespace PSAP.DAO.SADAO
         }
 
         /// <summary>
+        /// 查询报价单号是否存在
+        /// </summary>
+        public int QueryQuotationBaseInfoCount(string autoQuotationNoStr)
+        {
+            string sqlStr = string.Format("select COUNT(*) from SA_QuotationBaseInfo where AutoQuotationNo = '{0}'", autoQuotationNoStr);
+            return DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
+        }
+
+        /// <summary>
         /// 查询工位子表信息
         /// </summary>
         public void QueryStnSummaryList(DataTable queryDataTable, string ssNoStr)
@@ -188,7 +197,7 @@ namespace PSAP.DAO.SADAO
         /// <summary>
         /// 保存工位信息
         /// </summary>
-        public int SaveStnSummaryList(string autoQuotationNoStr, DataRow headRow,ref int lastNewStnListAutoId)
+        public int SaveStnSummaryList(string autoQuotationNoStr, DataRow headRow, ref int lastNewStnListAutoId)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -426,6 +435,15 @@ namespace PSAP.DAO.SADAO
             else
                 return false;
         }
-        
+
+        /// <summary>
+        /// 查询其他工位使用模块的数量
+        /// </summary>
+        public int QueryOtherStnUseModuleCount(string smNoStr, int noContainId)
+        {
+            string sqlStr = string.Format("select COUNT(*) from SA_StnSummaryListModule where StnModuleId = '{0}' and AutoId not in ({1})", smNoStr, noContainId);
+            return DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
+        }
+
     }
 }

@@ -39,12 +39,6 @@ namespace PSAP.VIEW.BSVIEW
                 DateTime nowDate = BaseSQL.GetServerDateTime();
                 dateGetTimeBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateGetTimeEnd.DateTime = nowDate.Date;
-
-                //构建GridLevelNode并添加到LevelTree集合里面
-                GridLevelNode node = new GridLevelNode();
-                node.LevelTemplate = gridViewMaterialDetail;
-                node.RelationName = "RelationDM";//这里对应集合的属性名称
-                gridControlDeliveryDetail.LevelTree.Nodes.AddRange(new GridLevelNode[] { node });
             }
             catch (Exception ex)
             {
@@ -131,30 +125,36 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void QueryDeliveryDetail(string smNoStr)
         {
-            dataSet_DeliveryDetail.Tables[1].Rows.Clear();
+            //dataSet_DeliveryDetail.Tables[1].Rows.Clear();
+            //dataSet_DeliveryDetail.Tables[0].Rows.Clear();
+            //if (smNoStr != "")
+            //{
+            //    smDAO.QueryDeliveryDetail(dataSet_DeliveryDetail.Tables[0], smNoStr);
+            //    smDAO.QueryMaterialDetail(dataSet_DeliveryDetail.Tables[1], smNoStr);
+
+            //    ExpandDeliveryDetail();
+            //}
+
             dataSet_DeliveryDetail.Tables[0].Rows.Clear();
             if (smNoStr != "")
             {
-                smDAO.QueryDeliveryDetail(dataSet_DeliveryDetail.Tables[0], smNoStr);
-                smDAO.QueryMaterialDetail(dataSet_DeliveryDetail.Tables[1], smNoStr);
-
-                ExpandDeliveryDetail();
+                ssDAO.QueryDeliveryDetail_AllInfo(dataSet_DeliveryDetail.Tables[0], smNoStr);
             }
         }
 
-        /// <summary>
-        /// 扩展所有供货明细的详细信息
-        /// </summary>
-        private void ExpandDeliveryDetail()
-        {
-            if (gridViewDeliveryDetail.DataRowCount > 0)
-            {
-                for (int i = 0; i < gridViewDeliveryDetail.DataRowCount; i++)
-                {
-                    gridViewDeliveryDetail.ExpandMasterRow(i, 0);
-                }
-            }
-        }
+        ///// <summary>
+        ///// 扩展所有供货明细的详细信息
+        ///// </summary>
+        //private void ExpandDeliveryDetail()
+        //{
+        //    if (gridViewDeliveryDetail.DataRowCount > 0)
+        //    {
+        //        for (int i = 0; i < gridViewDeliveryDetail.DataRowCount; i++)
+        //        {
+        //            gridViewDeliveryDetail.ExpandMasterRow(i, 0);
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 双击行确定

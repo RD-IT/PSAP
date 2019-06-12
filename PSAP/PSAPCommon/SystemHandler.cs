@@ -65,25 +65,25 @@ namespace PSAP.PSAPCommon
 
             #region 设置连接服务端的IP地址和端口号
 
-            SystemInfo.serverIP = new SystemHandler().GetIpAddress();
+            SystemInfo.ServerIP = new SystemHandler().GetIpAddress();
 
             if (File.Exists(iniPath))
             {
                 string serverIpStr = fileHandler.IniReadValue(iniPath, sectionStr, "ServerIP");
                 int portInt = DataTypeConvert.GetInt(fileHandler.IniReadValue(iniPath, sectionStr, "ServerPort"));
                 if (serverIpStr != "")
-                    SystemInfo.serverIP = serverIpStr;
+                    SystemInfo.ServerIP = serverIpStr;
                 else
-                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SystemInfo.serverIP);
+                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SystemInfo.ServerIP);
                 if (portInt > 0)
-                    SystemInfo.serverPort = portInt;
+                    SystemInfo.ServerPort = portInt;
                 else
-                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SystemInfo.serverPort.ToString());
+                    fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SystemInfo.ServerPort.ToString());
             }
             else
             {
-                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SystemInfo.serverIP);
-                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SystemInfo.serverPort.ToString());
+                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerIP", SystemInfo.ServerIP);
+                fileHandler.IniWriteValue(iniPath, sectionStr, "ServerPort", SystemInfo.ServerPort.ToString());
             }
 
             #endregion

@@ -73,6 +73,16 @@ namespace PSAP.PSAPCommon
         /// </summary>
         public static string DefaultPrinterName = "";
 
+        /// <summary>
+        /// 服务器数据库名称
+        /// </summary>
+        public static string ServerDataBaseName = "PSAP";
+
+        /// <summary>
+        /// 数据库备份的路径，等以后有了系统参数移除静态变量
+        /// </summary>
+        public static string DataBaseBackupPath= "D:\\DATA\\";
+
         #endregion
 
         #region 系统参数
@@ -164,17 +174,17 @@ namespace PSAP.PSAPCommon
         /// <summary>
         /// 服务器的IP地址
         /// </summary>
-        public static string serverIP = "192.168.0.146";
+        public static string ServerIP = "192.168.0.146";
 
         /// <summary>
         /// 服务器通信的端口号
         /// </summary>
-        public static int serverPort = 9988;
+        public static int ServerPort = 9988;
 
         /// <summary>
         /// 服务器通信协议类型
         /// </summary>
-        public static ProtocolType serverProtocolType = ProtocolType.Tcp;
+        public static ProtocolType ServerProtocolType = ProtocolType.Tcp;
 
         /// <summary>
         /// 登陆保存密码

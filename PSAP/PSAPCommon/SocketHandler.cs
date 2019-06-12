@@ -43,11 +43,11 @@ namespace PSAP.PSAPCommon
         {
             mainThreadSynContext = SynchronizationContext.Current;
 
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, SystemInfo.serverProtocolType);
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, SystemInfo.ServerProtocolType);
             clientSocket = socket;
             try
             {
-                socket.Connect(SystemInfo.serverIP, SystemInfo.serverPort);
+                socket.Connect(SystemInfo.ServerIP, SystemInfo.ServerPort);
             }
             catch (Exception)
             {

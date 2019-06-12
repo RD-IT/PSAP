@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dataSet_DeliveryDetail = new System.Data.DataSet();
             this.TableDeliveryDetail = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -64,6 +63,7 @@
             this.colMatAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMaterialDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlDeliveryDetailToolBar = new DevExpress.XtraEditors.PanelControl();
+            this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.splitterRight = new DevExpress.XtraEditors.SplitterControl();
             this.pnlModuleList = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabModuleList = new DevExpress.XtraTab.XtraTabControl();
@@ -100,9 +100,9 @@
             this.colFunctionDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFunctionDetail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlModuleListToolBar = new DevExpress.XtraEditors.PanelControl();
-            this.btnModuleCopy = new DevExpress.XtraEditors.SimpleButton();
+            this.btnModuleCopyEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnModuleSelect = new DevExpress.XtraEditors.SimpleButton();
-            this.btnModuleNew = new DevExpress.XtraEditors.SimpleButton();
+            this.btnModuleEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnModuleDelete = new DevExpress.XtraEditors.SimpleButton();
             this.splitterLeft = new DevExpress.XtraEditors.SplitterControl();
             this.pnlStnList = new DevExpress.XtraEditors.PanelControl();
@@ -135,8 +135,6 @@
             this.labGetTime = new DevExpress.XtraEditors.LabelControl();
             this.labPrepared = new DevExpress.XtraEditors.LabelControl();
             this.textPrepared = new DevExpress.XtraEditors.TextEdit();
-            this.labSSNo = new DevExpress.XtraEditors.LabelControl();
-            this.btnEditSSNo = new DevExpress.XtraEditors.ButtonEdit();
             this.labAutoQuotationNo = new DevExpress.XtraEditors.LabelControl();
             this.dockManagerRight = new DevExpress.XtraBars.Docking.DockManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataSet_DeliveryDetail)).BeginInit();
@@ -156,6 +154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repMemoDeliveryText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetailToolBar)).BeginInit();
+            this.pnlDeliveryDetailToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlModuleList)).BeginInit();
             this.pnlModuleList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabModuleList)).BeginInit();
@@ -192,7 +191,6 @@
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textGetTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditSSNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerRight)).BeginInit();
             this.SuspendLayout();
             // 
@@ -272,14 +270,15 @@
             // 
             // btnEditAutoQuotationNo
             // 
+            this.btnEditAutoQuotationNo.EnterMoveNextControl = true;
             this.btnEditAutoQuotationNo.Location = new System.Drawing.Point(99, 21);
             this.btnEditAutoQuotationNo.Name = "btnEditAutoQuotationNo";
             this.btnEditAutoQuotationNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "查询", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.btnEditAutoQuotationNo.Properties.ReadOnly = true;
             this.btnEditAutoQuotationNo.Size = new System.Drawing.Size(150, 21);
             this.btnEditAutoQuotationNo.TabIndex = 0;
             this.btnEditAutoQuotationNo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditAutoQuotationNo_ButtonClick);
+            this.btnEditAutoQuotationNo.Leave += new System.EventHandler(this.btnEditAutoQuotationNo_Leave);
             // 
             // pnlLeft
             // 
@@ -509,11 +508,22 @@
             // 
             // pnlDeliveryDetailToolBar
             // 
+            this.pnlDeliveryDetailToolBar.Controls.Add(this.btnSaveExcel);
             this.pnlDeliveryDetailToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDeliveryDetailToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlDeliveryDetailToolBar.Name = "pnlDeliveryDetailToolBar";
             this.pnlDeliveryDetailToolBar.Size = new System.Drawing.Size(354, 40);
             this.pnlDeliveryDetailToolBar.TabIndex = 23;
+            // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.Location = new System.Drawing.Point(10, 9);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveExcel.TabIndex = 107;
+            this.btnSaveExcel.TabStop = false;
+            this.btnSaveExcel.Text = "存为Excel";
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
             // splitterRight
             // 
@@ -786,9 +796,9 @@
             // 
             // pnlModuleListToolBar
             // 
-            this.pnlModuleListToolBar.Controls.Add(this.btnModuleCopy);
+            this.pnlModuleListToolBar.Controls.Add(this.btnModuleCopyEdit);
             this.pnlModuleListToolBar.Controls.Add(this.btnModuleSelect);
-            this.pnlModuleListToolBar.Controls.Add(this.btnModuleNew);
+            this.pnlModuleListToolBar.Controls.Add(this.btnModuleEdit);
             this.pnlModuleListToolBar.Controls.Add(this.btnModuleDelete);
             this.pnlModuleListToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlModuleListToolBar.Location = new System.Drawing.Point(0, 0);
@@ -796,16 +806,16 @@
             this.pnlModuleListToolBar.Size = new System.Drawing.Size(410, 40);
             this.pnlModuleListToolBar.TabIndex = 0;
             // 
-            // btnModuleCopy
+            // btnModuleCopyEdit
             // 
-            this.btnModuleCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModuleCopy.Location = new System.Drawing.Point(324, 9);
-            this.btnModuleCopy.Name = "btnModuleCopy";
-            this.btnModuleCopy.Size = new System.Drawing.Size(75, 23);
-            this.btnModuleCopy.TabIndex = 106;
-            this.btnModuleCopy.TabStop = false;
-            this.btnModuleCopy.Text = "复制";
-            this.btnModuleCopy.Click += new System.EventHandler(this.btnModuleCopy_Click);
+            this.btnModuleCopyEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModuleCopyEdit.Location = new System.Drawing.Point(324, 9);
+            this.btnModuleCopyEdit.Name = "btnModuleCopyEdit";
+            this.btnModuleCopyEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleCopyEdit.TabIndex = 106;
+            this.btnModuleCopyEdit.TabStop = false;
+            this.btnModuleCopyEdit.Text = "复制编辑";
+            this.btnModuleCopyEdit.Click += new System.EventHandler(this.btnModuleCopy_Click);
             // 
             // btnModuleSelect
             // 
@@ -816,16 +826,16 @@
             this.btnModuleSelect.Text = "选择";
             this.btnModuleSelect.Click += new System.EventHandler(this.btnModuleSelect_Click);
             // 
-            // btnModuleNew
+            // btnModuleEdit
             // 
-            this.btnModuleNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModuleNew.Location = new System.Drawing.Point(243, 9);
-            this.btnModuleNew.Name = "btnModuleNew";
-            this.btnModuleNew.Size = new System.Drawing.Size(75, 23);
-            this.btnModuleNew.TabIndex = 105;
-            this.btnModuleNew.TabStop = false;
-            this.btnModuleNew.Text = "新增";
-            this.btnModuleNew.Click += new System.EventHandler(this.btnModuleNew_Click);
+            this.btnModuleEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModuleEdit.Location = new System.Drawing.Point(243, 9);
+            this.btnModuleEdit.Name = "btnModuleEdit";
+            this.btnModuleEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnModuleEdit.TabIndex = 105;
+            this.btnModuleEdit.TabStop = false;
+            this.btnModuleEdit.Text = "编辑";
+            this.btnModuleEdit.Click += new System.EventHandler(this.btnModuleEdit_Click);
             // 
             // btnModuleDelete
             // 
@@ -1090,8 +1100,6 @@
             this.pnlTop.Controls.Add(this.labGetTime);
             this.pnlTop.Controls.Add(this.labPrepared);
             this.pnlTop.Controls.Add(this.textPrepared);
-            this.pnlTop.Controls.Add(this.labSSNo);
-            this.pnlTop.Controls.Add(this.btnEditSSNo);
             this.pnlTop.Controls.Add(this.labAutoQuotationNo);
             this.pnlTop.Controls.Add(this.btnEditAutoQuotationNo);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1102,7 +1110,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(905, 20);
+            this.btnRefresh.Location = new System.Drawing.Point(665, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 4;
@@ -1111,7 +1119,7 @@
             // 
             // textGetTime
             // 
-            this.textGetTime.Location = new System.Drawing.Point(749, 21);
+            this.textGetTime.Location = new System.Drawing.Point(509, 21);
             this.textGetTime.Name = "textGetTime";
             this.textGetTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.textGetTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -1121,7 +1129,7 @@
             // 
             // labGetTime
             // 
-            this.labGetTime.Location = new System.Drawing.Point(684, 24);
+            this.labGetTime.Location = new System.Drawing.Point(444, 24);
             this.labGetTime.Name = "labGetTime";
             this.labGetTime.Size = new System.Drawing.Size(48, 14);
             this.labGetTime.TabIndex = 6;
@@ -1129,7 +1137,7 @@
             // 
             // labPrepared
             // 
-            this.labPrepared.Location = new System.Drawing.Point(509, 24);
+            this.labPrepared.Location = new System.Drawing.Point(269, 24);
             this.labPrepared.Name = "labPrepared";
             this.labPrepared.Size = new System.Drawing.Size(36, 14);
             this.labPrepared.TabIndex = 5;
@@ -1137,30 +1145,11 @@
             // 
             // textPrepared
             // 
-            this.textPrepared.Location = new System.Drawing.Point(561, 21);
+            this.textPrepared.Location = new System.Drawing.Point(321, 21);
             this.textPrepared.Name = "textPrepared";
             this.textPrepared.Properties.ReadOnly = true;
             this.textPrepared.Size = new System.Drawing.Size(100, 20);
             this.textPrepared.TabIndex = 2;
-            // 
-            // labSSNo
-            // 
-            this.labSSNo.Location = new System.Drawing.Point(269, 24);
-            this.labSSNo.Name = "labSSNo";
-            this.labSSNo.Size = new System.Drawing.Size(48, 14);
-            this.labSSNo.TabIndex = 3;
-            this.labSSNo.Text = "工位序号";
-            // 
-            // btnEditSSNo
-            // 
-            this.btnEditSSNo.Location = new System.Drawing.Point(333, 21);
-            this.btnEditSSNo.Name = "btnEditSSNo";
-            this.btnEditSSNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "查询", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
-            this.btnEditSSNo.Properties.ReadOnly = true;
-            this.btnEditSSNo.Size = new System.Drawing.Size(150, 21);
-            this.btnEditSSNo.TabIndex = 1;
-            this.btnEditSSNo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditSSNo_ButtonClick);
             // 
             // labAutoQuotationNo
             // 
@@ -1212,6 +1201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repMemoDeliveryText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlDeliveryDetailToolBar)).EndInit();
+            this.pnlDeliveryDetailToolBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlModuleList)).EndInit();
             this.pnlModuleList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabModuleList)).EndInit();
@@ -1250,7 +1240,6 @@
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textGetTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textPrepared.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditSSNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerRight)).EndInit();
             this.ResumeLayout(false);
 
@@ -1265,8 +1254,6 @@
         private DevExpress.XtraEditors.LabelControl labGetTime;
         private DevExpress.XtraEditors.LabelControl labPrepared;
         private DevExpress.XtraEditors.TextEdit textPrepared;
-        private DevExpress.XtraEditors.LabelControl labSSNo;
-        private DevExpress.XtraEditors.ButtonEdit btnEditSSNo;
         private DevExpress.XtraEditors.LabelControl labAutoQuotationNo;
         private DevExpress.XtraEditors.PanelControl pnlModuleList;
         private DevExpress.XtraTab.XtraTabControl xtraTabModuleList;
@@ -1331,8 +1318,8 @@
         private DevExpress.XtraEditors.PanelControl pnlModuleListToolBar;
         private DevExpress.XtraBars.Docking.DockManager dockManagerRight;
         private DevExpress.XtraEditors.SimpleButton btnModuleDelete;
-        private DevExpress.XtraEditors.SimpleButton btnModuleNew;
-        private DevExpress.XtraEditors.SimpleButton btnModuleCopy;
+        private DevExpress.XtraEditors.SimpleButton btnModuleEdit;
+        private DevExpress.XtraEditors.SimpleButton btnModuleCopyEdit;
         private DevExpress.XtraEditors.SimpleButton btnModuleSelect;
         private DevExpress.XtraEditors.PanelControl pnlDeliveryDetail;
         private DevExpress.XtraEditors.SplitterControl splitterRight;
@@ -1366,5 +1353,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMatAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colMaterialDesc;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repMemoDeliveryText;
+        private DevExpress.XtraEditors.SimpleButton btnSaveExcel;
     }
 }

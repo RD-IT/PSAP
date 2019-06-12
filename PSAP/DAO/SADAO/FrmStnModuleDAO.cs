@@ -13,16 +13,16 @@ namespace PSAP.DAO.SADAO
         /// <summary>
         /// 查询功能模块信息
         /// </summary>
-        public void QueryStnModule(DataTable queryDataTable, string beginDateStr, string endDateStr, string preparedStr, string commonStr)
+        public void QueryStnModule(DataTable queryDataTable, string beginDateStr, string endDateStr, string preparedStr, string smNoStr, string commonStr)
         {
-            string sqlStr = QueryStnModule_SQL(beginDateStr, endDateStr, preparedStr, commonStr);
+            string sqlStr = QueryStnModule_SQL(beginDateStr, endDateStr, preparedStr, smNoStr, commonStr);
             BaseSQL.Query(sqlStr, queryDataTable);
         }
 
         /// <summary>
         /// 查询功能模块信息的SQL
         /// </summary>
-        public string QueryStnModule_SQL(string beginDateStr, string endDateStr, string preparedStr, string commonStr)
+        public string QueryStnModule_SQL(string beginDateStr, string endDateStr, string preparedStr, string smNoStr, string commonStr)
         {
             string sqlStr = " 1=1";
             if (beginDateStr != "")
@@ -32,6 +32,10 @@ namespace PSAP.DAO.SADAO
             if (preparedStr != "")
             {
                 sqlStr += string.Format(" and Prepared='{0}'", preparedStr);
+            }
+            if (smNoStr != "")
+            {
+                sqlStr += string.Format(" and SMNo='{0}'", smNoStr);
             }
             if (commonStr != "")
             {
@@ -52,6 +56,20 @@ namespace PSAP.DAO.SADAO
         }
 
         /// <summary>
+        /// 查询供货明细的全部信息（主表和子表关联的信息）
+        /// </summary>
+        public void QueryDeliveryDetail_AllInfo(DataTable queryDataTable, string smNoStr)
+        {
+            string sqlStr = " 1=1";
+            if (smNoStr != "")
+            {
+                sqlStr += string.Format(" and SMNo = '{0}'", smNoStr);
+            }
+            sqlStr = string.Format("select dd.AutoId, dd.SMNo, dd.DeliveryText, dd.FunctionDesc, dd.DeliveryQty, dd.Unit, dd.Amount, dd.Prepared, md.MaterialName, md.MaterialBrand, md.MaterialDesc, md.MaterialCate, md.MaterialQty as MatQty, md.Unit as MatUnit, md.Amount as MatAmount from SA_DeliveryDetail as dd left join SA_MaterialDetail as md on dd.AutoId = md.DeliveryDetailNO where {0} order by dd.SMNo, dd.AutoId", sqlStr);
+            BaseSQL.Query(sqlStr, queryDataTable);
+        }
+
+        /// <summary>
         /// 按照供货明细的供货元器件信息
         /// </summary>
         public void QueryMaterialDetail(DataTable queryDataTable, string smNoStr)
@@ -63,7 +81,7 @@ namespace PSAP.DAO.SADAO
         /// <summary>
         /// 保存功能模块信息
         /// </summary>
-        public int SaveStnModule(DataRow headRow,string copySMNoStr)
+        public int SaveStnModule(DataRow headRow, string copySMNoStr, int StnSummaryListModule_AutoIdInt)
         {
             using (SqlConnection conn = new SqlConnection(BaseSQL.connectionString))
             {
@@ -95,8 +113,14 @@ namespace PSAP.DAO.SADAO
                         adapterHead.Fill(tmpHeadTable);
                         BaseSQL.UpdateDataTable(adapterHead, headRow.Table);
 
-                        if(copySMNoStr!="")
+                        if (copySMNoStr != "")
                         {
+                            if (StnSummaryListModule_AutoIdInt > 0)
+                            {
+                                cmd.CommandText = string.Format("Update SA_StnSummaryListModule set StnModuleId = '{1}' where AutoId = {0}", StnSummaryListModule_AutoIdInt, DataTypeConvert.GetString(headRow["SMNo"]));
+                                cmd.ExecuteNonQuery();
+                            }
+
                             int resultInt = 0;
                             string errorText = "";
 
@@ -111,7 +135,7 @@ namespace PSAP.DAO.SADAO
                             p3.Value = SystemInfo.user.EmpName;
                             SqlParameter p4 = new SqlParameter("@PreparedIp", SqlDbType.VarChar);
                             p4.Value = SystemInfo.HostIpAddress;
-                            IDataParameter[] parameters = new IDataParameter[] { p1, p2, p3, p4};
+                            IDataParameter[] parameters = new IDataParameter[] { p1, p2, p3, p4 };
                             BaseSQL.RunProcedure(cmd_proc, "P_DeliveryDetail_Copy", parameters, out resultInt, out errorText);
                             if (resultInt != 1)
                             {
@@ -164,7 +188,7 @@ namespace PSAP.DAO.SADAO
                             return false;
                         }
 
-                        if(CheckStnModule_IsStnSummary(cmd,smNoStr))
+                        if (CheckStnModule_IsStnSummary(cmd, smNoStr))
                         {
                             MessageHandler.ShowMessageBox("当前的功能模块已经在工位信息中登记，不可以删除。");
                             return false;
@@ -221,7 +245,7 @@ namespace PSAP.DAO.SADAO
         public bool CheckStnModule_IsStnSummary(SqlCommand cmd, string smNoStr)
         {
             int count = 0;
-            string sqlStr= string.Format("select Count(*) from SA_StnSummaryListModule where StnModuleId = '{0}'", smNoStr);
+            string sqlStr = string.Format("select Count(*) from SA_StnSummaryListModule where StnModuleId = '{0}'", smNoStr);
             if (cmd == null)
                 count = DataTypeConvert.GetInt(BaseSQL.GetSingle(sqlStr));
             else

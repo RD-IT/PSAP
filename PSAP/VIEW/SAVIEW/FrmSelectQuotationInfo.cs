@@ -133,6 +133,11 @@ namespace PSAP.VIEW.BSVIEW
                     MessageHandler.ShowMessageBox("请选择要操作的报价单。");
                     return;
                 }
+                if(DataTypeConvert.GetInt(gridViewQuotation.GetFocusedDataRow()["QuotationState"]) == 1)
+                {
+                    MessageHandler.ShowMessageBox("报价单已经关闭，不可以再进行操作。");
+                    return;
+                }
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

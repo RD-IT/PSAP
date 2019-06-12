@@ -25,11 +25,6 @@ namespace PSAP.VIEW.BSVIEW
         public static string queryAutoQuotationNoStr = "";
 
         /// <summary>
-        /// 要查询的工位序号
-        /// </summary>
-        public static string querySSNoStr = "";
-
-        /// <summary>
         /// 工位信息的AutoId
         /// </summary>
         public static int queryStnSummaryListAutoIdInt = 0;
@@ -83,14 +78,6 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     btnEditAutoQuotationNo.Text = queryAutoQuotationNoStr;
                     queryAutoQuotationNoStr = "";
-                    querySSNoStr = "";
-                    btnRefresh_Click(null, null);
-                }
-                else if (querySSNoStr != "")
-                {
-                    btnEditSSNo.Text = querySSNoStr;
-                    btnEditAutoQuotationNo.Text = "";
-                    querySSNoStr = "";
                     btnRefresh_Click(null, null);
                 }
             }
@@ -123,7 +110,6 @@ namespace PSAP.VIEW.BSVIEW
             {
                 btnEditAutoQuotationNo.Text = DataTypeConvert.GetString(TableStnSummary.Rows[0]["AutoQuotationNo"]);
                 ssNoStr = DataTypeConvert.GetString(TableStnSummary.Rows[0]["SSNo"]);
-                btnEditSSNo.Text = ssNoStr;
                 textPrepared.Text = DataTypeConvert.GetString(TableStnSummary.Rows[0]["Prepared"]);
                 textGetTime.Text = DataTypeConvert.GetDateTime(TableStnSummary.Rows[0]["GetTime"]).ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -131,8 +117,11 @@ namespace PSAP.VIEW.BSVIEW
             }
             else
             {
-                btnEditAutoQuotationNo.Text = autoQuotationNoStr;
-                btnEditSSNo.Text = "";
+                int count = ssDAO.QueryQuotationBaseInfoCount(autoQuotationNoStr);
+                if(count >0)
+                    btnEditAutoQuotationNo.Text = autoQuotationNoStr;
+                else
+                    btnEditAutoQuotationNo.Text = "";
                 textPrepared.Text = "";
                 textGetTime.Text = "";
 
@@ -229,19 +218,30 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--选择报价单号错误。", ex);
             }
         }
-
+        
         /// <summary>
-        /// 选择工位序号
+        /// 报价单号手动输入后检测
         /// </summary>
-        private void btnEditSSNo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void btnEditAutoQuotationNo_Leave(object sender, EventArgs e)
         {
             try
             {
-                ShowSelectQuotationInfo();
+                if(btnEditAutoQuotationNo.Text.Trim()=="")
+                {
+                    string autoQuotationNoStr = "-1";
+                    RefreshStnSummary(autoQuotationNoStr, "");
+                }
+                else
+                {
+                    string autoQuotationNoStr = btnEditAutoQuotationNo.Text;
+                    RefreshStnSummary(autoQuotationNoStr, "");
+                }
+
+                Set_ButtonEditGrid_State(true);
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--选择工位序号错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--报价单号手动输入后检测错误。", ex);
             }
         }
 
@@ -256,11 +256,6 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     string autoQuotationNoStr = btnEditAutoQuotationNo.Text;
                     RefreshStnSummary(autoQuotationNoStr, "");
-                }
-                else if (btnEditSSNo.Text != "")
-                {
-                    string ssNoStr = btnEditSSNo.Text;
-                    RefreshStnSummary("", ssNoStr);
                 }
 
                 Set_ButtonEditGrid_State(true);
@@ -496,7 +491,6 @@ namespace PSAP.VIEW.BSVIEW
         private void Set_ButtonEditGrid_State(bool state)
         {
             btnEditAutoQuotationNo.Properties.Buttons[0].Enabled = state;
-            btnEditSSNo.Properties.Buttons[0].Enabled = state;
 
             btnStnListNew.Enabled = state;
             if (state)
@@ -514,8 +508,8 @@ namespace PSAP.VIEW.BSVIEW
             btnModuleSelect.Enabled = state;
             btnModuleDelete.Enabled = state;
 
-            btnModuleNew.Enabled = state;
-            btnModuleCopy.Enabled = state;
+            btnModuleEdit.Enabled = state;
+            btnModuleCopyEdit.Enabled = state;
 
             textEditStnNo.ReadOnly = state;
             textEditStnDesc.ReadOnly = state;
@@ -620,23 +614,40 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 新增基础功能模块
+        /// 编辑基础功能模块
         /// </summary>
-        private void btnModuleNew_Click(object sender, EventArgs e)
+        private void btnModuleEdit_Click(object sender, EventArgs e)
         {
             try
             {
-                FrmStnModule.defaultNewState = true;
+                DataRow focusedRow = gridViewModuleList.GetFocusedDataRow();
+                if (focusedRow == null)
+                {
+                    MessageHandler.ShowMessageBox("请选择要进行编辑的功能模块。");
+                    return;
+                }
+
+                string smNoStr = DataTypeConvert.GetString(focusedRow["SMNo"]);
+                int autoIdInt = DataTypeConvert.GetInt(focusedRow["AutoId"]);
+
+                int count = ssDAO.QueryOtherStnUseModuleCount(smNoStr, autoIdInt);
+                if (count > 0)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo(string.Format("功能模块[{0}]除去当前记录还有{1}个工位信息使用，确认继续修改吗？", smNoStr, count)) != DialogResult.Yes)
+                        return;
+                }
+
+                FrmStnModule.querySMNoStr = smNoStr;
                 ViewHandler.ShowRightWindow("FrmStnModule");
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--新增基础功能模块错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--编辑基础功能模块错误。", ex);
             }
         }
 
         /// <summary>
-        /// 复制新增基础功能模块
+        /// 复制编辑基础功能模块
         /// </summary>
         private void btnModuleCopy_Click(object sender, EventArgs e)
         {
@@ -645,88 +656,36 @@ namespace PSAP.VIEW.BSVIEW
                 DataRow focusedRow = gridViewModuleList.GetFocusedDataRow();
                 if (focusedRow == null)
                 {
-                    MessageHandler.ShowMessageBox("请选择要进行复制的功能模块。");
+                    MessageHandler.ShowMessageBox("请选择要进行复制编辑的功能模块。");
                     return;
                 }
 
                 string smNoStr = DataTypeConvert.GetString(focusedRow["SMNo"]);
+                int autoIdInt = DataTypeConvert.GetInt(focusedRow["AutoId"]);
 
                 FrmStnModule.copySMNoStr = smNoStr;
-                ViewHandler.ShowRightWindow("FrmStnModule");
+                FrmStnModule.StnSummaryListModule_AutoId = autoIdInt;
+                FrmStnModule smForm = new FrmStnModule();
+                smForm.ShowDialog();
+
+                btnRefresh_Click(null, null);
+
+                for (int i = 0; i < gridViewModuleList.DataRowCount; i++)
+                {
+                    if (DataTypeConvert.GetInt(gridViewModuleList.GetDataRow(i)["AutoId"]) == autoIdInt)
+                    {
+                        gridViewModuleList.FocusedRowHandle = i;
+                        break;
+                    }
+                }
+
+                //ViewHandler.ShowRightWindow("FrmStnModule");
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(this.Text + "--复制新增基础功能模块错误。", ex);
+                ExceptionHandler.HandleException(this.Text + "--复制编辑基础功能模块错误。", ex);
             }
         }
-
-        #region 拖入
-
-        ///// <summary>
-        ///// 拖拽在GridControl上面
-        ///// </summary>
-        //private void gridControlModuleList_DragOver(object sender, DragEventArgs e)
-        //{
-        //    if (e.Data.GetDataPresent(typeof(List<TreeListNode>)))
-        //        e.Effect = DragDropEffects.Move;
-        //    else
-        //        e.Effect = DragDropEffects.None;
-        //}
-
-        ///// <summary>
-        ///// 拖拽进入到GridControl控件
-        ///// </summary>
-        //private void gridControlModuleList_DragEnter(object sender, DragEventArgs e)
-        //{
-        //    e.Effect = DragDropEffects.Move;
-        //}
-
-        ///// <summary>
-        ///// 实现拖拽功能模块事件
-        ///// </summary>
-        //private void gridControlModuleList_DragDrop(object sender, DragEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (btnEditAutoQuotationNo.Text.Trim() == "")
-        //        {
-        //            MessageHandler.ShowMessageBox("请先选择要操作的报价单。");
-        //            return;
-        //        }
-
-        //        if (TableStnList.Rows.Count == 0 || bindingSource_StnList.Current == null)
-        //        {
-        //            MessageHandler.ShowMessageBox("请先选择要操作的工位信息。");
-        //            return;
-        //        }
-        //        if (!btnStnListNew.Enabled)
-        //        {
-        //            MessageHandler.ShowMessageBox("工位信息正在编辑状态，请保存后再进行拖拽功能模块操作。");
-        //            return;
-        //        }
-
-        //        List<string> smNoStrList = new List<string>();
-        //        List<TreeListNode> nodes = e.Data.GetData(typeof(List<TreeListNode>)) as List<TreeListNode>;
-        //        foreach (TreeListNode node in nodes)
-        //        {
-        //            smNoStrList.Add(DataTypeConvert.GetString(node["ReID"]));
-        //        }
-        //        DataRow headRow = ((DataRowView)bindingSource_StnList.Current).Row;
-        //        int autoIdInt = DataTypeConvert.GetInt(headRow["AutoId"]);
-        //        string stnNoStr = DataTypeConvert.GetString(headRow["StnNo"]);
-        //        if (ssDAO.SaveStnListModule(autoIdInt, stnNoStr, smNoStrList))
-        //        {
-        //            gridViewStnList_FocusedRowChanged(null, null);
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ExceptionHandler.HandleException(this.Text + "--实现拖拽功能模块事件错误。", ex);
-        //    }
-        //}
-
-        #endregion
 
         /// <summary>
         /// 双击查询明细
@@ -737,9 +696,7 @@ namespace PSAP.VIEW.BSVIEW
             {
                 if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
-                    string smNoStr = DataTypeConvert.GetString(gridViewModuleList.GetFocusedDataRow()["SMNo"]);
-                    FrmStnModule.querySMNoStr = smNoStr;
-                    ViewHandler.ShowRightWindow("FrmStnModule");
+                    btnModuleEdit_Click(null, null);
                 }
             }
             catch (Exception ex)
@@ -782,6 +739,21 @@ namespace PSAP.VIEW.BSVIEW
             if (smNoStr != "")
             {
                 ssDAO.QueryDeliveryDetail_AllInfo(dataSet_DeliveryDetail.Tables[0], smNoStr);
+            }
+        }
+
+        /// <summary>
+        /// 查询结果存为Excel
+        /// </summary>
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileHandler.SaveDevGridControlExportToExcel(gridViewDeliveryDetail);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
             }
         }
 

@@ -189,10 +189,16 @@ namespace PSAP.VIEW.BSVIEW
                     for (int i = gridViewMaterialDetail.DataRowCount - 1; i >= 0; i--)
                     {
                         DataRow listRow = gridViewMaterialDetail.GetDataRow(i);
-                        if (DataTypeConvert.GetString(listRow["MaterialName"]) == "")
+                        //if (DataTypeConvert.GetString(listRow["MaterialName"]) == "")
+                        //{
+                        //    gridViewMaterialDetail.DeleteRow(i);
+                        //    continue;
+                        //}
+                        if (DataTypeConvert.GetString(gridViewMaterialDetail.GetDataRow(i)["MaterialName"]) == "")
                         {
-                            gridViewMaterialDetail.DeleteRow(i);
-                            continue;
+                            MessageHandler.ShowMessageBox("名称不能为空，请填写后再进行保存。");
+                            FocusedListView(true, "MaterialName", i);
+                            return;
                         }
                         if (DataTypeConvert.GetString(gridViewMaterialDetail.GetDataRow(i)["MaterialBrand"]) == "")
                         {
@@ -660,7 +666,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                spinAmount.Value = spinDeliveryQty.Value * spinUnit.Value;
+                if (TableDeliveryDetail.Rows.Count == 0 || bindingSource_DeliveryDetail.Current == null)
+                    return;
+                DataRow headRow = ((DataRowView)bindingSource_DeliveryDetail.Current).Row;
+                if (DataTypeConvert.GetDecimal(headRow["DeliveryQty"]) != spinDeliveryQty.Value || DataTypeConvert.GetDecimal(headRow["Unit"]) != spinUnit.Value)
+                    spinAmount.Value = spinDeliveryQty.Value * spinUnit.Value;
             }
             catch (Exception ex)
             {
@@ -677,5 +687,6 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         #endregion
+        
     }
 }
