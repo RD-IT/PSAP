@@ -685,7 +685,6 @@ namespace PSAP.VIEW.BSVIEW
         {
             spinDeliveryQty_EditValueChanged(null, null);
         }
-
         #endregion
         
     }
