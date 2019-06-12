@@ -1,12 +1,11 @@
-﻿using PSAP.DAO.BSDAO;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using PSAP.DAO.BSDAO;
 using PSAP.PSAPCommon;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PSAP.DAO.BSDAO
 {
@@ -169,10 +168,10 @@ namespace PSAP.DAO.BSDAO
         /// </summary>
         public DataTable QueryProjectList(bool addAllItem)
         {
-            string sqlStr = "select AutoId, ProjectNo, ProjectName, Remark from BS_ProjectList order by AutoId";
+            string sqlStr = "select AutoId, ProjectNo, ProjectName, Remark from BS_ProjectList order by AutoId desc";
             if (addAllItem)
             {
-                sqlStr = "select 0 as AutoId, '" + f.tsmiQb + "' as ProjectNo, '" + f.tsmiQb + "' as ProjectName, '" + f.tsmiQb + "' as Remark union " + sqlStr;
+                sqlStr = "select 9999999999 as AutoId, '" + f.tsmiQb + "' as ProjectNo, '" + f.tsmiQb + "' as ProjectName, '" + f.tsmiQb + "' as Remark union " + sqlStr;
             }
             return BaseSQL.GetTableBySql(sqlStr);
         }
@@ -314,6 +313,42 @@ namespace PSAP.DAO.BSDAO
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 查询币种列表
+        /// </summary>
+        public DataTable QueryCurrencyCate(bool addAllItem)
+        {
+            string sqlStr = "select AutoId, CurrencyCateAbb, CurrencyCateName, ExchangeRate from BS_CurrencyCate order by AutoId";
+            if (addAllItem)
+            {
+                sqlStr = "select 0 as AutoId, '' as CurrencyCateAbb, '全部' as CurrencyCateName, 1 as ExchangeRate union " + sqlStr;
+            }
+            return BaseSQL.GetTableBySql(sqlStr);
+        }
+
+        /// <summary>
+        /// 查询的全部数据存为Excel文件
+        /// </summary>
+        /// <param name="QueryTableContainer">查询数据的容器</param>
+        /// <param name="sqlStr">查询全部数据的SQL</param>
+        /// <param name="displayGridView">显示数据的GridView容器</param>
+        public void SaveExcel_QueryAllData(DataTable QueryTableContainer, string sqlStr, GridView displayGridView)
+        {
+            displayGridView.GridControl.Visible = false;
+            DataTable tempTable = QueryTableContainer.Copy();
+            QueryTableContainer.Rows.Clear();
+            BaseSQL.Query(sqlStr, QueryTableContainer);
+
+            FileHandler.SaveDevGridControlExportToExcel(displayGridView);
+
+            QueryTableContainer.Rows.Clear();
+            foreach (DataRow dr in tempTable.Rows)
+            {
+                QueryTableContainer.ImportRow(dr);
+            }
+            displayGridView.GridControl.Visible = true;
         }
     }
 }

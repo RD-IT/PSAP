@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmInventoryMoveDAO imDAO = new FrmInventoryMoveDAO();
         static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmInventoryMoveQuery()
         {
             InitializeComponent();
@@ -65,9 +70,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewIMHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewIMHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -98,7 +115,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_IM.Tables[0].Clear();
                 string querySqlStr = imDAO.QueryInventoryMoveHead_SQL(orderDateBeginStr, orderDateEndStr, inRepertoryNoStr, outRepertoryNoStr, reqDepStr, empNameStr, commonStr, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomIM.QueryGridData(ref dataSet_IM, "IMHead", querySqlStr, countSqlStr, true);
             }
@@ -116,7 +133,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewIMHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewIMHead);
+                if (gridBottomIM.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewIMHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_IM.Tables[0], lastQuerySqlStr, gridViewIMHead);
             }
             catch (Exception ex)
             {
@@ -132,7 +153,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string inventoryMoveNoStr = DataTypeConvert.GetString(gridViewIMHead.GetFocusedDataRow()["InventoryMoveNo"]);
                     FrmInventoryMove_Drag.queryIMHeadNo = inventoryMoveNoStr;
@@ -146,5 +167,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--" + f.tsmiSjcxmxcw.Text, ex);
             }
         }
+
     }
 }

@@ -231,7 +231,6 @@
             this.gridViewCurrencyCate.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewCurrencyCate.OptionsView.ShowFooter = true;
             this.gridViewCurrencyCate.OptionsView.ShowGroupPanel = false;
-            this.gridViewCurrencyCate.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewCurrencyCate_CustomDrawRowIndicator);
             // 
             // labExchangeRate
             // 

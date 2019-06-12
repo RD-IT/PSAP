@@ -54,6 +54,7 @@
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlRightTop = new DevExpress.XtraEditors.PanelControl();
+            this.labMemo = new DevExpress.XtraEditors.LabelControl();
             this.btnSub = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.cboRoleName = new DevExpress.XtraEditors.LookUpEdit();
@@ -63,7 +64,6 @@
             this.tsmiCxyhqxxxcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCxyhdqxsjcw = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiYhqxycgbc = new System.Windows.Forms.ToolStripMenuItem();
-            this.labMemo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeft)).BeginInit();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLeftGrid)).BeginInit();
@@ -136,6 +136,7 @@
             this.dgvUserList.OptionsView.ShowGroupPanel = false;
             this.dgvUserList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.dgvUserList_CustomDrawRowIndicator);
             this.dgvUserList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.dgvUserList_FocusedRowChanged);
+            this.dgvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvUserList_KeyDown);
             // 
             // gridColAutoId
             // 
@@ -356,6 +357,14 @@
             this.pnlRightTop.Size = new System.Drawing.Size(627, 88);
             this.pnlRightTop.TabIndex = 0;
             // 
+            // labMemo
+            // 
+            this.labMemo.Location = new System.Drawing.Point(101, 56);
+            this.labMemo.Name = "labMemo";
+            this.labMemo.Size = new System.Drawing.Size(252, 14);
+            this.labMemo.TabIndex = 105;
+            this.labMemo.Text = "（注：蓝色字体的权限为当前用户的角色权限）";
+            // 
             // btnSub
             // 
             this.btnSub.AllowFocus = false;
@@ -437,14 +446,6 @@
             this.tsmiYhqxycgbc.Name = "tsmiYhqxycgbc";
             this.tsmiYhqxycgbc.Size = new System.Drawing.Size(220, 22);
             this.tsmiYhqxycgbc.Text = "【用户权限】已成功保存。";
-            // 
-            // labMemo
-            // 
-            this.labMemo.Location = new System.Drawing.Point(101, 56);
-            this.labMemo.Name = "labMemo";
-            this.labMemo.Size = new System.Drawing.Size(252, 14);
-            this.labMemo.TabIndex = 105;
-            this.labMemo.Text = "（注：蓝色字体的权限为当前用户的角色权限）";
             // 
             // FrmRight_UserMenuButton
             // 

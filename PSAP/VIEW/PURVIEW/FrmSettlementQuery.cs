@@ -22,6 +22,11 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         public static int wwListAutoId = 0;
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmSettlementQuery()
         {
             InitializeComponent();
@@ -149,9 +154,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewSettlementHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewSettlementHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -201,7 +218,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_Settlement.Tables[0].Clear();
 
                 string querySqlStr = setDAO.QuerySettlementHead_SQL(orderDateBeginStr, orderDateEndStr, payDateBeginStr, payDateEndStr, reqDepStr, bussinessBaseNoStr, wStateInt, empNameStr, -1, commonStr, wwListAutoIdInt, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_Settlement, "SettlementHead", querySqlStr, countSqlStr, true);
@@ -220,7 +237,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSettlementHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSettlementHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSettlementHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_Settlement.Tables[0], lastQuerySqlStr, gridViewSettlementHead);
             }
             catch (Exception ex)
             {
@@ -236,7 +257,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string settlementNoStr = DataTypeConvert.GetString(gridViewSettlementHead.GetFocusedDataRow()["SettlementNo"]);
                     FrmSettlement_Drag.querySettlementNo = settlementNoStr;
@@ -250,7 +271,5 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--" + tsmiSjcx.Text, ex);
             }
         }
-
-
     }
 }

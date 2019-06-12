@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupTop = new DevExpress.XtraEditors.GroupControl();
+            this.btnSaveAs = new DevExpress.XtraEditors.SimpleButton();
             this.btnMother = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxMother = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labColumnName = new DevExpress.XtraEditors.LabelControl();
@@ -59,7 +60,6 @@
             this.colSubCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repSpinQty = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.btnSaveAs = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupTop)).BeginInit();
             this.groupTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxMother.Properties)).BeginInit();
@@ -90,6 +90,16 @@
             this.groupTop.Size = new System.Drawing.Size(1116, 126);
             this.groupTop.TabIndex = 0;
             this.groupTop.Text = "Bom信息导入设定";
+            // 
+            // btnSaveAs
+            // 
+            this.btnSaveAs.Location = new System.Drawing.Point(621, 40);
+            this.btnSaveAs.Name = "btnSaveAs";
+            this.btnSaveAs.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveAs.TabIndex = 13;
+            this.btnSaveAs.Text = "另存为";
+            this.btnSaveAs.Visible = false;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // btnMother
             // 
@@ -242,6 +252,7 @@
             this.gridViewBom.OptionsView.ShowFooter = true;
             this.gridViewBom.OptionsView.ShowGroupPanel = false;
             this.gridViewBom.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBom_CustomDrawRowIndicator);
+            this.gridViewBom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewBom_KeyDown);
             // 
             // colMotherCodeFileName
             // 
@@ -355,16 +366,6 @@
             this.repSpinQty.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repSpinQty.Name = "repSpinQty";
-            // 
-            // btnSaveAs
-            // 
-            this.btnSaveAs.Location = new System.Drawing.Point(621, 40);
-            this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveAs.TabIndex = 13;
-            this.btnSaveAs.Text = "另存为";
-            this.btnSaveAs.Visible = false;
-            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // FrmBomImport
             // 

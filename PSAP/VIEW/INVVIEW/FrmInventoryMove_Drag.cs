@@ -79,29 +79,32 @@ namespace PSAP.VIEW.BSVIEW
                 dateIMDateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateIMDateEnd.DateTime = nowDate.Date;
 
-                lookUpInRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
+                DataTable repertoryTable = commonDAO.QueryRepertoryInfo(false);
+                DataTable repertoryAddAllTable = commonDAO.QueryRepertoryInfo(true);
+
+                lookUpInRepertoryNo.Properties.DataSource = repertoryAddAllTable;
                 lookUpInRepertoryNo.ItemIndex = 0;
-                lookUpOutRpertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
+                lookUpOutRpertoryNo.Properties.DataSource = repertoryAddAllTable;
                 lookUpOutRpertoryNo.ItemIndex = 0;
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
 
-                repLookUpInRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
+                repLookUpInRepertoryNo.DataSource = repertoryTable;
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
                 repSearchOutProjectNo.DataSource = commonDAO.QueryProjectList(false);
                 repSearchOutShelfNo.DataSource = commonDAO.QueryShelfInfo(false);
 
-                lookUpRepertoryNo.Properties.DataSource = commonDAO.QueryRepertoryInfo(true);
+                lookUpRepertoryNo.Properties.DataSource = repertoryAddAllTable;
                 lookUpRepertoryNo.ItemIndex = 0;
                 searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
                 searchLookUpCodeFileName.Properties.DataSource = commonDAO.QueryPartsCode(true);
                 searchLookUpCodeFileName.Text = "全部";
 
-                repLookUpRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
+                repLookUpRepertoryNo.DataSource = repertoryTable;
 
                 if (textCommon.Text == "")
                 {
@@ -271,10 +274,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewIMHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -282,9 +282,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewIMHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -618,6 +630,10 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "CodeFileName", gridViewIMList.GetFocusedDataSourceRowIndex());
                     }
                 }
+                else
+                {
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -633,6 +649,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewIMList.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 //int prListAutoIdInt = 0;
                 //if (gridViewIMList.GetFocusedDataRow() != null)
                 //    prListAutoIdInt = DataTypeConvert.GetInt(gridViewIMList.GetFocusedDataRow()["PrListAutoId"]);
@@ -951,6 +974,10 @@ namespace PSAP.VIEW.BSVIEW
                     if (!dragRect.Contains(new Point(e.X, e.Y)))
                     {
                         int[] rowint = view.GetSelectedRows();
+
+                        if (rowint.Length == 0)
+                            rowint = new int[] { view.FocusedRowHandle };
+
                         List<DataRow> row = new List<DataRow>();
                         foreach (int i in rowint)
                         {
@@ -1118,8 +1145,8 @@ namespace PSAP.VIEW.BSVIEW
             //}
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

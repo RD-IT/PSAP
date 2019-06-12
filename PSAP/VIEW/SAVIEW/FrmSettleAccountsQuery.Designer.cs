@@ -528,6 +528,7 @@
             this.gridViewSettleAccountsHead.OptionsView.ShowFooter = true;
             this.gridViewSettleAccountsHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewSettleAccountsHead_RowClick);
             this.gridViewSettleAccountsHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewQuotationBaseInfo_CustomDrawRowIndicator);
+            this.gridViewSettleAccountsHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettleAccountsHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -540,10 +541,8 @@
             this.colAutoQuotationNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colAutoQuotationNo.FieldName = "SettleAccountNo";
             this.colAutoQuotationNo.Name = "colAutoQuotationNo";
-            this.colAutoQuotationNo.OptionsColumn.AllowEdit = false;
-            this.colAutoQuotationNo.OptionsColumn.AllowFocus = false;
             this.colAutoQuotationNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SettleAccountNo", "共计{0}条")});
             this.colAutoQuotationNo.Visible = true;
             this.colAutoQuotationNo.VisibleIndex = 0;
             this.colAutoQuotationNo.Width = 120;
@@ -556,8 +555,6 @@
             this.colRecordDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colRecordDate.FieldName = "SettleAccountDate";
             this.colRecordDate.Name = "colRecordDate";
-            this.colRecordDate.OptionsColumn.AllowEdit = false;
-            this.colRecordDate.OptionsColumn.AllowFocus = false;
             this.colRecordDate.Visible = true;
             this.colRecordDate.VisibleIndex = 1;
             this.colRecordDate.Width = 130;
@@ -569,8 +566,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
-            this.colBussinessBaseNo.OptionsColumn.AllowFocus = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 2;
             this.colBussinessBaseNo.Width = 120;
@@ -636,7 +631,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 3;
             this.colReqDep.Width = 100;
@@ -658,8 +652,6 @@
             this.colRFQNO.ColumnEdit = this.repCheckIsVoucher;
             this.colRFQNO.FieldName = "IsVoucher";
             this.colRFQNO.Name = "colRFQNO";
-            this.colRFQNO.OptionsColumn.AllowEdit = false;
-            this.colRFQNO.OptionsColumn.AllowFocus = false;
             this.colRFQNO.Visible = true;
             this.colRFQNO.VisibleIndex = 4;
             this.colRFQNO.Width = 70;
@@ -679,8 +671,6 @@
             this.colRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark.FieldName = "Remark";
             this.colRemark.Name = "colRemark";
-            this.colRemark.OptionsColumn.AllowEdit = false;
-            this.colRemark.OptionsColumn.AllowFocus = false;
             this.colRemark.Visible = true;
             this.colRemark.VisibleIndex = 5;
             this.colRemark.Width = 150;

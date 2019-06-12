@@ -209,6 +209,7 @@
             this.gridViewPayTypeList.OptionsView.ShowFooter = true;
             this.gridViewPayTypeList.OptionsView.ShowGroupPanel = false;
             this.gridViewPayTypeList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPayTypeList_CustomDrawRowIndicator);
+            this.gridViewPayTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPayTypeList_KeyDown);
             // 
             // colAutoId
             // 
@@ -223,7 +224,7 @@
             this.colPayTypeNo.FieldName = "PayTypeNo";
             this.colPayTypeNo.Name = "colPayTypeNo";
             this.colPayTypeNo.OptionsColumn.AllowEdit = false;
-            this.colPayTypeNo.OptionsColumn.AllowFocus = false;
+            this.colPayTypeNo.OptionsColumn.TabStop = false;
             this.colPayTypeNo.Visible = true;
             this.colPayTypeNo.VisibleIndex = 0;
             this.colPayTypeNo.Width = 120;

@@ -196,6 +196,7 @@
             this.treeListBom.Size = new System.Drawing.Size(496, 577);
             this.treeListBom.TabIndex = 1;
             this.treeListBom.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListBom_FocusedNodeChanged);
+            this.treeListBom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListBom_KeyDown);
             // 
             // CCodeFileName
             // 
@@ -602,7 +603,7 @@
             this.colLevelMaterielName.FieldName = "LevelMaterielName";
             this.colLevelMaterielName.Name = "colLevelMaterielName";
             this.colLevelMaterielName.OptionsColumn.AllowEdit = false;
-            this.colLevelMaterielName.OptionsColumn.AllowFocus = false;
+            this.colLevelMaterielName.OptionsColumn.TabStop = false;
             this.colLevelMaterielName.Visible = true;
             this.colLevelMaterielName.VisibleIndex = 1;
             this.colLevelMaterielName.Width = 120;
@@ -616,7 +617,7 @@
             this.colQty.FieldName = "Qty";
             this.colQty.Name = "colQty";
             this.colQty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Qty", "{0:d}")});
             this.colQty.Visible = true;
             this.colQty.VisibleIndex = 2;
             this.colQty.Width = 80;
@@ -630,6 +631,8 @@
             this.repSpinQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.repSpinQty.EditFormat.FormatString = "d";
             this.repSpinQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repSpinQty.IsFloatValue = false;
+            this.repSpinQty.Mask.EditMask = "d";
             this.repSpinQty.MaxValue = new decimal(new int[] {
             1410065407,
             2,
@@ -646,7 +649,7 @@
             this.colGetTime.FieldName = "GetTime";
             this.colGetTime.Name = "colGetTime";
             this.colGetTime.OptionsColumn.AllowEdit = false;
-            this.colGetTime.OptionsColumn.AllowFocus = false;
+            this.colGetTime.OptionsColumn.TabStop = false;
             this.colGetTime.Visible = true;
             this.colGetTime.VisibleIndex = 3;
             this.colGetTime.Width = 130;

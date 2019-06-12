@@ -219,6 +219,7 @@
             this.treeListMenu.Size = new System.Drawing.Size(246, 637);
             this.treeListMenu.TabIndex = 1;
             this.treeListMenu.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.treeListMenu_BeforeFocusNode);
+            this.treeListMenu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListMenu_KeyDown);
             this.treeListMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeListMenu_MouseDown);
             // 
             // colAutoId1
@@ -321,7 +322,6 @@
             this.gridViewMenu.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewMenu.OptionsView.ShowFooter = true;
             this.gridViewMenu.OptionsView.ShowGroupPanel = false;
-            this.gridViewMenu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewMenu_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 
@@ -500,7 +500,7 @@
             this.searchParentMenuNameView.Name = "searchParentMenuNameView";
             this.searchParentMenuNameView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchParentMenuNameView.OptionsView.ShowGroupPanel = false;
-            this.searchParentMenuNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewMenu_CustomDrawRowIndicator);
+            this.searchParentMenuNameView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.searchParentMenuNameView_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
@@ -650,6 +650,7 @@
             this.TabText = "主菜单管理";
             this.Text = "主菜单管理";
             this.Load += new System.EventHandler(this.FrmRight_MenuManagement_Load);
+            this.Shown += new System.EventHandler(this.FrmRight_MenuManagement_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bSMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TableMenu)).EndInit();

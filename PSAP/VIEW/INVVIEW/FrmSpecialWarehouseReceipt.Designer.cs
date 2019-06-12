@@ -457,7 +457,7 @@
             this.columnWarehouseReceipt.FieldName = "SpecialWarehouseReceipt";
             this.columnWarehouseReceipt.Name = "columnWarehouseReceipt";
             this.columnWarehouseReceipt.OptionsColumn.AllowEdit = false;
-            this.columnWarehouseReceipt.OptionsColumn.AllowFocus = false;
+            this.columnWarehouseReceipt.OptionsColumn.TabStop = false;
             this.columnWarehouseReceipt.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.columnWarehouseReceipt.Visible = true;
@@ -535,7 +535,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -821,6 +821,7 @@
             this.gridViewSWRHead.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewSWRHead_InitNewRow);
             this.gridViewSWRHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewSWRHead_FocusedRowChanged);
             this.gridViewSWRHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewSWRHead_CustomColumnDisplayText);
+            this.gridViewSWRHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSWRHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -852,7 +853,7 @@
             this.colWarehouseWarrant.FieldName = "SpecialWarehouseReceipt";
             this.colWarehouseWarrant.Name = "colWarehouseWarrant";
             this.colWarehouseWarrant.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrant.OptionsColumn.AllowFocus = false;
+            this.colWarehouseWarrant.OptionsColumn.TabStop = false;
             this.colWarehouseWarrant.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colWarehouseWarrant.Visible = true;
@@ -866,7 +867,7 @@
             this.colWarehouseState.FieldName = "WarehouseState";
             this.colWarehouseState.Name = "colWarehouseState";
             this.colWarehouseState.OptionsColumn.AllowEdit = false;
-            this.colWarehouseState.OptionsColumn.AllowFocus = false;
+            this.colWarehouseState.OptionsColumn.TabStop = false;
             this.colWarehouseState.Visible = true;
             this.colWarehouseState.VisibleIndex = 2;
             this.colWarehouseState.Width = 60;
@@ -879,7 +880,7 @@
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
             this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
+            this.colReqDep.OptionsColumn.TabStop = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 7;
             this.colReqDep.Width = 110;
@@ -907,7 +908,7 @@
             this.colWarehouseWarrantDate.FieldName = "SpecialWarehouseReceiptDate";
             this.colWarehouseWarrantDate.Name = "colWarehouseWarrantDate";
             this.colWarehouseWarrantDate.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrantDate.OptionsColumn.AllowFocus = false;
+            this.colWarehouseWarrantDate.OptionsColumn.TabStop = false;
             this.colWarehouseWarrantDate.Visible = true;
             this.colWarehouseWarrantDate.VisibleIndex = 3;
             this.colWarehouseWarrantDate.Width = 90;
@@ -983,7 +984,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
+            this.colPrepared.OptionsColumn.TabStop = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 8;
             this.colPrepared.Width = 70;
@@ -995,7 +996,7 @@
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
             this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
+            this.colModifier.OptionsColumn.TabStop = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 9;
             this.colModifier.Width = 70;

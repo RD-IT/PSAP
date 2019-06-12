@@ -504,6 +504,7 @@
             this.gridViewPartsCode.OptionsView.ShowFooter = true;
             this.gridViewPartsCode.OptionsView.ShowGroupPanel = false;
             this.gridViewPartsCode.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPartsCode_CustomDrawRowIndicator);
+            this.gridViewPartsCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPartsCode_KeyDown);
             // 
             // colAutoId
             // 

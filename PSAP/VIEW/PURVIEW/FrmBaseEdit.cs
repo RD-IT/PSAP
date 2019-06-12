@@ -187,6 +187,8 @@ namespace PSAP.VIEW.BSVIEW
                 }
                 this.browseXtraGridView.BeforeLeaveRow += this.XtraGridView_BeforeLeaveRow;
                 this.browseXtraGridView.ShownEditor += this.XtraGridView_ShownEditor;
+                this.browseXtraGridView.KeyDown += this.XtraGridView_KeyDown;
+                this.browseXtraGridView.CustomDrawRowIndicator += this.XtraGridView_CustomDrawRowIndicator;
             }
         }
 
@@ -581,6 +583,29 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void XtraGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
+        }
+
+        /// <summary>
+        /// 确定行号
+        /// </summary>
+        private void XtraGridView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
         /// 执行保存
         /// </summary>
         private bool DoSave(DataRow updateRow)
@@ -819,7 +844,7 @@ namespace PSAP.VIEW.BSVIEW
                     {
                         if (!browseXtraGridView.Columns[j].Visible)
                             continue;
-                        string cellValue = DataTypeConvert.GetString(browseXtraGridView.GetRowCellValue(i, browseXtraGridView.Columns[j]));
+                        string cellValue = DataTypeConvert.GetString(browseXtraGridView.GetRowCellDisplayText(i, browseXtraGridView.Columns[j]));
                         if (cellValue.Contains(textContent.Text.Trim()))
                         {
                             browseXtraGridView.FocusedRowHandle = i;
@@ -869,7 +894,7 @@ namespace PSAP.VIEW.BSVIEW
                     {
                         if (!browseXtraGridView.Columns[j].Visible)
                             continue;
-                        string cellValue = DataTypeConvert.GetString(browseXtraGridView.GetRowCellValue(i, browseXtraGridView.Columns[j]));
+                        string cellValue = DataTypeConvert.GetString(browseXtraGridView.GetRowCellDisplayText(i, browseXtraGridView.Columns[j]));
                         if (cellValue.Contains(textContent.Text.Trim()))
                         {
                             browseXtraGridView.FocusedRowHandle = i;

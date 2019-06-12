@@ -79,6 +79,9 @@ namespace PSAP.VIEW.BSVIEW
                 datePayDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 checkPayDate.Checked = false;
 
+                DataTable bussBaseTable = commonDAO.QueryBussinessBaseInfo(false);
+                DataTable departmentTable = commonDAO.QueryDepartment(false);
+
                 searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
                 searchLookUpBussinessBaseNo.Text = "全部";
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
@@ -86,12 +89,12 @@ namespace PSAP.VIEW.BSVIEW
                 comboBoxWarehouseState.SelectedIndex = 0;
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
-                
+
                 lookUpApprover.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpApprover.ItemIndex = -1;
 
-                repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
-                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repSearchBussinessBaseNo.DataSource = bussBaseTable;
+                repLookUpReqDep.DataSource = departmentTable;
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
 
                 repSearchCodeFileName.DataSource = commonDAO.QueryPartsCode(false);
@@ -101,10 +104,10 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
 
-                repLookUpWWReqDep.DataSource = commonDAO.QueryDepartment(false);
+                repLookUpWWReqDep.DataSource = departmentTable;
                 repLookUpWWRepertoryNo.DataSource = commonDAO.QueryRepertoryInfo(false);
                 repLookUpWWTypeNo.DataSource = new FrmWarehouseWarrantDAO().QueryWarehouseWarrantType(false);
-                repSearchWWBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
+                repSearchWWBussinessBaseNo.DataSource = bussBaseTable;
 
                 repSearchShelfId.DataSource = commonDAO.QueryShelfInfo(false);
 
@@ -112,12 +115,12 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     setDAO.QuerySettlementHead(dataSet_Settlement.Tables[0], "", "", "", "", "", "", 0, "", -1, "", true);
                     setDAO.QuerySettlementList(dataSet_Settlement.Tables[1], "", true);
-                }                
+                }
             }
             catch (Exception ex)
             {
                 //ExceptionHandler.HandleException(this.Text + "--窗体加载事件错误。", ex);
-                ExceptionHandler.HandleException(this.Text + "--"+tsmiCtjzsj.Text , ex);
+                ExceptionHandler.HandleException(this.Text + "--" + tsmiCtjzsj.Text, ex);
             }
         }
 
@@ -164,7 +167,7 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmSettlement_Drag_Shown(object sender, EventArgs e)
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
-            pnlLeftMiddle.Height = gridControlSettlementHead.Height + 2;
+            pnlLeftMiddle.Height = gridControlSettlementHead.Height - 17;
 
             dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
@@ -317,10 +320,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewSettlementHead_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -328,9 +328,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewSettlementHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -694,6 +706,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewSettlementList.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 int wwListAutoId = 0;
                 if (gridViewSettlementList.GetFocusedDataRow() != null)
                     wwListAutoId = DataTypeConvert.GetInt(gridViewSettlementList.GetFocusedDataRow()["WarehouseWarrantListAutoId"]);
@@ -1091,6 +1110,10 @@ namespace PSAP.VIEW.BSVIEW
                     if (!dragRect.Contains(new Point(e.X, e.Y)))
                     {
                         int[] rowint = view.GetSelectedRows();
+
+                        if (rowint.Length == 0)
+                            rowint = new int[] { view.FocusedRowHandle };
+
                         List<DataRow> row = new List<DataRow>();
                         foreach (int i in rowint)
                         {
@@ -1286,8 +1309,8 @@ namespace PSAP.VIEW.BSVIEW
             SetLeftOrder(!btnLeftType.Checked);
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

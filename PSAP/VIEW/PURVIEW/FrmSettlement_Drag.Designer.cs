@@ -476,9 +476,9 @@
             // 
             this.pnlLeftBottom.Controls.Add(this.gridControlWWList);
             this.pnlLeftBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLeftBottom.Location = new System.Drawing.Point(0, 332);
+            this.pnlLeftBottom.Location = new System.Drawing.Point(0, 349);
             this.pnlLeftBottom.Name = "pnlLeftBottom";
-            this.pnlLeftBottom.Size = new System.Drawing.Size(342, 222);
+            this.pnlLeftBottom.Size = new System.Drawing.Size(342, 205);
             this.pnlLeftBottom.TabIndex = 3;
             // 
             // gridControlWWList
@@ -495,7 +495,7 @@
             this.repSpinWWQty,
             this.repositoryItemSearchLookUpEdit2,
             this.repSearchShelfId});
-            this.gridControlWWList.Size = new System.Drawing.Size(338, 218);
+            this.gridControlWWList.Size = new System.Drawing.Size(338, 201);
             this.gridControlWWList.TabIndex = 4;
             this.gridControlWWList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewWWList});
@@ -734,11 +734,15 @@
             this.gridViewWWList.Name = "gridViewWWList";
             this.gridViewWWList.OptionsBehavior.Editable = false;
             this.gridViewWWList.OptionsBehavior.ReadOnly = true;
+            this.gridViewWWList.OptionsSelection.CheckBoxSelectorColumnWidth = 35;
             this.gridViewWWList.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewWWList.OptionsSelection.MultiSelect = true;
+            this.gridViewWWList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewWWList.OptionsView.ColumnAutoWidth = false;
             this.gridViewWWList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewWWList.OptionsView.ShowGroupPanel = false;
             this.gridViewWWList.OptionsView.ShowIndicator = false;
+            this.gridViewWWList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettlementHead_KeyDown);
             this.gridViewWWList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridViewWWList_MouseDown);
             this.gridViewWWList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridViewWWList_MouseMove);
             // 
@@ -753,8 +757,6 @@
             this.colWarehouseWarrant1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colWarehouseWarrant1.FieldName = "WarehouseWarrant";
             this.colWarehouseWarrant1.Name = "colWarehouseWarrant1";
-            this.colWarehouseWarrant1.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrant1.OptionsColumn.AllowFocus = false;
             this.colWarehouseWarrant1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colWarehouseWarrant1.Width = 110;
@@ -765,10 +767,8 @@
             this.gridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn17.FieldName = "CodeFileName";
             this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.OptionsColumn.AllowFocus = false;
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 0;
+            this.gridColumn17.VisibleIndex = 1;
             this.gridColumn17.Width = 110;
             // 
             // gridColumn21
@@ -777,10 +777,8 @@
             this.gridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn21.FieldName = "CodeName";
             this.gridColumn21.Name = "gridColumn21";
-            this.gridColumn21.OptionsColumn.AllowEdit = false;
-            this.gridColumn21.OptionsColumn.AllowFocus = false;
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 6;
+            this.gridColumn21.VisibleIndex = 7;
             this.gridColumn21.Width = 110;
             // 
             // gridColumn22
@@ -790,9 +788,8 @@
             this.gridColumn22.ColumnEdit = this.repSpinWWQty;
             this.gridColumn22.FieldName = "Qty";
             this.gridColumn22.Name = "gridColumn22";
-            this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 1;
+            this.gridColumn22.VisibleIndex = 2;
             this.gridColumn22.Width = 70;
             // 
             // repSpinWWQty
@@ -818,7 +815,7 @@
             this.colSettlementCount.FieldName = "SettlementCount";
             this.colSettlementCount.Name = "colSettlementCount";
             this.colSettlementCount.Visible = true;
-            this.colSettlementCount.VisibleIndex = 2;
+            this.colSettlementCount.VisibleIndex = 3;
             // 
             // colOverplus
             // 
@@ -831,7 +828,7 @@
             this.colOverplus.FieldName = "Overplus";
             this.colOverplus.Name = "colOverplus";
             this.colOverplus.Visible = true;
-            this.colOverplus.VisibleIndex = 3;
+            this.colOverplus.VisibleIndex = 4;
             // 
             // colShelfId
             // 
@@ -840,9 +837,8 @@
             this.colShelfId.ColumnEdit = this.repSearchShelfId;
             this.colShelfId.FieldName = "ShelfId";
             this.colShelfId.Name = "colShelfId";
-            this.colShelfId.OptionsColumn.AllowEdit = false;
             this.colShelfId.Visible = true;
-            this.colShelfId.VisibleIndex = 8;
+            this.colShelfId.VisibleIndex = 9;
             this.colShelfId.Width = 80;
             // 
             // repSearchShelfId
@@ -896,9 +892,8 @@
             this.colPrReqListRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrReqListRemark.FieldName = "Remark";
             this.colPrReqListRemark.Name = "colPrReqListRemark";
-            this.colPrReqListRemark.OptionsColumn.AllowEdit = false;
             this.colPrReqListRemark.Visible = true;
-            this.colPrReqListRemark.VisibleIndex = 7;
+            this.colPrReqListRemark.VisibleIndex = 8;
             this.colPrReqListRemark.Width = 120;
             // 
             // colProjectName
@@ -907,10 +902,8 @@
             this.colProjectName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
-            this.colProjectName.OptionsColumn.AllowEdit = false;
-            this.colProjectName.OptionsColumn.AllowFocus = false;
             this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 4;
+            this.colProjectName.VisibleIndex = 5;
             this.colProjectName.Width = 80;
             // 
             // colStnNo
@@ -919,10 +912,8 @@
             this.colStnNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
-            this.colStnNo.OptionsColumn.AllowEdit = false;
-            this.colStnNo.OptionsColumn.AllowFocus = false;
             this.colStnNo.Visible = true;
-            this.colStnNo.VisibleIndex = 5;
+            this.colStnNo.VisibleIndex = 6;
             this.colStnNo.Width = 70;
             // 
             // colOrderHeadNo
@@ -931,10 +922,8 @@
             this.colOrderHeadNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colOrderHeadNo.FieldName = "OrderHeadNo";
             this.colOrderHeadNo.Name = "colOrderHeadNo";
-            this.colOrderHeadNo.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadNo.OptionsColumn.AllowFocus = false;
             this.colOrderHeadNo.Visible = true;
-            this.colOrderHeadNo.VisibleIndex = 9;
+            this.colOrderHeadNo.VisibleIndex = 10;
             this.colOrderHeadNo.Width = 110;
             // 
             // colPoListAutoId
@@ -1007,7 +996,7 @@
             // 
             this.splitterControl2.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl2.Location = new System.Drawing.Point(0, 327);
+            this.splitterControl2.Location = new System.Drawing.Point(0, 344);
             this.splitterControl2.Margin = new System.Windows.Forms.Padding(4);
             this.splitterControl2.Name = "splitterControl2";
             this.splitterControl2.Size = new System.Drawing.Size(342, 5);
@@ -1018,7 +1007,7 @@
             // 
             this.pnlLeftMiddle.Controls.Add(this.gridControlWWHead);
             this.pnlLeftMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLeftMiddle.Location = new System.Drawing.Point(0, 93);
+            this.pnlLeftMiddle.Location = new System.Drawing.Point(0, 110);
             this.pnlLeftMiddle.Name = "pnlLeftMiddle";
             this.pnlLeftMiddle.Size = new System.Drawing.Size(342, 234);
             this.pnlLeftMiddle.TabIndex = 3;
@@ -1070,6 +1059,7 @@
             this.gridViewWWHead.OptionsView.ShowGroupPanel = false;
             this.gridViewWWHead.OptionsView.ShowIndicator = false;
             this.gridViewWWHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewWWHead_FocusedRowChanged);
+            this.gridViewWWHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettlementHead_KeyDown);
             // 
             // gridColumn3
             // 
@@ -1082,8 +1072,6 @@
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.FieldName = "WarehouseWarrant";
             this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.OptionsColumn.AllowFocus = false;
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.gridColumn5.Visible = true;
@@ -1097,8 +1085,6 @@
             this.gridColumn7.ColumnEdit = this.repLookUpWWReqDep;
             this.gridColumn7.FieldName = "ReqDep";
             this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.OptionsColumn.AllowFocus = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 5;
             this.gridColumn7.Width = 80;
@@ -1125,8 +1111,6 @@
             this.colWarehouseWarrantDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colWarehouseWarrantDate.FieldName = "WarehouseWarrantDate";
             this.colWarehouseWarrantDate.Name = "colWarehouseWarrantDate";
-            this.colWarehouseWarrantDate.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrantDate.OptionsColumn.AllowFocus = false;
             this.colWarehouseWarrantDate.Visible = true;
             this.colWarehouseWarrantDate.VisibleIndex = 2;
             this.colWarehouseWarrantDate.Width = 90;
@@ -1138,8 +1122,6 @@
             this.gridColumn8.ColumnEdit = this.repSearchWWBussinessBaseNo;
             this.gridColumn8.FieldName = "BussinessBaseNo";
             this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.OptionsColumn.AllowFocus = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 1;
             this.gridColumn8.Width = 130;
@@ -1205,7 +1187,6 @@
             this.colRepertoryNo.ColumnEdit = this.repLookUpWWRepertoryNo;
             this.colRepertoryNo.FieldName = "RepertoryNo";
             this.colRepertoryNo.Name = "colRepertoryNo";
-            this.colRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colRepertoryNo.Visible = true;
             this.colRepertoryNo.VisibleIndex = 3;
             this.colRepertoryNo.Width = 80;
@@ -1231,7 +1212,6 @@
             this.colWarehouseWarrantTypeNo.ColumnEdit = this.repLookUpWWTypeNo;
             this.colWarehouseWarrantTypeNo.FieldName = "WarehouseWarrantTypeNo";
             this.colWarehouseWarrantTypeNo.Name = "colWarehouseWarrantTypeNo";
-            this.colWarehouseWarrantTypeNo.OptionsColumn.AllowEdit = false;
             this.colWarehouseWarrantTypeNo.Visible = true;
             this.colWarehouseWarrantTypeNo.VisibleIndex = 4;
             this.colWarehouseWarrantTypeNo.Width = 80;
@@ -1255,7 +1235,6 @@
             this.colRemark1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRemark1.FieldName = "Remark";
             this.colRemark1.Name = "colRemark1";
-            this.colRemark1.OptionsColumn.AllowEdit = false;
             this.colRemark1.Visible = true;
             this.colRemark1.VisibleIndex = 6;
             this.colRemark1.Width = 100;
@@ -1266,8 +1245,6 @@
             this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn14.FieldName = "Prepared";
             this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.OptionsColumn.AllowEdit = false;
-            this.gridColumn14.OptionsColumn.AllowFocus = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 7;
             this.gridColumn14.Width = 70;
@@ -1287,12 +1264,12 @@
             this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftTop.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftTop.Name = "pnlLeftTop";
-            this.pnlLeftTop.Size = new System.Drawing.Size(342, 93);
+            this.pnlLeftTop.Size = new System.Drawing.Size(342, 110);
             this.pnlLeftTop.TabIndex = 0;
             // 
             // btnLeftType
             // 
-            this.btnLeftType.Location = new System.Drawing.Point(262, 7);
+            this.btnLeftType.Location = new System.Drawing.Point(251, 13);
             this.btnLeftType.Name = "btnLeftType";
             this.btnLeftType.Size = new System.Drawing.Size(75, 23);
             this.btnLeftType.TabIndex = 215;
@@ -1303,7 +1280,7 @@
             // searchLookUpProjectNo
             // 
             this.searchLookUpProjectNo.EnterMoveNextControl = true;
-            this.searchLookUpProjectNo.Location = new System.Drawing.Point(74, 65);
+            this.searchLookUpProjectNo.Location = new System.Drawing.Point(86, 74);
             this.searchLookUpProjectNo.Margin = new System.Windows.Forms.Padding(4);
             this.searchLookUpProjectNo.Name = "searchLookUpProjectNo";
             this.searchLookUpProjectNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1354,7 +1331,7 @@
             // 
             // labProjectNo
             // 
-            this.labProjectNo.Location = new System.Drawing.Point(9, 68);
+            this.labProjectNo.Location = new System.Drawing.Point(20, 77);
             this.labProjectNo.Margin = new System.Windows.Forms.Padding(4);
             this.labProjectNo.Name = "labProjectNo";
             this.labProjectNo.Size = new System.Drawing.Size(48, 14);
@@ -1363,7 +1340,7 @@
             // 
             // btnPrReqQuery
             // 
-            this.btnPrReqQuery.Location = new System.Drawing.Point(208, 64);
+            this.btnPrReqQuery.Location = new System.Drawing.Point(213, 73);
             this.btnPrReqQuery.Name = "btnPrReqQuery";
             this.btnPrReqQuery.Size = new System.Drawing.Size(75, 23);
             this.btnPrReqQuery.TabIndex = 212;
@@ -1374,7 +1351,7 @@
             // 
             this.dateWWDateEnd.EditValue = null;
             this.dateWWDateEnd.EnterMoveNextControl = true;
-            this.dateWWDateEnd.Location = new System.Drawing.Point(191, 37);
+            this.dateWWDateEnd.Location = new System.Drawing.Point(202, 44);
             this.dateWWDateEnd.Name = "dateWWDateEnd";
             this.dateWWDateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1392,7 +1369,7 @@
             // 
             this.dateWWDateBegin.EditValue = null;
             this.dateWWDateBegin.EnterMoveNextControl = true;
-            this.dateWWDateBegin.Location = new System.Drawing.Point(74, 37);
+            this.dateWWDateBegin.Location = new System.Drawing.Point(86, 44);
             this.dateWWDateBegin.Name = "dateWWDateBegin";
             this.dateWWDateBegin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1409,14 +1386,14 @@
             // textWarehouseWarrant
             // 
             this.textWarehouseWarrant.EnterMoveNextControl = true;
-            this.textWarehouseWarrant.Location = new System.Drawing.Point(74, 8);
+            this.textWarehouseWarrant.Location = new System.Drawing.Point(86, 14);
             this.textWarehouseWarrant.Name = "textWarehouseWarrant";
             this.textWarehouseWarrant.Size = new System.Drawing.Size(150, 20);
             this.textWarehouseWarrant.TabIndex = 207;
             // 
             // lab
             // 
-            this.lab.Location = new System.Drawing.Point(180, 40);
+            this.lab.Location = new System.Drawing.Point(192, 47);
             this.lab.Name = "lab";
             this.lab.Size = new System.Drawing.Size(4, 14);
             this.lab.TabIndex = 206;
@@ -1424,7 +1401,7 @@
             // 
             // labWWDate
             // 
-            this.labWWDate.Location = new System.Drawing.Point(9, 40);
+            this.labWWDate.Location = new System.Drawing.Point(20, 47);
             this.labWWDate.Name = "labWWDate";
             this.labWWDate.Size = new System.Drawing.Size(60, 14);
             this.labWWDate.TabIndex = 205;
@@ -1432,7 +1409,7 @@
             // 
             // labWarehouseWarrant
             // 
-            this.labWarehouseWarrant.Location = new System.Drawing.Point(9, 11);
+            this.labWarehouseWarrant.Location = new System.Drawing.Point(20, 17);
             this.labWarehouseWarrant.Name = "labWarehouseWarrant";
             this.labWarehouseWarrant.Size = new System.Drawing.Size(60, 14);
             this.labWarehouseWarrant.TabIndex = 204;
@@ -1736,6 +1713,7 @@
             this.gridViewSettlementList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewSettlementList_RowClick);
             this.gridViewSettlementList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewSettlementHead_CustomDrawRowIndicator);
             this.gridViewSettlementList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewSettlementList_CellValueChanged);
+            this.gridViewSettlementList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettlementHead_KeyDown);
             // 
             // colAutoId1
             // 
@@ -1749,8 +1727,7 @@
             this.colSettlementNo1.FieldName = "SettlementNo";
             this.colSettlementNo1.Name = "colSettlementNo1";
             this.colSettlementNo1.OptionsColumn.AllowEdit = false;
-            this.colSettlementNo1.OptionsColumn.AllowFocus = false;
-            this.colSettlementNo1.OptionsColumn.ReadOnly = true;
+            this.colSettlementNo1.OptionsColumn.TabStop = false;
             this.colSettlementNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colSettlementNo1.Visible = true;
@@ -1828,7 +1805,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -1946,6 +1923,7 @@
             this.colTaxAmount.FieldName = "TaxAmount";
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.OptionsColumn.AllowEdit = false;
+            this.colTaxAmount.OptionsColumn.TabStop = false;
             this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;
@@ -1961,6 +1939,7 @@
             this.colSumAmount.FieldName = "SumAmount";
             this.colSumAmount.Name = "colSumAmount";
             this.colSumAmount.OptionsColumn.AllowEdit = false;
+            this.colSumAmount.OptionsColumn.TabStop = false;
             this.colSumAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmount", "{0:N2}")});
             this.colSumAmount.Visible = true;
@@ -1985,7 +1964,7 @@
             this.colWarehouseWarrant.FieldName = "WarehouseWarrant";
             this.colWarehouseWarrant.Name = "colWarehouseWarrant";
             this.colWarehouseWarrant.OptionsColumn.AllowEdit = false;
-            this.colWarehouseWarrant.OptionsColumn.AllowFocus = false;
+            this.colWarehouseWarrant.OptionsColumn.TabStop = false;
             this.colWarehouseWarrant.Visible = true;
             this.colWarehouseWarrant.VisibleIndex = 10;
             this.colWarehouseWarrant.Width = 110;
@@ -2049,6 +2028,7 @@
             // 
             // gridControlSettlementHead
             // 
+            this.gridControlSettlementHead.AllowDrop = true;
             this.gridControlSettlementHead.DataSource = this.bindingSource_SettlementHead;
             this.gridControlSettlementHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlSettlementHead.Location = new System.Drawing.Point(2, 36);
@@ -2065,6 +2045,9 @@
             this.gridControlSettlementHead.TabIndex = 4;
             this.gridControlSettlementHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSettlementHead});
+            this.gridControlSettlementHead.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlSettlementList_DragDrop);
+            this.gridControlSettlementHead.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlSettlementList_DragEnter);
+            this.gridControlSettlementHead.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControlSettlementList_DragOver);
             // 
             // bindingSource_SettlementHead
             // 
@@ -2106,6 +2089,7 @@
             this.gridViewSettlementHead.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewSettlementHead_InitNewRow);
             this.gridViewSettlementHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewSettlementHead_FocusedRowChanged);
             this.gridViewSettlementHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewSettlementHead_CustomColumnDisplayText);
+            this.gridViewSettlementHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSettlementHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -2137,7 +2121,7 @@
             this.colSettlementNo.FieldName = "SettlementNo";
             this.colSettlementNo.Name = "colSettlementNo";
             this.colSettlementNo.OptionsColumn.AllowEdit = false;
-            this.colSettlementNo.OptionsColumn.AllowFocus = false;
+            this.colSettlementNo.OptionsColumn.TabStop = false;
             this.colSettlementNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colSettlementNo.Visible = true;
@@ -2151,7 +2135,7 @@
             this.colWarehouseState.FieldName = "WarehouseState";
             this.colWarehouseState.Name = "colWarehouseState";
             this.colWarehouseState.OptionsColumn.AllowEdit = false;
-            this.colWarehouseState.OptionsColumn.AllowFocus = false;
+            this.colWarehouseState.OptionsColumn.TabStop = false;
             this.colWarehouseState.Visible = true;
             this.colWarehouseState.VisibleIndex = 2;
             this.colWarehouseState.Width = 60;
@@ -2165,7 +2149,7 @@
             this.colSettlementDate.FieldName = "SettlementDate";
             this.colSettlementDate.Name = "colSettlementDate";
             this.colSettlementDate.OptionsColumn.AllowEdit = false;
-            this.colSettlementDate.OptionsColumn.AllowFocus = false;
+            this.colSettlementDate.OptionsColumn.TabStop = false;
             this.colSettlementDate.Visible = true;
             this.colSettlementDate.VisibleIndex = 3;
             this.colSettlementDate.Width = 90;
@@ -2339,7 +2323,7 @@
             this.colIsVoucher.FieldName = "IsVoucher";
             this.colIsVoucher.Name = "colIsVoucher";
             this.colIsVoucher.OptionsColumn.AllowEdit = false;
-            this.colIsVoucher.OptionsColumn.AllowFocus = false;
+            this.colIsVoucher.OptionsColumn.TabStop = false;
             this.colIsVoucher.Visible = true;
             this.colIsVoucher.VisibleIndex = 11;
             this.colIsVoucher.Width = 70;
@@ -2369,7 +2353,7 @@
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
             this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
+            this.colPrepared.OptionsColumn.TabStop = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 12;
             this.colPrepared.Width = 70;
@@ -2381,7 +2365,7 @@
             this.colModifier.FieldName = "Modifier";
             this.colModifier.Name = "colModifier";
             this.colModifier.OptionsColumn.AllowEdit = false;
-            this.colModifier.OptionsColumn.AllowFocus = false;
+            this.colModifier.OptionsColumn.TabStop = false;
             this.colModifier.Visible = true;
             this.colModifier.VisibleIndex = 13;
             // 

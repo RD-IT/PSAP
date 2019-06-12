@@ -833,6 +833,7 @@
             this.gridViewWWList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewWWList_RowClick);
             this.gridViewWWList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewWWList_CustomDrawRowIndicator);
             this.gridViewWWList.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewWWList_CustomColumnDisplayText);
+            this.gridViewWWList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewWWList_KeyDown);
             // 
             // colAutoId
             // 

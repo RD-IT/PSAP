@@ -246,7 +246,6 @@
             this.gridViewApprovalType.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewApprovalType.OptionsView.ShowFooter = true;
             this.gridViewApprovalType.OptionsView.ShowGroupPanel = false;
-            this.gridViewApprovalType.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewApprovalType_CustomDrawRowIndicator);
             this.gridViewApprovalType.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewApprovalType_CustomColumnDisplayText);
             // 
             // colAutoId

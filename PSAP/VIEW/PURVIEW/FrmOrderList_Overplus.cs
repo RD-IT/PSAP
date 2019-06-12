@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmOrderList_Overplus()
         {
             InitializeComponent();
@@ -101,9 +106,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewOrderList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewOrderList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -153,7 +170,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_Order.Tables[0].Clear();
 
                 string querySqlStr = orderDAO.Query_OrderList_Overplus_SQL(orderDateBeginStr, orderDateEndStr, planDateBeginStr, planDateEndStr, reqDepStr, purCategoryStr, bussinessBaseNoStr, reqStateInt, projectNoStr, codeFileNameStr, checkOverplus.Checked, commonStr);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomOrderHead.QueryGridData(ref dataSet_Order, "OrderList", querySqlStr, countSqlStr, true);
             }
@@ -171,7 +188,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewOrderList);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewOrderList);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewOrderList);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_Order.Tables[0], lastQuerySqlStr, gridViewOrderList);
             }
             catch (Exception ex)
             {
@@ -187,7 +208,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string orderHeadNoStr = DataTypeConvert.GetString(gridViewOrderList.GetFocusedDataRow()["OrderHeadNo"]);
                     int autoIdInt = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["AutoId"]);
@@ -202,7 +223,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--"+f.tsmiSjcxmxcw.Text , ex);
             }
         }
-
 
     }
 }

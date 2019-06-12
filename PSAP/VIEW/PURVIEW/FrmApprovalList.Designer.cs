@@ -183,7 +183,6 @@
             this.gridViewApprovalList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewApprovalList.OptionsView.ShowFooter = true;
             this.gridViewApprovalList.OptionsView.ShowGroupPanel = false;
-            this.gridViewApprovalList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewApprovalList_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 
@@ -198,7 +197,7 @@
             this.colTypeNo.FieldName = "TypeNo";
             this.colTypeNo.Name = "colTypeNo";
             this.colTypeNo.OptionsColumn.AllowEdit = false;
-            this.colTypeNo.OptionsColumn.AllowFocus = false;
+            this.colTypeNo.OptionsColumn.TabStop = false;
             this.colTypeNo.Visible = true;
             this.colTypeNo.VisibleIndex = 0;
             this.colTypeNo.Width = 120;
@@ -247,7 +246,7 @@
             this.colAppSequence.FieldName = "AppSequence";
             this.colAppSequence.Name = "colAppSequence";
             this.colAppSequence.OptionsColumn.AllowEdit = false;
-            this.colAppSequence.OptionsColumn.AllowFocus = false;
+            this.colAppSequence.OptionsColumn.TabStop = false;
             this.colAppSequence.Visible = true;
             this.colAppSequence.VisibleIndex = 2;
             this.colAppSequence.Width = 80;
@@ -263,7 +262,7 @@
             this.tsmiSyspxxsjcw,
             this.tsmiXyspxxsjcw});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(281, 180);
+            this.cms.Size = new System.Drawing.Size(281, 158);
             // 
             // tsmiSplx
             // 

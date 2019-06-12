@@ -131,17 +131,6 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void gridViewPartsCode_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
         /// 设定默认值
         /// </summary>
         private void TablePartsCode_TableNewRow(object sender, DataTableNewRowEventArgs e)
@@ -172,6 +161,29 @@ namespace PSAP.VIEW.BSVIEW
                 textCodeNo.Text = textCodeFileName.Text;
             if (textCodeSpec.Text == "")
                 textCodeSpec.Text = textCodeFileName.Text;
+        }
+
+        /// <summary>
+        /// 确定行号
+        /// </summary>
+        private void searchLookUpMaterialView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewPartsCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
         }
     }
 }

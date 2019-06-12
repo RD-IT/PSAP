@@ -103,17 +103,6 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void gridViewDepartment_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
         /// 设定默认值
         /// </summary>
         private void TableDepartment_TableNewRow(object sender, DataTableNewRowEventArgs e)
@@ -202,6 +191,21 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void treeListDept_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.TreeList_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 选择节点之前设定控件状态
         /// </summary>
         private void treeListDept_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e)
@@ -232,5 +236,7 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--选择节点之前设定控件状态错误。", ex);
             }
         }
+
+
     }
 }

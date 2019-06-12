@@ -329,7 +329,6 @@
             this.gridViewUserInfo.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewUserInfo.OptionsView.ShowFooter = true;
             this.gridViewUserInfo.OptionsView.ShowGroupPanel = false;
-            this.gridViewUserInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewUserInfo_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 

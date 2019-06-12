@@ -15,7 +15,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
 {
-    public partial class FrmSettleAccounts : DockContent
+    public partial class FrmSettleAccounts_Drag : DockContent
     {
         #region 私有变量
 
@@ -52,7 +52,7 @@ namespace PSAP.VIEW.BSVIEW
 
         #region 构造方法
 
-        public FrmSettleAccounts()
+        public FrmSettleAccounts_Drag()
         {
             InitializeComponent();
         }
@@ -74,22 +74,27 @@ namespace PSAP.VIEW.BSVIEW
                 dateSADateBegin.DateTime = nowDate.Date.AddDays(-SystemInfo.OrderQueryDate_DefaultDays);
                 dateSADateEnd.DateTime = nowDate.Date;
 
-                searchLookUpBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
+                DataTable bussBaseTable = commonDAO.QueryBussinessBaseInfo(false);
+                DataTable bussBaseAddAllTable = commonDAO.QueryBussinessBaseInfo(true);
+
+                searchLookUpBussinessBaseNo.Properties.DataSource = bussBaseAddAllTable;
                 searchLookUpBussinessBaseNo.Text = "全部";
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPrepared.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpPrepared.EditValue = SystemInfo.user.EmpName;
 
-                repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
+                repSearchBussinessBaseNo.DataSource = bussBaseTable;
                 repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
+
+                repLookUpCurrencyCate.DataSource = commonDAO.QueryCurrencyCate(false);
 
                 dateSODateBegin.DateTime = dateSADateBegin.DateTime;
                 dateSODateEnd.DateTime = dateSADateEnd.DateTime;
-                searchBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(true);
+                searchBussinessBaseNo.Properties.DataSource = bussBaseAddAllTable;
                 searchBussinessBaseNo.Text = "全部";
 
-                repSearchLookUpBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
+                repSearchLookUpBussinessBaseNo.DataSource = bussBaseTable;
 
                 if (textCommon.Text == "")
                 {
@@ -142,7 +147,6 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmSettleAccounts_Shown(object sender, EventArgs e)
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
-            //pnlLeftMiddle.Height = gridControlSettlementHead.Height + 2;
 
             dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
@@ -257,9 +261,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewSettleAccountsHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewSettleAccountsList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -302,13 +318,19 @@ namespace PSAP.VIEW.BSVIEW
                         if (DataTypeConvert.GetString(listRow["Amount"]) == "" || DataTypeConvert.GetDouble(listRow["Amount"]) == 0)
                         {
                             MessageHandler.ShowMessageBox("金额不能为空，请填写后再进行保存。");
-                            FocusedListView(true, "Qty", i);
+                            FocusedListView(true, "Amount", i);
                             return;
                         }
                         if (DataTypeConvert.GetString(listRow["Tax"]) == "")
                         {
                             MessageHandler.ShowMessageBox("税率不能为空，请填写后再进行保存。");
                             FocusedListView(true, "Tax", i);
+                            return;
+                        }
+                        if(DataTypeConvert.GetString(listRow["CurrencyCate"]) == "")
+                        {
+                            MessageHandler.ShowMessageBox("币种不能为空，请填写后再进行保存。");
+                            FocusedListView(true, "CurrencyCate", i);
                             return;
                         }
                     }
@@ -471,6 +493,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewSettleAccountsList.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 //int wwListAutoId = 0;
                 //if (gridViewSettleAccountsList.GetFocusedDataRow() != null)
                 //    wwListAutoId = DataTypeConvert.GetInt(gridViewSettleAccountsList.GetFocusedDataRow()["WarehouseWarrantListAutoId"]);
@@ -523,6 +552,30 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 双击查询销售订单信息
+        /// </summary>
+        private void gridViewSettleAccountsList_RowClick(object sender, RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
+                {
+                    if (btnDelete.Enabled)
+                    {
+                        string autoSalesOrderNoStr = DataTypeConvert.GetString(gridViewSettleAccountsList.GetFocusedDataRow()["AutoSalesOrderNo"]);
+                        FrmSalesOrder_History.queryAutoSalesOrderNoStr = autoSalesOrderNoStr;
+                        //FrmWarehouseWarrant_Drag.queryListAutoId = 0;
+                        ViewHandler.ShowRightWindow("FrmSalesOrder_History");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--双击查询明细错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 设定按钮和表列状态
         /// </summary>
         /// <param name="ret">状态标准</param>
@@ -548,6 +601,7 @@ namespace PSAP.VIEW.BSVIEW
             colReqDep.OptionsColumn.AllowEdit = ret;
             colRemark.OptionsColumn.AllowEdit = ret;
 
+            //colCurrencyCate.OptionsColumn.AllowEdit = ret;
             colAmount.OptionsColumn.AllowEdit = ret;
             colTax1.OptionsColumn.AllowEdit = ret;
             colListRemark.OptionsColumn.AllowEdit = ret;
@@ -627,14 +681,15 @@ namespace PSAP.VIEW.BSVIEW
                         dateSODateEnd.Focus();
                     return;
                 }
-                string soHeadNoStr = textAutoSalesOrderNo.Text.Trim();
+
                 string soDateBeginStr = dateSODateBegin.DateTime.ToString("yyyy-MM-dd");
                 string soDateEndStr = dateSODateEnd.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 string bussinessBaseNoStr = searchBussinessBaseNo.Text != "全部" ? DataTypeConvert.GetString(searchBussinessBaseNo.EditValue) : "";
+                string commonStr = textEditCommon.Text.Trim();
 
                 dataSet_SalesOrder.Tables[0].Clear();
 
-                soDAO.QuerySalesOrder_NoIsEnd(dataSet_SalesOrder.Tables[0], soHeadNoStr, soDateBeginStr, soDateEndStr, bussinessBaseNoStr);
+                soDAO.QuerySalesOrder_NoIsEnd(dataSet_SalesOrder.Tables[0], soDateBeginStr, soDateEndStr, bussinessBaseNoStr, commonStr);
 
                 ClearAlreadyDragOrderList();
             }
@@ -687,6 +742,10 @@ namespace PSAP.VIEW.BSVIEW
                     if (!dragRect.Contains(new Point(e.X, e.Y)))
                     {
                         int[] rowint = view.GetSelectedRows();
+
+                        if (rowint.Length == 0)
+                            rowint = new int[] { view.FocusedRowHandle };
+
                         List<DataRow> row = new List<DataRow>();
                         foreach (int i in rowint)
                         {
@@ -767,6 +826,11 @@ namespace PSAP.VIEW.BSVIEW
                 }
             }
 
+            //DataTable tmpTable = ((DataTable)repLookUpCurrencyCate.DataSource);
+            //int CurrencyCateInt = 0;
+            //if (tmpTable.Rows.Count > 0)
+            //    CurrencyCateInt = DataTypeConvert.GetInt(tmpTable.Rows[0]["AutoId"]);
+
             if (btnDelete.Enabled)
             {
                 ClearHeadGridAllSelect();
@@ -792,6 +856,7 @@ namespace PSAP.VIEW.BSVIEW
                     gridViewSettleAccountsList.SetFocusedRowCellValue("Amount", amountDouble);
                     gridViewSettleAccountsList.SetFocusedRowCellValue("TaxAmount", taxAmountDouble);
                     gridViewSettleAccountsList.SetFocusedRowCellValue("SumAmount", sumAmountDouble);
+                    gridViewSettleAccountsList.SetFocusedRowCellValue("CurrencyCate", dr["CurrencyCate"]);
                 }
                 FocusedListView(false, "Amount", gridViewSettleAccountsList.GetFocusedDataSourceRowIndex());
                 gridViewSettleAccountsList.RefreshData();
@@ -823,6 +888,7 @@ namespace PSAP.VIEW.BSVIEW
                     gridViewSettleAccountsList.SetFocusedRowCellValue("Amount", amountDouble);
                     gridViewSettleAccountsList.SetFocusedRowCellValue("TaxAmount", taxAmountDouble);
                     gridViewSettleAccountsList.SetFocusedRowCellValue("SumAmount", sumAmountDouble);
+                    gridViewSettleAccountsList.SetFocusedRowCellValue("CurrencyCate", dr["CurrencyCate"]);
                 }
 
                 gridViewSettleAccountsList.FocusedRowHandle = gridViewSettleAccountsList.DataRowCount;
@@ -838,13 +904,17 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void ClearAlreadyDragOrderList()
         {
-            for (int i = dataSet_SalesOrder.Tables[0].Rows.Count - 1; i >= 0; i--)
-            {
-                if (dataSet_SettleAccounts.Tables[1].Select(string.Format("AutoSalesOrderNo='{0}'", DataTypeConvert.GetString(dataSet_SalesOrder.Tables[0].Rows[i]["AutoSalesOrderNo"]))).Length > 0)
-                    dataSet_SalesOrder.Tables[0].Rows.RemoveAt(i);
-            }
+            return;
+
+            //for (int i = dataSet_SalesOrder.Tables[0].Rows.Count - 1; i >= 0; i--)
+            //{
+            //    if (dataSet_SettleAccounts.Tables[1].Select(string.Format("AutoSalesOrderNo='{0}'", DataTypeConvert.GetString(dataSet_SalesOrder.Tables[0].Rows[i]["AutoSalesOrderNo"]))).Length > 0)
+            //        dataSet_SalesOrder.Tables[0].Rows.RemoveAt(i);
+            //}
         }
 
+
         #endregion
+        
     }
 }

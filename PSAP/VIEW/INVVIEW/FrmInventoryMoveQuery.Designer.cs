@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveExcel = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpOutRpertoryNo = new DevExpress.XtraEditors.LookUpEdit();
@@ -59,7 +60,7 @@
             this.dataColModifierIp = new System.Data.DataColumn();
             this.dataColModifierTime = new System.Data.DataColumn();
             this.dataColReqDep = new System.Data.DataColumn();
-            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_IMHead = new System.Windows.Forms.BindingSource(this.components);
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.gridBottomIM = new PSAP.VIEW.BSVIEW.GridBottom();
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
@@ -76,7 +77,7 @@
             this.colPRemark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrepared = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModifier = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiYdrqbnwkcx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pnltop)).BeginInit();
             this.pnltop.SuspendLayout();
@@ -487,6 +488,7 @@
             this.gridViewIMHead.OptionsView.ShowFooter = true;
             this.gridViewIMHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewIMHead_RowClick);
             this.gridViewIMHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewIMHead_CustomDrawRowIndicator);
+            this.gridViewIMHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewIMHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -499,8 +501,6 @@
             this.colInventoryMoveNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colInventoryMoveNo.FieldName = "InventoryMoveNo";
             this.colInventoryMoveNo.Name = "colInventoryMoveNo";
-            this.colInventoryMoveNo.OptionsColumn.AllowEdit = false;
-            this.colInventoryMoveNo.OptionsColumn.AllowFocus = false;
             this.colInventoryMoveNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "InventoryMoveNo", "共计{0}条")});
             this.colInventoryMoveNo.Visible = true;
@@ -515,8 +515,6 @@
             this.colOrderHeadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colOrderHeadDate.FieldName = "InventoryMoveDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
-            this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadDate.OptionsColumn.AllowFocus = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 1;
             this.colOrderHeadDate.Width = 90;
@@ -528,7 +526,6 @@
             this.colInRepertoryNo.ColumnEdit = this.repLookUpInRepertoryNo;
             this.colInRepertoryNo.FieldName = "InRepertoryNo";
             this.colInRepertoryNo.Name = "colInRepertoryNo";
-            this.colInRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colInRepertoryNo.Visible = true;
             this.colInRepertoryNo.VisibleIndex = 3;
             this.colInRepertoryNo.Width = 100;
@@ -555,7 +552,6 @@
             this.colOutRepertoryNo.ColumnEdit = this.repLookUpInRepertoryNo;
             this.colOutRepertoryNo.FieldName = "OutRepertoryNo";
             this.colOutRepertoryNo.Name = "colOutRepertoryNo";
-            this.colOutRepertoryNo.OptionsColumn.AllowEdit = false;
             this.colOutRepertoryNo.Visible = true;
             this.colOutRepertoryNo.VisibleIndex = 2;
             this.colOutRepertoryNo.Width = 100;
@@ -567,8 +563,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
-            this.colReqDep.OptionsColumn.AllowFocus = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 4;
             this.colReqDep.Width = 100;
@@ -592,7 +586,6 @@
             this.colPRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPRemark.FieldName = "Remark";
             this.colPRemark.Name = "colPRemark";
-            this.colPRemark.OptionsColumn.AllowEdit = false;
             this.colPRemark.Visible = true;
             this.colPRemark.VisibleIndex = 5;
             this.colPRemark.Width = 140;
@@ -603,8 +596,6 @@
             this.colPrepared.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
-            this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 6;
             this.colPrepared.Width = 80;

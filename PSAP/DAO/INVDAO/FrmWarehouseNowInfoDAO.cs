@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PSAP.DAO.INVDAO
 {
@@ -113,6 +111,20 @@ namespace PSAP.DAO.INVDAO
             sqlStr = string.Format("select * from F_QueryStockDurationTotal_Column({1}, '{2}', '{3}', '{4}', '{5}') where {0} order by RepertoryNo, CodeFileName, ProjectNo", sqlStr, yearStr, beginingBeginDateStr, beginingEndDateStr, beginDateStr, endDateStr);
             //BaseSQL.Query(sqlStr, queryDataTable);
             return sqlStr;
+        }
+
+        /// <summary>
+        /// 查询Bom零件的库存数量
+        /// </summary>
+        public DataTable QueryBomWarehouseNowInfo(string codeFileNameStr, string repertoryNoStr)
+        {
+            string repNoSQLStr = "";
+            if (repertoryNoStr != "")
+            {
+                repNoSQLStr = string.Format(" and RepertoryNo = '{0}'", repertoryNoStr);
+            }
+            string sqlStr = string.Format("select bom.*, SW_PartsCode.CodeName, SW_PartsCode.AutoId as PCAutoId, SW_PartsCode.FilePath, SW_PartsCode.Brand, SW_PartsCode.CatgName, SW_PartsCode.CodeSpec, SW_PartsCode.Unit, BS_BomMaterieState.MaterieStateText, (select IsNull(SUM(Qty), 0) from INV_WarehouseNowInfo where INV_WarehouseNowInfo.CodeFileName = bom.CodeFileName {1} ) as WarehouseQty from F_BomMateriel_TreeRelation('{0}') as bom left join SW_PartsCode on bom.CodeFileName = SW_PartsCode.CodeFileName left join BS_BomManagement on bom.CodeFileName = BS_BomManagement.MaterielNo left join BS_BomMaterieState on BS_BomMaterieState.MaterieStateId = BS_BomManagement.MaterieStateId Order by CodeFileName", codeFileNameStr, repNoSQLStr);
+            return BaseSQL.Query(sqlStr).Tables[0];
         }
     }
 }

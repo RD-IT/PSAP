@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using PSAP.DAO.BSDAO;
 
 namespace PSAP.PSAPCommon
@@ -21,7 +18,7 @@ namespace PSAP.PSAPCommon
         {
             //MessageHandler.ShowMessageBox(exceptionText + " 错误信息：" + exception.Message);
             MessageHandler.ShowMessageBox(exceptionText + f.tsmiCwxx.Text + exception.Message);
-                        new ExceptionHandler().OutputLog(exceptionText, exception);
+            new ExceptionHandler().OutputLog(exceptionText, exception);
         }
 
         /// <summary>
@@ -62,7 +59,7 @@ namespace PSAP.PSAPCommon
             {
                 //MessageHandler.ShowMessageBox("记录异常日志失败-[" + ex.Message + "][" + exceptionText + "][" + exception.Message + "]");
                 MessageHandler.ShowMessageBox(f.tsmiJlycrz.Text + ex.Message + "][" + exceptionText + "][" + exception.Message + "]");
-                            }
+            }
         }
 
         /// <summary>

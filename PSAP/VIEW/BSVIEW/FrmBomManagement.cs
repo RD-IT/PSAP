@@ -96,9 +96,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewBomMateriel_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void treeListBom_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.TreeList_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -244,7 +256,7 @@ namespace PSAP.VIEW.BSVIEW
                     dSBom.Tables[1].Rows.Clear();
                     Set_ButtonEditGrid_State(true, null);
 
-                    if (!isNew)
+                    //if (!isNew)
                         treeListBom_FocusedNodeChanged(null, null);
                 }
             }
@@ -319,6 +331,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewBomMateriel.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 //int prListAutoIdInt = 0;
                 //if (gridViewIMList.GetFocusedDataRow() != null)
                 //    prListAutoIdInt = DataTypeConvert.GetInt(gridViewIMList.GetFocusedDataRow()["PrListAutoId"]);
@@ -455,6 +474,8 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "LevelMaterielNo", gridViewBomMateriel.GetFocusedDataSourceRowIndex());
                     }
                 }
+                else
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
             }
             catch (Exception ex)
             {
@@ -693,12 +714,35 @@ namespace PSAP.VIEW.BSVIEW
                     MessageHandler.ShowMessageBox("当前选择的母零件编号已经设定过BOM信息，不可以重复登记。");
                     searchCodeFileName.EditValue = selectCodeFileName;
                     btnQuery_Click(null, null);
+                    for (int i = 0; i < treeListBom.Nodes.Count; i++)
+                    {
+                        if (SearchCodeFileName(treeListBom.Nodes[i], selectCodeFileName))
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
+        }
+
+        /// <summary>
+        /// 查询之前聚焦的节点
+        /// </summary>
+        private bool SearchCodeFileName(TreeListNode node, string selectCodeFileName)
+        {
+            if (DataTypeConvert.GetString(node["CodeFileName"]) == selectCodeFileName)
+            {
+                treeListBom.FocusedNode = node;
+                return true;
+            }
+            for (int i = 0; i < node.Nodes.Count; i++)
+            {
+                if (SearchFocusNode(node.Nodes[i], selectCodeFileName))
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>

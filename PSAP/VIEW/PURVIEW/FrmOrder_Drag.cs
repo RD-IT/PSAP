@@ -81,6 +81,10 @@ namespace PSAP.VIEW.BSVIEW
                 datePlanDateEnd.DateTime = nowDate.Date.AddDays(SystemInfo.OrderQueryDate_DefaultDays);
                 checkPlanDate.Checked = false;
 
+                DataTable departmentTable = commonDAO.QueryDepartment(false);
+                DataTable purCategoryTable = commonDAO.QueryPurCategory(false);
+                DataTable projectListTable = commonDAO.QueryProjectList(false);
+
                 lookUpReqDep.Properties.DataSource = commonDAO.QueryDepartment(true);
                 lookUpReqDep.ItemIndex = 0;
                 lookUpPurCategory.Properties.DataSource = commonDAO.QueryPurCategory(true);
@@ -93,9 +97,9 @@ namespace PSAP.VIEW.BSVIEW
                 lookUpApprover.Properties.DataSource = commonDAO.QueryUserInfo(true);
                 lookUpApprover.ItemIndex = -1;
 
-                repLookUpReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPurCategory.DataSource = commonDAO.QueryPurCategory(false);
-                repSearchProjectNo.DataSource = commonDAO.QueryProjectList(false);
+                repLookUpReqDep.DataSource = departmentTable;
+                repLookUpPurCategory.DataSource = purCategoryTable;
+                repSearchProjectNo.DataSource = projectListTable;
                 repSearchBussinessBaseNo.DataSource = commonDAO.QueryBussinessBaseInfo(false);
                 repLookUpApprovalType.DataSource = commonDAO.QueryApprovalType(false);
                 repLookUpPayTypeNo.DataSource = commonDAO.QueryPayType(false);
@@ -107,9 +111,9 @@ namespace PSAP.VIEW.BSVIEW
                 searchLookUpProjectNo.Properties.DataSource = commonDAO.QueryProjectList(true);
                 searchLookUpProjectNo.Text = "全部";
 
-                repLookUpPrReqReqDep.DataSource = commonDAO.QueryDepartment(false);
-                repLookUpPrReqPurCategory.DataSource = commonDAO.QueryPurCategory(false);
-                repSearchPrReqProjectNo.DataSource = commonDAO.QueryProjectList(false);
+                repLookUpPrReqReqDep.DataSource = departmentTable;
+                repLookUpPrReqPurCategory.DataSource = purCategoryTable;
+                repSearchPrReqProjectNo.DataSource = projectListTable;
 
                 if (textCommon.Text == "")
                 {
@@ -168,7 +172,7 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmOrder_Shown(object sender, EventArgs e)
         {
             pnlMiddle.Height = (this.Height - pnltop.Height) / 2;
-            pnlLeftMiddle.Height = gridControlOrderHead.Height + 2;
+            pnlLeftMiddle.Height = gridControlOrderHead.Height - 17;
 
             dockPnlLeft.Width = SystemInfo.DragForm_LeftDock_Width;
         }
@@ -319,21 +323,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewOrderHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-        }
-
-        /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void gridViewOrderList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -341,9 +331,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void repSearchCodeFileNameView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewOrderHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -917,6 +919,10 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "CodeFileName", gridViewOrderList.GetFocusedDataSourceRowIndex());
                     }
                 }
+                else
+                {
+                    ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -932,6 +938,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewOrderList.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 int prListAutoIdInt = 0;
                 if (gridViewOrderList.GetFocusedDataRow() != null)
                     prListAutoIdInt = DataTypeConvert.GetInt(gridViewOrderList.GetFocusedDataRow()["PrListAutoId"]);
@@ -1485,6 +1498,10 @@ namespace PSAP.VIEW.BSVIEW
                     if (!dragRect.Contains(new Point(e.X, e.Y)))
                     {
                         int[] rowint = view.GetSelectedRows();
+
+                        if (rowint.Length == 0)
+                            rowint = new int[] { view.FocusedRowHandle };
+
                         List<DataRow> row = new List<DataRow>();
                         foreach (int i in rowint)
                         {

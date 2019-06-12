@@ -779,6 +779,7 @@
             this.gridViewPrReqHead.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrReqHead_RowClick);
             this.gridViewPrReqHead.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPrReqHead_CustomDrawRowIndicator);
             this.gridViewPrReqHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewPrReqHead_CustomColumnDisplayText);
+            this.gridViewPrReqHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -791,8 +792,6 @@
             this.colOrderHeadNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colOrderHeadNo.FieldName = "OrderHeadNo";
             this.colOrderHeadNo.Name = "colOrderHeadNo";
-            this.colOrderHeadNo.OptionsColumn.AllowEdit = false;
-            this.colOrderHeadNo.OptionsColumn.AllowFocus = false;
             this.colOrderHeadNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colOrderHeadNo.Visible = true;
@@ -805,8 +804,6 @@
             this.colReqState.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colReqState.FieldName = "ReqState";
             this.colReqState.Name = "colReqState";
-            this.colReqState.OptionsColumn.AllowEdit = false;
-            this.colReqState.OptionsColumn.AllowFocus = false;
             this.colReqState.Visible = true;
             this.colReqState.VisibleIndex = 1;
             this.colReqState.Width = 60;
@@ -819,7 +816,6 @@
             this.colOrderHeadDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colOrderHeadDate.FieldName = "OrderHeadDate";
             this.colOrderHeadDate.Name = "colOrderHeadDate";
-            this.colOrderHeadDate.OptionsColumn.AllowEdit = false;
             this.colOrderHeadDate.Visible = true;
             this.colOrderHeadDate.VisibleIndex = 2;
             this.colOrderHeadDate.Width = 90;
@@ -831,7 +827,6 @@
             this.colPurCategory.ColumnEdit = this.repLookUpPurCategory;
             this.colPurCategory.FieldName = "PurCategory";
             this.colPurCategory.Name = "colPurCategory";
-            this.colPurCategory.OptionsColumn.AllowEdit = false;
             this.colPurCategory.Visible = true;
             this.colPurCategory.VisibleIndex = 3;
             this.colPurCategory.Width = 80;
@@ -856,7 +851,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 4;
             this.colBussinessBaseNo.Width = 130;
@@ -922,7 +916,6 @@
             this.colReqDep.ColumnEdit = this.repLookUpReqDep;
             this.colReqDep.FieldName = "ReqDep";
             this.colReqDep.Name = "colReqDep";
-            this.colReqDep.OptionsColumn.AllowEdit = false;
             this.colReqDep.Visible = true;
             this.colReqDep.VisibleIndex = 5;
             this.colReqDep.Width = 120;
@@ -948,7 +941,6 @@
             this.colTax.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTax.FieldName = "Tax";
             this.colTax.Name = "colTax";
-            this.colTax.OptionsColumn.AllowEdit = false;
             this.colTax.Visible = true;
             this.colTax.VisibleIndex = 6;
             this.colTax.Width = 60;
@@ -960,7 +952,6 @@
             this.colProjectNo.ColumnEdit = this.repSearchProjectNo;
             this.colProjectNo.FieldName = "ProjectNo";
             this.colProjectNo.Name = "colProjectNo";
-            this.colProjectNo.OptionsColumn.AllowEdit = false;
             this.colProjectNo.Visible = true;
             this.colProjectNo.VisibleIndex = 7;
             this.colProjectNo.Width = 100;
@@ -1019,7 +1010,6 @@
             this.colStnNo.ColumnEdit = this.repComboBoxStnNo;
             this.colStnNo.FieldName = "StnNo";
             this.colStnNo.Name = "colStnNo";
-            this.colStnNo.OptionsColumn.AllowEdit = false;
             this.colStnNo.Visible = true;
             this.colStnNo.VisibleIndex = 8;
             this.colStnNo.Width = 100;
@@ -1040,7 +1030,6 @@
             this.colApprovalType.ColumnEdit = this.repLookUpApprovalType;
             this.colApprovalType.FieldName = "ApprovalType";
             this.colApprovalType.Name = "colApprovalType";
-            this.colApprovalType.OptionsColumn.AllowEdit = false;
             this.colApprovalType.Visible = true;
             this.colApprovalType.VisibleIndex = 9;
             this.colApprovalType.Width = 100;
@@ -1062,7 +1051,6 @@
             this.colPayTypeNo.ColumnEdit = this.repLookUpPayTypeNo;
             this.colPayTypeNo.FieldName = "PayTypeNo";
             this.colPayTypeNo.Name = "colPayTypeNo";
-            this.colPayTypeNo.OptionsColumn.AllowEdit = false;
             this.colPayTypeNo.Visible = true;
             this.colPayTypeNo.VisibleIndex = 10;
             this.colPayTypeNo.Width = 100;
@@ -1085,7 +1073,6 @@
             this.colPlanDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colPlanDate.FieldName = "PlanDate";
             this.colPlanDate.Name = "colPlanDate";
-            this.colPlanDate.OptionsColumn.AllowEdit = false;
             this.colPlanDate.Visible = true;
             this.colPlanDate.VisibleIndex = 11;
             this.colPlanDate.Width = 90;
@@ -1096,7 +1083,6 @@
             this.colPrReqRemark.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrReqRemark.FieldName = "PrReqRemark";
             this.colPrReqRemark.Name = "colPrReqRemark";
-            this.colPrReqRemark.OptionsColumn.AllowEdit = false;
             this.colPrReqRemark.Visible = true;
             this.colPrReqRemark.VisibleIndex = 12;
             this.colPrReqRemark.Width = 140;
@@ -1107,8 +1093,6 @@
             this.colPrepared.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colPrepared.FieldName = "Prepared";
             this.colPrepared.Name = "colPrepared";
-            this.colPrepared.OptionsColumn.AllowEdit = false;
-            this.colPrepared.OptionsColumn.AllowFocus = false;
             this.colPrepared.Visible = true;
             this.colPrepared.VisibleIndex = 13;
             this.colPrepared.Width = 70;
@@ -1119,8 +1103,6 @@
             this.colClosed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colClosed.FieldName = "Closed";
             this.colClosed.Name = "colClosed";
-            this.colClosed.OptionsColumn.AllowEdit = false;
-            this.colClosed.OptionsColumn.AllowFocus = false;
             this.colClosed.Visible = true;
             this.colClosed.VisibleIndex = 14;
             // 
@@ -1156,7 +1138,7 @@
             this.tsmiDgrqbnwk,
             this.tsmiJhdhrqbnwk});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(341, 70);
+            this.cms.Size = new System.Drawing.Size(341, 48);
             // 
             // tsmiDgrqbnwk
             // 

@@ -14,13 +14,28 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmSalesOrderQuery : DockContent
     {
+        #region 私有变量
+
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmSalesOrderDAO soDAO = new FrmSalesOrderDAO();
+
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
+        #endregion
+
+        #region 构造方法
 
         public FrmSalesOrderQuery()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region 页面事件
 
         /// <summary>
         /// 窗体加载事件
@@ -44,6 +59,7 @@ namespace PSAP.VIEW.BSVIEW
                 repLookUpCollectionTypeNo.DataSource = commonDAO.QueryCollectionType(false);
 
                 gridBottomOrderHead.pageRowCount = SystemInfo.OrderQueryGrid_PageRowCount;
+                gridBottomOrderHead.pageRowCount = 5;
 
                 btnQuery_Click(null, null);
             }
@@ -58,9 +74,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewSalesOrder_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewSalesOrder_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -91,8 +119,8 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_SalesOrder.Tables[0].Rows.Clear();
 
-                string querySqlStr = soDAO.QuerySalesOrder_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNoStr, empNameStr, commonStr);
-
+                string querySqlStr = soDAO.QuerySalesOrderAndCor_SQL(recordDateBeginStr, recordDateEndStr, bussinessBaseNoStr, projectNoStr, empNameStr, commonStr);
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_SalesOrder, "SalesOrder", querySqlStr, countSqlStr, true);
@@ -110,7 +138,15 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+
+                //int result = new CustomXtraMessageBoxForm().ShowMessageBox("请选择要存为 Excel 的查询记录：", new string[] { "当前页面记录", "全部查询记录", "取消" });
+                //MessageHandler.ShowMessageBox(result.ToString());
+
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSalesOrder);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_SalesOrder.Tables[0], lastQuerySqlStr, gridViewSalesOrder);
             }
             catch (Exception ex)
             {
@@ -125,12 +161,12 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string autoSalesOrderNoStr = DataTypeConvert.GetString(gridViewSalesOrder.GetFocusedDataRow()["AutoSalesOrderNo"]);
-                    FrmSalesOrder.queryAutoSalesOrderNoStr = autoSalesOrderNoStr;
+                    FrmSalesOrder_History.queryAutoSalesOrderNoStr = autoSalesOrderNoStr;
                     //FrmWarehouseWarrant_Drag.queryListAutoId = 0;
-                    ViewHandler.ShowRightWindow("FrmSalesOrder");
+                    ViewHandler.ShowRightWindow("FrmSalesOrder_History");
                 }
             }
             catch (Exception ex)
@@ -139,5 +175,6 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        #endregion
     }
 }

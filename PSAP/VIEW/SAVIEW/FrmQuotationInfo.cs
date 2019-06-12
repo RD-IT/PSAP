@@ -15,6 +15,8 @@ namespace PSAP.VIEW.BSVIEW
 {
     public partial class FrmQuotationInfo : DockContent
     {
+        #region 私有变量
+
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmQuotationInfoDAO quoDAO = new FrmQuotationInfoDAO();
 
@@ -41,10 +43,18 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private string currentAutoQuotationNoStr = "";
 
+        #endregion
+
+        #region 构造方法
+
         public FrmQuotationInfo()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region 窗体事件
 
         /// <summary>
         /// 窗体加载事件  
@@ -52,12 +62,12 @@ namespace PSAP.VIEW.BSVIEW
         private void FrmQuotationInfo_Load(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 ControlHandler.DevExpressStyle_ChangeControlLocation(btnListAdd.LookAndFeel.ActiveSkinName, new List<Control> { btnListAdd });
 
                 searchBussinessBaseNo.Properties.DataSource = commonDAO.QueryBussinessBaseInfo(false);
 
-                repLookUpCurrencyCate.DataSource = quoDAO.QueryCurrencyCate(false);
+                repLookUpCurrencyCate.DataSource = commonDAO.QueryCurrencyCate(false);
 
                 btnRefresh_Click(null, null);
             }
@@ -91,15 +101,16 @@ namespace PSAP.VIEW.BSVIEW
             }
         }
 
+        #endregion
+
+        #region 报价单的相关事件和方法
+
         /// <summary>
         /// 确定行号
         /// </summary>
         private void gridViewQuotationPriceInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -227,7 +238,7 @@ namespace PSAP.VIEW.BSVIEW
                             gridViewQuotationPriceInfo.DeleteRow(i);
                             continue;
                         }
-                        if (DataTypeConvert.GetString(listRow["Amount"]) == "")
+                        if (DataTypeConvert.GetString(listRow["Amount"]) == "" || DataTypeConvert.GetDecimal(listRow["Amount"]) == 0)
                         {
                             MessageHandler.ShowMessageBox("金额不能为空，请填写后再进行保存。");
                             FocusedListView(true, "Amount", i);
@@ -445,6 +456,13 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
+                if (gridViewQuotationPriceInfo.GetFocusedDataRow().RowState != DataRowState.Added)
+                {
+                    if (MessageHandler.ShowMessageBox_YesNo("确定要删除当前选中的明细记录吗？") != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 gridViewQuotationPriceInfo.DeleteRow(gridViewQuotationPriceInfo.FocusedRowHandle);
             }
             catch (Exception ex)
@@ -465,11 +483,19 @@ namespace PSAP.VIEW.BSVIEW
                 if (newParentAutoQuotationNoStr != "")
                 {
                     e.Row["ParentAutoQuotationNo"] = newParentAutoQuotationNoStr;
-                    e.Row["ParentAutoSalesOrderNo"] = newParentAutoSalesOrderNoStr; 
+                    e.Row["ParentAutoSalesOrderNo"] = newParentAutoSalesOrderNoStr;
                     e.Row["ParentProjectNo"] = newParentProjectNoStr;
                     newParentAutoQuotationNoStr = "";
                     newParentAutoSalesOrderNoStr = "";
                     newParentProjectNoStr = "";
+
+                    DataTable tempTable = new DataTable();
+                    quoDAO.QueryQuotationBaseInfo(tempTable, DataTypeConvert.GetString(e.Row["ParentAutoQuotationNo"]));
+                    if (tempTable.Rows.Count > 0)
+                    {
+                        e.Row["BussinessBaseNo"] = DataTypeConvert.GetString(tempTable.Rows[0]["BussinessBaseNo"]);
+                        e.Row["Requester"] = DataTypeConvert.GetString(tempTable.Rows[0]["Requester"]);
+                    }
                 }
             }
             catch (Exception ex)
@@ -535,6 +561,7 @@ namespace PSAP.VIEW.BSVIEW
                         FocusedListView(true, "CurrencyCate", gridViewQuotationPriceInfo.GetFocusedDataSourceRowIndex());
                     }
                 }
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
             }
             catch (Exception ex)
             {
@@ -638,7 +665,7 @@ namespace PSAP.VIEW.BSVIEW
                     gridViewQuotationPriceInfo.FocusedRowHandle = i;
                     return true;
                 }
-                if (DataTypeConvert.GetString(gridViewQuotationPriceInfo.GetDataRow(i)["Amount"]) == "")
+                if (DataTypeConvert.GetString(gridViewQuotationPriceInfo.GetDataRow(i)["Amount"]) == "" || DataTypeConvert.GetDecimal(gridViewQuotationPriceInfo.GetDataRow(i)["Amount"]) == 0)
                 {
                     gridViewQuotationPriceInfo.Focus();
                     gridViewQuotationPriceInfo.FocusedColumn = colAmount;
@@ -702,6 +729,8 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--子表单元格值变化进行的操作错误。", ex);
             }
         }
+
+        #endregion
 
     }
 }

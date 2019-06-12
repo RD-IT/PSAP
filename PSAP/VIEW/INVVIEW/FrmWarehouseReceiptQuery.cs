@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
             static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmWarehouseReceiptQuery()
         {
             InitializeComponent();
@@ -82,9 +87,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewWRHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewWRHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -118,7 +135,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_WR.Tables[0].Rows.Clear();
                 string querySqlStr = wrDAO.QueryWarehouseReceiptHead_SQL(wrDateBeginStr, wrDateEndStr, reqDepStr, repertoryNoStr, wrTypeNoStr, manufactureNoStr, warehouseStateInt, empNameStr, -1, commonStr, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_WR, "WRHead", querySqlStr, countSqlStr, true);
@@ -137,7 +154,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewWRHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewWRHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewWRHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_WR.Tables[0], lastQuerySqlStr, gridViewWRHead);
             }
             catch (Exception ex)
             {
@@ -153,7 +174,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string wrHeadNoStr = DataTypeConvert.GetString(gridViewWRHead.GetFocusedDataRow()["WarehouseReceipt"]);
                     FrmWarehouseReceipt_Drag.queryWRHeadNo = wrHeadNoStr;
@@ -167,5 +188,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--"+f.tsmiSjcxmxcw.Text , ex);
             }
         }
+
     }
 }

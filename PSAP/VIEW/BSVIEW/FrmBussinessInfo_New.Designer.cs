@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dSBussiness = new System.Data.DataSet();
             this.TableBussinessBaseInfo = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -54,9 +55,9 @@
             this.dataCBussinessLicense = new System.Data.DataColumn();
             this.dataCBankAccout = new System.Data.DataColumn();
             this.dataCBankAddress = new System.Data.DataColumn();
-            this.bSBaseInfo = new System.Windows.Forms.BindingSource();
-            this.bSDetailInfo = new System.Windows.Forms.BindingSource();
-            this.bSFinancialInfo = new System.Windows.Forms.BindingSource();
+            this.bSBaseInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bSDetailInfo = new System.Windows.Forms.BindingSource(this.components);
+            this.bSFinancialInfo = new System.Windows.Forms.BindingSource(this.components);
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.TabControlOtherInfo = new DevExpress.XtraTab.XtraTabControl();
@@ -109,7 +110,7 @@
             this.labBussinessBaseNo = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiWlfbh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWlfmc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWlffl = new System.Windows.Forms.ToolStripMenuItem();
@@ -342,10 +343,10 @@
             // TabControlOtherInfo
             // 
             this.TabControlOtherInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TabControlOtherInfo.Location = new System.Drawing.Point(2, 2);
+            this.TabControlOtherInfo.Location = new System.Drawing.Point(0, 0);
             this.TabControlOtherInfo.Name = "TabControlOtherInfo";
             this.TabControlOtherInfo.SelectedTabPage = this.PageDetailInfo;
-            this.TabControlOtherInfo.Size = new System.Drawing.Size(396, 489);
+            this.TabControlOtherInfo.Size = new System.Drawing.Size(400, 493);
             this.TabControlOtherInfo.TabIndex = 0;
             this.TabControlOtherInfo.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.PageDetailInfo,
@@ -355,7 +356,7 @@
             // 
             this.PageDetailInfo.Controls.Add(this.pnlDetailInfo);
             this.PageDetailInfo.Name = "PageDetailInfo";
-            this.PageDetailInfo.Size = new System.Drawing.Size(390, 460);
+            this.PageDetailInfo.Size = new System.Drawing.Size(394, 464);
             this.PageDetailInfo.Text = "详细信息";
             // 
             // pnlDetailInfo
@@ -381,7 +382,7 @@
             this.pnlDetailInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetailInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
-            this.pnlDetailInfo.Size = new System.Drawing.Size(390, 460);
+            this.pnlDetailInfo.Size = new System.Drawing.Size(394, 464);
             this.pnlDetailInfo.TabIndex = 0;
             // 
             // textContact
@@ -549,7 +550,7 @@
             // 
             this.PageFinancialInfo.Controls.Add(this.pnlFinancialInfo);
             this.PageFinancialInfo.Name = "PageFinancialInfo";
-            this.PageFinancialInfo.Size = new System.Drawing.Size(390, 460);
+            this.PageFinancialInfo.Size = new System.Drawing.Size(394, 464);
             this.PageFinancialInfo.Text = "金融信息";
             // 
             // pnlFinancialInfo
@@ -563,7 +564,7 @@
             this.pnlFinancialInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFinancialInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlFinancialInfo.Name = "pnlFinancialInfo";
-            this.pnlFinancialInfo.Size = new System.Drawing.Size(390, 460);
+            this.pnlFinancialInfo.Size = new System.Drawing.Size(394, 464);
             this.pnlFinancialInfo.TabIndex = 1;
             // 
             // textBussinessLicense
@@ -632,9 +633,9 @@
             // 
             this.pnlGrid.Controls.Add(this.gridCrlBaseInfo);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(2, 99);
+            this.pnlGrid.Location = new System.Drawing.Point(0, 97);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(815, 392);
+            this.pnlGrid.Size = new System.Drawing.Size(819, 396);
             this.pnlGrid.TabIndex = 8;
             // 
             // gridCrlBaseInfo
@@ -644,7 +645,7 @@
             this.gridCrlBaseInfo.Location = new System.Drawing.Point(2, 2);
             this.gridCrlBaseInfo.MainView = this.gridViewBaseInfo;
             this.gridCrlBaseInfo.Name = "gridCrlBaseInfo";
-            this.gridCrlBaseInfo.Size = new System.Drawing.Size(811, 388);
+            this.gridCrlBaseInfo.Size = new System.Drawing.Size(815, 392);
             this.gridCrlBaseInfo.TabIndex = 100;
             this.gridCrlBaseInfo.TabStop = false;
             this.gridCrlBaseInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -668,7 +669,6 @@
             this.gridViewBaseInfo.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewBaseInfo.OptionsView.ShowFooter = true;
             this.gridViewBaseInfo.OptionsView.ShowGroupPanel = false;
-            this.gridViewBaseInfo.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBaseInfo_CustomDrawRowIndicator);
             this.gridViewBaseInfo.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewBaseInfo_FocusedRowChanged);
             // 
             // colAutoId
@@ -684,7 +684,7 @@
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 0;
-            this.colBussinessBaseNo.Width = 120;
+            this.colBussinessBaseNo.Width = 180;
             // 
             // colBussinessBaseText
             // 
@@ -694,7 +694,7 @@
             this.colBussinessBaseText.Name = "colBussinessBaseText";
             this.colBussinessBaseText.Visible = true;
             this.colBussinessBaseText.VisibleIndex = 1;
-            this.colBussinessBaseText.Width = 120;
+            this.colBussinessBaseText.Width = 180;
             // 
             // colBussinessCategory
             // 
@@ -711,7 +711,7 @@
             this.colBussinessCategoryText.Name = "colBussinessCategoryText";
             this.colBussinessCategoryText.Visible = true;
             this.colBussinessCategoryText.VisibleIndex = 2;
-            this.colBussinessCategoryText.Width = 120;
+            this.colBussinessCategoryText.Width = 150;
             // 
             // colBussinessIsUse
             // 
@@ -733,14 +733,14 @@
             this.pnlEdit.Controls.Add(this.labBussinessBaseText);
             this.pnlEdit.Controls.Add(this.labBussinessBaseNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEdit.Location = new System.Drawing.Point(2, 2);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 0);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(815, 97);
+            this.pnlEdit.Size = new System.Drawing.Size(819, 97);
             this.pnlEdit.TabIndex = 7;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(300, 58);
+            this.labelControl1.Location = new System.Drawing.Point(333, 58);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 18;
@@ -749,7 +749,7 @@
             // checkBussinessIsUse
             // 
             this.checkBussinessIsUse.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBaseInfo, "BussinessIsUse", true));
-            this.checkBussinessIsUse.Location = new System.Drawing.Point(389, 56);
+            this.checkBussinessIsUse.Location = new System.Drawing.Point(422, 56);
             this.checkBussinessIsUse.Name = "checkBussinessIsUse";
             this.checkBussinessIsUse.Properties.Caption = "";
             this.checkBussinessIsUse.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
@@ -779,16 +779,16 @@
             this.lookUpBussinessCategory.Properties.DisplayMember = "BussinessCategoryText";
             this.lookUpBussinessCategory.Properties.NullText = "";
             this.lookUpBussinessCategory.Properties.ValueMember = "BussinessCategory";
-            this.lookUpBussinessCategory.Size = new System.Drawing.Size(150, 20);
+            this.lookUpBussinessCategory.Size = new System.Drawing.Size(200, 20);
             this.lookUpBussinessCategory.TabIndex = 2;
             // 
             // textBussinessBaseText
             // 
             this.textBussinessBaseText.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bSBaseInfo, "BussinessBaseText", true));
             this.textBussinessBaseText.EnterMoveNextControl = true;
-            this.textBussinessBaseText.Location = new System.Drawing.Point(380, 21);
+            this.textBussinessBaseText.Location = new System.Drawing.Point(413, 21);
             this.textBussinessBaseText.Name = "textBussinessBaseText";
-            this.textBussinessBaseText.Size = new System.Drawing.Size(150, 20);
+            this.textBussinessBaseText.Size = new System.Drawing.Size(200, 20);
             this.textBussinessBaseText.TabIndex = 1;
             // 
             // textBussinessBaseNo
@@ -797,12 +797,12 @@
             this.textBussinessBaseNo.EnterMoveNextControl = true;
             this.textBussinessBaseNo.Location = new System.Drawing.Point(112, 21);
             this.textBussinessBaseNo.Name = "textBussinessBaseNo";
-            this.textBussinessBaseNo.Size = new System.Drawing.Size(150, 20);
+            this.textBussinessBaseNo.Size = new System.Drawing.Size(200, 20);
             this.textBussinessBaseNo.TabIndex = 0;
             // 
             // labBussinessBaseText
             // 
-            this.labBussinessBaseText.Location = new System.Drawing.Point(300, 24);
+            this.labBussinessBaseText.Location = new System.Drawing.Point(333, 24);
             this.labBussinessBaseText.Name = "labBussinessBaseText";
             this.labBussinessBaseText.Size = new System.Drawing.Size(60, 14);
             this.labBussinessBaseText.TabIndex = 14;

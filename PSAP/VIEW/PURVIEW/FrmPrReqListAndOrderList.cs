@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmPrReqDAO prReqDAO = new FrmPrReqDAO();
         FrmCommonDAO commonDAO = new FrmCommonDAO();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmPrReqListAndOrderList()
         {
             InitializeComponent();
@@ -78,9 +83,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewPrReqList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewPrReqList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -111,7 +128,7 @@ namespace PSAP.VIEW.BSVIEW
                 dataSet_PrReq.Tables[0].Clear();
 
                 string querySqlStr = prReqDAO.Query_PrReqListAndOrderList(reqDateBeginStr, reqDateEndStr, reqDepStr, purCategoryStr, projectNoStr, reqStateInt, codeFileNameStr, commonStr);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomPrReq.QueryGridData(ref dataSet_PrReq, "PrReqList", querySqlStr, countSqlStr, true);
             }
@@ -129,7 +146,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
+                if (gridBottomPrReq.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewPrReqList);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_PrReq.Tables[0], lastQuerySqlStr, gridViewPrReqList);
             }
             catch (Exception ex)
             {
@@ -145,7 +166,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string prReqNoStr = DataTypeConvert.GetString(gridViewPrReqList.GetFocusedDataRow()["PrReqNo"]);
                     int autoIdInt = DataTypeConvert.GetInt(gridViewPrReqList.GetFocusedDataRow()["AutoId"]);
@@ -200,5 +221,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--" + tsmiSzgrid.Text, ex);
             }
         }
+
     }
 }

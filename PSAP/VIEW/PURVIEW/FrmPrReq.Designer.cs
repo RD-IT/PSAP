@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnltop = new DevExpress.XtraEditors.PanelControl();
             this.lookUpApprover = new DevExpress.XtraEditors.LookUpEdit();
             this.textCommon = new DevExpress.XtraEditors.TextEdit();
@@ -82,7 +83,7 @@
             this.pnlMiddle = new DevExpress.XtraEditors.PanelControl();
             this.checkAll = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlPrReqHead = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqHead = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqHead = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColSelect = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -121,7 +122,7 @@
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.btnListAdd = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlPrReqList = new DevExpress.XtraGrid.GridControl();
-            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource();
+            this.bindingSource_PrReqList = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPrReqList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAutoId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrReqNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -138,16 +139,16 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repbtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barButtonUp = new DevExpress.XtraBars.BarButtonItem();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager();
+            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiQgdyjy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQgd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWsp = new System.Windows.Forms.ToolStripMenuItem();
@@ -234,9 +235,9 @@
             this.pnltop.Controls.Add(this.labReqDep);
             this.pnltop.Controls.Add(this.labReqDate);
             this.pnltop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnltop.Location = new System.Drawing.Point(2, 2);
+            this.pnltop.Location = new System.Drawing.Point(0, 0);
             this.pnltop.Name = "pnltop";
-            this.pnltop.Size = new System.Drawing.Size(985, 78);
+            this.pnltop.Size = new System.Drawing.Size(989, 78);
             this.pnltop.TabIndex = 0;
             // 
             // lookUpApprover
@@ -651,9 +652,9 @@
             this.pnlMiddle.Controls.Add(this.gridControlPrReqHead);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
             this.pnlMiddle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMiddle.Location = new System.Drawing.Point(2, 80);
+            this.pnlMiddle.Location = new System.Drawing.Point(0, 78);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(985, 212);
+            this.pnlMiddle.Size = new System.Drawing.Size(989, 212);
             this.pnlMiddle.TabIndex = 1;
             // 
             // checkAll
@@ -682,7 +683,7 @@
             this.repComboBoxStnNo,
             this.repCheckSelect,
             this.repLookUpApprovalType});
-            this.gridControlPrReqHead.Size = new System.Drawing.Size(981, 174);
+            this.gridControlPrReqHead.Size = new System.Drawing.Size(985, 174);
             this.gridControlPrReqHead.TabIndex = 0;
             this.gridControlPrReqHead.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqHead});
@@ -727,6 +728,7 @@
             this.gridViewPrReqHead.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewPrReqHead_FocusedRowChanged);
             this.gridViewPrReqHead.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPrReqHead_CellValueChanged);
             this.gridViewPrReqHead.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewPrReqHead_CustomColumnDisplayText);
+            this.gridViewPrReqHead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPrReqHead_KeyDown);
             // 
             // colAutoId
             // 
@@ -758,7 +760,7 @@
             this.colPrReqNo.FieldName = "PrReqNo";
             this.colPrReqNo.Name = "colPrReqNo";
             this.colPrReqNo.OptionsColumn.AllowEdit = false;
-            this.colPrReqNo.OptionsColumn.AllowFocus = false;
+            this.colPrReqNo.OptionsColumn.TabStop = false;
             this.colPrReqNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colPrReqNo.Visible = true;
@@ -772,7 +774,7 @@
             this.colReqState.FieldName = "ReqState";
             this.colReqState.Name = "colReqState";
             this.colReqState.OptionsColumn.AllowEdit = false;
-            this.colReqState.OptionsColumn.AllowFocus = false;
+            this.colReqState.OptionsColumn.TabStop = false;
             this.colReqState.Visible = true;
             this.colReqState.VisibleIndex = 2;
             this.colReqState.Width = 60;
@@ -786,7 +788,7 @@
             this.colReqDate.FieldName = "ReqDate";
             this.colReqDate.Name = "colReqDate";
             this.colReqDate.OptionsColumn.AllowEdit = false;
-            this.colReqDate.OptionsColumn.AllowFocus = false;
+            this.colReqDate.OptionsColumn.TabStop = false;
             this.colReqDate.Visible = true;
             this.colReqDate.VisibleIndex = 3;
             this.colReqDate.Width = 90;
@@ -967,7 +969,7 @@
             this.colApplicant.FieldName = "Applicant";
             this.colApplicant.Name = "colApplicant";
             this.colApplicant.OptionsColumn.AllowEdit = false;
-            this.colApplicant.OptionsColumn.AllowFocus = false;
+            this.colApplicant.OptionsColumn.TabStop = false;
             this.colApplicant.Visible = true;
             this.colApplicant.VisibleIndex = 10;
             this.colApplicant.Width = 70;
@@ -979,7 +981,7 @@
             this.colApprover.FieldName = "Approver";
             this.colApprover.Name = "colApprover";
             this.colApprover.OptionsColumn.AllowEdit = false;
-            this.colApprover.OptionsColumn.AllowFocus = false;
+            this.colApprover.OptionsColumn.TabStop = false;
             this.colApprover.Visible = true;
             this.colApprover.VisibleIndex = 11;
             this.colApprover.Width = 70;
@@ -991,7 +993,7 @@
             this.colClosed.FieldName = "Closed";
             this.colClosed.Name = "colClosed";
             this.colClosed.OptionsColumn.AllowEdit = false;
-            this.colClosed.OptionsColumn.AllowFocus = false;
+            this.colClosed.OptionsColumn.TabStop = false;
             this.colClosed.Visible = true;
             this.colClosed.VisibleIndex = 12;
             this.colClosed.Width = 70;
@@ -1010,7 +1012,7 @@
             this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMiddleTop.Location = new System.Drawing.Point(2, 2);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(981, 34);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(985, 34);
             this.pnlMiddleTop.TabIndex = 1;
             // 
             // btnCancelClose
@@ -1109,9 +1111,9 @@
             this.pnlBottom.Controls.Add(this.btnListAdd);
             this.pnlBottom.Controls.Add(this.gridControlPrReqList);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(2, 297);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 295);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(985, 152);
+            this.pnlBottom.Size = new System.Drawing.Size(989, 156);
             this.pnlBottom.TabIndex = 2;
             // 
             // btnListAdd
@@ -1135,7 +1137,7 @@
             this.repSpinQty,
             this.repSearchCodeFileName,
             this.repbtnDelete});
-            this.gridControlPrReqList.Size = new System.Drawing.Size(981, 148);
+            this.gridControlPrReqList.Size = new System.Drawing.Size(985, 152);
             this.gridControlPrReqList.TabIndex = 1;
             this.gridControlPrReqList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrReqList});
@@ -1187,8 +1189,7 @@
             this.colPrReqNo1.FieldName = "PrReqNo";
             this.colPrReqNo1.Name = "colPrReqNo1";
             this.colPrReqNo1.OptionsColumn.AllowEdit = false;
-            this.colPrReqNo1.OptionsColumn.AllowFocus = false;
-            this.colPrReqNo1.OptionsColumn.ReadOnly = true;
+            this.colPrReqNo1.OptionsColumn.TabStop = false;
             this.colPrReqNo1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PrReqNo", "共计{0}条")});
             this.colPrReqNo1.Visible = true;
@@ -1338,7 +1339,7 @@
             this.colCodeName.FieldName = "CodeName";
             this.colCodeName.Name = "colCodeName";
             this.colCodeName.OptionsColumn.AllowEdit = false;
-            this.colCodeName.OptionsColumn.AllowFocus = false;
+            this.colCodeName.OptionsColumn.TabStop = false;
             this.colCodeName.Visible = true;
             this.colCodeName.VisibleIndex = 2;
             this.colCodeName.Width = 110;
@@ -1413,9 +1414,9 @@
             // 
             this.splitterControl1.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(2, 292);
+            this.splitterControl1.Location = new System.Drawing.Point(0, 290);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(985, 5);
+            this.splitterControl1.Size = new System.Drawing.Size(989, 5);
             this.splitterControl1.TabIndex = 4;
             this.splitterControl1.TabStop = false;
             // 

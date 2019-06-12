@@ -234,6 +234,14 @@ namespace PSAP.DAO.BSDAO
             }
         }
 
+        public static DataTable GetTableBySql(SqlCommand cmd)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+            adpt.Fill(dt);
+            return dt;
+        }
+
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>

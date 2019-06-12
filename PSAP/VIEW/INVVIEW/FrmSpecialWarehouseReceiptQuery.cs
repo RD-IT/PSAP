@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace PSAP.VIEW.BSVIEW
@@ -17,6 +16,11 @@ namespace PSAP.VIEW.BSVIEW
     {
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         FrmSpecialWarehouseReceiptDAO swrDAO = new FrmSpecialWarehouseReceiptDAO();
+
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
 
         public FrmSpecialWarehouseReceiptQuery()
         {
@@ -72,9 +76,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewSWRHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewSWRHead_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -106,7 +122,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_SWR.Tables[0].Rows.Clear();
                 string querySqlStr = swrDAO.QuerySpecialWarehouseReceiptHead_SQL(swrDateBeginStr, swrDateEndStr, reqDepStr, repertoryNoStr, warehouseStateInt, empNameStr, -1, commonStr, false);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_SWR, "SWRHead", querySqlStr, countSqlStr, true);
@@ -124,7 +140,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewSWRHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewSWRHead);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewSWRHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_SWR.Tables[0], lastQuerySqlStr, gridViewSWRHead);
             }
             catch (Exception ex)
             {
@@ -139,7 +159,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string swrHeadNoStr = DataTypeConvert.GetString(gridViewSWRHead.GetFocusedDataRow()["SpecialWarehouseReceipt"]);
                     FrmSpecialWarehouseReceipt.querySWRHeadNo = swrHeadNoStr;

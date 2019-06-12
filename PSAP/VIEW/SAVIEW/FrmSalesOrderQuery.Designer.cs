@@ -641,6 +641,7 @@
             this.gridViewSalesOrder.OptionsView.ShowFooter = true;
             this.gridViewSalesOrder.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewSalesOrder_RowClick);
             this.gridViewSalesOrder.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewSalesOrder_CustomDrawRowIndicator);
+            this.gridViewSalesOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewSalesOrder_KeyDown);
             // 
             // colAutoId
             // 
@@ -653,8 +654,6 @@
             this.colAutoSalesOrderNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colAutoSalesOrderNo.FieldName = "AutoSalesOrderNo";
             this.colAutoSalesOrderNo.Name = "colAutoSalesOrderNo";
-            this.colAutoSalesOrderNo.OptionsColumn.AllowEdit = false;
-            this.colAutoSalesOrderNo.OptionsColumn.AllowFocus = false;
             this.colAutoSalesOrderNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WarehouseWarrant", "共计{0}条")});
             this.colAutoSalesOrderNo.Visible = true;
@@ -669,8 +668,6 @@
             this.colSalesOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colSalesOrderDate.FieldName = "SalesOrderDate";
             this.colSalesOrderDate.Name = "colSalesOrderDate";
-            this.colSalesOrderDate.OptionsColumn.AllowEdit = false;
-            this.colSalesOrderDate.OptionsColumn.AllowFocus = false;
             this.colSalesOrderDate.Visible = true;
             this.colSalesOrderDate.VisibleIndex = 1;
             this.colSalesOrderDate.Width = 130;
@@ -692,8 +689,6 @@
             this.colBussinessBaseNo.ColumnEdit = this.repSearchBussinessBaseNo;
             this.colBussinessBaseNo.FieldName = "BussinessBaseNo";
             this.colBussinessBaseNo.Name = "colBussinessBaseNo";
-            this.colBussinessBaseNo.OptionsColumn.AllowEdit = false;
-            this.colBussinessBaseNo.OptionsColumn.AllowFocus = false;
             this.colBussinessBaseNo.Visible = true;
             this.colBussinessBaseNo.VisibleIndex = 3;
             this.colBussinessBaseNo.Width = 130;
@@ -758,7 +753,6 @@
             this.colProjectName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colProjectName.FieldName = "ProjectName";
             this.colProjectName.Name = "colProjectName";
-            this.colProjectName.OptionsColumn.AllowEdit = false;
             this.colProjectName.Visible = true;
             this.colProjectName.VisibleIndex = 4;
             this.colProjectName.Width = 100;
@@ -780,7 +774,6 @@
             this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
-            this.colAmount.OptionsColumn.AllowEdit = false;
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")});
             this.colAmount.Visible = true;
@@ -795,8 +788,6 @@
             this.colTax.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTax.FieldName = "Tax";
             this.colTax.Name = "colTax";
-            this.colTax.OptionsColumn.AllowEdit = false;
-            this.colTax.OptionsColumn.AllowFocus = false;
             this.colTax.Visible = true;
             this.colTax.VisibleIndex = 7;
             this.colTax.Width = 80;
@@ -809,8 +800,6 @@
             this.colTaxAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTaxAmount.FieldName = "TaxAmount";
             this.colTaxAmount.Name = "colTaxAmount";
-            this.colTaxAmount.OptionsColumn.AllowEdit = false;
-            this.colTaxAmount.OptionsColumn.AllowFocus = false;
             this.colTaxAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TaxAmount", "{0:N2}")});
             this.colTaxAmount.Visible = true;

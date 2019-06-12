@@ -19,6 +19,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmInventoryAdjustmentsDAO iaDAO = new FrmInventoryAdjustmentsDAO();
             static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmInventoryAdjustmentsQuery()
         {
             InitializeComponent();
@@ -66,9 +71,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewIAHead_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewIAHead_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -99,8 +116,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_IA.Tables[0].Clear();
                 string querySqlStr = iaDAO.QueryInventoryAdjustmentsHead_SQL(orderDateBeginStr, orderDateEndStr, repertoryNoStr, projectNoStr, reqDepStr, empNameStr, commonStr, false);
-
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
                 gridBottomIA.QueryGridData(ref dataSet_IA, "IAHead", querySqlStr, countSqlStr, true);
             }
@@ -118,7 +134,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewIAHead);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewIAHead);
+                if (gridBottomIA.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewIAHead);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_IA.Tables[0], lastQuerySqlStr, gridViewIAHead);
             }
             catch (Exception ex)
             {
@@ -134,7 +154,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string inventoryAdjustmentsNoStr = DataTypeConvert.GetString(gridViewIAHead.GetFocusedDataRow()["InventoryAdjustmentsNo"]);
                     FrmInventoryAdjustments_Drag.queryIAHeadNo = inventoryAdjustmentsNoStr;

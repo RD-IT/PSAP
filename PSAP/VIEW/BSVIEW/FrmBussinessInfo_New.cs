@@ -6,9 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -164,17 +162,6 @@ namespace PSAP.VIEW.BSVIEW
             bussDAO.Delete_BussinessOtherInfo(cmd, DataTypeConvert.GetString(dr["BussinessBaseNo", DataRowVersion.Original]));
 
             return true;
-        }
-
-        /// <summary>
-        /// 确定行号
-        /// </summary>
-        private void gridViewBaseInfo_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
         }
 
         /// <summary>

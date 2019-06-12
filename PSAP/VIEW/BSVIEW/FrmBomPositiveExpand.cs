@@ -7,9 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -48,9 +46,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewBomMateriel_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 根据选择显示零件名称
+        /// </summary>
+        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
 
@@ -89,6 +99,21 @@ namespace PSAP.VIEW.BSVIEW
         }
 
         /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void treeListBom_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.TreeList_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
+            }
+        }
+
+        /// <summary>
         /// 双击查看Bom信息
         /// </summary>
         private void treeListBom_DoubleClick(object sender, EventArgs e)
@@ -121,21 +146,6 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //ExceptionHandler.HandleException(this.Text + "--查询结果存为Excel错误。", ex);
                 ExceptionHandler.HandleException(this.Text + "--" + tsmiCxjgcw.Text, ex);
-            }
-        }
-
-        /// <summary>
-        /// 根据选择显示零件名称
-        /// </summary>
-        private void searchCodeFileName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
-            try
-            {
-                textCodeName.Text = DataTypeConvert.GetString(searchPartsCodeIdView.GetRowCellValue(searchCodeFileName.Properties.GetIndexByKeyValue(e.NewValue), "CodeName"));
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
 

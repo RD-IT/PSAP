@@ -184,7 +184,6 @@
             this.gridViewProjectList.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewProjectList.OptionsView.ShowFooter = true;
             this.gridViewProjectList.OptionsView.ShowGroupPanel = false;
-            this.gridViewProjectList.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewProjectList_CustomDrawRowIndicator);
             this.gridViewProjectList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewProjectList_FocusedRowChanged);
             // 
             // colAutoId
@@ -323,7 +322,7 @@
             this.searchLookUpBussinessBaseNoView.Name = "searchLookUpBussinessBaseNoView";
             this.searchLookUpBussinessBaseNoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpBussinessBaseNoView.OptionsView.ShowGroupPanel = false;
-            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewProjectList_CustomDrawRowIndicator);
+            this.searchLookUpBussinessBaseNoView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.searchLookUpBussinessBaseNoView_CustomDrawRowIndicator);
             // 
             // gridColumnBussinessBaseNo
             // 

@@ -7,9 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -47,10 +45,7 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewBomMateriel_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-            {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
         }
 
         /// <summary>
@@ -75,6 +70,21 @@ namespace PSAP.VIEW.BSVIEW
             {
                 //ExceptionHandler.HandleException(this.Text + "--反向查询零件的Bom信息错误。", ex);
                 ExceptionHandler.HandleException(this.Text + "--" + tsmiFxcxlj.Text, ex);
+            }
+        }
+        
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void treeListBom_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ControlHandler.TreeList_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -165,5 +175,6 @@ namespace PSAP.VIEW.BSVIEW
                 ExceptionHandler.HandleException(this.Text + "--根据选择显示零件名称错误。", ex);
             }
         }
+
     }
 }

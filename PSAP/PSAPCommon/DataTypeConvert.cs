@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PSAP.PSAPCommon
 {
@@ -59,7 +57,7 @@ namespace PSAP.PSAPCommon
             else
                 return Convert.ToDouble(obj);
         }
-
+        
         /// <summary>
         /// 将Object类型转换为Decimal类型
         /// </summary>

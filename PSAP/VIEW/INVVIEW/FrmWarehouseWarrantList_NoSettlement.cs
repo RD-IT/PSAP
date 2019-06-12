@@ -20,6 +20,11 @@ namespace PSAP.VIEW.BSVIEW
         FrmCommonDAO commonDAO = new FrmCommonDAO();
         static PSAP.VIEW.BSVIEW.FrmLanguageText f = new VIEW.BSVIEW.FrmLanguageText();
 
+        /// <summary>
+        /// 最后一次查询的SQL
+        /// </summary>
+        string lastQuerySqlStr = "";
+
         public FrmWarehouseWarrantList_NoSettlement()
         {
             InitializeComponent();
@@ -85,9 +90,21 @@ namespace PSAP.VIEW.BSVIEW
         /// </summary>
         private void gridViewWWList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            ControlHandler.GridView_CustomDrawRowIndicator(e);
+        }
+
+        /// <summary>
+        /// 获取单元格显示的信息
+        /// </summary>
+        private void gridViewWWList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
             {
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                ControlHandler.GridView_GetFocusedCellDisplayText_KeyDown(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(this.Text + "--获取单元格显示的信息错误。", ex);
             }
         }
 
@@ -122,7 +139,7 @@ namespace PSAP.VIEW.BSVIEW
 
                 dataSet_WW.Tables[0].Rows.Clear();
                 string querySqlStr = wwDAO.Query_WWList_NoSettlement_SQL(orderDateBeginStr, orderDateEndStr, reqDepStr, bussinessBaseNoStr, repertoryNoStr, wwTypeNoStr, warehouseStateInt, projectNameStr, codeFileNameStr, checkOverplus.Checked, commonStr);
-
+                lastQuerySqlStr = querySqlStr;
                 string countSqlStr = commonDAO.QuerySqlTranTotalCountSql(querySqlStr);
 
                 gridBottomOrderHead.QueryGridData(ref dataSet_WW, "WWList", querySqlStr, countSqlStr, true);
@@ -141,7 +158,11 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                FileHandler.SaveDevGridControlExportToExcel(gridViewWWList);
+                //FileHandler.SaveDevGridControlExportToExcel(gridViewWWList);
+                if (gridBottomOrderHead.pageCount <= 1)
+                    FileHandler.SaveDevGridControlExportToExcel(gridViewWWList);
+                else
+                    commonDAO.SaveExcel_QueryAllData(dataSet_WW.Tables[0], lastQuerySqlStr, gridViewWWList);
             }
             catch (Exception ex)
             {
@@ -157,7 +178,7 @@ namespace PSAP.VIEW.BSVIEW
         {
             try
             {
-                if (e.Clicks == 2)
+                if (e.Clicks == 2 && e.Button == MouseButtons.Left)
                 {
                     string wwHeadNoStr = DataTypeConvert.GetString(gridViewWWList.GetFocusedDataRow()["WarehouseWarrant"]);
                     int autoIdInt = DataTypeConvert.GetInt(gridViewWWList.GetFocusedDataRow()["AutoId"]);

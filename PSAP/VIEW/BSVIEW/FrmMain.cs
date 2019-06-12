@@ -8,11 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using PSAP.BLL.BSBLL;
 using WeifenLuo.WinFormsUI.Docking;
-using UtilityLibrary.WinControls;
-using PSAP.DAO.BSDAO;
 using System.Data.SqlClient;
 using System.Reflection;
-using PSAP.BLL;
 using PSAP.PSAPCommon;
 
 namespace PSAP.VIEW.BSVIEW
@@ -176,7 +173,8 @@ namespace PSAP.VIEW.BSVIEW
                 {
                     if (content.DockHandler.Form.Name.Equals(dc.DockHandler.Form.Name))
                     {
-                        content.DockHandler.Activate();
+                        //content.DockHandler.Activate();
+                        content.DockHandler.Form.Activate();
                         return;
                     }
                 }

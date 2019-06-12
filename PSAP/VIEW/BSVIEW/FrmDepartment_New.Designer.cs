@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dSDepartment = new System.Data.DataSet();
             this.TableDepartment = new System.Data.DataTable();
             this.dataColAutoId = new System.Data.DataColumn();
@@ -42,7 +43,7 @@
             this.dataColBfree4 = new System.Data.DataColumn();
             this.dataColBfree5 = new System.Data.DataColumn();
             this.dataColParentDepartmentName = new System.Data.DataColumn();
-            this.bSDepartment = new System.Windows.Forms.BindingSource();
+            this.bSDepartment = new System.Windows.Forms.BindingSource(this.components);
             this.pnlToolBar = new DevExpress.XtraEditors.PanelControl();
             this.pnlEdit = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -79,17 +80,17 @@
             this.colBfree51 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colParentDepartmentName1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.pnlRight = new DevExpress.XtraEditors.PanelControl();
-            this.barManagerForm = new DevExpress.XtraBars.BarManager();
+            this.barManagerForm = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barBtnSame = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnDown = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuList = new DevExpress.XtraBars.PopupMenu();
+            this.popupMenuList = new DevExpress.XtraBars.PopupMenu(this.components);
             this.pnlDepartment = new DevExpress.XtraEditors.PanelControl();
             this.splitterMiddle = new DevExpress.XtraEditors.SplitterControl();
-            this.cms = new System.Windows.Forms.ContextMenuStrip();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiBmbhbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBmmcbnwk = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiXztj = new System.Windows.Forms.ToolStripMenuItem();
@@ -208,9 +209,9 @@
             // pnlToolBar
             // 
             this.pnlToolBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlToolBar.Location = new System.Drawing.Point(2, 2);
+            this.pnlToolBar.Location = new System.Drawing.Point(0, 0);
             this.pnlToolBar.Name = "pnlToolBar";
-            this.pnlToolBar.Size = new System.Drawing.Size(809, 40);
+            this.pnlToolBar.Size = new System.Drawing.Size(813, 40);
             this.pnlToolBar.TabIndex = 4;
             // 
             // pnlEdit
@@ -222,9 +223,9 @@
             this.pnlEdit.Controls.Add(this.labDepartmentName);
             this.pnlEdit.Controls.Add(this.labDepartmentNo);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEdit.Location = new System.Drawing.Point(2, 42);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 40);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(809, 68);
+            this.pnlEdit.Size = new System.Drawing.Size(813, 68);
             this.pnlEdit.TabIndex = 8;
             // 
             // labelControl1
@@ -290,9 +291,9 @@
             // 
             this.pnlGrid.Controls.Add(this.gridCrlDepartment);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(2, 110);
+            this.pnlGrid.Location = new System.Drawing.Point(0, 108);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(809, 438);
+            this.pnlGrid.Size = new System.Drawing.Size(813, 442);
             this.pnlGrid.TabIndex = 9;
             // 
             // gridCrlDepartment
@@ -302,7 +303,7 @@
             this.gridCrlDepartment.Location = new System.Drawing.Point(2, 2);
             this.gridCrlDepartment.MainView = this.gridViewDepartment;
             this.gridCrlDepartment.Name = "gridCrlDepartment";
-            this.gridCrlDepartment.Size = new System.Drawing.Size(805, 434);
+            this.gridCrlDepartment.Size = new System.Drawing.Size(809, 438);
             this.gridCrlDepartment.TabIndex = 1;
             this.gridCrlDepartment.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDepartment});
@@ -331,7 +332,6 @@
             this.gridViewDepartment.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewDepartment.OptionsView.ShowFooter = true;
             this.gridViewDepartment.OptionsView.ShowGroupPanel = false;
-            this.gridViewDepartment.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewDepartment_CustomDrawRowIndicator);
             // 
             // colAutoId
             // 
@@ -463,6 +463,7 @@
             this.treeListDept.Size = new System.Drawing.Size(246, 546);
             this.treeListDept.TabIndex = 0;
             this.treeListDept.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.treeListDept_BeforeFocusNode);
+            this.treeListDept.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeListDept_KeyDown);
             this.treeListDept.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeListDept_MouseDown);
             // 
             // colAutoId1

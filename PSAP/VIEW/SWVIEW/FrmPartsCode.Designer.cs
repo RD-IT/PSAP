@@ -547,7 +547,7 @@
             this.searchLookUpMaterialView.Name = "searchLookUpMaterialView";
             this.searchLookUpMaterialView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpMaterialView.OptionsView.ShowGroupPanel = false;
-            this.searchLookUpMaterialView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPartsCode_CustomDrawRowIndicator);
+            this.searchLookUpMaterialView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.searchLookUpMaterialView_CustomDrawRowIndicator);
             // 
             // gridColuAutoId
             // 
@@ -829,7 +829,7 @@
             this.colBfree2,
             this.colBfree3});
             this.gridViewPartsCode.GridControl = this.gridCrlPartsCode;
-            this.gridViewPartsCode.IndicatorWidth = 50;
+            this.gridViewPartsCode.IndicatorWidth = 60;
             this.gridViewPartsCode.Name = "gridViewPartsCode";
             this.gridViewPartsCode.OptionsBehavior.Editable = false;
             this.gridViewPartsCode.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -837,7 +837,8 @@
             this.gridViewPartsCode.OptionsView.EnableAppearanceOddRow = true;
             this.gridViewPartsCode.OptionsView.ShowFooter = true;
             this.gridViewPartsCode.OptionsView.ShowGroupPanel = false;
-            this.gridViewPartsCode.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPartsCode_CustomDrawRowIndicator);
+            this.gridViewPartsCode.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.searchLookUpMaterialView_CustomDrawRowIndicator);
+            this.gridViewPartsCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewPartsCode_KeyDown);
             // 
             // colAutoId
             // 
@@ -1070,7 +1071,7 @@
             this.tsmiWlbb,
             this.tsmiDw});
             this.cms.Name = "cmsCommonHandler";
-            this.cms.Size = new System.Drawing.Size(257, 224);
+            this.cms.Size = new System.Drawing.Size(257, 202);
             // 
             // tsmiCtjzsj
             // 

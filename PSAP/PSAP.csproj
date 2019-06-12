@@ -67,6 +67,7 @@
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2.UI, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -137,6 +138,9 @@
     <Compile Include="DAO\INVDAO\FrmSpecialWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseNowInfoDAO.cs" />
     <Compile Include="DAO\INVDAO\FrmWarehouseReceiptDAO.cs" />
+    <Compile Include="DAO\PBDAO\FrmPBDesignBomDAO.cs" />
+    <Compile Include="DAO\PBDAO\FrmPBDesignBom_PSDAO.cs" />
+    <Compile Include="DAO\PBDAO\FrmProductionScheduleDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmApprovalDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmDocumentTempletDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmOrderDAO.cs" />
@@ -146,9 +150,12 @@
     <Compile Include="DAO\INVDAO\FrmWarehouseWarrantDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmSettlementDAO.cs" />
     <Compile Include="DAO\PURDAO\FrmWarehouseWarrantApplyDAO.cs" />
+    <Compile Include="DAO\SADAO\FrmDeliveryDetailDAO.cs" />
     <Compile Include="DAO\SADAO\FrmQuotationInfoDAO.cs" />
     <Compile Include="DAO\SADAO\FrmSalesOrderDAO.cs" />
     <Compile Include="DAO\SADAO\FrmSettleAccountsDAO.cs" />
+    <Compile Include="DAO\SADAO\FrmStnModuleDAO.cs" />
+    <Compile Include="DAO\SADAO\FrmStnSummaryDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmAddRemarksDAO.cs" />
     <Compile Include="DAO\SALEDAO\FrmProjectDocumentDAO.cs" />
     <Compile Include="ENTITY\BSENTITY\bomManagement.cs" />
@@ -298,6 +305,18 @@
     <Compile Include="VIEW\BSVIEW\FrmRight_UserMenuButton.Designer.cs">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\CommonVIEW\FrmInputDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\CommonVIEW\FrmInputDate.Designer.cs">
+      <DependentUpon>FrmInputDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\CommonVIEW\FrmInputNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\CommonVIEW\FrmInputNumber.Designer.cs">
+      <DependentUpon>FrmInputNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\INVVIEW\FrmQueryStockDurationTotal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,11 +365,77 @@
     <Compile Include="VIEW\INVVIEW\FrmLanguageINVDAO.Designer.cs">
       <DependentUpon>FrmLanguageINVDAO.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmWarehouseNowInfo_Bom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\INVVIEW\FrmWarehouseNowInfo_Bom.Designer.cs">
+      <DependentUpon>FrmWarehouseNowInfo_Bom.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.Designer.cs">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBomQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBomQuery.Designer.cs">
+      <DependentUpon>FrmPBDesignBomQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom_PS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom_PS.Designer.cs">
+      <DependentUpon>FrmPBDesignBom_PS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom.Designer.cs">
+      <DependentUpon>FrmPBDesignBom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom_InputNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmPBDesignBom_InputNumber.Designer.cs">
+      <DependentUpon>FrmPBDesignBom_InputNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionSchedule.Designer.cs">
+      <DependentUpon>FrmProductionSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionScheduleBom_InputMulti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionScheduleBom_InputMulti.Designer.cs">
+      <DependentUpon>FrmProductionScheduleBom_InputMulti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionScheduleBom_InputSingle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionScheduleBom_InputSingle.Designer.cs">
+      <DependentUpon>FrmProductionScheduleBom_InputSingle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionScheduleQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionScheduleQuery.Designer.cs">
+      <DependentUpon>FrmProductionScheduleQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionSchedule_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmProductionSchedule_Drag.Designer.cs">
+      <DependentUpon>FrmProductionSchedule_Drag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmSelectSalesOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PBVIEW\FrmSelectSalesOrder.Designer.cs">
+      <DependentUpon>FrmSelectSalesOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmLanguagePURDAO.cs">
       <SubType>Form</SubType>
@@ -363,6 +448,12 @@
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.Designer.cs">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing_Days.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing_Days.Designer.cs">
+      <DependentUpon>FrmOrderList_NoWarehousing_Days.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\PURVIEW\FrmTest_WF.cs">
       <SubType>Form</SubType>
@@ -382,6 +473,18 @@
     <Compile Include="VIEW\SALEVIEW\FrmProjectDocument.Designer.cs">
       <DependentUpon>FrmProjectDocument.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmDeliveryDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmDeliveryDetail.Designer.cs">
+      <DependentUpon>FrmDeliveryDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationApply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationApply.Designer.cs">
+      <DependentUpon>FrmQuotationApply.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SAVIEW\FrmQuotationInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -394,11 +497,17 @@
     <Compile Include="VIEW\SAVIEW\FrmQuotationInfoQuery.Designer.cs">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalesOrder.cs">
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfo_History.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSalesOrder.Designer.cs">
-      <DependentUpon>FrmSalesOrder.cs</DependentUpon>
+    <Compile Include="VIEW\SAVIEW\FrmQuotationInfo_History.Designer.cs">
+      <DependentUpon>FrmQuotationInfo_History.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_History.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_History.Designer.cs">
+      <DependentUpon>FrmSalesOrder_History.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SAVIEW\FrmSalesOrderQuery.cs">
       <SubType>Form</SubType>
@@ -406,17 +515,59 @@
     <Compile Include="VIEW\SAVIEW\FrmSalesOrderQuery.Designer.cs">
       <DependentUpon>FrmSalesOrderQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.cs">
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_NoSettle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts.Designer.cs">
-      <DependentUpon>FrmSettleAccounts.cs</DependentUpon>
+    <Compile Include="VIEW\SAVIEW\FrmSalesOrder_NoSettle.Designer.cs">
+      <DependentUpon>FrmSalesOrder_NoSettle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSelectQuotationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSelectQuotationInfo.Designer.cs">
+      <DependentUpon>FrmSelectQuotationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSelectStnModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSelectStnModule.Designer.cs">
+      <DependentUpon>FrmSelectStnModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmSettleAccounts_Drag.Designer.cs">
+      <DependentUpon>FrmSettleAccounts_Drag.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SAVIEW\FrmSettleAccountsQuery.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VIEW\SAVIEW\FrmSettleAccountsQuery.Designer.cs">
       <DependentUpon>FrmSettleAccountsQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnModule.Designer.cs">
+      <DependentUpon>FrmStnModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary.Designer.cs">
+      <DependentUpon>FrmStnSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Drag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Drag.Designer.cs">
+      <DependentUpon>FrmStnSummary_Drag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Query.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SAVIEW\FrmStnSummary_Query.Designer.cs">
+      <DependentUpon>FrmStnSummary_Query.cs</DependentUpon>
     </Compile>
     <Compile Include="VIEW\SWVIEW\FrmBrandCatg.cs">
       <SubType>Form</SubType>
@@ -876,6 +1027,12 @@
     <EmbeddedResource Include="VIEW\BSVIEW\FrmRight_UserMenuButton.resx">
       <DependentUpon>FrmRight_UserMenuButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\CommonVIEW\FrmInputDate.resx">
+      <DependentUpon>FrmInputDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\CommonVIEW\FrmInputNumber.resx">
+      <DependentUpon>FrmInputNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmQueryStockDurationTotal.resx">
       <DependentUpon>FrmQueryStockDurationTotal.cs</DependentUpon>
     </EmbeddedResource>
@@ -900,14 +1057,50 @@
     <EmbeddedResource Include="VIEW\INVVIEW\FrmSpecialWarehouseWarrantQuery.resx">
       <DependentUpon>FrmSpecialWarehouseWarrantQuery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseNowInfo_Bom.resx">
+      <DependentUpon>FrmWarehouseNowInfo_Bom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\INVVIEW\FrmWarehouseWarrantList_NoSettlement.resx">
       <DependentUpon>FrmWarehouseWarrantList_NoSettlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmPBDesignBomQuery.resx">
+      <DependentUpon>FrmPBDesignBomQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmPBDesignBom_PS.resx">
+      <DependentUpon>FrmPBDesignBom_PS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmPBDesignBom.resx">
+      <DependentUpon>FrmPBDesignBom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmPBDesignBom_InputNumber.resx">
+      <DependentUpon>FrmPBDesignBom_InputNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionSchedule.resx">
+      <DependentUpon>FrmProductionSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionScheduleBom_InputMulti.resx">
+      <DependentUpon>FrmProductionScheduleBom_InputMulti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionScheduleBom_InputSingle.resx">
+      <DependentUpon>FrmProductionScheduleBom_InputSingle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionScheduleQuery.resx">
+      <DependentUpon>FrmProductionScheduleQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmProductionSchedule_Drag.resx">
+      <DependentUpon>FrmProductionSchedule_Drag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PBVIEW\FrmSelectSalesOrder.resx">
+      <DependentUpon>FrmSelectSalesOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmLanguagePURDAO.resx">
       <DependentUpon>FrmLanguagePURDAO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing.resx">
       <DependentUpon>FrmOrderList_NoWarehousing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\PURVIEW\FrmOrderList_NoWarehousing_Days.resx">
+      <DependentUpon>FrmOrderList_NoWarehousing_Days.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\PURVIEW\FrmTest_WF.resx">
       <DependentUpon>FrmTest_WF.cs</DependentUpon>
@@ -918,23 +1111,53 @@
     <EmbeddedResource Include="VIEW\SALEVIEW\FrmProjectDocument.resx">
       <DependentUpon>FrmProjectDocument.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmDeliveryDetail.resx">
+      <DependentUpon>FrmDeliveryDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationApply.resx">
+      <DependentUpon>FrmQuotationApply.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfo.resx">
       <DependentUpon>FrmQuotationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfoQuery.resx">
       <DependentUpon>FrmQuotationInfoQuery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder.resx">
-      <DependentUpon>FrmSalesOrder.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmQuotationInfo_History.resx">
+      <DependentUpon>FrmQuotationInfo_History.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder_History.resx">
+      <DependentUpon>FrmSalesOrder_History.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrderQuery.resx">
       <DependentUpon>FrmSalesOrderQuery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccounts.resx">
-      <DependentUpon>FrmSettleAccounts.cs</DependentUpon>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSalesOrder_NoSettle.resx">
+      <DependentUpon>FrmSalesOrder_NoSettle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSelectQuotationInfo.resx">
+      <DependentUpon>FrmSelectQuotationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSelectStnModule.resx">
+      <DependentUpon>FrmSelectStnModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccounts_Drag.resx">
+      <DependentUpon>FrmSettleAccounts_Drag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SAVIEW\FrmSettleAccountsQuery.resx">
       <DependentUpon>FrmSettleAccountsQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmStnModule.resx">
+      <DependentUpon>FrmStnModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmStnSummary.resx">
+      <DependentUpon>FrmStnSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmStnSummary_Drag.resx">
+      <DependentUpon>FrmStnSummary_Drag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VIEW\SAVIEW\FrmStnSummary_Query.resx">
+      <DependentUpon>FrmStnSummary_Query.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SWVIEW\FrmBrandCatg.resx">
       <DependentUpon>FrmBrandCatg.cs</DependentUpon>
